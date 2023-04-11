@@ -5,7 +5,8 @@ import categoryJapaneseImage from "./category-japanese.png";
 import categoryWesternImage from "./category-western.png";
 import categoryEtcImage from "./category-etc.png";
 
-import type { Category } from '../../../types/restaurant';
+const CATEGORY = ["한식", "중식", "일식", "아시안", "양식"] as const;
+type Category = (typeof CATEGORY)[number];
 
 const categoryImages: Readonly<Record<Category, string>> = {
   한식: categoryKoreanImage,
@@ -13,7 +14,16 @@ const categoryImages: Readonly<Record<Category, string>> = {
   일식: categoryJapaneseImage,
   아시안: categoryAsianImage,
   양식: categoryWesternImage,
-  기타: categoryEtcImage,
 };
 
-export default categoryImages;
+const isCategory = (targetCategory: string): targetCategory is Category => {
+  return !!CATEGORY.find((category) => category === targetCategory);
+};
+
+const getCategoryImage = (category: string) => {
+  if (isCategory(category)) return categoryImages[category];
+
+  return categoryEtcImage;
+};
+
+export default getCategoryImage;

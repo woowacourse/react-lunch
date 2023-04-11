@@ -1,5 +1,11 @@
+import RestaurantList from "./components/RestaurantList";
+
 function App() {
-  return <div>점심 뭐먹지</div>;
+  return (
+    <div>
+      <RestaurantList />
+    </div>
+  );
 }
 
 export default App;

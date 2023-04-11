@@ -1,5 +1,6 @@
 import { Component } from "react";
-import categoryImages from "../assets/images/category";
+
+import getCategoryImage from "../assets/images/category";
 import type { Restaurant } from "../types/restaurant";
 
 import styles from "./RestaurantItem.module.css";
@@ -19,7 +20,7 @@ class RestaurantItem extends Component<Props> {
     return (
       <li className={styles.restaurant}>
         <div className={styles.category}>
-          <img src={categoryImages[category]} alt={category} className={styles.categoryIcon} />
+          <img src={getCategoryImage(category)} alt={category} className={styles.categoryIcon} />
         </div>
         <div className={styles.info}>
           <h3 className={styles.name}>{name}</h3>
