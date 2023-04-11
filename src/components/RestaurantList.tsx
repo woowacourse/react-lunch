@@ -1,13 +1,7 @@
 import React from "react";
 import mockData from "../__mocks__/mockData.json";
-
-interface Restaurant {
-  "category": string;
-  "name": string;
-  "distance": number;
-  "description": string;
-  "favorite": boolean
-}
+import RestaurantItem from "./RestaurantItem";
+import { Restaurant } from "../types/Restaurant";
 
 interface RestaurantListState {
   restaurants: Restaurant[];
@@ -24,7 +18,9 @@ class RestaurantList extends React.Component<{}, RestaurantListState> {
     return (
       <>
         {
-          this.state.restaurants.map((r) => <div>{r.name}</div>)
+          this.state.restaurants.map((r) => (
+            <RestaurantItem key={r.name} restaurant={r} />
+          ))
         }
       </>
     );
