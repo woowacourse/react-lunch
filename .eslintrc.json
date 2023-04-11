@@ -25,7 +25,6 @@
         "tsx": "never"
       }
     ],
-    "no-console": "error",
     "react/prefer-stateless-function": "off"
   },
   "settings": {
