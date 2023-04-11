@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import { Component, ReactNode } from 'react';
 import './App.css';
+import RestaurantList from './components/RestaurantList';
+import { State } from './types';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state: State = {
+    restaurantList: [],
+    selectedRestaurant: 0,
+    currentDisplayStatus: {
+      category: '',
+      sortBy: '',
+    },
+  };
+
+  render(): ReactNode {
+    return (
+      <div className="App">
+        {/* <Header></Header>
+        <FilterSection></FilterSection> */}
+        <RestaurantList></RestaurantList>
+      </div>
+    );
+  }
 }
 
 export default App;
