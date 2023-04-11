@@ -40,5 +40,23 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "<br>",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.26"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/feb-dain/react-lunch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/feb-dain/react-lunch/issues"
+  },
+  "homepage": "https://github.com/feb-dain/react-lunch#readme"
 }
