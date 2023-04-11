@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Header from './components/Header';
-import FilterContainer from './components/FilterContainer';
+import FilterContainer from './components/FilterContainter';
 import RestaurantList from './components/RestaurantList';
 import Modal from './components/Modal';
 import './App.css';

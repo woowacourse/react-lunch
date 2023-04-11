@@ -1,6 +1,7 @@
 import { Component } from 'react';
 
 import RestaurantItem from './RestaurantItem';
+import './RestaurantList.css';
 
 export default class RestaurantList extends Component {
   render() {
