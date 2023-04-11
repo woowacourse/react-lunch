@@ -2,7 +2,7 @@
 
 ## Component
 
-- [ ] Header
+- [x] Header
 - [ ] SelectBoxWrapper
 - [ ] SelectBox
 - [ ] RestaurantsList
