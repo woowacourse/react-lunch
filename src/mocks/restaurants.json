@@ -1,0 +1,154 @@
+[
+  {
+    "id": "1",
+    "category": "한식",
+    "name": "피양콩할마니",
+    "takingTime": 10,
+    "description": "할머니가 옛날 방식을 고수하며 만들어내는 비지전골 또한 이 집의 역사를 느낄 수 있는 특별한 메뉴다. 반찬은 손님들이 먹고 싶은 만큼 덜어 먹을 수 있게 준비돼 있다.",
+    "link": "https://naver.me/G6DyD9tg"
+  },
+  {
+    "id": "2",
+    "category": "일식",
+    "name": "일일일",
+    "takingTime": 15,
+    "description": "이 집의 역사를 느낄 수 있는 특별한 메뉴다. 반찬은 손님들이 먹고 싶은 만큼 덜어 먹을 수 있게 준비돼 있다.",
+    "link": "https://naver.me/G6DyD9tg"
+  },
+  {
+    "id": "3",
+    "category": "일식",
+    "name": "잇쇼우",
+    "takingTime": 5,
+    "description": "잇쇼우는 정통 자가제면 사누끼 우동이 대표메뉴입니다. 기술은 정성을 이길 수 없다.",
+    "link": ""
+  },
+  {
+    "id": "4",
+    "category": "한식",
+    "name": "할머니 손맛 칼국수",
+    "takingTime": 5,
+    "description": "진짜 할머니가 만들어요.",
+    "link": "https://naver.me/G6DyD9tg"
+  },
+  {
+    "id": "5",
+    "category": "한식",
+    "name": "된장찌개 맛집",
+    "takingTime": 10,
+    "description": "얼큰한 된장찌개가 일품.",
+    "link": ""
+  },
+  {
+    "id": "6",
+    "category": "일식",
+    "name": "스노우폭스",
+    "takingTime": 5,
+    "description": "비싸지만 꽤 괜찮은 초밥을 파는 곳.",
+    "link": "https://naver.me/G6DyD9tg"
+  },
+  {
+    "id": "7",
+    "category": "기타",
+    "name": "한식 뷔페",
+    "takingTime": 5,
+    "description": "10,000원으로 먹을 수 있는 가성비 좋은 맛집 뷔페.",
+    "link": ""
+  },
+  {
+    "id": "8",
+    "category": "기타",
+    "name": "맛있는",
+    "takingTime": 10,
+    "description": "맛있다!",
+    "link": ""
+  },
+  {
+    "id": "9",
+    "category": "기타",
+    "name": "얌얌",
+    "takingTime": 15,
+    "description": "야미야미",
+    "link": "https://naver.me/G6DyD9tg"
+  },
+  {
+    "id": "10",
+    "category": "중식",
+    "name": "띵호와",
+    "takingTime": 15,
+    "description": "중국인도 반하고 가는 맛집",
+    "link": ""
+  },
+  {
+    "id": "11",
+    "category": "중식",
+    "name": "니하오",
+    "takingTime": 5,
+    "description": "짜장면이 3000원인 집",
+    "link": ""
+  },
+  {
+    "id": "12",
+    "category": "중식",
+    "name": "자금성",
+    "takingTime": 20,
+    "description": "가성비 좋은 중국집",
+    "link": "https://naver.me/G6DyD9tg"
+  },
+  {
+    "id": "13",
+    "category": "아시안",
+    "name": "반포식스",
+    "takingTime": 30,
+    "description": "쌀국수가 10,000원이였던 거 같다.",
+    "link": "https://naver.me/G6DyD9tg"
+  },
+  {
+    "id": "14",
+    "category": "아시안",
+    "name": "그레이츠아시안뀌진",
+    "takingTime": 10,
+    "description": "역삼 맛집",
+    "link": "https://naver.me/G6DyD9tg"
+  },
+  {
+    "id": "15",
+    "category": "아시안",
+    "name": "코쿤캅",
+    "takingTime": 5,
+    "description": "태국 가고 싶어요.",
+    "link": ""
+  },
+  {
+    "id": "16",
+    "category": "양식",
+    "name": "헬로우",
+    "takingTime": 15,
+    "description": "미국 가고 싶어요.",
+    "link": "https://naver.me/G6DyD9tg"
+  },
+  {
+    "id": "17",
+    "category": "양식",
+    "name": "스테이크 냠냠",
+    "takingTime": 20,
+    "description": "스테이크가 엄청 크다.",
+    "link": ""
+  },
+  {
+    "id": "18",
+    "category": "양식",
+    "name": "파스타와 피자",
+    "takingTime": 10,
+    "description": "이탈리아에 온 것 같은 착각을 불러일으킨다.",
+    "link": "https://naver.me/G6DyD9tg"
+  },
+  {
+    "id": "19",
+    "category": "양식",
+    "name": "파파존스",
+    "takingTime": 30,
+    "description": "유명한 피자 가게",
+    "link": ""
+  }
+]
