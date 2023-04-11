@@ -1,12 +1,17 @@
 import React from "react";
-import { GlobalStyle } from "./Globalstyle";
+import { ThemeProvider } from "styled-components";
+import { Header } from "./components/header";
+import { GlobalStyle } from "./style/Globalstyle";
+import { theme } from "./style/theme";
 
 class App extends React.Component {
   render() {
     return (
       <>
-        <GlobalStyle />
-        <h1>dlakjfalksd</h1>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Header />
+        </ThemeProvider>
       </>
     );
   }
