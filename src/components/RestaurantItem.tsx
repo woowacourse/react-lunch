@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Restaurant } from '../type';
 
 const Style = {
   Wrapper: styled.div`
@@ -49,34 +50,59 @@ const Style = {
   `,
 };
 
-export class RestaurantItem extends Component {
+const imgSrc = {
+  한식: 'korean',
+  중식: 'chinese',
+  일식: 'japanese',
+  양식: 'western',
+  아시안: 'asian',
+  기타: 'etc',
+};
+
+interface RestaurantProps {
+  info: Restaurant;
+}
+
+interface RestaurantState {
+  info: Restaurant;
+}
+
+export class RestaurantItem extends Component<
+  RestaurantProps,
+  RestaurantState
+> {
+  constructor(props: RestaurantProps) {
+    super(props);
+
+    this.state = {
+      info: props.info,
+    };
+  }
+
   render(): React.ReactNode {
     return (
       <Style.Wrapper>
         <Style.RestaurantCategory>
           <img
-            src={process.env.PUBLIC_URL + '/images/category-asian.png'}
-            alt="{category}"
+            src={`${process.env.PUBLIC_URL}/images/category-${
+              imgSrc[this.state.info.category]
+            }.png`}
+            alt={this.state.info.category}
           />
         </Style.RestaurantCategory>
         <Style.RestaurantInfo>
           <Style.DescriptionWrapper>
             <div>
-              <Style.RestaurantName>피양콩 할머니</Style.RestaurantName>
+              <Style.RestaurantName>
+                {this.state.info.name}
+              </Style.RestaurantName>
               <Style.RestaurantDistance>
-                캠퍼스부터 10분 내
+                캠퍼스부터 {this.state.info.distance}분 내
               </Style.RestaurantDistance>
             </div>
           </Style.DescriptionWrapper>
           <Style.RestaurnatDescription>
-            평양 출신의 할머니가 수십 년간 운영해온 비지 전문점 피양콩 할마니.
-            두부를 빼지 않은 되비지를 맛볼 수 있는 곳으로, ‘피양’은 평안도
-            사투리로 ‘평양’을 의미한다. 딸과 함께 운영하는 이곳에선 맷돌로 직접
-            간 콩만을 사용하며, 일체의 조미료를 넣지 않은 건강식을 선보인다.
-            콩비지와 피양 만두가 이곳의 대표 메뉴지만, 할머니가 옛날 방식을
-            고수하며 만들어내는 비지전골 또한 이 집의 역사를 느낄 수 있는 특별한
-            메뉴다. 반찬은 손님들이 먹고 싶은 만큼 덜어 먹을 수 있게 준비돼
-            있다.
+            {this.state.info.description}
           </Style.RestaurnatDescription>
         </Style.RestaurantInfo>
       </Style.Wrapper>
