@@ -1,10 +1,22 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import { Header } from "./components/header";
-import { RestaurantItem } from "./components/restaurantItem";
+import { RestaurantSection } from "./components/restaurantSection";
 import { SelectSection } from "./components/selectSection";
 import { GlobalStyle } from "./style/Globalstyle";
 import { theme } from "./style/theme";
+import { RestaurantItemPropsType } from "./types/restaurant";
+
+const restaurants = [
+  {
+    id: "ahkjfd",
+    category: "한식",
+    name: "hello",
+    takingTime: 10,
+    description: "sdhfjksdhfjkds",
+    link: "abcde.naver.com",
+  } as RestaurantItemPropsType,
+];
 
 class App extends React.Component {
   handleSelect(type: string, selectedOption: string) {
@@ -24,14 +36,7 @@ class App extends React.Component {
           <GlobalStyle />
           <Header />
           <SelectSection handleSelect={this.handleSelect} />
-          <RestaurantItem
-            name="hello"
-            id="ahkjfd"
-            category="한식"
-            description="sdhfjksdhfjkds"
-            takingTime={10}
-            link="abcde.naver.com"
-          />
+          <RestaurantSection restaurants={restaurants} />
         </ThemeProvider>
       </>
     );
