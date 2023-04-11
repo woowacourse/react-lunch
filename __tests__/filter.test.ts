@@ -1,4 +1,5 @@
-import { RestaurantInfo } from '../src/types/restaurantInfo';
+import { FoodCategory, RestaurantInfo } from '../src/types/restaurantInfo';
+import { filterFoodCategory, sortByEstimatedTime, sortByTitle } from '../src/domain/RestaurantSelector';
 
 const RESTAURANT_LIST: RestaurantInfo[] = [
   {
@@ -58,10 +59,8 @@ describe('음식점 카테고리 선택 및 이름순, 거리순 정렬하는 �
     ['아시안', 1],
     ['기타', 0],
   ])('%s 음식점 카테고리 선택 결과는 %s 개다.', (kind, expected) => {
-    //given
-
     //when
-    const result = filterFoodCategory(RESTAURANT_LIST, kind);
+    const result = filterFoodCategory(RESTAURANT_LIST, kind as FoodCategory);
 
     //then
     expect(result.length).toBe(expected);
@@ -91,13 +90,13 @@ describe('음식점 카테고리 선택 및 이름순, 거리순 정렬하는 �
   test('음식점 거리 순으로 정렬했을 때 올바른 결과가 나오는 지 테스트', () => {
     //given
     const expected = [
-      '잇쇼우',
       '친친',
-      '원할머니보쌈 선릉점',
+      '잇쇼우',
       '피양콩할마니',
+      '원할머니보쌈 선릉점',
       '호아빈 삼성점',
-      '역전우동 선릉점',
       '이태리키친',
+      '역전우동 선릉점',
       '시골밥상',
       '최고다 참치',
     ];
