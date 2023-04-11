@@ -1,5 +1,54 @@
+import { Restaurant } from "../types/restaurant";
 import React from "react";
 import styled from "styled-components";
+import { CATEGORY_IMAGE_MAP } from "../constants";
+
+interface Props {
+  restaurant: Restaurant;
+}
+
+class RestaurantDetail extends React.Component<Props> {
+  render() {
+    const {
+      category,
+      name,
+      distance,
+      description,
+      link,
+    } = this.props.restaurant;
+
+    return (
+      <StyledDiv>
+        <div className="modal-backdrop"></div>
+        <div className="modal-container">
+          <div className="detail">
+            <div className="restaurant__category">
+              <img
+                src={`./img/${CATEGORY_IMAGE_MAP[category]}`}
+                alt={category}
+                className="category-icon"
+              />
+            </div>
+            <h2 className="restaurant__name text-subtitle">{name}</h2>
+            <p className="restaurant__take-minute text-body">
+              캠퍼스부터 {distance}분 내
+            </p>
+            <textarea>{description}</textarea>
+            <div className="link-area">
+              <a href={link}>{link}</a>
+            </div>
+            <div className="button-container">
+              <button className="secondary">삭제하기</button>
+              <button className="primary">닫기</button>
+            </div>
+          </div>
+        </div>
+      </StyledDiv>
+    );
+  }
+}
+
+export default RestaurantDetail;
 
 const StyledDiv = styled.div`
   .modal {
@@ -109,32 +158,3 @@ const StyledDiv = styled.div`
     color: var(--grey-300);
   }
 `;
-
-class RestaurantDetail extends React.Component {
-  render() {
-    return (
-      <StyledDiv>
-        <div className="modal-backdrop"></div>
-        <div className="modal-container">
-          <div className="detail">
-            <div className="restaurant__category">
-              <img src="" alt="" className="category-icon" />
-            </div>
-            <h2 className="restaurant__name text-subtitle">할머니 국밥</h2>
-            <p className="restaurant__take-minute text-body">
-              캠퍼스부터 10분 내
-            </p>
-            <textarea>깍두기가 굳</textarea>
-            <div className="link-area"></div>
-            <div className="button-container">
-              <button className="secondary">삭제하기</button>
-              <button className="primary">닫기</button>
-            </div>
-          </div>
-        </div>
-      </StyledDiv>
-    );
-  }
-}
-
-export default RestaurantDetail;
