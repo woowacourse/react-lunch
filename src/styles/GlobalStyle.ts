@@ -34,5 +34,7 @@ export const GlobalStyle = createGlobalStyle`
         --grey-500: #000000;
 
         --lunch-title: normal 600 20px/24px Roboto;
+        --lunch-subtitle: normal 600 18px/28px Roboto;
+        --lunch-body: normal 400 16px/24px Roboto;
     }
 `;
