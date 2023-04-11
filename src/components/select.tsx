@@ -4,12 +4,15 @@ import styled from "styled-components";
 export class Select extends React.Component<any> {
   render() {
     return (
-      <SelectContianer name="category" id="category-filter">
+      <SelectContianer
+        name="category"
+        id="category-filter"
+        onChange={(e) =>
+          this.props.handleSelect(this.props.type, e.target.value)
+        }>
         {this.props.options.map((option: string) => {
           return (
-            <option
-              value={option}
-              onClick={() => this.props.handleClick(option)}>
+            <option key={option} value={option}>
               {option}
             </option>
           );
