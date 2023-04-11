@@ -4,7 +4,7 @@
 
 - [x] Header
 - [x] RestaurantFilter
-- [ ] Filter
+- [x] Filter
 - [ ] RestaurantsList
 - [ ] RestaurantItem
 - [ ] Modal
