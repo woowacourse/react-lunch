@@ -1,4 +1,5 @@
 import Header from "./components/Header";
+import RestaurantFilterContainer from "./components/RestaurantFilterContainer";
 import RestaurantList from "./components/RestaurantList";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
       <Header />
       <main>
+        <RestaurantFilterContainer />
         <RestaurantList />
       </main>
     </>
