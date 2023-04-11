@@ -23,9 +23,9 @@ class RestaurantItem extends Component<Props> {
           <img src={getCategoryImage(category)} alt={category} className={styles.categoryIcon} />
         </div>
         <div className={styles.info}>
-          <h3 className={styles.name}>{name}</h3>
-          <span className={styles.distance}>캠퍼스부터 {distance}분 내</span>
-          <p className={styles.description}>{description}</p>
+          <h3 className={`${styles.name} text-subtitle`}>{name}</h3>
+          <span className={`${styles.distance} text-body`}>캠퍼스부터 {distance}분 내</span>
+          <p className={`${styles.description} text-body`}>{description}</p>
         </div>
       </li>
     );
