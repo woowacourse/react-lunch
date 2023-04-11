@@ -1,0 +1,12 @@
+.headerContainer {
+	background: #ec4a0a;
+	min-height: 64px;
+}
+
+.title {
+	color: white;
+	height: 24px;
+	padding: 20px 16px;
+	font-weight: 600;
+	font-size: 20px;
+}
