@@ -26,7 +26,8 @@
       }
     ],
     "no-console": "error",
-    "react/prefer-stateless-function": "off"
+    "react/prefer-stateless-function": "off",
+    "@typescript-eslint/consistent-type-imports": "error"
   },
   "settings": {
     "import/resolver": {
