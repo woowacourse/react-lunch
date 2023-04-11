@@ -17,6 +17,6 @@
 
 ### 요구사항
 
-- [] mockData.json 데이터를 이용하여 초기 데이터를 셋팅한다
+- [x] mockData.json 데이터를 이용하여 초기 데이터를 셋팅한다
   - [] `localStorage`에 이전 값이 존재한다면 초기 값으로 적용한다
 - [] `Class Component`를 이용한다
