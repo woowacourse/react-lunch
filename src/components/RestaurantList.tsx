@@ -1,14 +1,22 @@
 import { Component } from "react";
 import RestaurantItem from "./RestaurantItem";
-import mockData from "../assets/mockData.json";
+import type { Restaurant } from "../types/restaurant";
 
-import styles from "./RestaurantList.module.css"
+import styles from "./RestaurantList.module.css";
 
-class RestaurantList extends Component {
+interface Props {
+  list: Restaurant[];
+}
+
+class RestaurantList extends Component<Props> {
+  constructor(props: Props) {
+    super(props);
+  }
+
   render() {
     return (
       <ul className={styles.restaurantList}>
-        {mockData.map((restaurant) => (
+        {this.props.list.map((restaurant) => (
           <RestaurantItem key={restaurant.id} restaurant={restaurant} />
         ))}
       </ul>
