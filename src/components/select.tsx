@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { SelectPropsType } from "../types/select";
 
-export class Select extends React.Component<any> {
+export class Select extends React.Component<SelectPropsType> {
   render() {
     return (
       <SelectContianer
-        name="category"
-        id="category-filter"
         onChange={(e) =>
-          this.props.handleSelect(this.props.type, e.target.value)
+          this.props.handleSelect(this.props.name, e.target.value)
         }>
         {this.props.options.map((option: string) => {
           return (
