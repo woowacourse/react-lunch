@@ -1,5 +1,9 @@
+import { Restaurant } from "../types/restaurant";
+
 import React from "react";
 import styled from "styled-components";
+
+import { CATEGORY_IMAGE_MAP } from "../constants";
 
 const StyledLi = styled.li`
   display: flex;
@@ -8,6 +12,8 @@ const StyledLi = styled.li`
   padding: 16px 8px;
 
   border-bottom: 1px solid #e9eaed;
+
+  cursor: pointer;
 
   .restaurant__category {
     display: flex;
@@ -55,21 +61,29 @@ const StyledLi = styled.li`
   }
 `;
 
-class RestaurantItem extends React.Component {
+interface Props {
+  restaurant: Restaurant;
+}
+
+class RestaurantItem extends React.Component<Props> {
   render() {
+    const { id, name, category, distance, description } = this.props.restaurant;
+
     return (
-      <StyledLi>
+      <StyledLi id={id}>
         <div className="restaurant__category">
-          <img src="./category-etc.png" alt="기타" className="category-icon" />
+          <img
+            src={`./img/${CATEGORY_IMAGE_MAP[category]}`}
+            alt={category}
+            className="category-icon"
+          />
         </div>
         <div className="restaurant__info">
-          <h3 className="restaurant__name text-subtitle">도스타코스 선릉점</h3>
+          <h3 className="restaurant__name text-subtitle">{name}</h3>
           <span className="restaurant__distance text-body">
-            캠퍼스부터 5분 내
+            캠퍼스부터 {distance}분 내
           </span>
-          <p className="restaurant__description text-body">
-            멕시칸 캐주얼 그릴
-          </p>
+          <p className="restaurant__description text-body">{description}</p>
         </div>
       </StyledLi>
     );
