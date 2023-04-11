@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledRestaurantItem = styled.li`
+const StyledLi = styled.li`
   display: flex;
   align-items: flex-start;
 
@@ -58,7 +58,7 @@ const StyledRestaurantItem = styled.li`
 class RestaurantItem extends React.Component {
   render() {
     return (
-      <StyledRestaurantItem>
+      <StyledLi>
         <div className="restaurant__category">
           <img src="./category-etc.png" alt="기타" className="category-icon" />
         </div>
@@ -71,7 +71,7 @@ class RestaurantItem extends React.Component {
             멕시칸 캐주얼 그릴
           </p>
         </div>
-      </StyledRestaurantItem>
+      </StyledLi>
     );
   }
 }

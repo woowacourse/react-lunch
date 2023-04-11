@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import RestaurantItem from "./RestaurantItem";
 
-const StyledRestaurantList = styled.main`
+const StyledMain = styled.main`
   .restaurant-filter-container {
     display: flex;
     justify-content: space-between;
@@ -38,7 +38,7 @@ const StyledRestaurantList = styled.main`
 class RestaurantList extends React.Component {
   render() {
     return (
-      <StyledRestaurantList>
+      <StyledMain>
         <section className="restaurant-filter-container">
           <select
             name="category"
@@ -76,7 +76,7 @@ class RestaurantList extends React.Component {
             <RestaurantItem />
           </ul>
         </section>
-      </StyledRestaurantList>
+      </StyledMain>
     );
   }
 }
