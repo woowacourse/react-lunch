@@ -13,6 +13,7 @@ export interface RestaurantItemType {
   name: string;
   distance: number;
   description: string;
+  link: string;
 }
 
 export enum CategoryKind {
@@ -21,4 +22,5 @@ export enum CategoryKind {
   chinese = '중식',
   western = '양식',
   asian = '아시안',
+  etc = '기타',
 }

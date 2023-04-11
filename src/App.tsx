@@ -1,10 +1,10 @@
 import GlobalStyle from './style/global';
 import Header from './components/Header';
 import SelectBox from './components/SelectBox';
-import { CategoryKind, SelectKind } from './types';
+import { SelectKind } from './types';
 import { CATEGORY_OPTIONS, ORDER_OPTIONS } from './constants';
 import styled from 'styled-components';
-import RestaurantItem from './components/RestaurantItem';
+import RestaurantList from './components/RestaurantList';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <SelectBox selectType={SelectKind.category} options={CATEGORY_OPTIONS} />
         <SelectBox selectType={SelectKind.order} options={ORDER_OPTIONS} />
       </SelectBoxContainer>
-      {/* <RestaurantItem category={CategoryKind.korean} name={'50년 전통 국밥'} distance={10} description={'fff'} /> */}
+      <RestaurantList />
     </div>
   );
 }
