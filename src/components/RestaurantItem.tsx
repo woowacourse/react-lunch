@@ -5,6 +5,37 @@ import styled from "styled-components";
 
 import { CATEGORY_IMAGE_MAP } from "../constants";
 
+interface Props {
+  restaurant: Restaurant;
+}
+
+class RestaurantItem extends React.Component<Props> {
+  render() {
+    const { id, name, category, distance, description } = this.props.restaurant;
+
+    return (
+      <StyledLi id={id}>
+        <div className="restaurant__category">
+          <img
+            src={`./img/${CATEGORY_IMAGE_MAP[category]}`}
+            alt={category}
+            className="category-icon"
+          />
+        </div>
+        <div className="restaurant__info">
+          <h3 className="restaurant__name text-subtitle">{name}</h3>
+          <span className="restaurant__distance text-body">
+            캠퍼스부터 {distance}분 내
+          </span>
+          <p className="restaurant__description text-body">{description}</p>
+        </div>
+      </StyledLi>
+    );
+  }
+}
+
+export default RestaurantItem;
+
 const StyledLi = styled.li`
   display: flex;
   align-items: flex-start;
@@ -60,34 +91,3 @@ const StyledLi = styled.li`
     -webkit-box-orient: vertical;
   }
 `;
-
-interface Props {
-  restaurant: Restaurant;
-}
-
-class RestaurantItem extends React.Component<Props> {
-  render() {
-    const { id, name, category, distance, description } = this.props.restaurant;
-
-    return (
-      <StyledLi id={id}>
-        <div className="restaurant__category">
-          <img
-            src={`./img/${CATEGORY_IMAGE_MAP[category]}`}
-            alt={category}
-            className="category-icon"
-          />
-        </div>
-        <div className="restaurant__info">
-          <h3 className="restaurant__name text-subtitle">{name}</h3>
-          <span className="restaurant__distance text-body">
-            캠퍼스부터 {distance}분 내
-          </span>
-          <p className="restaurant__description text-body">{description}</p>
-        </div>
-      </StyledLi>
-    );
-  }
-}
-
-export default RestaurantItem;

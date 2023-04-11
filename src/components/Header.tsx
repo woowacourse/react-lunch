@@ -1,6 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 
+class Header extends React.Component {
+  render() {
+    return (
+      <StyledHeader>
+        <h1 className="gnb__title text-title">점심 뭐 먹지</h1>
+        <button type="button" className="gnb__button" aria-label="음식점 추가">
+          <img src="./img/add-button.png" alt="음식점 추가" />
+        </button>
+      </StyledHeader>
+    );
+  }
+}
+
+export default Header;
+
 const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
@@ -33,18 +48,3 @@ const StyledHeader = styled.header`
     object-fit: contain;
   }
 `;
-
-class Header extends React.Component {
-  render() {
-    return (
-      <StyledHeader>
-        <h1 className="gnb__title text-title">점심 뭐 먹지</h1>
-        <button type="button" className="gnb__button" aria-label="음식점 추가">
-          <img src="./add-button.png" alt="음식점 추가" />
-        </button>
-      </StyledHeader>
-    );
-  }
-}
-
-export default Header;
