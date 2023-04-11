@@ -7,6 +7,7 @@ class RestaurantItem extends React.Component<RestaurantItemType> {
   constructor(props: RestaurantItemType) {
     super(props);
   }
+
   render() {
     return (
       <RestaurantItemWrapper>
@@ -59,13 +60,29 @@ const RestaurantInfo = styled.div`
     font-size: 18px;
     line-height: 28px;
     font-weight: 600;
+    color: var(----grey-500);
   }
 
-  & > span,
-  p {
+  & > span {
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
+    color: var(--primary-color);
+  }
+
+  & > p {
+    margin-top: 6px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: var(----grey-500);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-word;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2; // 원하는 라인수
+    -webkit-box-orient: vertical;
   }
 `;
 
