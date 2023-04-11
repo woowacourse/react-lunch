@@ -11,7 +11,7 @@ export class RestaurantItem extends React.Component<RestaurantItemPropsType> {
         </ImgWrapper>
         <ItemInfo>
           <Name>{this.props.name}</Name>
-          <TakingTime>{this.props.takingTime}</TakingTime>
+          <TakingTime>캠퍼스로부터 {this.props.takingTime}분 내</TakingTime>
           <Description>{this.props.description}</Description>
         </ItemInfo>
       </ItemContainer>
@@ -57,12 +57,12 @@ const ItemInfo = styled.div`
 
 const Name = styled.h3`
   margin: 0;
-  ${({ theme }) => theme.font.subtitle};
+  ${({ theme }) => theme.fonts.subtitle};
 `;
 
 const TakingTime = styled.span`
   color: ${({ theme }) => theme.colors.primary};
-  ${({ theme }) => theme.font.body};
+  ${({ theme }) => theme.fonts.body};
 `;
 
 const Description = styled.p`
@@ -74,5 +74,5 @@ const Description = styled.p`
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  ${({ theme }) => theme.font.body};
+  ${({ theme }) => theme.fonts.body};
 `;
