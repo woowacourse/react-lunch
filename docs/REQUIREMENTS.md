@@ -3,8 +3,8 @@
 ## Component
 
 - [x] Header
-- [ ] SelectBoxWrapper
-- [ ] SelectBox
+- [x] RestaurantFilter
+- [ ] Filter
 - [ ] RestaurantsList
 - [ ] RestaurantItem
 - [ ] Modal
