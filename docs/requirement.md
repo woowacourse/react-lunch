@@ -19,5 +19,8 @@ Select
 RestaurantList
 - 역할 : 유저에게 외부로부터 받은(localStorage 등) 음식점 목록을 보여줌.
 
+Restaurant
+- 역할 : 유저에게 개별 음식점 정보를 보여줌. 클릭 시 Drawer를 보여주는 이벤트 제공.
+
 Drawer
 - 역할 : 유저에게 상세 음식점 정보를 보여줌.
