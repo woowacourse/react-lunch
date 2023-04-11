@@ -63,46 +63,31 @@ interface RestaurantProps {
   info: Restaurant;
 }
 
-interface RestaurantState {
-  info: Restaurant;
-}
-
-export class RestaurantItem extends Component<
-  RestaurantProps,
-  RestaurantState
-> {
-  constructor(props: RestaurantProps) {
-    super(props);
-
-    this.state = {
-      info: props.info,
-    };
-  }
-
+export class RestaurantItem extends Component<RestaurantProps> {
   render(): React.ReactNode {
     return (
       <Style.Wrapper>
         <Style.RestaurantCategory>
           <img
             src={`${process.env.PUBLIC_URL}/images/category-${
-              imgSrc[this.state.info.category]
+              imgSrc[this.props.info.category]
             }.png`}
-            alt={this.state.info.category}
+            alt={this.props.info.category}
           />
         </Style.RestaurantCategory>
         <Style.RestaurantInfo>
           <Style.DescriptionWrapper>
             <div>
               <Style.RestaurantName>
-                {this.state.info.name}
+                {this.props.info.name}
               </Style.RestaurantName>
               <Style.RestaurantDistance>
-                캠퍼스부터 {this.state.info.distance}분 내
+                캠퍼스부터 {this.props.info.distance}분 내
               </Style.RestaurantDistance>
             </div>
           </Style.DescriptionWrapper>
           <Style.RestaurnatDescription>
-            {this.state.info.description}
+            {this.props.info.description}
           </Style.RestaurnatDescription>
         </Style.RestaurantInfo>
       </Style.Wrapper>

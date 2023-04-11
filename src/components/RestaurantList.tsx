@@ -17,27 +17,12 @@ interface RestaurantListProps {
   list: Restaurant[];
 }
 
-interface RestaurantListState {
-  list: Restaurant[];
-}
-
-export class RestaurantList extends Component<
-  RestaurantListProps,
-  RestaurantListState
-> {
-  constructor(props: RestaurantListProps) {
-    super(props);
-
-    this.state = {
-      list: props.list,
-    };
-  }
-
+export class RestaurantList extends Component<RestaurantListProps> {
   render(): ReactNode {
     return (
       <Style.Wrapper>
         <ul>
-          {this.state.list.map((restaurant, index) => (
+          {this.props.list.map((restaurant, index) => (
             <RestaurantItem key={index} info={restaurant} />
           ))}
         </ul>
