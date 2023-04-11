@@ -1,6 +1,8 @@
 import { Component } from 'react';
+
+import './style.css';
+
 import Restaurant from './Restaurant';
-// import './style.css';
 
 const MOCK_DATA = [
 	{
