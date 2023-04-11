@@ -1,13 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { RestaurantItemPropsType } from "../types/restaurant";
+import { convertImage } from "../utils/imageConverter";
 
 export class RestaurantItem extends React.Component<RestaurantItemPropsType> {
   render() {
     return (
       <ItemContainer>
         <ImgWrapper>
-          <CategoryImg src="" alt={this.props.category} />
+          <CategoryImg
+            src={convertImage(this.props.category)}
+            alt={this.props.category}
+          />
         </ImgWrapper>
         <ItemInfo>
           <Name>{this.props.name}</Name>
