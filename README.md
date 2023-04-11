@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+# 🤔 우아한테크코스 레벨2 점심 뭐 먹지 미션
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br>
 
-## Available Scripts
+### 🧑‍🤝‍🧑 페어 (페어 프로그래밍으로 개발)
 
-In the project directory, you can run:
+<table>
+  <tr>
+    <td align="center" width="120px">
+      <a href="https://github.com/feb-dain" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/108778921?v=4" alt="야미(이다인) 프로필" />
+      </a>
+    </td>
+    <td align="center" width="120px">
+      <a href="https://github.com/hae-on" target="_blank">
+        <img src="https://avatars.githubusercontent.com/u/80464961?v=4" alt="해온(백솔비) 프로필" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/feb-dain" target="_blank">
+        야미(이다인)
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/hae-on" target="_blank">
+        해온(백솔비) 
+      </a>
+    </td>
+  </tr>
+</table>
 
-### `npm start`
+<br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 📍 학습 목표
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 레벨1에서 구현하고 사용해본 점심 메뉴 애플리케이션을 React로 구현
+- React 공식 문서를 단순히 학습이 아닌 구현 목적을 가지고 활용하고 공식 문서를 활용한 본인만의 접근 방식 만들기
+- JS로 구현해본 컴포넌트를 React 컴포넌트로 작성
 
-### `npm test`
+<br>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 📝 실행 방법
 
-### `npm run build`
+- <a href="">앱 바로 실행하기</a>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 터미널에서 npm 설치(`npm install`) 후 `npm start` 커맨드로 앱을 실행할 수 있다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br>
+<br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 🎯 기능 목록
 
-### `npm run eject`
+레벨1을 참고하여 REQUIREMENTS.md에 요구 사항을 도출한다.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Class Component를 사용한다.
+- 초기 로딩시 이전 값이 Local Storage에 존재한다면 초기 값으로 적용한다.
+- mockData.json의 데이터를 이용하여, 초기 데이터를 셋팅한다.
+- 최소 각 카테고리 별로 3개 이상의 음식점을 mockData에 등록한다.
+- 카테고리별로 정렬하거나 이름순, 거리순으로 정렬할 수 있게 렌더링 한다.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br>
+<br>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### ✅ 프로그래밍 요구 사항
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+가독성과 재사용성을 유의하며 기능을 구현한다.
 
-## Learn More
+- **Readability**
+  <br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Reusability**
+  <br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br>
 
-### Code Splitting
+> 이전 미션의 프로그래밍 요구사항은 기본으로 포함한다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- 예측 가능하고, 실수를 방지할 수 있는 코드를 작성하기 위해 노력한다.
+  - 변수 선언시 const 만 사용한다.
+  - 함수(또는 메서드)의 들여쓰기 depth는 1단계까지만 허용한다.
+  - 함수의 매개변수는 2개 이하여야 한다.
+  - 함수에서 부수 효과를 분리하고, 가능한 순수 함수를 많이 활용한다.
 
-### Analyzing the Bundle Size
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- 컴포넌트 단위로 구현하는 것을 고민하고 적용해본다.
+  - 정적으로 렌더링할 영역과 동적으로 렌더링할 영역을 구분해서 고민한다.
+  - 반복 되는 컴포넌트는 분리하여 재사용한다.
 
-### Making a Progressive Web App
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- 도메인 영역을 TypeScript를 사용해 구현한다. (UI 영역은 선택)
+  - any를 사용하지 않는다.
+  - interface 또는 type alias 를 이용하여, 주요 도메인 객체의 타입을 정의하고 설계한다.
 
-### Advanced Configuration
+<br>
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<a href="https://github.com/woowacourse">@woowacourse</a>
