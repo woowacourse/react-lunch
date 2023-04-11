@@ -1,0 +1,9 @@
+{
+  "extends": ["react-app", "plugin:react/recommended"],
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off"
+  }
+}
