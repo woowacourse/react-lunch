@@ -10,20 +10,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
   ],
   plugins: ['prettier', '@typescript-eslint'],
-  rules: {
-    'prettier/prettier': [
-      'error',
-      {
-        singleQuote: true,
-        semi: true,
-        useTabs: false,
-        tabWidth: 2,
-        printWidth: 80,
-        bracketSpacing: true,
-        arrowParens: 'avoid',
-      },
-    ],
-  },
+  rules: {},
   parserOptions: {
     parser: '@typescript-eslint/parser',
   },
