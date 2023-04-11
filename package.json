@@ -9,6 +9,8 @@
     "@types/node": "^16.18.23",
     "@types/react": "^18.0.34",
     "@types/react-dom": "^18.0.11",
+    "jest-localstorage-mock": "^2.4.26",
+    "node-fetch": "^2.6.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -54,5 +56,11 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "jest": "^27.5.1",
     "prettier": "^2.8.7"
+  },
+  "jest": {
+    "resetMocks": false,
+    "setupFiles": [
+      "jest-localStorage-mock"
+    ]
   }
 }
