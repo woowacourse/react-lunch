@@ -1,11 +1,7 @@
 import "./index.css";
-import React, { Component } from "react";
+import { Component } from "react";
 
 export default class Header extends Component {
-  constructor() {
-    super({});
-  }
-
   render() {
     return (
       <header className="gnb">

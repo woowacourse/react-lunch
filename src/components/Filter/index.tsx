@@ -1,11 +1,7 @@
 import "./index.css";
-import React, { Component } from "react";
+import { Component } from "react";
 
 export default class Filter extends Component {
-  constructor() {
-    super({});
-  }
-
   render() {
     return (
       <section className="restaurant-filter-container">
