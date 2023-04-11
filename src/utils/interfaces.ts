@@ -4,6 +4,7 @@ export interface appState {
   category: selectorCategory;
   filter: selectorFilter;
   wholeList: Array<restaurant>;
+  currentList: Array<restaurant>;
 }
 
 export interface restaurant {
