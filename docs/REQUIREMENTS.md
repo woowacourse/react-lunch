@@ -1,6 +1,6 @@
 ## 환경설정
 
-- [ ] Create React App
+- [x] Create React App
 - [ ] Eslint, Prettier 등 설정
 
 ## 도메인
