@@ -1,4 +1,3 @@
-
 import { FILTERS, RESTAURANT_CATEGORY, WHOLE_CATEGORY, restaurantCategory } from './types';
 import korea from '../assets/category-korean.png';
 import japanese from '../assets/category-japanese.png';
