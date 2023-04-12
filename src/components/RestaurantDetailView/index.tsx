@@ -1,6 +1,7 @@
 import { Component } from 'react';
-import { categoryIconFileName } from '../../../constants';
-import { Restaurant } from '../../../types';
+import { categoryIconFileName } from '../../constants';
+import { Restaurant } from '../../types';
+import './RestaurantDetailView.css';
 
 type RestaurantDetailViewProps = {
   restaurant: Restaurant;
@@ -11,11 +12,11 @@ export default class RestaurantDetailView extends Component<RestaurantDetailView
     const { category, name, distance, description, link } = this.props.restaurant;
 
     return (
-      <div id="modal-detail-view" className="modal-detail-view">
+      <div className="detail-view">
         <div className="restaurant__category">
           <img src={categoryIconFileName[category]} alt={category} className="category-icon" />
         </div>
-        <h2 className="modal-title text-title">{name}</h2>
+        <h2 className="title text-title">{name}</h2>
         <div className="restaurant__info">
           <span className="restaurant__distance text-body">캠퍼스부터 {distance}분 내</span>
           <p className="restaurant__description text-body">{description}</p>

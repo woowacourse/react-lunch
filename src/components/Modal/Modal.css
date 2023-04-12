@@ -22,33 +22,3 @@
 .modal-title {
   margin-bottom: 36px;
 }
-
-.modal-detail-view {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.modal-detail-view .modal-title {
-  margin: 0;
-}
-
-.modal-detail-view .text-body {
-  -webkit-box-orient: initial;
-}
-
-.modal-detail-view .restaurant__link {
-  color: var(--grey-500);
-}
-
-.modal-detail-view .restaurant__favorite {
-  position: inherit;
-}
-
-.modal-detail-view .favorite-icon {
-  position: absolute;
-  top: 32px;
-  right: 16px;
-
-  cursor: pointer;
-}
