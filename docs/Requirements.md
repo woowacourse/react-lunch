@@ -7,6 +7,6 @@
 - [x] RestaurantItem 컴포넌트
 - [ ] RestaurantList 컴포넌트
   - [ ] localStorage에 레스토랑 정보 저장
-- [ ] Modal 공통 컴포넌트
-  - [ ] 열고 닫는 기능
+- [x] Modal 공통 컴포넌트
+  - [x] 열고 닫는 기능
 - [ ] 레스토랑 디테일 모달 컴포넌트
