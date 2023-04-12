@@ -2,24 +2,43 @@ import React from 'react';
 import styled from 'styled-components';
 import { CATEGORY_IMG } from '../constants';
 import { RestaurantItemType } from '../types';
+import BottomSheet from './BottomSheet';
+import RestaurantDetail from './RestaurantDetail';
 
-class RestaurantItem extends React.Component<RestaurantItemType> {
+class RestaurantItem extends React.Component<RestaurantItemType, { isBottomSheetOpen: boolean }> {
   constructor(props: RestaurantItemType) {
     super(props);
+    this.state = {
+      isBottomSheetOpen: false,
+    };
   }
 
   render() {
     return (
-      <RestaurantItemWrapper>
-        <CategoryWrapper>
-          <CategoryIcon src={CATEGORY_IMG[this.props.category]} alt={this.props.category} />
-        </CategoryWrapper>
-        <RestaurantInfo>
-          <h3>{this.props.name}</h3>
-          <span>캠퍼스부터 {this.props.distance}분 이내</span>
-          <p>{this.props.description}</p>
-        </RestaurantInfo>
-      </RestaurantItemWrapper>
+      <>
+        <RestaurantItemWrapper onClick={() => this.setState({ isBottomSheetOpen: true })}>
+          <CategoryWrapper>
+            <CategoryIcon src={CATEGORY_IMG[this.props.category]} alt={this.props.category} />
+          </CategoryWrapper>
+          <RestaurantInfo>
+            <h3>{this.props.name}</h3>
+            <span>캠퍼스부터 {this.props.distance}분 이내</span>
+            <p>{this.props.description}</p>
+          </RestaurantInfo>
+        </RestaurantItemWrapper>
+        {this.state.isBottomSheetOpen && (
+          <BottomSheet onClose={() => this.setState({ isBottomSheetOpen: false })}>
+            <RestaurantDetail
+              category={this.props.category}
+              name={this.props.name}
+              distance={this.props.distance}
+              description={this.props.description}
+              link={this.props.link}
+              onClose={() => this.setState({ isBottomSheetOpen: false })}
+            />
+          </BottomSheet>
+        )}
+      </>
     );
   }
 }
@@ -76,12 +95,13 @@ const RestaurantInfo = styled.div`
     line-height: 24px;
     font-weight: 400;
     color: var(----grey-500);
+
     text-overflow: ellipsis;
     overflow: hidden;
     word-break: break-word;
 
     display: -webkit-box;
-    -webkit-line-clamp: 2; // 원하는 라인수
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }
 `;
