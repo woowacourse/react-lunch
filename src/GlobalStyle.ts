@@ -12,6 +12,10 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Noto Sans KR", sans-serif;
   }
 
+  body:has(dialog[open]) {
+    overflow: hidden;
+  }
+
   /* Colors *****************************************/
   :root {
     --primary-color: #ec4a0a;
@@ -52,6 +56,38 @@ export const GlobalStyle = createGlobalStyle`
     margin-right: 16px;
     border-radius: 50%;
     background: var(--lighten-color);
+  }
+
+  /* Restaurant Info Texts ***************************/
+  p.takingTime {
+    color: var(--primary-color);
+  }
+  p.description {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  
+  /* Buttons *****************************************/
+  button.close-btn {
+    position: fixed;
+    bottom: 32px;
+    width: calc(100% - 32px);
+    height: 44px;
+    padding: 10px 0px;
+    border: 1px solid #EC4A0A;
+    border-radius: 8px;
+    outline: none;
+    background: #EC4A0A;
+
+    color: var(--grey-100);
+  }
+
+  /* dialog *****************************************/
+  dialog::backdrop {
+    background: rgba(0, 0, 0, 0.35);
   }
 
   // reset.css

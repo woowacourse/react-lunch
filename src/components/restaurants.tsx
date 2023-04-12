@@ -1,7 +1,7 @@
 import { Component } from "react";
+import styled from "styled-components";
 import Restaurant from "./restaurant";
 import { RestaurantInfo } from "../types";
-import styled from "styled-components";
 import { restaurantStore } from "../restaurantStore";
 import RestaurantInfoModal from "./restaurantInfoModal";
 import { $ } from "../utils/selector";

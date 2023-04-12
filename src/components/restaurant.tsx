@@ -1,7 +1,7 @@
 import { Component } from "react";
+import styled from "styled-components";
 import { CATEGORY } from "../constants";
 import { RestaurantInfo } from "../types";
-import styled from "styled-components";
 
 class Restaurant extends Component<RestaurantInfo | any> {
   render() {
@@ -36,15 +36,10 @@ const RestaurantItem = styled.li`
 
 const RestaurantTakingTime = styled.p`
   margin: 2px 0 8px;
-  color: var(--primary-color);
 `;
 
 const RestaurantDescription = styled.p`
-  display: -webkit-box;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  color: var(--grey-300);
 `;
 
 export default Restaurant;
