@@ -14,7 +14,7 @@ class App extends React.Component<
   {
     restaurants: Restaurant[];
     category: string;
-    sortBy: string;
+    sortingType: string;
     isModalOpen: boolean;
     detailId: Restaurant["id"];
   }
@@ -25,7 +25,7 @@ class App extends React.Component<
     this.state = {
       restaurants: mockData.restaurants as Restaurant[],
       category: "전체",
-      sortBy: "이름순",
+      sortingType: "이름순",
       isModalOpen: false,
       detailId: "1",
     };
@@ -46,15 +46,29 @@ class App extends React.Component<
     });
   };
 
+  setCategory = (category: Category) => {
+    this.setState({
+      ...this.state,
+      category,
+    });
+  };
+
+  setSortingType = (sortingType: string) => {
+    this.setState({
+      ...this.state,
+      sortingType,
+    });
+  };
+
   filterRestaurants = () => {
-    const { category, sortBy } = this.state;
+    const { category, sortingType } = this.state;
 
     const restaurants = this.state.restaurants.filter(
       (restaurant) => category === "전체" || restaurant.category === category
     );
 
     const getPivot = (restaurant: Restaurant) => {
-      return sortBy === "name" ? restaurant.name : restaurant.distance;
+      return sortingType === "name" ? restaurant.name : restaurant.distance;
     };
 
     return restaurants.sort((a, b) => {
@@ -74,6 +88,8 @@ class App extends React.Component<
         <RestaurantList
           restaurants={this.filterRestaurants()}
           openModal={this.openModal}
+          setCategory={this.setCategory}
+          setSortingType={this.setSortingType}
         ></RestaurantList>
 
         {this.state.isModalOpen && (

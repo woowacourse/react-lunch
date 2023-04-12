@@ -1,6 +1,6 @@
-import { Restaurant } from "../types/restaurant";
+import { Category, Restaurant, SortingType } from "../types/restaurant";
 
-import React from "react";
+import React, { ChangeEvent } from "react";
 import styled from "styled-components";
 
 import RestaurantItem from "./RestaurantItem";
@@ -8,6 +8,8 @@ import RestaurantItem from "./RestaurantItem";
 interface Props {
   restaurants: Restaurant[];
   openModal: (id: Restaurant["id"]) => void;
+  setCategory: (category: Category) => void;
+  setSortingType: (sortingType: SortingType) => void;
 }
 
 class RestaurantList extends React.Component<Props> {
@@ -18,12 +20,18 @@ class RestaurantList extends React.Component<Props> {
 
   render() {
     return (
-      <StyledMain onClick={this.openDetailModal}>
+      <StyledMain>
         <section className="restaurant-filter-container">
           <select
             name="category"
             id="category-filter"
             className="restaurant-filter"
+            onChange={(e: ChangeEvent) => {
+              if (!(e.target instanceof HTMLSelectElement)) return;
+
+              const { value: category } = e.target;
+              this.props.setCategory(category as Category);
+            }}
           >
             <option value="전체">전체</option>
             <option value="한식">한식</option>
@@ -38,6 +46,12 @@ class RestaurantList extends React.Component<Props> {
             name="sorting"
             id="sorting-filter"
             className="restaurant-filter"
+            onChange={(e: ChangeEvent) => {
+              if (!(e.target instanceof HTMLSelectElement)) return;
+
+              const { value: sortingType } = e.target;
+              this.props.setSortingType(sortingType as SortingType);
+            }}
           >
             <option value="name">이름순</option>
             <option value="distance">거리순</option>
@@ -45,7 +59,7 @@ class RestaurantList extends React.Component<Props> {
         </section>
 
         <section className="restaurant-list-container">
-          <ul className="restaurant-list">
+          <ul onClick={this.openDetailModal} className="restaurant-list">
             {this.props.restaurants.map((restaurant) => (
               <RestaurantItem
                 key={restaurant.id}
