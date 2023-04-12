@@ -5,3 +5,5 @@ export interface Restaurant {
   "description": string;
   "favorite": boolean
 }
+
+export type Sort = "name" | "distance";

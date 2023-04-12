@@ -1,8 +1,8 @@
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 
 interface SelectBoxProps {
   options: string[];
-  setState: any;
+  setState: ChangeEventHandler<HTMLSelectElement>;
 }
 
 class SelectBox extends React.Component<SelectBoxProps, {}> {
@@ -10,7 +10,7 @@ class SelectBox extends React.Component<SelectBoxProps, {}> {
   render() {
     return (
       <select className="select-box" onChange={this.props.setState}>
-        {this.props.options.map(option => (<option value={option}>{option}</option>))}
+        {this.props.options.map(option => (<option value={option} key={option}>{option}</option>))}
       </select>
     )
   }
