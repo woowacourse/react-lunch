@@ -1,6 +1,7 @@
 import { KEY } from '../src/constants';
 import {
   fetchRestaurantListJson,
+  getSavedRestaurantList,
   hasSavedRestaurantList,
   saveNewRestaurantList,
 } from '../src/domain/initializeRestaurantList';
@@ -23,7 +24,18 @@ describe('로컬스토리지에 저장된 값이 있는지 판단하는 함수 �
   });
 });
 
-describe('로컬스토리지에 초기 음식점 목록을 저장하는 함수 테스트', () => {
+describe('로컬스토리지에 초기 음식점 목록을 가져오는 함수 테스트', () => {
+  test('로컬스토리지에 있던 값을 불러오는 테스트', async () => {
+    // given
+    const mockData = await fetchRestaurantListJson();
+    localStorage.setItem(KEY, JSON.stringify(mockData));
+
+    // when
+    const data = getSavedRestaurantList();
+
+    // then
+    expect(data).toEqual(mockData);
+  });
   test('로컬스토리지에 새로 저장', async () => {
     // given
     const mockData = await fetchRestaurantListJson();
