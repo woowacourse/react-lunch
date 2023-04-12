@@ -12,7 +12,7 @@ class RestaurantInfoModal extends Component<RestaurantInfo | any> {
     return (
       <>
         {ReactDom.createPortal(
-          <dialog id="restaurant-detail">
+          <dialog id="restaurant-detail" ref={this.props.handleModal}>
             <ModalBackdrop
               className="modal-backdrop"
               onClick={this.props.onClose}
@@ -60,9 +60,9 @@ const ModalBackdrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -1;
   width: 100%;
   height: 100%;
+  background: rgba(0, 0, 0, 0.35);
 `;
 
 const Modal = styled.div`

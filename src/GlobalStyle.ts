@@ -95,11 +95,6 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
-  /* dialog *****************************************/
-  dialog::backdrop {
-    background: rgba(0, 0, 0, 0.35);
-  }
-
   // reset.css
   /* http://meyerweb.com/eric/tools/css/reset/ 
     v2.0 | 20110126

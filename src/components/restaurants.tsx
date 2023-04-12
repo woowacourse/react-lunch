@@ -1,18 +1,33 @@
-import { Component } from "react";
+import { Component, createRef, RefObject } from "react";
 import styled from "styled-components";
 import Restaurant from "./restaurant";
 import { RestaurantInfo } from "../types";
 import { restaurantStore } from "../restaurantStore";
 import RestaurantInfoModal from "./restaurantInfoModal";
-import { $ } from "../utils/selector";
 
 class Restaurants extends Component {
-  handleModalOpenButton = () => {
-    $<HTMLDialogElement>("#restaurant-detail").showModal();
+  restaurantInfoModal: RefObject<HTMLDialogElement> = createRef();
+
+  state = {
+    restaurant: {},
+  };
+
+  handleModalOpenButton = (restaurantId: string) => {
+    this.setState({
+      restaurant: this.findSelectedRestaurant(restaurantId),
+    });
+
+    const restaurantInfoModal = this.restaurantInfoModal.current;
+    if (restaurantInfoModal) {
+      restaurantInfoModal.showModal();
+    }
   };
 
   handleModalCloseButton = () => {
-    $<HTMLDialogElement>("#restaurant-detail").close();
+    const restaurantInfoModal = this.restaurantInfoModal.current;
+    if (restaurantInfoModal) {
+      restaurantInfoModal.close();
+    }
   };
 
   findSelectedRestaurant = (restaurantId: string) => {
@@ -29,14 +44,15 @@ class Restaurants extends Component {
             <Restaurant
               key={restaurant.id}
               {...restaurant}
-              onClick={this.handleModalOpenButton}
+              onClick={() => this.handleModalOpenButton(restaurant.id)}
             />
           ))}
         </RestaurantList>
 
         <RestaurantInfoModal
-          selectedRestaurant={this.findSelectedRestaurant("2")}
+          selectedRestaurant={this.state.restaurant}
           onClose={this.handleModalCloseButton}
+          handleModal={this.restaurantInfoModal}
         ></RestaurantInfoModal>
       </>
     );
