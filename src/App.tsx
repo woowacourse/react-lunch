@@ -8,12 +8,15 @@ import type { category } from './components/RestaurantItem/type';
 import type { Restaurant } from './components/RestaurantItem/type';
 
 import mockData from './data/mockData.json';
+import Modal from './components/Modal';
 
 export type sort = '이름순' | '거리순';
 export interface State {
 	category: category;
 	sort: sort;
 	restaurantList: Restaurant[];
+	isModalOpen: boolean;
+	toggleModal: () => void;
 	setCategory: (category: category) => void;
 	setSortState: (sort: sort) => void;
 }
@@ -21,12 +24,17 @@ export interface State {
 type AppProps = {};
 
 class App extends React.Component<AppProps, State> {
+	toggleModal: () => void;
 	setCategory: (category: category) => void;
 	setSortState: (sort: sort) => void;
 
 	constructor(props: AppProps) {
 		super(props);
 		const { restaurantList } = mockData as { restaurantList: Restaurant[] };
+
+		this.toggleModal = () => {
+			this.setState((prevState) => ({ isModalOpen: !prevState.isModalOpen }));
+		};
 
 		this.setCategory = (category: category) => {
 			this.setState({ category });
@@ -54,14 +62,12 @@ class App extends React.Component<AppProps, State> {
 		this.state = {
 			category: '전체',
 			sort: '이름순',
+			isModalOpen: false,
+			toggleModal: this.toggleModal,
 			restaurantList: restaurantList as Restaurant[],
 			setCategory: this.setCategory,
 			setSortState: this.setSortState,
 		};
-	}
-
-	componentDidUpdate() {
-		console.log(this.state);
 	}
 
 	render() {
@@ -72,6 +78,7 @@ class App extends React.Component<AppProps, State> {
 					<Store.Provider value={this.state}>
 						<SelectorSection />
 						<RestaurantList />
+						<Modal />
 					</Store.Provider>
 				</section>
 			</main>

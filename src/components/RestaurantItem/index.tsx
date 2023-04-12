@@ -7,6 +7,7 @@ import categoryChinese from '../../assets/category-chinese.png';
 import categoryJapanese from '../../assets/category-japanese.png';
 import categoryWestern from '../../assets/category-western.png';
 import categoryEtc from '../../assets/category-etc.png';
+import Store from '../../store';
 
 interface MyProps {
 	restaurant: Restaurant;
@@ -39,16 +40,20 @@ class RestaurantItem extends React.Component<MyProps, MyState> {
 	render() {
 		const { restaurant } = this.props;
 		return (
-			<li>
-				<div className={styles.icon}>
-					<img src={makeCategoryImgPath(restaurant.category)} alt={restaurant.category} />
-				</div>
-				<article>
-					<h2 className={styles.title}>{restaurant.name}</h2>
-					<div className={styles.distance}>캠퍼스로부터 {restaurant.distance}분 내</div>
-					<div className={styles.description}>{restaurant.description}</div>
-				</article>
-			</li>
+			<Store.Consumer>
+				{(store) => (
+					<li onClick={() => store?.toggleModal()}>
+						<div className={styles.icon}>
+							<img src={makeCategoryImgPath(restaurant.category)} alt={restaurant.category} />
+						</div>
+						<article>
+							<h2 className={styles.title}>{restaurant.name}</h2>
+							<div className={styles.distance}>캠퍼스로부터 {restaurant.distance}분 내</div>
+							<div className={styles.description}>{restaurant.description}</div>
+						</article>
+					</li>
+				)}
+			</Store.Consumer>
 		);
 	}
 }
