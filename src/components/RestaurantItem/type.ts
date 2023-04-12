@@ -1,4 +1,4 @@
-export type category = '한식' | '중식' | '일식' | '양식' | '아시안' | '기타';
+export type category = '전체' | '한식' | '중식' | '일식' | '양식' | '아시안' | '기타';
 
 export type distance = '5' | '10' | '15' | '20' | '30';
 
