@@ -7,12 +7,18 @@ import RestaurantItem from "./RestaurantItem";
 
 interface Props {
   restaurants: Restaurant[];
+  openModal: (id: Restaurant["id"]) => void;
 }
 
 class RestaurantList extends React.Component<Props> {
+  openDetailModal = (e: any) => {
+    const { id } = e.target.closest("li");
+    this.props.openModal(id);
+  };
+
   render() {
     return (
-      <StyledMain>
+      <StyledMain onClick={this.openDetailModal}>
         <section className="restaurant-filter-container">
           <select
             name="category"

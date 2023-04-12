@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { CATEGORY_IMAGE_MAP } from "../constants";
 
 interface Props {
+  closeModal: () => void;
   restaurant: Restaurant;
 }
 
@@ -39,7 +40,9 @@ class RestaurantDetail extends React.Component<Props> {
             </div>
             <div className="button-container">
               <button className="secondary">삭제하기</button>
-              <button className="primary">닫기</button>
+              <button className="primary" onClick={this.props.closeModal}>
+                닫기
+              </button>
             </div>
           </div>
         </div>
@@ -51,14 +54,6 @@ class RestaurantDetail extends React.Component<Props> {
 export default RestaurantDetail;
 
 const StyledDiv = styled.div`
-  .modal {
-    display: none;
-  }
-
-  .modal--open {
-    display: block;
-  }
-
   .modal-backdrop {
     position: fixed;
     top: 0;
