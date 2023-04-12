@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { CATEGORIES, SELECT_OPTION, SORTS } from "../constant/select";
 import { SelectedValue } from "../types/select";
 import { Select } from "./select";
-
-const CATEGORIES = ["전체", "일식", "양식", "한식", "아시안", "중식", "기타"];
-const SORTS = ["이름순", "거리순"];
 
 interface PropsType {
   handleSelect: (select: SelectedValue) => void;
@@ -15,12 +13,12 @@ export class SelectSection extends React.Component<PropsType> {
     return (
       <Container>
         <Select
-          name="category"
+          name={SELECT_OPTION.CATEGORY}
           options={CATEGORIES}
           handleSelect={this.props.handleSelect}
         />
         <Select
-          name="sorting"
+          name={SELECT_OPTION.SORTING}
           options={SORTS}
           handleSelect={this.props.handleSelect}
         />

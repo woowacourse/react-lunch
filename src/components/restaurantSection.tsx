@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { getRestaurantData } from "../api/getData";
+import { SELECT_OPTION } from "../constant/select";
 import { Restaurant } from "../types/restaurant";
 import { CategoryUnion, SortingUnion } from "../types/select";
 import { ItemModal } from "./itemModal";
@@ -39,7 +40,7 @@ export class RestaurantSection extends React.Component<PropsType, StateType> {
   getFilteredRestaurants() {
     const category = this.props.category;
 
-    if (category === "전체") return this.state.restaurants;
+    if (category === SELECT_OPTION.ALL) return this.state.restaurants;
 
     return this.state.restaurants.filter(
       (restaurant) => restaurant.category === category
@@ -49,12 +50,12 @@ export class RestaurantSection extends React.Component<PropsType, StateType> {
   getSortedRestaurants(filteredRestaurant: Restaurant[]) {
     const sorting = this.props.sorting;
 
-    if (sorting === "이름순") {
+    if (sorting === SELECT_OPTION.NAME) {
       return filteredRestaurant.sort((resA, resB) =>
         resA.name.localeCompare(resB.name)
       );
     }
-    if (sorting === "거리순") {
+    if (sorting === SELECT_OPTION.TAKING_TIME) {
       return filteredRestaurant.sort(
         (resA, resB) => resA.takingTime - resB.takingTime
       );

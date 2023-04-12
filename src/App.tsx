@@ -3,6 +3,7 @@ import { ThemeProvider } from "styled-components";
 import { Header } from "./components/header";
 import { RestaurantSection } from "./components/restaurantSection";
 import { SelectSection } from "./components/selectSection";
+import { SELECT_OPTION } from "./constant/select";
 import { GlobalStyle } from "./style/Globalstyle";
 import { theme } from "./style/theme";
 import { CategoryUnion, SortingUnion, SelectedValue } from "./types/select";
@@ -17,17 +18,17 @@ class App extends React.Component<{}, StateType> {
     super(props);
 
     this.state = {
-      sorting: "이름순",
-      category: "전체",
+      sorting: SELECT_OPTION.NAME,
+      category: SELECT_OPTION.ALL,
     };
   }
 
   handleSelect(select: SelectedValue) {
-    if (select.type === "sorting") {
+    if (select.type === SELECT_OPTION.SORTING) {
       this.setState({ sorting: select.value as SortingUnion });
     }
 
-    if (select.type === "category") {
+    if (select.type === SELECT_OPTION.CATEGORY) {
       this.setState({ category: select.value as CategoryUnion });
     }
   }
