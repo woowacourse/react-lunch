@@ -2,7 +2,7 @@ import React from 'react';
 import * as styled from './DropdownFilter.styles';
 
 type DropdownFilterProps = {
-  options: [string, ...string[]];
+  options: readonly [string, ...string[]];
 };
 
 type DropdownFilterState = {
