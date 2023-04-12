@@ -1,20 +1,38 @@
-import React, { Component, ReactNode } from 'react';
+import React, { Component, PropsWithChildren, ReactNode } from 'react';
 import St from './styled';
-import categoryImg from '../../assets/category-asian.png';
+import CategoryImg from '../CategoryImg';
 
-class RestaurantItem extends Component {
+type Category = '한식' | '중식' | '일식' | '양식' | '아시안' | '기타';
+export interface Restaurant {
+  id: number;
+  title: string;
+  category: Category;
+  detail: string;
+  distance: number;
+  link: string;
+}
+
+interface RestaurantItemProps {
+  info: Restaurant;
+}
+class RestaurantItem extends Component<PropsWithChildren<RestaurantItemProps>> {
+  constructor(props: PropsWithChildren<RestaurantItemProps>) {
+    super(props);
+  }
   render(): ReactNode {
+    const {
+      info: { title, detail, distance, category },
+    } = this.props;
+
     return (
       <St.Layout>
         <St.LeftSection>
-          <St.CategoryImg src={categoryImg} alt="categoryImg" />
+          <CategoryImg category={category} />
         </St.LeftSection>
         <St.RightSection>
-          <St.Title>피양콩 할머니</St.Title>
-          <St.Distance>캠퍼스 부터 10분</St.Distance>
-          <St.Detail>
-            설명설명설명설명설명설명설명설명설명설명설명설명
-          </St.Detail>
+          <St.Title>{title}</St.Title>
+          <St.Distance>캠퍼스 부터 {distance}분</St.Distance>
+          <St.Detail>{detail}</St.Detail>
         </St.RightSection>
       </St.Layout>
     );

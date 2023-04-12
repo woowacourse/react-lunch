@@ -24,10 +24,7 @@ const St = {
     border-radius: 50%;
     background: #f6a88a;
   `,
-  CategoryImg: styled.img`
-    width: 36px;
-    height: 36px;
-  `,
+
   RightSection: styled.section`
     display: flex;
     flex-direction: column;
