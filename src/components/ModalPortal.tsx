@@ -8,6 +8,7 @@ interface Props {
 class ModalPortal extends React.Component<Props> {
   $modalRoot: HTMLElement;
   $dialog: HTMLDialogElement;
+
   constructor(props: Props | Readonly<Props>) {
     super(props);
     this.$modalRoot = document.getElementById('modal-root') as HTMLElement;
@@ -16,12 +17,14 @@ class ModalPortal extends React.Component<Props> {
   }
 
   componentDidMount(): void {
-    console.log('열기');
     this.$modalRoot.appendChild(this.$dialog);
+    this.$dialog.showModal();
+    document.body.style.overflow = 'hidden';
   }
 
   componentWillUnmount(): void {
-    console.log('닫기');
+    this.$dialog.close();
+    document.body.style.overflow = 'visible';
     this.$modalRoot.removeChild(this.$dialog);
   }
 
