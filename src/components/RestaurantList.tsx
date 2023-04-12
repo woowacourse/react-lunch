@@ -4,7 +4,7 @@ import RestaurantItem from "./RestaurantItem";
 
 type RestaurantListProps = { restaurants: Restaurant[] };
 
-export class RestaurantList extends Component<RestaurantListProps> {
+class RestaurantList extends Component<RestaurantListProps> {
   render() {
     return (
       <ul>

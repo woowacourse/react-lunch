@@ -11,8 +11,10 @@ type RestaurantListState = {
   sort: SortBy;
 };
 
-export class Main extends Component<any, RestaurantListState> {
-  constructor(props: any) {
+type RestaurantListProps = {};
+
+class Main extends Component<RestaurantListProps, RestaurantListState> {
+  constructor(props: RestaurantListProps) {
     super(props);
 
     const storageData = localStorage.getItem("restaurant");
