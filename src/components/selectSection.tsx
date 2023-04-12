@@ -9,10 +9,6 @@ const SORTS = ["이름순", "거리순"];
 export class SelectSection extends React.Component<{
   handleSelect: HandleSelect;
 }> {
-  //   constructor(props) {
-  //     super(props);
-  //   }
-
   render() {
     return (
       <Container>
