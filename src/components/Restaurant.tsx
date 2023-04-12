@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { State } from '../types';
 import { getRestaurantListData } from '../data/restaurantListData';
-import { filterRestaurant, sortRestaurant } from '../domains/restaurantUtil';
+import { filterAndSortRestaurantList } from '../domains/restaurantUtil';
 import FilterSection from './FilterSection';
 import RestaurantList from './RestaurantList';
 
@@ -11,7 +11,7 @@ class Restaurant extends Component {
   constructor(props: {}) {
     super(props);
 
-    const restaurantList = getRestaurantListData();
+    const restaurantList = filterAndSortRestaurantList(getRestaurantListData());
 
     this.state = {
       restaurantList: restaurantList, // 추가, 삭제, 즐겨찾기 -> setState 상태가 변화가 일어난다
@@ -20,10 +20,13 @@ class Restaurant extends Component {
     };
   }
 
-  filterAndSortRestaurantList(filter: string, sortBy: string) {
-    const filteredRestaurantList = filterRestaurant([...this.state.restaurantList], filter);
-    const sortedRestaurantList = sortRestaurant([...filteredRestaurantList], sortBy);
-    this.setState({ currentRestaurantList: sortedRestaurantList });
+  updateCurrentRestaurantList(filter: string, sortBy: string) {
+    const updatedRestaurantList = filterAndSortRestaurantList(
+      this.state.restaurantList,
+      filter,
+      sortBy
+    );
+    this.setState({ currentRestaurantList: updatedRestaurantList });
   }
 
   render() {
@@ -31,7 +34,7 @@ class Restaurant extends Component {
       <>
         <FilterSection
           onChange={(filter: string, sortBy: string) =>
-            this.filterAndSortRestaurantList(filter, sortBy)
+            this.updateCurrentRestaurantList(filter, sortBy)
           }
         />
         <RestaurantList restaurantList={this.state.currentRestaurantList} />
