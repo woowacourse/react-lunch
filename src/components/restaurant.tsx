@@ -3,13 +3,14 @@ import { CATEGORY } from "../constants";
 import { RestaurantInfo } from "../types";
 import styled from "styled-components";
 
-class Restaurant extends Component<RestaurantInfo> {
+class Restaurant extends Component<RestaurantInfo | any> {
   render() {
     return (
-      <RestaurantItem>
-        <CategoryImage
+      <RestaurantItem onClick={this.props.onClick}>
+        <img
           src={`../assets/category-${CATEGORY[this.props.category]}.png`}
           alt={this.props.category}
+          className="category"
         />
         <div>
           <h3 className="text-subtitle">{this.props.name}</h3>
@@ -31,14 +32,6 @@ const RestaurantItem = styled.li`
   padding: 16px 8px;
   border-bottom: 1px solid #e9eaed;
   cursor: pointer;
-`;
-
-const CategoryImage = styled.img`
-  height: 58px;
-  padding: 10px;
-  margin-right: 16px;
-  border-radius: 50%;
-  background: var(--lighten-color);
 `;
 
 const RestaurantTakingTime = styled.p`

@@ -45,6 +45,15 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 400;
   }
 
+  /* Restaurant Category Images **********************/
+  img.category {
+    height: 58px;
+    padding: 10px;
+    margin-right: 16px;
+    border-radius: 50%;
+    background: var(--lighten-color);
+  }
+
   // reset.css
   /* http://meyerweb.com/eric/tools/css/reset/ 
     v2.0 | 20110126

@@ -1,18 +1,39 @@
 import { Component } from "react";
 import Restaurant from "./restaurant";
-import RestaurantMockData from "../mocks/restaurants.json";
 import { RestaurantInfo } from "../types";
 import styled from "styled-components";
+import { restaurantStore } from "../restaurantStore";
+import RestaurantInfoModal from "./restaurantInfoModal";
+import { $ } from "../utils/selector";
 
 class Restaurants extends Component {
+  handleRestaurantModal = () => {
+    $<HTMLDialogElement>("#restaurant-detail").showModal();
+  };
+
+  findSelectedRestaurant = (restaurantId: string) => {
+    return restaurantStore.restaurants.find(
+      (restaurant) => restaurant.id === restaurantId
+    );
+  };
+
   render() {
     return (
-      <RestaurantList>
-        {RestaurantMockData.map((restaurant: RestaurantInfo) => (
-          <Restaurant key={restaurant.id} {...restaurant} />
-        ))}
-        ;
-      </RestaurantList>
+      <>
+        <RestaurantList>
+          {restaurantStore.restaurants.map((restaurant: RestaurantInfo) => (
+            <Restaurant
+              key={restaurant.id}
+              {...restaurant}
+              onClick={this.handleRestaurantModal}
+            />
+          ))}
+        </RestaurantList>
+
+        <RestaurantInfoModal
+          selectedRestaurant={this.findSelectedRestaurant("2")}
+        ></RestaurantInfoModal>
+      </>
     );
   }
 }
