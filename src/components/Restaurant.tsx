@@ -1,9 +1,9 @@
 import { Component } from 'react';
 import { State } from '../types';
 import { getRestaurantListData } from '../data/restaurantListData';
+import { filterRestaurant, sortRestaurant } from '../domains/restaurantUtil';
 import FilterSection from './FilterSection';
 import RestaurantList from './RestaurantList';
-import { filterRestaurant, sortRestaurant } from '../domains/restaurantUtil';
 
 class Restaurant extends Component {
   state: State;

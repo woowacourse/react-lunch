@@ -1,8 +1,8 @@
 import { Component } from 'react';
-import Select from './Select';
-import { RESTAURANT_CATEGORY_OPTION, SORT_BY } from '../constants';
-import { FilterSectionProps, FilterSectionState } from '../types';
 import { FilterOption } from '../types';
+import { FilterSectionProps, FilterSectionState } from '../types';
+import { RESTAURANT_CATEGORY_OPTION, SORT_BY } from '../constants';
+import Select from './Select';
 
 class FilterSection extends Component<FilterSectionProps, FilterSectionState> {
   state: FilterSectionState;
