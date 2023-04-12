@@ -1,19 +1,19 @@
 import { Component } from 'react';
 
 interface Props {
-	options: string[];
+  options: string[];
 }
 
 class Select extends Component<Props> {
-	render() {
-		return (
-			<select>
-				{this.props.options.map(option => (
-					<option value={option}>{option}</option>
-				))}
-			</select>
-		);
-	}
+  render() {
+    return (
+      <select>
+        {this.props.options.map((option) => (
+          <option value={option}>{option}</option>
+        ))}
+      </select>
+    );
+  }
 }
 
 export default Select;
