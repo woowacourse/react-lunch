@@ -3,14 +3,14 @@ import { RestaurantInfo } from '../types/restaurantInfo';
 import { KEY } from '../constants';
 
 export const fetchRestaurantListJson = async (): Promise<RestaurantInfo[]> => {
-  const data = await fetch('http://localhost:3000/data/MockData.json', { method: 'GET' })
+  const data = await fetch(new URL('/data/MockData.json', window.location.href), { method: 'GET' })
     .then((res) => res.json())
     .then((data) => data.restaurantList);
 
   return data;
 };
 
-export const getSavedRestaurantList = () => {
+export const getSavedRestaurantList = (): RestaurantInfo[] => {
   return JSON.parse(localStorage.getItem(KEY) || '[]');
 };
 
