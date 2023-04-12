@@ -5,4 +5,4 @@ export type Restaurant = {
   distance: number;
   description: string;
   link?: string;
-}
+};

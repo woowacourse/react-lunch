@@ -1,10 +1,10 @@
-import React from "react";
-import RestaurantItem from "./RestaurantItem.tsx";
-import { Restaurant } from "./type";
+import React from 'react';
+import RestaurantItem from './RestaurantItem.tsx';
+import { Restaurant } from './type';
 
 type StateType = {
-  restaurantList: Omit<Restaurant,"link">[];
-}
+  restaurantList: Omit<Restaurant, 'link'>[];
+};
 
 type RestaurantListProps = {
   filterOptions: any;
@@ -46,8 +46,7 @@ class RestaurantList extends React.Component<RestaurantListProps> {
   ): void {}
 
   filterByCategory(category): Restaurant[] {
-    if (category === ("전체"))
-      return this.state.restaurantList;
+    if (category === '전체') return this.state.restaurantList;
     return this.state.restaurantList.filter(
       (restaurant) => restaurant.category === category
     );
@@ -56,7 +55,7 @@ class RestaurantList extends React.Component<RestaurantListProps> {
   sortRestaurants(category, sorting) {
     return this.filterByCategory(category).sort(
       (firstElement, secondElement) => {
-        if (sorting === "name") {
+        if (sorting === 'name') {
           return firstElement.title.localeCompare(secondElement.title);
         }
         if (sorting === 'distance') {
@@ -69,8 +68,8 @@ class RestaurantList extends React.Component<RestaurantListProps> {
 
   render() {
     return (
-      <section className='restaurant-list-container'>
-        <ul className='restaurant-list'>
+      <section className="restaurant-list-container">
+        <ul className="restaurant-list">
           {this.sortRestaurants(
             this.props.filterOptions.category,
             this.props.filterOptions.sorting

@@ -1,12 +1,12 @@
-import React from "react";
-import Header from "./Header.tsx";
-import RestaurantList from "./RestaurantList.tsx";
-import SelectContainer from "./SelectContainer.tsx";
-import RestaurantDetailDrawer from "./RestaurantDetailDrawer.tsx";
+import React from 'react';
+import Header from './Header.tsx';
+import RestaurantList from './RestaurantList.tsx';
+import SelectContainer from './SelectContainer.tsx';
+import RestaurantDetailDrawer from './RestaurantDetailDrawer.tsx';
 
 interface AppState {
-  filterOptions:any,
-  isOpenDrawer:boolean
+  filterOptions: any;
+  isOpenDrawer: boolean;
 }
 
 class App extends React.Component<AppState> {
@@ -18,7 +18,7 @@ class App extends React.Component<AppState> {
         sorting: 'name',
       },
       isOpenDrawer: false,
-      drawerSelectId: -1
+      drawerSelectId: -1,
     };
 
     this.onChangeFilterOptions = this.onChangeFilterOptions.bind(this);
@@ -39,20 +39,27 @@ class App extends React.Component<AppState> {
   onToggleDrawer(id) {
     this.setState({
       isOpenDrawer: !this.state.isOpenDrawer,
-      drawerSelectId: id
+      drawerSelectId: id,
     });
   }
 
   render() {
     return (
-      <div className='App'>
+      <div className="App">
         <Header />
         <SelectContainer
           onChangeFilterOptions={this.onChangeFilterOptions}
           filterOptions={this.state.filterOptions}
         />
-        <RestaurantList filterOptions={this.state.filterOptions} onToggleDrawer={this.onToggleDrawer} />
-        <RestaurantDetailDrawer isOpenDrawer={this.state.isOpenDrawer} onToggleDrawer={this.onToggleDrawer} restaurantId={this.state.drawerSelectId}/>
+        <RestaurantList
+          filterOptions={this.state.filterOptions}
+          onToggleDrawer={this.onToggleDrawer}
+        />
+        <RestaurantDetailDrawer
+          isOpenDrawer={this.state.isOpenDrawer}
+          onToggleDrawer={this.onToggleDrawer}
+          restaurantId={this.state.drawerSelectId}
+        />
       </div>
     );
   }
