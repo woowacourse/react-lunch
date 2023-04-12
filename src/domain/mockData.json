@@ -1,0 +1,154 @@
+[
+  {
+    "id": 0,
+    "category": "한식",
+    "name": "감자탕 신림점",
+    "description": "매콤하고 부드러운 감자탕입니다.",
+    "distance": 5,
+    "link": "https://www.example.com/menu/gamjatang"
+  },
+  {
+    "id": 1,
+    "category": "한식",
+    "name": "해물파전 청담점",
+    "description": "부드러운 해물파전으로 유명한 식당입니다.",
+    "distance": 10,
+    "link": "https://www.example.com/menu/haemulpajeon"
+  },
+  {
+    "id": 2,
+    "category": "한식",
+    "name": "순대국밥 강남점",
+    "description": "순대와 국물이 일품인 순대국밥입니다.",
+    "distance": 15,
+    "link": "https://www.example.com/menu/sundaegukbap"
+  },
+  {
+    "id": 3,
+    "category": "중식",
+    "name": "홍콩반점 본점",
+    "description": "고소하고 짭짤한 짜장면으로 유명한 중국집입니다.",
+    "distance": 5,
+    "link": "https://www.example.com/menu/jjajangmyeon"
+  },
+  {
+    "id": 4,
+    "category": "중식",
+    "name": "양꼬치 명동점",
+    "description": "양고기를 꼬치에 꽂아 구워내는 중국 요리입니다.",
+    "distance": 10,
+    "link": "https://www.example.com/menu/yangkkochi"
+  },
+  {
+    "id": 5,
+    "category": "중식",
+    "name": "황금성",
+    "description": "매운맛과 고소함이 어우러진 마파두부를 제공합니다.",
+    "distance": 15,
+    "link": "https://www.example.com/menu/mapadubu"
+  },
+  {
+    "id": 6,
+    "category": "일식",
+    "name": "초밥 천국",
+    "description": "신선한 회와 다양한 초밥으로 유명한 일식당입니다.",
+    "distance": 15,
+    "link": "https://www.example.com/menu/sushi"
+  },
+  {
+    "id": 7,
+    "category": "일식",
+    "name": "초밥 세상",
+    "description": "대학생들이 즐겨 찾는 가성비 넘치는 초밥으로 유명한 일식당입니다.",
+    "distance": 5,
+    "link": "https://www.example.com/menu/sushi"
+  },
+  {
+    "id": 8,
+    "category": "일식",
+    "name": "가츠동",
+    "description": "가츠가츠 동동동",
+    "distance": 5,
+    "link": "https://www.example.com/menu/gatchdong"
+  },
+  {
+    "id": 9,
+    "category": "일식",
+    "name": "일본식 가정식",
+    "description": "개꿀맛.",
+    "distance": 5,
+    "link": "https://www.example.com/menu/homeJapan"
+  },
+  {
+    "id": 10,
+    "category": "양식",
+    "name": "스테이크 천국",
+    "description": "신선한 스테이크.",
+    "distance": 5,
+    "link": "https://www.example.com/menu/stake"
+  },
+  {
+    "id": 11,
+    "category": "양식",
+    "name": "파스타 천국",
+    "description": "신선한 파스타.",
+    "distance": 15,
+    "link": "https://www.example.com/menu/pasta"
+  },
+  {
+    "id": 12,
+    "category": "양식",
+    "name": "랍스타 천국",
+    "description": "신선한 랍스타.",
+    "distance": 5,
+    "link": "https://www.example.com/menu/"
+  },
+  {
+    "id": 13,
+    "category": "아시안",
+    "name": "베트남 천국",
+    "description": "신선한 베트남의 맛.",
+    "distance": 20,
+    "link": "https://www.example.com/menu/sushi"
+  },
+  {
+    "id": 14,
+    "category": "아시안",
+    "name": "태국 천국",
+    "description": "신선한 태국의 맛",
+    "distance": 15,
+    "link": "https://www.example.com/menu/sushi"
+  },
+  {
+    "id": 15,
+    "category": "아시안",
+    "name": "똠양꿍 그잡채",
+    "description": "신선한 똠양꿍",
+    "distance": 5,
+    "link": "https://www.example.com/menu/sushi"
+  },
+  {
+    "id": 16,
+    "category": "기타",
+    "name": "기타1",
+    "description": "기타1",
+    "distance": 15,
+    "link": "https://www.example.com/menu/sushi"
+  },
+  {
+    "id": 17,
+    "category": "기타",
+    "name": "기타2",
+    "description": "기타2",
+    "distance": 5,
+    "link": "https://www.example.com/menu/sushi"
+  },
+  {
+    "id": 18,
+    "category": "기타3",
+    "name": "기타3",
+    "description": "기타3",
+    "distance": 10,
+    "link": "https://www.example.com/menu/sushi"
+  }
+]

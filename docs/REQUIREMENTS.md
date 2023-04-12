@@ -5,7 +5,7 @@
 
 ## 도메인
 
-- [ ] mockData.json 만들기 (각 칵테고리 별 3개 이상 음식점)
+- [x] mockData.json 만들기 (각 칵테고리 별 3개 이상 음식점)
 - [ ] 초기 로딩시 mockData를 Local Storage에 저장
 - [ ] 초기 로딩시 Local Storage에 mockData를 바탕으로 음식점 리스트를 생성
 - [ ] 카테고리별로 정렬하는 기능
