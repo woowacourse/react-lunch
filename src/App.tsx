@@ -3,10 +3,11 @@ import "./App.css";
 import Filter from "./components/Filter";
 import Header from "./components/Header";
 import RestaurantList from "./components/RestaurantList";
+import { CategoryOption, SortOption } from "./types/restaurant";
 
 interface State {
-  selectedCategory: string;
-  selectedSort: string;
+  selectedCategory: CategoryOption;
+  selectedSort: SortOption;
 }
 class App extends Component {
   state: State = {
@@ -14,11 +15,11 @@ class App extends Component {
     selectedSort: "name",
   };
 
-  setSelectedCategory(category: string) {
+  setSelectedCategory(category: CategoryOption) {
     this.setState({ selectedCategory: category });
   }
 
-  setSelectedSort(sort: string) {
+  setSelectedSort(sort: SortOption) {
     this.setState({ selectedSort: sort });
   }
 

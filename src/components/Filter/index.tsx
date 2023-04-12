@@ -1,5 +1,6 @@
 import "./index.css";
 import { Component } from "react";
+import { CategoryOption, SortOption } from "../../types/restaurant";
 
 const categoryList = {
   all: "전체",
@@ -16,17 +17,17 @@ const sortList = {
 };
 
 interface Props {
-  setSelectedCategory: (category: string) => void;
-  setSelectedSort: (sort: string) => void;
+  setSelectedCategory: (category: CategoryOption) => void;
+  setSelectedSort: (sort: SortOption) => void;
 }
 
 export default class Filter extends Component<Props> {
   setSelectedCategory(event: React.ChangeEvent<HTMLSelectElement>) {
-    this.props.setSelectedCategory(event.target.value);
+    this.props.setSelectedCategory(event.target.value as CategoryOption);
   }
 
   setSelectedSort(event: React.ChangeEvent<HTMLSelectElement>) {
-    this.props.setSelectedSort(event.target.value);
+    this.props.setSelectedSort(event.target.value as SortOption);
   }
 
   render() {
