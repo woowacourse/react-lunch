@@ -42,7 +42,7 @@ export default class App extends Component<PropsWithChildren, AppState> {
 
     return (
       <div className="App">
-        <Header />
+        <Header title={'점심 뭐 먹지?'} />
         <FilterContainer
           onChangeCategoryFilter={this.onChangeCategoryFilter.bind(this)}
           onChangeSortFilter={this.onChangeSortFilter.bind(this)}
