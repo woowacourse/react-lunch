@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "순대국집",
-      "category": "한식",
+      "category": "korean",
       "distance": 5,
       "description": "테스트용 설명입니다.",
       "link": "www.google.co.kr"
@@ -11,7 +11,7 @@
     {
       "id": 2,
       "name": "쌀밥집",
-      "category": "한식",
+      "category": "korean",
       "distance": 10,
       "description": "테스트용 설명입니다.",
       "link": "www.google.co.kr"
@@ -19,7 +19,7 @@
     {
       "id": 3,
       "name": "자장면집",
-      "category": "중식",
+      "category": "chinese",
       "distance": 15,
       "description": "테스트용 설명입니다.",
       "link": "www.google.co.kr"
@@ -27,7 +27,7 @@
     {
       "id": 4,
       "name": "짬뽕집",
-      "category": "중식",
+      "category": "chinese",
       "distance": 20,
       "description": "테스트용 설명입니다.",
       "link": "www.google.co.kr"
@@ -35,7 +35,7 @@
     {
       "id": 5,
       "name": "탕수육집",
-      "category": "중식",
+      "category": "chinese",
       "distance": 30,
       "description": "테스트용 설명입니다.",
       "link": "www.google.co.kr"
@@ -43,7 +43,7 @@
     {
       "id": 6,
       "name": "초밥집",
-      "category": "일식",
+      "category": "japanese",
       "distance": 5,
       "description": "테스트용 설명입니다.",
       "link": "www.google.co.kr"
@@ -51,7 +51,7 @@
     {
       "id": 7,
       "name": "텐동집",
-      "category": "일식",
+      "category": "japanese",
       "distance": 15,
       "description": "테스트용 설명입니다.",
       "link": "www.google.co.kr"
@@ -59,7 +59,7 @@
     {
       "id": 8,
       "name": "오코노미야키집",
-      "category": "일식",
+      "category": "japanese",
       "distance": 30,
       "description": "테스트용 설명입니다.",
       "link": "www.google.co.kr"
@@ -67,7 +67,7 @@
     {
       "id": 9,
       "name": "팟타이집",
-      "category": "아시안",
+      "category": "asian",
       "distance": 10,
       "description": "테스트용 설명입니다.",
       "link": "www.google.co.kr"
@@ -75,7 +75,7 @@
     {
       "id": 10,
       "name": "농민백암순대",
-      "category": "한식",
+      "category": "korean",
       "distance": 10,
       "description": "선릉 수요미식회 맛집 순대국밥이 맛있는 농민 백암순대",
       "link": "https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=농민백암순대"
@@ -83,7 +83,7 @@
     {
       "id": 11,
       "name": "피양콩할마니",
-      "category": "한식",
+      "category": "korean",
       "distance": 15,
       "description": "미쉐린 가이드 선정",
       "link": "https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=피양콩할머니"
@@ -91,7 +91,7 @@
     {
       "id": 12,
       "name": "롤링파스타",
-      "category": "양식",
+      "category": "western",
       "distance": 15,
       "description": "백종원이 만든 파스타",
       "link": "https://search.naver.com/search.naver?sm=tab_hty.top&where=nexearch&query=롤링파스타"
@@ -99,19 +99,19 @@
     {
       "id": 13,
       "name": "피자헛",
-      "category": "양식",
+      "category": "western",
       "distance": 5
     },
     {
       "id": 14,
       "name": "도미노피자",
-      "category": "양식",
+      "category": "western",
       "distance": 30
     },
     {
       "id": 20,
       "name": "나시고랭집",
-      "category": "아시안",
+      "category": "asian",
       "distance": 15,
       "description": "테스트용 설명입니다.",
       "link": "www.google.co.kr"
@@ -119,7 +119,7 @@
     {
       "id": 21,
       "name": "쌀국수집",
-      "category": "아시안",
+      "category": "asian",
       "distance": 5,
       "description": "테스트용 설명입니다.",
       "link": "www.google.co.kr"

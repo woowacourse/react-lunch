@@ -1,4 +1,4 @@
-type Category = "한식" | "중식" | "일식" | "아시안" | "양식" | "기타";
+type Category = "korean" | "chinese" | "japanese" | "asian" | "western" | "etc";
 
 type Distance = 5 | 10 | 15 | 20 | 30;
 
