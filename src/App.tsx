@@ -19,14 +19,20 @@ const restaurantListData = mockData.restaurants.map<Restaurant>((restaurant) => 
 }));
 
 class App extends Component {
-  state: State = {
-    restaurantList: restaurantListData, // mock data get data ?? mock data
-    selectedRestaurant: 0,
-    currentDisplayStatus: {
-      category: '',
-      sortBy: '',
-    },
-  };
+  state: State;
+
+  constructor(props: {}) {
+    super(props);
+
+    this.state = {
+      restaurantList: restaurantListData, // mock data get data ?? mock data
+      selectedRestaurant: 0,
+      currentDisplayStatus: {
+        category: '',
+        sortBy: '',
+      },
+    };
+  }
 
   render(): ReactNode {
     const { restaurantList } = this.state;
