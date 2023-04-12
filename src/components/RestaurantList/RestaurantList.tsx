@@ -1,7 +1,7 @@
 import React from 'react';
 import { Restaurant, RestaurantListState } from '../../types';
 import RestaurantItem from '../RestaurantItem/RestaurantItem';
-import RestaurantDataService from '../../domains/RestaurantDataService';
+import RestaurantDataService from '../../domains/LunchDataService';
 import DetailModal from '../Modal/DetailModal';
 
 class RestaurantList extends React.Component {
@@ -12,7 +12,6 @@ class RestaurantList extends React.Component {
   };
 
   onClick = (event: React.MouseEvent) => {
-    this.setState({ isClicked: true });
     const target = event?.target;
 
     if (!(target instanceof HTMLElement)) return;
@@ -20,8 +19,7 @@ class RestaurantList extends React.Component {
 
     if (!id) return;
 
-    this.state.clickedData = RestaurantDataService.getRestaurant(id);
-    this.state.isClicked = false;
+    this.setState({ isClicked: true, clickedData: RestaurantDataService.getRestaurant(id) });
   };
 
   render() {
