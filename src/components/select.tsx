@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { CategoryUnion, SelectPropsType, SortingUnion } from "../types/select";
+
 export class Select extends React.Component<SelectPropsType> {
   render() {
     return (

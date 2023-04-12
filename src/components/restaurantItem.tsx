@@ -6,6 +6,7 @@ import { convertImage } from "../utils/imageConverter";
 export class RestaurantItem extends React.Component<RestaurantItemPropsType> {
   render() {
     const { category, name, takingTime, description } = this.props;
+
     return (
       <ItemContainer>
         <ImgWrapper>

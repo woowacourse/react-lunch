@@ -25,11 +25,12 @@ export class ItemModal extends React.Component<PropsType> {
   render() {
     const { category, takingTime, name, link, description } =
       this.props.restaurant;
+
     return (
       <>
         <BackDrop onClick={this.props.closeModal} />
         <ModalContainer>
-          dal{" "}
+          {" "}
           <ModalIcon>
             <img src={convertImage(category)} alt={category} />
           </ModalIcon>
@@ -37,7 +38,6 @@ export class ItemModal extends React.Component<PropsType> {
             <Name>{name}</Name>
             <TakingTime>캠퍼스부터 {takingTime}분 내</TakingTime>
             <Description>{description}</Description>
-
             <Link target="_blank" href={link}>
               {link}
             </Link>
