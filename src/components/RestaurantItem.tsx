@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
-import { Restaurant, RestaurantProps } from '../type';
 import { imgSrc } from '../constants';
+import { RestaurantProps } from '../type';
 
 export const Style = {
   Wrapper: styled.li`
@@ -59,7 +59,7 @@ export const Style = {
 };
 
 export class RestaurantItem extends Component<RestaurantProps> {
-  render(): React.ReactNode {
+  render(): ReactNode {
     return (
       <Style.Wrapper id={this.props.info.id}>
         <Style.RestaurantCategory>

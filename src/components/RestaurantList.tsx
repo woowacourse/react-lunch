@@ -15,7 +15,7 @@ const Style = {
 
 interface RestaurantListProps {
   list: Restaurant[];
-  clickRestaurantItem: (e: any) => void;
+  clickRestaurantItem: React.MouseEventHandler<HTMLUListElement>;
 }
 
 export class RestaurantList extends Component<RestaurantListProps> {

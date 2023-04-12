@@ -1,8 +1,8 @@
-import { Component } from 'react';
+import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 import { Style as RestaurantStyle } from '../RestaurantItem';
-import { RestaurantProps } from '../../type';
 import { imgSrc } from '../../constants';
+import { RestaurantProps } from '../../type';
 
 const Style = {
   ...RestaurantStyle,
@@ -25,7 +25,7 @@ const Style = {
 };
 
 export class RestaurantDetail extends Component<RestaurantProps> {
-  render(): React.ReactNode {
+  render(): ReactNode {
     return (
       <>
         <Style.ImageWrapper>
@@ -40,7 +40,7 @@ export class RestaurantDetail extends Component<RestaurantProps> {
         </Style.ImageWrapper>
         <Style.RestaurantName>{this.props.info.name}</Style.RestaurantName>
         <Style.RestaurantDistance>
-          캠퍼스로부터 {this.props.info.distance} 내
+          캠퍼스로부터 {this.props.info.distance}분 내
         </Style.RestaurantDistance>
         <Style.RestaurantDescription>
           {this.props.info.description}

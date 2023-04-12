@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 
 const Style = {
@@ -21,11 +21,11 @@ interface Option {
 
 interface OptionProps {
   option: readonly Option[];
-  selectFilter: (e: any) => void;
+  selectFilter: React.ChangeEventHandler<HTMLSelectElement>;
 }
 
 export class SelectBox extends Component<OptionProps> {
-  render(): React.ReactNode {
+  render(): ReactNode {
     return (
       <Style.Wrapper onChange={this.props.selectFilter}>
         {this.props.option.map((option) => (

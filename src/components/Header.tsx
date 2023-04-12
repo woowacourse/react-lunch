@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 
 const Style = {
@@ -19,7 +19,7 @@ const Style = {
 };
 
 export class Header extends Component {
-  render(): React.ReactNode {
+  render(): ReactNode {
     return (
       <Style.Wrapper>
         <Style.Title>점심 뭐 먹지</Style.Title>

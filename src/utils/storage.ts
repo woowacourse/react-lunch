@@ -1,5 +1,5 @@
-import { Restaurant } from '../type';
 import dummyList from '../mockData.json';
+import { Restaurant } from '../type';
 
 export const getRestaurantList = () => {
   const localStorageData = localStorage.getItem('restaurantList');

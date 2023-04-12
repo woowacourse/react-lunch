@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 
 const Style = {
@@ -35,29 +35,21 @@ const Style = {
 };
 
 interface ModalProps {
-  children: React.ReactNode;
+  children: ReactNode;
   isOpen: boolean;
   toggleOpen: () => void;
 }
 
 export class Modal extends Component<ModalProps> {
-  render(): React.ReactNode {
+  render(): ReactNode {
     return (
       <>
         {this.props.isOpen && (
           <>
-            <Style.BackDrop
-              onClick={() => {
-                this.props.toggleOpen();
-              }}
-            />
+            <Style.BackDrop onClick={this.props.toggleOpen} />
             <Style.Wrapper>
               {this.props.children}
-              <Style.CloseButton
-                onClick={() => {
-                  this.props.toggleOpen();
-                }}
-              >
+              <Style.CloseButton onClick={this.props.toggleOpen}>
                 닫기
               </Style.CloseButton>
             </Style.Wrapper>
