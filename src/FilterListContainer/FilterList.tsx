@@ -1,4 +1,5 @@
 import React, { ChangeEventHandler, Component } from 'react';
+
 import './FilterList.css';
 
 interface FilterProps {

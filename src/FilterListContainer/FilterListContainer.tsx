@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './FilterList.css';
 import FilterList from './FilterList';
+
+import './FilterList.css';
 
 interface FilterListContainerProps {}
 
