@@ -16,6 +16,8 @@ export interface State {
 	sort: sort;
 	restaurantList: Restaurant[];
 	isModalOpen: boolean;
+	modalId: string;
+	setModalId: (id: string) => void;
 	toggleModal: () => void;
 	setCategory: (category: category) => void;
 	setSortState: (sort: sort) => void;
@@ -25,6 +27,7 @@ type AppProps = {};
 
 class App extends React.Component<AppProps, State> {
 	toggleModal: () => void;
+	setModalId: (id: string) => void;
 	setCategory: (category: category) => void;
 	setSortState: (sort: sort) => void;
 
@@ -34,6 +37,10 @@ class App extends React.Component<AppProps, State> {
 
 		this.toggleModal = () => {
 			this.setState((prevState) => ({ isModalOpen: !prevState.isModalOpen }));
+		};
+
+		this.setModalId = (id: string) => {
+			this.setState({ modalId: id });
 		};
 
 		this.setCategory = (category: category) => {
@@ -63,10 +70,12 @@ class App extends React.Component<AppProps, State> {
 			category: '전체',
 			sort: '이름순',
 			isModalOpen: false,
+			modalId: '1',
 			toggleModal: this.toggleModal,
 			restaurantList: restaurantList as Restaurant[],
 			setCategory: this.setCategory,
 			setSortState: this.setSortState,
+			setModalId: this.setModalId,
 		};
 	}
 

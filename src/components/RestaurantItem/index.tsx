@@ -42,7 +42,13 @@ class RestaurantItem extends React.Component<MyProps, MyState> {
 		return (
 			<Store.Consumer>
 				{(store) => (
-					<li onClick={() => store?.toggleModal()}>
+					<li
+						onClick={() => {
+							store?.toggleModal();
+							store?.setModalId(restaurant.id);
+							// document.body.style.overflow = 'hidden';
+						}}
+					>
 						<div className={styles.icon}>
 							<img src={makeCategoryImgPath(restaurant.category)} alt={restaurant.category} />
 						</div>
