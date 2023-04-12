@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import RestaurantItem from './RestaurantItem';
 import { Restaurant } from '../types';
+import RestaurantItem from './RestaurantItem';
 
 class RestaurantList extends Component<{
   restaurantList: Restaurant[];
