@@ -3,33 +3,48 @@ import ReactDom from 'react-dom';
 
 interface Props {
   children: ReactNode;
+  dialogRef: React.RefObject<HTMLDialogElement>;
+  closeEvent: () => void;
 }
 
 class ModalPortal extends React.Component<Props> {
   $modalRoot: HTMLElement;
-  $dialog: HTMLDialogElement;
 
   constructor(props: Props | Readonly<Props>) {
     super(props);
     this.$modalRoot = document.getElementById('modal-root') as HTMLElement;
-    this.$dialog = document.createElement('dialog');
-    this.$dialog.className = 'modal';
+    this.dialogKeyDownListener = this.dialogKeyDownListener.bind(this);
+    this.dialogBackdropListener = this.dialogBackdropListener.bind(this);
+  }
+
+  dialogKeyDownListener(event: React.KeyboardEvent<HTMLDialogElement>) {
+    if (event.key === 'Escape') {
+      this.props.closeEvent();
+    }
+  }
+
+  dialogBackdropListener(event: React.MouseEvent<HTMLDialogElement>) {
+    if (event.target === event.currentTarget) {
+      this.props.closeEvent();
+    }
   }
 
   componentDidMount(): void {
-    this.$modalRoot.appendChild(this.$dialog);
-    this.$dialog.showModal();
+    this.props.dialogRef.current?.showModal();
     document.body.style.overflow = 'hidden';
   }
 
   componentWillUnmount(): void {
-    this.$dialog.close();
     document.body.style.overflow = 'visible';
-    this.$modalRoot.removeChild(this.$dialog);
   }
 
   render() {
-    return ReactDom.createPortal(this.props.children, this.$dialog);
+    return ReactDom.createPortal(
+      <dialog ref={this.props.dialogRef} onKeyDown={this.dialogKeyDownListener} onClick={this.dialogBackdropListener}>
+        {this.props.children}
+      </dialog>,
+      this.$modalRoot
+    );
   }
 }
 
