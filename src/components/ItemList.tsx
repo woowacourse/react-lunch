@@ -1,7 +1,7 @@
 import React from 'react';
 import { restaurant } from '../utils/interfaces';
 import '../styles/ItemList.css';
-import ItemInformation from './ItemInformation';
+import Item from './Item';
 
 type itemListProps = {
   itemList: restaurant[];
@@ -13,7 +13,7 @@ class ItemList extends React.Component<itemListProps> {
       <section className="restaurant-list-container">
         <ul className="restaurant-list">
           {this.props.itemList.map(item => {
-            return <ItemInformation key={item.id} props={item} />;
+            return <Item key={item.id} props={item} />;
           })}
         </ul>
       </section>
