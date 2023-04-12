@@ -1,8 +1,8 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import { RestaurantFilterProps } from '../../types/types';
 import styles from './Filter.module.css';
 
-export default class Filter extends Component<RestaurantFilterProps> {
+export default class Filter extends PureComponent<RestaurantFilterProps> {
   render() {
     const { name, options, onChange } = this.props;
 

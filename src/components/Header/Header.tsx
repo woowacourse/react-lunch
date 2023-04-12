@@ -1,7 +1,7 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import styles from './Header.module.css';
 
-export default class Header extends Component {
+export default class Header extends PureComponent {
   render() {
     return (
       <header className={styles.gnb}>

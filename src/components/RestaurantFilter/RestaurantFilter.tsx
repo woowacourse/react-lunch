@@ -1,9 +1,9 @@
-import { Component, ChangeEvent } from 'react';
+import { PureComponent, ChangeEvent } from 'react';
 import { Option } from '../../types/types';
 import Filter from '../Filter/Filter';
 import styles from './RestaurantFilter.module.css';
 
-export default class RestaurantFilter extends Component {
+export default class RestaurantFilter extends PureComponent {
   handleCategoryChange(event: ChangeEvent<HTMLSelectElement>) {
     console.log(event.target.value);
   }
