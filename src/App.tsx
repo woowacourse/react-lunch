@@ -5,12 +5,12 @@ import Header from "./components/Header";
 import RestaurantList from "./components/RestaurantList";
 import { CategoryOption, SortOption } from "./types/restaurant";
 
-interface State {
+interface AppState {
   selectedCategory: CategoryOption;
   selectedSort: SortOption;
 }
 class App extends Component {
-  state: State = {
+  state: AppState = {
     selectedCategory: "all",
     selectedSort: "name",
   };

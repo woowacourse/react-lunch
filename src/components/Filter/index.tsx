@@ -16,12 +16,12 @@ const sortList = {
   distance: "거리순",
 };
 
-interface Props {
+interface FilterProps {
   setSelectedCategory: (category: CategoryOption) => void;
   setSelectedSort: (sort: SortOption) => void;
 }
 
-export default class Filter extends Component<Props> {
+export default class Filter extends Component<FilterProps> {
   setSelectedCategory(event: React.ChangeEvent<HTMLSelectElement>) {
     this.props.setSelectedCategory(event.target.value as CategoryOption);
   }
