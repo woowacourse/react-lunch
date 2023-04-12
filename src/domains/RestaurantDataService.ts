@@ -1,4 +1,4 @@
-import { RestaurantDataServiceType } from '../types';
+import { Restaurant, RestaurantDataServiceType } from '../types';
 import { LOCAL_STORAGE_KEY } from '../constants';
 import restaurants from '../initialData/restaurants.json';
 
@@ -11,6 +11,11 @@ const RestaurantDataService: RestaurantDataServiceType = {
     if (!isEmpty) return;
 
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(restaurants));
+  },
+
+  getRestaurant(id: string): Restaurant {
+    const restaurant = this.restaurants.filter((restaurant) => restaurant.id === Number(id))[0];
+    return restaurant;
   },
 
   getRestaurants() {
