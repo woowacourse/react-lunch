@@ -1,20 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 import { getRestaurantData } from "../api/getData";
-import { RestaurantItemPropsType } from "../types/restaurant";
-import { SelectStateType } from "../types/select";
+import { Restaurant } from "../types/restaurant";
+import { CategoryUnion, SortingUnion } from "../types/select";
 import { ItemModal } from "./itemModal";
 import { RestaurantItem } from "./restaurantItem";
 
-export class RestaurantSection extends React.Component<
-  SelectStateType,
-  {
-    restaurants: RestaurantItemPropsType[];
-    clickedRestaurant: RestaurantItemPropsType | null;
-    isModalOpen: boolean;
-  }
-> {
-  constructor(props: SelectStateType) {
+interface PropsType {
+  sorting: SortingUnion;
+  category: CategoryUnion;
+}
+
+interface StateType {
+  restaurants: Restaurant[];
+  clickedRestaurant: Restaurant | null;
+  isModalOpen: boolean;
+}
+
+export class RestaurantSection extends React.Component<PropsType, StateType> {
+  constructor(props: PropsType) {
     super(props);
 
     this.state = {
@@ -42,7 +46,7 @@ export class RestaurantSection extends React.Component<
     );
   }
 
-  getSortedRestaurants(filteredRestaurant: RestaurantItemPropsType[]) {
+  getSortedRestaurants(filteredRestaurant: Restaurant[]) {
     const sorting = this.props.sorting;
 
     if (sorting === "이름순") {
@@ -79,15 +83,13 @@ export class RestaurantSection extends React.Component<
     return (
       <>
         <RestaurantContainer>
-          {this.getFinalRestaurants()?.map(
-            (restaurant: RestaurantItemPropsType) => (
-              <div
-                onClick={() => this.openModal(restaurant.id)}
-                key={restaurant.id}>
-                <RestaurantItem {...restaurant} />
-              </div>
-            )
-          )}
+          {this.getFinalRestaurants()?.map((restaurant: Restaurant) => (
+            <div
+              onClick={() => this.openModal(restaurant.id)}
+              key={restaurant.id}>
+              <RestaurantItem restaurant={restaurant} />
+            </div>
+          ))}
         </RestaurantContainer>
         {this.state.isModalOpen && this.state.clickedRestaurant && (
           <ItemModal

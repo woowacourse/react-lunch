@@ -1,11 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { RestaurantItemPropsType } from "../types/restaurant";
+import { Restaurant } from "../types/restaurant";
 import { convertImage } from "../utils/imageConverter";
 
-export class RestaurantItem extends React.Component<RestaurantItemPropsType> {
+interface PropsType {
+  restaurant: Restaurant;
+}
+
+export class RestaurantItem extends React.Component<PropsType> {
   render() {
-    const { category, name, takingTime, description } = this.props;
+    const { category, name, takingTime, description } = this.props.restaurant;
 
     return (
       <ItemContainer>

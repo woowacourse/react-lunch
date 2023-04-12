@@ -1,4 +1,4 @@
-export interface RestaurantItemPropsType {
+export interface Restaurant {
   id: string;
   category: Category;
   name: string;

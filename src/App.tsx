@@ -1,19 +1,19 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { ThemeProvider } from "styled-components";
 import { Header } from "./components/header";
 import { RestaurantSection } from "./components/restaurantSection";
 import { SelectSection } from "./components/selectSection";
 import { GlobalStyle } from "./style/Globalstyle";
 import { theme } from "./style/theme";
-import {
-  CategoryUnion,
-  SelectStateType,
-  SortingUnion,
-  SelectedValue,
-} from "./types/select";
+import { CategoryUnion, SortingUnion, SelectedValue } from "./types/select";
 
-class App extends React.Component<any, SelectStateType> {
-  constructor(props: any) {
+interface StateType {
+  sorting: SortingUnion;
+  category: CategoryUnion;
+}
+
+class App extends React.Component<{}, StateType> {
+  constructor(props: {}) {
     super(props);
 
     this.state = {

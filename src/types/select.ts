@@ -1,11 +1,3 @@
-export interface SelectPropsType {
-  name: SelectNameType;
-  options: string[];
-  handleSelect: HandleSelect;
-}
-
-export type HandleSelect = (select: SelectedValue) => void;
-
 export type SelectNameType = "category" | "sorting";
 
 export type SortingUnion = "이름순" | "거리순";
@@ -21,9 +13,4 @@ export type CategoryUnion =
 export interface SelectedValue {
   type: SelectNameType;
   value: SortingUnion | CategoryUnion;
-}
-
-export interface SelectStateType {
-  sorting: SortingUnion;
-  category: CategoryUnion;
 }

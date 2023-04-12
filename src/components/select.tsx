@@ -1,8 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import { CategoryUnion, SelectPropsType, SortingUnion } from "../types/select";
+import {
+  CategoryUnion,
+  SelectNameType,
+  SortingUnion,
+  SelectedValue,
+} from "../types/select";
 
-export class Select extends React.Component<SelectPropsType> {
+interface PropsType {
+  name: SelectNameType;
+  options: string[];
+  handleSelect: (selected: SelectedValue) => void;
+}
+
+export class Select extends React.Component<PropsType> {
   render() {
     return (
       <SelectContianer
