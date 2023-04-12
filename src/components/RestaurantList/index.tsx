@@ -11,8 +11,8 @@ export default class RestaurantList extends Component {
     return (
       <section className="restaurant-list-container">
         <ul className="restaurant-list">
-          {dummyData.map((item) => (
-            <RestaurantItem {...item} />
+          {dummyData.map((restaurantData) => (
+            <RestaurantItem key={restaurantData.id} {...restaurantData} />
           ))}
         </ul>
       </section>
