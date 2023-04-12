@@ -1,8 +1,9 @@
 import { Component } from 'react';
 import Filter from '../../common/Filter';
+import { RestaurantCategoryFilterOption } from '../../../RestaurantUtils';
 
 type CategoryFilterProps = {
-  onChange: () => void;
+  onChange: (category: RestaurantCategoryFilterOption) => void;
 };
 
 const options = [
@@ -17,6 +18,19 @@ const options = [
 
 export default class CategoryFilter extends Component<CategoryFilterProps> {
   render() {
-    return <Filter id="category-filter" name="category" options={options} onChange={() => {}} />;
+    return (
+      <Filter
+        id="category-filter"
+        name="category"
+        options={options}
+        onChange={this.onChangeCategory.bind(this)}
+      />
+    );
+  }
+
+  onChangeCategory(e: React.ChangeEvent<HTMLSelectElement>) {
+    const value = e.target.value as RestaurantCategoryFilterOption;
+
+    this.props.onChange(value);
   }
 }

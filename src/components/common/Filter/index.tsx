@@ -10,7 +10,7 @@ type FilterProps = {
   id: string;
   name: string;
   options: Option[];
-  onChange: () => void;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 export default class Filter extends Component<FilterProps> {

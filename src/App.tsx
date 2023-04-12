@@ -34,10 +34,21 @@ export default class App extends Component<PropsWithChildren, AppState> {
     return (
       <div className="App">
         <Header />
-        <FilterContainer />
+        <FilterContainer
+          onChangeCategoryFilter={this.onChangeCategoryFilter.bind(this)}
+          onChangeSortFilter={this.onChangeSortFilter.bind(this)}
+        />
         <RestaurantList restaurants={sortedRestaurants} />
         <Modal />
       </div>
     );
+  }
+
+  onChangeCategoryFilter(category: RestaurantCategoryFilterOption) {
+    this.setState({ categoryFilterOption: category });
+  }
+
+  onChangeSortFilter(sortOption: RestaurantSortOption) {
+    this.setState({ sortOption: sortOption });
   }
 }
