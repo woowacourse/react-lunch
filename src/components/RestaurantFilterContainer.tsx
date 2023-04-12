@@ -1,5 +1,6 @@
-import { ChangeEvent, Component } from "react";
-import SelectBox from "./SelectBox";
+import { Component } from "react";
+import type { ChangeEvent } from "react";
+import SelectBox from "./common/SelectBox";
 import { CATEGORIES, SELECT_NAME, SORTING } from "../constants/options";
 
 import styles from "./RestaurantFilterContainer.module.css";
