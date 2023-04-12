@@ -8,7 +8,8 @@ type StateType = {
 
 type RestaurantListProps = {
   filterOptions: any;
-}
+  onToggleDrawer: any;
+};
 
 class RestaurantList extends React.Component<RestaurantListProps> {
   state: StateType;
@@ -74,7 +75,11 @@ class RestaurantList extends React.Component<RestaurantListProps> {
             this.props.filterOptions.category,
             this.props.filterOptions.sorting
           ).map((restaurant) => (
-            <RestaurantItem key={restaurant.id} restaurant={restaurant} />
+            <RestaurantItem
+              key={restaurant.id}
+              restaurant={restaurant}
+              onToggleDrawer={this.props.onToggleDrawer}
+            />
           ))}
         </ul>
       </section>

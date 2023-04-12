@@ -10,15 +10,17 @@ import koreanImg from './asset/category-korean.png';
 import westernImg from './asset/category-western.png';
 
 type RestaurantProps = {
-    readonly restaurant: Omit<Restaurant,"link">;
-}
+  readonly restaurant: Omit<Restaurant, 'link'>;
+  onToggleDrawer:any;
+};
 class RestaurantItem extends React.Component<RestaurantProps> {
+
 
     render() {
       return (
-        <li className='restaurant'>
+        <li className='restaurant' onClick={()=>this.props.onToggleDrawer(this.props.restaurant.id)}>
           <div className='restaurant__category'>
-            <img src={asianImg} alt="한식" className="category-icon" />
+            <img src={asianImg} alt='한식' className='category-icon' />
           </div>
           <div className='restaurant__info'>
             <h3 className='restaurant__name text-subtitle'>
