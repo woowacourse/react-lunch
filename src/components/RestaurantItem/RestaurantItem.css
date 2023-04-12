@@ -1,25 +1,21 @@
 .restaurant {
   display: flex;
-  align-items: flex-start;
-
   padding: 16px 8px;
-
+  align-items: flex-start;
   border-bottom: 1px solid #e9eaed;
 }
 
 .restaurant__category {
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: 64px;
   height: 64px;
+  background: var(--lighten-color);
+  justify-content: center;
+  align-items: center;
   min-width: 64px;
   min-height: 64px;
-
   margin-right: 16px;
-
   border-radius: 50%;
-  background: var(--lighten-color);
 }
 
 .category-icon {
@@ -50,9 +46,7 @@
 
 .restaurant__description {
   display: -webkit-box;
-
   padding-top: 8px;
-
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;

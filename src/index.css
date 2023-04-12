@@ -54,3 +54,11 @@ body:has(dialog[open]) {
   line-height: 20px;
   font-weight: 400;
 }
+
+.restaurant-filter-container {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 0 16px;
+  margin-top: 24px;
+}
