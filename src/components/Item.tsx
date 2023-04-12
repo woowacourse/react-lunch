@@ -34,7 +34,6 @@ class Item extends React.Component<itemProps, itemState> {
 
   render(): React.ReactNode {
     const { category, name, distance, description, id } = this.props.props;
-
     return (
       <>
         <li className="restaurant" data-id={id} onClick={this.onClick}>
