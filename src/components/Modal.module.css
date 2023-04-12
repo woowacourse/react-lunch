@@ -1,0 +1,22 @@
+.modal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  width: 100%;
+  min-width: 390px;
+  max-width: 800px;
+
+  margin: auto auto 0 auto;
+
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
+  box-sizing: border-box;
+  height: 70vh;
+}
+
+.modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.35);
+}
