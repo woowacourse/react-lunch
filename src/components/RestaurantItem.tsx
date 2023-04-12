@@ -6,7 +6,7 @@ interface RestaurantItemProps {
   restaurant: Restaurant;
 }
 
-class RestaurantItem extends React.Component<RestaurantItemProps, {}> {
+class RestaurantItem extends React.Component<RestaurantItemProps> {
 
   render() {
     return (

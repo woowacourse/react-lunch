@@ -1,11 +1,24 @@
 import React from 'react';
 import RestaurantList from './components/RestaurantList';
+import mockData from "./data/mockData.json";
+import { Restaurant } from './types/Restaurant';
 
-class App extends React.Component {
+interface AppState {
+  restaurants: Restaurant[];
+}
+class App extends React.Component<{}, AppState> {
+
+
+  constructor(props: Readonly<{}> | {}) {
+    super(props);
+    this.state = { restaurants: mockData };
+  }
+
+
   render() {
     return (
       <>
-        <RestaurantList />
+        <RestaurantList restaurants={this.state.restaurants} />
       </>
     );
   }
