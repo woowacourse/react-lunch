@@ -9,6 +9,7 @@ export const Style = {
     align-items: flex-start;
     padding: 16px 8px;
     border-bottom: 1px solid #e9eaed;
+    cursor: pointer;
   `,
 
   RestaurantInfo: styled.div`
