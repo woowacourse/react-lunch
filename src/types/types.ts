@@ -5,8 +5,13 @@ export interface Option {
   label: string;
 }
 
-export interface RestaurantFilterProps {
+export interface FilterProps {
   name: string;
   options: Option[];
   onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+}
+
+export interface RestaurantFilterProps {
+  onCategoryChange: (category: string) => void;
+  onSortingChange: (category: string) => void;
 }
