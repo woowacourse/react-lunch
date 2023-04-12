@@ -1,13 +1,10 @@
 import { ChangeEvent, Component } from "react";
 import SelectBox from "./SelectBox";
-import mockData from "../assets/mockData.json";
 
 import styles from "./RestaurantFilterContainer.module.css";
-import { Restaurant } from "../types/restaurant";
 
 interface Props {
-  restaurants: Restaurant[];
-  setRestaurants: (restaurants: Restaurant[]) => void;
+  setOption: (key: string, option: string) => void;
 }
 
 interface State {
@@ -18,27 +15,14 @@ interface State {
 class RestaurantFilterContainer extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = { category: "전체", sorting: "이름순" };
   }
 
   onChangeCategorySelect(event: ChangeEvent<HTMLSelectElement>) {
-    if (event.target.value === "전체") {
-      this.props.setRestaurants(mockData);
-      return;
-    }
-
-    this.props.setRestaurants(mockData.filter((data) => data.category === event.target.value));
+    this.props.setOption("category", event.target.value);
   }
 
   onChangeSortingSelect(event: ChangeEvent<HTMLSelectElement>) {
-    if (event.target.value === "이름순") {
-      this.props.setRestaurants(
-        [...this.props.restaurants].sort((first, second) => first.name.localeCompare(second.name))
-      );
-      return;
-    }
-
-    this.props.setRestaurants([...this.props.restaurants].sort((first, second) => first.distance - second.distance));
+    this.props.setOption("sorting", event.target.value);
   }
 
   render() {

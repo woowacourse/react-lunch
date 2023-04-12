@@ -1,18 +1,18 @@
 import { Component } from "react";
-import mockData from "./assets/mockData.json";
+
 import Header from "./components/Header";
 import RestaurantFilterContainer from "./components/RestaurantFilterContainer";
 import RestaurantList from "./components/RestaurantList";
-import type { Restaurant } from "./types/restaurant";
 
 interface State {
-  restaurants: Restaurant[];
+  category: string;
+  sorting: string;
 }
 class App extends Component<any, State> {
-  state: State = { restaurants: mockData };
+  state = { category: "전체", sorting: "이름순" };
 
-  setRestaurants(restaurants: Restaurant[]) {
-    this.setState({ restaurants });
+  setOption(key: string, option: string): void {
+    this.setState((prev) => ({ ...prev, [key]: option }));
   }
 
   render() {
@@ -20,11 +20,8 @@ class App extends Component<any, State> {
       <>
         <Header />
         <main>
-          <RestaurantFilterContainer
-            restaurants={this.state.restaurants}
-            setRestaurants={this.setRestaurants.bind(this)}
-          />
-          <RestaurantList list={this.state.restaurants} />
+          <RestaurantFilterContainer setOption={this.setOption.bind(this)} />
+          <RestaurantList options={this.state} />
         </main>
       </>
     );
