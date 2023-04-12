@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Restaurant } from "./type";
 // logo img
 import asianImg from './asset/category-asian.png';
