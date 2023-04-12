@@ -1,18 +1,14 @@
 import React, { Component, ReactNode } from 'react';
 import Layout from './components/common/Layout';
 import Select from './components/Select';
+import SelectBar from './components/SelectBar';
 
 class App extends Component {
   render(): ReactNode {
     return (
       <>
         <Layout>
-          <Select
-            options={['전체', '한식', '일식']}
-            onChange={() => {
-              //
-            }}
-          />
+          <SelectBar />
         </Layout>
       </>
     );
