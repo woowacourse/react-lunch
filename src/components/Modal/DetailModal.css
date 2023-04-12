@@ -1,0 +1,51 @@
+/* .modal-container {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 70vh;
+
+  padding: 32px 16px;
+
+  border-radius: 8px 8px 0px 0px;
+  background: var(--grey-100);
+
+  overflow-y: auto;
+}
+
+.modal-container::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-title {
+  margin-bottom: 36px;
+} */
+/* 음식점 상세정보 모달 *****************************************/
+.in-detail-modal {
+  top: -64px;
+}
+
+.more-detail {
+  -webkit-line-clamp: 4;
+}
+
+.category-favorite-icon-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.restaurant__info {
+  position: relative;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  margin-bottom: 32px;
+}
+
+.restaurant__link {
+  color: #000000;
+  margin-top: 10px;
+}

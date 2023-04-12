@@ -15,6 +15,10 @@ body {
   font-size: 16px;
 }
 
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
 /* Colors *****************************************/
 :root {
   --primary-color: #ec4a0a;

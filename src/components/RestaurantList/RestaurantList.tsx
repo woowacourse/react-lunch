@@ -11,7 +11,7 @@ class RestaurantList extends React.Component {
     clickedData: { id: 0, category: '한식', name: '', distance: 0, description: '', link: '' },
   };
 
-  onClick = () => {
+  onClick = (event: React.MouseEvent) => {
     this.setState({ isClicked: true });
     const target = event?.target;
 
@@ -44,7 +44,7 @@ class RestaurantList extends React.Component {
             );
           })}
         </ul>
-        {isClicked && <DetailModal isOpen={isClicked} data={clickedData} />}
+        {isClicked && <DetailModal data={clickedData} />}
       </>
     );
   }

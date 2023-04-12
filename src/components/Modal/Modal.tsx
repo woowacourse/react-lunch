@@ -1,42 +1,38 @@
 import React from 'react';
+import './Modal.css';
 import { ModalProps, ModalState } from '../../types';
 
 class Modal extends React.Component<ModalProps, ModalState> {
+  private modalRef: React.RefObject<HTMLDialogElement>;
+
   constructor(props: ModalProps) {
     super(props);
-    this.state = {
-      isOpen: props.isOpen,
-    };
+    this.modalRef = React.createRef<HTMLDialogElement>();
   }
 
-  componentDidUpdate(prevProps: ModalProps, prevState: ModalState) {
-    if (prevState.isOpen !== prevProps.isOpen) {
-      this.setState({ isOpen: this.props.isOpen });
+  componentDidUpdate() {
+    if (this.modalRef.current) {
+      this.modalRef.current.showModal();
     }
   }
 
-  openModal() {
-    this.setState({ isOpen: true });
+  closeModal() {
+    if (this.modalRef.current) {
+      this.modalRef.current.close();
+    }
   }
 
-  closeModal() {
-    this.setState({ isOpen: false });
-  }
+  onBackdropClick = (event: React.MouseEvent<HTMLDialogElement>) => {
+    if (event.target === this.modalRef.current) {
+      this.closeModal();
+    }
+  };
 
   render() {
-    const { isOpen } = this.state;
-
     return (
-      <dialog open={isOpen}>
-        {this.props.children}
-        <div className="button-container">
-          <button
-            type="button"
-            id="restaurant-detail-modal-remove-button"
-            className="button button--secondary text-caption"
-          >
-            삭제하기
-          </button>
+      <dialog ref={this.modalRef} onClick={this.onBackdropClick}>
+        <div className="modal-container">
+          {this.props.children}
           <button
             className="button button--primary text-caption"
             id="restaurant-detail-modal-close-button"

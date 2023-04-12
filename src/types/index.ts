@@ -22,7 +22,6 @@ export interface RestaurantDataServiceType {
 }
 
 export interface ModalProps {
-  isOpen: boolean;
   children?: React.ReactNode;
 }
 
@@ -31,7 +30,6 @@ export interface DetailModalProps extends ModalProps {
 }
 
 export interface ModalState {
-  isOpen: boolean;
   children?: React.ReactNode;
 }
 
