@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { ChangeEventHandler, Component } from 'react';
 import FilterList from './FilterList';
 
 import './FilterList.css';
@@ -6,8 +6,8 @@ import './FilterList.css';
 interface FilterListContainerProps {
   selectedCategory: string;
   selectedSort: string;
-  categoryEvent: any;
-  sortEvent: any;
+  categoryEvent: ChangeEventHandler<HTMLSelectElement>;
+  sortEvent: ChangeEventHandler<HTMLSelectElement>;
 }
 
 class FilterListContainer extends Component<FilterListContainerProps> {
