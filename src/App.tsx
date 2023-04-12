@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header.tsx";
 import RestaurantList from "./RestaurantList.tsx";
 import SelectContainer from "./SelectContainer.tsx";
+import RestaurantDetailDrawer from "./RestaurantDetailDrawer.tsx";
 
 interface AppState {
   filterOptions:any,
@@ -17,6 +18,7 @@ class App extends React.Component<AppState> {
         sorting: 'name',
       },
       isOpenDrawer: false,
+      drawerSelectId: -1
     };
 
     this.onChangeFilterOptions = this.onChangeFilterOptions.bind(this);
@@ -35,9 +37,9 @@ class App extends React.Component<AppState> {
   }
 
   onToggleDrawer(id) {
-    console.log('ONTOGGLE',id);
     this.setState({
       isOpenDrawer: !this.state.isOpenDrawer,
+      drawerSelectId: id
     });
   }
 
@@ -50,6 +52,7 @@ class App extends React.Component<AppState> {
           filterOptions={this.state.filterOptions}
         />
         <RestaurantList filterOptions={this.state.filterOptions} onToggleDrawer={this.onToggleDrawer} />
+        <RestaurantDetailDrawer isOpenDrawer={this.state.isOpenDrawer} restaurantId={this.state.drawerSelectId}/>
       </div>
     );
   }
