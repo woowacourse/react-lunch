@@ -25,9 +25,12 @@
         "tsx": "never"
       }
     ],
-    "no-console": "error",
+    "class-methods-use-this": "off",
+    "react/destructuring-assignment": "off",
     "react/prefer-stateless-function": "off",
-    "@typescript-eslint/consistent-type-imports": "error"
+    "@typescript-eslint/consistent-type-imports": "error",
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off"
   },
   "settings": {
     "import/resolver": {
