@@ -9,3 +9,7 @@ export interface Restaurant {
   description: string;
   link?: string;
 }
+
+export interface RestaurantProps {
+  info: Restaurant;
+}

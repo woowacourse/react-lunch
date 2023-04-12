@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Restaurant } from '../type';
+import { Restaurant, RestaurantProps } from '../type';
+import { imgSrc } from '../constants';
 
-const Style = {
-  Wrapper: styled.div`
+export const Style = {
+  Wrapper: styled.li`
     display: flex;
     align-items: flex-start;
     padding: 16px 8px;
     border-bottom: 1px solid #e9eaed;
   `,
+
   RestaurantInfo: styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     width: 100%;
   `,
+
   RestaurantCategory: styled.div`
     display: flex;
     justify-content: center;
@@ -27,19 +30,23 @@ const Style = {
     border-radius: 50%;
     background: var(--lighten-color);
   `,
+
   DescriptionWrapper: styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
   `,
+
   RestaurantName: styled.h3`
     font: var(--lunch-subtitle);
   `,
+
   RestaurantDistance: styled.span`
     font: var(--lunch-body);
     color: var(--primary-color);
   `,
-  RestaurnatDescription: styled.p`
+
+  RestaurantDescription: styled.p`
     display: -webkit-box;
     padding-top: 8px;
     overflow: hidden;
@@ -50,23 +57,10 @@ const Style = {
   `,
 };
 
-const imgSrc = {
-  한식: 'korean',
-  중식: 'chinese',
-  일식: 'japanese',
-  양식: 'western',
-  아시안: 'asian',
-  기타: 'etc',
-};
-
-interface RestaurantProps {
-  info: Restaurant;
-}
-
 export class RestaurantItem extends Component<RestaurantProps> {
   render(): React.ReactNode {
     return (
-      <Style.Wrapper>
+      <Style.Wrapper id={this.props.info.id}>
         <Style.RestaurantCategory>
           <img
             src={`${process.env.PUBLIC_URL}/images/category-${
@@ -86,9 +80,9 @@ export class RestaurantItem extends Component<RestaurantProps> {
               </Style.RestaurantDistance>
             </div>
           </Style.DescriptionWrapper>
-          <Style.RestaurnatDescription>
+          <Style.RestaurantDescription>
             {this.props.info.description}
-          </Style.RestaurnatDescription>
+          </Style.RestaurantDescription>
         </Style.RestaurantInfo>
       </Style.Wrapper>
     );

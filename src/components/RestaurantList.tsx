@@ -15,15 +15,16 @@ const Style = {
 
 interface RestaurantListProps {
   list: Restaurant[];
+  clickRestaurantItem: (e: any) => void;
 }
 
 export class RestaurantList extends Component<RestaurantListProps> {
   render(): ReactNode {
     return (
       <Style.Wrapper>
-        <ul>
-          {this.props.list.map((restaurant, index) => (
-            <RestaurantItem key={index} info={restaurant} />
+        <ul onClick={this.props.clickRestaurantItem}>
+          {this.props.list.map((restaurant) => (
+            <RestaurantItem key={restaurant.id} info={restaurant} />
           ))}
         </ul>
       </Style.Wrapper>
