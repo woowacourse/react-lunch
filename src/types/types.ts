@@ -5,6 +5,11 @@ export interface Option {
   label: string;
 }
 
+export interface MainState {
+  category: string;
+  sorting: string;
+}
+
 export interface FilterProps {
   name: string;
   options: Option[];
@@ -14,4 +19,19 @@ export interface FilterProps {
 export interface RestaurantFilterProps {
   onCategoryChange: (category: string) => void;
   onSortingChange: (category: string) => void;
+}
+
+export interface RestaurantItemProps {
+  name: string;
+  category: string;
+  distance: number;
+  description: string;
+}
+
+export interface Restaurant {
+  id: number;
+  category: string;
+  name: string;
+  distance: number;
+  description: string;
 }

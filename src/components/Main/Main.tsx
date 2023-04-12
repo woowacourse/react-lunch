@@ -1,11 +1,7 @@
 import { Component } from 'react';
 import RestaurantFilter from '../RestaurantFilter/RestaurantFilter';
-import { RestaurantFilterProps } from '../../types/types';
-
-interface MainState {
-  category: string;
-  sorting: string;
-}
+import { RestaurantFilterProps, MainState } from '../../types/types';
+import RestaurantsList from '../RestaurantsList/RestaurantsList';
 
 export default class Main extends Component<object, MainState> {
   state: MainState = {
@@ -26,9 +22,13 @@ export default class Main extends Component<object, MainState> {
       onCategoryChange: this.handleCategoryChange,
       onSortingChange: this.handleSortingChange,
     };
+
+    const restaurantListProps: MainState = { ...this.state };
+
     return (
       <>
         <RestaurantFilter {...restaurantFilterProps} />
+        <RestaurantsList {...restaurantListProps} />
       </>
     );
   }
