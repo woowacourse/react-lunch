@@ -1,9 +1,9 @@
 import "./index.css";
 import { Component } from "react";
 import { CategoryImagePath } from "../../data/CategoryImagePath";
-import { RestaurantProps } from "../../types/restaurant";
+import { Restaurant } from "../../types/restaurant";
 
-export default class RestaurantItem extends Component<RestaurantProps> {
+export default class RestaurantItem extends Component<Restaurant> {
   render() {
     return (
       <li className="restaurant">

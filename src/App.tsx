@@ -24,14 +24,21 @@ class App extends Component {
   }
 
   render() {
+    const filterProps = {
+      setSelectedCategory: this.setSelectedCategory.bind(this),
+      setSelectedSort: this.setSelectedSort.bind(this),
+    };
+
+    const restaurantListProps = {
+      selectedCategory: this.state.selectedCategory,
+      selectedSort: this.state.selectedSort,
+    };
+
     return (
       <div className="App">
         <Header />
-        <Filter
-          setSelectedCategory={this.setSelectedCategory.bind(this)}
-          setSelectedSort={this.setSelectedSort.bind(this)}
-        />
-        <RestaurantList />
+        <Filter {...filterProps} />
+        <RestaurantList {...restaurantListProps} />
       </div>
     );
   }

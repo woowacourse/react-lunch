@@ -1,12 +1,16 @@
 import "./index.css";
 import { Component } from "react";
 import RestaurantItem from "../RestaurantItem";
-import { RestaurantProps } from "../../types/restaurant";
+import { CategoryOption, Restaurant, SortOption } from "../../types/restaurant";
 import mockData from "../../data/mockData.json";
 
-export default class RestaurantList extends Component {
+interface RestaurantListProps {
+  selectedCategory: CategoryOption;
+  selectedSort: SortOption;
+}
+export default class RestaurantList extends Component<RestaurantListProps> {
   render() {
-    const dummyData: RestaurantProps[] = JSON.parse(JSON.stringify(mockData.restaurants));
+    const dummyData: Restaurant[] = JSON.parse(JSON.stringify(mockData.restaurants));
 
     return (
       <section className="restaurant-list-container">
