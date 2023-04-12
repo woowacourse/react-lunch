@@ -5,18 +5,18 @@ import { Restaurant } from "../../types/restaurant";
 
 interface RestaurantDetailModalProps {
   isModalOpen: boolean;
-  toggleIsModalOpen: () => void;
+  closeModal: () => void;
   restaurant: Restaurant;
 }
 
 export default class RestaurantDetailModal extends Component<RestaurantDetailModalProps> {
   render() {
-    const { isModalOpen, toggleIsModalOpen, restaurant } = this.props;
+    const { isModalOpen, closeModal, restaurant } = this.props;
     const { name, category, distance, description, link } = restaurant;
 
     return (
       <div className={isModalOpen ? "modal modal--open" : "modal"}>
-        <div className="modal-backdrop" onClick={toggleIsModalOpen}></div>
+        <div className="modal-backdrop" onClick={closeModal}></div>
         <div className="modal-container">
           <div className="restaurant-detail-container">
             <div className="category-and-favorite">
@@ -24,22 +24,14 @@ export default class RestaurantDetailModal extends Component<RestaurantDetailMod
                 <img src={CategoryImagePath[category]} alt={category} className="category-icon" />
               </div>
             </div>
-            <h3 className="restaurant__name text-subtitle detail-subtitle">${name}</h3>
-            <span className="restaurant__distance text-body">캠퍼스부터 ${distance}분 내</span>
-            <p className="restaurant__description text-body">${description}</p>
-            <a href="${this.restaurantInfo.link}" target="_blank">
-              ${link}
+            <h3 className="restaurant__name text-subtitle detail-subtitle">{name}</h3>
+            <span className="restaurant__distance text-body">캠퍼스부터 {distance}분 내</span>
+            <p className="restaurant__description text-body">{description}</p>
+            <a href={link} target="_blank">
+              {link}
             </a>
             <div className="button-container">
-              <button
-                id="detail-remove-button"
-                type="button"
-                className="button button--primary text-caption"
-                onClick={toggleIsModalOpen}
-              >
-                삭제하기
-              </button>
-              <button id="detail-cancel-button" className="button button--secondary text-caption">
+              <button id="detail-cancel-button" className="button button--primary text-caption" onClick={closeModal}>
                 닫기
               </button>
             </div>
