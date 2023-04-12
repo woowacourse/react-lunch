@@ -5,7 +5,11 @@ import RestaurantList from './components/RestaurantList';
 import Modal from './components/Modal';
 import { Restaurant } from './types';
 import mockData from './mockData.json';
-import { getFilteredRestaurantsByCategory, getSortedRestaurants } from './RestaurantUtils';
+import {
+  getFilteredRestaurantsByCategory,
+  getSortedRestaurants,
+  getRestaurantById,
+} from './RestaurantUtils';
 import type { RestaurantSortOption, RestaurantCategoryFilterOption } from './RestaurantUtils';
 import './App.css';
 
@@ -13,6 +17,8 @@ type AppState = {
   restaurants: Restaurant[];
   categoryFilterOption: RestaurantCategoryFilterOption;
   sortOption: RestaurantSortOption;
+  restaurantForDetailView: Restaurant;
+  isModalOpen: boolean;
 };
 
 export default class App extends Component<PropsWithChildren, AppState> {
@@ -23,11 +29,14 @@ export default class App extends Component<PropsWithChildren, AppState> {
       restaurants: mockData as Restaurant[],
       categoryFilterOption: '전체',
       sortOption: 'distance',
+      restaurantForDetailView: mockData[0] as Restaurant,
+      isModalOpen: false,
     };
   }
 
   render() {
-    const { restaurants, categoryFilterOption, sortOption } = this.state;
+    const { restaurants, categoryFilterOption, sortOption, isModalOpen, restaurantForDetailView } =
+      this.state;
     const filteredRestaurants = getFilteredRestaurantsByCategory(restaurants, categoryFilterOption);
     const sortedRestaurants = getSortedRestaurants(filteredRestaurants, sortOption);
 
@@ -38,8 +47,16 @@ export default class App extends Component<PropsWithChildren, AppState> {
           onChangeCategoryFilter={this.onChangeCategoryFilter.bind(this)}
           onChangeSortFilter={this.onChangeSortFilter.bind(this)}
         />
-        <RestaurantList restaurants={sortedRestaurants} />
-        <Modal />
+        <RestaurantList
+          restaurants={sortedRestaurants}
+          onClick={this.onClickRestaurantItem.bind(this)}
+        />
+        {isModalOpen && (
+          <Modal
+            restaurant={restaurantForDetailView}
+            onClick={this.onClickModalCloseButton.bind(this)}
+          />
+        )}
       </div>
     );
   }
@@ -50,5 +67,15 @@ export default class App extends Component<PropsWithChildren, AppState> {
 
   onChangeSortFilter(sortOption: RestaurantSortOption) {
     this.setState({ sortOption: sortOption });
+  }
+
+  onClickRestaurantItem(restaurantId: number) {
+    const targetRestaurant = getRestaurantById(this.state.restaurants, restaurantId);
+
+    this.setState({ restaurantForDetailView: targetRestaurant, isModalOpen: true });
+  }
+
+  onClickModalCloseButton() {
+    this.setState({ isModalOpen: false });
   }
 }

@@ -4,13 +4,14 @@ import { categoryIconFileName } from '../../../constants';
 
 type RestaurantItemProps = {
   restaurant: Restaurant;
+  onClick: (restaurantId: number) => void;
 };
 
 export default class RestaurantItem extends Component<RestaurantItemProps> {
   render() {
     const { id, category, name, distance, description } = this.props.restaurant;
     return (
-      <li className="restaurant" data-id={id}>
+      <li className="restaurant" onClick={this.props.onClick.bind(this, id)}>
         <div className="restaurant__category">
           <img src={categoryIconFileName[category]} alt={category} className="category-icon" />
         </div>

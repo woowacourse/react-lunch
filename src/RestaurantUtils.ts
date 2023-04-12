@@ -40,3 +40,10 @@ const sortMethods: Record<RestaurantSortOption, (restaurants: Restaurant[]) => R
 
 export const getSortedRestaurants = (restaurants: Restaurant[], sortOption: RestaurantSortOption) =>
   sortMethods[sortOption](restaurants);
+
+export const getRestaurantById = (restaurants: Restaurant[], restaurantId: number) => {
+  const targetRestaurant = restaurants.find((restaurant) => restaurant.id === restaurantId);
+  if (!targetRestaurant) throw new Error('음식점 정보를 불러오는 데 실패했습니다.');
+
+  return targetRestaurant;
+};

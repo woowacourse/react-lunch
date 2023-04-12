@@ -31,8 +31,3 @@
 
   color: var(--grey-100);
 }
-
-/* global */
-.hide {
-  display: none;
-}

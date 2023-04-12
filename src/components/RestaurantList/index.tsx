@@ -6,6 +6,7 @@ import { Restaurant } from '../../types';
 
 type RestaurantListProps = {
   restaurants: Restaurant[];
+  onClick: (restaurantId: number) => void;
 };
 
 export default class RestaurantList extends Component<RestaurantListProps> {
@@ -14,7 +15,11 @@ export default class RestaurantList extends Component<RestaurantListProps> {
       <section className="restaurant-list-container">
         <ul>
           {this.props.restaurants.map((restaurant) => (
-            <RestaurantItem restaurant={restaurant} key={restaurant.id} />
+            <RestaurantItem
+              restaurant={restaurant}
+              onClick={this.props.onClick.bind(this)}
+              key={restaurant.id}
+            />
           ))}
         </ul>
       </section>
