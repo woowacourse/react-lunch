@@ -12,7 +12,7 @@ class RestaurantList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            restaurantList: [{ id:0, title: "얌샘김밥",distance:5,description:"김밥",imageUrl:"adfdfadf" }]
+            restaurantList: [{ id:0, title: "얌샘김밥", category: '한식', distance:5, description:"김밥"}]
         }
     }
 

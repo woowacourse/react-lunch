@@ -1,8 +1,8 @@
 export type Restaurant = {
   id: number;
   title: string;
+  category: string;
   distance: number;
   description: string;
-  imageUrl: string;
   link?: string;
 }
