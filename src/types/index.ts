@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { RESTAURANT_CATEGORY, RESTAURANT_CATEGORY_OPTION, SORT_BY } from '../constants';
 
 export type Category = typeof RESTAURANT_CATEGORY[number];
@@ -36,7 +37,7 @@ export interface FilterSectionState {
 export interface State {
   restaurantList: Restaurant[];
   currentRestaurantList: Restaurant[];
-  selectedRestaurant: number;
+  selectedRestaurant: Restaurant | null;
 }
 
 export type FilterOption = Record<'category' | 'sortBy', string>;
