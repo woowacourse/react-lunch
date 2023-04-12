@@ -6,8 +6,9 @@ import korean from '../../asset/category-korean.png';
 import japanese from '../../asset/category-japanese.png';
 import western from '../../asset/category-western.png';
 import etc from '../../asset/category-etc.png';
+import { Restaurant } from '../../App';
 
-const Restaurant = styled.li`
+const SRestaurant = styled.li`
   display: flex;
   align-items: flex-start;
 
@@ -86,12 +87,23 @@ export type Props = {
   distanceByMinutes: number;
   description: string;
   referenceUrl: string;
+  setModalRestaurant: (restaurant: Restaurant) => void;
 };
 
 class RestaurantItem extends Component<Props> {
+  onClickRestaurant = () => {
+    this.props.setModalRestaurant({
+      category: this.props.category,
+      name: this.props.name,
+      distanceByMinutes: this.props.distanceByMinutes,
+      description: this.props.description,
+      referenceUrl: this.props.referenceUrl,
+    });
+  };
+
   render() {
     return (
-      <Restaurant>
+      <SRestaurant onClick={this.onClickRestaurant}>
         <CategoryIcon>
           <img src={categoryIcon[this.props.category]} alt={this.props.category} />
         </CategoryIcon>
@@ -100,7 +112,7 @@ class RestaurantItem extends Component<Props> {
           <RestaurantDistance>캠퍼스부터 {this.props.distanceByMinutes}분 내</RestaurantDistance>
           <RestaurantDescription>{this.props.description}</RestaurantDescription>
         </RestaurantInfo>
-      </Restaurant>
+      </SRestaurant>
     );
   }
 }

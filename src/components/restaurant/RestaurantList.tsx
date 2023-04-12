@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import SelectBox from '../common/SelectBox';
 import mockData from '../../mockData.json';
 import RestaurantItem from './RestaurantItem';
+import { Restaurant } from '../../App';
 
 const RestaurantListLayout = styled.main`
   padding: 16px;
@@ -20,7 +21,11 @@ const Restaurants = styled.ul`
   margin: 16px 0;
 `;
 
-class RestaurantList extends Component {
+type Props = {
+  setModalRestaurant: (restaurant: Restaurant) => void;
+};
+
+class RestaurantList extends Component<Props> {
   state = {
     restaurantList: mockData,
   };
@@ -34,7 +39,7 @@ class RestaurantList extends Component {
         </SelectBoxContainer>
         <Restaurants>
           {this.state.restaurantList.map((restaurant, index) => (
-            <RestaurantItem key={index} {...restaurant} />
+            <RestaurantItem key={index} {...restaurant} setModalRestaurant={this.props.setModalRestaurant} />
           ))}
         </Restaurants>
       </RestaurantListLayout>
