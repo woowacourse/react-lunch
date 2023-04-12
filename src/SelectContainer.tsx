@@ -2,12 +2,16 @@ import React from "react";
 import Select from "./Select.tsx";
 import { CATEGORY_OPTIONS, SORTING_OPTIONS } from "./constant.ts";
 
-class SelectContainer extends React.Component {
+type SelectContainerProps = {
+    onChangeFilterOptions: (e:any) => void;
+    filterOptions: any;
+}
+class SelectContainer extends React.Component<SelectContainerProps> {
     render() {
         return (
             <section className="restaurant-filter-container">
-                <Select options={CATEGORY_OPTIONS}/>
-                <Select options={SORTING_OPTIONS}/>
+                <Select name="category" options={CATEGORY_OPTIONS} onChangeFilterOptions={this.props.onChangeFilterOptions}/>
+                <Select name="sorting" options={SORTING_OPTIONS} onChangeFilterOptions={this.props.onChangeFilterOptions}/>
             </section>
         );
     }
