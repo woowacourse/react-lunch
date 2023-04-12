@@ -40,7 +40,9 @@ export default class Filter extends Component<FilterProps> {
           onChange={this.setSelectedCategory.bind(this)}
         >
           {Object.entries(categoryList).map(([key, value]) => (
-            <option value={key}>{value}</option>
+            <option key={key} value={key}>
+              {value}
+            </option>
           ))}
         </select>
         <select
@@ -50,7 +52,9 @@ export default class Filter extends Component<FilterProps> {
           onChange={this.setSelectedSort.bind(this)}
         >
           {Object.entries(sortList).map(([key, value]) => (
-            <option value={key}>{value}</option>
+            <option key={key} value={key}>
+              {value}
+            </option>
           ))}
         </select>
       </section>
