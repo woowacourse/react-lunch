@@ -1,8 +1,9 @@
 import React, { ChangeEventHandler } from "react";
 import styled from "styled-components";
+import { SelectBoxOption } from "../types/Restaurant";
 
 interface SelectBoxProps {
-  options: string[];
+  options: SelectBoxOption[];
   setState: ChangeEventHandler<HTMLSelectElement>;
 }
 
@@ -13,7 +14,7 @@ class SelectBox extends React.Component<SelectBoxProps, {}> {
     return (
       <Select onChange={setState}>
         {options.map(option => (
-          <option value={option} key={option}>{option}</option>
+          <option value={option.value} key={option.value}>{option.label}</option>
         ))}
       </Select>
     )

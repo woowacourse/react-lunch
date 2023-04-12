@@ -7,4 +7,10 @@ export interface Restaurant {
 }
 
 export type Sort = "name" | "distance";
+
 export type Category = "all" | "chinese" | "korean" | "asian" | "western" | "japanese" | "etc";
+
+export type SelectBoxOption = {
+  label: string;
+  value: string | number;
+}
