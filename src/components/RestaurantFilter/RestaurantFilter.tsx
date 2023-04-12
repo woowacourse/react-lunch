@@ -1,16 +1,17 @@
-import { PureComponent, ChangeEvent } from 'react';
+import { Component, ChangeEvent } from 'react';
 import { Option } from '../../types/types';
 import Filter from '../Filter/Filter';
 import styles from './RestaurantFilter.module.css';
+import { RestaurantFilterProps } from '../../types/types';
 
-export default class RestaurantFilter extends PureComponent {
-  handleCategoryChange(event: ChangeEvent<HTMLSelectElement>) {
-    console.log(event.target.value);
-  }
+export default class RestaurantFilter extends Component<RestaurantFilterProps> {
+  handleCategoryChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    this.props.onCategoryChange(event.target.value);
+  };
 
-  handleSortingChange(event: ChangeEvent<HTMLSelectElement>) {
-    console.log(event.target.value);
-  }
+  handleSortingChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    this.props.onSortingChange(event.target.value);
+  };
 
   render() {
     const categoryOptions: Option[] = [
@@ -24,8 +25,8 @@ export default class RestaurantFilter extends PureComponent {
     ];
 
     const sortingOptions: Option[] = [
-      { value: 'name', label: '이름순' },
-      { value: 'distance', label: '거리순' },
+      { value: '이름순', label: '이름순' },
+      { value: '거리순', label: '거리순' },
     ];
 
     return (

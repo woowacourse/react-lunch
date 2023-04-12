@@ -3,6 +3,7 @@
 ## Component
 
 - [x] Header
+- [x] Main
 - [x] RestaurantFilter
 - [x] Filter
 - [ ] RestaurantsList

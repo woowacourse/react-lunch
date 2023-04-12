@@ -1,14 +1,14 @@
 import { Component } from 'react';
 import Header from './Header/Header';
-import RestaurantFilter from './RestaurantFilter/RestaurantFilter';
+import Main from './Main/Main';
 
 export default class App extends Component {
   render() {
     return (
-      <div>
+      <>
         <Header />
-        <RestaurantFilter />
-      </div>
+        <Main />
+      </>
     );
   }
 }
