@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import Layout from './components/common/Layout';
-import Select from './components/Select';
+import RestaurantList from './components/RestaurantList';
 import SelectBar from './components/SelectBar';
 
 class App extends Component {
@@ -9,6 +9,7 @@ class App extends Component {
       <>
         <Layout>
           <SelectBar />
+          <RestaurantList />
         </Layout>
       </>
     );
