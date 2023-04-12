@@ -52,7 +52,7 @@ class App extends React.Component<AppState> {
           filterOptions={this.state.filterOptions}
         />
         <RestaurantList filterOptions={this.state.filterOptions} onToggleDrawer={this.onToggleDrawer} />
-        <RestaurantDetailDrawer isOpenDrawer={this.state.isOpenDrawer} restaurantId={this.state.drawerSelectId}/>
+        <RestaurantDetailDrawer isOpenDrawer={this.state.isOpenDrawer} onToggleDrawer={this.onToggleDrawer} restaurantId={this.state.drawerSelectId}/>
       </div>
     );
   }

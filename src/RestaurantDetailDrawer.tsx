@@ -3,6 +3,7 @@ import Drawer from "./Drawer.tsx";
 type RestaurantDetailDrawerProps = {
     isOpenDrawer: boolean;
     restaurantId: number;
+    onToggleDrawer: (id:any)=>void
 }
 
 class RestaurantDetailDrawer extends React.Component<RestaurantDetailDrawerProps> {
@@ -44,7 +45,7 @@ class RestaurantDetailDrawer extends React.Component<RestaurantDetailDrawerProps
                 <p className="restaurant__link text-body">
                     {this.state.restaurant.link ?? ""}
                 </p>
-                
+                <button type="button" className="button button--secondary text-caption" onClick={this.props.onToggleDrawer}>취소하기</button>
             </Drawer>
         );
     }
