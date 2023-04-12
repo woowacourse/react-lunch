@@ -1,5 +1,8 @@
-export type Category = "한식" | "중식" | "일식" | "양식" | "아시안" | "기타";
-export type Distance = 5 | 10 | 15 | 20 | 25 | 30;
+import { CATEGORIES, DISTANCES, SORTING_TYPES } from "../constants";
+
+export type Category = typeof CATEGORIES[number];
+export type Distance = typeof DISTANCES[number];
+export type SortingType = typeof SORTING_TYPES[number];
 
 export interface Restaurant {
   id: string;
