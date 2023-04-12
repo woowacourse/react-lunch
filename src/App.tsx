@@ -3,6 +3,8 @@ import RestaurantList from './components/RestaurantList';
 import mockData from "./data/mockData.json";
 import { Category, Restaurant, Sort } from './types/Restaurant';
 import SelectBox from './components/SelectBox';
+import Header from './components/Header';
+import styled from 'styled-components';
 
 interface AppState {
   restaurants: Restaurant[];
@@ -29,10 +31,11 @@ class App extends React.Component<{}, AppState> {
 
     return (
       <>
-        <div>현재 categorizeBy 값은? : {categorizeBy}</div>
-        <div>현재 sortBy 값은? : {sortBy}</div>
-        <SelectBox setState={this.updateCategorizeBy.bind(this)} options={["all", "chinese", "korean", "asian", "western", "japanese", "etc"]} />
-        <SelectBox setState={this.updateSortBy.bind(this)} options={['name', 'distance']} />
+        <Header />
+        <SelectContainer>
+          <SelectBox setState={this.updateCategorizeBy.bind(this)} options={["all", "chinese", "korean", "asian", "western", "japanese", "etc"]} />
+          <SelectBox setState={this.updateSortBy.bind(this)} options={['name', 'distance']} />
+        </SelectContainer>
         <RestaurantList sortBy={sortBy} categorizeBy={categorizeBy} restaurants={restaurants} />
       </>
     );
@@ -40,3 +43,12 @@ class App extends React.Component<{}, AppState> {
 }
 
 export default App;
+
+
+const SelectContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  padding: 0 16px;
+  margin-top: 24px;
+`
