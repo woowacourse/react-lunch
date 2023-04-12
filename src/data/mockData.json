@@ -1,6 +1,7 @@
 {
 	"restaurantList": [
 		{
+			"id": "1",
 			"category": "한식",
 			"name": "피양콩할마니",
 			"distance": "10",
@@ -8,6 +9,7 @@
 			"link": "https://naver.me/G6DyD9tg"
 		},
 		{
+			"id": "2",
 			"category": "일식",
 			"name": "일일일",
 			"distance": "15",
@@ -15,6 +17,7 @@
 			"link": "https://naver.me/G6DyD9tg"
 		},
 		{
+			"id": "3",
 			"category": "양식",
 			"name": "양양양",
 			"distance": "5",
@@ -22,6 +25,7 @@
 			"link": "https://naver.me/G6DyD9tg"
 		},
 		{
+			"id": "4",
 			"category": "아시안",
 			"name": "아시아시아시",
 			"distance": "10",
@@ -29,6 +33,7 @@
 			"link": "https://naver.me/G6DyD9tg"
 		},
 		{
+			"id": "5",
 			"category": "기타",
 			"name": "딩가딩가",
 			"distance": "15",
@@ -36,6 +41,7 @@
 			"link": "https://naver.me/G6DyD9tg"
 		},
 		{
+			"id": "6",
 			"category": "중식",
 			"name": "중중중",
 			"distance": "20",
