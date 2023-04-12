@@ -9,7 +9,6 @@ interface Props {
 
 class ModalPortal extends React.Component<Props> {
   $modalRoot: HTMLElement;
-
   constructor(props: Props | Readonly<Props>) {
     super(props);
     this.$modalRoot = document.getElementById('modal-root') as HTMLElement;
