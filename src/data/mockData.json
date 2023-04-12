@@ -6,7 +6,7 @@
       "category": "korean",
       "distance": 5,
       "description": "테스트용 설명입니다.",
-      "link": "www.google.co.kr"
+      "link": "https://www.google.co.kr/"
     },
     {
       "id": 2,
@@ -14,7 +14,7 @@
       "category": "korean",
       "distance": 10,
       "description": "테스트용 설명입니다.",
-      "link": "www.google.co.kr"
+      "link": "https://www.google.co.kr/"
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
       "category": "chinese",
       "distance": 15,
       "description": "테스트용 설명입니다.",
-      "link": "www.google.co.kr"
+      "link": "https://www.google.co.kr/"
     },
     {
       "id": 4,
@@ -30,7 +30,7 @@
       "category": "chinese",
       "distance": 20,
       "description": "테스트용 설명입니다.",
-      "link": "www.google.co.kr"
+      "link": "https://www.google.co.kr/"
     },
     {
       "id": 5,
@@ -38,7 +38,7 @@
       "category": "chinese",
       "distance": 30,
       "description": "테스트용 설명입니다.",
-      "link": "www.google.co.kr"
+      "link": "https://www.google.co.kr/"
     },
     {
       "id": 6,
@@ -46,7 +46,7 @@
       "category": "japanese",
       "distance": 5,
       "description": "테스트용 설명입니다.",
-      "link": "www.google.co.kr"
+      "link": "https://www.google.co.kr/"
     },
     {
       "id": 7,
@@ -54,7 +54,7 @@
       "category": "japanese",
       "distance": 15,
       "description": "테스트용 설명입니다.",
-      "link": "www.google.co.kr"
+      "link": "https://www.google.co.kr/"
     },
     {
       "id": 8,
@@ -62,7 +62,7 @@
       "category": "japanese",
       "distance": 30,
       "description": "테스트용 설명입니다.",
-      "link": "www.google.co.kr"
+      "link": "https://www.google.co.kr/"
     },
     {
       "id": 9,
@@ -70,7 +70,7 @@
       "category": "asian",
       "distance": 10,
       "description": "테스트용 설명입니다.",
-      "link": "www.google.co.kr"
+      "link": "https://www.google.co.kr/"
     },
     {
       "id": 10,
@@ -114,7 +114,7 @@
       "category": "asian",
       "distance": 15,
       "description": "테스트용 설명입니다.",
-      "link": "www.google.co.kr"
+      "link": "https://www.google.co.kr/"
     },
     {
       "id": 21,
@@ -122,7 +122,7 @@
       "category": "asian",
       "distance": 5,
       "description": "테스트용 설명입니다.",
-      "link": "www.google.co.kr"
+      "link": "https://www.google.co.kr/"
     }
   ]
 }
