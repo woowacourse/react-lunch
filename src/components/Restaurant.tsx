@@ -1,4 +1,4 @@
-import { Component, ReactNode } from 'react';
+import { Component } from 'react';
 import { State } from '../types';
 import { getRestaurantListData } from '../data/restaurantListData';
 import FilterSection from './FilterSection';
@@ -26,7 +26,7 @@ class Restaurant extends Component {
     this.setState({ currentRestaurantList: sortedRestaurantList });
   }
 
-  render(): ReactNode {
+  render() {
     return (
       <>
         <FilterSection

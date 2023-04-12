@@ -1,4 +1,4 @@
-import { ChangeEvent, Component, ReactNode } from 'react';
+import { ChangeEvent, Component } from 'react';
 import { SelectProps } from '../types';
 
 class Select extends Component<SelectProps> {
@@ -10,7 +10,7 @@ class Select extends Component<SelectProps> {
     this.props.onChange(result);
   }
 
-  render(): ReactNode {
+  render() {
     const { attributes, options } = this.props;
 
     return (

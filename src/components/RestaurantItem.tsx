@@ -1,9 +1,9 @@
-import { Component, ReactNode } from 'react';
+import { Component } from 'react';
 import { Restaurant } from '../types';
 import { RESTAURANT_IMAGE } from '../constants/images';
 
 class RestaurantItem extends Component<{ restaurant: Restaurant }> {
-  render(): ReactNode {
+  render() {
     const { restaurant } = this.props;
 
     return (

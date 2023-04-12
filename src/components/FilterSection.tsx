@@ -1,4 +1,4 @@
-import { Component, ReactNode } from 'react';
+import { Component } from 'react';
 import Select from './Select';
 import { RESTAURANT_CATEGORY_OPTION, SORT_BY } from '../constants';
 import { FilterSectionProps, FilterSectionState } from '../types';
@@ -32,7 +32,7 @@ class FilterSection extends Component<FilterSectionProps, FilterSectionState> {
     this.props.onChange(this.state.category, this.state.sortBy);
   }
 
-  render(): ReactNode {
+  render() {
     return (
       <div>
         <Select
