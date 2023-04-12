@@ -62,16 +62,12 @@ class RestaurantItem extends React.Component<
     this.setState({
       isModalOpen: true,
     });
-
-    console.log(this.state.isModalOpen);
   }
 
   closeModal() {
     this.setState({
       isModalOpen: false,
     });
-
-    console.log(this.state.isModalOpen);
   }
 }
 
