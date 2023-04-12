@@ -1,0 +1,164 @@
+{
+  "restaurant": [
+    {
+      "category": "양식",
+      "storeName": "양식1",
+      "distance": 20,
+      "detail": "상세 정보",
+      "link": "링크 주소",
+      "favorite": false
+    },
+    {
+      "category": "중식",
+      "storeName": "홍콩반점",
+      "distance": 3,
+      "detail": "상세 정보123",
+      "link": "링크 주소",
+      "favorite": true
+    },
+    {
+      "category": "중식",
+      "storeName": "중식1",
+      "distance": 11,
+      "detail": "상세 정보12312321321312",
+      "link": "링크 주소",
+      "favorite": true
+    },
+    {
+      "category": "양식",
+      "storeName": "양식2",
+      "distance": 1,
+      "detail": "상세 정보1231241254243123",
+      "link": "링크 주소",
+      "favorite": true
+    },
+    {
+      "category": "일식",
+      "storeName": "일식1",
+      "distance": 12,
+      "detail": "상세 정보3456354634564",
+      "link": "링크 주소",
+      "favorite": true
+    },
+    {
+      "category": "중식",
+      "storeName": "중식3",
+      "distance": 19,
+      "detail": "상세 정보789578ㅐ967885678",
+      "link": "링크 주소",
+      "favorite": false
+    },
+    {
+      "category": "한식",
+      "storeName": "한식2",
+      "distance": 9,
+      "detail": "상세 정보",
+      "link": "링크 주소",
+      "favorite": false
+    },
+    {
+      "category": "중식",
+      "storeName": "중식4",
+      "distance": 16,
+      "detail": "상세 정보",
+      "link": "링크 주소",
+      "favorite": true
+    },
+    {
+      "category": "중식",
+      "storeName": "중식5",
+      "distance": 20,
+      "detail": "상세 정보",
+      "link": "링크 주소",
+      "favorite": true
+    },
+    {
+      "category": "일식",
+      "storeName": "일식2",
+      "distance": 9,
+      "detail": "상세 정보",
+      "link": "링크 주소",
+      "favorite": false
+    },
+    {
+      "category": "양식",
+      "storeName": "양식3",
+      "distance": 3,
+      "detail": "상세 정보",
+      "link": "링크 주소",
+      "favorite": false
+    },
+    {
+      "category": "중식",
+      "storeName": "중식6",
+      "distance": 7,
+      "detail": "상세 정보",
+      "link": "링크 주소",
+      "favorite": false
+    },
+    {
+      "category": "중식",
+      "storeName": "중식7",
+      "distance": 14,
+      "detail": "상세 정보",
+      "link": "링크 주소",
+      "favorite": true
+    },
+    {
+      "category": "한식",
+      "storeName": "한식5",
+      "distance": 17,
+      "detail": "상세 정보",
+      "link": "링크 주소",
+      "favorite": false
+    },
+    {
+      "category": "일식",
+      "storeName": "일식8",
+      "distance": 19,
+      "detail": "상세 정보",
+      "link": "링크 주소",
+      "favorite": true
+    },
+    {
+      "category": "양식",
+      "storeName": "양식9",
+      "distance": 17,
+      "detail": "상세 정보",
+      "link": "링크 주소",
+      "favorite": false
+    },
+    {
+      "category": "중식",
+      "storeName": "중식9",
+      "distance": 9,
+      "detail": "상세 정보",
+      "link": "링크 주소",
+      "favorite": true
+    },
+    {
+      "category": "중식",
+      "storeName": "중식10",
+      "distance": 4,
+      "detail": "상세 정보",
+      "link": "링크 주소",
+      "favorite": true
+    },
+    {
+      "category": "일식",
+      "storeName": "일식7",
+      "distance": 4,
+      "detail": "상세 정보",
+      "link": "링크 주소",
+      "favorite": false
+    },
+    {
+      "category": "일식",
+      "storeName": "일식11",
+      "distance": 4,
+      "detail": "상세 정보",
+      "link": "링크 주소",
+      "favorite": false
+    }
+  ]
+}
