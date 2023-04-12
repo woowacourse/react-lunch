@@ -1,6 +1,20 @@
 import React from "react";
+import type { Category, SortBy } from "../types/Restaurant";
 
-class Select extends React.Component {
+type SelectProps = {
+  setCategory: (newCategory: Category) => void;
+  setSort: (newSort: SortBy) => void;
+};
+
+class Select extends React.Component<SelectProps> {
+  onChangeCategory(event: any) {
+    this.props.setCategory(event.target.value);
+  }
+
+  onChangeSort(event: any) {
+    this.props.setSort(event.target.value);
+  }
+
   render() {
     return (
       <section className="restaurant-filter-container">
@@ -8,6 +22,7 @@ class Select extends React.Component {
           name="category"
           id="category-filter"
           className="restaurant-filter"
+          onChange={(event) => this.onChangeCategory(event)}
         >
           <option value="전체">전체</option>
           <option value="한식">한식</option>
@@ -22,9 +37,10 @@ class Select extends React.Component {
           name="sorting"
           id="sorting-filter"
           className="restaurant-filter"
+          onChange={(event) => this.onChangeSort(event)}
         >
-          <option value="name">이름순</option>
-          <option value="distance">거리순</option>
+          <option value="이름순">이름순</option>
+          <option value="거리순">거리순</option>
         </select>
       </section>
     );

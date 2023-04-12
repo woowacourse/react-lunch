@@ -1,7 +1,7 @@
 import React from "react";
 import { CATEGORY_ICONS } from "../constants/constants";
-import { Restaurant } from "../types/Restaurant";
 import Modal from "./Modal";
+import type { Restaurant } from "../types/Restaurant";
 
 type RestaurantItemProps = {
   restaurant: Restaurant;
