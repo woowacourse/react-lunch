@@ -9,9 +9,9 @@ class SelectBox extends React.Component<SelectBoxType> {
 
   render() {
     return (
-      <SelectBoxWrapper name={this.props.selectType}>
-        {this.props.options.map((option: string) => (
-          <option>{option}</option>
+      <SelectBoxWrapper name={this.props.selectType} onChange={this.props.onChange}>
+        {this.props.options.map((option: string, index: number) => (
+          <option key={index}>{option}</option>
         ))}
       </SelectBoxWrapper>
     );

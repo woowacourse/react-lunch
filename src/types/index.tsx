@@ -1,26 +1,30 @@
+import { ORDER_KEY, CATEGORY_NAME } from '../constants';
+
 export interface SelectBoxType {
   selectType: SelectKind;
   options: string[];
-}
-
-export enum SelectKind {
-  category = '카테고리',
-  order = '정렬',
+  onChange: React.ChangeEventHandler<HTMLSelectElement>;
 }
 
 export interface RestaurantItemType {
-  category: CategoryKind;
+  category: CategoryType;
   name: string;
   distance: number;
   description: string;
   link: string;
 }
 
-export enum CategoryKind {
-  korean = '한식',
-  japanese = '일식',
-  chinese = '중식',
-  western = '양식',
-  asian = '아시안',
-  etc = '기타',
+export interface RestaurantListStateType {
+  restaurants: RestaurantItemType[];
+  category: CategoryType;
+  order: OrderType;
+}
+
+export type CategoryType = (typeof CATEGORY_NAME)[keyof typeof CATEGORY_NAME];
+
+export type OrderType = (typeof ORDER_KEY)[keyof typeof ORDER_KEY];
+
+export enum SelectKind {
+  category = '카테고리',
+  order = '정렬',
 }
