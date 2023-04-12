@@ -1,12 +1,13 @@
 import React from "react";
-import Select from "./Select";
+import Select from "./Select.tsx";
+import { CATEGORY_OPTIONS, SORTING_OPTIONS } from "./constant.ts";
 
 class SelectContainer extends React.Component {
     render() {
         return (
             <section className="restaurant-filter-container">
-                <Select />
-                <Select />
+                <Select options={CATEGORY_OPTIONS}/>
+                <Select options={SORTING_OPTIONS}/>
             </section>
         );
     }

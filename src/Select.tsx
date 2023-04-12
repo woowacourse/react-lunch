@@ -1,10 +1,14 @@
 import React from "react";
 
-class Select extends React.Component {
+type SelectProps = {
+    options: any[]
+}
+
+class Select extends React.Component<SelectProps> {
     render() {
         return (
-            <select name="category" id="category-filter" className="restaurant-filter">
-            { /* 옵션이 가변적으로 바뀐다. name과 id도 */}
+          <select name="category" id="category-filter" className="restaurant-filter">
+            {this.props.options.map((option) => <option key={option.value} value={option.value}>{option.textContent}</option>)}
           </select>
         )
     }
