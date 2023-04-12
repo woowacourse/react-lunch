@@ -1,22 +1,13 @@
-import React, { Component, PropsWithChildren, ReactNode } from 'react';
+import React, { Component, ReactNode } from 'react';
 import St from './styled';
 import CategoryImg from '../CategoryImg';
-
-type Category = '한식' | '중식' | '일식' | '양식' | '아시안' | '기타';
-export interface Restaurant {
-  id: number;
-  title: string;
-  category: Category;
-  detail: string;
-  distance: number;
-  link: string;
-}
+import { Restaurant } from '../../types/restaurants';
 
 interface RestaurantItemProps {
   info: Restaurant;
 }
-class RestaurantItem extends Component<PropsWithChildren<RestaurantItemProps>> {
-  constructor(props: PropsWithChildren<RestaurantItemProps>) {
+class RestaurantItem extends Component<RestaurantItemProps> {
+  constructor(props: RestaurantItemProps) {
     super(props);
   }
   render(): ReactNode {

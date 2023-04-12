@@ -1,23 +1,23 @@
-import React, { Component, PropsWithChildren, ReactNode } from 'react';
+import React, { Component, ReactNode } from 'react';
+import {
+  AlignFilter,
+  CategoryFilter,
+  Restaurant,
+} from '../../types/restaurants';
 import RestaurantItem from '../RestaurantItem';
 import St from './styled';
 
-type Category = '한식' | '중식' | '일식' | '양식' | '아시안' | '기타';
-export interface Restaurant {
-  id: number;
-  title: string;
-  category: Category;
-  detail: string;
-  distance: number;
-  link: string;
+interface RestaurantListProps {
+  filterOptions: [CategoryFilter, AlignFilter];
 }
 
 interface State {
   restaurantList: Restaurant[];
 }
-class RestaurantList extends Component<PropsWithChildren, State> {
+
+class RestaurantList extends Component<RestaurantListProps, State> {
   state = { restaurantList: [] };
-  componentDidMount(): void {
+  componentDidMount() {
     fetch('./mocks/mockData.json')
       .then((res) => res.json())
       .then((res: Restaurant[]) => this.setState({ restaurantList: res }));
