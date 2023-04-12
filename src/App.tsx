@@ -5,14 +5,20 @@ import { RestaurantInfo } from './types/restaurantInfo';
 import { getSavedRestaurantList, hasSavedRestaurantList } from './domain/initializeRestaurantList';
 import { saveNewRestaurantList } from './domain/initializeRestaurantList';
 import RestaurantList from './components/RestaurantList';
+import Modal from './components/Modal';
+import RestaurantDetail from './components/RestaurantDetail';
 
-class App extends Component<object, { restaurantList: RestaurantInfo[] }> {
+class App extends Component<object, { restaurantList: RestaurantInfo[]; clickedRestaurant: RestaurantInfo | null }> {
   constructor(props: object) {
     super(props);
 
     this.state = {
       restaurantList: [] as RestaurantInfo[],
+      clickedRestaurant: null,
     };
+
+    this.setClickedRestaurant = this.setClickedRestaurant.bind(this);
+    this.resetClickedRestaurant = this.resetClickedRestaurant.bind(this);
   }
 
   async componentDidMount() {
@@ -25,12 +31,29 @@ class App extends Component<object, { restaurantList: RestaurantInfo[] }> {
     });
   }
 
+  setClickedRestaurant(restaurantInfo: RestaurantInfo) {
+    this.setState({
+      clickedRestaurant: restaurantInfo,
+    });
+  }
+
+  resetClickedRestaurant() {
+    this.setState({
+      clickedRestaurant: null,
+    });
+  }
+
   render() {
-    const { restaurantList } = this.state;
+    const { restaurantList, clickedRestaurant } = this.state;
     return (
       <div className="app">
         <Header />
-        <RestaurantList restaurantList={restaurantList} />
+        <RestaurantList onClick={this.setClickedRestaurant} restaurantList={restaurantList} />
+        {clickedRestaurant && (
+          <Modal onClose={this.resetClickedRestaurant}>
+            <RestaurantDetail restaurantInfo={clickedRestaurant} />
+          </Modal>
+        )}
       </div>
     );
   }

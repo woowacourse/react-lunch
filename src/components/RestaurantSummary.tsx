@@ -3,13 +3,16 @@ import { RestaurantInfo } from '../types/restaurantInfo';
 import CategoryImage from './CategoryImage';
 import styles from './RestaurantSummary.module.css';
 
-class RestaurantSummary extends Component<{ restaurant: RestaurantInfo }> {
+class RestaurantSummary extends Component<{
+  restaurant: RestaurantInfo;
+  onClick: (restaurantInfo: RestaurantInfo) => void;
+}> {
   render() {
-    const {
-      restaurant: { title, estimatedTime, description, category },
-    } = this.props;
+    const { restaurant, onClick } = this.props;
+    const { title, estimatedTime, description, category } = restaurant;
+
     return (
-      <li className={styles.summary}>
+      <li className={styles.summary} onClick={() => onClick(restaurant)} aria-hidden="true">
         <CategoryImage category={category} />
         <div className={styles.content}>
           <h3 className={styles.title}>{title}</h3>
