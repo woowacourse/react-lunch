@@ -62,6 +62,14 @@ const getRestaurantListFilteredByOptions = (
   return [];
 };
 
+const getRestaurantByID = (_id: number) => {
+  const restaurantItem = getRestaurantList()
+    .filter((restaurant) => restaurant.id === _id)
+    .pop();
+
+  return restaurantItem;
+};
+
 export default {
   initMockData,
   getRestaurantList,
@@ -70,4 +78,5 @@ export default {
   filterByCategory,
   getFiltered,
   getRestaurantListFilteredByOptions,
+  getRestaurantByID,
 };

@@ -1,15 +1,18 @@
-import { Component } from 'react';
+import { Component, PureComponent } from 'react';
 import RestaurantList from './RestaurantList';
 import FilterBar from './FilterBar';
 import { Category } from '../types/RestaurantDetail';
+import Modal from './Modal';
 
 export default class RestaurantListContainer extends Component {
   state: {
     category: Category;
     sort: string;
+    restaurantID: number;
   } = {
     category: '전체',
     sort: 'name',
+    restaurantID: 0,
   };
 
   handleChangeFilter = (filterOptions: {
@@ -37,7 +40,17 @@ export default class RestaurantListContainer extends Component {
     });
   };
 
+  handleOpenModal = (event: React.MouseEvent<HTMLUListElement>) => {
+    const li = (event.target as HTMLElement).closest('li');
+    if (!li) return;
+    const restaurantID = Number(li.id);
+
+    this.setState({ ...this.state, restaurantID });
+  };
+
   render() {
+    const { category, sort, restaurantID } = this.state;
+
     return (
       <>
         <FilterBar
@@ -45,9 +58,11 @@ export default class RestaurantListContainer extends Component {
           onChangeSort={this.handleSort}
         ></FilterBar>
         <RestaurantList
-          category={this.state.category}
-          sort={this.state.sort}
+          category={category}
+          sort={sort}
+          onOpenModal={this.handleOpenModal}
         ></RestaurantList>
+        <Modal restaurantID={restaurantID}></Modal>
       </>
     );
   }
