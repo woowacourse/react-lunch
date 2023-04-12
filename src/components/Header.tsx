@@ -7,7 +7,7 @@ class Header extends React.Component {
     return (
       <HeaderComponent>
         <Title>점심 뭐 먹지</Title>
-        <Button onClick={() => alert('그런거 없다')}>
+        <Button onClick={() => alert('지원하지 않는 기능입니다.')}>
           <ButtonImage src={addButton} alt="음식점 추가" />
         </Button>
       </HeaderComponent>

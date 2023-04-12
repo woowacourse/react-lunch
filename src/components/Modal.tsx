@@ -27,7 +27,7 @@ class Modal extends React.Component<ModalProps, {}>  {
             <p>캠퍼스로부터 {distance}분 내</p>
             <div className="mt-16 mb-16">{description}</div>
             <ButtonContainer>
-              <button onClick={() => alert('그런거 없다')}>
+              <button onClick={() => alert('지원하지 않는 기능입니다.')}>
                 삭제하기
               </button>
               <button onClick={() => this.props.closeModal()}>
