@@ -4,6 +4,7 @@ import SelectBox from '../common/SelectBox';
 import mockData from '../../mockData.json';
 import RestaurantItem from './RestaurantItem';
 import { Restaurant } from '../../App';
+import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
 
 const RestaurantListLayout = styled.main`
   padding: 16px;
@@ -41,6 +42,16 @@ class RestaurantList extends Component<Props> {
     filterOption: '전체',
     sortOption: '이름순',
   };
+
+  componentDidMount() {
+    const savedRestaurants = getLocalStorage('restaurants');
+
+    if (savedRestaurants) {
+      this.setState({
+        restaurantList: savedRestaurants,
+      });
+    } else setLocalStorage('restaurants', this.state.restaurantList);
+  }
 
   filterAndSort = () => {
     return sortFn(filterFn(this.state.restaurantList, this.state.filterOption), this.state.sortOption);
