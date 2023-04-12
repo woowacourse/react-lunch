@@ -1,0 +1,128 @@
+[
+  {
+    "category": "중식",
+    "name": "찐친",
+    "distanceByMinutes": 5,
+    "description": "찐친들이랑 가는 중국집",
+    "referenceUrl": ""
+  },
+  {
+    "category": "중식",
+    "name": "목련",
+    "distanceByMinutes": 15,
+    "description": "이연복의 중국집",
+    "referenceUrl": ""
+  },
+  {
+    "category": "기타",
+    "name": "커피베네",
+    "distanceByMinutes": 5,
+    "description": "성담빌딩 건물에 있는 커피베네",
+    "referenceUrl": ""
+  },
+  {
+    "category": "기타",
+    "name": "스타벅스 선릉역점",
+    "distanceByMinutes": 5,
+    "description": "면담하기 좋은 곳 스타벅스 시끌벅적함",
+    "referenceUrl": ""
+  },
+  {
+    "category": "기타",
+    "name": "메가커피 선릉역점",
+    "distanceByMinutes": 10,
+    "description": "메가 사이즈 커피 판매",
+    "referenceUrl": ""
+  },
+  {
+    "category": "한식",
+    "name": "영동칼국수",
+    "distanceByMinutes": 15,
+    "description": "멀긴 한데 그래도 9,000원이라는 가격에 저렴하게 적게 먹을 수 있는 곳. 지갑 다이어트하기 좋은 곳",
+    "referenceUrl": ""
+  },
+  {
+    "category": "한식",
+    "name": "덮밥이맛있는집",
+    "distanceByMinutes": 15,
+    "description": "영동칼국수집 옆에 있는 연어덮밥, 스테이크덮밥 등을 파는 덮밥 집",
+    "referenceUrl": ""
+  },
+  {
+    "category": "일식",
+    "name": "돈카레",
+    "distanceByMinutes": 10,
+    "description": "도밥이 좋아하는 돈카레",
+    "referenceUrl": ""
+  },
+  {
+    "category": "일식",
+    "name": "미소야",
+    "distanceByMinutes": 10,
+    "description": "김치나베가 맛있는 일식집",
+    "referenceUrl": ""
+  },
+  {
+    "category": "일식",
+    "name": "장정정",
+    "distanceByMinutes": 10,
+    "description": "라잇이 좋아하는 퓨전일식집",
+    "referenceUrl": ""
+  },
+  {
+    "category": "중식",
+    "name": "우육면가",
+    "distanceByMinutes": 10,
+    "description": "크론이 한 번도 안 먹어 본 우육면가",
+    "referenceUrl": ""
+  },
+  {
+    "category": "한식",
+    "name": "시골밥상머리",
+    "distanceByMinutes": 10,
+    "description": "시골에서 주는 밥처럼 나오는 상머리",
+    "referenceUrl": ""
+  },
+  {
+    "category": "양식",
+    "name": "피자헛 선릉역점",
+    "distanceByMinutes": 15,
+    "description": "따끈따끈한 피자 신속 주문",
+    "referenceUrl": ""
+  },
+  {
+    "category": "양식",
+    "name": "닐리",
+    "distanceByMinutes": 15,
+    "description": "파스타 / 피자 판매",
+    "referenceUrl": ""
+  },
+  {
+    "category": "양식",
+    "name": "이탈리아 80년 전통 피자",
+    "distanceByMinutes": 15,
+    "description": "전통 피자를 만나보세요.",
+    "referenceUrl": ""
+  },
+  {
+    "category": "아시안",
+    "name": "반포식스",
+    "distanceByMinutes": 10,
+    "description": "그냥 쌀국수 떙길 때 가는 집",
+    "referenceUrl": ""
+  },
+  {
+    "category": "아시안",
+    "name": "아라기",
+    "distanceByMinutes": 10,
+    "description": "베트남",
+    "referenceUrl": ""
+  },
+  {
+    "category": "아시안",
+    "name": "까폼",
+    "distanceByMinutes": 10,
+    "description": "태국요리",
+    "referenceUrl": ""
+  }
+]
