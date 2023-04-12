@@ -1,53 +1,53 @@
 import React from "react";
 import styled from 'styled-components'
 import { Restaurant } from "../types/Restaurant";
-import asianImage from "../assets/images/category-asian.png";
-import chineseImage from "../assets/images/category-chinese.png";
-import koreanImage from "../assets/images/category-korean.png";
-import japaneseImage from "../assets/images/category-japanese.png";
-import westernImage from "../assets/images/category-western.png";
-import etcImage from '../assets/images/category-etc.png';
+import Modal from "./Modal";
+import { convertImage } from "../utils/image";
 interface RestaurantItemProps {
   restaurant: Restaurant;
 }
 
-class RestaurantItem extends React.Component<RestaurantItemProps> {
+interface RestaurantItemState {
+  modalOpen: boolean;
+}
 
-  convertImage(image: string) {
-    switch (image) {
-      case "asian":
-        return asianImage;
-      case "korean":
-        return koreanImage;
-      case "japanese":
-        return japaneseImage;
-      case "western":
-        return westernImage;
-      case "chinese":
-        return chineseImage;
-      default:
-        return etcImage;
-    }
+class RestaurantItem extends React.Component<RestaurantItemProps, RestaurantItemState> {
+  constructor(props: RestaurantItemProps) {
+    super(props);
+    this.state = {
+      modalOpen: false,
+    };
+  }
+
+  closeModal() {
+    this.setState({ modalOpen: false });
   }
 
   render() {
     const { name, distance, category, description } = this.props.restaurant;
 
     return (
-      <Card>
-        <Favorite>
-        </Favorite>
-        <RestaurantInfo>
-          <CategoryIcon>
-            <img src={this.convertImage(category)} />
-          </CategoryIcon>
-          <article>
-            <h3>{name}</h3>
-            <p>캠퍼스부터 {distance}분 내</p>
-            <p>{description}</p>
-          </article>
-        </RestaurantInfo>
-      </Card>
+      <>
+        <Card onClick={() => this.setState({ modalOpen: true })}>
+          <Favorite>
+          </Favorite>
+          <RestaurantInfo>
+            <CategoryIcon>
+              <img src={convertImage(category)} />
+            </CategoryIcon>
+            <article>
+              <h3>{name}</h3>
+              <p>캠퍼스부터 {distance}분 내</p>
+              <p>{description}</p>
+            </article>
+          </RestaurantInfo>
+        </Card>
+        {
+          this.state.modalOpen && (
+            <Modal restaurant={this.props.restaurant} closeModal={() => this.closeModal()} />
+          )
+        }
+      </>
     )
   }
 }
@@ -68,7 +68,7 @@ border-bottom: 1px solid #e9eaed;
 
 p:first-of-type {
   margin: 4px 0px;
-  color:red;
+  color:#ec4a0a;
 }
 
 article > h3 {
@@ -92,11 +92,4 @@ img {
   width: 36px;
   height: 36px;
 }
-`
-
-const RestaurantName = styled.div`
-`
-const RestaurantDescription = styled.div`
-`
-const RestaurantDistance = styled.div`
 `

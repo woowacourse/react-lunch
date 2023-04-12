@@ -33,8 +33,8 @@ class App extends React.Component<{}, AppState> {
       <>
         <Header />
         <SelectContainer>
-          <SelectBox setState={this.updateCategorizeBy.bind(this)} options={["all", "chinese", "korean", "asian", "western", "japanese", "etc"]} />
-          <SelectBox setState={this.updateSortBy.bind(this)} options={['name', 'distance']} />
+          <SelectBox setState={(e) => this.updateCategorizeBy(e)} options={["all", "chinese", "korean", "asian", "western", "japanese", "etc"]} />
+          <SelectBox setState={(e) => this.updateSortBy(e)} options={['name', 'distance']} />
         </SelectContainer>
         <RestaurantList sortBy={sortBy} categorizeBy={categorizeBy} restaurants={restaurants} />
       </>
