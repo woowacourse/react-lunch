@@ -4,30 +4,47 @@ import { RestaurantItemPropsType } from "../types/restaurant";
 import { convertImage } from "../utils/imageConverter";
 import { ModalButton } from "./modalButton";
 
-export class ItemModal extends React.Component<RestaurantItemPropsType> {
+interface PropsType {
+  closeModal: () => void;
+  restaurant: RestaurantItemPropsType;
+}
+
+export class ItemModal extends React.Component<PropsType> {
+  closeModal() {
+    window.addEventListener("keyup", (e) => {
+      if (e.key === "Escape") {
+        this.props.closeModal();
+      }
+    });
+  }
+
+  componentDidMount() {
+    this.closeModal();
+  }
+
   render() {
+    const { category, takingTime, name, link, description } =
+      this.props.restaurant;
     return (
       <>
-        <BackDrop />
+        <BackDrop onClick={this.props.closeModal} />
         <ModalContainer>
+          dal{" "}
           <ModalIcon>
-            <img
-              src={convertImage(this.props.category)}
-              alt={this.props.category}
-            />
+            <img src={convertImage(category)} alt={category} />
           </ModalIcon>
           <Information>
-            <Name>{this.props.name}</Name>
-            <TakingTime>캠퍼스부터 {this.props.takingTime}분 내</TakingTime>
-            <Description>{this.props.description}</Description>
+            <Name>{name}</Name>
+            <TakingTime>캠퍼스부터 {takingTime}분 내</TakingTime>
+            <Description>{description}</Description>
 
-            <Link target="_blank" href={this.props.link}>
-              {this.props.link}
+            <Link target="_blank" href={link}>
+              {link}
             </Link>
           </Information>
           <ButtonContainer>
             <ModalButton text="삭제하기" />
-            <ModalButton text="닫기" />
+            <ModalButton text="닫기" handleClick={this.props.closeModal} />
           </ButtonContainer>
         </ModalContainer>
       </>

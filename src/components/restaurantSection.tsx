@@ -71,6 +71,10 @@ export class RestaurantSection extends React.Component<
     }
   }
 
+  closeModal() {
+    this.setState({ isModalOpen: false });
+  }
+
   render() {
     return (
       <>
@@ -86,7 +90,10 @@ export class RestaurantSection extends React.Component<
           )}
         </RestaurantContainer>
         {this.state.isModalOpen && this.state.clickedRestaurant && (
-          <ItemModal {...this.state.clickedRestaurant} />
+          <ItemModal
+            restaurant={this.state.clickedRestaurant}
+            closeModal={this.closeModal.bind(this)}
+          />
         )}
       </>
     );
