@@ -83,6 +83,7 @@ export const GlobalStyle = createGlobalStyle`
     background: #EC4A0A;
 
     color: var(--grey-100);
+    cursor: pointer;
   }
 
   /* dialog *****************************************/

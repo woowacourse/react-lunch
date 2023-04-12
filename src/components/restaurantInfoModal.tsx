@@ -68,6 +68,7 @@ const RestaurantDescription = styled.p`
 const RestaurantLink = styled.p`
   margin: 16px 0 32px;
   text-decoration: underline;
+  cursor: pointer;
 `;
 
 export default RestaurantInfoModal;
