@@ -5,7 +5,12 @@ import { RestaurantInfo } from "../types";
 import { restaurantStore } from "../restaurantStore";
 import RestaurantInfoModal from "./restaurantInfoModal";
 
-class Restaurants extends Component {
+type RestaurantProps = {
+  restaurantList: RestaurantInfo[];
+  category: string;
+};
+
+class Restaurants extends Component<RestaurantProps> {
   restaurantInfoModal: RefObject<HTMLDialogElement> = createRef();
 
   state = {
@@ -40,7 +45,7 @@ class Restaurants extends Component {
     return (
       <>
         <RestaurantList>
-          {restaurantStore.restaurants.map((restaurant: RestaurantInfo) => (
+          {this.props.restaurantList.map((restaurant: RestaurantInfo) => (
             <Restaurant
               key={restaurant.id}
               {...restaurant}

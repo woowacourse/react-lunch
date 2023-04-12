@@ -1,7 +1,13 @@
-import { Component } from "react";
+import { ChangeEvent, Component } from "react";
 import styled from "styled-components";
 
-class SelectBoxes extends Component {
+class SelectBoxes extends Component<{
+  onChange: (event: string) => void;
+}> {
+  onChange = ({ target }: ChangeEvent<HTMLSelectElement>) => {
+    this.props.onChange(target.value);
+  };
+
   render() {
     const categorySelect = [
       "전체",
@@ -16,15 +22,19 @@ class SelectBoxes extends Component {
 
     return (
       <SelectBoxContainer>
-        <SelectBox name="category" id="category-filter">
-          {categorySelect.map((category) => (
-            <option>{category}</option>
+        <SelectBox
+          name="category"
+          id="category-filter"
+          onChange={this.onChange}
+        >
+          {categorySelect.map((category, index) => (
+            <option key={index}>{category}</option>
           ))}
         </SelectBox>
 
-        <SelectBox name="sorting" id="sorting-filter">
-          {sortingSelect.map((select) => (
-            <option>{select}</option>
+        <SelectBox name="sorting" id="sorting-filter" onChange={this.onChange}>
+          {sortingSelect.map((select, index) => (
+            <option key={index}>{select}</option>
           ))}
         </SelectBox>
       </SelectBoxContainer>
