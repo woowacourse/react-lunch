@@ -9,19 +9,26 @@ interface Props {
   options: { category: string; sorting: string };
 }
 
-class RestaurantList extends Component<Props> {
+interface State {
+  restaurants: Restaurant[];
+}
+
+class RestaurantList extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
+    this.state = {
+      restaurants: JSON.parse(localStorage.getItem("restaurant") ?? JSON.stringify(mockData)),
+    };
   }
 
   filterList() {
     const { category } = this.props.options;
 
     if (category === "전체") {
-      return mockData;
+      return this.state.restaurants;
     }
 
-    return mockData.filter((data) => data.category === category);
+    return this.state.restaurants.filter((data) => data.category === category);
   }
 
   sortList(restaurants: Restaurant[]) {
