@@ -5,6 +5,7 @@ import type { Restaurant } from "../types/restaurant";
 
 import styles from "./RestaurantList.module.css";
 import { CATEGORY_OPTIONS, SORTING_OPTIONS } from "../constants/options";
+import { isCategory } from "../assets/images/category";
 
 interface Props {
   options: { category: string; sorting: string };
@@ -27,6 +28,10 @@ class RestaurantList extends Component<Props, State> {
 
     if (category === CATEGORY_OPTIONS.TOTAL) {
       return this.state.restaurants;
+    }
+
+    if (category === CATEGORY_OPTIONS.ETC) {
+      return this.state.restaurants.filter((data) => !isCategory(data.category));
     }
 
     return this.state.restaurants.filter((data) => data.category === category);

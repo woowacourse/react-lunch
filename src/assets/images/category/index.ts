@@ -14,7 +14,7 @@ const categoryImages: Readonly<Record<Category, string>> = {
   양식: categoryWesternImage,
 };
 
-const isCategory = (targetCategory: string): targetCategory is Category => {
+export const isCategory = (targetCategory: string): targetCategory is Category => {
   return Object.keys(categoryImages).includes(targetCategory);
 };
 
