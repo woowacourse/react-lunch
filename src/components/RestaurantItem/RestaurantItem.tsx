@@ -4,10 +4,6 @@ import { Restaurant } from '../../types';
 import { IMAGE_PATH } from '../../constants';
 
 class RestaurantItem extends React.Component<Restaurant> {
-  constructor(props: Restaurant) {
-    super(props);
-  }
-
   render(): React.ReactElement {
     const { id, category, name, distance, description } = this.props;
 
