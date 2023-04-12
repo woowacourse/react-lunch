@@ -20,8 +20,10 @@ class SelectBox extends Component<Props> {
   render() {
     return (
       <Select>
-        {this.props.options.map((option) => (
-          <option value={option}>{option}</option>
+        {this.props.options.map((option, index) => (
+          <option key={index} value={option}>
+            {option}
+          </option>
         ))}
       </Select>
     );
