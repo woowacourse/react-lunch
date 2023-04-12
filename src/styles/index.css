@@ -23,3 +23,8 @@ li {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+.container {
+  max-width: 840px;
+  margin: 0 auto;
+}

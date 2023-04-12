@@ -8,6 +8,7 @@ interface State {
   category: string;
   sorting: string;
 }
+
 class App extends Component<any, State> {
   state = { category: "전체", sorting: "이름순" };
 
@@ -19,7 +20,7 @@ class App extends Component<any, State> {
     return (
       <>
         <Header />
-        <main>
+        <main className="container">
           <RestaurantFilterContainer setOption={this.setOption.bind(this)} />
           <RestaurantList options={this.state} />
         </main>

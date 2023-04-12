@@ -60,3 +60,14 @@
   font-weight: 600;
   cursor: pointer;
 }
+
+@media (min-width: 640px) {
+  .container {
+    top: 50%;
+    left: 50%;
+    bottom: initial;
+    width: 600px;
+    border-radius: 8px;
+    transform: translate(-50%, -50%);
+  }
+}
