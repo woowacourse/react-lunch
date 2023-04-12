@@ -3,6 +3,7 @@ import Select from "./Select";
 import mockData from "../mockData.json";
 import type { Restaurant, Category, SortBy } from "../types/Restaurant";
 import RestaurantList from "./RestaurantList";
+import { filterByCategory, sortBy } from "../utils/restaurant";
 
 type RestaurantListState = {
   restaurant: Restaurant[];
@@ -43,25 +44,9 @@ export class Main extends Component<any, RestaurantListState> {
     });
   }
 
-  filterByCategory(category: Category) {
-    const restaurant = this.state.restaurant;
-
-    if (category === "전체") return restaurant;
-
-    return restaurant.filter((r) => r.category === this.state.category);
-  }
-
-  sortBy(restaurant: Restaurant[], sort: SortBy) {
-    if (sort === "이름순") {
-      return restaurant.sort((a, b) => a.storeName.localeCompare(b.storeName));
-    }
-
-    return restaurant.sort((a, b) => a.distance - b.distance);
-  }
-
   render() {
-    const filteredAndSorted = this.sortBy(
-      this.filterByCategory(this.state.category),
+    const filteredAndSorted = sortBy(
+      filterByCategory(this.state.restaurant, this.state.category),
       this.state.sort
     );
 

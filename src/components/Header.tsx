@@ -1,9 +1,6 @@
 import React from "react";
 
 class Header extends React.Component {
-  shouldComponentUpdate(): boolean {
-    return false;
-  }
   render() {
     return (
       <header className="gnb">
