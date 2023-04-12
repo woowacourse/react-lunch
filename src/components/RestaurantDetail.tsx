@@ -34,7 +34,7 @@ class RestaurantDetail extends React.Component<Props> {
             <p className="restaurant__take-minute text-body">
               캠퍼스부터 {distance}분 내
             </p>
-            <textarea>{description}</textarea>
+            <p className="description">{description}</p>
             <div className="link-area">
               <a href={link}>{link}</a>
             </div>
@@ -86,7 +86,7 @@ const StyledDiv = styled.div`
     flex-direction: column;
     justify-content: space-between;
 
-    height: 608px;
+    height: 508px;
   }
 
   .detail .favorite-icon {
@@ -103,10 +103,7 @@ const StyledDiv = styled.div`
     color: #ec4a0a;
   }
 
-  .detail textarea {
-    resize: none;
-
-    border: none;
+  .detail .description {
     height: 240px;
 
     font-weight: 400;
