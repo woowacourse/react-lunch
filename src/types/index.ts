@@ -1,4 +1,6 @@
-export type Category = '중식' | '한식' | '일식' | '아시안식' | '양식' | '기타';
+import { RESTAURANT_CATEGORY } from '../constants';
+
+export type Category = typeof RESTAURANT_CATEGORY[number];
 
 export interface Restaurant {
   category: Category;
