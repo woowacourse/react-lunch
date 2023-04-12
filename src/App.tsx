@@ -7,23 +7,21 @@ import mockData from './mockData/restaurantList.json';
 import { appState, restaurant } from './utils/interfaces';
 import { parseJson } from './utils/json';
 import { FILTERS, RESTAURANT_CATEGORY, WHOLE_CATEGORY, selectorCategory, selectorFilter } from './utils/types';
+import { sortingByCategory, sortingByFilter } from './domain/restaurantSort';
+
+const restaurantMockDataList = parseJson<Array<restaurant>>(JSON.stringify(mockData.restaurantList));
+const currentList = sortingByFilter('이름순', restaurantMockDataList);
 
 class App extends React.Component {
   state: appState = {
     category: '전체',
     filter: '이름순',
-    wholeList: parseJson<Array<restaurant>>(JSON.stringify(mockData.restaurantList)),
-    currentList: parseJson<Array<restaurant>>(JSON.stringify(mockData.restaurantList)),
+    wholeList: restaurantMockDataList,
+    currentList: currentList,
   };
 
-  sortingByCategory(category: selectorCategory) {
-    const { wholeList } = this.state;
-    if (category === '전체') {
-      this.setState({ ...this.state, currentList: wholeList });
-      return;
-    }
-
-    this.setState({ ...this.state, currentList: wholeList.filter(item => item.category === category) });
+  isFilterOptions<T extends string>(value: string, arrays: Array<T>): value is T {
+    return arrays.includes(value as T);
   }
 
   render(): React.ReactNode {
@@ -39,8 +37,14 @@ class App extends React.Component {
             optionList={categoryOptions}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
               const { value } = e.target;
+              if (!this.isFilterOptions<selectorCategory>(value, categoryOptions)) return;
 
-              this.sortingByCategory(value as selectorCategory);
+              const { filter } = this.state;
+
+              const categortSotredList = sortingByCategory(value, this.state.wholeList);
+              const currentList = sortingByFilter(filter, categortSotredList);
+
+              this.setState({ ...this.state, category: value, currentList });
             }}
           />
           <Selector<selectorFilter>
@@ -48,6 +52,14 @@ class App extends React.Component {
             optionList={filterOptions}
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
               const { value } = e.target;
+              if (!this.isFilterOptions<selectorFilter>(value, filterOptions)) return;
+
+              const { category } = this.state;
+
+              const filterSotredList = sortingByFilter(value, this.state.wholeList);
+              const currentList = sortingByCategory(category, filterSotredList);
+
+              this.setState({ ...this.state, filter: value, currentList });
             }}
           />
         </div>
