@@ -9,21 +9,6 @@
   background: var(--grey-100);
 }
 
-.category {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 64px;
-  height: 64px;
-  min-width: 64px;
-  min-height: 64px;
-
-  margin-bottom: 16px;
-
-  border-radius: 50%;
-  background: var(--lighten-color);
-}
-
 .info {
   margin: 0 0 42px 0;
 }

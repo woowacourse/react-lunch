@@ -1,6 +1,6 @@
 import { Component } from "react";
+import CategoryIcon from "./CategoryIcon";
 import ModalPortal from "./common/ModalPortal";
-import getCategoryImage from "../assets/images/category";
 import type { Restaurant } from "../types/restaurant";
 
 import styles from "./RestaurantDetailModal.module.css";
@@ -16,22 +16,18 @@ class RestaurantDetailModal extends Component<Props> {
   }
 
   render() {
-    const { restaurant } = this.props;
+    const { name, category, distance, description, link } = this.props.restaurant;
 
     return (
       <ModalPortal onClose={this.props.onClose}>
         <div className={styles.container}>
-          <div className={styles.category}>
-            <img src={getCategoryImage(restaurant.category)} alt={restaurant.category} className="category-icon" />
-          </div>
+          <CategoryIcon category={category} />
           <div className={styles.info}>
-            <h2 className={`${styles.name} text-title`}>{restaurant.name}</h2>
-            <span className={`${styles.distance} text-body`}>캠퍼스부터 {restaurant.distance}분 내</span>
-            <p className={`${styles.description} text-body`}>
-              {restaurant.description ?? "현재 음식점에 대한 설명이 없습니다."}
-            </p>
-            <a href={restaurant.link} className={styles.link} target="__blank">
-              {restaurant.link}
+            <h2 className={`${styles.name} text-title`}>{name}</h2>
+            <span className={`${styles.distance} text-body`}>캠퍼스부터 {distance}분 내</span>
+            <p className={`${styles.description} text-body`}>{description ?? "현재 음식점에 대한 설명이 없습니다."}</p>
+            <a href={link} className={styles.link} target="__blank">
+              {link}
             </a>
           </div>
           <button type="button" className={`${styles.button} text-caption`} onClick={this.props.onClose}>

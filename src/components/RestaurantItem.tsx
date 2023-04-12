@@ -1,10 +1,9 @@
 import { Component } from "react";
-
-import getCategoryImage from "../assets/images/category";
+import RestaurantDetailModal from "./RestaurantDetailModal";
+import CategoryIcon from "./CategoryIcon";
 import type { Restaurant } from "../types/restaurant";
 
 import styles from "./RestaurantItem.module.css";
-import RestaurantDetailModal from "./RestaurantDetailModal";
 
 interface Props {
   restaurant: Restaurant;
@@ -36,9 +35,7 @@ class RestaurantItem extends Component<Props, State> {
     return (
       <>
         <li className={styles.restaurant} onClick={this.onClick.bind(this)}>
-          <div className={styles.category}>
-            <img src={getCategoryImage(category)} alt={category} className={styles.categoryIcon} />
-          </div>
+          <CategoryIcon category={category} />
           <div className={styles.info}>
             <h3 className={`${styles.name} text-subtitle`}>{name}</h3>
             <span className={`${styles.distance} text-body`}>캠퍼스부터 {distance}분 내</span>
