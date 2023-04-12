@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import './Filter.css';
 
 type Option = {
   value: string;
@@ -16,7 +17,7 @@ export default class Filter extends Component<FilterProps> {
   render() {
     const { name, id, options, onChange } = this.props;
     return (
-      <select name={name} id={id} className="restaurant-filter" onChange={onChange}>
+      <select name={name} id={id} className="filter" onChange={onChange}>
         {options.map((option, idx) => (
           <option key={idx} value={option.value}>
             {option.text}
