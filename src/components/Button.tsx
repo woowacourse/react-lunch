@@ -25,6 +25,12 @@ const ButtonWrapper = styled.button`
 
   background: var(--primary-color);
   color: var(--grey-100);
+  transition: all 0.1s ease;
+
+  :active {
+    opacity: 50%;
+    transform: scale(0.98);
+  }
 `;
 
 export default Button;
