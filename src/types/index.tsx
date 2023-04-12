@@ -20,6 +20,11 @@ export interface RestaurantListStateType {
   order: OrderType;
 }
 
+export interface BottomSheetType {
+  children: React.ReactNode;
+  onClose: () => void;
+}
+
 export type CategoryType = (typeof CATEGORY_NAME)[keyof typeof CATEGORY_NAME];
 
 export type OrderType = (typeof ORDER_KEY)[keyof typeof ORDER_KEY];
