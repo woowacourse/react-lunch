@@ -7,8 +7,12 @@ import RestaurantInfoModal from "./restaurantInfoModal";
 import { $ } from "../utils/selector";
 
 class Restaurants extends Component {
-  handleRestaurantModal = () => {
+  handleModalOpenButton = () => {
     $<HTMLDialogElement>("#restaurant-detail").showModal();
+  };
+
+  handleModalCloseButton = () => {
+    $<HTMLDialogElement>("#restaurant-detail").close();
   };
 
   findSelectedRestaurant = (restaurantId: string) => {
@@ -25,13 +29,14 @@ class Restaurants extends Component {
             <Restaurant
               key={restaurant.id}
               {...restaurant}
-              onClick={this.handleRestaurantModal}
+              onClick={this.handleModalOpenButton}
             />
           ))}
         </RestaurantList>
 
         <RestaurantInfoModal
           selectedRestaurant={this.findSelectedRestaurant("2")}
+          onClose={this.handleModalCloseButton}
         ></RestaurantInfoModal>
       </>
     );

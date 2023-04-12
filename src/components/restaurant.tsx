@@ -7,17 +7,18 @@ class Restaurant extends Component<RestaurantInfo | any> {
   render() {
     return (
       <RestaurantItem onClick={this.props.onClick}>
-        <img
-          src={`../assets/category-${CATEGORY[this.props.category]}.png`}
-          alt={this.props.category}
-          className="category"
-        />
+        <div className="category">
+          <img
+            src={`../assets/category-${CATEGORY[this.props.category]}.png`}
+            alt={this.props.category}
+          />
+        </div>
         <div>
           <h3 className="text-subtitle">{this.props.name}</h3>
-          <RestaurantTakingTime className="text-body">
+          <RestaurantTakingTime className="text-body takingTime">
             캠퍼스부터 {this.props.takingTime}분 내
           </RestaurantTakingTime>
-          <RestaurantDescription className="text-body">
+          <RestaurantDescription className="text-body description">
             {this.props.description}
           </RestaurantDescription>
         </div>

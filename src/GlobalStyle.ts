@@ -50,12 +50,21 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   /* Restaurant Category Images **********************/
-  img.category {
-    height: 58px;
-    padding: 10px;
+  .category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    min-height: 64px;
     margin-right: 16px;
     border-radius: 50%;
     background: var(--lighten-color);
+  }
+  .category > img {
+    width: 36px;
+    height: 36px;
   }
 
   /* Restaurant Info Texts ***************************/
@@ -178,7 +187,8 @@ export const GlobalStyle = createGlobalStyle`
   audio,
   button,
   input,
-  video {
+  video,
+  dialog {
     margin: 0;
     padding: 0;
     border: 0;
