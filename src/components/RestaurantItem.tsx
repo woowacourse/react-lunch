@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import RestaurantDetail from '../types/RestaurantDetail';
+import { RestaurantDetail } from '../types/RestaurantDetail';
 
 interface RestaurantItemProps {
   detail: RestaurantDetail;
@@ -11,10 +11,10 @@ export default class RestaurantItem extends Component<RestaurantItemProps> {
   }
 
   render() {
-    const { category, name, distance, description } = this.props.detail;
+    const { id, category, name, distance, description } = this.props.detail;
     return (
       <>
-        <li className="restaurant">
+        <li className="restaurant" id={String(id)}>
           <div className="restaurant__category">
             <img
               src="./category-korean.png"

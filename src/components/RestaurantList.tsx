@@ -1,8 +1,10 @@
 import { Component } from 'react';
 import RestaurantItem from './RestaurantItem';
+import RestaurantManager from '../domain/RestaurantManager';
+import { Category } from '../types/RestaurantDetail';
 
 interface RestuarantListProps {
-  category: string;
+  category: Category;
   sort: string;
 }
 
@@ -12,19 +14,16 @@ export default class RestaurantList extends Component<RestuarantListProps> {
   }
 
   render() {
+    const { category, sort } = this.props;
+
     return (
       <>
-        <RestaurantItem
-          detail={{
-            category: '한식',
-            name: '피양콩',
-            distance: 10,
-            description: '맛나용',
-          }}
-        ></RestaurantItem>
-        {/* {RestaurantManager.getItemsBy(this.props.filterOptions).map((itemDetail) => (
+        {RestaurantManager.getRestaurantListFilteredByOptions(
+          category,
+          sort
+        ).map((itemDetail) => (
           <RestaurantItem detail={itemDetail}></RestaurantItem>
-        ))} */}
+        ))}
       </>
     );
   }

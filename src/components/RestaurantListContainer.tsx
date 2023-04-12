@@ -1,22 +1,26 @@
 import { Component } from 'react';
-import { data } from '../domain/RestaurantManager';
 import RestaurantList from './RestaurantList';
 import FilterBar from './FilterBar';
+import { Category } from '../types/RestaurantDetail';
 
 export default class RestaurantListContainer extends Component {
-  state = {
+  state: {
+    category: Category;
+    sort: string;
+  } = {
     category: '전체',
-    sort: '이름순',
+    sort: 'name',
   };
 
-  handleChangeFilter = (filterOptions: { category: string; sort: string }) => {
+  handleChangeFilter = (filterOptions: {
+    category: Category;
+    sort: string;
+  }) => {
     this.setState({ filterOptions });
   };
 
   handleCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const category = event.target.value;
-
-    if (typeof category !== 'string') return;
 
     this.setState({
       ...this.state,
@@ -26,8 +30,6 @@ export default class RestaurantListContainer extends Component {
 
   handleSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const sort = event.target.value;
-
-    if (typeof sort !== 'string') return;
 
     this.setState({
       ...this.state,

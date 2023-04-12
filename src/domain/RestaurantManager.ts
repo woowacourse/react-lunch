@@ -42,6 +42,26 @@ const getFiltered = (
   }, restaurantList);
 };
 
+const getRestaurantListFilteredByOptions = (
+  category: Category,
+  sort: string
+) => {
+  if (sort === 'distance') {
+    return getFiltered(
+      [sortByDistance, filterByCategory(category)],
+      getRestaurantList()
+    );
+  }
+  if (sort === 'name') {
+    return getFiltered(
+      [sortByName, filterByCategory(category)],
+      getRestaurantList()
+    );
+  }
+
+  return [];
+};
+
 export default {
   initMockData,
   getRestaurantList,
@@ -49,4 +69,5 @@ export default {
   sortByDistance,
   filterByCategory,
   getFiltered,
+  getRestaurantListFilteredByOptions,
 };
