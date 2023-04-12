@@ -9,6 +9,7 @@ import { Restaurant } from '../../domain/type';
 
 interface Props {
   restaurants: Restaurant[] | null;
+  onClickRestaurant: (event: React.MouseEvent<HTMLUListElement>) => void;
 }
 
 interface State {
@@ -75,7 +76,10 @@ class MainLayout extends Component<Props, State> {
           onChangeCategory={this.handleCategoryChange}
           onChangeSorting={this.handleSortingChange}
         />
-        <RestaurantListSection restaurants={sorted} />
+        <RestaurantListSection
+          restaurants={sorted}
+          onClickRestaurant={this.props.onClickRestaurant}
+        />
       </main>
     );
   }

@@ -8,13 +8,14 @@ import { Restaurant } from '../../../domain/type';
 
 interface Props {
   restaurants: Restaurant[] | null;
+  onClickRestaurant: (event: React.MouseEvent<HTMLUListElement>) => void;
 }
 
 class RestaurantListSection extends Component<Props> {
   render() {
     return (
       <section className="restaurant-list-section">
-        <ul className="restaurant-list">
+        <ul className="restaurant-list" onClick={this.props.onClickRestaurant}>
           {this.props.restaurants?.map((restaurant) => (
             <RestaurantItem key={restaurant.id} restaurant={restaurant} />
           ))}

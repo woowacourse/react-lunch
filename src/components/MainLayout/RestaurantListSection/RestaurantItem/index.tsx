@@ -12,10 +12,10 @@ interface Props {
 
 class RestaurantItem extends Component<Props> {
   render() {
-    const { category, name, distance, description } = this.props.restaurant;
+    const { id, category, name, distance, description } = this.props.restaurant;
 
     return (
-      <li className="restaurant">
+      <li className="restaurant" data-id={id}>
         <div className="restaurant__category">
           <CategoryIcon category={category} />
         </div>
