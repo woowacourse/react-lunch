@@ -1,0 +1,148 @@
+{
+  "restaurants": [
+    {
+      "id": "1",
+      "category": "한식",
+      "name": "피양콩할마니",
+      "distance": 5,
+      "description": "여기는 피양콩할마니 입니다. 여기는 피양콩할마니 입니다. 여기는 피양콩할마니 입니다.",
+      "link": ""
+    },
+    {
+      "id": "2",
+      "category": "한식",
+      "name": "가한식",
+      "distance": 30,
+      "description": "여기는 가한식 입니다. 여기는 피양콩할마니 입니다. 여기는 피양콩할마니 입니다.",
+      "link": ""
+    },
+    {
+      "id": "3",
+      "category": "한식",
+      "name": "김돈이 본점",
+      "distance": 10,
+      "description": "선릉역 데이트 김돈지 삼겹살 먹으며 돈독해지는 고기집",
+      "link": ""
+    },
+    {
+      "id": "4",
+      "category": "일식",
+      "name": "역전우동0410",
+      "distance": 20,
+      "description": "백종원의 우동&덮밥 전문점, 역전우동0410 감칠맛 진한 국물, 매끄러운 질감 속 쫄깃한 면발의 우동이 있는 곳, 역전우동0410. 추운 날 길거리 포장마차, 잠시 지나치는 휴게소에서 즐겨 먹던 푸근한 한 그릇에서 떠오르는 추억의 맛과 향이 따끈한 우동 한 그릇에 오롯이 담겨 있습니다.",
+      "link": "https://udon0410.com/"
+    },
+    {
+      "id": "5",
+      "category": "일식",
+      "name": "장정정",
+      "distance": 20,
+      "description": "[고무래 정,장정 정] 나이가 젊고 한창 힘을 쓰는 건장한 남자 저희 성씨 입니다. 흔치않은 성씨로 젊은 남자들이 이름걸고 장사를 해보자 라는 취지로 이름직세 되었습니다. 친절하고 정직한 바른식재료 먹거리로 서비스하겠습니다.",
+      "link": ""
+    },
+    {
+      "id": "6",
+      "category": "일식",
+      "name": "하일식",
+      "distance": 5,
+      "description": "가장 빠르게 갈 수 있지만 이름은 하일식 입니다.",
+      "link": ""
+    },
+    {
+      "id": "7",
+      "category": "중식",
+      "name": "홍콩반점0410",
+      "distance": 5,
+      "description": "세계 최초 짬뽕 전문점으로 많은 사랑을 받아온 홍콩반점0410이 해외에서도 그 인기를 이어가고 있습니다. 불향 가득한 짬뽕, 짜장면과 쟁반짜장, 쫄깃한 탕수육, 매콤한 깐풍기, 바삭한 군만두 까지!한국 그대로의 맛 뿐만 아니라 위생적인 환경과 합리적인 가격까지 해외에서도 동일하게 만나실 수 있습니다.",
+      "link": "https://www.theborn.co.kr/theborn_brand/%ED%99%8D%EC%BD%A9%EB%B0%98%EC%A0%90-2/"
+    },
+    {
+      "id": "8",
+      "category": "중식",
+      "name": "마담밍",
+      "distance": 5,
+      "description": "대치동 맛집 짬뽕 냉면 특허받은 중국집 정통 중국요리",
+      "link": ""
+    },
+    {
+      "id": "9",
+      "category": "중식",
+      "name": "명정루",
+      "distance": 15,
+      "description": "맛있는녀석들 방영",
+      "link": ""
+    },
+    {
+      "id": "10",
+      "category": "양식",
+      "name": "뉴피자",
+      "distance": "",
+      "description": "내가 만든 피자~",
+      "link": "https://new-pizza.com"
+    },
+    {
+      "id": "11",
+      "category": "양식",
+      "name": "어쩔 햄버거",
+      "distance": "20",
+      "description": "이래도 먹어? ㅋㅋ",
+      "link": ""
+    },
+    {
+      "id": "12",
+      "category": "양식",
+      "name": "슈퍼게티",
+      "distance": "20",
+      "description": "스파게티도 한접시 드셔보세요옹",
+      "link": ""
+    },
+    {
+      "id": "13",
+      "category": "아시안",
+      "name": "인도인도인도카레야",
+      "distance": "15",
+      "description": "카레카레카레카레야 완전 좋아 아 레알 좋아~",
+      "link": ""
+    },
+    {
+      "id": "14",
+      "category": "아시안",
+      "name": "마콩국수 전문점",
+      "distance": "20",
+      "description": "마! 콩국수 맛 함 볼래?",
+      "link": "https://ma-kong.com"
+    },
+    {
+      "id": "15",
+      "category": "아시안",
+      "name": "베트남 쌀국수",
+      "distance": "10",
+      "description": "왜 그런날 있잖아요. 쌀국수가 먹고 싶은 날",
+      "link": ""
+    },
+    {
+      "id": "16",
+      "category": "기타",
+      "name": "삼성 디지털 디너",
+      "distance": "30",
+      "description": "맛있는 갤럭시 디너를 원한다면!",
+      "link": "https://samsung.co.kr"
+    },
+    {
+      "id": "17",
+      "category": "기타",
+      "name": "애플런치",
+      "distance": "애플 특유의 감성을 음식에 넣었습니다",
+      "description": "10",
+      "link": ""
+    },
+    {
+      "id": "18",
+      "category": "기타",
+      "name": "상식이네 밥",
+      "distance": "25",
+      "description": "상식이 아빠가 운영하는 맛집",
+      "link": "https://www.sangsick.com"
+    }
+  ]
+}
