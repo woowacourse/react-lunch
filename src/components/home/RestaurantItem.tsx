@@ -1,6 +1,11 @@
 import { Component } from 'react';
 import styled from 'styled-components';
 import asian from '../../asset/category-asian.png';
+import chinese from '../../asset/category-chinese.png';
+import korean from '../../asset/category-korean.png';
+import japanese from '../../asset/category-japanese.png';
+import western from '../../asset/category-western.png';
+import etc from '../../asset/category-etc.png';
 
 const Restaurant = styled.li`
   display: flex;
@@ -66,7 +71,16 @@ const RestaurantDescription = styled.p`
   -webkit-box-orient: vertical;
 `;
 
-type Props = {
+const categoryIcon: Record<string, string> = {
+  한식: korean,
+  중식: chinese,
+  일식: japanese,
+  양식: western,
+  아시안: asian,
+  기타: etc,
+};
+
+export type Props = {
   category: string;
   name: string;
   distanceByMinutes: number;
@@ -76,11 +90,10 @@ type Props = {
 
 class RestaurantItem extends Component<Props> {
   render() {
-    console.log(asian);
     return (
       <Restaurant>
         <CategoryIcon>
-          <img src={asian} alt={this.props.category} />
+          <img src={categoryIcon[this.props.category]} alt={this.props.category} />
         </CategoryIcon>
         <RestaurantInfo>
           <RestaurantName>{this.props.name}</RestaurantName>
