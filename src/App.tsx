@@ -1,22 +1,8 @@
 import { Component, ReactNode } from 'react';
 import './App.css';
 import RestaurantList from './components/RestaurantList';
-import { Category, Restaurant, State } from './types';
-import mockData from './data/mockRestaurantData.json';
-import { RESTAURANT_CATEGORY } from './constants';
-
-function validateCategory(category: string): Category {
-  if (RESTAURANT_CATEGORY.includes(category as Category)) {
-    return category as Category;
-  }
-
-  throw new Error(`유효하지 않는 카테고리: ${category}`);
-}
-
-const restaurantListData = mockData.restaurants.map<Restaurant>((restaurant) => ({
-  ...restaurant,
-  category: validateCategory(restaurant.category),
-}));
+import { State } from './types';
+import { getRestaurantListData } from './data/restaurantListData';
 
 class App extends Component {
   state: State;
@@ -25,7 +11,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      restaurantList: restaurantListData, // mock data get data ?? mock data
+      restaurantList: getRestaurantListData(),
       selectedRestaurant: 0,
       currentDisplayStatus: {
         category: '',
@@ -35,13 +21,11 @@ class App extends Component {
   }
 
   render(): ReactNode {
-    const { restaurantList } = this.state;
-
     return (
       <div className="App">
         {/* <Header></Header>
         <FilterSection></FilterSection> */}
-        <RestaurantList restaurantList={restaurantList} />
+        <RestaurantList restaurantList={this.state.restaurantList} />
       </div>
     );
   }
