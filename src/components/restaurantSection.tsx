@@ -2,15 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { getRestaurantData } from "../api/getData";
 import { RestaurantItemPropsType } from "../types/restaurant";
+import { SelectStateType } from "../types/select";
 import { RestaurantItem } from "./restaurantItem";
 
 export class RestaurantSection extends React.Component<
-  any,
+  SelectStateType,
   {
     restaurants: RestaurantItemPropsType[];
   }
 > {
-  constructor(props: any) {
+  constructor(props: SelectStateType) {
     super(props);
 
     this.state = {
@@ -26,12 +27,44 @@ export class RestaurantSection extends React.Component<
     });
   }
 
+  getFilteredRestaurants() {
+    const category = this.props.category;
+
+    if (category === "전체") return this.state.restaurants;
+
+    return this.state.restaurants.filter(
+      (restaurant) => restaurant.category === category
+    );
+  }
+
+  getSortedRestaurants(filteredRestaurant: RestaurantItemPropsType[]) {
+    const sorting = this.props.sorting;
+
+    if (sorting === "이름순") {
+      return filteredRestaurant.sort((resA, resB) =>
+        resA.name.localeCompare(resB.name)
+      );
+    }
+    if (sorting === "거리순") {
+      return filteredRestaurant.sort(
+        (resA, resB) => resA.takingTime - resB.takingTime
+      );
+    }
+  }
+
+  getFinalRestaurants() {
+    const filteredRestaurants = this.getFilteredRestaurants();
+    return this.getSortedRestaurants(filteredRestaurants);
+  }
+
   render() {
     return (
       <RestaurantContainer>
-        {this.state.restaurants.map((restaurant: RestaurantItemPropsType) => (
-          <RestaurantItem key={restaurant.id} {...restaurant} />
-        ))}
+        {this.getFinalRestaurants()?.map(
+          (restaurant: RestaurantItemPropsType) => (
+            <RestaurantItem key={restaurant.id} {...restaurant} />
+          )
+        )}
       </RestaurantContainer>
     );
   }
