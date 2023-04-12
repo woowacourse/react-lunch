@@ -10,6 +10,12 @@ class Modal extends React.Component<ModalProps, ModalState> {
     this.modalRef = React.createRef<HTMLDialogElement>();
   }
 
+  componentDidMount() {
+    if (this.modalRef.current) {
+      this.modalRef.current.showModal();
+    }
+  }
+
   componentDidUpdate() {
     if (this.modalRef.current) {
       this.modalRef.current.showModal();
