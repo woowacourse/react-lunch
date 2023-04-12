@@ -1,8 +1,8 @@
 import { Component, PropsWithChildren } from 'react';
-import Header from './components/Header';
+import Header from './components/common/Header';
+import Modal from './components/common/Modal';
 import FilterContainer from './components/FilterContainter';
 import RestaurantList from './components/RestaurantList';
-import Modal from './components/Modal';
 import RestaurantDetailView from './components/RestaurantDetailView';
 
 import { Restaurant } from './types';
