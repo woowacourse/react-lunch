@@ -6,7 +6,7 @@ import RestaurantList from "./RestaurantList";
 import { filterByCategory, sortBy } from "../utils/restaurant";
 
 type RestaurantListState = {
-  restaurant: Restaurant[];
+  restaurants: Restaurant[];
   category: Category;
   sort: SortBy;
 };
@@ -17,12 +17,12 @@ export class Main extends Component<any, RestaurantListState> {
 
     const storageData = localStorage.getItem("restaurant");
     if (storageData === null) {
-      const { restaurant } = mockData as { restaurant: Restaurant[] };
-      localStorage.setItem("restaurant", JSON.stringify(restaurant));
-      this.state = { restaurant, category: "전체", sort: "이름순" };
+      const { restaurants } = mockData as { restaurants: Restaurant[] };
+      localStorage.setItem("restaurants", JSON.stringify(restaurants));
+      this.state = { restaurants, category: "전체", sort: "이름순" };
     } else {
       this.state = {
-        restaurant: JSON.parse(storageData),
+        restaurants: JSON.parse(storageData),
         category: "전체",
         sort: "이름순",
       };
@@ -46,14 +46,14 @@ export class Main extends Component<any, RestaurantListState> {
 
   render() {
     const filteredAndSorted = sortBy(
-      filterByCategory(this.state.restaurant, this.state.category),
+      filterByCategory(this.state.restaurants, this.state.category),
       this.state.sort
     );
 
     return (
       <>
         <Select setCategory={this.setCategory} setSort={this.setSort} />
-        <RestaurantList restaurant={filteredAndSorted} />
+        <RestaurantList restaurants={filteredAndSorted} />
       </>
     );
   }
