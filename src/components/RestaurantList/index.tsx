@@ -7,6 +7,8 @@ import mockData from "../../data/mockData.json";
 interface RestaurantListProps {
   selectedCategory: CategoryOption;
   selectedSort: SortOption;
+  setModalContents: (Restaurant: Restaurant) => void;
+  openModal: () => void;
 }
 
 interface RestaurantListState {
@@ -68,12 +70,18 @@ export default class RestaurantList extends Component<RestaurantListProps> {
 
   render() {
     const { filteredRestaurants } = this.state;
+    const { setModalContents, openModal } = this.props;
 
     return (
       <section className="restaurant-list-container">
         <ul className="restaurant-list">
-          {filteredRestaurants.map((restaurantData) => (
-            <RestaurantItem key={restaurantData.id} {...restaurantData} />
+          {filteredRestaurants.map((restaurant) => (
+            <RestaurantItem
+              key={restaurant.id}
+              restaurant={restaurant}
+              setModalContents={setModalContents}
+              openModal={openModal}
+            />
           ))}
         </ul>
       </section>
