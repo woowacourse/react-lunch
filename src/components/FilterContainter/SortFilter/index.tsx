@@ -1,12 +1,13 @@
 import { Component } from 'react';
+import Filter from '../../common/Filter';
+
+const options = [
+  { value: 'name', text: '이름순' },
+  { value: 'distance', text: '거리순' },
+];
 
 export default class SortFilter extends Component {
   render() {
-    return (
-      <select name="sorting" id="sorting-filter" className="restaurant-filter">
-        <option value="name">이름순</option>
-        <option value="distance">거리순</option>
-      </select>
-    );
+    return <Filter id="sorting-filter" name="sorting" options={options} onChange={() => {}} />;
   }
 }
