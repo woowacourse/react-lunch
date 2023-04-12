@@ -22,8 +22,13 @@ class App extends React.Component<
   constructor(props: any) {
     super(props);
 
+    if (!localStorage.getItem("restaurants")) {
+      localStorage.setItem("restaurants", JSON.stringify(mockData.restaurants));
+    }
+
+    const restaurants = JSON.parse(localStorage.getItem("restaurants") || "[]");
     this.state = {
-      restaurants: mockData.restaurants as Restaurant[],
+      restaurants,
       category: "전체",
       sortingType: "이름순",
       isModalOpen: false,
