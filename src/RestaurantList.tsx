@@ -6,48 +6,80 @@ type StateType = {
   restaurantList: Omit<Restaurant,"link">[];
 }
 
-class RestaurantList extends React.Component {
-    state:StateType;
+type RestaurantListProps = {
+  filterOptions: any;
+}
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            restaurantList: []
-        }
-    }
+class RestaurantList extends React.Component<RestaurantListProps> {
+  state: StateType;
 
-    // 화면에 떴을 때
-    
+  constructor(props) {
+    super(props);
+    this.state = {
+      restaurantList: [],
+    };
+  }
+
+  // 화면에 떴을 때
 
   componentDidMount(): void {
     const defaultData = localStorage.getItem('restaurantList');
     if (defaultData) {
-      this.setState({ restaurantList: JSON.parse(defaultData)});
+      this.setState({ restaurantList: JSON.parse(defaultData) });
       return;
     }
 
     fetch('./mockData.json')
-    .then((res) => res.json())
-    .then((data) => {
-      localStorage.setItem('restaurantList', JSON.stringify(data));
-      this.setState({ restaurantList: data });
-    });  
-    }
-    
-    // 리렌더링 될 때
-    componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<{}>, snapshot?: any): void {
-      
-    }
+      .then((res) => res.json())
+      .then((data) => {
+        localStorage.setItem('restaurantList', JSON.stringify(data));
+        this.setState({ restaurantList: data });
+      });
+  }
 
-    render() {
-      return (
-        <section className="restaurant-list-container">
-            <ul className="restaurant-list">
-            {this.state.restaurantList.map((restaurant) => <RestaurantItem key={restaurant.id} restaurant={restaurant}/>)}
-            </ul>
-        </section>
-      )
-    }
+  // 리렌더링 될 때
+  componentDidUpdate(
+    prevProps: Readonly<{}>,
+    prevState: Readonly<{}>,
+    snapshot?: any
+  ): void {}
+
+  filterByCategory(category): Restaurant[] {
+    if (category === ("전체"))
+      return this.state.restaurantList;
+    return this.state.restaurantList.filter(
+      (restaurant) => restaurant.category === category
+    );
+  }
+
+  sortRestaurants(category, sorting) {
+    return this.filterByCategory(category).sort(
+      (firstElement, secondElement) => {
+        if (sorting === "name") {
+          return firstElement.title.localeCompare(secondElement.title);
+        }
+        if (sorting === 'distance') {
+          return firstElement.distance - secondElement.distance;
+        }
+        return 0;
+      }
+    );
+  }
+
+  render() {
+    return (
+      <section className='restaurant-list-container'>
+        <ul className='restaurant-list'>
+          {this.sortRestaurants(
+            this.props.filterOptions.category,
+            this.props.filterOptions.sorting
+          ).map((restaurant) => (
+            <RestaurantItem key={restaurant.id} restaurant={restaurant} />
+          ))}
+        </ul>
+      </section>
+    );
+  }
 }
 
 export default RestaurantList;
