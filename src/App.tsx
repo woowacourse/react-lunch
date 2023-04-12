@@ -1,9 +1,6 @@
 import { Component, PropsWithChildren } from 'react';
-import Header from './components/common/Header';
-import Modal from './components/common/Modal';
-import FilterContainer from './components/FilterContainter';
-import RestaurantList from './components/RestaurantList';
-import RestaurantDetailView from './components/RestaurantDetailView';
+import { Header, Modal } from './components/common';
+import { FilterContainer, RestaurantDetailView, RestaurantList } from './components';
 
 import { Restaurant } from './types';
 import mockData from './mockData.json';
