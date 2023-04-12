@@ -2,8 +2,8 @@ import React, { Component, ReactNode } from 'react';
 import St from './styled';
 
 interface SelectProps {
-  options: string[];
-  onChange: VoidFunction;
+  options: readonly string[];
+  onChange(value: string): void;
 }
 
 class Select extends Component<SelectProps> {
@@ -15,7 +15,7 @@ class Select extends Component<SelectProps> {
     const { options, onChange } = this.props;
 
     return (
-      <St.Layout onChange={onChange}>
+      <St.Layout onChange={(e) => onChange(e.target.value)}>
         {options.map((option) => (
           <St.Option value={option} key={option}>
             {option}

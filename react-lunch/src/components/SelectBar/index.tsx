@@ -1,23 +1,20 @@
 import React, { Component, ReactNode } from 'react';
+import { alignFilter, categoryFilter } from '../../constants/restaurants';
+import { AlignFilter, CategoryFilter } from '../../types/restaurants';
 import Select from '../Select';
 import St from './styled';
 
-class SelectBar extends Component {
+interface SelectBarProps {
+  onChangeCategoryFilter(category: CategoryFilter): void;
+  onChangeAlignFilter(align: AlignFilter): void;
+}
+class SelectBar extends Component<SelectBarProps> {
   render(): ReactNode {
+    const { onChangeCategoryFilter, onChangeAlignFilter } = this.props;
     return (
       <St.Layout>
-        <Select
-          options={['전체', '한식', '중식', '일식', '양식', '아시안', '기타']}
-          onChange={() => {
-            //
-          }}
-        />
-        <Select
-          options={['이름순', '거리순']}
-          onChange={() => {
-            //
-          }}
-        />
+        <Select options={categoryFilter} onChange={onChangeCategoryFilter} />
+        <Select options={alignFilter} onChange={onChangeAlignFilter} />
       </St.Layout>
     );
   }

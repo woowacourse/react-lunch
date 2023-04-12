@@ -8,7 +8,7 @@ const St = {
 
     position: fixed;
 
-    padding-left: 30px;
+    padding-left: 22px;
     background-color: #ec4a0a;
 
     color: #fcfcfd;
