@@ -31,7 +31,7 @@ class App extends React.Component {
     return (
       <>
         <Header />
-        <div>
+        <div className="restaurant-filter-container">
           <Selector<selectorCategory>
             selectedValue={this.state.category}
             optionList={categoryOptions}

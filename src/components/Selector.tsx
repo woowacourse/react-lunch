@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/Selector.css';
 
 type selectorProps<T> = {
   selectedValue: T;
