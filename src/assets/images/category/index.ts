@@ -4,9 +4,7 @@ import categoryChineseImage from "./category-chinese.png";
 import categoryJapaneseImage from "./category-japanese.png";
 import categoryWesternImage from "./category-western.png";
 import categoryEtcImage from "./category-etc.png";
-
-const CATEGORY = ["한식", "중식", "일식", "아시안", "양식"] as const;
-type Category = (typeof CATEGORY)[number];
+import type { Category } from "../../../constants/options";
 
 const categoryImages: Readonly<Record<Category, string>> = {
   한식: categoryKoreanImage,
@@ -17,7 +15,7 @@ const categoryImages: Readonly<Record<Category, string>> = {
 };
 
 const isCategory = (targetCategory: string): targetCategory is Category => {
-  return !!CATEGORY.find((category) => category === targetCategory);
+  return Object.keys(categoryImages).includes(targetCategory);
 };
 
 const getCategoryImage = (category: string) => {

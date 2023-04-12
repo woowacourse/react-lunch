@@ -2,6 +2,7 @@ import { Component } from "react";
 
 import RestaurantFilterContainer from "./RestaurantFilterContainer";
 import RestaurantList from "./RestaurantList";
+import { CATEGORY_OPTIONS, SORTING_OPTIONS } from "../constants/options";
 
 import styles from "./Main.module.css";
 
@@ -10,8 +11,8 @@ interface State {
   sorting: string;
 }
 
-class Main extends Component<unknown, State> {
-  state = { category: "전체", sorting: "이름순" };
+class Main extends Component<{}, State> {
+  state = { category: CATEGORY_OPTIONS.TOTAL, sorting: SORTING_OPTIONS.NAME };
 
   setOption(key: string, option: string): void {
     this.setState((prev) => ({ ...prev, [key]: option }));

@@ -4,7 +4,7 @@ import styles from "./SelectBox.module.css";
 
 interface Props {
   name: string;
-  options: string[];
+  options: readonly string[];
   onChange: ChangeEventHandler;
 }
 

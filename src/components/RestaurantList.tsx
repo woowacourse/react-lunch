@@ -4,6 +4,7 @@ import mockData from "../assets/mockData.json";
 import type { Restaurant } from "../types/restaurant";
 
 import styles from "./RestaurantList.module.css";
+import { CATEGORY_OPTIONS, SORTING_OPTIONS } from "../constants/options";
 
 interface Props {
   options: { category: string; sorting: string };
@@ -24,7 +25,7 @@ class RestaurantList extends Component<Props, State> {
   filterList() {
     const { category } = this.props.options;
 
-    if (category === "전체") {
+    if (category === CATEGORY_OPTIONS.TOTAL) {
       return this.state.restaurants;
     }
 
@@ -34,7 +35,7 @@ class RestaurantList extends Component<Props, State> {
   sortList(restaurants: Restaurant[]) {
     const { sorting } = this.props.options;
 
-    if (sorting === "이름순") {
+    if (sorting === SORTING_OPTIONS.DISTANCE) {
       return [...restaurants].sort((first, second) => first.name.localeCompare(second.name));
     }
 
