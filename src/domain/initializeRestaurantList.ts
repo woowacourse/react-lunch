@@ -10,8 +10,12 @@ export const fetchRestaurantListJson = async (): Promise<RestaurantInfo[]> => {
   return data;
 };
 
+export const getSavedRestaurantList = () => {
+  return JSON.parse(localStorage.getItem(KEY) || '[]');
+};
+
 export const hasSavedRestaurantList = () => {
-  const restaurantList: RestaurantInfo[] = JSON.parse(localStorage.getItem(KEY) || '[]');
+  const restaurantList: RestaurantInfo[] = getSavedRestaurantList();
 
   return restaurantList && restaurantList.length > 0;
 };
