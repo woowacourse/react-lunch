@@ -1,20 +1,17 @@
-import { Component } from 'react';
-import RestaurantDetailView from './RestaurantDetailView';
-import { Restaurant } from '../../types';
+import { Component, PropsWithChildren } from 'react';
 import './Modal.css';
 
 type ModalProps = {
-  restaurant: Restaurant;
   onClick: () => void;
 };
 
-export default class Modal extends Component<ModalProps> {
+export default class Modal extends Component<PropsWithChildren<ModalProps>> {
   render() {
     return (
       <div className="modal">
         <div className="modal-backdrop"></div>
         <div className="modal-container">
-          <RestaurantDetailView restaurant={this.props.restaurant} />
+          {this.props.children}
           <div className="button-container">
             <button
               id="modal-close-button"

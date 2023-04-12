@@ -3,6 +3,8 @@ import Header from './components/Header';
 import FilterContainer from './components/FilterContainter';
 import RestaurantList from './components/RestaurantList';
 import Modal from './components/Modal';
+import RestaurantDetailView from './components/Modal/RestaurantDetailView';
+
 import { Restaurant } from './types';
 import mockData from './mockData.json';
 import {
@@ -52,10 +54,9 @@ export default class App extends Component<PropsWithChildren, AppState> {
           onClick={this.onClickRestaurantItem.bind(this)}
         />
         {isModalOpen && (
-          <Modal
-            restaurant={restaurantForDetailView}
-            onClick={this.onClickModalCloseButton.bind(this)}
-          />
+          <Modal onClick={this.onClickModalCloseButton.bind(this)}>
+            <RestaurantDetailView restaurant={restaurantForDetailView} />
+          </Modal>
         )}
       </div>
     );
