@@ -1,5 +1,12 @@
 import React from "react";
 import { Restaurant } from "./type";
+// logo img
+import asianImg from './asset/category-asian.png';
+import chineseImg from './asset/category-chinese.png';
+import etcImg from './asset/category-etc.png';
+import japaneseImg from './asset/category-japanese.png';
+import koreanImg from './asset/category-korean.png';
+import westernImg from './asset/category-western.png';
 
 type RestaurantProps = {
     readonly restaurant: Omit<Restaurant,"link">;
@@ -10,7 +17,7 @@ class RestaurantItem extends React.Component<RestaurantProps> {
       return (
         <li className='restaurant'>
           <div className='restaurant__category'>
-            {/* <img src={this.props.restaurant.imageUrl} alt="한식" className="category-icon"> */}
+            <img src={asianImg} alt="한식" className="category-icon" />
           </div>
           <div className='restaurant__info'>
             <h3 className='restaurant__name text-subtitle'>
