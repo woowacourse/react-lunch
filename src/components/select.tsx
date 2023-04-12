@@ -1,14 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import { SelectPropsType } from "../types/select";
-
+import { CategoryUnion, SelectPropsType, SortingUnion } from "../types/select";
 export class Select extends React.Component<SelectPropsType> {
   render() {
     return (
       <SelectContianer
-        onChange={(e) =>
-          this.props.handleSelect(this.props.name, e.target.value)
-        }>
+        onChange={(e) => {
+          const value = e.target.value as SortingUnion | CategoryUnion;
+          this.props.handleSelect({
+            type: this.props.name,
+            value: value,
+          });
+        }}>
         {this.props.options.map((option: string) => {
           return (
             <option key={option} value={option}>

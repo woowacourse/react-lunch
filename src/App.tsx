@@ -5,15 +5,30 @@ import { RestaurantSection } from "./components/restaurantSection";
 import { SelectSection } from "./components/selectSection";
 import { GlobalStyle } from "./style/Globalstyle";
 import { theme } from "./style/theme";
+import {
+  CategoryUnion,
+  SelectStateType,
+  SortingUnion,
+  SelectedValue,
+} from "./types/select";
 
-class App extends React.Component {
-  handleSelect(type: string, selectedOption: string) {
-    if (type === "sorting") {
-      console.log(selectedOption);
+class App extends React.Component<any, SelectStateType> {
+  constructor(props: any) {
+    super(props);
+
+    this.state = {
+      sorting: "이름순",
+      category: "전체",
+    };
+  }
+
+  handleSelect(select: SelectedValue) {
+    if (select.type === "sorting") {
+      this.setState({ sorting: select.value as SortingUnion });
     }
 
-    if (type === "category") {
-      console.log(selectedOption);
+    if (select.type === "category") {
+      this.setState({ category: select.value as CategoryUnion });
     }
   }
 
@@ -23,8 +38,11 @@ class App extends React.Component {
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           <Header />
-          <SelectSection handleSelect={this.handleSelect} />
-          <RestaurantSection />
+          <SelectSection handleSelect={this.handleSelect.bind(this)} />
+          <RestaurantSection
+            sorting={this.state.sorting}
+            category={this.state.category}
+          />
         </ThemeProvider>
       </>
     );
