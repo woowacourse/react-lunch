@@ -12,7 +12,7 @@ class RestaurantList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            restaurantList: [{ title: "얌샘김밥",distance:5,description:"김밥",imageUrl:"adfdfadf" }]
+            restaurantList: [{ id:0, title: "얌샘김밥",distance:5,description:"김밥",imageUrl:"adfdfadf" }]
         }
     }
 
@@ -30,7 +30,7 @@ class RestaurantList extends React.Component {
       return (
         <section className="restaurant-list-container">
             <ul className="restaurant-list">
-            {this.state.restaurantList.map((restaurant) => <RestaurantItem restaurant={restaurant}/>)}
+            {this.state.restaurantList.map((restaurant) => <RestaurantItem key={restaurant.id} restaurant={restaurant}/>)}
             </ul>
         </section>
       )
