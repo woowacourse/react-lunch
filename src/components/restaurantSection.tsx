@@ -3,12 +3,15 @@ import styled from "styled-components";
 import { getRestaurantData } from "../api/getData";
 import { RestaurantItemPropsType } from "../types/restaurant";
 import { SelectStateType } from "../types/select";
+import { ItemModal } from "./itemModal";
 import { RestaurantItem } from "./restaurantItem";
 
 export class RestaurantSection extends React.Component<
   SelectStateType,
   {
     restaurants: RestaurantItemPropsType[];
+    clickedRestaurant: RestaurantItemPropsType | null;
+    isModalOpen: boolean;
   }
 > {
   constructor(props: SelectStateType) {
@@ -16,6 +19,8 @@ export class RestaurantSection extends React.Component<
 
     this.state = {
       restaurants: [],
+      clickedRestaurant: null,
+      isModalOpen: false,
     };
   }
 
@@ -57,15 +62,33 @@ export class RestaurantSection extends React.Component<
     return this.getSortedRestaurants(filteredRestaurants);
   }
 
+  openModal(id: string) {
+    const restaurant = this.state.restaurants.find(
+      (restaurant) => restaurant.id === id
+    );
+    if (restaurant) {
+      this.setState({ isModalOpen: true, clickedRestaurant: restaurant });
+    }
+  }
+
   render() {
     return (
-      <RestaurantContainer>
-        {this.getFinalRestaurants()?.map(
-          (restaurant: RestaurantItemPropsType) => (
-            <RestaurantItem key={restaurant.id} {...restaurant} />
-          )
+      <>
+        <RestaurantContainer>
+          {this.getFinalRestaurants()?.map(
+            (restaurant: RestaurantItemPropsType) => (
+              <div
+                onClick={() => this.openModal(restaurant.id)}
+                key={restaurant.id}>
+                <RestaurantItem {...restaurant} />
+              </div>
+            )
+          )}
+        </RestaurantContainer>
+        {this.state.isModalOpen && this.state.clickedRestaurant && (
+          <ItemModal {...this.state.clickedRestaurant} />
         )}
-      </RestaurantContainer>
+      </>
     );
   }
 }
