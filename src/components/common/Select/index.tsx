@@ -9,7 +9,9 @@ class Select extends Component<Props> {
     return (
       <select>
         {this.props.options.map((option) => (
-          <option value={option}>{option}</option>
+          <option key={option} value={option}>
+            {option}
+          </option>
         ))}
       </select>
     );
