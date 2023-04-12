@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Header from './components/common/Header';
 
-function App() {
-  return <div></div>;
+class App extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <Header />
+      </React.Fragment>
+    );
+  }
 }
 
 export default App;
