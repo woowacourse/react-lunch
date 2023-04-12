@@ -1,9 +1,5 @@
 import "./index.css";
 import { Component } from "react";
-interface State {
-  selectedCategory: string;
-  selectedSort: string;
-}
 
 const categoryList = {
   all: "전체",
@@ -19,21 +15,39 @@ const sortList = {
   distance: "거리순",
 };
 
-export default class Filter extends Component {
-  state: State = {
-    selectedCategory: "all",
-    selectedSort: "name",
-  };
+interface Props {
+  setSelectedCategory: (category: string) => void;
+  setSelectedSort: (sort: string) => void;
+}
+
+export default class Filter extends Component<Props> {
+  setSelectedCategory(event: React.ChangeEvent<HTMLSelectElement>) {
+    this.props.setSelectedCategory(event.target.value);
+  }
+
+  setSelectedSort(event: React.ChangeEvent<HTMLSelectElement>) {
+    this.props.setSelectedSort(event.target.value);
+  }
 
   render() {
     return (
       <section className="restaurant-filter-container">
-        <select name="category" id="category-filter" className="restaurant-filter">
+        <select
+          name="category"
+          id="category-filter"
+          className="restaurant-filter"
+          onChange={this.setSelectedCategory.bind(this)}
+        >
           {Object.entries(categoryList).map(([key, value]) => (
             <option value={key}>{value}</option>
           ))}
         </select>
-        <select name="sorting" id="sorting-filter" className="restaurant-filter">
+        <select
+          name="sorting"
+          id="sorting-filter"
+          className="restaurant-filter"
+          onChange={this.setSelectedSort.bind(this)}
+        >
           {Object.entries(sortList).map(([key, value]) => (
             <option value={key}>{value}</option>
           ))}
