@@ -1,18 +1,21 @@
-import { Component } from 'react';
+import { ChangeEvent, Component, PureComponent } from 'react';
 
 interface FilterBarProps {
-  onChangeOptions: (filterOptions: { category: string; sort: string }) => void;
+  onChangeCategory: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChangeSort: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export default class FilterBar extends Component<FilterBarProps> {
+export default class FilterBar extends PureComponent<FilterBarProps> {
   constructor(props: FilterBarProps) {
     super(props);
   }
   render() {
+    const { onChangeCategory, onChangeSort } = this.props;
     return (
       <>
-        <section>
+        <section className="restaurant-filter-container">
           <select
+            onChange={onChangeCategory}
             name="category"
             id="category-filter"
             className="restaurant-filter"
@@ -27,6 +30,7 @@ export default class FilterBar extends Component<FilterBarProps> {
           </select>
 
           <select
+            onChange={onChangeSort}
             name="sorting"
             id="sorting-filter"
             className="restaurant-filter"

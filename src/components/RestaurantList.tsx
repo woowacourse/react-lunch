@@ -2,10 +2,8 @@ import { Component } from 'react';
 import RestaurantItem from './RestaurantItem';
 
 interface RestuarantListProps {
-  filterOptions: {
-    category: string;
-    sort: string;
-  };
+  category: string;
+  sort: string;
 }
 
 export default class RestaurantList extends Component<RestuarantListProps> {

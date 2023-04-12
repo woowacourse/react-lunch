@@ -5,22 +5,46 @@ import FilterBar from './FilterBar';
 
 export default class RestaurantListContainer extends Component {
   state = {
-    filterOptions: {
-      category: '전체',
-      sort: '이름순',
-    },
+    category: '전체',
+    sort: '이름순',
   };
 
   handleChangeFilter = (filterOptions: { category: string; sort: string }) => {
     this.setState({ filterOptions });
   };
 
+  handleCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const category = event.target.value;
+
+    if (typeof category !== 'string') return;
+
+    this.setState({
+      ...this.state,
+      category,
+    });
+  };
+
+  handleSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const sort = event.target.value;
+
+    if (typeof sort !== 'string') return;
+
+    this.setState({
+      ...this.state,
+      sort,
+    });
+  };
+
   render() {
     return (
       <>
-        <FilterBar onChangeOptions={this.handleChangeFilter}></FilterBar>
+        <FilterBar
+          onChangeCategory={this.handleCategory}
+          onChangeSort={this.handleSort}
+        ></FilterBar>
         <RestaurantList
-          filterOptions={this.state.filterOptions}
+          category={this.state.category}
+          sort={this.state.sort}
         ></RestaurantList>
       </>
     );
