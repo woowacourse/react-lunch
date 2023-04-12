@@ -5,18 +5,16 @@ import { convertImage } from "../utils/imageConverter";
 
 export class RestaurantItem extends React.Component<RestaurantItemPropsType> {
   render() {
+    const { category, name, takingTime, description } = this.props;
     return (
       <ItemContainer>
         <ImgWrapper>
-          <CategoryImg
-            src={convertImage(this.props.category)}
-            alt={this.props.category}
-          />
+          <CategoryImg src={convertImage(category)} alt={category} />
         </ImgWrapper>
         <ItemInfo>
-          <Name>{this.props.name}</Name>
-          <TakingTime>캠퍼스로부터 {this.props.takingTime}분 내</TakingTime>
-          <Description>{this.props.description}</Description>
+          <Name>{name}</Name>
+          <TakingTime>캠퍼스로부터 {takingTime}분 내</TakingTime>
+          <Description>{description}</Description>
         </ItemInfo>
       </ItemContainer>
     );
