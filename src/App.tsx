@@ -20,11 +20,13 @@ class App extends React.Component<{}, AppState> {
   }
 
   render() {
+    const { sortBy, restaurants } = this.state;
+
     return (
       <>
-        <div>현재 sortBy 값은? : {this.state.sortBy}</div>
+        <div>현재 sortBy 값은? : {sortBy}</div>
         <SelectBox setState={this.updateSortBy.bind(this)} options={['name', 'distance']} />
-        <RestaurantList sortBy={this.state.sortBy} restaurants={this.state.restaurants} />
+        <RestaurantList sortBy={sortBy} restaurants={restaurants} />
       </>
     );
   }

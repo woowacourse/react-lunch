@@ -9,6 +9,8 @@ interface RestaurantItemProps {
 class RestaurantItem extends React.Component<RestaurantItemProps> {
 
   render() {
+    const { name, distance, description } = this.props.restaurant;
+
     return (
       <Card>
         <Favorite />
@@ -21,12 +23,12 @@ class RestaurantItem extends React.Component<RestaurantItemProps> {
             />
           </div>
           <RestaurantInfo>
-            <RestaurantName>{this.props.restaurant.name}</RestaurantName>
+            <RestaurantName>{name}</RestaurantName>
             <RestaurantDistance>
-              캠퍼스부터 {this.props.restaurant.distance}분 내
+              캠퍼스부터 {distance}분 내
             </RestaurantDistance>
             <RestaurantDescription>
-              {this.props.restaurant.description}
+              {description}
             </RestaurantDescription>
           </RestaurantInfo>
         </div>
