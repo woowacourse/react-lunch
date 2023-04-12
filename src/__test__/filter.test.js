@@ -1,6 +1,5 @@
 import RestaurantManager from '../domain/RestaurantManager';
 import mockData from '../domain/mockData.json';
-import RestaurantDetail from '../types/RestaurantDetail';
 
 /* eslint-disable */
 
