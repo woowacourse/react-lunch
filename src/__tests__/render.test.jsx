@@ -28,8 +28,8 @@ describe('음식점 리스트 렌더링 테스트', () => {
     expect(screen.getByText('찐친들이랑 가는 중국집')).toBeInTheDocument();
   });
 
-  test('초기 데이터 10개의 음식이 목록에 있다', () => {
-    const restaurantList = mockData.restaurants;
+  test('초기 데이터 8개의 음식이 목록에 있다', () => {
+    const restaurantList = mockData.restaurantList;
 
     render(<RestaurantList restaurantList={restaurantList} />);
 
@@ -40,8 +40,4 @@ describe('음식점 리스트 렌더링 테스트', () => {
       expect(screen.getByText(restaurant.description)).toBeInTheDocument();
     });
   });
-
-  // test('처음 방문시 전체 카테고리, 이름순으로 정렬되어 있다', () => {
-
-  // });
 });
