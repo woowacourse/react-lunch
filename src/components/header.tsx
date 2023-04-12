@@ -3,10 +3,14 @@ import styled from "styled-components";
 import addButton from "../assets/add-button.png";
 
 export class Header extends React.Component {
+  refresh() {
+    window.location.reload();
+  }
+
   render() {
     return (
       <Container>
-        <Title>점심 뭐 먹지</Title>
+        <Title onClick={this.refresh}>점심 뭐 먹지</Title>
         <AddButton aria-label="음식점 추가">
           <AddIcon src={addButton} alt="음식점 추가" />
         </AddButton>
@@ -24,6 +28,8 @@ const Container = styled.header`
   padding: 0 16px;
 
   background-color: ${({ theme }) => theme.colors.primary};
+
+  cursor: pointer;
 `;
 
 const Title = styled.h1`
