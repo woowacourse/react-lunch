@@ -16,13 +16,14 @@ export interface RestaurantItemType {
 
 export interface RestaurantListStateType {
   restaurants: RestaurantItemType[];
+  filteredRestaurants: RestaurantItemType[];
   category: CategoryType;
   order: OrderType;
 }
 
 export interface BottomSheetType {
   children: React.ReactNode;
-  onClose: () => void;
+  onClose: () => React.SetStateAction<void>;
 }
 
 export type CategoryType = (typeof CATEGORY_NAME)[keyof typeof CATEGORY_NAME];

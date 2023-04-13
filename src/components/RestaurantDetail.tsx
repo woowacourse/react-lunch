@@ -4,8 +4,8 @@ import { CATEGORY_IMG } from '../constants';
 import { RestaurantItemType } from '../types';
 import Button from './Button';
 
-class RestaurantDetail extends React.Component<RestaurantItemType & { onClose: () => void }> {
-  constructor(props: RestaurantItemType & { onClose: () => void }) {
+class RestaurantDetail extends React.Component<RestaurantItemType & { onClose: () => React.SetStateAction<void> }> {
+  constructor(props: RestaurantItemType & { onClose: () => React.SetStateAction<void> }) {
     super(props);
   }
 
@@ -80,6 +80,9 @@ const RestaurantInfo = styled.div`
     line-height: 24px;
     font-weight: 400;
     color: var(----grey-500);
+    overflow-y: scroll;
+    height: auto;
+    max-height: 30vh;
   }
 
   & > a {
