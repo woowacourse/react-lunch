@@ -1,8 +1,9 @@
+import './style.css';
 import { Component } from 'react';
-import { Restaurant } from '../types';
-import { RESTAURANT_IMAGE } from '../constants/images';
+import { RestaurantElementProps } from '../../types';
+import { RESTAURANT_IMAGE } from '../../constants/images';
 
-class RestaurantItem extends Component<{ restaurant: Restaurant }> {
+class RestaurantItem extends Component<RestaurantElementProps> {
   render() {
     const { restaurant } = this.props;
 
