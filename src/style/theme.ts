@@ -18,7 +18,13 @@ const fonts = {
   caption: "font-size:14px; line-height:20px; font-weight:400;",
 };
 
+const buttons = {
+  white: `background-color: ${colors.grey100}; color: ${colors.grey500}; border: solid 1px ${colors.grey500};`,
+  orange: `background-color: ${colors.primary}; color: ${colors.grey100}; border: none;`,
+};
+
 export const theme: DefaultTheme = {
   colors,
   fonts,
+  buttons,
 };

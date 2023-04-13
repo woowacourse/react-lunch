@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { RestaurantItemPropsType } from "../types/restaurant";
+import { Restaurant } from "../types/restaurant";
 import { convertImage } from "../utils/imageConverter";
 import { ModalButton } from "./modalButton";
 
 interface PropsType {
   closeModal: () => void;
-  restaurant: RestaurantItemPropsType;
+  restaurant: Restaurant;
 }
 
 export class ItemModal extends React.Component<PropsType> {
@@ -30,7 +30,6 @@ export class ItemModal extends React.Component<PropsType> {
       <>
         <BackDrop onClick={this.props.closeModal} />
         <ModalContainer>
-          {" "}
           <ModalIcon>
             <img src={convertImage(category)} alt={category} />
           </ModalIcon>
@@ -43,8 +42,12 @@ export class ItemModal extends React.Component<PropsType> {
             </Link>
           </Information>
           <ButtonContainer>
-            <ModalButton text="삭제하기" />
-            <ModalButton text="닫기" handleClick={this.props.closeModal} />
+            <ModalButton text="삭제하기" baseColor="white" />
+            <ModalButton
+              text="닫기"
+              baseColor="orange"
+              handleClick={this.props.closeModal}
+            />
           </ButtonContainer>
         </ModalContainer>
       </>
@@ -102,6 +105,7 @@ const TakingTime = styled.div`
 `;
 
 const Description = styled.p`
+  height: 260px;
   margin-bottom: 16px;
 
   overflow: scroll;
