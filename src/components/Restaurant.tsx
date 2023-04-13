@@ -1,12 +1,14 @@
 import { Component } from 'react';
-import { State } from '../types';
+import { RestaurantState } from '../types';
 import { getRestaurantListData } from '../data/restaurantListData';
 import { filterAndSortRestaurantList } from '../domains/restaurantUtil';
 import FilterSection from './FilterSection';
 import RestaurantList from './RestaurantList';
+import Modal from './Modal';
+import RestaurantDetail from './RestaurantDetail';
 
 class Restaurant extends Component {
-  state: State;
+  state: RestaurantState;
 
   constructor(props: {}) {
     super(props);
@@ -14,9 +16,10 @@ class Restaurant extends Component {
     const restaurantList = filterAndSortRestaurantList(getRestaurantListData());
 
     this.state = {
-      restaurantList: restaurantList, // 추가, 삭제, 즐겨찾기 -> setState 상태가 변화가 일어난다
+      restaurantList: restaurantList,
       currentRestaurantList: restaurantList,
-      selectedRestaurant: 0,
+      selectedRestaurant: null,
+      isModalOpen: false,
     };
   }
 
@@ -29,16 +32,43 @@ class Restaurant extends Component {
     this.setState({ currentRestaurantList: updatedRestaurantList });
   }
 
+  updateSelectedRestaurant(id: number) {
+    const selectedRestaurant = this.state.currentRestaurantList.find(
+      (restaurant) => restaurant.id === id
+    );
+
+    if (!selectedRestaurant) return;
+
+    this.setState({ selectedRestaurant });
+    this.toggleIsModalOpen();
+  }
+
+  toggleIsModalOpen() {
+    this.setState({ isModalOpen: !this.state.isModalOpen });
+  }
+
   render() {
     return (
-      <>
+      <main>
         <FilterSection
           onChange={(filter: string, sortBy: string) =>
             this.updateCurrentRestaurantList(filter, sortBy)
           }
         />
-        <RestaurantList restaurantList={this.state.currentRestaurantList} />
-      </>
+        <RestaurantList
+          restaurantList={this.state.currentRestaurantList}
+          onItemClick={(id: number) => this.updateSelectedRestaurant(id)}
+        />
+        <Modal
+          content={
+            this.state.selectedRestaurant && (
+              <RestaurantDetail restaurant={this.state.selectedRestaurant} />
+            )
+          }
+          isModalOpen={this.state.isModalOpen}
+          onToggle={() => this.toggleIsModalOpen()}
+        />
+      </main>
     );
   }
 }
