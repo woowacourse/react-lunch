@@ -2,15 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import addButton from "../assets/add-button.png";
 
-export class Header extends React.Component {
-  refresh() {
-    window.location.reload();
-  }
-
+export class Header extends React.PureComponent {
   render() {
     return (
       <Container>
-        <Title onClick={this.refresh}>점심 뭐 먹지</Title>
+        <Title
+          onClick={() => {
+            window.location.reload();
+          }}>
+          점심 뭐 먹지
+        </Title>
         <AddButton aria-label="음식점 추가">
           <AddIcon src={addButton} alt="음식점 추가" />
         </AddButton>

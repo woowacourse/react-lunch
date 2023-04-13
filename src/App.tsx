@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 import { ThemeProvider } from "styled-components";
 import { Header } from "./components/header";
 import { RestaurantSection } from "./components/restaurantSection";
