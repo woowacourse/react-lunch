@@ -1,5 +1,5 @@
 import { AlignFilter, Restaurant } from "../types/restaurants";
-import { alignBy } from "../utils/restaurants";
+import { alignBy } from "../domain/restaurants";
 import { fetchQuery } from "./index";
 
 export const fetchMockRestaurants = async (options?: {

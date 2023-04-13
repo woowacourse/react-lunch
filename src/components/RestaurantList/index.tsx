@@ -6,7 +6,7 @@ import {
   CategoryFilter,
   Restaurant,
 } from "../../types/restaurants";
-import { alignBy, filterBy } from "../../utils/restaurants";
+import { alignBy, filterBy } from "../../domain/restaurants";
 import RestaurantDetailBottomSheet from "../RestaurantDetailBottomSheet";
 import RestaurantItem from "../RestaurantItem";
 import St from "./styled";
