@@ -6,12 +6,12 @@ import RestaurantDetailDrawer from './RestaurantDetailDrawer.tsx';
 import { DEFAULT_CATEGORY, DEFAULT_SORTING, NO_SELECT_ID } from './constant.ts';
 import { FilterOption } from './type.js';
 
-interface AppState {
+  type AppState = {
   filterOptions: FilterOption;
   isOpenDrawer: boolean;
+  drawerSelectId: number;
 }
-// TODO: State Type 선언
-class App extends React.Component<AppState> {
+class App extends React.Component<{},AppState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,7 +38,7 @@ class App extends React.Component<AppState> {
       },
     });
   }
-  // TODO: Toggle을 닫을 때는 id값을 어떻게 처리할지 고민하기
+
   onToggleDrawer(id:number = NO_SELECT_ID) {
     this.setState({
       isOpenDrawer: !this.state.isOpenDrawer,
@@ -52,7 +52,6 @@ class App extends React.Component<AppState> {
         <Header />
         <SelectContainer
           onChangeFilterOptions={this.onChangeFilterOptions}
-          filterOptions={this.state.filterOptions}
         />
         <RestaurantList
           filterOptions={this.state.filterOptions}
