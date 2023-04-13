@@ -44,7 +44,7 @@ class RestaurantItem extends React.Component<RestaurantItemType, { isBottomSheet
               distance={this.props.distance}
               description={this.props.description}
               link={this.props.link}
-              onClose={() => this.setState({ isBottomSheetOpen: false })}
+              onClose={() => this.closeBottomSheet()}
             />
           </BottomSheet>
         )}
