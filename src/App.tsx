@@ -64,8 +64,12 @@ export class App extends Component<any, AppState> {
     };
   }
 
-  toggleIsOpen() {
-    this.setState(() => ({ isOpen: !this.state.isOpen }));
+  openModal() {
+    this.setState(() => ({ isOpen: true }));
+  }
+
+  closeModal() {
+    this.setState(() => ({ isOpen: false }));
   }
 
   clickRestaurantItem(e: React.MouseEvent<HTMLElement>) {
@@ -79,7 +83,7 @@ export class App extends Component<any, AppState> {
     if (selectedRestaurant === undefined) return;
 
     this.setState(() => ({ selectedItem: selectedRestaurant }));
-    this.toggleIsOpen();
+    this.openModal();
   }
 
   selectFilter(e: React.ChangeEvent<HTMLSelectElement>) {
@@ -126,7 +130,7 @@ export class App extends Component<any, AppState> {
               <RestaurantDetail info={this.state.selectedItem} />
             )
           }
-          toggleOpen={this.toggleIsOpen.bind(this)}
+          closeModal={this.closeModal.bind(this)}
         />
       </Layout>
     );

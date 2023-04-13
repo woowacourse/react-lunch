@@ -37,13 +37,13 @@ const Style = {
 interface ModalProps {
   children: ReactNode;
   isOpen: boolean;
-  toggleOpen: () => void;
+  closeModal: () => void;
 }
 
 export class Modal extends Component<ModalProps> {
   componentDidMount() {
     window.onkeydown = (e) => {
-      if (e.key === 'Escape' && this.props.isOpen) this.props.toggleOpen();
+      if (e.key === 'Escape' && this.props.isOpen) this.props.closeModal();
     };
   }
 
@@ -52,10 +52,10 @@ export class Modal extends Component<ModalProps> {
       <>
         {this.props.isOpen && (
           <>
-            <Style.BackDrop onClick={this.props.toggleOpen} />
+            <Style.BackDrop onClick={this.props.closeModal} />
             <Style.Wrapper>
               {this.props.children}
-              <Style.CloseButton onClick={this.props.toggleOpen}>
+              <Style.CloseButton onClick={this.props.closeModal}>
                 닫기
               </Style.CloseButton>
             </Style.Wrapper>
