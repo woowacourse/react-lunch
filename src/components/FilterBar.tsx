@@ -1,4 +1,4 @@
-import { ChangeEvent, Component, PureComponent } from 'react';
+import { PureComponent } from 'react';
 
 interface FilterBarProps {
   onChangeCategory: (event: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -9,6 +9,7 @@ export default class FilterBar extends PureComponent<FilterBarProps> {
   constructor(props: FilterBarProps) {
     super(props);
   }
+
   render() {
     const { onChangeCategory, onChangeSort } = this.props;
     return (

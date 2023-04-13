@@ -1,4 +1,4 @@
-import { Component, PureComponent } from 'react';
+import { Component } from 'react';
 import RestaurantList from './RestaurantList';
 import FilterBar from './FilterBar';
 import { Category } from '../types/RestaurantDetail';

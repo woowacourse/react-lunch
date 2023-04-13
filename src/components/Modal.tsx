@@ -1,5 +1,4 @@
 import { Component, createRef } from 'react';
-import { RestaurantDetail } from '../types/RestaurantDetail';
 import RestaurantManager from '../domain/RestaurantManager';
 
 interface ModalProps {
@@ -33,7 +32,7 @@ export default class Modal extends Component<ModalProps> {
     const { id, category, name, description, distance, link } = restaurantItem;
 
     return (
-      <dialog ref={this.dialogRef} onClick={this.closeModal}>
+      <dialog id={String(id)} ref={this.dialogRef} onClick={this.closeModal}>
         <div className="modal-container">
           <div className="restaurant__category">
             <img src={category} alt={category} className="category-icon" />
