@@ -1,4 +1,4 @@
-import { Component, PropsWithChildren } from 'react';
+import { Component } from 'react';
 import { Header, Modal } from './components/common';
 import { FilterContainer, RestaurantDetailView, RestaurantList } from './components';
 
@@ -20,18 +20,14 @@ type AppState = {
   isModalOpen: boolean;
 };
 
-export default class App extends Component<PropsWithChildren, AppState> {
-  constructor(props: PropsWithChildren) {
-    super(props);
-
-    this.state = {
-      restaurants: mockData as Restaurant[],
-      categoryFilterOption: '전체',
-      sortOption: 'name',
-      restaurantForDetailView: mockData[0] as Restaurant,
-      isModalOpen: false,
-    };
-  }
+export default class App extends Component {
+  state: AppState = {
+    restaurants: mockData as Restaurant[],
+    categoryFilterOption: '전체',
+    sortOption: 'name',
+    restaurantForDetailView: mockData[0] as Restaurant,
+    isModalOpen: false,
+  };
 
   render() {
     const { restaurants, categoryFilterOption, sortOption, isModalOpen, restaurantForDetailView } =
