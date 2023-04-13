@@ -19,6 +19,8 @@ class Modal extends Component<ModalProps> {
     if (this.modalContainerRef.current) {
       this.modalContainerRef.current.focus();
     }
+		
+		document.body.classList.toggle('hidden-scroll');
   }
 
   handleClose = (event: MouseEvent<HTMLElement>) => {
@@ -36,8 +38,6 @@ class Modal extends Component<ModalProps> {
     if (event.key === 'Escape') {
       this.props.onToggle();
     }
-
-		document.body.classList.toggle('body-hidden-scroll');
   };
 
   render() {
