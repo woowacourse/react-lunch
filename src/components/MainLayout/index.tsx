@@ -25,37 +25,14 @@ class MainLayout extends Component<Props, State> {
     sortBy: '이름순',
   };
 
-  filterByCategory(restaurants: Props['restaurants']) {
-    if (restaurants === null) return null;
+  setCategory = (category: string) => {
+    this.setState({ ...this.state, category });
+  };
 
-    if (this.state.category === '전체') return restaurants;
+  setSorting = (sortBy: string) => {
+    this.setState({ ...this.state, sortBy });
+  };
 
-    return restaurants.filter(
-      (restaurant) => restaurant.category === this.state.category,
-    );
-  }
-
-  sortByName(restaurants: Props['restaurants']) {
-    if (restaurants === null) return null;
-
-    return [...restaurants].sort(this.compareByName);
-  }
-
-  sortByDistance(restaurants: Props['restaurants']) {
-    if (restaurants === null) return null;
-
-    return [...restaurants].sort((a: Restaurant, b: Restaurant) => {
-      if (a.distance === b.distance) {
-        return this.compareByName(a, b);
-      }
-
-      return a.distance - b.distance;
-    });
-  }
-
-  compareByName(a: Restaurant, b: Restaurant) {
-    return a.name.localeCompare(b.name);
-  }
   handleRestaurantClick = (event: MouseEvent<HTMLUListElement>) => {
     const target = event.target as HTMLElement;
     const item = target.closest('.restaurant') as HTMLLIElement;
