@@ -69,7 +69,7 @@ class RestaurantList extends Component<SetModalRestaurant> {
         </SelectBoxContainer>
         <Restaurants>
           {this.filterAndSort().map((restaurant, index) => (
-            <RestaurantItem key={index} {...restaurant} setModalRestaurant={this.props.setModalRestaurant} />
+            <RestaurantItem key={index} restaurant={restaurant} setModalRestaurant={this.props.setModalRestaurant} />
           ))}
         </Restaurants>
       </RestaurantListLayout>

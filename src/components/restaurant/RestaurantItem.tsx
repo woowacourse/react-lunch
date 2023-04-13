@@ -36,25 +36,23 @@ const Description = styled.p`
   -webkit-box-orient: vertical;
 `;
 
-class RestaurantItem extends Component<SetModalRestaurant & Restaurant> {
+type Props = { restaurant: Restaurant } & SetModalRestaurant;
+
+class RestaurantItem extends Component<Props> {
   onClickRestaurant = () => {
-    this.props.setModalRestaurant({
-      category: this.props.category,
-      name: this.props.name,
-      distanceByMinutes: this.props.distanceByMinutes,
-      description: this.props.description,
-      referenceUrl: this.props.referenceUrl,
-    });
+    this.props.setModalRestaurant(this.props.restaurant);
   };
 
   render() {
+    const { category, name, distanceByMinutes, description } = this.props.restaurant;
+
     return (
       <SRestaurant onClick={this.onClickRestaurant}>
-        <CategoryIcon category={this.props.category} />
+        <CategoryIcon category={category} />
         <Information>
-          <h3 className="text-subtitle">{this.props.name}</h3>
-          <Distance className="text-body">캠퍼스부터 {this.props.distanceByMinutes}분 내</Distance>
-          <Description className="text-body">{this.props.description}</Description>
+          <h3 className="text-subtitle">{name}</h3>
+          <Distance className="text-body">캠퍼스부터 {distanceByMinutes}분 내</Distance>
+          <Description className="text-body">{description}</Description>
         </Information>
       </SRestaurant>
     );

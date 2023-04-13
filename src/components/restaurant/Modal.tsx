@@ -63,7 +63,9 @@ const ButtonContainer = styled.div`
   }
 `;
 
-class Modal extends Component<Restaurant & SetModalRestaurant> {
+type Props = { restaurant: Restaurant } & SetModalRestaurant;
+
+class Modal extends Component<Props> {
   onCloseModal = () => {
     this.props.setModalRestaurant(null);
   };
@@ -82,15 +84,17 @@ class Modal extends Component<Restaurant & SetModalRestaurant> {
   }
 
   render() {
+    const { category, name, distanceByMinutes, description, referenceUrl } = this.props.restaurant;
+
     return (
       <div>
         <ModalBackdrop onClick={this.onCloseModal} />
         <ModalContent>
-          <CategoryIcon category={this.props.category} />
-          <Title className="text-title">{this.props.name}</Title>
-          <Distance className="text-body">캠퍼스로부터 {this.props.distanceByMinutes}분 내</Distance>
-          <Description className="text-body">{this.props.description}</Description>
-          <ReferenceURL href={this.props.referenceUrl}>{this.props.referenceUrl}</ReferenceURL>
+          <CategoryIcon category={category} />
+          <Title className="text-title">{name}</Title>
+          <Distance className="text-body">캠퍼스로부터 {distanceByMinutes}분 내</Distance>
+          <Description className="text-body">{description}</Description>
+          <ReferenceURL href={referenceUrl}>{referenceUrl}</ReferenceURL>
           <ButtonContainer>
             <button onClick={this.onCloseModal}>닫기</button>
           </ButtonContainer>

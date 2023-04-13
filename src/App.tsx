@@ -20,7 +20,9 @@ class App extends Component {
       <React.Fragment>
         <Header />
         <RestaurantList setModalRestaurant={this.setModalRestaurant} />
-        {this.state.restaurant && <Modal {...this.state.restaurant} setModalRestaurant={this.setModalRestaurant} />}
+        {this.state.restaurant && (
+          <Modal restaurant={this.state.restaurant} setModalRestaurant={this.setModalRestaurant} />
+        )}
       </React.Fragment>
     );
   }

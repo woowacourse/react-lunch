@@ -10,6 +10,10 @@ export type Restaurant = {
   referenceUrl: string;
 };
 
+export type RestaurantObject = {
+  restaurant: Restaurant;
+};
+
 export type SetModalRestaurant = {
   setModalRestaurant: (restaurant: Restaurant | null) => void;
 };
