@@ -21,13 +21,13 @@ interface Option {
 
 interface OptionProps {
   option: readonly Option[];
-  selectFilter: React.ChangeEventHandler<HTMLSelectElement>;
+  handleOptionChange: React.ChangeEventHandler<HTMLSelectElement>;
 }
 
 export class SelectBox extends Component<OptionProps> {
   render(): ReactNode {
     return (
-      <Style.Wrapper onChange={this.props.selectFilter}>
+      <Style.Wrapper onChange={this.props.handleOptionChange}>
         {this.props.option.map((option) => (
           <option key={option.value} value={option.value}>
             {option.text}

@@ -1,6 +1,13 @@
-import { categoryOption, sortOption } from './constants';
-
-export type Category = '한식' | '중식' | '일식' | '아시안' | '양식' | '기타';
+export type SortOption = 'name' | 'distance';
+export type CategoryOption =
+  | '한식'
+  | '중식'
+  | '일식'
+  | '아시안'
+  | '양식'
+  | '기타'
+  | '전체';
+export type Category = Exclude<CategoryOption, '전체'>;
 export type Distance = 5 | 10 | 15 | 20 | 30;
 
 export interface Restaurant {
@@ -16,5 +23,7 @@ export interface RestaurantProps {
   info: Restaurant;
 }
 
-export type CategoryFilter = typeof categoryOption[number]['value'];
-export type SortFilter = typeof sortOption[number]['value'];
+export interface Option<T> {
+  value: T;
+  text: string;
+}

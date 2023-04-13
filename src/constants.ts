@@ -1,3 +1,5 @@
+import { CategoryOption, Option, SortOption } from './type';
+
 export const imgSrc = {
   한식: 'korean',
   중식: 'chinese',
@@ -7,7 +9,7 @@ export const imgSrc = {
   기타: 'etc',
 };
 
-export const categoryOption = [
+export const categoryOption: Option<CategoryOption>[] = [
   {
     value: '전체',
     text: '전체',
@@ -36,9 +38,9 @@ export const categoryOption = [
     value: '기타',
     text: '기타',
   },
-] as const;
+];
 
-export const sortOption = [
+export const sortOption: Option<SortOption>[] = [
   { value: 'name', text: '이름순' },
   { value: 'distance', text: '거리순' },
-] as const;
+];

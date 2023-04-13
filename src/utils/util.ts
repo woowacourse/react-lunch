@@ -1,5 +1,5 @@
 import { FilterState } from '../App';
-import { CategoryFilter, Restaurant, SortFilter } from '../type';
+import { CategoryOption, Restaurant, SortOption } from '../type';
 
 export const filterAndSortArray = (
   restaurantList: Restaurant[],
@@ -13,7 +13,7 @@ export const filterAndSortArray = (
 
 export const filterRestaurantList = (
   restaurantList: Restaurant[],
-  categoryFilter: CategoryFilter
+  categoryFilter: CategoryOption
 ) => {
   if (categoryFilter === '전체') return restaurantList;
 
@@ -24,7 +24,7 @@ export const filterRestaurantList = (
 
 export const sortRestaurantList = (
   restaurantList: Restaurant[],
-  sortFilter: SortFilter
+  sortFilter: SortOption
 ) => {
   switch (sortFilter) {
     case 'name':

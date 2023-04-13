@@ -8,7 +8,7 @@ import { Modal } from './components/modal/Modal';
 import { RestaurantDetail } from './components/modal/RestaurantDetail';
 import { SelectBox } from './components/SelectBox';
 import { categoryOption, sortOption } from './constants';
-import { Restaurant, CategoryFilter, SortFilter } from './type';
+import { Restaurant, SortOption, CategoryOption } from './type';
 import { Layout } from './layout';
 
 const Style = {
@@ -28,15 +28,15 @@ interface AppState {
 }
 
 export interface FilterState {
-  category: CategoryFilter;
-  sort: SortFilter;
+  category: CategoryOption;
+  sort: SortOption;
 }
 
-const isSortFilterType = (arg: any): arg is SortFilter => {
+const isSortFilterType = (arg: any): arg is SortOption => {
   return arg === 'distance' || arg === 'name';
 };
 
-const isCategoryFilterTye = (arg: any): arg is CategoryFilter => {
+const isCategoryFilterTye = (arg: any): arg is CategoryOption => {
   return (
     arg === '전체' ||
     arg === '한식' ||
@@ -112,11 +112,11 @@ export class App extends Component<any, AppState> {
         <Style.Wrapper>
           <SelectBox
             option={categoryOption}
-            selectFilter={this.selectFilter.bind(this)}
+            handleOptionChange={this.selectFilter.bind(this)}
           />
           <SelectBox
             option={sortOption}
-            selectFilter={this.selectFilter.bind(this)}
+            handleOptionChange={this.selectFilter.bind(this)}
           />
         </Style.Wrapper>
         <RestaurantList
