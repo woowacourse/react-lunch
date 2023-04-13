@@ -31,11 +31,11 @@ class RestaurantList extends Component<Props> {
     sortOption: SORT_OPTIONS.NAME,
   };
 
-  filterAndSort = () => {
-    return restaurant.sort(
-      restaurant.filter(this.props.restaurantList, this.state.filterOption),
-      this.state.sortOption,
-    );
+  filterAndSortPipe = () => {
+    return [
+      (_restaurant: Restaurant[]) => restaurant.filter(_restaurant, this.state.filterOption),
+      (_restaurant: Restaurant[]) => restaurant.sort(_restaurant, this.state.sortOption),
+    ].reduce((_restaurant, fn) => fn(_restaurant), this.props.restaurantList);
   };
 
   setFilterOption = (option: string) => {
@@ -58,7 +58,7 @@ class RestaurantList extends Component<Props> {
           <SelectBox options={Object.values(SORT_OPTIONS)} setOption={this.setSortOption} />
         </SelectBoxContainer>
         <Restaurants>
-          {this.filterAndSort().map((restaurant, index) => (
+          {this.filterAndSortPipe().map((restaurant, index) => (
             <RestaurantItem
               key={index}
               restaurant={restaurant}
