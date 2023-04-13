@@ -3,27 +3,3 @@
   flex-direction: column;
   gap: 16px;
 }
-
-.detail-view .title {
-  margin: 0;
-}
-
-.detail-view .text-body {
-  -webkit-box-orient: initial;
-}
-
-.detail-view .restaurant__link {
-  color: var(--grey-500);
-}
-
-.detail-view .restaurant__favorite {
-  position: inherit;
-}
-
-.detail-view .favorite-icon {
-  position: absolute;
-  top: 32px;
-  right: 16px;
-
-  cursor: pointer;
-}
