@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
 v2.0 | 20110126
 License: none (public domain)
 */
@@ -47,6 +47,13 @@ const ResetStyle = createGlobalStyle`
   table {
     border-collapse: collapse;
     border-spacing: 0;
+  }
+  a:hover, a:visited, a:link, a:active
+  {
+    text-decoration: none;
+  }
+  a:hover{
+    color: #a00;
   }
 `;
 
