@@ -3,10 +3,6 @@ import styled from 'styled-components';
 import { SelectBoxType } from '../types';
 
 class SelectBox extends React.Component<SelectBoxType> {
-  constructor(props: SelectBoxType) {
-    super(props);
-  }
-
   render() {
     return (
       <SelectBoxWrapper name={this.props.selectType} onChange={this.props.onChange}>

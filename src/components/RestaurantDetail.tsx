@@ -5,10 +5,6 @@ import { RestaurantItemType } from '../types';
 import Button from './Button';
 
 class RestaurantDetail extends React.Component<RestaurantItemType & { onClose: () => React.SetStateAction<void> }> {
-  constructor(props: RestaurantItemType & { onClose: () => React.SetStateAction<void> }) {
-    super(props);
-  }
-
   render() {
     return (
       <RestaurantDetailWrapper>

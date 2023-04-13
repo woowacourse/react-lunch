@@ -5,10 +5,6 @@ import { BottomSheetType } from '../types';
 import { $ } from '../utils/domSelector';
 
 class BottomSheet extends React.Component<BottomSheetType> {
-  constructor(props: BottomSheetType) {
-    super(props);
-  }
-
   componentDidMount() {
     setTimeout(() => {
       $<HTMLElement>('#bottom_sheet').classList.remove('close_bottom_sheet');

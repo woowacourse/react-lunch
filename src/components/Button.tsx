@@ -2,10 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 class Button extends React.Component<{ text: string; onClick: () => React.SetStateAction<void> }> {
-  constructor(props: { text: string; onClick: () => React.SetStateAction<void> }) {
-    super(props);
-  }
-
   render() {
     return <ButtonWrapper onClick={this.props.onClick}>{this.props.text}</ButtonWrapper>;
   }
