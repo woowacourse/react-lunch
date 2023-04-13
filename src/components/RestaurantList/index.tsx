@@ -3,6 +3,7 @@ import { Component } from "react";
 import RestaurantItem from "../RestaurantItem";
 import { CategoryOption, Restaurant, SortOption } from "../../types/restaurant";
 import mockData from "../../data/mockData.json";
+import { LocalStorage } from "../../utils/LocalStorage";
 
 interface RestaurantListProps {
   selectedCategory: CategoryOption;
@@ -16,7 +17,7 @@ interface RestaurantListState {
 }
 
 export default class RestaurantList extends Component<RestaurantListProps> {
-  allRestaurants: Restaurant[] = JSON.parse(JSON.stringify(mockData.restaurants));
+  allRestaurants: Restaurant[] = this.getInitList();
 
   state: RestaurantListState = {
     filteredRestaurants: this.getSortedListByName(this.allRestaurants),
@@ -35,6 +36,17 @@ export default class RestaurantList extends Component<RestaurantListProps> {
 
       this.setState({ filteredRestaurants: sortedRestaurantList });
     }
+  }
+
+  getInitList() {
+    const localStorageData: Restaurant[] = LocalStorage.getData("menu");
+    if (localStorageData) {
+      return localStorageData;
+    }
+
+    const mockList: Restaurant[] = JSON.parse(JSON.stringify(mockData.restaurants));
+    LocalStorage.setData("menu", mockList);
+    return mockList;
   }
 
   getListByCategory(restaurants: Restaurant[]) {
