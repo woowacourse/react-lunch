@@ -27,7 +27,7 @@ export default class App extends Component<PropsWithChildren, AppState> {
     this.state = {
       restaurants: mockData as Restaurant[],
       categoryFilterOption: '전체',
-      sortOption: 'distance',
+      sortOption: 'name',
       restaurantForDetailView: mockData[0] as Restaurant,
       isModalOpen: false,
     };
