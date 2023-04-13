@@ -30,7 +30,7 @@ class App extends Component {
       return;
     }
 
-    const response = await fetch('./react-lunch/mockData.json');
+    const response = await fetch('./mockData.json');
     const data = await response.json();
 
     setLocalStorage('restaurants', data);
