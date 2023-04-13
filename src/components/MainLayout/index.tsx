@@ -1,16 +1,17 @@
-import { Component } from 'react';
+import { Component, MouseEvent } from 'react';
 
 import './style.css';
 
-import FilterSection from './FilterSection';
-import RestaurantListSection from './RestaurantListSection';
+import CategoryFilter from './CategoryFilter';
+import Sorting from './Sorting';
+import RestaurantItem from './RestaurantItem';
 
 import { Restaurant } from '../../domain/type';
 import { restaurantService } from '../../domain/restaurantService';
 
 interface Props {
-  restaurants: Restaurant[] | null;
-  onClickRestaurant: (event: React.MouseEvent<HTMLUListElement>) => void;
+  restaurants: Restaurant[];
+  onClickRestaurant: (restaurantId: string) => void;
 }
 
 interface State {
@@ -55,13 +56,14 @@ class MainLayout extends Component<Props, State> {
   compareByName(a: Restaurant, b: Restaurant) {
     return a.name.localeCompare(b.name);
   }
+  handleRestaurantClick = (event: MouseEvent<HTMLUListElement>) => {
+    const target = event.target as HTMLElement;
+    const item = target.closest('.restaurant') as HTMLLIElement;
+    const restaurantId = item.dataset.id;
 
-  handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    this.setState({ ...this.state, category: event.target.value });
-  };
+    if (!restaurantId) return;
 
-  handleSortingChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    this.setState({ ...this.state, sortBy: event.target.value });
+    this.props.onClickRestaurant(restaurantId);
   };
 
   render() {
@@ -76,14 +78,17 @@ class MainLayout extends Component<Props, State> {
 
     return (
       <main>
-        <FilterSection
-          onChangeCategory={this.handleCategoryChange}
-          onChangeSorting={this.handleSortingChange}
-        />
-        <RestaurantListSection
-          restaurants={sorted}
-          onClickRestaurant={this.props.onClickRestaurant}
-        />
+        <section className="filter-section">
+          <CategoryFilter onChangeCategory={this.setCategory} />
+          <Sorting onChangeSorting={this.setSorting} />
+        </section>
+        <section className="restaurant-list-section">
+          <ul className="restaurant-list" onClick={this.handleRestaurantClick}>
+            {this.props.restaurants?.map((restaurant) => (
+              <RestaurantItem key={restaurant.id} restaurant={restaurant} />
+            ))}
+          </ul>
+        </section>
       </main>
     );
   }

@@ -37,11 +37,7 @@ class App extends Component {
     this.setState({ restaurants: data });
   }
 
-  handleRestaurantClick = (event: React.MouseEvent<HTMLUListElement>) => {
-    const target = event.target as HTMLElement;
-    const item = target.closest('.restaurant') as HTMLLIElement;
-    const restaurantId = item.dataset.id;
-
+  setRestaurantId = (restaurantId: string) => {
     this.setState({
       ...this.state,
       restaurantId,
