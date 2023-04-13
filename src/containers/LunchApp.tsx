@@ -6,6 +6,7 @@ import SelectBox from '../components/SelectBox';
 import Header from '../components/Header';
 import styled from 'styled-components';
 import Modal from '../components/RestaurantModal';
+import { category, sort } from '../data/selects';
 
 interface LunchAppState {
   restaurants: Restaurant[];
@@ -36,39 +37,10 @@ class LunchApp extends React.Component<{}, LunchAppState> {
         <SelectContainer>
           <SelectBox
             setState={(e) => this.updateCategorizeBy(e)}
-            options={[
-              {
-                label: '전체',
-                value: 'all'
-              },
-              {
-                label: '중식',
-                value: 'chinese'
-              },
-              {
-                label: '한식',
-                value: 'korean'
-              },
-              {
-                label: '아시안',
-                value: 'asian'
-              },
-              {
-                label: '양식',
-                value: 'western'
-              },
-              {
-                label: '일식',
-                value: 'japanese'
-              },
-              {
-                label: '기타',
-                value: 'etc'
-              },
-            ]} />
+            options={category} />
           <SelectBox
             setState={(e) => this.updateSortBy(e)}
-            options={[{ label: '이름순', value: 'name' }, { label: '거리순', value: 'distance' }]}
+            options={sort}
           />
         </SelectContainer>
         <RestaurantList sortBy={sortBy} categorizeBy={categorizeBy} restaurants={restaurants} />
