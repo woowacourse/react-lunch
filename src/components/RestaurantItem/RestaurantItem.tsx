@@ -39,6 +39,7 @@ const RestaurantWrapper = styled.li`
 
   padding: 16px 8px;
   border-bottom: 1px solid #e9eaed;
+  cursor: pointer;
 `;
 export const RestaurantCategory = styled.div`
   display: flex;

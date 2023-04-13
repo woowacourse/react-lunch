@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 type Props = {
   options: string[];
-  onChange?: (option: string) => void;
+  onOptionChange: React.ChangeEventHandler<HTMLSelectElement>;
 };
 
 export class SelectBox extends Component<Props> {
@@ -12,10 +12,10 @@ export class SelectBox extends Component<Props> {
   }
 
   render() {
-    const { options, onChange } = this.props;
+    const { options, onOptionChange } = this.props;
 
     return (
-      <Select>
+      <Select onChange={onOptionChange}>
         {options.map((option) => (
           <option value={option}>{option}</option>
         ))}
