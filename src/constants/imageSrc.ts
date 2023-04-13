@@ -1,15 +1,8 @@
-import asian from '../assets/category-asian.png';
-import chinese from '../assets/category-chinese.png';
-import etc from '../assets/category-etc.png';
-import japanese from '../assets/category-japanese.png';
-import korean from '../assets/category-korean.png';
-import western from '../assets/category-western.png';
-
 export const imgSrc = {
-  한식: korean,
-  중식: chinese,
-  일식: japanese,
-  양식: western,
-  아시안: asian,
-  기타: etc,
+  한식: '/assets/category-korean.png',
+  중식: '/assets/category-chinese.png',
+  일식: '/assets/category-japanese.png',
+  양식: '/assets/category-western.png',
+  아시안: '/assets/category-asian.png',
+  기타: '/assets/category-etc.png',
 };

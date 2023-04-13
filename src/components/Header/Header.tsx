@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import styled from 'styled-components';
-import AddButtonImage from '../../assets/add-button.png';
 
 export class Header extends Component {
   render() {
@@ -8,7 +7,7 @@ export class Header extends Component {
       <HeaderWrapper>
         <Title>점심 뭐 먹지</Title>
         <AddRestaurantButton type="button" aria-label="음식점 추가">
-          <img src={AddButtonImage} alt="음식점 추가" />
+          <img src="/assets/add-button.png" alt="음식점 추가" />
         </AddRestaurantButton>
       </HeaderWrapper>
     );
