@@ -1,4 +1,10 @@
 .headerContainer {
+	position: sticky;
+	top: 0;
+
+	opacity: 0.95;
+	backdrop-filter: blur(8px);
+
 	background: #ec4a0a;
 	min-height: 64px;
 }
