@@ -9,7 +9,6 @@ const ModalBackdrop = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-
   background: var(--backdrop-color);
 `;
 
@@ -19,9 +18,7 @@ const ModalContent = styled.div`
   width: 100%;
   max-height: 80vh;
   overflow: auto;
-
   padding: 32px 16px;
-
   border-radius: 8px 8px 0px 0px;
   background: var(--grey-100);
 `;
@@ -45,19 +42,14 @@ const ReferenceURL = styled.a`
 const ButtonContainer = styled.div`
   display: flex;
   margin-top: 16px;
-
   button {
     width: 100%;
     height: 44px;
-
     margin-right: 16px;
-
     border: none;
     border-radius: 8px;
-
     font-weight: 600;
     cursor: pointer;
-
     background: var(--primary-color);
     color: var(--grey-100);
   }

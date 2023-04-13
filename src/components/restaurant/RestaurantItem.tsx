@@ -6,11 +6,8 @@ import { Restaurant, SetModalRestaurant } from '../../@types/type';
 const SRestaurant = styled.li`
   display: flex;
   align-items: flex-start;
-
   padding: 16px 8px;
-
   border-bottom: 1px solid var(--divide-color);
-
   cursor: pointer;
 `;
 
@@ -27,9 +24,7 @@ const Distance = styled.span`
 
 const Description = styled.p`
   display: -webkit-box;
-
   padding-top: 8px;
-
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;

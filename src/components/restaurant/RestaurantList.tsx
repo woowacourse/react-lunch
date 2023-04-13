@@ -20,7 +20,6 @@ const SelectBoxContainer = styled.div`
 const Restaurants = styled.ul`
   display: flex;
   flex-direction: column;
-
   margin: 16px 0;
 `;
 
