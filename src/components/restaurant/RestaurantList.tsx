@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import SelectBox from '../common/SelectBox';
 import mockData from '../../mockData.json';
 import RestaurantItem from './RestaurantItem';
+import restaurant from '../../domain/restaurant';
 import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
-import { CATEGORIES, SORT_OPTIONS } from '../../constants';
+import { CATEGORIES, SORT_OPTIONS, LOCAL_STORAGE_KEY } from '../../constants';
 import { Restaurant, SetModalRestaurant } from '../../@types/type';
 
 const RestaurantListLayout = styled.main`
@@ -23,35 +24,28 @@ const Restaurants = styled.ul`
   margin: 16px 0;
 `;
 
-const filterFn = (restaurants: Restaurant[], category: string) => {
-  if (category === '전체') return restaurants;
-  return restaurants.filter((restaurant) => restaurant.category === category);
-};
-
-const sortFn = (restaurants: Restaurant[], type: string): Restaurant[] => {
-  if (type === '이름순') return restaurants.sort((a, b) => (a.name > b.name ? 1 : -1));
-  return restaurants.sort((a, b) => (a.distanceByMinutes > b.distanceByMinutes ? 1 : -1));
-};
-
 class RestaurantList extends Component<SetModalRestaurant> {
   state = {
     restaurantList: mockData as Restaurant[],
-    filterOption: '전체',
-    sortOption: '이름순',
+    filterOption: CATEGORIES.ALL,
+    sortOption: SORT_OPTIONS.NAME,
   };
 
   componentDidMount() {
-    const savedRestaurants = getLocalStorage('restaurants');
+    const savedRestaurants = getLocalStorage(LOCAL_STORAGE_KEY.RESTAURANT);
 
     if (savedRestaurants) {
       this.setState({
         restaurantList: savedRestaurants,
       });
-    } else setLocalStorage('restaurants', this.state.restaurantList);
+    } else setLocalStorage(LOCAL_STORAGE_KEY.RESTAURANT, this.state.restaurantList);
   }
 
   filterAndSort = () => {
-    return sortFn(filterFn(this.state.restaurantList, this.state.filterOption), this.state.sortOption);
+    return restaurant.sort(
+      restaurant.filter(this.state.restaurantList, this.state.filterOption),
+      this.state.sortOption,
+    );
   };
 
   setFilterOption = (option: string) => {

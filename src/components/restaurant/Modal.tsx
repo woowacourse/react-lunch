@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import styled from 'styled-components';
-import CategoryIcon from '../common/CategoryIcon';
+import CategoryIcon from './CategoryIcon';
 import { Restaurant, SetModalRestaurant } from '../../@types/type';
 
 const ModalBackdrop = styled.div`

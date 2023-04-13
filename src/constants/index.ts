@@ -11,4 +11,8 @@ export const CATEGORIES = {
 export const SORT_OPTIONS = {
   NAME: '이름순',
   DISTANCE: '거리순',
-};
+} as const;
+
+export const LOCAL_STORAGE_KEY = {
+  RESTAURANT: 'restaurant',
+} as const;

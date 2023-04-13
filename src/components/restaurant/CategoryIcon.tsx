@@ -2,6 +2,7 @@ import { Component } from 'react';
 import styled from 'styled-components';
 
 import { Categories } from '../../@types/type';
+import { CATEGORIES } from '../../constants';
 
 import asian from '../../asset/category-asian.png';
 import chinese from '../../asset/category-chinese.png';
@@ -30,13 +31,13 @@ const CategoryIconLayout = styled.div`
 `;
 
 const categoryIcon: Record<Categories, string> = {
-  전체: 'all',
-  한식: korean,
-  중식: chinese,
-  일식: japanese,
-  양식: western,
-  아시안: asian,
-  기타: etc,
+  [CATEGORIES.ALL]: 'all',
+  [CATEGORIES.KOREAN]: korean,
+  [CATEGORIES.CHINESE]: chinese,
+  [CATEGORIES.JAPANESE]: japanese,
+  [CATEGORIES.WESTERN]: western,
+  [CATEGORIES.ASIAN]: asian,
+  [CATEGORIES.ETC]: etc,
 };
 
 type Props = {
