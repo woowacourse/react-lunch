@@ -19,6 +19,10 @@ body:has(dialog[open]) {
   overflow: hidden;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 /* Colors *****************************************/
 :root {
   --primary-color: #ec4a0a;
