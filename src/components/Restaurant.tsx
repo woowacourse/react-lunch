@@ -1,12 +1,12 @@
 import { Component } from 'react';
-import { RestaurantState } from '../types';
+import { RestaurantState } from '../types/component';
+import { saveToLocalStorage } from '../utils/localStorage';
 import { getRestaurantListData } from '../data/restaurantListData';
 import { filterAndSortRestaurantList } from '../domains/restaurantUtil';
 import FilterSection from './FilterSection';
 import RestaurantList from './RestaurantList';
 import Modal from './Modal';
 import RestaurantDetail from './RestaurantDetail';
-import { saveToLocalStorage } from '../utils/localStorage';
 
 class Restaurant extends Component {
   state: RestaurantState;

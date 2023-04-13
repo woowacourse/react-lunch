@@ -1,3 +1,5 @@
+const LOCAL_STORAGE_KEY = 'restaurantList';
+
 const DEFAULT_CATEGORY = '전체';
 const DEFAULT_SORT_BY = '이름순';
 
@@ -5,8 +7,6 @@ const RESTAURANT_CATEGORY = ['중식', '한식', '일식', '아시안식', '양�
 const SORT_BY = ['이름순', '거리순'] as const;
 
 const RESTAURANT_CATEGORY_OPTION = [DEFAULT_CATEGORY, ...RESTAURANT_CATEGORY];
-
-const LOCAL_STORAGE_KEY = 'restaurantList';
 
 const RESTAURANT_LI_ELEMENT = '.restaurant[data-id]';
 

@@ -1,5 +1,5 @@
-import { DEFAULT_CATEGORY, DEFAULT_SORT_BY } from '../constants';
 import { Restaurant } from '../types';
+import { DEFAULT_CATEGORY, DEFAULT_SORT_BY } from '../constants';
 
 const filterRestaurant = (restaurantList: Restaurant[], filter: string) => {
   if (filter === DEFAULT_CATEGORY) return restaurantList;
@@ -21,7 +21,7 @@ const sortRestaurant = (restaurantList: Restaurant[], sortBy: string) => {
   return sortByDistance(restaurantList);
 };
 
-export const filterAndSortRestaurantList = (
+const filterAndSortRestaurantList = (
   restaurantList: Restaurant[],
   filter: string = DEFAULT_CATEGORY,
   sortBy: string = DEFAULT_SORT_BY
@@ -30,3 +30,5 @@ export const filterAndSortRestaurantList = (
 
   return sortRestaurant([...filteredRestaurantList], sortBy);
 };
+
+export { filterAndSortRestaurantList };

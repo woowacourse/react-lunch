@@ -1,7 +1,7 @@
 import './style.css';
 import { Component, MouseEvent } from 'react';
+import { RestaurantListProps } from '../../types/component';
 import { RESTAURANT_LI_ELEMENT } from '../../constants';
-import { RestaurantListProps } from '../../types';
 import RestaurantItem from '../RestaurantItem';
 
 class RestaurantList extends Component<RestaurantListProps> {

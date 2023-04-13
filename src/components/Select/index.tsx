@@ -1,5 +1,5 @@
 import { ChangeEvent, Component } from 'react';
-import { SelectProps } from '../../types';
+import { SelectProps } from '../../types/component';
 
 class Select extends Component<SelectProps> {
   shouldComponentUpdate(nextProps: SelectProps) {

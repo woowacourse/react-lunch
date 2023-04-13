@@ -1,7 +1,7 @@
 import './style.css';
 import { Component } from 'react';
 import { FilterOption } from '../../types';
-import { FilterSectionProps, FilterSectionState } from '../../types';
+import { FilterSectionProps, FilterSectionState } from '../../types/component';
 import {
   DEFAULT_CATEGORY,
   DEFAULT_SORT_BY,

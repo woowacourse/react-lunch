@@ -3,7 +3,7 @@ import { getLocalStorage } from '../utils/localStorage';
 import { validateCategory } from '../validations';
 import mockData from './mockRestaurantData.json';
 
-export const getRestaurantListData = () => {
+const getRestaurantListData = () => {
   const restaurantListData: Restaurant[] = getLocalStorage() ?? mockData.restaurantList;
 
   return restaurantListData.map<Restaurant>((restaurant) => ({
@@ -11,3 +11,5 @@ export const getRestaurantListData = () => {
     category: validateCategory(restaurant.category),
   }));
 };
+
+export { getRestaurantListData };

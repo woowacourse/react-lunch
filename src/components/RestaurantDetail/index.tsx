@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { RestaurantElementProps } from '../../types';
+import { RestaurantElementProps } from '../../types/component';
 import { RESTAURANT_IMAGE } from '../../constants/images';
 
 class RestaurantDetail extends Component<RestaurantElementProps> {
