@@ -41,6 +41,12 @@ interface ModalProps {
 }
 
 export class Modal extends Component<ModalProps> {
+  componentDidMount() {
+    window.onkeydown = (e) => {
+      if (e.key === 'Escape' && this.props.isOpen) this.props.toggleOpen();
+    };
+  }
+
   render(): ReactNode {
     return (
       <>
