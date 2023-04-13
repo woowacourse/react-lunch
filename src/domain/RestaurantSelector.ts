@@ -19,3 +19,7 @@ export const sortRestaurants = (restaurants: RestaurantInfo[], sortMethod: strin
   if (sortMethod === '거리순') return sortByEstimatedTime(restaurants);
   return [...restaurants];
 };
+
+export const deleteTargetRestaurant = (restaurants: RestaurantInfo[], target: RestaurantInfo) => {
+  return restaurants.filter((restaurant) => restaurant !== target);
+};

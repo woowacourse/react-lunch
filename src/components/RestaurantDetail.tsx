@@ -4,11 +4,16 @@ import CategoryImage from './CategoryImage';
 import styles from './RestaurantDetail.module.css';
 import Button from './Button';
 
-class RestaurantDetail extends Component<{ restaurantInfo: RestaurantInfo; onCloseClick: () => void }> {
+class RestaurantDetail extends Component<{
+  restaurantInfo: RestaurantInfo;
+  onDeleteClick: () => void;
+  onCloseClick: () => void;
+}> {
   render() {
     const {
       restaurantInfo: { category, title, estimatedTime, description, link },
       onCloseClick,
+      onDeleteClick,
     } = this.props;
 
     return (
@@ -23,13 +28,7 @@ class RestaurantDetail extends Component<{ restaurantInfo: RestaurantInfo; onClo
           </a>
         </div>
         <div className={styles.buttonContainer}>
-          <Button
-            text="삭제하기"
-            kind="secondary"
-            onClick={() => {
-              console.log('삭제하기 버튼 클릭');
-            }}
-          />
+          <Button text="삭제하기" kind="secondary" onClick={onDeleteClick} />
           <Button text="닫기" kind="primary" onClick={onCloseClick} />
         </div>
       </section>

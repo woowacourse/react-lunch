@@ -2,33 +2,27 @@ import React, { ChangeEvent, Component } from 'react';
 import Header from './components/Header';
 import './styles/App.css';
 import { FoodCategory, RestaurantInfo, SortMethod, isFoodCategory, isSortMethod } from './types/restaurantInfo';
-import {
-  getSavedRestaurantList,
-  hasSavedRestaurantList,
-  saveNewRestaurantList,
-} from './domain/initializeRestaurantList';
+import { getSavedRestaurantList, hasSavedRestaurantList, saveRestaurantList } from './domain/initializeRestaurantList';
 import RestaurantList from './components/RestaurantList';
 import Modal from './components/Modal';
 import RestaurantDetail from './components/RestaurantDetail';
-import { filterFoodCategory, sortRestaurants } from './domain/RestaurantSelector';
+import { deleteTargetRestaurant, filterFoodCategory, sortRestaurants } from './domain/RestaurantSelector';
 
 interface AppState {
   restaurantList: RestaurantInfo[];
+  originalRestaurantList: RestaurantInfo[];
   clickedRestaurant: RestaurantInfo | null;
   selectedCategory: FoodCategory;
   selectedSortingMethod: SortMethod;
 }
 
 class App extends Component<object, AppState> {
-  originalRestaurantList: RestaurantInfo[];
-
   constructor(props: object) {
     super(props);
 
-    this.originalRestaurantList = [];
-
     this.state = {
-      restaurantList: [] as RestaurantInfo[],
+      restaurantList: [],
+      originalRestaurantList: [],
       clickedRestaurant: null,
       selectedCategory: '전체',
       selectedSortingMethod: '이름순',
@@ -38,16 +32,17 @@ class App extends Component<object, AppState> {
     this.resetClickedRestaurant = this.resetClickedRestaurant.bind(this);
     this.selectChangeCallback = this.selectChangeCallback.bind(this);
     this.filterRestaurantList = this.filterRestaurantList.bind(this);
+    this.deleteRestaurant = this.deleteRestaurant.bind(this);
   }
 
-  async componentDidMount() {
-    if (!hasSavedRestaurantList()) await saveNewRestaurantList();
+  componentDidMount() {
+    if (!hasSavedRestaurantList()) saveRestaurantList();
 
     const list = getSavedRestaurantList();
-    this.originalRestaurantList = list;
 
     this.setState({
       restaurantList: list,
+      originalRestaurantList: list,
     });
   }
 
@@ -67,10 +62,28 @@ class App extends Component<object, AppState> {
     document.body.dataset.hideScroll = 'false';
   }
 
-  filterRestaurantList() {
-    const { selectedCategory, selectedSortingMethod } = this.state;
+  deleteRestaurant() {
+    const { originalRestaurantList, clickedRestaurant } = this.state;
 
-    const filteredList = filterFoodCategory(this.originalRestaurantList, selectedCategory);
+    if (!clickedRestaurant) return;
+
+    const updatedList = deleteTargetRestaurant(originalRestaurantList, clickedRestaurant);
+
+    this.setState(
+      {
+        originalRestaurantList: updatedList,
+      },
+      this.filterRestaurantList,
+    );
+
+    saveRestaurantList(updatedList);
+    this.resetClickedRestaurant();
+  }
+
+  filterRestaurantList() {
+    const { selectedCategory, selectedSortingMethod, originalRestaurantList } = this.state;
+
+    const filteredList = filterFoodCategory(originalRestaurantList, selectedCategory);
     const sortedList = sortRestaurants(filteredList, selectedSortingMethod);
 
     this.setState({
@@ -112,7 +125,11 @@ class App extends Component<object, AppState> {
         <RestaurantList onClick={this.setClickedRestaurant} restaurantList={restaurantList} />
         {clickedRestaurant && (
           <Modal onClose={this.resetClickedRestaurant}>
-            <RestaurantDetail onCloseClick={this.resetClickedRestaurant} restaurantInfo={clickedRestaurant} />
+            <RestaurantDetail
+              onDeleteClick={this.deleteRestaurant}
+              onCloseClick={this.resetClickedRestaurant}
+              restaurantInfo={clickedRestaurant}
+            />
           </Modal>
         )}
       </div>
