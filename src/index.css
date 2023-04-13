@@ -15,6 +15,24 @@ body {
   font-size: 16px;
 }
 
+body {
+	width: 100vw;
+  height: 100vh;
+}
+
+body::-webkit-scrollbar {
+	width: 7px;  /* 스크롤바의 너비 */
+}
+
+body::-webkit-scrollbar-thumb {
+	background: var(--grey-250);
+	border-radius: 30px;
+}
+
+body::-webkit-scrollbar-track {
+	background: transparent;
+}
+
 :root {
   --darken-color-1: #d44208;
   --darken-color-2: #de4509;
@@ -23,6 +41,7 @@ body {
   --grey-100: #ffffff;
   --grey-150: #ebeef2;
   --grey-200: #d0d5dd;
+	--grey-250: #c9c9c9;
   --grey-300: #667085;
   --grey-400: #344054;
   --grey-500: #000000;

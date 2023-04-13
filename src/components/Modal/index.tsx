@@ -36,6 +36,8 @@ class Modal extends Component<ModalProps> {
     if (event.key === 'Escape') {
       this.props.onToggle();
     }
+
+		document.body.classList.toggle('body-hidden-scroll');
   };
 
   render() {
