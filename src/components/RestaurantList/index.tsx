@@ -5,6 +5,8 @@ import { CategoryOption, Restaurant, SortOption } from "../../types/restaurant";
 import mockData from "../../data/mockData.json";
 import { LocalStorage } from "../../utils/LocalStorage";
 
+const LOCAL_STORAGE_KEY = "RESTAURANT_LIST";
+
 interface RestaurantListProps {
   selectedCategory: CategoryOption;
   selectedSort: SortOption;
@@ -39,13 +41,13 @@ export default class RestaurantList extends Component<RestaurantListProps> {
   }
 
   getInitList() {
-    const localStorageData: Restaurant[] = LocalStorage.getData("menu");
+    const localStorageData: Restaurant[] = LocalStorage.getData(LOCAL_STORAGE_KEY);
     if (localStorageData) {
       return localStorageData;
     }
 
     const mockList: Restaurant[] = JSON.parse(JSON.stringify(mockData.restaurants));
-    LocalStorage.setData("menu", mockList);
+    LocalStorage.setData(LOCAL_STORAGE_KEY, mockList);
     return mockList;
   }
 

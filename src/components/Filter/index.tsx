@@ -2,7 +2,7 @@ import "./index.css";
 import { Component } from "react";
 import { CategoryOption, SortOption } from "../../types/restaurant";
 
-const categoryList = {
+const CATEGORY_LIST = {
   all: "전체",
   korean: "한식",
   japanese: "일식",
@@ -11,7 +11,7 @@ const categoryList = {
   etc: "기타",
 };
 
-const sortList = {
+const SORT_LIST = {
   name: "이름순",
   distance: "거리순",
 };
@@ -39,7 +39,7 @@ export default class Filter extends Component<FilterProps> {
           className="restaurant-filter"
           onChange={this.setSelectedCategory.bind(this)}
         >
-          {Object.entries(categoryList).map(([key, value]) => (
+          {Object.entries(CATEGORY_LIST).map(([key, value]) => (
             <option key={key} value={key}>
               {value}
             </option>
@@ -51,7 +51,7 @@ export default class Filter extends Component<FilterProps> {
           className="restaurant-filter"
           onChange={this.setSelectedSort.bind(this)}
         >
-          {Object.entries(sortList).map(([key, value]) => (
+          {Object.entries(SORT_LIST).map(([key, value]) => (
             <option key={key} value={key}>
               {value}
             </option>

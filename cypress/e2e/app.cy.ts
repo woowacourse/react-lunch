@@ -3,7 +3,7 @@ describe("점심 뭐먹지 미션 e2e 테스트", () => {
     cy.visit("http://localhost:3000/");
 
     cy.fixture("mockData.json").then((mockData) => {
-      localStorage.setItem("menu", JSON.stringify(mockData.restaurants));
+      localStorage.setItem("RESTAURANT_LIST", JSON.stringify(mockData.restaurants));
     });
   });
 
