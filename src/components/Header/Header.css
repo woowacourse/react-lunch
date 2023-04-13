@@ -1,0 +1,28 @@
+.gnb {
+  display: flex;
+  height: 64px;
+  padding: 0 16px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-color);
+}
+
+.gnb__title {
+  color: #fcfcfd;
+}
+
+.gnb__button {
+  height: 40px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.gnb__button img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
