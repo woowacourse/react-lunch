@@ -1,10 +1,18 @@
 import React from 'react';
-import { Restaurant, RestaurantListState, Category, All, Criterion } from '../../types';
+import { Restaurant, Category, All, Criterion } from '../../types';
 import RestaurantItem from '../RestaurantItem/RestaurantItem';
 import RestaurantDataService from '../../domains/LunchDataService';
 import DetailModal from '../Modal/DetailModal';
 import CategoryFilter from '../SelectBox/CategoryFilter';
 import SortingFilter from '../SelectBox/SortingFilter';
+
+interface RestaurantListState {
+  isClicked: boolean;
+  clickedData: Restaurant;
+  category: Category | All;
+  criterion: Criterion;
+  restaurantsData: Restaurant[];
+}
 
 class RestaurantList extends React.Component<{}, RestaurantListState> {
   constructor() {
@@ -58,17 +66,7 @@ class RestaurantList extends React.Component<{}, RestaurantListState> {
         </section>
         <ul onClick={this.onClick}>
           {restaurantsData.map((restaurantData: Restaurant) => {
-            return (
-              <RestaurantItem
-                key={restaurantData.id}
-                id={restaurantData.id}
-                category={restaurantData.category}
-                name={restaurantData.name}
-                distance={restaurantData.distance}
-                description={restaurantData.description}
-                link={restaurantData.link}
-              />
-            );
+            return <RestaurantItem key={restaurantData.id} data={restaurantData} />;
           })}
         </ul>
         {isClicked && <DetailModal data={clickedData} />}

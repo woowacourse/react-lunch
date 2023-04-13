@@ -1,6 +1,17 @@
-import { Restaurant, Criterion, Category, LunchDataServiceType, All } from '../types';
+import { Restaurant, All, Category, Criterion } from '../types';
 import { CATEGORY, CRITERION, LOCAL_STORAGE_KEY } from '../constants';
 import restaurants from '../initialData/restaurants.json';
+
+interface LunchDataServiceType {
+  restaurants: Restaurant[];
+  setInitialRestaurants(): void;
+  filterBy(category: Category | All): Restaurant[];
+  sortBy(criterion: Criterion, restaurants: Restaurant[]): Restaurant[];
+  filterAndSort(category: Category | All, criterion: Criterion): Restaurant[];
+  getRestaurant(id: string): Restaurant;
+  getRestaurants(category: Category | All, criterion: Criterion): Restaurant[];
+  getProcessedRestaurants(category: Category | All, criterion: Criterion): Restaurant[];
+}
 
 const LunchDataService: LunchDataServiceType = {
   restaurants: [],

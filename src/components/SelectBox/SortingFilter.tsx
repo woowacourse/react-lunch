@@ -3,9 +3,9 @@ import SelectBox from './SelectBox';
 import { CRITERION } from '../../constants';
 import { Criterion } from '../../types';
 
-type SortingProps = {
+interface SortingProps {
   setCriterion: (newCriterion: Criterion) => void;
-};
+}
 
 class SortingFilter extends React.Component<SortingProps> {
   constructor(props: SortingProps) {
@@ -18,7 +18,7 @@ class SortingFilter extends React.Component<SortingProps> {
   }
 
   render() {
-    return <SelectBox filter={CRITERION} onChangeCriterion={this.onChangeCriterion} />;
+    return <SelectBox filter={CRITERION} onOptionChange={this.onChangeCriterion} />;
   }
 }
 

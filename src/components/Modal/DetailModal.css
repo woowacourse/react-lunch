@@ -9,6 +9,7 @@
 .category-favorite-icon-container {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 16px;
 }
 
 .restaurant__info {

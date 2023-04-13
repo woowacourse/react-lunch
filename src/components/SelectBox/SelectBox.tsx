@@ -1,15 +1,19 @@
 import React from 'react';
 import './SelectBox.css';
-import { SelectBoxProps } from '../../types';
+
+interface SelectBoxProps {
+  filter: object;
+  onOptionChange(event: React.ChangeEvent<HTMLSelectElement>): void;
+}
 
 class SelectBox extends React.Component<SelectBoxProps> {
   constructor(props: SelectBoxProps) {
     super(props);
     this.onChange = this.onChange.bind(this);
   }
+
   onChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    if (this.props.onChangeCategory) this.props.onChangeCategory(event);
-    if (this.props.onChangeCriterion) this.props.onChangeCriterion(event);
+    if (this.props.onOptionChange) this.props.onOptionChange(event);
   }
 
   render() {

@@ -1,6 +1,6 @@
 .restaurant {
   display: flex;
-  padding: 16px 8px;
+  padding: 16px 16px;
   align-items: flex-start;
   border-bottom: 1px solid #e9eaed;
 }

@@ -3,9 +3,13 @@ import './RestaurantItem.css';
 import { Restaurant } from '../../types';
 import { IMAGE_PATH } from '../../constants';
 
-class RestaurantItem extends React.Component<Restaurant> {
+interface RestaurantItemProps {
+  data: Restaurant;
+}
+
+class RestaurantItem extends React.Component<RestaurantItemProps> {
   render(): React.ReactElement {
-    const { id, category, name, distance, description } = this.props;
+    const { id, category, name, distance, description } = this.props.data;
 
     return (
       <li className="restaurant" id={String(id)}>
