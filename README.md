@@ -4,7 +4,7 @@
 
 # 사이트 바로가기
 
-<a href="https://gilpop8663.github.io/react-lunch/">점심 뭐 먹지 바로가기</a>
+### <a href="https://gilpop8663.github.io/react-lunch/">점심 뭐 먹지 바로가기</a>
 
 # step1
 
