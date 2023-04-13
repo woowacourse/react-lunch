@@ -3,6 +3,21 @@ import React from 'react';
 import styled from 'styled-components';
 import { textTitle } from '../mixin';
 
+class Header extends React.Component {
+  render() {
+    return (
+      <HeaderWrapper>
+        <h1>점심 뭐 먹지</h1>
+        <AddRestaurantButton>
+          <img src="./img/add-button.png" alt="add-restaurant-button" />
+        </AddRestaurantButton>
+      </HeaderWrapper>
+    );
+  }
+}
+
+export default Header;
+
 const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
@@ -36,18 +51,3 @@ const AddRestaurantButton = styled.button`
     object-fit: contain;
   }
 `;
-
-class Header extends React.Component {
-  render() {
-    return (
-      <HeaderWrapper>
-        <h1>점심 뭐 먹지</h1>
-        <AddRestaurantButton>
-          <img src="./img/add-button.png" alt="add-restaurant-button" />
-        </AddRestaurantButton>
-      </HeaderWrapper>
-    );
-  }
-}
-
-export default Header;
