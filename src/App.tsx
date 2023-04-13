@@ -1,8 +1,8 @@
 import { Component } from "react";
+import restaurantMockData from "./mocks/restaurants.json";
+import { RestaurantInfo } from "./types";
 import Restaurants from "./components/restaurants";
 import SelectBoxes from "./components/selectBoxes";
-import RestaurantMockData from "./mocks/restaurants.json";
-import { RestaurantInfo } from "./types";
 import HeaderSection from "./components/headerSection";
 
 type RestaurantProps = {
@@ -14,11 +14,17 @@ type RestaurantProps = {
 
 class App extends Component<{}, RestaurantProps> {
   state = {
-    restaurants: RestaurantMockData,
-    filteredRestaurants: RestaurantMockData,
+    restaurants: this.sortRestaurantsByName(restaurantMockData),
+    filteredRestaurants: this.sortRestaurantsByName(restaurantMockData),
     category: "전체",
     sorting: "이름순",
   };
+
+  sortRestaurantsByName(restaurants: RestaurantInfo[]) {
+    return [...restaurants].sort((resA, resB) =>
+      resA.name.localeCompare(resB.name, "ko-KR")
+    );
+  }
 
   handleCategorySelect = (value: string) => {
     const filteredRestaurants = this.filter(value);
@@ -35,14 +41,14 @@ class App extends Component<{}, RestaurantProps> {
     category: string = this.state.category,
     sorting: string = this.state.sorting
   ) {
-    const filteredRestaurants = RestaurantMockData.filter((restaurant) =>
+    const filteredRestaurants = this.sortRestaurantsByName(
+      restaurantMockData
+    ).filter((restaurant) =>
       category === "전체" ? restaurant : restaurant.category === category
     );
 
     if (sorting === "이름순") {
-      return [...filteredRestaurants].sort((resA, resB) =>
-        resA.name.localeCompare(resB.name, "ko-KR")
-      );
+      return this.sortRestaurantsByName(filteredRestaurants);
     } else {
       return [...filteredRestaurants].sort(
         (resA, resB) => resA.takingTime - resB.takingTime
