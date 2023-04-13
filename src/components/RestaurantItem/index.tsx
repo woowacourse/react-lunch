@@ -38,6 +38,9 @@ class RestaurantItem extends React.PureComponent<MyProps, MyState> {
 
 	render() {
 		const { restaurant, isModal } = this.props;
+
+		if (restaurant === undefined) return <>no result</>;
+
 		return (
 			<Store.Consumer>
 				{(store) => (

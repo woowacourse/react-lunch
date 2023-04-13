@@ -8,7 +8,6 @@ import mockData from './data/mockData.json';
 import Store from './store';
 import type { Category, Restaurant } from './components/RestaurantItem/type';
 
-
 export type Sort = '이름순' | '거리순';
 export interface State {
 	category: Category;
@@ -45,7 +44,6 @@ class App extends React.Component<object, State> {
 
 		this.setCategory = (category: Category) => {
 			this.setState({ category });
-
 			this.setState((prevState) => {
 				const filteredList =
 					category === '전체'
