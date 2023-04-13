@@ -22,7 +22,7 @@ class RestaurantInfoModal extends Component<RestaurantModal> {
             <Modal>
               <div className="category">
                 <img
-                  src={`../assets/category-${
+                  src={`${process.env.PUBLIC_URL}/assets/category-${
                     ENGLISH_CATEGORY[restaurant.category]
                   }.png`}
                   alt={restaurant.category}

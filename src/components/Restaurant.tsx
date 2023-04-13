@@ -11,7 +11,7 @@ class Restaurant extends Component<RestaurantItem> {
       <RestaurantContainer onClick={this.props.onClick}>
         <div className="category">
           <img
-            src={`../assets/category-${
+            src={`${process.env.PUBLIC_URL}/assets/category-${
               ENGLISH_CATEGORY[restaurantInfo.category]
             }.png`}
             alt={restaurantInfo.category}
