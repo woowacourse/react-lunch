@@ -62,7 +62,11 @@ export default class RestaurantListContainer extends Component {
           sort={sort}
           onOpenModal={this.handleOpenModal}
         ></RestaurantList>
-        <Modal restaurantID={restaurantID}></Modal>
+        <Modal
+          category={category}
+          sort={sort}
+          restaurantID={restaurantID}
+        ></Modal>
       </>
     );
   }

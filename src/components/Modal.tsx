@@ -1,7 +1,10 @@
 import { Component, createRef } from 'react';
 import RestaurantManager from '../domain/RestaurantManager';
+import { Category } from '../types/RestaurantDetail';
 
 interface ModalProps {
+  category: Category;
+  sort: string;
   restaurantID: number;
 }
 
@@ -10,6 +13,16 @@ export default class Modal extends Component<ModalProps> {
 
   constructor(props: ModalProps) {
     super(props);
+  }
+
+  shouldComponentUpdate(nextProps: Readonly<ModalProps>): boolean {
+    if (
+      this.props.category !== nextProps.category ||
+      this.props.sort !== nextProps.sort
+    ) {
+      return false;
+    }
+    return true;
   }
 
   componentDidUpdate(): void {
