@@ -51,12 +51,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/feb-dain/react-lunch.git"
+    "url": "git+https://github.com/hae-on/react-lunch.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/feb-dain/react-lunch/issues"
+    "url": "https://github.com/hae-on/react-lunch/issues"
   },
-  "homepage": "https://feb-dain.github.io/react-lunch/"
+  "homepage": "https://hae-on.github.io/react-lunch/"
 }
