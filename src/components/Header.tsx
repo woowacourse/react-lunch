@@ -1,22 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
 
-class Header extends React.Component {
-  render() {
-    return (
-      <StyledHeader>
-        <h1 className="gnb__title text-title">점심 뭐 먹지</h1>
-        <button type="button" className="gnb__button" aria-label="음식점 추가">
-          <img src="./img/add-button.png" alt="음식점 추가" />
-        </button>
-      </StyledHeader>
-    );
-  }
-}
+import styled from 'styled-components';
+import { textTitle } from '../mixin';
 
-export default Header;
-
-const StyledHeader = styled.header`
+const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,25 +13,41 @@ const StyledHeader = styled.header`
 
   background-color: var(--primary-color);
 
-  .gnb__title {
+  h1 {
+    ${textTitle}
     color: #fcfcfd;
   }
+`;
 
-  .gnb__button {
-    height: 40px;
+const AddRestaurantButton = styled.button`
+  height: 40px;
 
-    border: none;
-    border-radius: 8px;
-    background: transparent;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
 
-    font-size: 24px;
-    cursor: pointer;
-  }
+  font-size: 24px;
+  cursor: pointer;
 
-  .gnb__button img {
+  img {
     display: block;
     width: 40px;
     height: 40px;
     object-fit: contain;
   }
 `;
+
+class Header extends React.Component {
+  render() {
+    return (
+      <HeaderWrapper>
+        <h1>점심 뭐 먹지</h1>
+        <AddRestaurantButton>
+          <img src="./img/add-button.png" alt="add-restaurant-button" />
+        </AddRestaurantButton>
+      </HeaderWrapper>
+    );
+  }
+}
+
+export default Header;

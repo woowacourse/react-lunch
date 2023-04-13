@@ -1,9 +1,10 @@
-import { Restaurant } from "../types/restaurant";
+import { Restaurant } from '../types/restaurant';
 
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import { CATEGORY_IMAGE_MAP } from "../constants";
+import { CATEGORY_IMAGE_MAP } from '../constants';
+import { textBody, textSubtitle } from '../mixin';
 
 interface Props {
   restaurant: Restaurant;
@@ -14,29 +15,23 @@ class RestaurantItem extends React.Component<Props> {
     const { id, name, category, distance, description } = this.props.restaurant;
 
     return (
-      <StyledLi id={id}>
-        <div className="restaurant__category">
-          <img
-            src={`./img/${CATEGORY_IMAGE_MAP[category]}`}
-            alt={category}
-            className="category-icon"
-          />
-        </div>
-        <div className="restaurant__info">
-          <h3 className="restaurant__name text-subtitle">{name}</h3>
-          <span className="restaurant__distance text-body">
-            캠퍼스부터 {distance}분 내
-          </span>
-          <p className="restaurant__description text-body">{description}</p>
-        </div>
-      </StyledLi>
+      <ItemWrapper id={id}>
+        <CategoryImage>
+          <img src={`./img/${CATEGORY_IMAGE_MAP[category]}`} alt={category} />
+        </CategoryImage>
+        <RestaurantInfo>
+          <h3>{name}</h3>
+          <Distance>캠퍼스부터 {distance}분 내</Distance>
+          <Description>{description}</Description>
+        </RestaurantInfo>
+      </ItemWrapper>
     );
   }
 }
 
 export default RestaurantItem;
 
-const StyledLi = styled.li`
+const ItemWrapper = styled.li`
   display: flex;
   align-items: flex-start;
 
@@ -45,49 +40,53 @@ const StyledLi = styled.li`
   border-bottom: 1px solid #e9eaed;
 
   cursor: pointer;
+`;
 
-  .restaurant__category {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 64px;
-    height: 64px;
-    min-width: 64px;
-    min-height: 64px;
+const CategoryImage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  min-height: 64px;
 
-    margin-right: 16px;
+  margin-right: 16px;
 
-    border-radius: 50%;
-    background: var(--lighten-color);
-  }
+  border-radius: 50%;
+  background: var(--lighten-color);
 
-  .category-icon {
+  img {
     width: 36px;
     height: 36px;
   }
+`;
 
-  .restaurant__info {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
+const RestaurantInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 
-  .restaurant__name {
+  h3 {
     margin: 0;
+    ${textSubtitle}
   }
+`;
 
-  .restaurant__distance {
-    color: var(--primary-color);
-  }
+const Distance = styled.span`
+  color: var(--primary-color);
+  ${textBody}
+`;
 
-  .restaurant__description {
-    display: -webkit-box;
+const Description = styled.span`
+  display: -webkit-box;
 
-    padding-top: 8px;
+  padding-top: 8px;
 
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  ${textBody}
 `;
