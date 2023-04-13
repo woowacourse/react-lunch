@@ -8,7 +8,7 @@ interface AppState {
   filterOptions: any;
   isOpenDrawer: boolean;
 }
-
+// TODO: State Type 선언
 class App extends React.Component<AppState> {
   constructor(props) {
     super(props);
@@ -35,8 +35,8 @@ class App extends React.Component<AppState> {
       },
     });
   }
-
-  onToggleDrawer(id) {
+  // TODO: Toggle을 닫을 때는 id값을 어떻게 처리할지 고민하기
+  onToggleDrawer(id:number = -1) {
     this.setState({
       isOpenDrawer: !this.state.isOpenDrawer,
       drawerSelectId: id,

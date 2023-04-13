@@ -8,7 +8,7 @@ type StateType = {
 
 type RestaurantListProps = {
   filterOptions: any;
-  onToggleDrawer: any;
+  onToggleDrawer: (id?: number) => void;
 };
 
 class RestaurantList extends React.Component<RestaurantListProps> {

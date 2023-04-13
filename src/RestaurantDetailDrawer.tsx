@@ -3,9 +3,10 @@ import Drawer from './Drawer.tsx';
 type RestaurantDetailDrawerProps = {
   isOpenDrawer: boolean;
   restaurantId: number;
-  onToggleDrawer: (id: any) => void;
+  onToggleDrawer: (id?: number) => void;
 };
-
+// TODO: console.log 제거
+// TODO: state type 정의
 class RestaurantDetailDrawer extends React.Component<RestaurantDetailDrawerProps> {
   constructor(props) {
     super(props);
@@ -70,7 +71,7 @@ class RestaurantDetailDrawer extends React.Component<RestaurantDetailDrawerProps
         <button
           type="button"
           className="button button--secondary text-caption"
-          onClick={this.props.onToggleDrawer}
+          onClick={() => this.props.onToggleDrawer()}
         >
           취소하기
         </button>

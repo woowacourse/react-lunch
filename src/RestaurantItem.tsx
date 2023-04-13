@@ -11,7 +11,7 @@ import westernImg from './asset/category-western.png';
 
 type RestaurantProps = {
   readonly restaurant: Omit<Restaurant, 'link'>;
-  onToggleDrawer: any;
+  onToggleDrawer: (id?: number) => void;
 };
 class RestaurantItem extends React.Component<RestaurantProps> {
   render() {
