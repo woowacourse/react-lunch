@@ -1,5 +1,10 @@
 import { FoodCategory, RestaurantInfo } from '../src/types/restaurantInfo';
-import { filterFoodCategory, sortByEstimatedTime, sortByTitle } from '../src/domain/RestaurantSelector';
+import {
+  deleteTargetRestaurant,
+  filterFoodCategory,
+  sortByEstimatedTime,
+  sortByTitle,
+} from '../src/domain/RestaurantSelector';
 
 const RESTAURANT_LIST: RestaurantInfo[] = [
   {
@@ -59,15 +64,15 @@ describe('음식점 카테고리 선택 및 이름순, 거리순 정렬하는 �
     ['아시안', 1],
     ['기타', 0],
   ])('%s 음식점 카테고리 선택 결과는 %s 개다.', (kind, expected) => {
-    //when
+    // when
     const result = filterFoodCategory(RESTAURANT_LIST, kind as FoodCategory);
 
-    //then
+    // then
     expect(result.length).toBe(expected);
   });
 
   test('음식점 이름 순으로 정렬했을 때 올바른 결과가 나오는 지 테스트', () => {
-    //given
+    // given
     const expected = [
       '시골밥상',
       '역전우동 선릉점',
@@ -80,15 +85,15 @@ describe('음식점 카테고리 선택 및 이름순, 거리순 정렬하는 �
       '호아빈 삼성점',
     ];
 
-    //when
+    // when
     const result = sortByTitle(RESTAURANT_LIST).map((restaurant: RestaurantInfo) => restaurant.title);
 
-    //then
+    // then
     expect(result).toEqual(expected);
   });
 
   test('음식점 거리 순으로 정렬했을 때 올바른 결과가 나오는 지 테스트', () => {
-    //given
+    // given
     const expected = [
       '친친',
       '잇쇼우',
@@ -101,10 +106,27 @@ describe('음식점 카테고리 선택 및 이름순, 거리순 정렬하는 �
       '최고다 참치',
     ];
 
-    //when
+    // when
     const result = sortByEstimatedTime(RESTAURANT_LIST).map((restaurant: RestaurantInfo) => restaurant.title);
 
-    //then
+    // then
     expect(result).toEqual(expected);
+  });
+});
+
+describe('음식점 삭제 기능 테스트', () => {
+  test('피양콩할마니 삭제 테스트', () => {
+    // given
+    const target: RestaurantInfo = {
+      title: '피양콩할마니',
+      estimatedTime: 10,
+      category: '한식',
+    };
+
+    // when
+    const list = deleteTargetRestaurant(RESTAURANT_LIST, target);
+
+    // then
+    expect(list.includes(target)).toBe(false);
   });
 });
