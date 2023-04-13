@@ -1,0 +1,27 @@
+button {
+  width: 100%;
+  padding: 10px 18px;
+  margin: 0 8px;
+
+  border-radius: 8px;
+
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+
+  cursor: pointer;
+}
+
+.primary {
+  border: 1px solid var(--primary-color);
+
+  color: white;
+  background-color: var(--primary-color);
+}
+
+.secondary {
+  border: 1px solid var(--secondary-color);
+
+  color: var(--secondary-color);
+  background-color: white;
+}
