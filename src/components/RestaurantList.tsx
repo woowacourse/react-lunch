@@ -4,7 +4,7 @@ import mockData from '../mockData.json';
 import RestaurantItem from './RestaurantItem';
 import { RestaurantItemType, RestaurantListStateType, SelectKind } from '../types';
 import { CATEGORY_NAME, ORDER_KEY } from '../constants';
-import SelectBox from './SelectBox';
+import SelectBox from './common/SelectBox';
 import { $ } from '../utils/domSelector';
 
 const data: RestaurantItemType[] = JSON.parse(JSON.stringify(mockData));
@@ -27,11 +27,11 @@ class RestaurantList extends React.Component<object, RestaurantListStateType> {
   }
 
   initSelectOption() {
-    const categorySelectBox = $<HTMLSelectElement>('select[name="카테고리"]');
+    const categorySelectBox = $<HTMLSelectElement>(`select[name="${SelectKind.category}"]`);
     categorySelectBox.selectedIndex = 0;
     categorySelectBox.dispatchEvent(new Event('change', { bubbles: true }));
 
-    const orderSelectBox = $<HTMLSelectElement>('select[name="정렬"]');
+    const orderSelectBox = $<HTMLSelectElement>(`select[name="${SelectKind.order}"]`);
     orderSelectBox.selectedIndex = 0;
     orderSelectBox.dispatchEvent(new Event('change', { bubbles: true }));
 

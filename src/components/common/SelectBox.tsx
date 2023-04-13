@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { SelectBoxType } from '../types';
+import { SelectBoxType } from '../../types';
 
 class SelectBox extends React.Component<SelectBoxType> {
   render() {

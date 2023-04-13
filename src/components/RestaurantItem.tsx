@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { CATEGORY_IMG } from '../constants';
 import { RestaurantItemType } from '../types';
-import BottomSheet from './BottomSheet';
+import BottomSheet from './common/BottomSheet';
 import RestaurantDetail from './RestaurantDetail';
 import { $ } from '../utils/domSelector';
 

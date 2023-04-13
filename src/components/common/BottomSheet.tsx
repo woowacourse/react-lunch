@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import ModalPortal from './ModalPortal';
-import { BottomSheetType } from '../types';
-import { $ } from '../utils/domSelector';
+import { BottomSheetType } from '../../types';
+import { $ } from '../../utils/domSelector';
 
 class BottomSheet extends React.Component<BottomSheetType> {
   componentDidMount() {

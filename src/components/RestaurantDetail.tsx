@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { CATEGORY_IMG } from '../constants';
 import { RestaurantItemType } from '../types';
-import Button from './Button';
+import Button from './common/Button';
 
 class RestaurantDetail extends React.Component<RestaurantItemType & { onClose: () => React.SetStateAction<void> }> {
   render() {
