@@ -1,6 +1,6 @@
 <h2 align="middle">🤔</h2>
 <h1 align="middle">점심 뭐먹지?</h1>
-<p align="middle">우아한테크코스 레벨1 점심 뭐 먹지 미션</p>
+<p align="middle">우아한테크코스 레벨2 점심 뭐 먹지 미션</p>
 
 <br>
 
