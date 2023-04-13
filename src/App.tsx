@@ -9,7 +9,8 @@ import { parseJson } from './utils/json';
 import { selectorCategory, selectorFilter } from './utils/types';
 import { sortingByCategory, sortingByFilter } from './domain/restaurantSort';
 import { CATEGORY_OPTIONS, FILTER_OPTIONS } from './utils/constants';
-import { localStorageValueCheck } from './utils/localStorage';
+import { localStorageGetItem } from './utils/localStorage';
+import { typePredicates } from './utils/typeCheck';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface Props {}
@@ -17,11 +18,17 @@ interface Props {}
 class App extends React.Component<Props, appState> {
   constructor(props: Props | Readonly<Props>) {
     super(props);
-    const localStorageSavedList = localStorageValueCheck<Array<restaurant>>({
-      key: 'restaurantList',
-      initialValue: [],
+
+    const localStorageSavedList = typePredicates<Array<restaurant>>({
+      data: parseJson(JSON.stringify(localStorageGetItem('restaurantList'))),
+      initialData: [],
     });
-    const restaurantMockDataList = parseJson<Array<restaurant>>(JSON.stringify(mockData.restaurantList));
+
+    const restaurantMockDataList = typePredicates<Array<restaurant>>({
+      data: mockData.restaurantList,
+      initialData: [],
+    });
+
     const wholeList = [...localStorageSavedList, ...restaurantMockDataList];
     const currentList = sortingByFilter('이름순', wholeList);
 
