@@ -6,7 +6,7 @@ class Header extends Component {
     return (
       <header className="gnb">
         <h1 className="gnb__title text-title">점심 뭐 먹지</h1>
-        <button className="gnb__button">
+        <button className="gnb__button" aria-label="새로운 음식점 추가">
           <svg
             width="34"
             height="24"
