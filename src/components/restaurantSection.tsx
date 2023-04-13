@@ -50,6 +50,7 @@ export class RestaurantSection extends React.Component<PropsType, StateType> {
         resA.name.localeCompare(resB.name)
       );
     }
+
     if (sorting === SELECT_OPTION.TAKING_TIME) {
       return filteredRestaurant.sort(
         (resA, resB) => resA.takingTime - resB.takingTime

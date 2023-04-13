@@ -69,7 +69,6 @@ const ModalContainer = styled.div`
   bottom: 0;
   right: 0;
   left: 0;
-  height: 70%;
 
   padding: 32px 16px;
 
