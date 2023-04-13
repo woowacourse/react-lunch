@@ -36,6 +36,7 @@ class ModalPortal extends React.Component<Props> {
 
   componentWillUnmount(): void {
     document.body.style.overflow = 'visible';
+    this.props.dialogRef.current?.close();
   }
 
   render() {
