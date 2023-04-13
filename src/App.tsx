@@ -15,9 +15,12 @@ type RestaurantProps = {
 class App extends Component<{}, RestaurantProps> {
   state = {
     restaurants: this.sortRestaurantsByName(restaurantMockData),
-    filteredRestaurants: this.sortRestaurantsByName(restaurantMockData),
-    category: "전체",
-    sorting: "이름순",
+    filteredRestaurants: this.filter(
+      localStorage.getItem("category") ?? "전체",
+      localStorage.getItem("sorting") ?? "이름순"
+    ),
+    category: localStorage.getItem("category") ?? "전체",
+    sorting: localStorage.getItem("sorting") ?? "이름순",
   };
 
   sortRestaurantsByName(restaurants: RestaurantInfo[]) {
@@ -28,13 +31,19 @@ class App extends Component<{}, RestaurantProps> {
 
   handleCategorySelect = (value: string) => {
     const filteredRestaurants = this.filter(value);
-    this.setState({ restaurants: filteredRestaurants, category: value });
+    this.setState({
+      filteredRestaurants: filteredRestaurants,
+      category: value,
+    });
+
+    localStorage.setItem("category", value);
   };
 
   handleSortingSelect = (value: string) => {
     const filteredRestaurants = this.filter(this.state.category, value);
+    this.setState({ filteredRestaurants: filteredRestaurants, sorting: value });
 
-    this.setState({ restaurants: filteredRestaurants, sorting: value });
+    localStorage.setItem("sorting", value);
   };
 
   filter(
@@ -63,9 +72,11 @@ class App extends Component<{}, RestaurantProps> {
         <SelectBoxes
           onChangeCategory={this.handleCategorySelect}
           onChangeSorting={this.handleSortingSelect}
+          selectedCategory={this.state.category}
+          selectedSorting={this.state.sorting}
         />
         <Restaurants
-          restaurantList={this.state.restaurants}
+          restaurantList={this.state.filteredRestaurants}
           category={this.state.category}
         />
       </>

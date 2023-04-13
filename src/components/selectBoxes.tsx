@@ -4,8 +4,9 @@ import styled from "styled-components";
 class SelectBoxes extends Component<{
   onChangeCategory: (event: string) => void;
   onChangeSorting: (event: string) => void;
+  selectedCategory: string;
+  selectedSorting: string;
 }> {
-
   handleCategorySelect = ({ target }: ChangeEvent<HTMLSelectElement>) => {
     this.props.onChangeCategory(target.value);
   };
@@ -32,9 +33,12 @@ class SelectBoxes extends Component<{
           name="category"
           id="category-filter"
           onChange={this.handleCategorySelect}
+          value={this.props.selectedCategory}
         >
           {categorySelect.map((category, index) => (
-            <option key={index}>{category}</option>
+            <option key={index} value={category}>
+              {category}
+            </option>
           ))}
         </SelectBox>
 
@@ -42,9 +46,12 @@ class SelectBoxes extends Component<{
           name="sorting"
           id="sorting-filter"
           onChange={this.handleSortingSelect}
+          value={this.props.selectedSorting}
         >
-          {sortingSelect.map((select, index) => (
-            <option key={index}>{select}</option>
+          {sortingSelect.map((sorting, index) => (
+            <option key={index} value={sorting}>
+              {sorting}
+            </option>
           ))}
         </SelectBox>
       </SelectBoxContainer>
