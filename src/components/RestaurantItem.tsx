@@ -1,9 +1,9 @@
 import { Restaurant } from '../types/restaurant';
 
 import React from 'react';
+import { CategoryImage } from './';
 import styled from 'styled-components';
 
-import { CATEGORY_IMAGE_MAP } from '../constants';
 import { textBody, textSubtitle } from '../style/mixin';
 
 interface Props {
@@ -16,9 +16,7 @@ class RestaurantItem extends React.Component<Props> {
 
     return (
       <ItemWrapper id={id}>
-        <CategoryImage>
-          <img src={`./img/${CATEGORY_IMAGE_MAP[category]}`} alt={category} />
-        </CategoryImage>
+        <CategoryImage category={category} />
         <RestaurantInfo>
           <h3>{name}</h3>
           <Distance>캠퍼스부터 {distance}분 내</Distance>
@@ -40,26 +38,6 @@ const ItemWrapper = styled.li`
   border-bottom: 1px solid #e9eaed;
 
   cursor: pointer;
-`;
-
-const CategoryImage = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 64px;
-  height: 64px;
-  min-width: 64px;
-  min-height: 64px;
-
-  margin-right: 16px;
-
-  border-radius: 50%;
-  background: var(--lighten-color);
-
-  img {
-    width: 36px;
-    height: 36px;
-  }
 `;
 
 const RestaurantInfo = styled.div`
