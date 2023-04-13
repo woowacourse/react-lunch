@@ -7,7 +7,7 @@ import {
   categoryWestern,
 } from '../assets';
 
-export const CATEGORY_IMG: { [key: string]: string } = {
+export const CATEGORY_IMG: Record<string, string> = {
   한식: categoryKorean,
   중식: categoryChinese,
   일식: categoryJapanese,
@@ -16,7 +16,7 @@ export const CATEGORY_IMG: { [key: string]: string } = {
   기타: categoryEtc,
 } as const;
 
-export const CATEGORY_NAME: { [key: string]: string } = {
+export const CATEGORY_NAME: Record<string, string> = {
   all: '전체',
   korean: '한식',
   chinese: '중식',
@@ -26,7 +26,7 @@ export const CATEGORY_NAME: { [key: string]: string } = {
   etc: '기타',
 } as const;
 
-export const ORDER_KEY: { [key: string]: string } = {
+export const ORDER_KEY: Record<string, string> = {
   name: '이름순',
   distance: '거리순',
 } as const;
