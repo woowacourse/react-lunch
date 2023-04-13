@@ -1,14 +1,12 @@
 import { Component } from 'react';
-import { Category, Distance } from '../../types';
+import { Restaurant } from '../../types';
 import { imgSrc } from '../../constants/imageSrc';
 
 import styled from 'styled-components';
 
 type Props = {
-  name: string;
-  category: Category;
-  distance: Distance;
-  description?: string;
+  restaurant: Restaurant;
+  onRestaurantClick: React.MouseEventHandler<HTMLLIElement>;
 };
 
 export class RestaurantItem extends Component<Props> {
@@ -17,12 +15,13 @@ export class RestaurantItem extends Component<Props> {
   }
 
   render() {
-    const { name, category, distance, description } = this.props;
+    const { id, name, category, distance, description } = this.props.restaurant;
+    const onRestaurantClick = this.props.onRestaurantClick;
 
     return (
-      <RestaurantWrapper>
+      <RestaurantWrapper data-id={id} onClick={onRestaurantClick}>
         <RestaurantCategory>
-          <Image src={imgSrc[category]} alt={category} className="category-icon" />
+          <Image src={imgSrc[category]} alt={category} />
         </RestaurantCategory>
         <RestaurantInfoWrapper>
           <Name>{name}</Name>
@@ -41,7 +40,7 @@ const RestaurantWrapper = styled.li`
   padding: 16px 8px;
   border-bottom: 1px solid #e9eaed;
 `;
-const RestaurantCategory = styled.div`
+export const RestaurantCategory = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,24 +55,24 @@ const RestaurantCategory = styled.div`
   background: var(--lighten-color);
 `;
 
-const Image = styled.img`
+export const Image = styled.img`
   width: 36px;
   height: 36px;
 `;
 
-const RestaurantInfoWrapper = styled.div`
+export const RestaurantInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   flex: 1;
 `;
 
-const Name = styled.h3`
+export const Name = styled.h3`
   margin: 0;
   font: var(--text-subtitle);
 `;
 
-const DistanceText = styled.span`
+export const DistanceText = styled.span`
   color: var(--primary-color);
   font: var(--text-body);
 `;

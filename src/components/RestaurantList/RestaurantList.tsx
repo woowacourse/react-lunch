@@ -4,7 +4,8 @@ import { Restaurant } from '../../types';
 import { RestaurantItem } from '../RestaurantItem/RestaurantItem';
 
 type Props = {
-  items: Restaurant[];
+  restaurants: Restaurant[];
+  onRestaurantClick: React.MouseEventHandler<HTMLLIElement>;
 };
 
 export class RestaurantList extends Component<Props> {
@@ -13,16 +14,14 @@ export class RestaurantList extends Component<Props> {
   }
 
   render() {
-    const { items } = this.props;
+    const { restaurants, onRestaurantClick } = this.props;
 
     return (
       <RestaurantListWrapper>
-        {items.map((item) => (
+        {restaurants.map((restaurant) => (
           <RestaurantItem
-            name={item.name}
-            category={item.category}
-            distance={item.distance}
-            description={item.description}
+            restaurant={restaurant}
+            onRestaurantClick={onRestaurantClick}
           ></RestaurantItem>
         ))}
       </RestaurantListWrapper>

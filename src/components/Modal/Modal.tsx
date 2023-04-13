@@ -1,39 +1,106 @@
 import { Component } from 'react';
+import { Restaurant } from '../../types';
+import { imgSrc } from '../../constants/imageSrc';
+import styled from 'styled-components';
+import {
+  DistanceText,
+  Image,
+  Name,
+  RestaurantCategory,
+  RestaurantInfoWrapper,
+} from '../RestaurantItem/RestaurantItem';
 
-export class Modal extends Component {
+type Props = {
+  restaurant: Restaurant;
+  onCloseButtonClick: React.MouseEventHandler<HTMLButtonElement>;
+};
+
+export class Modal extends Component<Props> {
+  constructor(props: Props) {
+    super(props);
+  }
+
   render() {
+    const { id, name, category, distance, description, link } = this.props.restaurant;
+    const onCloseButtonClick = this.props.onCloseButtonClick;
+
     return (
-      <div className="detail-modal">
-        <div className="modal-backdrop"></div>
-        <div className="modal-container">
-          <div id="category_icon-container">
-            <div className="restaurant__category">
-              <img src="{src}" alt="{category}" className="category-icon" />
-            </div>
-            아이콘
-          </div>
-          <div className="restaurant__info">
-            <h3 className="restaurant__name text-subtitle">음식점 이름</h3>
-            <span className="restaurant__distance text-body">캠퍼스로부터 10분 내</span>
-            <p className="text-body">음식점 설명</p>
-            <a href="{link}" target="_blank">
-              음식점 링크
+      <Wrapper>
+        <Backdrop></Backdrop>
+        <Container>
+          <IconContainer>
+            <RestaurantCategory>
+              <Image src={imgSrc[category]} alt={category} />
+            </RestaurantCategory>
+          </IconContainer>
+          <RestaurantInfoWrapper>
+            <Name>{name}</Name>
+            <DistanceText>캠퍼스로부터 {distance}분 내</DistanceText>
+            <Description>{description}</Description>
+            <a href={link} target="_blank">
+              {link}
             </a>
-          </div>
-          <div className="button-container">
-            <button
-              type="button"
-              className="button button--secondary text-caption"
-              id="remove-button"
-            >
-              삭제하기
-            </button>
-            <button className="button button--primary text-caption" id="close-button">
-              닫기
-            </button>
-          </div>
-        </div>
-      </div>
+          </RestaurantInfoWrapper>
+          <ButtonContainer>
+            <DeleteButton>삭제하기</DeleteButton>
+            <CloseButton onClick={onCloseButtonClick}>닫기</CloseButton>
+          </ButtonContainer>
+        </Container>
+      </Wrapper>
     );
   }
 }
+
+const Wrapper = styled.div``;
+
+const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background: rgba(0, 0, 0, 0.35);
+`;
+
+const Container = styled.div`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+  padding: 32px 16px;
+
+  border-radius: 8px 8px 0px 0px;
+  background: var(--grey-100);
+`;
+
+const IconContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+`;
+
+const Description = styled.p`
+  font: var(--text-body);
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+`;
+
+const DeleteButton = styled.button`
+  ${(props) => props.theme.variables.button}
+  border: 1px solid var(--grey-300);
+  background: transparent;
+
+  color: var(--grey-300);
+  font: var(--text-caption);
+`;
+
+const CloseButton = styled.button`
+  ${(props) => props.theme.variables.button}
+  background: var(--primary-color);
+
+  color: var(--grey-100);
+  font: var(--text-caption);
+`;
