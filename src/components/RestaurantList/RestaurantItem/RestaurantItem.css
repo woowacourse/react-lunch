@@ -1,0 +1,9 @@
+.restaurant {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+
+  padding: 16px 8px;
+
+  border-bottom: 1px solid #e9eaed;
+}
