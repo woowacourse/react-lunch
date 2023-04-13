@@ -1,8 +1,8 @@
 import { Component, createRef, RefObject } from "react";
 import styled from "styled-components";
-import Restaurant from "./restaurant";
+import Restaurant from "./Restaurant";
 import { RestaurantInfo } from "../types";
-import RestaurantInfoModal from "./restaurantInfoModal";
+import RestaurantInfoModal from "./RestaurantInfoModal";
 
 type RestaurantProps = {
   restaurantList: RestaurantInfo[];

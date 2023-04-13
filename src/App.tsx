@@ -1,9 +1,9 @@
 import { Component } from "react";
 import restaurantMockData from "./mocks/restaurants.json";
 import { RestaurantInfo } from "./types";
-import Restaurants from "./components/restaurants";
-import SelectBoxes from "./components/selectBoxes";
-import HeaderSection from "./components/headerSection";
+import Restaurants from "./components/Restaurants";
+import SelectBoxes from "./components/SelectBoxes";
+import HeaderSection from "./components/HeaderSection";
 
 type RestaurantProps = {
   restaurants: RestaurantInfo[];
