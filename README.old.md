@@ -12,3 +12,12 @@
   - [x] 닫기 기능 구현
 
 ---
+
+- [x] modal backdrop 클릭시 modal창 닫기
+- [x] modal창 활성화 시에 뒷 배경 scroll 막기
+- [x] esc 클릭스 modal창 닫기
+
+---
+
+- [x] 초기값 세팅시에 localStorage 값 가져오기
+- [x] 초기값 설정하는 파일 혹은 메서드 따로 생성하기.
