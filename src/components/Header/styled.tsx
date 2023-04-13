@@ -15,6 +15,13 @@ const St = {
 
     font-size: 20px;
     font-weight: 600;
+
+    transition: all 0.2s;
+
+    &:hover {
+      cursor: pointer;
+      letter-spacing: 8px;
+    }
   `,
 };
 export default St;
