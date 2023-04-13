@@ -5,6 +5,7 @@ import { Category, Restaurant, Sort } from '../types/Restaurant';
 import SelectBox from '../components/SelectBox';
 import Header from '../components/Header';
 import styled from 'styled-components';
+import Modal from '../components/Modal';
 
 interface LunchAppState {
   restaurants: Restaurant[];
@@ -71,6 +72,7 @@ class LunchApp extends React.Component<{}, LunchAppState> {
           />
         </SelectContainer>
         <RestaurantList sortBy={sortBy} categorizeBy={categorizeBy} restaurants={restaurants} />
+        <Modal restaurant={{} as Restaurant} closeModal={() => { }} />
       </>
     );
   }

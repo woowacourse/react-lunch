@@ -1,34 +1,22 @@
 import React from "react";
 import styled from 'styled-components'
 import { Restaurant } from "../types/Restaurant";
-import Modal from "./Modal";
 import { convertImage } from "../utils/image";
+import { GlobalContext, GlobalState } from "../containers/GlobalProvider";
 interface RestaurantItemProps {
   restaurant: Restaurant;
 }
 
-interface RestaurantItemState {
-  modalOpen: boolean;
-}
-
-class RestaurantItem extends React.Component<RestaurantItemProps, RestaurantItemState> {
-  constructor(props: RestaurantItemProps) {
-    super(props);
-    this.state = {
-      modalOpen: false,
-    };
-  }
-
-  closeModal() {
-    this.setState({ modalOpen: false });
-  }
+class RestaurantItem extends React.Component<RestaurantItemProps, {}> {
+  static contextType = GlobalContext;
 
   render() {
+    const globalState = this.context as GlobalState;
     const { name, distance, category, description } = this.props.restaurant;
 
     return (
       <>
-        <Card onClick={() => this.setState({ modalOpen: true })}>
+        <Card onClick={() => globalState.setModalOpen(true)}>
           <Favorite>
           </Favorite>
           <RestaurantInfo>
@@ -42,11 +30,6 @@ class RestaurantItem extends React.Component<RestaurantItemProps, RestaurantItem
             </article>
           </RestaurantInfo>
         </Card>
-        {
-          this.state.modalOpen && (
-            <Modal restaurant={this.props.restaurant} closeModal={() => this.closeModal()} />
-          )
-        }
       </>
     )
   }
