@@ -34,10 +34,26 @@ export interface FilterSectionState {
   sortBy: string;
 }
 
-export interface State {
+export interface RestaurantState {
   restaurantList: Restaurant[];
   currentRestaurantList: Restaurant[];
   selectedRestaurant: Restaurant | null;
+  isModalOpen: boolean;
+}
+
+export interface ModalProps {
+  content: ReactNode;
+  isModalOpen: boolean;
+  onToggle: CallableFunction;
+}
+
+export interface RestaurantElementProps {
+  restaurant: Restaurant;
+}
+
+export interface RestaurantListProps {
+  restaurantList: Restaurant[];
+  onItemClick: CallableFunction;
 }
 
 export type FilterOption = Record<'category' | 'sortBy', string>;
