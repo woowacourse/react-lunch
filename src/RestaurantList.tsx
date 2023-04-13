@@ -20,9 +20,9 @@ class RestaurantList extends React.Component<RestaurantListProps, StateType> {
   }
 
   componentDidMount(): void {
-    const defaultData = localStorage.getItem('restaurantList');
-    if (defaultData) {
-      this.setState({ restaurantList: JSON.parse(defaultData) });
+    const rawRestaurantList = localStorage.getItem('restaurantList');
+    if (rawRestaurantList) {
+      this.setState({ restaurantList: JSON.parse(rawRestaurantList) });
       return;
     }
 
@@ -33,37 +33,43 @@ class RestaurantList extends React.Component<RestaurantListProps, StateType> {
         this.setState({ restaurantList: data });
       });
   }
-  
-  // TODO: pipe로 변경해볼까?
-  filterByCategory(category): Restaurant[] {
-    if (category === '전체') return this.state.restaurantList;
-    return this.state.restaurantList.filter(
+
+  filterByCategory(restaurantList, category): Restaurant[] {
+    if (category === '전체') return restaurantList;
+    return restaurantList.filter(
       (restaurant) => restaurant.category === category
     );
   }
 
-  sortRestaurants(category, sorting) {
-    return this.filterByCategory(category).sort(
-      (firstElement, secondElement) => {
-        if (sorting === 'name') {
-          return firstElement.title.localeCompare(secondElement.title);
-        }
-        if (sorting === 'distance') {
-          return firstElement.distance - secondElement.distance;
-        }
-        return 0;
+  filterBySort(restaurantList, sorting): Restaurant[] {
+    return restaurantList.sort((firstElement, secondElement) => {
+      if (sorting === 'name') {
+        return firstElement.title.localeCompare(secondElement.title);
       }
-    );
+      if (sorting === 'distance') {
+        return firstElement.distance - secondElement.distance;
+      }
+      return 0;
+    });
+  }
+
+  pipe(...funcs) {
+    return (x, params) => {
+      return funcs.reduce((acc, f, i) => f(acc, params[i]), x);
+    }
+  }
+  
+  sortRestaurants(rl, category, sorting) {
+    return this.filterBySort(this.filterByCategory(rl, category), sorting);
   }
 
   render() {
+    const { category, sorting } = this.props.filterOptions; 
+    
     return (
       <section className="restaurant-list-container">
         <ul className="restaurant-list">
-          {this.sortRestaurants(
-            this.props.filterOptions.category,
-            this.props.filterOptions.sorting
-          ).map((restaurant) => (
+          {this.pipe(this.filterByCategory, this.filterBySort)(this.state.restaurantList, [category, sorting]).map((restaurant) => (
             <RestaurantItem
               key={restaurant.id}
               restaurant={restaurant}
