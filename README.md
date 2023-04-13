@@ -1,4 +1,13 @@
-# 🤔 우아한테크코스 레벨2 점심 뭐 먹지 미션
+<h2 align="middle">🤔</h2>
+<h1 align="middle">점심 뭐먹지?</h1>
+<p align="middle">우아한테크코스 레벨1 점심 뭐 먹지 미션</p>
+
+<br>
+
+<p align="middle">
+  <img src="https://user-images.githubusercontent.com/108778921/231674549-bb59cd3d-1097-438b-aa34-517f680cb37b.png" width="400px">
+  <img src="https://user-images.githubusercontent.com/108778921/231673191-fdaa9e3f-8521-46a2-bb68-885dc1696576.png" width="400px">
+</p>
 
 <br>
 
