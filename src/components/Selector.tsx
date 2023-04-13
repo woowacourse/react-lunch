@@ -1,18 +1,18 @@
 import React from 'react';
 import '../styles/Selector.css';
 
-type selectorProps<T> = {
+interface Props<T> {
   selectedValue: T;
   optionList: Array<T>;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-};
+}
 
-class Selector<T extends string> extends React.Component<selectorProps<T>> {
+class Selector<T extends string> extends React.Component<Props<T>> {
   render(): React.ReactNode {
     return (
       <select onChange={this.props.onChange}>
-        {this.props.optionList.map((option, index) => (
-          <option key={index} value={option}>
+        {this.props.optionList.map(option => (
+          <option key={option} value={option}>
             {option}
           </option>
         ))}

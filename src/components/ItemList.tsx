@@ -5,17 +5,17 @@ import Item from './Item';
 import ModalPortal from './ModalPortal';
 import ItemInformation from './ItemInformation';
 
-type itemListProps = {
+interface Props {
   itemList: restaurant[];
-};
+}
 
-type itemListState = {
+interface State {
   item: restaurant | null;
-};
+}
 
-class ItemList extends React.Component<itemListProps, itemListState> {
+class ItemList extends React.Component<Props, State> {
   modalRef: React.RefObject<HTMLDialogElement>;
-  constructor(props: itemListProps | Readonly<itemListProps>) {
+  constructor(props: Props | Readonly<Props>) {
     super(props);
     this.modalRef = React.createRef();
     this.state = {
@@ -33,17 +33,17 @@ class ItemList extends React.Component<itemListProps, itemListState> {
     const elementId = Number(closestLi?.dataset.id);
 
     const selectedState = this.props.itemList.find(({ id }) => id === elementId) ?? null;
-    if (selectedState) {
-      this.modalRef.current?.showModal();
-      this.setState({ item: selectedState });
-    }
+    this.setState({ item: selectedState });
   }
 
   closeEvent() {
-    this.modalRef.current?.close();
-    this.setState({
-      item: null,
-    });
+    const current = this.modalRef.current;
+    if (current) {
+      current.close();
+      this.setState({
+        item: null,
+      });
+    }
   }
 
   render(): React.ReactNode {

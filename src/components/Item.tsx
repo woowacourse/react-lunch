@@ -3,15 +3,11 @@ import { restaurant } from '../utils/interfaces';
 import '../styles/Item.css';
 import { CATEGORY_IMAGE_PATH } from '../utils/constants';
 
-type itemProps = {
+interface Props {
   props: restaurant;
-};
+}
 
-type itemState = {
-  isOpen: boolean;
-};
-
-class Item extends React.Component<itemProps, itemState> {
+class Item extends React.Component<Props> {
   render(): React.ReactNode {
     const { category, name, distance, description, id } = this.props.props;
     return (

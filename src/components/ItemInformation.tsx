@@ -3,10 +3,10 @@ import { restaurant } from '../utils/interfaces';
 import '../styles/ItemInformation.css';
 import { CATEGORY_IMAGE_PATH } from '../utils/constants';
 
-type Props = {
+interface Props {
   restaurant: restaurant;
   closeEvent: () => void;
-};
+}
 
 class ItemInformation extends React.Component<Props> {
   render(): React.ReactNode {
