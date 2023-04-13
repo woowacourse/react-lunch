@@ -1,8 +1,8 @@
 import React, { ChangeEvent } from 'react';
-import type { State } from '../../App';
 import Store from '../../store';
 import { Category } from '../RestaurantItem/type';
 import styles from './SelectorSection.module.css';
+import type { State } from '../../App';
 
 class CategorySelector extends React.Component {
 	private static handleCategorySelector = (store: State | null) => (e: ChangeEvent<HTMLSelectElement>) => {

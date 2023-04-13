@@ -2,8 +2,8 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import Store from '../../store';
 import RestaurantItem from '../RestaurantItem';
-import type { Restaurant } from '../RestaurantItem/type';
 import styles from './Modal.module.css';
+import type { Restaurant } from '../RestaurantItem/type';
 
 class Modal extends React.PureComponent {
 	render() {

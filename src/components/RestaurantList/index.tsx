@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './RestaurantList.module.css';
-import RestaurantItem from '../RestaurantItem';
 import Store from '../../store';
+import RestaurantItem from '../RestaurantItem';
+import styles from './RestaurantList.module.css';
 
 class RestaurantList extends React.PureComponent {
 	render() {

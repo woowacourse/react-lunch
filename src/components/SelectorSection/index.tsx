@@ -1,8 +1,8 @@
 import React from 'react';
-import SortedSelector from './SortedSelector';
 import CategorySelector from './CategorySelector';
 
 import styles from './SelectorSection.module.css';
+import SortedSelector from './SortedSelector';
 
 class SelectorSection extends React.PureComponent {
 	render() {

@@ -1,13 +1,13 @@
 import React from 'react';
-import Header from './components/Header';
-import SelectorSection from './components/SelectorSection';
-import RestaurantList from './components/RestaurantList';
 import styles from './App.module.css';
+import Header from './components/Header';
+import Modal from './components/Modal';
+import RestaurantList from './components/RestaurantList';
+import SelectorSection from './components/SelectorSection';
+import mockData from './data/mockData.json';
 import Store from './store';
 import type { Category, Restaurant } from './components/RestaurantItem/type';
 
-import mockData from './data/mockData.json';
-import Modal from './components/Modal';
 
 export type Sort = '이름순' | '거리순';
 export interface State {
