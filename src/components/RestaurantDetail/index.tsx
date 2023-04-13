@@ -29,7 +29,7 @@ class RestaurantDetail extends Component<RestaurantElementProps> {
               {restaurant.description ?? ''}
             </p>
             {restaurant.link ? (
-              <a href={restaurant.link} className="restaurant__link" target="_blank">
+              <a href={restaurant.link} className="restaurant__link" target="_blank" rel="noreferrer noopener">
                 웹사이트 방문하기
               </a>
             ) : (
