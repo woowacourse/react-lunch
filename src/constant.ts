@@ -1,4 +1,6 @@
-export const CATEGORY_OPTIONS = [
+import { Category, SelectOption, Sort } from "./type";
+
+export const CATEGORY_OPTIONS:SelectOption<Category>[] = [
   {
     value: '전체',
     textContent: '전체',
@@ -25,7 +27,7 @@ export const CATEGORY_OPTIONS = [
   },
 ];
 
-export const SORTING_OPTIONS = [
+export const SORTING_OPTIONS:SelectOption<Sort>[] = [
   {
     value: 'name',
     textContent: '이름순',
