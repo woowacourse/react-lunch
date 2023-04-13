@@ -11,9 +11,7 @@ type RestaurantListProps = {
   onToggleDrawer: (id?: number) => void;
 };
 
-class RestaurantList extends React.Component<RestaurantListProps> {
-  state: StateType;
-
+class RestaurantList extends React.Component<RestaurantListProps, StateType> {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,14 +33,7 @@ class RestaurantList extends React.Component<RestaurantListProps> {
         this.setState({ restaurantList: data });
       });
   }
-
-  // TODO: 삭제해야댐
-  componentDidUpdate(
-    prevProps: Readonly<{}>,
-    prevState: Readonly<{}>,
-    snapshot?: any
-  ): void {}
-
+  
   // TODO: pipe로 변경해볼까?
   filterByCategory(category): Restaurant[] {
     if (category === '전체') return this.state.restaurantList;
