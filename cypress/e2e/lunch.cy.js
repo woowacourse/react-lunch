@@ -61,11 +61,11 @@ describe('점심 뭐 먹지 e2e 테스트', () => {
   });
 
   it('음식점을 클릭하면 음식점 상세 정보 모달을 볼 수 있다.', () => {
-    cy.get('.modal').should('not.exist');
+    cy.get('.modal-container').should('not.exist');
 
     cy.get('.restaurant[data-id="7"]').click();
 
-    cy.get('.modal').should('be.visible');
+    cy.get('.modal-container').should('be.visible');
   });
 
   it('음식점 상세 정보 모달에서 웹사이트 방문하기를 누르면 음식점 웹사이트가 열린다.', () => {
@@ -80,19 +80,19 @@ describe('점심 뭐 먹지 e2e 테스트', () => {
   it('음식점 상세 정보 모달에서 닫기 버튼을 클릭하면 모달을 닫을 수 있다.', () => {
     cy.get('.restaurant[data-id="7"]').click();
 
-    cy.get('.modal').should('be.visible');
+    cy.get('.modal-container').should('be.visible');
     cy.get('.modal-close-button').click();
 
-    cy.get('.modal').should('not.exist');
+    cy.get('.modal-container').should('not.exist');
   });
 
   it('음식점 상세 정보 모달에서 백드롭을 클릭하면 모달을 닫을 수 있다.', () => {
     cy.get('.restaurant[data-id="7"]').click();
 
-    cy.get('.modal').should('be.visible');
+    cy.get('.modal-container').should('be.visible');
     cy.get('.modal-backdrop').click();
 
-    cy.get('.modal').should('not.exist');
+    cy.get('.modal-container').should('not.exist');
   });
 
   it('처음 페이지에 들어갔을 때, 로컬스토리지는 비어있다.', () => {
