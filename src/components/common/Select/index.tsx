@@ -1,6 +1,7 @@
 import { ChangeEvent, Component } from 'react';
 
 interface Props {
+  name: string;
   options: string[];
   onChange: (value: string) => void;
 }
@@ -12,7 +13,7 @@ class Select extends Component<Props> {
 
   render() {
     return (
-      <select onChange={this.handleChange}>
+      <select name={this.props.name} onChange={this.handleChange}>
         {this.props.options.map((option) => (
           <option key={option} value={option}>
             {option}

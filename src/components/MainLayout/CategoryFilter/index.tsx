@@ -11,7 +11,11 @@ interface Props {
 class CategoryFilter extends Component<Props> {
   render() {
     return (
-      <Select onChange={this.props.onChangeCategory} options={CATEGORIES} />
+      <Select
+        name="category"
+        onChange={this.props.onChangeCategory}
+        options={CATEGORIES}
+      />
     );
   }
 }

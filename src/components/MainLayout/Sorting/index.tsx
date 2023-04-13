@@ -9,7 +9,13 @@ interface Props {
 }
 class Sorting extends Component<Props> {
   render() {
-    return <Select onChange={this.props.onChangeSorting} options={SORT_BY} />;
+    return (
+      <Select
+        name="sorting"
+        onChange={this.props.onChangeSorting}
+        options={SORT_BY}
+      />
+    );
   }
 }
 
