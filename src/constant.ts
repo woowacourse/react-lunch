@@ -1,4 +1,4 @@
-import { Category, SelectOption, Sort } from "./type";
+import { Category, SelectOption, Sorting } from "./type";
 
 import asianImg from './asset/category-asian.png';
 import chineseImg from './asset/category-chinese.png';
@@ -34,7 +34,7 @@ export const CATEGORY_OPTIONS:SelectOption<Category>[] = [
   },
 ];
 
-export const SORTING_OPTIONS:SelectOption<Sort>[] = [
+export const SORTING_OPTIONS:SelectOption<Sorting>[] = [
   {
     value: 'name',
     textContent: '이름순',

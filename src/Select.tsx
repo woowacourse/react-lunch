@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Category, SelectOption, Sort } from './type';
+import { Category, SelectOption, Sorting } from './type';
 
 type SelectProps = {
   name: string;
-  options: SelectOption<Category | Sort>[];
+  options: SelectOption<Category | Sorting>[];
   onChangeFilterOptions: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
