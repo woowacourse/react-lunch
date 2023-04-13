@@ -143,6 +143,30 @@
       "distance": 20,
       "description": "desc",
       "link": "https://www.naver.com"
+    },
+    {
+      "id": 18,
+      "name": "기타1111",
+      "category": "기타",
+      "distance": 20,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 19,
+      "name": "2222기타",
+      "category": "기타",
+      "distance": 5,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 20,
+      "name": "기3타3",
+      "category": "기타",
+      "distance": 10,
+      "description": "desc",
+      "link": "https://www.naver.com"
     }
   ]
 }
