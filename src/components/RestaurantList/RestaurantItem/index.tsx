@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Restaurant } from '../../../types';
-import { categoryIconFileName } from '../../../constants';
+import { categoryIconPath } from '../../../constants/imagePath';
 
 type RestaurantItemProps = {
   restaurant: Restaurant;
@@ -13,7 +13,7 @@ export default class RestaurantItem extends Component<RestaurantItemProps> {
     return (
       <li className="restaurant" onClick={this.props.onClick.bind(this, id)}>
         <div className="restaurant__category">
-          <img src={categoryIconFileName[category]} alt={category} className="category-icon" />
+          <img src={categoryIconPath[category]} alt={category} className="category-icon" />
         </div>
         <div className="restaurant__info">
           <h3 className="restaurant__name text-subtitle">{name}</h3>

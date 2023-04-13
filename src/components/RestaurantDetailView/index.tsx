@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { categoryIconFileName } from '../../constants';
+import { categoryIconPath } from '../../constants/imagePath';
 import { Restaurant } from '../../types';
 import './RestaurantDetailView.css';
 
@@ -14,7 +14,7 @@ export default class RestaurantDetailView extends Component<RestaurantDetailView
     return (
       <div className="detail-view">
         <div className="restaurant__category">
-          <img src={categoryIconFileName[category]} alt={category} className="category-icon" />
+          <img src={categoryIconPath[category]} alt={category} className="category-icon" />
         </div>
         <h2 className="title text-title">{name}</h2>
         <div className="restaurant__info">
