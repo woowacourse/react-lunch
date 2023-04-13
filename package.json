@@ -46,5 +46,6 @@
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-react": "^7.32.2",
     "prettier": "^2.8.7"
-  }
+  },
+  "homepage": "https://leejin-yang.github.io/react-lunch"
 }
