@@ -1,6 +1,6 @@
-import { ModalProps } from '../../types';
 import './style.css';
 import { Component, MouseEvent } from 'react';
+import { ModalProps } from '../../types';
 
 class Modal extends Component<ModalProps> {
   shouldComponentUpdate(nextProps: ModalProps) {

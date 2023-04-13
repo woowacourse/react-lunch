@@ -1,5 +1,6 @@
 import './style.css';
 import { Component, MouseEvent } from 'react';
+import { RESTAURANT_LI_ELEMENT } from '../../constants';
 import { RestaurantListProps } from '../../types';
 import RestaurantItem from '../RestaurantItem';
 
@@ -10,7 +11,7 @@ class RestaurantList extends Component<RestaurantListProps> {
 
   handleItemClick = (event: MouseEvent<HTMLElement>) => {
     const target = event.target as HTMLElement;
-    const item = target.closest('.restaurant[data-id]');
+    const item = target.closest(RESTAURANT_LI_ELEMENT);
 
     if (item instanceof HTMLLIElement) {
       this.props.onItemClick(Number(item.dataset.id));
