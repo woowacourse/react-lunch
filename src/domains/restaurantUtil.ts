@@ -14,12 +14,14 @@ const sortByDistance = (restaurantList: Restaurant[]) => {
   return [...restaurantList].sort((a, b) => a.distance - b.distance);
 };
 
+// TODO: 상수화
 const sortRestaurant = (restaurantList: Restaurant[], sortBy: string) => {
   if (sortBy === '이름순') return sortByName(restaurantList);
 
   return sortByDistance(restaurantList);
 };
 
+// TODO: 상수화
 export const filterAndSortRestaurantList = (
   restaurantList: Restaurant[],
   filter: string = '전체',

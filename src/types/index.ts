@@ -4,7 +4,7 @@ import { RESTAURANT_CATEGORY, RESTAURANT_CATEGORY_OPTION, SORT_BY } from '../con
 export type Category = typeof RESTAURANT_CATEGORY[number];
 export type SortBy = typeof SORT_BY[number];
 
-type Options = typeof SORT_BY | typeof RESTAURANT_CATEGORY_OPTION;
+export type Options = typeof SORT_BY | typeof RESTAURANT_CATEGORY_OPTION;
 
 export interface SelectProps {
   attributes: {

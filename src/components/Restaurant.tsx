@@ -23,16 +23,16 @@ class Restaurant extends Component {
     };
   }
 
-  updateCurrentRestaurantList(filter: string, sortBy: string) {
+  updateCurrentRestaurantList = (filter: string, sortBy: string) => {
     const updatedRestaurantList = filterAndSortRestaurantList(
       this.state.restaurantList,
       filter,
       sortBy
     );
     this.setState({ currentRestaurantList: updatedRestaurantList });
-  }
+  };
 
-  updateSelectedRestaurant(id: number) {
+  updateSelectedRestaurant = (id: number) => {
     const selectedRestaurant = this.state.currentRestaurantList.find(
       (restaurant) => restaurant.id === id
     );
@@ -41,23 +41,19 @@ class Restaurant extends Component {
 
     this.setState({ selectedRestaurant });
     this.toggleIsModalOpen();
-  }
+  };
 
-  toggleIsModalOpen() {
+  toggleIsModalOpen = () => {
     this.setState({ isModalOpen: !this.state.isModalOpen });
-  }
+  };
 
   render() {
     return (
       <main>
-        <FilterSection
-          onChange={(filter: string, sortBy: string) =>
-            this.updateCurrentRestaurantList(filter, sortBy)
-          }
-        />
+        <FilterSection onChange={this.updateCurrentRestaurantList} />
         <RestaurantList
           restaurantList={this.state.currentRestaurantList}
-          onItemClick={(id: number) => this.updateSelectedRestaurant(id)}
+          onItemClick={this.updateSelectedRestaurant}
         />
         <Modal
           content={
@@ -66,7 +62,7 @@ class Restaurant extends Component {
             )
           }
           isModalOpen={this.state.isModalOpen}
-          onToggle={() => this.toggleIsModalOpen()}
+          onToggle={this.toggleIsModalOpen}
         />
       </main>
     );

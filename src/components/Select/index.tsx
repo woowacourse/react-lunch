@@ -6,16 +6,26 @@ class Select extends Component<SelectProps> {
     return nextProps.options !== this.props.options;
   }
 
-  handleChangeOption(event: ChangeEvent<HTMLSelectElement>) {
+  handleChangeOption = (event: ChangeEvent<HTMLSelectElement>) => {
     const target = event.target as HTMLSelectElement;
     const result = {
       [this.props.attributes.name]: target.value,
     };
     this.props.onChange(result);
-  }
+  };
+
+  createOptionElements = () => {
+    const { options } = this.props;
+
+    return options.map((option) => (
+      <option key={option} value={option}>
+        {option}
+      </option>
+    ));
+  };
 
   render() {
-    const { attributes, options } = this.props;
+    const { attributes } = this.props;
 
     return (
       <label htmlFor={attributes.id}>
@@ -23,13 +33,9 @@ class Select extends Component<SelectProps> {
           name={attributes.name}
           id={attributes.id}
           className={attributes.className}
-          onChange={(event) => this.handleChangeOption(event)}
+          onChange={this.handleChangeOption}
         >
-          {options.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
+          {this.createOptionElements()}
         </select>
       </label>
     );

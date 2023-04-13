@@ -11,6 +11,7 @@ class FilterSection extends Component<FilterSectionProps, FilterSectionState> {
   constructor(props: FilterSectionProps) {
     super(props);
 
+    // TODO: 상수화
     this.state = {
       category: '전체',
       sortBy: '이름순',
@@ -21,34 +22,31 @@ class FilterSection extends Component<FilterSectionProps, FilterSectionState> {
     return false;
   }
 
-  handleSelectChange(option: FilterOption) {
+  handleSelectChange = (option: FilterOption) => {
     this.setState(
       {
         ...this.state,
         ...option,
       },
       () => {
-        this.handleFilterChange();
+        this.props.onChange(this.state.category, this.state.sortBy);
       }
     );
-  }
+  };
 
-  handleFilterChange() {
-    this.props.onChange(this.state.category, this.state.sortBy);
-  }
-
+  // TODO: 상수화?
   render() {
     return (
       <section className="restaurant-filter-container">
         <Select
           options={RESTAURANT_CATEGORY_OPTION}
           attributes={{ id: 'category-filter', name: 'category', className: 'restaurant-filter' }}
-          onChange={(option: FilterOption) => this.handleSelectChange(option)}
+          onChange={this.handleSelectChange}
         />
         <Select
           options={SORT_BY}
           attributes={{ id: 'sortBy-filter', name: 'sortBy', className: 'restaurant-filter' }}
-          onChange={(option: FilterOption) => this.handleSelectChange(option)}
+          onChange={this.handleSelectChange}
         />
       </section>
     );

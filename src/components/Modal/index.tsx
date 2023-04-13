@@ -7,7 +7,7 @@ class Modal extends Component<ModalProps> {
     return this.props.isModalOpen !== nextProps.isModalOpen;
   }
 
-  handleClose(event: MouseEvent<HTMLElement>) {
+  handleClose = (event: MouseEvent<HTMLElement>) => {
     const target = event.target as HTMLElement;
 
     if (
@@ -16,7 +16,7 @@ class Modal extends Component<ModalProps> {
     ) {
       this.props.onToggle();
     }
-  }
+  };
 
   render() {
     const { isModalOpen } = this.props;
@@ -24,7 +24,7 @@ class Modal extends Component<ModalProps> {
     return (
       <>
         {isModalOpen && (
-          <div className="modal" onClick={(event) => this.handleClose(event)}>
+          <div className="modal" onClick={this.handleClose}>
             <div className="modal-backdrop" />
             <div className="modal-container">
               {this.props.content}
