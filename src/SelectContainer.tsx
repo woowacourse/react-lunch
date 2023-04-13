@@ -3,9 +3,9 @@ import Select from './Select.tsx';
 import { CATEGORY_OPTIONS, SORTING_OPTIONS } from './constant.ts';
 
 type SelectContainerProps = {
-  onChangeFilterOptions: (e: any) => void;
-  filterOptions: any;
+  onChangeFilterOptions: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
+
 class SelectContainer extends React.Component<SelectContainerProps> {
   render() {
     return (
@@ -26,7 +26,7 @@ class SelectContainer extends React.Component<SelectContainerProps> {
 }
 
 export default SelectContainer;
-
+// TODO: 주석 지우기
 /* <select name="category" id="category-filter" className="restaurant-filter">
 <option value="전체">전체</option>
 <option value="한식">한식</option>
