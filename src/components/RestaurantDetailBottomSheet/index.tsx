@@ -12,6 +12,7 @@ class RestaurantDetailBottomSheet extends Component<RestaurantDetailBottomSheetP
   escHandler(e: KeyboardEvent) {
     if (e.key === 'Escape') this.props.close();
   }
+
   componentDidMount(): void {
     window.addEventListener('keyup', this.escHandler.bind(this));
   }
