@@ -11,7 +11,7 @@ import { FilterOption } from './type.js';
   isOpenDrawer: boolean;
   drawerSelectId: number;
 }
-class App extends React.Component<{},AppState> {
+class App extends React.Component<{}, AppState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,10 +27,7 @@ class App extends React.Component<{},AppState> {
     this.onToggleDrawer = this.onToggleDrawer.bind(this);
   }
 
-  // TODO: 콘솔로그 제거, 파라미터 타입 구체화
-  onChangeFilterOptions(e) {
-    console.log(e);
-
+  onChangeFilterOptions(e: React.ChangeEvent<HTMLSelectElement>) {
     this.setState({
       filterOptions: {
         ...this.state.filterOptions,
@@ -39,7 +36,7 @@ class App extends React.Component<{},AppState> {
     });
   }
 
-  onToggleDrawer(id:number = NO_SELECT_ID) {
+  onToggleDrawer(id: number = NO_SELECT_ID) {
     this.setState({
       isOpenDrawer: !this.state.isOpenDrawer,
       drawerSelectId: id,
@@ -50,9 +47,7 @@ class App extends React.Component<{},AppState> {
     return (
       <div className="App">
         <Header />
-        <SelectContainer
-          onChangeFilterOptions={this.onChangeFilterOptions}
-        />
+        <SelectContainer onChangeFilterOptions={this.onChangeFilterOptions} />
         <RestaurantList
           filterOptions={this.state.filterOptions}
           onToggleDrawer={this.onToggleDrawer}
