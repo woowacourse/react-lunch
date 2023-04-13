@@ -2,7 +2,6 @@ import { Component, createRef, RefObject } from "react";
 import styled from "styled-components";
 import Restaurant from "./restaurant";
 import { RestaurantInfo } from "../types";
-import { restaurantStore } from "../restaurantStore";
 import RestaurantInfoModal from "./restaurantInfoModal";
 
 type RestaurantProps = {
@@ -36,7 +35,7 @@ class Restaurants extends Component<RestaurantProps> {
   };
 
   findSelectedRestaurant = (restaurantId: string) => {
-    return restaurantStore.restaurants.find(
+    return this.props.restaurantList.find(
       (restaurant) => restaurant.id === restaurantId
     );
   };
