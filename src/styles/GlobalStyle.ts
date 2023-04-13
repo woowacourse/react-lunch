@@ -13,6 +13,14 @@ const GlobalStyle = createGlobalStyle`
     --grey-400: #344054;
     --grey-500: #000000;
   }
+
+  * {
+    box-sizing: border-box;
+  }
+  
+  button, a {
+    cursor: pointer;
+  }
 `;
 
 export default GlobalStyle;
