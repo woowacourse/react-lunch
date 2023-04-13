@@ -4,6 +4,14 @@
   padding: 19px 0 13px 0;
 
   border-bottom: 1px solid #d0d5dd;
+  cursor: pointer;
+  background-color: white;
+
+  transition: all 0.3s;
+}
+
+.summary:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .content {
@@ -31,7 +39,7 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  color: #ec4a0a;
+  color: var(--primary-color);
 }
 
 .description {

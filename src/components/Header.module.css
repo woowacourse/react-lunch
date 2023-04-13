@@ -16,7 +16,8 @@
   font-size: 20px;
   font-weight: 600;
   color: white;
-  background-color: #ec4a0a;
+  background-color: var(--primary-color);
+  cursor: pointer;
 }
 
 .nav {

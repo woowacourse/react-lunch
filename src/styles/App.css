@@ -1,5 +1,10 @@
 @import './reset.css';
 
+:root {
+  --primary-color: #ec4a0a;
+  --secondary-color: #667085;
+}
+
 body {
   width: 100vw;
 
