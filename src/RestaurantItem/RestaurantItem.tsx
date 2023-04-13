@@ -3,16 +3,38 @@ import React, { Component } from 'react';
 import { RestaurantInfo } from '../data/type';
 import { CATEGORY_IMAGES } from '../assets/images';
 import './RestaurantItem.css';
+import Modal from '../Modal/Modal';
 
 interface RestaurantItemProps {
   restaurant: RestaurantInfo;
 }
 
-class RestaurantItem extends Component<RestaurantItemProps> {
+interface RestaurantItemState {
+  isModalOpen: boolean;
+  modalClassName: string;
+}
+
+class RestaurantItem extends Component<
+  RestaurantItemProps,
+  RestaurantItemState
+> {
+  constructor(props: RestaurantItemProps) {
+    super(props);
+
+    this.state = {
+      isModalOpen: false,
+      modalClassName: 'modal',
+    };
+  }
+
   render() {
-    const { category, name, distance, description } = this.props.restaurant;
+    const { id, category, name, distance, description } = this.props.restaurant;
     return (
-      <li className="restaurant pointer">
+      <li
+        id={id.toString()}
+        onClick={this.handleOpenModal}
+        className="restaurant pointer"
+      >
         <div className="restaurant__category">
           <img
             src={CATEGORY_IMAGES[category]}
@@ -27,9 +49,27 @@ class RestaurantItem extends Component<RestaurantItemProps> {
           </span>
           <p className="restaurant__description text-body">{description}</p>
         </div>
+        {this.state.isModalOpen && (
+          <Modal
+            restaurant={this.props.restaurant}
+            modalClassName={this.state.modalClassName}
+            onClose={this.handleCloseModal}
+          />
+        )}
       </li>
     );
   }
+
+  handleOpenModal = () => {
+    this.setState({ isModalOpen: true, modalClassName: 'modal--open' });
+    console.log(this.state);
+  };
+
+  handleCloseModal = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    this.setState({ isModalOpen: false, modalClassName: 'modal' });
+    console.log(this.state);
+  };
 }
 
 export default RestaurantItem;

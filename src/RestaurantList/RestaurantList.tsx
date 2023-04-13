@@ -54,6 +54,7 @@ class RestaurantList extends Component<
             );
           })}
         </ul>
+        x
       </section>
     );
   }
