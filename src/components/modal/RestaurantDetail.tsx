@@ -1,6 +1,6 @@
 import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
-import { Style as RestaurantStyle } from '../RestaurantItem';
+import { Style as RestaurantStyle } from '../restaurant/RestaurantItem';
 import { imgSrc } from '../../constants';
 import { RestaurantProps } from '../../type';
 

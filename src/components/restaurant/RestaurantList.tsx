@@ -1,7 +1,7 @@
 import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 import { RestaurantItem } from './RestaurantItem';
-import { Restaurant } from '../type';
+import { Restaurant } from '../../type';
 
 const Style = {
   Wrapper: styled.section`

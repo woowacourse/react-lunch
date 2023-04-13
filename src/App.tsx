@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { GlobalStyle } from './styles/GlobalStyle';
 import { getRestaurantList } from './utils/storage';
 import { filterAndSortArray } from './utils/util';
-import { RestaurantList } from './components/RestaurantList';
+import { RestaurantList } from './components/restaurant/RestaurantList';
 import { Modal } from './components/modal/Modal';
 import { RestaurantDetail } from './components/modal/RestaurantDetail';
 import { SelectBox } from './components/SelectBox';

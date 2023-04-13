@@ -1,7 +1,7 @@
 import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
-import { imgSrc } from '../constants';
-import { RestaurantProps } from '../type';
+import { imgSrc } from '../../constants';
+import { RestaurantProps } from '../../type';
 
 export const Style = {
   Wrapper: styled.li`
