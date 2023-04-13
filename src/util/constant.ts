@@ -1,4 +1,4 @@
-import { Category, SelectOption, Sorting } from "./type";
+import { Category, SelectOption, Sorting } from './type';
 
 import asianImg from '../asset/category-asian.png';
 import chineseImg from '../asset/category-chinese.png';
@@ -7,7 +7,7 @@ import japaneseImg from '../asset/category-japanese.png';
 import koreanImg from '../asset/category-korean.png';
 import westernImg from '../asset/category-western.png';
 
-export const CATEGORY_OPTIONS:SelectOption<Category>[] = [
+export const CATEGORY_OPTIONS: SelectOption<Category>[] = [
   {
     value: '전체',
     textContent: '전체',
@@ -22,7 +22,7 @@ export const CATEGORY_OPTIONS:SelectOption<Category>[] = [
   },
   {
     value: '일식',
-    textContent: '일식'
+    textContent: '일식',
   },
   {
     value: '양식',
@@ -38,7 +38,7 @@ export const CATEGORY_OPTIONS:SelectOption<Category>[] = [
   },
 ];
 
-export const SORTING_OPTIONS:SelectOption<Sorting>[] = [
+export const SORTING_OPTIONS: SelectOption<Sorting>[] = [
   {
     value: 'name',
     textContent: '이름순',
@@ -56,12 +56,12 @@ export const DEFAULT_CATEGORY = '전체';
 export const DEFAULT_SORTING = 'name';
 
 export const CATEGORY_IMAGES = {
-  '한식': koreanImg,
-  '중식': chineseImg,
-  '일식': japaneseImg,
-  '양식': westernImg,
-  '아시안': asianImg,
-  '기타': etcImg
+  한식: koreanImg,
+  중식: chineseImg,
+  일식: japaneseImg,
+  양식: westernImg,
+  아시안: asianImg,
+  기타: etcImg,
 };
 
 export const NO_EXIST_RESTAURANT = {

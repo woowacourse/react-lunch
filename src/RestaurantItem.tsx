@@ -15,7 +15,11 @@ class RestaurantItem extends React.Component<RestaurantProps> {
         onClick={() => this.props.onToggleDrawer(this.props.restaurant.id)}
       >
         <div className="restaurant__category">
-          <img src={CATEGORY_IMAGES[this.props.restaurant.category]} alt={this.props.restaurant.category} className="category-icon" />
+          <img
+            src={CATEGORY_IMAGES[this.props.restaurant.category]}
+            alt={this.props.restaurant.category}
+            className="category-icon"
+          />
         </div>
         <div className="restaurant__info">
           <h3 className="restaurant__name text-subtitle">

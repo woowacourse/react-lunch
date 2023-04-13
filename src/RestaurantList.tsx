@@ -56,20 +56,23 @@ class RestaurantList extends React.Component<RestaurantListProps, StateType> {
   pipe(...funcs) {
     return (x, params) => {
       return funcs.reduce((acc, f, i) => f(acc, params[i]), x);
-    }
+    };
   }
-  
+
   sortRestaurants(rl, category, sorting) {
     return this.filterBySort(this.filterByCategory(rl, category), sorting);
   }
 
   render() {
-    const { category, sorting } = this.props.filterOptions; 
-    
+    const { category, sorting } = this.props.filterOptions;
+
     return (
       <section className="restaurant-list-container">
         <ul className="restaurant-list">
-          {this.pipe(this.filterByCategory, this.filterBySort)(this.state.restaurantList, [category, sorting]).map((restaurant) => (
+          {this.pipe(this.filterByCategory, this.filterBySort)(
+            this.state.restaurantList,
+            [category, sorting]
+          ).map((restaurant) => (
             <RestaurantItem
               key={restaurant.id}
               restaurant={restaurant}
