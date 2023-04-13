@@ -1,164 +1,130 @@
 {
   "restaurants": [
     {
-      "category": "양식",
-      "storeName": "양식1",
+      "category": "한식",
+      "storeName": "피양콩할마니",
       "distance": 20,
-      "detail": "상세 정보",
-      "link": "링크 주소",
-      "favorite": false
-    },
-    {
-      "category": "중식",
-      "storeName": "홍콩반점",
-      "distance": 3,
-      "detail": "상세 정보123",
-      "link": "링크 주소",
-      "favorite": true
-    },
-    {
-      "category": "중식",
-      "storeName": "중식1",
-      "distance": 11,
-      "detail": "상세 정보12312321321312",
-      "link": "링크 주소",
-      "favorite": true
-    },
-    {
-      "category": "양식",
-      "storeName": "양식2",
-      "distance": 1,
-      "detail": "상세 정보1231241254243123",
-      "link": "링크 주소",
-      "favorite": true
-    },
-    {
-      "category": "일식",
-      "storeName": "일식1",
-      "distance": 12,
-      "detail": "상세 정보3456354634564",
-      "link": "링크 주소",
-      "favorite": true
-    },
-    {
-      "category": "중식",
-      "storeName": "중식3",
-      "distance": 19,
-      "detail": "상세 정보789578ㅐ967885678",
-      "link": "링크 주소",
-      "favorite": false
+      "detail": "2023년에도 어김 없이 미쉐린 가이드 서울 빕 구루망으로 선정, 어느덧 7년 째. 피양은 평양을 말하는 평안도 사투리인데요. 이북식 콩비지, 비지전골, 만두 등 맛있는 메뉴가 많답니다.",
+      "link": "#"
     },
     {
       "category": "한식",
-      "storeName": "한식2",
-      "distance": 9,
-      "detail": "상세 정보",
-      "link": "링크 주소",
-      "favorite": false
-    },
-    {
-      "category": "중식",
-      "storeName": "중식4",
-      "distance": 16,
-      "detail": "상세 정보",
-      "link": "링크 주소",
-      "favorite": true
-    },
-    {
-      "category": "중식",
-      "storeName": "중식5",
-      "distance": 20,
-      "detail": "상세 정보",
-      "link": "링크 주소",
-      "favorite": true
-    },
-    {
-      "category": "일식",
-      "storeName": "일식2",
-      "distance": 9,
-      "detail": "상세 정보",
-      "link": "링크 주소",
-      "favorite": false
-    },
-    {
-      "category": "양식",
-      "storeName": "양식3",
-      "distance": 3,
-      "detail": "상세 정보",
-      "link": "링크 주소",
-      "favorite": false
-    },
-    {
-      "category": "중식",
-      "storeName": "중식6",
-      "distance": 7,
-      "detail": "상세 정보",
-      "link": "링크 주소",
-      "favorite": false
-    },
-    {
-      "category": "중식",
-      "storeName": "중식7",
-      "distance": 14,
-      "detail": "상세 정보",
-      "link": "링크 주소",
-      "favorite": true
+      "storeName": "농민백암순대",
+      "distance": 15,
+      "detail": "점심, 저녁 시간만 되면 직장인들이 줄 서서 먹는 순대 맛집.",
+      "link": "#"
     },
     {
       "category": "한식",
-      "storeName": "한식5",
-      "distance": 17,
-      "detail": "상세 정보",
-      "link": "링크 주소",
-      "favorite": false
+      "storeName": "숯칼",
+      "distance": 5,
+      "detail": "닭갈비와 칼국수. 양과 맛, 가격 3마리 토끼 모두 잡은 그곳.",
+      "link": "#"
+    },
+    {
+      "category": "중식",
+      "storeName": "명정루",
+      "distance": 10,
+      "detail": "배부르고 맛있게 중식을 먹을 수 있는 곳. 사람이 많은 이유가 있다.",
+      "link": "#"
+    },
+    {
+      "category": "중식",
+      "storeName": "친친",
+      "distance": 5,
+      "detail": "캠퍼스에서 가장 가까운 중식점.",
+      "link": "#"
+    },
+    {
+      "category": "중식",
+      "storeName": "용용선생",
+      "distance": 10,
+      "detail": "레벨1 프론트엔드 회식의 장소. 오손도손 둘러앉아 추억이 가득하다.",
+      "link": "#"
     },
     {
       "category": "일식",
-      "storeName": "일식8",
-      "distance": 19,
-      "detail": "상세 정보",
-      "link": "링크 주소",
-      "favorite": true
+      "storeName": "백소정",
+      "distance": 10,
+      "detail": "프랜차이즈임에도 불구하고 가장 맛있는 돈까스 음식점.",
+      "link": "#"
+    },
+    {
+      "category": "일식",
+      "storeName": "돈카라",
+      "distance": 5,
+      "detail": "선릉캠퍼스 크루들에게 가장 익숙한 지하식당의 돈까스 음식점. 카레도 함께 먹을 수 있다.",
+      "link": "#"
+    },
+    {
+      "category": "일식",
+      "storeName": "카츠젠",
+      "distance": 15,
+      "detail": "잘 모른다.",
+      "link": "#"
     },
     {
       "category": "양식",
-      "storeName": "양식9",
-      "distance": 17,
-      "detail": "상세 정보",
-      "link": "링크 주소",
-      "favorite": false
+      "storeName": "맥도날드",
+      "distance": 20,
+      "detail": "너무 멀어요.",
+      "link": "#"
     },
     {
-      "category": "중식",
-      "storeName": "중식9",
-      "distance": 9,
-      "detail": "상세 정보",
-      "link": "링크 주소",
-      "favorite": true
+      "category": "양식",
+      "storeName": "버거킹",
+      "distance": 10,
+      "detail": "햄버거가 먹고 싶은데 가장 가까운 곳이 어딘지 묻는다면 버거킹.",
+      "link": "#"
     },
     {
-      "category": "중식",
-      "storeName": "중식10",
-      "distance": 4,
-      "detail": "상세 정보",
-      "link": "링크 주소",
-      "favorite": true
+      "category": "양식",
+      "storeName": "서브웨이",
+      "distance": 5,
+      "detail": "빵과 치즈, 소스를 미리 골라가야되는거 아시죠?",
+      "link": "#"
     },
     {
-      "category": "일식",
-      "storeName": "일식7",
-      "distance": 4,
-      "detail": "상세 정보",
-      "link": "링크 주소",
-      "favorite": false
+      "category": "아시안",
+      "storeName": "반포식스",
+      "distance": 10,
+      "detail": "쌀국수가 먹고 싶어 갔는데 매운 쌀국수가 취향저격. 베트남 요리를 즐겨보자!",
+      "link": "#"
     },
     {
-      "category": "일식",
-      "storeName": "일식11",
-      "distance": 4,
-      "detail": "상세 정보",
-      "link": "링크 주소",
-      "favorite": false
+      "category": "아시안",
+      "storeName": "쏭타이",
+      "distance": 10,
+      "detail": "새우 팟타이랑 닭고기 쌀국수가 짜지 않고 맛있다. 수년동안 타이레스토랑을 운영한 경험을 바탕으로 태국 음식을 선사한다.",
+      "link": "#"
+    },
+    {
+      "category": "아시안",
+      "storeName": "포하이",
+      "distance": 15,
+      "detail": "세트에 볶음밥 맛있는데 양이 많아 쌀국수만 먹게 된다. 국물이 해장용으로 최고. 볶음밥도 매콤.",
+      "link": "#"
+    },
+    {
+      "category": "기타",
+      "storeName": "생활맥주",
+      "distance": 10,
+      "detail": "매장이 넓어 단체 모임하기도 좋다. 시원한 수제맥주와 다양한 안주. 한잔하기 딱 좋은 곳.",
+      "link": "#"
+    },
+    {
+      "category": "기타",
+      "storeName": "마초갈비",
+      "distance": 5,
+      "detail": "갈비를 생각했다면 오산. 이 가게는 점심특선으로 나오는 보쌈정식이 환상적이다. 한식뷔페가 질릴때 만원의 가성비로 배부르게 보쌈 먹을 수 있는 마초갈비를 선택해보는 것은 어떨까?",
+      "link": "#"
+    },
+    {
+      "category": "기타",
+      "storeName": "매드후라이치킨",
+      "distance": 5,
+      "detail": "프론트엔드 회식 2차의 장소. 끝까지 남은 사람들은 대단하다.",
+      "link": "#"
     }
   ]
 }

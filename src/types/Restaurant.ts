@@ -6,7 +6,6 @@ type Restaurant = {
   distance: number;
   detail: string;
   link: string;
-  favorite: boolean;
 };
 
 type Category = typeof CATEGORIES[number];
@@ -19,7 +18,6 @@ type RestaurantJSON = {
   distance: number;
   detail: string;
   link: string;
-  favorite: boolean;
 };
 
 export type { Restaurant, Category, SortBy, RestaurantJSON };
