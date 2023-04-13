@@ -54,6 +54,28 @@ class App extends Component<object, AppState> {
     document.body.dataset.hideScroll = 'true';
   }
 
+  setSelectedCategory(value: string) {
+    if (!isFoodCategory(value)) return;
+
+    this.setState(
+      {
+        selectedCategory: value,
+      },
+      this.filterRestaurantList,
+    );
+  }
+
+  setSelectedSortingMethod(value: string) {
+    if (!isSortMethod(value)) return;
+
+    this.setState(
+      {
+        selectedSortingMethod: value,
+      },
+      this.filterRestaurantList,
+    );
+  }
+
   resetClickedRestaurant() {
     this.setState({
       clickedRestaurant: null,
@@ -95,25 +117,11 @@ class App extends Component<object, AppState> {
     const { value } = event.currentTarget;
 
     if (kind === 'filter') {
-      if (!isFoodCategory(value)) return;
-
-      this.setState(
-        {
-          selectedCategory: value,
-        },
-        this.filterRestaurantList,
-      );
+      this.setSelectedCategory(value);
     }
 
     if (kind === 'sort') {
-      if (!isSortMethod(value)) return;
-
-      this.setState(
-        {
-          selectedSortingMethod: value,
-        },
-        this.filterRestaurantList,
-      );
+      this.setSelectedSortingMethod(value);
     }
   }
 
