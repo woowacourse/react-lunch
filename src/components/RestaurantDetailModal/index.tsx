@@ -4,18 +4,17 @@ import { CategoryImagePath } from "../../data/CategoryImagePath";
 import { Restaurant } from "../../types/restaurant";
 
 interface RestaurantDetailModalProps {
-  isModalOpen: boolean;
   closeModal: () => void;
   restaurant: Restaurant;
 }
 
 export default class RestaurantDetailModal extends Component<RestaurantDetailModalProps> {
   render() {
-    const { isModalOpen, closeModal, restaurant } = this.props;
+    const { closeModal, restaurant } = this.props;
     const { name, category, distance, description, link } = restaurant;
 
     return (
-      <div className={isModalOpen ? "modal modal--open" : "modal"}>
+      <div className="modal">
         <div className="modal-backdrop" onClick={closeModal}></div>
         <div className="modal-container">
           <div className="restaurant-detail-container">

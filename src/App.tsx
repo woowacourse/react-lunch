@@ -12,6 +12,7 @@ interface AppState {
   isModalOpen: boolean;
   modalContents: Restaurant;
 }
+
 class App extends Component {
   state: AppState = {
     selectedCategory: "all",
@@ -47,7 +48,6 @@ class App extends Component {
 
   render() {
     const ModalProps = {
-      isModalOpen: this.state.isModalOpen,
       closeModal: this.closeModal.bind(this),
       restaurant: this.state.modalContents,
     };
@@ -66,7 +66,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <RestaurantDetailModal {...ModalProps} />
+        {this.state.isModalOpen && <RestaurantDetailModal {...ModalProps} />}
         <Header />
         <Filter {...filterProps} />
         <RestaurantList {...restaurantListProps} />
