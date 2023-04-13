@@ -2,6 +2,7 @@ import { Component } from 'react';
 import RestaurantItem from '../RestaurantItem/RestaurantItem';
 import data from '../../data/mockData.json';
 import { Restaurant } from '../../types/types';
+import styles from './RestaurantsList.module.css';
 
 export default class RestaurantsList extends Component {
   render() {
@@ -13,8 +14,16 @@ export default class RestaurantsList extends Component {
         distance: restaurant.distance,
         description: restaurant.description,
       };
-      return <RestaurantItem {...restaurantItemProps} />;
+      return (
+        <li key={restaurant.id} className={styles.restaurant}>
+          <RestaurantItem {...restaurantItemProps} />
+        </li>
+      );
     });
-    return <div>{restaurantItems}</div>;
+    return (
+      <section className={styles.container}>
+        <ul>{restaurantItems}</ul>
+      </section>
+    );
   }
 }
