@@ -3,12 +3,18 @@ import styles from './Header.module.css';
 import Select from './Select';
 
 class Header extends Component<{ onChange: (event: ChangeEvent<HTMLSelectElement>, kind: 'filter' | 'sort') => void }> {
+  static onTitleClick() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   render(): ReactNode {
     const { onChange } = this.props;
 
     return (
       <header className={styles.header}>
-        <h1 className={styles.title}>점심 뭐 먹지</h1>
+        <h1 onClick={Header.onTitleClick} aria-hidden="true" className={styles.title}>
+          점심 뭐 먹지
+        </h1>
         <nav className={styles.nav}>
           <Select
             onChange={(event: ChangeEvent<HTMLSelectElement>) => onChange(event, 'filter')}
