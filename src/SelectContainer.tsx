@@ -1,6 +1,6 @@
 import React from 'react';
-import Select from './Select.tsx';
-import { CATEGORY_OPTIONS, SORTING_OPTIONS } from './constant.ts';
+import Select from './common/Select.tsx';
+import { CATEGORY_OPTIONS, SORTING_OPTIONS } from './util/constant.ts';
 
 type SelectContainerProps = {
   onChangeFilterOptions: (e: React.ChangeEvent<HTMLSelectElement>) => void;

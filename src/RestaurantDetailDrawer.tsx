@@ -1,7 +1,7 @@
 import React from 'react';
-import Drawer from './Drawer.tsx';
-import { Restaurant } from './type';
-import { CATEGORY_IMAGES, NO_EXIST_RESTAURANT } from './constant.ts';
+import Drawer from './common/Drawer.tsx';
+import { Restaurant } from './util/type.js';
+import { CATEGORY_IMAGES, NO_EXIST_RESTAURANT } from './util/constant.ts';
 
 type RestaurantDetailDrawerProps = {
   isOpenDrawer: boolean;

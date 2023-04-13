@@ -1,6 +1,6 @@
 import React from 'react';
 import RestaurantItem from './RestaurantItem.tsx';
-import { FilterOption, Restaurant } from './type';
+import { FilterOption, Restaurant } from './util/type.js';
 
 type StateType = {
   restaurantList: Omit<Restaurant, 'link'>[];

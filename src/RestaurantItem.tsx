@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Restaurant } from './type';
-import { CATEGORY_IMAGES } from './constant.ts';
+import { Restaurant } from './util/type';
+import { CATEGORY_IMAGES } from './util/constant.ts';
 
 type RestaurantProps = {
   readonly restaurant: Omit<Restaurant, 'link'>;

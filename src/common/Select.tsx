@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Category, SelectOption, Sorting } from './type';
+import { Category, SelectOption, Sorting } from '../util/type';
 
 type SelectProps = {
   name: string;

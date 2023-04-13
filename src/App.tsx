@@ -3,8 +3,8 @@ import MainHeader from './MainHeader.tsx';
 import RestaurantList from './RestaurantList.tsx';
 import SelectContainer from './SelectContainer.tsx';
 import RestaurantDetailDrawer from './RestaurantDetailDrawer.tsx';
-import { DEFAULT_CATEGORY, DEFAULT_SORTING, NO_SELECT_ID } from './constant.ts';
-import { FilterOption } from './type.js';
+import { DEFAULT_CATEGORY, DEFAULT_SORTING, NO_SELECT_ID } from './util/constant.ts';
+import { FilterOption } from './util/type.js';
 
   type AppState = {
   filterOptions: FilterOption;

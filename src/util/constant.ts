@@ -1,11 +1,11 @@
 import { Category, SelectOption, Sorting } from "./type";
 
-import asianImg from './asset/category-asian.png';
-import chineseImg from './asset/category-chinese.png';
-import etcImg from './asset/category-etc.png';
-import japaneseImg from './asset/category-japanese.png';
-import koreanImg from './asset/category-korean.png';
-import westernImg from './asset/category-western.png';
+import asianImg from '../asset/category-asian.png';
+import chineseImg from '../asset/category-chinese.png';
+import etcImg from '../asset/category-etc.png';
+import japaneseImg from '../asset/category-japanese.png';
+import koreanImg from '../asset/category-korean.png';
+import westernImg from '../asset/category-western.png';
 
 export const CATEGORY_OPTIONS:SelectOption<Category>[] = [
   {
