@@ -7,15 +7,11 @@ interface SelectProps {
 }
 
 class Select extends Component<SelectProps> {
-  constructor(props: SelectProps) {
-    super(props);
-  }
-
   render(): ReactNode {
-    const { options, onChange } = this.props;
+    const { options, onChange, ...props } = this.props;
 
     return (
-      <St.Layout onChange={(e) => onChange(e.target.value)}>
+      <St.Layout onChange={(e) => onChange(e.target.value)} {...props}>
         {options.map((option) => (
           <St.Option value={option} key={option}>
             {option}

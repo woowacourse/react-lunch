@@ -88,7 +88,7 @@ class RestaurantList extends Component<RestaurantListProps, State> {
     const isBottomSheetOpened = isOpened && focusedRestaurant;
 
     return (
-      <St.Layout>
+      <St.Layout data-cy="restaurant-list">
         {restaurantList.map((restaurant: Restaurant) => (
           <RestaurantItem
             key={restaurant.id}

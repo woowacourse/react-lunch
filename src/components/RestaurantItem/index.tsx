@@ -18,7 +18,10 @@ class RestaurantItem extends Component<RestaurantItemProps> {
     } = this.props;
 
     return (
-      <St.Layout onClick={onClick}>
+      <St.Layout
+        onClick={onClick}
+        data-cy-category={`${category}-restaurant`}
+        data-cy-distance={distance}>
         <St.LeftSection>
           <CategoryImg category={category} />
         </St.LeftSection>

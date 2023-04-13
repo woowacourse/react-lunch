@@ -13,8 +13,16 @@ class SelectBar extends Component<SelectBarProps> {
     const { onChangeCategoryFilter, onChangeAlignFilter } = this.props;
     return (
       <St.Layout>
-        <Select options={CATEGORY_FILTER} onChange={onChangeCategoryFilter} />
-        <Select options={ALIGN_FILTER} onChange={onChangeAlignFilter} />
+        <Select
+          options={CATEGORY_FILTER}
+          onChange={onChangeCategoryFilter}
+          data-cy="category-select"
+        />
+        <Select
+          options={ALIGN_FILTER}
+          onChange={onChangeAlignFilter}
+          data-cy="align-select"
+        />
       </St.Layout>
     );
   }
