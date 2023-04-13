@@ -47,9 +47,13 @@ class App extends Component {
   }
 
   render() {
-    const ModalProps = {
+    const modalProps = {
       closeModal: this.closeModal.bind(this),
       restaurant: this.state.modalContents,
+    };
+
+    const headerProps = {
+      title: "점심 뭐 먹지",
     };
 
     const filterProps = {
@@ -66,8 +70,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        {this.state.isModalOpen && <RestaurantDetailModal {...ModalProps} />}
-        <Header />
+        {this.state.isModalOpen && <RestaurantDetailModal {...modalProps} />}
+        <Header {...headerProps} />
         <Filter {...filterProps} />
         <RestaurantList {...restaurantListProps} />
       </div>
