@@ -51,11 +51,6 @@ class Modal extends Component<ModalProps> {
               </div>
             </div>
             <div className="button-container">
-              <Button
-                color="white"
-                name="삭제하기"
-                onClose={this.props.onClose}
-              />
               <Button color="orange" name="닫기" onClose={this.props.onClose} />
             </div>
           </div>
