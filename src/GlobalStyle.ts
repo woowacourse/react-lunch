@@ -10,6 +10,15 @@ export const GlobalStyle = createGlobalStyle`
   html,
   body {
     font-family: "Noto Sans KR", sans-serif;
+    /* hidden scroll */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  body::-webkit-scrollbar,
+  dialog::-webkit-scrollbar {
+    /* hidden scroll */
+    display: none;
   }
 
   body:has(dialog[open]) {
