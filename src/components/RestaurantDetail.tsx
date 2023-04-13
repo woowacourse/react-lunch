@@ -1,7 +1,9 @@
 import { Restaurant } from '../types/restaurant';
+
 import React from 'react';
+import { Button, CategoryImage } from './';
 import styled from 'styled-components';
-import { CATEGORY_IMAGE_MAP } from '../constants';
+
 import { textBody, textSubtitle } from '../style/mixin';
 
 interface Props {
@@ -18,16 +20,14 @@ class RestaurantDetail extends React.Component<Props> {
         <ModalBackdrop onClick={this.props.closeModal} />
         <ModalContainer>
           <Detail>
-            <CategoryImage>
-              <img src={`./img/${CATEGORY_IMAGE_MAP[category]}`} alt={category} />
-            </CategoryImage>
+            <CategoryImage category={category} />
             <RestaurantName>{name}</RestaurantName>
             <Distance>캠퍼스부터 {distance}분 내</Distance>
             <Description>{description}</Description>
             <Link href={link}>{link}</Link>
             <ButtonContainer>
-              <SecondaryButton>삭제하기</SecondaryButton>
-              <PrimaryButton onClick={this.props.closeModal}>닫기</PrimaryButton>
+              <RemoveButton>삭제하기</RemoveButton>
+              <CloseButton onClick={this.props.closeModal}>닫기</CloseButton>
             </ButtonContainer>
           </Detail>
         </ModalContainer>
@@ -93,50 +93,19 @@ const Link = styled.a`
   color: #000000;
 `;
 
-const CategoryImage = styled.div`
+const ButtonContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 64px;
-  height: 64px;
-  min-width: 64px;
-  min-height: 64px;
 
-  margin-right: 16px;
-
-  border-radius: 50%;
-  background: var(--lighten-color);
-
-  img {
-    width: 36px;
-    height: 36px;
+  button + button {
+    margin-left: 16px;
   }
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
-`;
-
-const Button = styled.button`
-  width: 100%;
-  height: 44px;
-
-  border: none;
-  border-radius: 8px;
-
-  font-weight: 600;
-  cursor: pointer;
-`;
-
-const SecondaryButton = styled(Button)`
-  margin-right: 16px;
+const RemoveButton = styled(Button)`
   border: 1px solid var(--grey-300);
 
   background: transparent;
   color: var(--grey-300);
 `;
 
-const PrimaryButton = styled(Button)`
-  background: var(--primary-color);
-  color: var(--grey-100);
-`;
+const CloseButton = styled(Button)``;
