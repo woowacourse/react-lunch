@@ -1,0 +1,44 @@
+dialog {
+	border: none;
+	-ms-overflow-style: none;
+	width: 100%;
+}
+
+button {
+	position: absolute;
+	bottom: 0;
+	width: calc(100% - 32px);
+	height: 44px;
+
+	background: #ec4a0a;
+	color: #ffffff;
+
+	margin: 16px;
+
+	border: none;
+	border-radius: 8px;
+
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.modal {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	padding: 0;
+	height: 70%;
+	background: white;
+	border-radius: 12px 12px 0;
+	z-index: 1;
+}
+
+.modalBackdrop {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+
+	background: rgba(0, 0, 0, 0.35);
+}
