@@ -6,6 +6,7 @@ import FilterSection from './FilterSection';
 import RestaurantListSection from './RestaurantListSection';
 
 import { Restaurant } from '../../domain/type';
+import { restaurantService } from '../../domain/restaurantService';
 
 interface Props {
   restaurants: Restaurant[] | null;
@@ -64,11 +65,14 @@ class MainLayout extends Component<Props, State> {
   };
 
   render() {
-    const filtered = this.filterByCategory(this.props.restaurants);
+    const filtered = restaurantService.filterByCategory(
+      this.props.restaurants,
+      this.state.category,
+    );
     const sorted =
       this.state.sortBy === '이름순'
-        ? this.sortByName(filtered)
-        : this.sortByDistance(filtered);
+        ? restaurantService.sortByName(filtered)
+        : restaurantService.sortByDistance(filtered);
 
     return (
       <main>
