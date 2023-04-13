@@ -1,15 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Restaurant } from "../types/Restaurant";
 import { convertImage } from "../utils/image";
 import { GlobalContext, GlobalState } from "../containers/GlobalProvider";
 
-interface ModalProps {
-  restaurant: Restaurant;
-  closeModal: () => void;
-}
-
-class Modal extends React.Component<ModalProps, {}>  {
+class Modal extends React.Component {
   static contextType = GlobalContext;
 
   render() {
