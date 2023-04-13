@@ -13,7 +13,6 @@ interface PropsType {
 
 interface StateType {
   restaurants: Restaurant[];
-  clickedRestaurant: Restaurant | null;
 }
 
 export class RestaurantSection extends React.Component<PropsType, StateType> {
@@ -22,7 +21,6 @@ export class RestaurantSection extends React.Component<PropsType, StateType> {
 
     this.state = {
       restaurants: [],
-      clickedRestaurant: null,
     };
   }
 
