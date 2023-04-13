@@ -13,6 +13,22 @@ interface Props {
 class RestaurantDetailModal extends Component<Props> {
   constructor(props: Props) {
     super(props);
+
+    this.onKeydown = this.onKeydown.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener("keydown", this.onKeydown);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.onKeydown);
+  }
+
+  onKeydown(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+      this.props.onClose();
+    }
   }
 
   render() {
