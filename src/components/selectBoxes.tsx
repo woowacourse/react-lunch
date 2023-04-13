@@ -2,10 +2,16 @@ import { ChangeEvent, Component } from "react";
 import styled from "styled-components";
 
 class SelectBoxes extends Component<{
-  onChange: (event: string) => void;
+  onChangeCategory: (event: string) => void;
+  onChangeSorting: (event: string) => void;
 }> {
-  onChange = ({ target }: ChangeEvent<HTMLSelectElement>) => {
-    this.props.onChange(target.value);
+
+  handleCategorySelect = ({ target }: ChangeEvent<HTMLSelectElement>) => {
+    this.props.onChangeCategory(target.value);
+  };
+
+  handleSortingSelect = ({ target }: ChangeEvent<HTMLSelectElement>) => {
+    this.props.onChangeSorting(target.value);
   };
 
   render() {
@@ -25,14 +31,18 @@ class SelectBoxes extends Component<{
         <SelectBox
           name="category"
           id="category-filter"
-          onChange={this.onChange}
+          onChange={this.handleCategorySelect}
         >
           {categorySelect.map((category, index) => (
             <option key={index}>{category}</option>
           ))}
         </SelectBox>
 
-        <SelectBox name="sorting" id="sorting-filter" onChange={this.onChange}>
+        <SelectBox
+          name="sorting"
+          id="sorting-filter"
+          onChange={this.handleSortingSelect}
+        >
           {sortingSelect.map((select, index) => (
             <option key={index}>{select}</option>
           ))}
