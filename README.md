@@ -2,6 +2,10 @@
 
 우아한테크코스 레벨2 점심 뭐 먹지 미션
 
+# 사이트 바로가기
+
+<a href="https://gilpop8663.github.io/react-lunch/">점심 뭐 먹지 바로가기</a>
+
 # step1
 
 ## 실행하는 방법
