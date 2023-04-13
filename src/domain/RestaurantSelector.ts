@@ -13,3 +13,9 @@ export const sortByTitle = (restaurants: RestaurantInfo[]) => {
 export const sortByEstimatedTime = (restaurants: RestaurantInfo[]) => {
   return [...restaurants].sort((infoA, infoB) => infoA.estimatedTime - infoB.estimatedTime);
 };
+
+export const sortRestaurants = (restaurants: RestaurantInfo[], sortMethod: string) => {
+  if (sortMethod === '이름순') return sortByTitle(restaurants);
+  if (sortMethod === '거리순') return sortByEstimatedTime(restaurants);
+  return [...restaurants];
+};
