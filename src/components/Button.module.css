@@ -1,0 +1,27 @@
+button {
+  width: 100%;
+  padding: 10px 18px;
+  margin: 0 8px;
+
+  border-radius: 8px;
+
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+
+  cursor: pointer;
+}
+
+.primary {
+  border: 1px solid #ec4a0a;
+
+  color: white;
+  background-color: #ec4a0a;
+}
+
+.secondary {
+  border: 1px solid #667085;
+
+  color: #667085;
+  background-color: white;
+}

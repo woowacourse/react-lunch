@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { RestaurantInfo } from '../types/restaurantInfo';
 import CategoryImage from './CategoryImage';
 import styles from './RestaurantDetail.module.css';
+import Button from './Button';
 
-class RestaurantDetail extends Component<{ restaurantInfo: RestaurantInfo }> {
+class RestaurantDetail extends Component<{ restaurantInfo: RestaurantInfo; onCloseClick: () => void }> {
   render() {
     const {
       restaurantInfo: { category, title, estimatedTime, description, link },
+      onCloseClick,
     } = this.props;
 
     return (
@@ -21,12 +23,14 @@ class RestaurantDetail extends Component<{ restaurantInfo: RestaurantInfo }> {
           </a>
         </div>
         <div className={styles.buttonContainer}>
-          <button type="button" className={styles.button}>
-            닫기
-          </button>
-          <button type="button" className={styles.button}>
-            닫기
-          </button>
+          <Button
+            text="삭제하기"
+            kind="secondary"
+            onClick={() => {
+              console.log('삭제하기 버튼 클릭');
+            }}
+          />
+          <Button text="닫기" kind="primary" onClick={onCloseClick} />
         </div>
       </section>
     );
