@@ -24,3 +24,7 @@ const compareString = (a: string, b: string): number => {
   if (a < b) return -1;
   return 0;
 };
+
+export const getSelectedRestaurant = (id: number | undefined) => {
+  return restaurants.find(restaurant => id === restaurant.id) || restaurants[0];
+};
