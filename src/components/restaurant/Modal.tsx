@@ -1,13 +1,8 @@
 import { Component } from 'react';
 import styled from 'styled-components';
 import { Restaurant } from '../../App';
-
-import asian from '../../asset/category-asian.png';
-import chinese from '../../asset/category-chinese.png';
-import korean from '../../asset/category-korean.png';
-import japanese from '../../asset/category-japanese.png';
-import western from '../../asset/category-western.png';
-import etc from '../../asset/category-etc.png';
+import CategoryIcon from '../common/CategoryIcon';
+import { CATEGORIES } from '../restaurant/RestaurantList';
 
 const ModalBackdrop = styled.div`
   position: fixed;
@@ -40,25 +35,6 @@ const Distance = styled.span`
   color: var(--primary-color);
 `;
 
-const CategoryIcon = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 64px;
-  height: 64px;
-  min-width: 64px;
-  min-height: 64px;
-
-  margin-right: 16px;
-
-  border-radius: 50%;
-  background: var(--lighten-color);
-  img {
-    width: 36px;
-    height: 36px;
-  }
-`;
-
 const Description = styled.p`
   margin: 16px 0;
 `;
@@ -88,17 +64,8 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const categoryIcon: Record<string, string> = {
-  한식: korean,
-  중식: chinese,
-  일식: japanese,
-  양식: western,
-  아시안: asian,
-  기타: etc,
-};
-
 export type Props = {
-  category: string;
+  category: (typeof CATEGORIES)[keyof typeof CATEGORIES];
   name: string;
   distanceByMinutes: number;
   description: string;
@@ -129,9 +96,7 @@ class Modal extends Component<Props> {
       <div>
         <ModalBackdrop onClick={this.onCloseModal} />
         <ModalContent>
-          <CategoryIcon>
-            <img src={categoryIcon[this.props.category]} alt={this.props.category} />
-          </CategoryIcon>
+          <CategoryIcon category={this.props.category} />
           <Title className="text-title">{this.props.name}</Title>
           <Distance className="text-body">캠퍼스로부터 {this.props.distanceByMinutes}분 내</Distance>
           <Description className="text-body">{this.props.description}</Description>
