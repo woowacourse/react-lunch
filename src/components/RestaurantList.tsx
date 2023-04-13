@@ -40,7 +40,7 @@ class RestaurantList extends Component<Props, State> {
   sortList(restaurants: Restaurant[]) {
     const { sorting } = this.props.options;
 
-    if (sorting === SORTING_OPTIONS.DISTANCE) {
+    if (sorting === SORTING_OPTIONS.NAME) {
       return [...restaurants].sort((first, second) => first.name.localeCompare(second.name));
     }
 
