@@ -2,7 +2,7 @@ import { KEY } from '../src/constants';
 import {
   getSavedRestaurantList,
   hasSavedRestaurantList,
-  saveNewRestaurantList,
+  saveRestaurantList,
 } from '../src/domain/initializeRestaurantList';
 import MOCK_DATA from '../src/data/MockData.json';
 
@@ -40,7 +40,7 @@ describe('로컬스토리지에 초기 음식점 목록을 가져오는 함수 �
     const mockData = MOCK_DATA.restaurantList;
 
     // when
-    saveNewRestaurantList();
+    saveRestaurantList();
     const data = JSON.parse(localStorage.getItem(KEY) || '[]');
 
     // then

@@ -12,8 +12,6 @@ export const hasSavedRestaurantList = () => {
   return restaurantList && restaurantList.length > 0;
 };
 
-export const saveNewRestaurantList = async () => {
-  const { restaurantList } = MOCK_DATA;
-
-  localStorage.setItem(KEY, JSON.stringify(restaurantList));
+export const saveRestaurantList = (list = MOCK_DATA.restaurantList as RestaurantInfo[]) => {
+  localStorage.setItem(KEY, JSON.stringify(list));
 };
