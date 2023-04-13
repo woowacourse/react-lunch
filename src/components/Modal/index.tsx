@@ -25,7 +25,7 @@ class Modal extends Component<ModalProps> {
       <>
         {isModalOpen && (
           <div className="modal" onClick={(event) => this.handleClose(event)}>
-            <div className="modal-backdrop"></div>
+            <div className="modal-backdrop" />
             <div className="modal-container">
               {this.props.content}
               <button className="button button--primary text-caption modal-close-button">
