@@ -1,12 +1,16 @@
 import { Component } from 'react';
 import RestaurantItem from '../RestaurantItem/RestaurantItem';
-import data from '../../data/mockData.json';
 import { Restaurant } from '../../types/types';
 import styles from './RestaurantsList.module.css';
+import { getSelectedRestaurantsList } from '../../data/parseFn';
 
 export default class RestaurantsList extends Component {
   render() {
-    const restaurantItems = data.map((restaurant: Restaurant) => {
+    const { category, sorting }: Record<string, string> = this.props;
+
+    const restaurants = getSelectedRestaurantsList(category, sorting);
+
+    const restaurantItems = restaurants.map((restaurant: Restaurant) => {
       const restaurantItemProps = {
         key: restaurant.id,
         category: restaurant.category,
