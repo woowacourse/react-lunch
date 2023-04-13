@@ -1,9 +1,8 @@
 import React from "react";
 import Select from "./Select";
-import mockData from "../mockData.json";
 import type { Restaurant, Category, SortBy } from "../types/Restaurant";
 import RestaurantList from "./RestaurantList";
-import { filterByCategory, sortBy } from "../utils/restaurant";
+import { filterByCategory, getRestaurants, sortBy } from "../utils/restaurant";
 
 type RestaurantListState = {
   restaurants: Restaurant[];
@@ -17,18 +16,13 @@ class Main extends React.Component<RestaurantListProps, RestaurantListState> {
   constructor(props: RestaurantListProps) {
     super(props);
 
-    const storageData = localStorage.getItem("restaurant");
-    if (storageData === null) {
-      const { restaurants } = mockData as { restaurants: Restaurant[] };
-      localStorage.setItem("restaurants", JSON.stringify(restaurants));
-      this.state = { restaurants, category: "전체", sort: "이름순" };
-    } else {
-      this.state = {
-        restaurants: JSON.parse(storageData),
-        category: "전체",
-        sort: "이름순",
-      };
-    }
+    const storageData = getRestaurants();
+
+    this.state = {
+      restaurants: storageData,
+      category: "전체",
+      sort: "이름순",
+    };
 
     this.setCategory = this.setCategory.bind(this);
     this.setSort = this.setSort.bind(this);
@@ -47,15 +41,16 @@ class Main extends React.Component<RestaurantListProps, RestaurantListState> {
   }
 
   render() {
-    const filteredAndSorted = sortBy(
-      filterByCategory(this.state.restaurants, this.state.category),
-      this.state.sort
+    const filteredData = filterByCategory(
+      this.state.restaurants,
+      this.state.category
     );
+    const sortedData = sortBy(filteredData, this.state.sort);
 
     return (
       <>
         <Select setCategory={this.setCategory} setSort={this.setSort} />
-        <RestaurantList restaurants={filteredAndSorted} />
+        <RestaurantList restaurants={sortedData} />
       </>
     );
   }

@@ -1,4 +1,5 @@
 import { Category, Restaurant, SortBy } from "../types/Restaurant";
+import mockData from "../mockData.json";
 
 export const filterByCategory = (
   restaurants: Restaurant[],
@@ -15,4 +16,14 @@ export const sortBy = (restaurants: Restaurant[], sort: SortBy) => {
   }
 
   return restaurants.sort((a, b) => a.distance - b.distance);
+};
+
+export const getRestaurants = () => {
+  const storageRestaurants = localStorage.getItem("restaurant");
+  if (storageRestaurants) return JSON.parse(storageRestaurants);
+
+  const { restaurants } = mockData as { restaurants: Restaurant[] };
+  localStorage.setItem("restaurants", JSON.stringify(restaurants));
+
+  return restaurants;
 };
