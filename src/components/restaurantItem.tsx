@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Restaurant } from "../types/restaurant";
 import { convertImage } from "../utils/imageConverter";
-import { ItemModal } from "./itemModal";
+import { Modal } from "./modal";
+import { ItemModalContent } from "./ItemModalContent";
 
 interface PropsType {
   restaurant: Restaurant;
@@ -45,10 +46,9 @@ export class RestaurantItem extends React.Component<PropsType, StateType> {
           </ItemInfo>
         </ItemContainer>
         {this.state.isModalOpen && (
-          <ItemModal
-            restaurant={this.props.restaurant}
-            closeModal={this.closeModal.bind(this)}
-          />
+          <Modal location="bottom" closeModal={this.closeModal.bind(this)}>
+            <ItemModalContent restaurant={this.props.restaurant} />
+          </Modal>
         )}
       </>
     );
