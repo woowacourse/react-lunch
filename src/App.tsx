@@ -3,6 +3,7 @@ import Restaurants from "./components/restaurants";
 import SelectBoxes from "./components/selectBoxes";
 import RestaurantMockData from "./mocks/restaurants.json";
 import { RestaurantInfo } from "./types";
+import HeaderSection from "./components/headerSection";
 
 type RestaurantProps = {
   restaurants: RestaurantInfo[];
@@ -18,7 +19,6 @@ class App extends Component<{}, RestaurantProps> {
     category: "전체",
     sorting: "이름순",
   };
-
 
   handleCategorySelect = (value: string) => {
     const filteredRestaurants = this.filter(value);
@@ -53,6 +53,7 @@ class App extends Component<{}, RestaurantProps> {
   render() {
     return (
       <>
+        <HeaderSection></HeaderSection>
         <SelectBoxes
           onChangeCategory={this.handleCategorySelect}
           onChangeSorting={this.handleSortingSelect}
