@@ -1,15 +1,20 @@
 import React, { Component, ReactNode } from 'react';
+import { fetchMockRestaurants } from '../../api/restaurants';
 import {
   AlignFilter,
   CategoryFilter,
   Restaurant,
 } from '../../types/restaurants';
+import { alignBy, filterBy } from '../../utils/restaurants';
 import RestaurantDetailBottomSheet from '../RestaurantDetailBottomSheet';
 import RestaurantItem from '../RestaurantItem';
 import St from './styled';
 
 interface RestaurantListProps {
-  filterOptions: [CategoryFilter, AlignFilter];
+  filterOptions: {
+    category: CategoryFilter;
+    align: AlignFilter;
+  };
 }
 
 interface State {
@@ -38,39 +43,34 @@ class RestaurantList extends Component<RestaurantListProps, State> {
   }
 
   async componentDidMount() {
-    const restaurantList = await fetch('./mocks/mockData.json')
-      .then((res) => res.json())
-      .then((res: Restaurant[]) => alignBy('이름순', res));
+    const restaurantList = await fetchMockRestaurants({ align: '이름순' });
 
     this.setState({ restaurantListOrigin: restaurantList, restaurantList });
   }
 
   componentDidUpdate(prevProps: Readonly<RestaurantListProps>): void {
-    const [prevCategory, prevAlign] = prevProps.filterOptions;
-    const [nextCategory, nextAlign] = this.props.filterOptions;
+    const { category: prevCategory, align: prevAlign } =
+      prevProps.filterOptions;
+    const { category: nextCategory, align: nextAlign } =
+      this.props.filterOptions;
 
-    if (prevCategory !== nextCategory) {
-      this.filter();
-    }
-
-    if (prevCategory !== nextCategory || prevAlign !== nextAlign) {
-      this.align();
-    }
+    if (prevCategory !== nextCategory) this.filter();
+    if (prevCategory !== nextCategory || prevAlign !== nextAlign) this.align();
   }
 
   filter() {
-    const [categoryFilter] = this.props.filterOptions;
+    const { category } = this.props.filterOptions;
 
     this.setState(({ restaurantListOrigin }) => ({
-      restaurantList: filterBy(categoryFilter, restaurantListOrigin),
+      restaurantList: filterBy(category, restaurantListOrigin),
     }));
   }
 
   align() {
-    const [_, alignFilter] = this.props.filterOptions;
+    const { align } = this.props.filterOptions;
 
     this.setState(({ restaurantList }) => ({
-      restaurantList: alignBy(alignFilter, restaurantList),
+      restaurantList: alignBy(align, restaurantList),
     }));
   }
 
@@ -79,11 +79,12 @@ class RestaurantList extends Component<RestaurantListProps, State> {
   }
 
   closeModal() {
-    this.setState({ isOpened: false });
+    this.setState({ focusedRestaurant: null, isOpened: false });
   }
 
   render(): ReactNode {
     const { restaurantList, focusedRestaurant, isOpened } = this.state;
+    const isBottomSheetOpened = isOpened && focusedRestaurant;
 
     return (
       <St.Layout>
@@ -94,37 +95,15 @@ class RestaurantList extends Component<RestaurantListProps, State> {
             onClick={() => this.onClickRestaurantItem(restaurant)}
           />
         ))}
-        {isOpened ? (
+        {isBottomSheetOpened && (
           <RestaurantDetailBottomSheet
-            restaurant={focusedRestaurant!}
+            restaurant={focusedRestaurant}
             close={this.closeModalHandler}
           />
-        ) : null}
+        )}
       </St.Layout>
     );
   }
 }
 
 export default RestaurantList;
-
-const filterBy = (
-  categoryFilter: CategoryFilter,
-  restaurantList: Restaurant[]
-) => {
-  if (categoryFilter === '전체') return restaurantList;
-
-  return restaurantList.filter(({ category }) => category === categoryFilter);
-};
-
-const alignBy = (alignFilter: AlignFilter, restaurantList: Restaurant[]) => {
-  switch (alignFilter) {
-    case '거리순':
-      return restaurantList.sort((prev, next) => prev.distance - next.distance);
-
-    case '이름순':
-    default:
-      return restaurantList.sort((prev, next) =>
-        prev.title > next.title ? 1 : -1
-      );
-  }
-};

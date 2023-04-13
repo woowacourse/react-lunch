@@ -35,7 +35,7 @@ class App extends Component {
             onChangeCategoryFilter={this.onChangeCategoryFilter}
             onChangeAlignFilter={this.onChangeAlignFilter}
           />
-          <RestaurantList filterOptions={[category, align]} />
+          <RestaurantList filterOptions={{ category, align }} />
         </Layout>
       </>
     );
