@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import styled from 'styled-components';
 import CategoryIcon from './CategoryIcon';
-import { Restaurant, SetModalRestaurant } from '../../@types/type';
+import { Restaurant, SetModalRestaurantId } from '../../@types/type';
 
 const RestaurantItemLayout = styled.li`
   display: flex;
@@ -31,11 +31,11 @@ const Description = styled.p`
   -webkit-box-orient: vertical;
 `;
 
-type Props = { restaurant: Restaurant } & SetModalRestaurant;
+type Props = { restaurant: Restaurant } & SetModalRestaurantId;
 
 class RestaurantItem extends Component<Props> {
   onClickRestaurant = () => {
-    this.props.setModalRestaurant(this.props.restaurant);
+    this.props.setModalRestaurantId(this.props.restaurant.id);
   };
 
   render() {

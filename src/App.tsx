@@ -3,25 +3,43 @@ import Header from './components/common/Header';
 import RestaurantList from './components/restaurant/RestaurantList';
 import Modal from './components/restaurant/Modal';
 import { Restaurant } from './@types/type';
+import { getLocalStorage, setLocalStorage } from './utils/localStorage';
+import { LOCAL_STORAGE_KEY } from './constants';
+import mockData from './mockData.json';
 
 class App extends Component {
   state = {
-    restaurant: null as null | Restaurant,
+    modalRestaurantID: null as null | number,
+    restaurantList: mockData as Restaurant[],
   };
 
-  setModalRestaurant = (restaurant: Restaurant | null) => {
+  componentDidMount() {
+    const savedRestaurants = getLocalStorage(LOCAL_STORAGE_KEY.RESTAURANT);
+
+    if (savedRestaurants) {
+      this.setState({
+        restaurantList: savedRestaurants,
+      });
+    } else setLocalStorage(LOCAL_STORAGE_KEY.RESTAURANT, this.state.restaurantList);
+  }
+
+  setModalRestaurantId = (modalRestaurantID: number | null) => {
     this.setState({
-      restaurant,
+      modalRestaurantID,
     });
+  };
+
+  findModalRestaurant = () => {
+    return this.state.restaurantList.find((restaurant) => restaurant.id === this.state.modalRestaurantID)!;
   };
 
   render() {
     return (
       <React.Fragment>
         <Header />
-        <RestaurantList setModalRestaurant={this.setModalRestaurant} />
-        {this.state.restaurant && (
-          <Modal restaurant={this.state.restaurant} setModalRestaurant={this.setModalRestaurant} />
+        <RestaurantList restaurantList={this.state.restaurantList} setModalRestaurantId={this.setModalRestaurantId} />
+        {this.state.modalRestaurantID && (
+          <Modal restaurant={this.findModalRestaurant()} setModalRestaurantId={this.setModalRestaurantId} />
         )}
       </React.Fragment>
     );

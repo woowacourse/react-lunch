@@ -3,6 +3,7 @@ import { CATEGORIES } from '../constants';
 export type Categories = (typeof CATEGORIES)[keyof typeof CATEGORIES];
 
 export type Restaurant = {
+  id: number;
   category: Categories;
   name: string;
   distanceByMinutes: number;
@@ -14,6 +15,6 @@ export type RestaurantObject = {
   restaurant: Restaurant;
 };
 
-export type SetModalRestaurant = {
-  setModalRestaurant: (restaurant: Restaurant | null) => void;
+export type SetModalRestaurantId = {
+  setModalRestaurantId: (restaurant: number | null) => void;
 };

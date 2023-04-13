@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import styled from 'styled-components';
 import CategoryIcon from './CategoryIcon';
-import { Restaurant, SetModalRestaurant } from '../../@types/type';
+import { Restaurant, SetModalRestaurantId } from '../../@types/type';
 
 const ModalBackdrop = styled.div`
   position: fixed;
@@ -55,11 +55,11 @@ const ButtonContainer = styled.div`
   }
 `;
 
-type Props = { restaurant: Restaurant } & SetModalRestaurant;
+type Props = { restaurant: Restaurant } & SetModalRestaurantId;
 
 class Modal extends Component<Props> {
   onCloseModal = () => {
-    this.props.setModalRestaurant(null);
+    this.props.setModalRestaurantId(null);
   };
 
   onKeyDownEscape = (event: KeyboardEvent) => {

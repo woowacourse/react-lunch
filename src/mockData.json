@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "category": "한식",
     "name": "피양콩할머니",
     "distanceByMinutes": 10,
@@ -7,6 +8,7 @@
     "referenceUrl": "https://techcourse.woowahan.com/s/7TbGiSZS/ls/ycoYu76i"
   },
   {
+    "id": 2,
     "category": "중식",
     "name": "친친",
     "distanceByMinutes": 5,
@@ -14,6 +16,7 @@
     "referenceUrl": "https://techcourse.woowahan.com/s/7TbGiSZS/ls/ycoYu76i"
   },
   {
+    "id": 3,
     "category": "일식",
     "name": "잇쇼우",
     "distanceByMinutes": 10,
@@ -21,6 +24,7 @@
     "referenceUrl": "https://techcourse.woowahan.com/s/7TbGiSZS/ls/ycoYu76i"
   },
   {
+    "id": 4,
     "category": "양식",
     "name": "이태리키친",
     "distanceByMinutes": 20,
@@ -28,6 +32,7 @@
     "referenceUrl": "https://techcourse.woowahan.com/s/7TbGiSZS/ls/ycoYu76i"
   },
   {
+    "id": 5,
     "category": "아시안",
     "name": "호아빈 삼성점",
     "distanceByMinutes": 15,
@@ -35,6 +40,7 @@
     "referenceUrl": "https://techcourse.woowahan.com/s/7TbGiSZS/ls/ycoYu76i"
   },
   {
+    "id": 6,
     "category": "기타",
     "name": "도스타코스 선릉점",
     "distanceByMinutes": 5,
@@ -42,6 +48,7 @@
     "referenceUrl": "https://techcourse.woowahan.com/s/7TbGiSZS/ls/ycoYu76i"
   },
   {
+    "id": 7,
     "category": "중식",
     "name": "찐친",
     "distanceByMinutes": 5,
@@ -49,6 +56,7 @@
     "referenceUrl": ""
   },
   {
+    "id": 8,
     "category": "중식",
     "name": "목련",
     "distanceByMinutes": 15,
@@ -56,6 +64,7 @@
     "referenceUrl": ""
   },
   {
+    "id": 9,
     "category": "기타",
     "name": "커피베네",
     "distanceByMinutes": 5,
@@ -63,6 +72,7 @@
     "referenceUrl": ""
   },
   {
+    "id": 10,
     "category": "기타",
     "name": "스타벅스 선릉역점",
     "distanceByMinutes": 5,
@@ -70,6 +80,7 @@
     "referenceUrl": ""
   },
   {
+    "id": 11,
     "category": "기타",
     "name": "메가커피 선릉역점",
     "distanceByMinutes": 10,
@@ -77,6 +88,7 @@
     "referenceUrl": ""
   },
   {
+    "id": 12,
     "category": "한식",
     "name": "영동칼국수",
     "distanceByMinutes": 15,
@@ -84,6 +96,7 @@
     "referenceUrl": ""
   },
   {
+    "id": 13,
     "category": "한식",
     "name": "덮밥이맛있는집",
     "distanceByMinutes": 15,
@@ -91,6 +104,7 @@
     "referenceUrl": ""
   },
   {
+    "id": 14,
     "category": "일식",
     "name": "돈카레",
     "distanceByMinutes": 10,
@@ -98,6 +112,7 @@
     "referenceUrl": ""
   },
   {
+    "id": 15,
     "category": "일식",
     "name": "미소야",
     "distanceByMinutes": 10,
@@ -105,6 +120,7 @@
     "referenceUrl": ""
   },
   {
+    "id": 16,
     "category": "일식",
     "name": "장정정",
     "distanceByMinutes": 10,
@@ -112,6 +128,7 @@
     "referenceUrl": ""
   },
   {
+    "id": 17,
     "category": "중식",
     "name": "우육면가",
     "distanceByMinutes": 10,
@@ -119,6 +136,7 @@
     "referenceUrl": ""
   },
   {
+    "id": 18,
     "category": "한식",
     "name": "시골밥상머리",
     "distanceByMinutes": 10,
@@ -126,6 +144,7 @@
     "referenceUrl": ""
   },
   {
+    "id": 19,
     "category": "양식",
     "name": "피자헛 선릉역점",
     "distanceByMinutes": 15,
@@ -133,6 +152,7 @@
     "referenceUrl": ""
   },
   {
+    "id": 20,
     "category": "양식",
     "name": "닐리",
     "distanceByMinutes": 15,
@@ -140,6 +160,7 @@
     "referenceUrl": ""
   },
   {
+    "id": 21,
     "category": "양식",
     "name": "이탈리아 80년 전통 피자",
     "distanceByMinutes": 15,
@@ -147,6 +168,7 @@
     "referenceUrl": ""
   },
   {
+    "id": 22,
     "category": "아시안",
     "name": "반포식스",
     "distanceByMinutes": 10,
@@ -154,6 +176,7 @@
     "referenceUrl": ""
   },
   {
+    "id": 23,
     "category": "아시안",
     "name": "아라기",
     "distanceByMinutes": 10,
@@ -161,6 +184,7 @@
     "referenceUrl": ""
   },
   {
+    "id": 24,
     "category": "아시안",
     "name": "까폼",
     "distanceByMinutes": 10,
