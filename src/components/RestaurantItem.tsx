@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { RestaurantDetail } from '../types/RestaurantDetail';
+import { IMAGE_PATH } from '../constants/images';
 
 interface RestaurantItemProps {
   detail: RestaurantDetail;
@@ -17,7 +18,7 @@ export default class RestaurantItem extends Component<RestaurantItemProps> {
         <li className="restaurant" id={String(id)}>
           <div className="restaurant__category">
             <img
-              src="./category-korean.png"
+              src={IMAGE_PATH[category]}
               alt={category}
               className="category-icon"
             />

@@ -1,6 +1,7 @@
 import { Component, createRef } from 'react';
 import RestaurantManager from '../domain/RestaurantManager';
 import { Category } from '../types/RestaurantDetail';
+import { IMAGE_PATH } from '../constants/images';
 
 interface ModalProps {
   category: Category;
@@ -48,7 +49,11 @@ export default class Modal extends Component<ModalProps> {
       <dialog id={String(id)} ref={this.dialogRef} onClick={this.closeModal}>
         <div className="modal-container">
           <div className="restaurant__category">
-            <img src={category} alt={category} className="category-icon" />
+            <img
+              src={IMAGE_PATH[category]}
+              alt={category}
+              className="category-icon"
+            />
           </div>
           <div className="modal-header">
             <h3 className="modal-title text-title">{name}</h3>
