@@ -15,7 +15,7 @@ class RestaurantDetail extends React.Component<Props> {
 
     return (
       <>
-        <ModalBackdrop />
+        <ModalBackdrop onClick={this.props.closeModal} />
         <ModalContainer>
           <Detail>
             <CategoryImage>
