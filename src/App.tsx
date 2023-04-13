@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import { GlobalStyle } from './styles/GlobalStyle';
 import { getRestaurantList } from './utils/storage';
 import { filterAndSortArray } from './utils/util';
-import { Header } from './components/Header';
 import { RestaurantList } from './components/RestaurantList';
 import { Modal } from './components/modal/Modal';
 import { RestaurantDetail } from './components/modal/RestaurantDetail';
 import { SelectBox } from './components/SelectBox';
 import { categoryOption, sortOption } from './constants';
 import { Restaurant, CategoryFilter, SortFilter } from './type';
+import { Layout } from './layout';
 
 const Style = {
   Wrapper: styled.div`
@@ -103,9 +103,8 @@ export class App extends Component<any, AppState> {
 
   render() {
     return (
-      <>
+      <Layout>
         <GlobalStyle />
-        <Header />
         <Style.Wrapper>
           <SelectBox
             option={categoryOption}
@@ -129,7 +128,7 @@ export class App extends Component<any, AppState> {
           }
           toggleOpen={this.toggleIsOpen.bind(this)}
         />
-      </>
+      </Layout>
     );
   }
 }
