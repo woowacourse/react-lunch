@@ -37,6 +37,7 @@ const Description = styled.p`
 
 const ReferenceURL = styled.a`
   color: var(--grey-500);
+  word-break: break-all;
 `;
 
 const ButtonContainer = styled.div`
