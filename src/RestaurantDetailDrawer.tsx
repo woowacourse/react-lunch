@@ -1,6 +1,8 @@
 import React from 'react';
 import Drawer from './Drawer.tsx';
-import { Restaurant } from './type.js';
+import { Restaurant } from './type';
+import { CATEGORY_IMAGES } from './constant.ts';
+
 type RestaurantDetailDrawerProps = {
   isOpenDrawer: boolean;
   restaurantId: number;
@@ -59,7 +61,9 @@ class RestaurantDetailDrawer extends React.Component<
   render() {
     return (
       <Drawer isOpenDrawer={this.props.isOpenDrawer}>
-        {/* <img src={asianImg} alt='한식' className='category-icon' /> */}
+        <div className='restaurant__category'>
+          <img src={CATEGORY_IMAGES[this.state.restaurant.category]} alt={this.state.restaurant.category} className="category-icon" />
+        </div>
         <h3 className="restaurant__name text-subtitle">
           {this.state.restaurant.title}
         </h3>

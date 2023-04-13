@@ -21,6 +21,10 @@ export const CATEGORY_OPTIONS:SelectOption<Category>[] = [
     textContent: '중식',
   },
   {
+    value: '일식',
+    textContent: '일식'
+  },
+  {
     value: '양식',
     textContent: '양식',
   },
@@ -52,9 +56,18 @@ export const DEFAULT_CATEGORY = '전체';
 export const DEFAULT_SORTING = 'name';
 
 export const CATEGORY_IMAGES = {
-  '한식': asianImg,
+  '한식': koreanImg,
   '중식': chineseImg,
+  '일식': japaneseImg,
   '양식': westernImg,
   '아시안': asianImg,
   '기타': etcImg
+};
+
+export const emptyObj = {
+  title: '오류가 발생했습니다.',
+  category: '',
+  distance: '',
+  description: '존재하지 않는 음식점입니다.',
+  link: '',
 };
