@@ -10,5 +10,5 @@ export interface Restaurant {
   link?: string;
 }
 
-export type CategoryFilter = '전체' | Category;
-export type SortFilter = '이름순' | '거리순';
+export type CategoryOption = '전체' | Category;
+export type SortOption = '이름순' | '거리순';

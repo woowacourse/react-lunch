@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { Header, Modal, RestaurantList, SelectBox } from './components';
 import { GlobalStyle } from './global-style';
-import { CategoryFilter, Restaurant, SortFilter } from './types';
+import { CategoryOption, Restaurant, SortOption } from './types';
 
 import styled, { ThemeProvider } from 'styled-components';
 
@@ -13,10 +13,10 @@ import variables from './components/styles/variables';
 type Props = {};
 
 type State = {
-  categoryOptions: CategoryFilter[];
-  sortingOptions: SortFilter[];
-  selectedCategoryOption: CategoryFilter;
-  selectedSortingOption: SortFilter;
+  categoryOptions: CategoryOption[];
+  sortingOptions: SortOption[];
+  selectedCategoryOption: CategoryOption;
+  selectedSortingOption: SortOption;
   restaurantItems: Restaurant[];
   isModalOpen: boolean;
   clickedRestaurant?: Restaurant | null;
@@ -77,12 +77,12 @@ class App extends Component<Props, State> {
     }
   }
 
-  filterByCategory(restaurants: Restaurant[], categoryOption: CategoryFilter): Restaurant[] {
+  filterByCategory(restaurants: Restaurant[], categoryOption: CategoryOption): Restaurant[] {
     if (categoryOption === '전체') return restaurants;
     return restaurants.filter((restaurant) => restaurant.category === categoryOption);
   }
 
-  filterBySort(restaurants: Restaurant[], sortingOption: SortFilter): Restaurant[] {
+  filterBySort(restaurants: Restaurant[], sortingOption: SortOption): Restaurant[] {
     if (sortingOption === '이름순') {
       return restaurants.sort((a, b) => (a.name > b.name ? 1 : -1));
     }
@@ -90,7 +90,7 @@ class App extends Component<Props, State> {
   }
 
   handleCategoryBoxChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const categoryOption = e.target.value as CategoryFilter; // 가드 고려
+    const categoryOption = e.target.value as CategoryOption; // 가드 고려
     const categorizedRestaurants = this.filterByCategory(db.getRestaurants(), categoryOption);
     const sortedRestaurants = this.filterBySort(
       categorizedRestaurants,
@@ -100,7 +100,7 @@ class App extends Component<Props, State> {
   };
 
   handleSortingBoxChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const sortingOption = e.target.value as SortFilter; // 가드 고려
+    const sortingOption = e.target.value as SortOption; // 가드 고려
     const filteredRestaurants = this.filterBySort(this.state.restaurantItems, sortingOption);
 
     this.setState({ selectedSortingOption: sortingOption, restaurantItems: filteredRestaurants });
@@ -120,9 +120,6 @@ class App extends Component<Props, State> {
     this.setState({ clickedRestaurant: null });
     this.setState({ isModalOpen: false });
   };
-
-
-
 }
 
 const FilterContainer = styled.section`
