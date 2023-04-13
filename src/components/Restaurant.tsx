@@ -52,6 +52,7 @@ class Restaurant extends Component {
 
   toggleIsModalOpen = () => {
     this.setState({ isModalOpen: !this.state.isModalOpen });
+    document.body.classList.toggle('hide-overflow');
   };
 
   render() {

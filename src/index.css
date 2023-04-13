@@ -155,3 +155,7 @@ input[type='radio']:checked + label {
 .button--primary:active {
   background: var(--darken-color-1);
 }
+
+.hide-overflow {
+  overflow: hidden;
+}
