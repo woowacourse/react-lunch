@@ -41,9 +41,7 @@ class RestaurantDetailModal extends Component<Props> {
             >
               {link}
             </a>
-          ) : (
-            ''
-          )}
+          ) : null}
           <div className="button-container detail-button-container">
             <button
               type="button"
