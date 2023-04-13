@@ -13,13 +13,12 @@ class Header extends React.Component {
 
 const HeaderWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   height: 64px;
 
   padding: 0 16px;
 
-  background-color: var(--primary-color);
+  background: var(--primary-color);
 `;
 
 const HeaderTitle = styled.div`

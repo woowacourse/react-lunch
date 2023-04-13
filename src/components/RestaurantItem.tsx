@@ -46,6 +46,7 @@ class RestaurantItem extends React.Component<RestaurantItemType, { isBottomSheet
 const RestaurantItemWrapper = styled.li`
   display: flex;
   align-items: flex-start;
+
   padding: 16px 8px;
   border-bottom: 1px solid #e9eaed;
 `;
@@ -54,8 +55,6 @@ const CategoryWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 64px;
-  height: 64px;
   min-width: 64px;
   min-height: 64px;
 
@@ -85,15 +84,12 @@ const RestaurantInfo = styled.div`
   & > span {
     font-size: 16px;
     line-height: 24px;
-    font-weight: 400;
     color: var(--primary-color);
   }
 
   & > p {
-    margin-top: 6px;
     font-size: 16px;
     line-height: 24px;
-    font-weight: 400;
     color: var(----grey-500);
 
     text-overflow: ellipsis;
@@ -103,6 +99,8 @@ const RestaurantInfo = styled.div`
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+
+    margin-top: 6px;
   }
 `;
 

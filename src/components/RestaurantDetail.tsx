@@ -38,10 +38,6 @@ const CategoryWrapper = styled.div`
   align-items: center;
   width: 64px;
   height: 64px;
-  min-width: 64px;
-  min-height: 64px;
-
-  margin-right: 16px;
 
   border-radius: 50%;
   background: var(--lighten-color);
@@ -62,27 +58,28 @@ const RestaurantInfo = styled.div`
     font-size: 18px;
     line-height: 28px;
     font-weight: 600;
-    color: var(----grey-500);
+
     margin-bottom: 16px;
   }
 
   & > span {
     font-size: 16px;
     line-height: 24px;
-    font-weight: 400;
     color: var(--primary-color);
+
     margin-bottom: 16px;
   }
 
   & > p {
-    margin-bottom: 16px;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 400;
-    color: var(----grey-500);
-    overflow-y: scroll;
     height: auto;
     max-height: 30vh;
+
+    font-size: 16px;
+    line-height: 24px;
+    color: var(----grey-500);
+
+    overflow-y: scroll;
+    margin-bottom: 16px;
   }
 
   & > a {
