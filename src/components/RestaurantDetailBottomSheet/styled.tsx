@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+const FadeInUp = `
+@keyframes fadeInUp {
+  from {
+      transform: translate3d(0, 100%, 0);
+  }
+  to {
+      transform: translateZ(0);
+  }
+}
+`;
+
 const St = {
   Backdrop: styled.div`
     position: fixed;
@@ -25,6 +36,8 @@ const St = {
 
     border-radius: 8px 8px 0px 0px;
     background: #ffffff;
+    ${FadeInUp}
+    animation: fadeInUp 0.5s;
   `,
   Detail: styled.div`
     flex-grow: 1;
