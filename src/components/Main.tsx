@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Select from "./Select";
 import mockData from "../mockData.json";
 import type { Restaurant, Category, SortBy } from "../types/Restaurant";
@@ -13,7 +13,7 @@ type RestaurantListState = {
 
 type RestaurantListProps = {};
 
-class Main extends Component<RestaurantListProps, RestaurantListState> {
+class Main extends React.Component<RestaurantListProps, RestaurantListState> {
   constructor(props: RestaurantListProps) {
     super(props);
 
