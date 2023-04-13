@@ -1,3 +1,5 @@
+import { CATEGORIES, SORT_BY } from "../constants/constants";
+
 type Restaurant = {
   category: Category;
   storeName: string;
@@ -7,9 +9,9 @@ type Restaurant = {
   favorite: boolean;
 };
 
-type Category = "전체" | "한식" | "중식" | "일식" | "양식" | "아시안" | "기타";
+type Category = typeof CATEGORIES[number];
 
-type SortBy = "이름순" | "거리순";
+type SortBy = typeof SORT_BY[number];
 
 type RestaurantJSON = {
   category: string;

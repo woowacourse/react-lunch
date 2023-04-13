@@ -16,3 +16,15 @@ export const CATEGORY_ICONS: Record<Category, string> = {
   아시안: asian,
   기타: etc,
 };
+
+export const CATEGORIES = [
+  "전체",
+  "한식",
+  "중식",
+  "일식",
+  "양식",
+  "아시안",
+  "기타",
+] as const;
+
+export const SORT_BY = ["이름순", "거리순"] as const;

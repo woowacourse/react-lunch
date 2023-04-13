@@ -1,4 +1,6 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
+import { CATEGORIES, SORT_BY } from "../constants/constants";
+
 import type { Category, SortBy } from "../types/Restaurant";
 
 type SelectProps = {
@@ -6,13 +8,31 @@ type SelectProps = {
   setSort: (newSort: SortBy) => void;
 };
 
+const isCategory = (category: string): category is Category => {
+  for (const c of CATEGORIES) {
+    if (c === category) return true;
+  }
+  return false;
+};
+
+const isSortBy = (sortBy: string): sortBy is SortBy => {
+  for (const s of SORT_BY) {
+    if (s === sortBy) return true;
+  }
+  return false;
+};
+
 class Select extends React.Component<SelectProps> {
-  onChangeCategory(event: any) {
-    this.props.setCategory(event.target.value);
+  onChangeCategory(event: ChangeEvent<HTMLSelectElement>) {
+    if (isCategory(event.target.value)) {
+      this.props.setCategory(event.target.value);
+    }
   }
 
-  onChangeSort(event: any) {
-    this.props.setSort(event.target.value);
+  onChangeSort(event: ChangeEvent<HTMLSelectElement>) {
+    if (isSortBy(event.target.value)) {
+      this.props.setSort(event.target.value);
+    }
   }
 
   render() {
