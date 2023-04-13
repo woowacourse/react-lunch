@@ -1,9 +1,9 @@
 import { Category, Restaurant, SortingType } from '../types/restaurant';
 
 import React, { ChangeEvent } from 'react';
+import { RestaurantItem } from './';
 import styled from 'styled-components';
 
-import RestaurantItem from './RestaurantItem';
 import { CATEGORIES, SORTING_TYPES } from '../constants';
 
 interface Props {

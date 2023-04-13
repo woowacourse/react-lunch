@@ -1,10 +1,7 @@
 import { Category, Restaurant, SortingType } from './types/restaurant';
 
 import React from 'react';
-
-import Header from './components/Header';
-import RestaurantList from './components/RestaurantList';
-import RestaurantDetail from './components/RestaurantDetail';
+import { Header, RestaurantList, RestaurantDetail } from './components';
 
 import mockData from './mockData.json';
 
