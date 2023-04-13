@@ -3,6 +3,7 @@ import Header from './Header.tsx';
 import RestaurantList from './RestaurantList.tsx';
 import SelectContainer from './SelectContainer.tsx';
 import RestaurantDetailDrawer from './RestaurantDetailDrawer.tsx';
+import { DEFAULT_CATEGORY, DEFAULT_SORTING, NO_SELECT_ID } from './constant.js';
 
 interface AppState {
   filterOptions: any;
@@ -14,11 +15,11 @@ class App extends React.Component<AppState> {
     super(props);
     this.state = {
       filterOptions: {
-        category: '전체',
-        sorting: 'name',
+        category: DEFAULT_CATEGORY,
+        sorting: DEFAULT_SORTING,
       },
       isOpenDrawer: false,
-      drawerSelectId: -1,
+      drawerSelectId: NO_SELECT_ID,
     };
 
     this.onChangeFilterOptions = this.onChangeFilterOptions.bind(this);
@@ -36,7 +37,7 @@ class App extends React.Component<AppState> {
     });
   }
   // TODO: Toggle을 닫을 때는 id값을 어떻게 처리할지 고민하기
-  onToggleDrawer(id:number = -1) {
+  onToggleDrawer(id:number = NO_SELECT_ID) {
     this.setState({
       isOpenDrawer: !this.state.isOpenDrawer,
       drawerSelectId: id,

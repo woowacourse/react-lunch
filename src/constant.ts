@@ -37,3 +37,9 @@ export const SORTING_OPTIONS:SelectOption<Sort>[] = [
     textContent: '거리순',
   },
 ];
+
+export const NO_SELECT_ID = -1;
+
+export const DEFAULT_CATEGORY = '전체';
+
+export const DEFAULT_SORTING = 'name';
