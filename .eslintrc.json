@@ -15,7 +15,8 @@
   },
   "rules": {
     "class-methods-use-this": "off",
-    "prettier/prettier": "warn",
+    "prettier/prettier": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/consistent-type-imports": "error",
     "import/extensions": [
       "error",
