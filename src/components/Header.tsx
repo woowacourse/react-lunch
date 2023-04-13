@@ -5,13 +5,18 @@ class Header extends React.Component {
   render() {
     return (
       <HeaderWrapper>
-        <HeaderTitle>점심 뭐먹지</HeaderTitle>
+        <HeaderTitle id="header_title">점심 뭐먹지</HeaderTitle>
       </HeaderWrapper>
     );
   }
 }
 
 const HeaderWrapper = styled.div`
+  position: fixed;
+  top: 0;
+
+  width: 100%;
+
   display: flex;
   align-items: center;
   height: 64px;
@@ -26,6 +31,16 @@ const HeaderTitle = styled.div`
   line-height: 24px;
   font-weight: 600;
   color: var(--grey-100);
+
+  cursor: pointer;
+  :active {
+    transform: scale(1.02);
+  }
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
 
 export default Header;

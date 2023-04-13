@@ -5,6 +5,7 @@ import RestaurantItem from './RestaurantItem';
 import { RestaurantItemType, RestaurantListStateType, SelectKind } from '../types';
 import { CATEGORY_NAME, ORDER_KEY } from '../constants';
 import SelectBox from './SelectBox';
+import { $ } from '../utils/domSelector';
 
 const data: RestaurantItemType[] = JSON.parse(JSON.stringify(mockData));
 
@@ -19,9 +20,28 @@ class RestaurantList extends React.Component<object, RestaurantListStateType> {
     };
   }
 
+  handleClickEvent() {
+    $<HTMLElement>('#header_title').addEventListener('click', () => {
+      this.initSelectOption();
+    });
+  }
+
+  initSelectOption() {
+    const categorySelectBox = $<HTMLSelectElement>('select[name="카테고리"]');
+    categorySelectBox.selectedIndex = 0;
+    categorySelectBox.dispatchEvent(new Event('change', { bubbles: true }));
+
+    const orderSelectBox = $<HTMLSelectElement>('select[name="정렬"]');
+    orderSelectBox.selectedIndex = 0;
+    orderSelectBox.dispatchEvent(new Event('change', { bubbles: true }));
+
+    this.handleClickEvent();
+  }
+
   componentDidMount() {
     this.setLocalStorage(data);
     this.setState({ restaurants: this.getLocalStorage(), filteredRestaurants: this.getLocalStorage() });
+    this.handleClickEvent();
   }
 
   getLocalStorage(): RestaurantItemType[] {
