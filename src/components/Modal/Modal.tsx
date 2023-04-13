@@ -12,12 +12,20 @@ import {
 
 type Props = {
   restaurant: Restaurant;
-  onCloseButtonClick: React.MouseEventHandler<HTMLButtonElement>;
+  onCloseButtonClick: () => void;
 };
 
 export class Modal extends Component<Props> {
   constructor(props: Props) {
     super(props);
+  }
+
+  componentDidMount(): void {
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        this.props.onCloseButtonClick();
+      }
+    });
   }
 
   render() {
