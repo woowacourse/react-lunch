@@ -1,9 +1,9 @@
 import React from 'react';
 type DrawerProps = {
   isOpenDrawer: boolean;
+  children: React.ReactNode;
 };
 
-// TODO: children 타입 정의
 class Drawer extends React.Component<DrawerProps> {
   render() {
     return (

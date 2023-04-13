@@ -1,17 +1,24 @@
 import React from 'react';
 import Drawer from './Drawer.tsx';
+import { Restaurant } from './type.js';
 type RestaurantDetailDrawerProps = {
   isOpenDrawer: boolean;
   restaurantId: number;
   onToggleDrawer: (id?: number) => void;
 };
-// TODO: console.log 제거
-// TODO: state type 정의
-class RestaurantDetailDrawer extends React.Component<RestaurantDetailDrawerProps> {
+
+type RestaurantDetailDrawerState = {
+  restaurant: Omit<Restaurant, "id">;
+}
+
+class RestaurantDetailDrawer extends React.Component<
+  RestaurantDetailDrawerProps,
+  RestaurantDetailDrawerState
+> {
   constructor(props) {
     super(props);
-    console.log(props);
     const restaurantList = JSON.parse(localStorage.getItem('restaurantList'));
+
     const emptyObj = {
       title: '',
       category: '',
@@ -27,22 +34,19 @@ class RestaurantDetailDrawer extends React.Component<RestaurantDetailDrawerProps
     };
   }
 
-  componentDidUpdate(
-    prevProps: Readonly<RestaurantDetailDrawerProps>,
-    prevState: Readonly<{}>,
-    snapshot?: any
-  ): void {
+  // TODO: 메서드 분리, NO select ID에 따른 페이지 분리
+  componentDidUpdate(prevProps:RestaurantDetailDrawerProps): void {
     if (this.props.restaurantId !== prevProps.restaurantId) {
-      console.log('update');
-      console.log(this.props.restaurantId);
-      const restaurantList = JSON.parse(localStorage.getItem('restaurantList'));
       const emptyObj = {
-        title: '',
+        title: '오류가 발생했습니다.',
         category: '',
         distance: '',
         description: '',
         link: '',
       };
+
+      const restaurantList = JSON.parse(localStorage.getItem('restaurantList'));
+      
       this.setState({
         restaurant:
           restaurantList.find(
