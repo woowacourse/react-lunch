@@ -62,12 +62,6 @@ class Modal extends React.Component<RestaurantItemProps> {
           </a>
           <div className="button-container">
             <button
-              type="button"
-              className="button button--secondary text-caption"
-            >
-              삭제하기
-            </button>
-            <button
               onClick={this.props.closeModal}
               className="button button--primary text-caption"
             >
