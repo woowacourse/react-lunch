@@ -1,12 +1,16 @@
-import { Component } from 'react';
+import { Component, MouseEvent } from 'react';
 import RestaurantItem from '../RestaurantItem/RestaurantItem';
-import { Restaurant } from '../../types/types';
+import { Restaurant, RestaurantListProps } from '../../types/types';
 import styles from './RestaurantsList.module.css';
 import { getSelectedRestaurantsList } from '../../data/parseFn';
 
-export default class RestaurantsList extends Component {
+export default class RestaurantsList extends Component<RestaurantListProps> {
+  handleRestaurantOnClick = (event: MouseEvent) => {
+    this.props.changeRestaurantId(Number(event.currentTarget.getAttribute('value')));
+  };
+
   render() {
-    const { category, sorting }: Record<string, string> = this.props;
+    const { category, sorting } = this.props;
 
     const restaurants = getSelectedRestaurantsList(category, sorting);
 
@@ -19,7 +23,12 @@ export default class RestaurantsList extends Component {
         description: restaurant.description,
       };
       return (
-        <li key={restaurant.id} className={styles.restaurant}>
+        <li
+          key={restaurant.id}
+          className={styles.restaurant}
+          onClick={this.handleRestaurantOnClick}
+          value={restaurant.id}
+        >
           <RestaurantItem {...restaurantItemProps} />
         </li>
       );

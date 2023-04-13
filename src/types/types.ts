@@ -8,6 +8,8 @@ export interface Option {
 export interface MainState {
   category: string;
   sorting: string;
+  restaurantId: number | undefined;
+  isModalOpen: boolean;
 }
 
 export interface FilterProps {
@@ -21,11 +23,24 @@ export interface RestaurantFilterProps {
   onSortingChange: (category: string) => void;
 }
 
+export interface RestaurantListProps {
+  category: string;
+  sorting: string;
+  restaurantId: number | undefined;
+  changeRestaurantId: (restaurantId: number) => void;
+}
+
 export interface RestaurantItemProps {
   name: string;
   category: string;
   distance: number;
   description: string;
+}
+
+export interface ModalProps {
+  restaurantId: number | undefined;
+  handleClose: () => void;
+  isOpen: boolean;
 }
 
 export interface Restaurant {
