@@ -28,7 +28,11 @@ class CategoryImg extends Component<CategoryImgProps> {
   }
   render(): ReactNode {
     const { category } = this.props;
-    return <St.CategoryImg src={CATEGORY_SRC[category]} alt={category} />;
+    return (
+      <St.Layout>
+        <St.CategoryImg src={CATEGORY_SRC[category]} alt={category} />
+      </St.Layout>
+    );
   }
 }
 

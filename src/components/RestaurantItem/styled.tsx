@@ -11,18 +11,7 @@ const St = {
   `,
 
   LeftSection: styled.section`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 64px;
-    height: 64px;
-    min-width: 64px;
-    min-height: 64px;
-
     margin-right: 16px;
-
-    border-radius: 50%;
-    background: #f6a88a;
   `,
 
   RightSection: styled.section`
