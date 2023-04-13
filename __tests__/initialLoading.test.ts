@@ -1,20 +1,19 @@
 import { KEY } from '../src/constants';
 import {
-  fetchRestaurantListJson,
   getSavedRestaurantList,
   hasSavedRestaurantList,
   saveNewRestaurantList,
 } from '../src/domain/initializeRestaurantList';
-import { RestaurantInfo } from '../src/types/restaurantInfo';
+import MOCK_DATA from '../src/data/MockData.json';
 
 describe('로컬스토리지에 저장된 값이 있는지 판단하는 함수 테스트', () => {
   test('로컬스토리지에 저장된 값이 없다면 false 반환', () => {
     expect(hasSavedRestaurantList()).toBe(false);
   });
 
-  test('로컬스토리지에 저장된 값이 있다면 true 반환', async () => {
+  test('로컬스토리지에 저장된 값이 있다면 true 반환', () => {
     // given
-    const mockData: RestaurantInfo[] = await fetchRestaurantListJson();
+    const mockData = MOCK_DATA.restaurantList;
 
     // when
     localStorage.setItem(KEY, JSON.stringify(mockData));
@@ -25,9 +24,9 @@ describe('로컬스토리지에 저장된 값이 있는지 판단하는 함수 �
 });
 
 describe('로컬스토리지에 초기 음식점 목록을 가져오는 함수 테스트', () => {
-  test('로컬스토리지에 있던 값을 불러오는 테스트', async () => {
+  test('로컬스토리지에 있던 값을 불러오는 테스트', () => {
     // given
-    const mockData = await fetchRestaurantListJson();
+    const mockData = MOCK_DATA.restaurantList;
     localStorage.setItem(KEY, JSON.stringify(mockData));
 
     // when
@@ -36,9 +35,9 @@ describe('로컬스토리지에 초기 음식점 목록을 가져오는 함수 �
     // then
     expect(data).toEqual(mockData);
   });
-  test('로컬스토리지에 새로 저장', async () => {
+  test('로컬스토리지에 새로 저장', () => {
     // given
-    const mockData = await fetchRestaurantListJson();
+    const mockData = MOCK_DATA.restaurantList;
 
     // when
     saveNewRestaurantList();

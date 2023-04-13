@@ -1,14 +1,6 @@
-import fetch from 'node-fetch';
 import { RestaurantInfo } from '../types/restaurantInfo';
 import { KEY } from '../constants';
-
-export const fetchRestaurantListJson = async (): Promise<RestaurantInfo[]> => {
-  const data = await fetch(new URL('/data/MockData.json', window.location.href), { method: 'GET' })
-    .then((res) => res.json())
-    .then((data) => data.restaurantList);
-
-  return data;
-};
+import MOCK_DATA from '../data/MockData.json';
 
 export const getSavedRestaurantList = (): RestaurantInfo[] => {
   return JSON.parse(localStorage.getItem(KEY) || '[]');
@@ -21,7 +13,7 @@ export const hasSavedRestaurantList = () => {
 };
 
 export const saveNewRestaurantList = async () => {
-  const restaurantList = await fetchRestaurantListJson();
+  const { restaurantList } = MOCK_DATA;
 
   localStorage.setItem(KEY, JSON.stringify(restaurantList));
 };
