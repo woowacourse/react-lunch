@@ -62,13 +62,11 @@ class RestaurantItem extends Component<
 
   handleOpenModal = () => {
     this.setState({ isModalOpen: true, modalClassName: 'modal--open' });
-    console.log(this.state);
   };
 
   handleCloseModal = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
     this.setState({ isModalOpen: false, modalClassName: 'modal' });
-    console.log(this.state);
   };
 }
 
