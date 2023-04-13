@@ -6,6 +6,7 @@ import FilterSection from './FilterSection';
 import RestaurantList from './RestaurantList';
 import Modal from './Modal';
 import RestaurantDetail from './RestaurantDetail';
+import { saveToLocalStorage } from '../utils/localStorage';
 
 class Restaurant extends Component {
   state: RestaurantState;
@@ -21,6 +22,12 @@ class Restaurant extends Component {
       selectedRestaurant: null,
       isModalOpen: false,
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener('beforeunload', () => {
+      saveToLocalStorage(this.state.restaurantList);
+    });
   }
 
   updateCurrentRestaurantList = (filter: string, sortBy: string) => {
