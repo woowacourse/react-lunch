@@ -1,13 +1,13 @@
 import React from 'react';
 import RestaurantItem from './RestaurantItem.tsx';
-import { Restaurant } from './type';
+import { FilterOption, Restaurant } from './type';
 
 type StateType = {
   restaurantList: Omit<Restaurant, 'link'>[];
 };
 
 type RestaurantListProps = {
-  filterOptions: any;
+  filterOptions: FilterOption;
   onToggleDrawer: (id?: number) => void;
 };
 
@@ -20,8 +20,6 @@ class RestaurantList extends React.Component<RestaurantListProps> {
       restaurantList: [],
     };
   }
-
-  // 화면에 떴을 때
 
   componentDidMount(): void {
     const defaultData = localStorage.getItem('restaurantList');
@@ -38,13 +36,14 @@ class RestaurantList extends React.Component<RestaurantListProps> {
       });
   }
 
-  // 리렌더링 될 때
+  // TODO: 삭제해야댐
   componentDidUpdate(
     prevProps: Readonly<{}>,
     prevState: Readonly<{}>,
     snapshot?: any
   ): void {}
 
+  // TODO: pipe로 변경해볼까?
   filterByCategory(category): Restaurant[] {
     if (category === '전체') return this.state.restaurantList;
     return this.state.restaurantList.filter(

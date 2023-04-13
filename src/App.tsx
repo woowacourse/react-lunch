@@ -3,10 +3,11 @@ import Header from './Header.tsx';
 import RestaurantList from './RestaurantList.tsx';
 import SelectContainer from './SelectContainer.tsx';
 import RestaurantDetailDrawer from './RestaurantDetailDrawer.tsx';
-import { DEFAULT_CATEGORY, DEFAULT_SORTING, NO_SELECT_ID } from './constant.js';
+import { DEFAULT_CATEGORY, DEFAULT_SORTING, NO_SELECT_ID } from './constant.ts';
+import { FilterOption } from './type.js';
 
 interface AppState {
-  filterOptions: any;
+  filterOptions: FilterOption;
   isOpenDrawer: boolean;
 }
 // TODO: State Type 선언
@@ -26,6 +27,7 @@ class App extends React.Component<AppState> {
     this.onToggleDrawer = this.onToggleDrawer.bind(this);
   }
 
+  // TODO: 콘솔로그 제거, 파라미터 타입 구체화
   onChangeFilterOptions(e) {
     console.log(e);
 
