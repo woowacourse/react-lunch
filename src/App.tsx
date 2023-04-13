@@ -38,12 +38,16 @@ class App extends Component<object, { restaurantList: RestaurantInfo[]; clickedR
     this.setState({
       clickedRestaurant: restaurantInfo,
     });
+
+    document.body.dataset.hideScroll = 'true';
   }
 
   resetClickedRestaurant() {
     this.setState({
       clickedRestaurant: null,
     });
+
+    document.body.dataset.hideScroll = 'false';
   }
 
   render() {

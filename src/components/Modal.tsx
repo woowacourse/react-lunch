@@ -1,4 +1,4 @@
-import React, { Component, LegacyRef, RefObject } from 'react';
+import React, { Component } from 'react';
 import styles from './Modal.module.css';
 
 interface ModalProps {
