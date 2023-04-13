@@ -20,6 +20,7 @@ export class RestaurantList extends Component<Props> {
       <RestaurantListWrapper>
         {restaurants.map((restaurant) => (
           <RestaurantItem
+            key={restaurant.id}
             restaurant={restaurant}
             onRestaurantClick={onRestaurantClick}
           ></RestaurantItem>

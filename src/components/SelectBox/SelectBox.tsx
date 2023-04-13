@@ -17,7 +17,9 @@ export class SelectBox extends Component<Props> {
     return (
       <Select onChange={onOptionChange}>
         {options.map((option) => (
-          <option value={option}>{option}</option>
+          <option key={option} value={option}>
+            {option}
+          </option>
         ))}
       </Select>
     );
