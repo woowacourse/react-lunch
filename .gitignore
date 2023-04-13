@@ -106,3 +106,6 @@ dist
 # ignore IDE files
 .vscode/
 .idea/
+
+# ignore build files
+build/
