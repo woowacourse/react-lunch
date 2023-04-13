@@ -7,6 +7,7 @@ import japanese from '../../asset/category-japanese.png';
 import western from '../../asset/category-western.png';
 import etc from '../../asset/category-etc.png';
 import { Restaurant } from '../../App';
+import { CATEGORIES } from './RestaurantList';
 
 const SRestaurant = styled.li`
   display: flex;
@@ -14,7 +15,7 @@ const SRestaurant = styled.li`
 
   padding: 16px 8px;
 
-  border-bottom: 1px solid #e9eaed;
+  border-bottom: 1px solid ${({ theme }) => theme.color.divideColor};
 
   cursor: pointer;
 `;
@@ -31,7 +32,7 @@ const CategoryIcon = styled.div`
   margin-right: 16px;
 
   border-radius: 50%;
-  background: #f6a88a;
+  background: ${({ theme }) => theme.color.lightenColor};
   img {
     width: 36px;
     height: 36px;
@@ -55,7 +56,7 @@ const RestaurantDistance = styled.span`
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-  color: #ec4a0a;
+  color: ${({ theme }) => theme.color.primaryColor};
 `;
 
 const RestaurantDescription = styled.p`
@@ -72,7 +73,7 @@ const RestaurantDescription = styled.p`
   -webkit-box-orient: vertical;
 `;
 
-const categoryIcon: Record<string, string> = {
+const categoryIcon: Record<(typeof CATEGORIES)[keyof typeof CATEGORIES], string> = {
   한식: korean,
   중식: chinese,
   일식: japanese,
@@ -82,7 +83,7 @@ const categoryIcon: Record<string, string> = {
 };
 
 export type Props = {
-  category: string;
+  category: (typeof CATEGORIES)[keyof typeof CATEGORIES];
   name: string;
   distanceByMinutes: number;
   description: string;

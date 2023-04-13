@@ -22,8 +22,28 @@ const Restaurants = styled.ul`
   margin: 16px 0;
 `;
 
+export const CATEGORIES = {
+  KOREAN: '한식',
+  CHINESE: '중식',
+  JAPANESE: '일식',
+  WESTERN: '양식',
+  ASIAN: '아시안',
+  ETC: '기타',
+} as const;
+
+const SORT_OPTIONS = {
+  NAME: '이름순',
+  DISTANCE: '거리순',
+};
+
 type Props = {
   setModalRestaurant: (restaurant: Restaurant) => void;
+};
+
+type State = {
+  restaurantList: Restaurant[];
+  filterOption: string;
+  sortOption: string;
 };
 
 const filterFn = (restaurants: Restaurant[], category: string) => {
@@ -36,9 +56,9 @@ const sortFn = (restaurants: Restaurant[], type: string): Restaurant[] => {
   return restaurants.sort((a, b) => (a.distanceByMinutes > b.distanceByMinutes ? 1 : -1));
 };
 
-class RestaurantList extends Component<Props> {
+class RestaurantList extends Component<Props, State> {
   state = {
-    restaurantList: mockData,
+    restaurantList: mockData as Restaurant[],
     filterOption: '전체',
     sortOption: '이름순',
   };
@@ -84,11 +104,8 @@ class RestaurantList extends Component<Props> {
     return (
       <RestaurantListLayout>
         <SelectBoxContainer>
-          <SelectBox
-            options={['전체', '한식', '중식', '일식', '아시안', '양식', '기타']}
-            setOption={this.setFilterOption}
-          />
-          <SelectBox options={['이름순', '거리순']} setOption={this.setSortOption} />
+          <SelectBox options={Object.values(CATEGORIES)} setOption={this.setFilterOption} />
+          <SelectBox options={Object.values(SORT_OPTIONS)} setOption={this.setSortOption} />
         </SelectBoxContainer>
         <Restaurants>
           {this.filterAndSort().map((restaurant, index) => (

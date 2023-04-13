@@ -12,7 +12,7 @@ const Select = styled.select`
 
   padding: 8px;
 
-  border: 1px solid #d0d5dd;
+  border: 1px solid ${({ theme }) => theme.color.grey200};
   border-radius: 8px;
   background: transparent;
 

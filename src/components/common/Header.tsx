@@ -7,14 +7,14 @@ const HeaderLayout = styled.header`
   align-items: center;
   height: 64px;
   padding: 0 16px;
-  background-color: #ec4a0a;
+  background-color: ${({ theme }) => theme.color.primaryColor};
 `;
 
 const Title = styled.h1`
   font-size: 20px;
   line-height: 24px;
   font-weight: 600;
-  color: #fcfcfd;
+  color: ${({ theme }) => theme.color.fontColor};
 `;
 
 class Header extends Component {

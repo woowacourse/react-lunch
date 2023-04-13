@@ -16,7 +16,7 @@ const ModalBackdrop = styled.div`
   bottom: 0;
   left: 0;
 
-  background: rgba(0, 0, 0, 0.35);
+  background: ${({ theme }) => theme.color.backdropColor};
 `;
 
 const ModalContent = styled.div`
@@ -29,7 +29,7 @@ const ModalContent = styled.div`
   padding: 32px 16px;
 
   border-radius: 8px 8px 0px 0px;
-  background: #ffffff;
+  background: ${({ theme }) => theme.color.grey100};
 `;
 
 const Title = styled.h2`
@@ -44,7 +44,7 @@ const Distance = styled.span`
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-  color: #ec4a0a;
+  color: ${({ theme }) => theme.color.primaryColor};
 `;
 
 const CategoryIcon = styled.div`
@@ -59,7 +59,7 @@ const CategoryIcon = styled.div`
   margin-right: 16px;
 
   border-radius: 50%;
-  background: #f6a88a;
+  background: ${({ theme }) => theme.color.lightenColor};
   img {
     width: 36px;
     height: 36px;
@@ -75,7 +75,7 @@ const Description = styled.p`
 `;
 
 const ReferenceURL = styled.a`
-  color: black;
+  color: ${({ theme }) => theme.color.grey500};
 `;
 
 const ButtonContainer = styled.div`
@@ -100,16 +100,16 @@ const ButtonContainer = styled.div`
   }
 
   .button--secondary {
-    border: 1px solid var(--grey-300);
+    border: 1px solid ${({ theme }) => theme.color.grey300};
     background: transparent;
 
-    color: var(--grey-300);
+    color: ${({ theme }) => theme.color.grey300};
   }
 
   .button--primary {
-    background: var(--primary-color);
+    background: ${({ theme }) => theme.color.primaryColor};
 
-    color: var(--grey-100);
+    color: ${({ theme }) => theme.color.grey100};
   }
 `;
 

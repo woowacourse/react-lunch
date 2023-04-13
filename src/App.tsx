@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Header from './components/common/Header';
-import RestaurantList from './components/restaurant/RestaurantList';
+import RestaurantList, { CATEGORIES } from './components/restaurant/RestaurantList';
 import Modal from './components/restaurant/Modal';
 
 export type Restaurant = {
-  category: string;
+  category: (typeof CATEGORIES)[keyof typeof CATEGORIES];
   name: string;
   distanceByMinutes: number;
   description: string;
