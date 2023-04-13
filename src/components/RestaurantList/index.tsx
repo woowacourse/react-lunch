@@ -4,6 +4,7 @@ import {
   CategoryFilter,
   Restaurant,
 } from '../../types/restaurants';
+import RestaurantDetailBottomSheet from '../RestaurantDetailBottomSheet';
 import RestaurantItem from '../RestaurantItem';
 import St from './styled';
 
@@ -64,6 +65,7 @@ class RestaurantList extends Component<RestaurantListProps, State> {
         {restaurantList.map((restaurant: Restaurant) => (
           <RestaurantItem key={restaurant.id} info={restaurant} />
         ))}
+        <RestaurantDetailBottomSheet restaurant={restaurantList[0]} />
       </St.Layout>
     );
   }
