@@ -4,7 +4,7 @@ import { CATEGORY_IMG } from '../constants';
 import { RestaurantItemType } from '../types';
 import Button from './common/Button';
 
-class RestaurantDetail extends React.Component<RestaurantItemType & { onClose: () => React.SetStateAction<void> }> {
+class RestaurantDetail extends React.Component<RestaurantItemType & { onClose: () => void }> {
   render() {
     return (
       <RestaurantDetailWrapper>

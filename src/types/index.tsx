@@ -23,7 +23,7 @@ export interface RestaurantListStateType {
 
 export interface BottomSheetType {
   children: React.ReactNode;
-  onClose: () => React.SetStateAction<void>;
+  onClose: () => void;
 }
 
 export type CategoryType = (typeof CATEGORY_NAME)[keyof typeof CATEGORY_NAME];

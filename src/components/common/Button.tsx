@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-class Button extends React.Component<{ text: string; onClick: () => React.SetStateAction<void> }> {
+class Button extends React.Component<{ text: string; onClick: () => void }> {
   render() {
     return <ButtonWrapper onClick={this.props.onClick}>{this.props.text}</ButtonWrapper>;
   }
