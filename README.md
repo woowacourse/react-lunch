@@ -2,7 +2,7 @@
 
 ## FE 5기 레벨2 다시 점심 뭐먹지 미션
 
-(스크린샷이 올 위치)
+<img width="1234" alt="image" src="https://user-images.githubusercontent.com/69189073/231656626-7aa8f0ad-c3d8-470e-9556-472be82ad34d.png">
 
 <br>
 
