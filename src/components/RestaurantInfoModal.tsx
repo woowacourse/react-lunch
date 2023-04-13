@@ -7,8 +7,6 @@ import { $ } from "../utils/selector";
 
 class RestaurantInfoModal extends Component<RestaurantModal> {
   render() {
-    if (!this.props.selectedRestaurant) return;
-
     const { selectedRestaurant: restaurant } = this.props;
 
     return (
@@ -18,27 +16,33 @@ class RestaurantInfoModal extends Component<RestaurantModal> {
             <ModalBackdrop
               className="modal-backdrop"
               onClick={this.props.onClose}
-            ></ModalBackdrop>
+            />
             <Modal>
               <div className="category">
-                <img
-                  src={`${process.env.PUBLIC_URL}/assets/category-${
-                    ENGLISH_CATEGORY[restaurant.category]
-                  }.png`}
-                  alt={restaurant.category}
-                />
+                {restaurant && (
+                  <img
+                    src={`${process.env.PUBLIC_URL}/assets/category-${
+                      ENGLISH_CATEGORY[restaurant.category]
+                    }.png`}
+                    alt={restaurant.category}
+                  />
+                )}
               </div>
               <article>
-                <Name className="text-subtitle">{restaurant.name}</Name>
+                <Name className="text-subtitle">
+                  {restaurant && restaurant.name}
+                </Name>
                 <TakingTime className="text-body takingTime">
-                  캠퍼스부터 {restaurant.takingTime}분 내
+                  캠퍼스부터 {restaurant && restaurant.takingTime}분 내
                 </TakingTime>
                 <Description className="text-body">
-                  {restaurant.description}
+                  {restaurant && restaurant.description}
                 </Description>
-                <Link href={restaurant.link} target="_blank">
-                  {restaurant.link}
-                </Link>
+                {restaurant && (
+                  <Link href={restaurant.link} target="_blank">
+                    {restaurant && restaurant.link}
+                  </Link>
+                )}
               </article>
               <button
                 type="button"
