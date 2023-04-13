@@ -15,6 +15,10 @@ body {
   font-size: 16px;
 }
 
+button:focus {
+  outline: none;
+}
+
 /* Colors *****************************************/
 :root {
   --primary-color: #ec4a0a;

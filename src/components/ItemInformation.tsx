@@ -36,7 +36,11 @@ class ItemInformation extends React.Component<Props> {
         </div>
 
         <div className="button-container detail-button-container">
-          <button type="button" className="button button--close text-caption" onClick={this.props.closeEvent}>
+          <button
+            type="button"
+            className="button button--close button--primary text-caption"
+            onClick={this.props.closeEvent}
+          >
             닫기
           </button>
         </div>
