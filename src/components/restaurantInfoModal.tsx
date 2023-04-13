@@ -14,7 +14,7 @@ class RestaurantInfoModal extends Component<RestaurantModal> {
     return (
       <>
         {ReactDom.createPortal(
-          <dialog ref={this.props.handleModal}>
+          <dialog ref={this.props.refModal}>
             <ModalBackdrop
               className="modal-backdrop"
               onClick={this.props.onClose}
@@ -28,7 +28,7 @@ class RestaurantInfoModal extends Component<RestaurantModal> {
                   alt={restaurant.category}
                 />
               </div>
-              <div>
+              <article>
                 <RestaurantName className="text-subtitle">
                   {restaurant.name}
                 </RestaurantName>
@@ -41,7 +41,7 @@ class RestaurantInfoModal extends Component<RestaurantModal> {
                 <RestaurantLink href={restaurant.link} target="_blank">
                   {restaurant.link}
                 </RestaurantLink>
-              </div>
+              </article>
               <button
                 type="button"
                 className="text-caption close-btn"

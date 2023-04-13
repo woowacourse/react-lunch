@@ -35,5 +35,5 @@ export interface RestaurantInfo {
 export interface RestaurantModal {
   selectedRestaurant: null | RestaurantInfo;
   onClose: () => void;
-  handleModal: RefObject<HTMLDialogElement>;
+  refModal: RefObject<HTMLDialogElement>;
 }

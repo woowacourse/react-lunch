@@ -8,12 +8,12 @@ class Restaurants extends Component<RestaurantList> {
   restaurantInfoModal: RefObject<HTMLDialogElement> = createRef();
 
   state = {
-    restaurant: null,
+    selectedRestaurant: null,
   };
 
   handleModalOpenButton = (restaurantId: string) => {
     this.setState({
-      restaurant: this.findSelectedRestaurant(restaurantId),
+      selectedRestaurant: this.findSelectedRestaurant(restaurantId),
     });
 
     const restaurantInfoModal = this.restaurantInfoModal.current;
@@ -49,9 +49,9 @@ class Restaurants extends Component<RestaurantList> {
         </RestaurantListContainer>
 
         <RestaurantInfoModal
-          selectedRestaurant={this.state.restaurant}
+          selectedRestaurant={this.state.selectedRestaurant}
           onClose={this.handleModalCloseButton}
-          handleModal={this.restaurantInfoModal}
+          refModal={this.restaurantInfoModal}
         ></RestaurantInfoModal>
       </>
     );

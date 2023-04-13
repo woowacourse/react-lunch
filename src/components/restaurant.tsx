@@ -15,7 +15,7 @@ class Restaurant extends Component<RestaurantItem> {
             alt={this.props.restaurant.category}
           />
         </div>
-        <div>
+        <article>
           <h3 className="text-subtitle">{this.props.restaurant.name}</h3>
           <RestaurantTakingTime className="text-body takingTime">
             캠퍼스부터 {this.props.restaurant.takingTime}분 내
@@ -23,7 +23,7 @@ class Restaurant extends Component<RestaurantItem> {
           <RestaurantDescription className="text-body description">
             {this.props.restaurant.description}
           </RestaurantDescription>
-        </div>
+        </article>
       </RestaurantContainer>
     );
   }

@@ -46,7 +46,7 @@ class SelectBoxes extends Component<RestaurantSelect> {
   }
 }
 
-const SelectBoxContainer = styled.section`
+const SelectBoxContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 32px 16px 8px;
