@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import { alignFilter, categoryFilter } from '../../constants/restaurants';
+import { ALIGN_FILTER, CATEGORY_FILTER } from '../../constants/restaurants';
 import { AlignFilter, CategoryFilter } from '../../types/restaurants';
 import Select from '../Select';
 import St from './styled';
@@ -13,8 +13,8 @@ class SelectBar extends Component<SelectBarProps> {
     const { onChangeCategoryFilter, onChangeAlignFilter } = this.props;
     return (
       <St.Layout>
-        <Select options={categoryFilter} onChange={onChangeCategoryFilter} />
-        <Select options={alignFilter} onChange={onChangeAlignFilter} />
+        <Select options={CATEGORY_FILTER} onChange={onChangeCategoryFilter} />
+        <Select options={ALIGN_FILTER} onChange={onChangeAlignFilter} />
       </St.Layout>
     );
   }

@@ -1,5 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { fetchMockRestaurants } from '../../api/restaurants';
+import { BY_NAME } from '../../constants/restaurants';
 import {
   AlignFilter,
   CategoryFilter,
@@ -43,7 +44,7 @@ class RestaurantList extends Component<RestaurantListProps, State> {
   }
 
   async componentDidMount() {
-    const restaurantList = await fetchMockRestaurants({ align: '이름순' });
+    const restaurantList = await fetchMockRestaurants({ align: BY_NAME });
 
     this.setState({ restaurantListOrigin: restaurantList, restaurantList });
   }

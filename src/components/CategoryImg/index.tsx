@@ -6,8 +6,7 @@ import categoryJapanese from '../../assets/category-japanese.png';
 import categoryKorean from '../../assets/category-korean.png';
 import categoryWestern from '../../assets/category-western.png';
 import categoryEtc from '../../assets/category-etc.png';
-
-type Category = '한식' | '중식' | '일식' | '양식' | '아시안' | '기타';
+import { Category } from '../../types/restaurants';
 
 interface CategoryImgProps {
   category: Category;
