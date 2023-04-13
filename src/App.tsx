@@ -7,8 +7,12 @@ import { SELECT_OPTION } from "./constant/select";
 import { GlobalStyle } from "./style/Globalstyle";
 import { theme } from "./style/theme";
 import { CategoryUnion, SortingUnion, SelectedValue } from "./types/select";
+import { Restaurant } from "./types/restaurant";
+import { getRestaurantData } from "./api/getData";
+import { getFilteredArray, getSortedArray } from "./utils/arrayConverter";
 
 interface StateType {
+  restaurants: Restaurant[] | [];
   sorting: SortingUnion;
   category: CategoryUnion;
 }
@@ -18,9 +22,18 @@ class App extends React.Component<{}, StateType> {
     super(props);
 
     this.state = {
+      restaurants: [],
       sorting: SELECT_OPTION.NAME,
       category: SELECT_OPTION.ALL,
     };
+  }
+
+  async componentDidMount() {
+    const data = await getRestaurantData();
+
+    this.setState({
+      restaurants: data,
+    });
   }
 
   handleSelect(select: SelectedValue) {
@@ -33,6 +46,20 @@ class App extends React.Component<{}, StateType> {
     }
   }
 
+  setRestaurant() {
+    const filteredRestaurants = getFilteredArray(
+      this.state.restaurants,
+      this.state.category
+    );
+
+    const sortedRestaurants = getSortedArray(
+      filteredRestaurants,
+      this.state.sorting
+    );
+
+    return sortedRestaurants;
+  }
+
   render() {
     return (
       <>
@@ -40,10 +67,7 @@ class App extends React.Component<{}, StateType> {
           <GlobalStyle />
           <Header />
           <SelectSection handleSelect={this.handleSelect.bind(this)} />
-          <RestaurantSection
-            sorting={this.state.sorting}
-            category={this.state.category}
-          />
+          <RestaurantSection restaurants={this.setRestaurant()} />
         </ThemeProvider>
       </>
     );
