@@ -7,7 +7,7 @@
 - [x] RestaurantFilter
 - [x] Filter
 - [x] RestaurantsList
-- [ ] RestaurantItem
+- [x] RestaurantItem
 - [ ] Modal
 
 ## Utils
