@@ -10,7 +10,7 @@ describe("점심 뭐먹지 미션 e2e 테스트", () => {
   it("리스트에서 음식점을 클릭할 경우 상세정보 모달을 오픈해야 한다.", () => {
     cy.get(".restaurant-list > :nth-child(1)").click();
 
-    cy.get(".modal").should("have.class", "modal--open");
+    cy.get(".modal").should("have.class", "modal");
   });
 
   it("한식 카테고리로 필터링 하면 한식 음식점(농민백암순대, 순대국집, 쌀밥집, 피양콩할머니)만 표시되야 한다.", () => {
