@@ -34,12 +34,44 @@
     "isFavorite": true
   },
   {
+    "id": "2bc9f55f-1b28-4d1c-b148-165dbcfd143a",
+    "category": "중식",
+    "name": "마담밍 선릉점",
+    "distance": 10,
+    "description": "누룽지탕, 탕수육 맛집",
+    "isFavorite": true
+  },
+  {
+    "id": "e3ced3fa-08f8-455c-b359-b601b5040a0d",
+    "category": "중식",
+    "name": "미쓰양꼬치",
+    "distance": 15,
+    "description": "양꼬치 맛집",
+    "isFavorite": true
+  },
+  {
     "id": "c655a6bc-ee61-4e98-b8a1-860be3a88126",
     "category": "일식",
     "name": "잇쇼우",
     "distance": 10,
     "description": "잇쇼우는 정통 자가제면 사누끼 우동이 대표메뉴입니다. 기술은 정성을 이길 수 없다는\n    신념으로 모든 음식에 최선을 다하는 잇쇼우는 고객 한분 한분께 최선을 다하겠습니다",
     "link": "https://naver.me/Fvn7VlT8",
+    "isFavorite": false
+  },
+  {
+    "id": "9c5c60bf-7acb-44a2-9bc4-b767ddf553d8",
+    "category": "일식",
+    "name": "돈카라",
+    "distance": 15,
+    "description": "돈가스, 우동 맛집",
+    "isFavorite": false
+  },
+  {
+    "id": "f16b8afa-32dd-4a11-a35e-ca30daaa7b8f",
+    "category": "일식",
+    "name": "지구당",
+    "distance": 5,
+    "description": "텐동 맛집",
     "isFavorite": false
   },
   {
@@ -52,6 +84,20 @@
     "isFavorite": false
   },
   {
+    "id": "eb40bf6a-ab03-4a31-b950-3d788e94b682",
+    "category": "양식",
+    "name": "트리가",
+    "distance": 10,
+    "isFavorite": false
+  },
+  {
+    "id": "5a8a210e-233d-4141-b490-f6fa8b18e027",
+    "category": "양식",
+    "name": "코끼리맨션",
+    "distance": 15,
+    "isFavorite": false
+  },
+  {
     "id": "f63e7177-3224-49b6-ad25-cadd6bbf489c",
     "category": "아시안",
     "name": "호아빈 삼성점",
@@ -61,12 +107,40 @@
     "isFavorite": false
   },
   {
+    "id": "e6f58818-6fca-4dfc-8de8-dc0d1c078b15",
+    "category": "아시안",
+    "name": "카레공간",
+    "distance": 15,
+    "isFavorite": false
+  },
+  {
+    "id": "f8ccb8c0-89cc-4cd0-813f-e87e8f24d776",
+    "category": "아시안",
+    "name": "포메인",
+    "distance": 15,
+    "isFavorite": false
+  },
+  {
     "id": "40ce4535-8f85-4701-a6a4-e259b3036573",
     "category": "기타",
-    "name": "도스타코스 선릉점",
+    "name": "연타발",
     "distance": 5,
+    "isFavorite": false
+  },
+  {
+    "id": "b95017ef-aaf4-4d9a-be79-d1213cf93ecd",
+    "category": "기타",
+    "name": "도스타코스 선릉점",
+    "distance": 15,
     "description": "멕시칸 캐주얼 그릴",
     "link": "https://naver.me/5xlLtY0m",
+    "isFavorite": false
+  },
+  {
+    "id": "ccc05c18-5710-4829-bf31-37a5117472c1",
+    "category": "기타",
+    "name": "르브런쉭",
+    "distance": 10,
     "isFavorite": false
   }
 ]
