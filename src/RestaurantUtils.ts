@@ -17,7 +17,7 @@ export const getFilteredRestaurantsByCategory = (
   return restaurants.filter((restaurant) => restaurant.category === category);
 };
 
-const getSortedRestaurantsByName = (restaurants: Restaurant[]) => {
+export const getSortedRestaurantsByName = (restaurants: Restaurant[]) => {
   const sortedRestaurants = restaurants.sort((restaurant1, restaurant2) => {
     return restaurant1.name.localeCompare(restaurant2.name);
   });
@@ -25,7 +25,7 @@ const getSortedRestaurantsByName = (restaurants: Restaurant[]) => {
   return sortedRestaurants;
 };
 
-const getSortedRestaurantsByDistance = (restaurants: Restaurant[]) => {
+export const getSortedRestaurantsByDistance = (restaurants: Restaurant[]) => {
   const sortedRestaurants = restaurants.sort((restaurant1, restaurant2) => {
     return Number(restaurant1.distance) - Number(restaurant2.distance);
   });
