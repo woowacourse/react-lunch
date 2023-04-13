@@ -67,9 +67,11 @@ const BackDrop = styled.div`
 const ModalContainer = styled.div`
   position: fixed;
   bottom: 0;
+  right: 0;
+  left: 0;
   height: 70%;
 
-  padding: 32px 16px 0;
+  padding: 32px 16px;
 
   background-color: ${({ theme }) => theme.colors.grey100};
 `;

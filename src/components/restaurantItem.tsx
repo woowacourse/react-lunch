@@ -2,26 +2,55 @@ import React from "react";
 import styled from "styled-components";
 import { Restaurant } from "../types/restaurant";
 import { convertImage } from "../utils/imageConverter";
+import { ItemModal } from "./itemModal";
 
 interface PropsType {
   restaurant: Restaurant;
 }
 
-export class RestaurantItem extends React.Component<PropsType> {
+interface StateType {
+  isModalOpen: boolean;
+}
+
+export class RestaurantItem extends React.Component<PropsType, StateType> {
+  constructor(props: PropsType) {
+    super(props);
+
+    this.state = {
+      isModalOpen: false,
+    };
+  }
+
+  openModal() {
+    this.setState({ isModalOpen: true });
+  }
+
+  closeModal() {
+    this.setState({ isModalOpen: false });
+  }
+
   render() {
     const { category, name, takingTime, description } = this.props.restaurant;
 
     return (
-      <ItemContainer>
-        <ImgWrapper>
-          <CategoryImg src={convertImage(category)} alt={category} />
-        </ImgWrapper>
-        <ItemInfo>
-          <Name>{name}</Name>
-          <TakingTime>캠퍼스로부터 {takingTime}분 내</TakingTime>
-          <Description>{description}</Description>
-        </ItemInfo>
-      </ItemContainer>
+      <>
+        <ItemContainer onClick={this.openModal.bind(this)}>
+          <ImgWrapper>
+            <CategoryImg src={convertImage(category)} alt={category} />
+          </ImgWrapper>
+          <ItemInfo>
+            <Name>{name}</Name>
+            <TakingTime>캠퍼스로부터 {takingTime}분 내</TakingTime>
+            <Description>{description}</Description>
+          </ItemInfo>
+        </ItemContainer>
+        {this.state.isModalOpen && (
+          <ItemModal
+            restaurant={this.props.restaurant}
+            closeModal={this.closeModal.bind(this)}
+          />
+        )}
+      </>
     );
   }
 }
