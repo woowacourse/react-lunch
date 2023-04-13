@@ -17,7 +17,7 @@ npm i
 npm start
 
 // E2E 테스트 실행
-npx cypress run
+npx cypress open
 ```
 
 ## 디렉터리 구조도
