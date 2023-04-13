@@ -6,3 +6,8 @@
 yarn install
 yarn start
 ```
+
+### 테스트 실행방법
+```bash
+yarn test
+```
