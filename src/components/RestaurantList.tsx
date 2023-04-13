@@ -13,6 +13,7 @@ class RestaurantList extends React.Component<object, RestaurantListStateType> {
     super(props);
     this.state = {
       restaurants: [],
+      filteredRestaurants: [],
       category: CATEGORY_NAME.all,
       order: ORDER_KEY.name,
     };
@@ -20,8 +21,7 @@ class RestaurantList extends React.Component<object, RestaurantListStateType> {
 
   componentDidMount() {
     this.setLocalStorage(data);
-    this.setState({ restaurants: this.getLocalStorage() });
-    this.sortRestaurants();
+    this.setState({ restaurants: this.getLocalStorage(), filteredRestaurants: this.getLocalStorage() });
   }
 
   getLocalStorage(): RestaurantItemType[] {
@@ -34,10 +34,33 @@ class RestaurantList extends React.Component<object, RestaurantListStateType> {
   }
 
   sortRestaurants() {
-    this.state.restaurants.sort((a: RestaurantItemType, b: RestaurantItemType): number => {
-      if (this.state.order === '이름순') return a.name > b.name ? 1 : -1;
+    const restaurants = this.state.filteredRestaurants;
+    restaurants.sort((a: RestaurantItemType, b: RestaurantItemType): number => {
+      if (this.state.order === ORDER_KEY.name) return a.name > b.name ? 1 : -1;
       return a.distance > b.distance ? 1 : -1;
     });
+    this.setState({ filteredRestaurants: restaurants });
+  }
+
+  filterRestaurants() {
+    if (this.state.category === CATEGORY_NAME.all) {
+      this.setState({ filteredRestaurants: this.state.restaurants });
+      return;
+    }
+
+    const filteredRestaurants = this.state.restaurants.filter(
+      (restaurant) => restaurant.category === this.state.category
+    );
+    this.setState({ filteredRestaurants: filteredRestaurants });
+  }
+
+  componentDidUpdate(prevProps: object, prevStates: RestaurantListStateType) {
+    if (prevStates.category !== this.state.category) {
+      this.filterRestaurants();
+    }
+    if (prevStates.order !== this.state.order || prevStates.filteredRestaurants !== this.state.filteredRestaurants) {
+      this.sortRestaurants();
+    }
   }
 
   render() {
@@ -49,7 +72,6 @@ class RestaurantList extends React.Component<object, RestaurantListStateType> {
             options={Object.values(CATEGORY_NAME)}
             onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
               this.setState({ category: event.target.value });
-              this.sortRestaurants();
             }}
           />
           <SelectBox
@@ -62,7 +84,7 @@ class RestaurantList extends React.Component<object, RestaurantListStateType> {
           />
         </SelectBoxContainer>
         <RestaurantListWrapper>
-          {this.state.restaurants.map((restaurant: RestaurantItemType, index: number) => {
+          {this.state.filteredRestaurants.map((restaurant: RestaurantItemType, index: number) => {
             return (
               <RestaurantItem
                 key={index}
@@ -87,7 +109,6 @@ const RestaurantListWrapper = styled.div`
 `;
 
 const SelectBoxContainer = styled.div`
-  width: '100%';
   display: flex;
   justify-content: space-between;
   padding: 24px 16px;
