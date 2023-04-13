@@ -72,7 +72,7 @@ export class App extends Component<any, AppState> {
     this.setState(() => ({ isOpen: false }));
   }
 
-  clickRestaurantItem(e: React.MouseEvent<HTMLElement>) {
+  handleClickRestaurantItem(e: React.MouseEvent<HTMLElement>) {
     if (!(e.target instanceof HTMLElement)) return;
 
     const selectedId = e.target.closest('li')?.id;
@@ -86,7 +86,7 @@ export class App extends Component<any, AppState> {
     this.openModal();
   }
 
-  selectFilter(e: React.ChangeEvent<HTMLSelectElement>) {
+  handleSelectFilter(e: React.ChangeEvent<HTMLSelectElement>) {
     const selectedOption = e.target.value;
 
     if (isSortFilterType(selectedOption)) {
@@ -112,16 +112,16 @@ export class App extends Component<any, AppState> {
         <Style.Wrapper>
           <SelectBox
             option={categoryOption}
-            handleOptionChange={this.selectFilter.bind(this)}
+            handleOptionChange={this.handleSelectFilter.bind(this)}
           />
           <SelectBox
             option={sortOption}
-            handleOptionChange={this.selectFilter.bind(this)}
+            handleOptionChange={this.handleSelectFilter.bind(this)}
           />
         </Style.Wrapper>
         <RestaurantList
           list={filterAndSortArray(this.restaurantList, this.state.filter)}
-          clickRestaurantItem={this.clickRestaurantItem.bind(this)}
+          handleClickRestaurantItem={this.handleClickRestaurantItem.bind(this)}
         />
         <Modal
           isOpen={this.state.isOpen}

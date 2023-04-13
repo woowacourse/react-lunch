@@ -15,14 +15,14 @@ const Style = {
 
 interface RestaurantListProps {
   list: Restaurant[];
-  clickRestaurantItem: React.MouseEventHandler<HTMLUListElement>;
+  handleClickRestaurantItem: React.MouseEventHandler<HTMLUListElement>;
 }
 
 export class RestaurantList extends Component<RestaurantListProps> {
   render(): ReactNode {
     return (
       <Style.Wrapper>
-        <ul onClick={this.props.clickRestaurantItem}>
+        <ul onClick={this.props.handleClickRestaurantItem}>
           {this.props.list.map((restaurant) => (
             <RestaurantItem key={restaurant.id} info={restaurant} />
           ))}
