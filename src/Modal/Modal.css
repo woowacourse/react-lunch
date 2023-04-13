@@ -13,7 +13,6 @@
   bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 99;
 }
 
 .restaurant-info {
@@ -81,12 +80,4 @@
 .button-container {
   display: flex;
   justify-content: space-between;
-}
-
-.favorite-icon-info {
-  width: 28px;
-  height: 28px;
-  position: absolute;
-  right: 4vw;
-  top: 4vh;
 }

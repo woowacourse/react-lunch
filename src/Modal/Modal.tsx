@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Button from '../Button/Button';
 import { RestaurantInfo } from '../data/type';
 import { CATEGORY_IMAGES } from '../assets/images';
 import './Modal.css';
@@ -7,7 +8,7 @@ import './Modal.css';
 interface ModalProps {
   restaurant: RestaurantInfo;
   modalClassName: string;
-  onClose: (e: React.MouseEvent<HTMLDivElement>) => void;
+  onClose: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
 class Modal extends Component<ModalProps> {
@@ -15,12 +16,13 @@ class Modal extends Component<ModalProps> {
     const { category, name, distance, description, link } =
       this.props.restaurant;
     return (
-      <div id="modalContainer" className={this.props.modalClassName}>
+      <>
         <div
           id="modalBackdrop"
           onClick={this.props.onClose}
           className="modal-backdrop"
-        >
+        ></div>
+        <div id="modalContainer" className={this.props.modalClassName}>
           <div id="restaurantDetails" className="modal-container-info">
             <div className="restaurant-info">
               <div className="restaurant__category-info">
@@ -49,12 +51,16 @@ class Modal extends Component<ModalProps> {
               </div>
             </div>
             <div className="button-container">
-              {/* <lunch-button type="click" name="삭제하기" id="deleteContent" color="white"></lunch-button>
-          <lunch-button type="click" name="닫기" id="cancelModal" color="orange"></lunch-button> */}
+              <Button
+                color="white"
+                name="삭제하기"
+                onClose={this.props.onClose}
+              />
+              <Button color="orange" name="닫기" onClose={this.props.onClose} />
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }

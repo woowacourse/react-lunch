@@ -64,10 +64,24 @@ class RestaurantItem extends Component<
     this.setState({ isModalOpen: true, modalClassName: 'modal--open' });
   };
 
-  handleCloseModal = (e: React.MouseEvent<HTMLDivElement>) => {
+  handleCloseModal = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     this.setState({ isModalOpen: false, modalClassName: 'modal' });
   };
+
+  handleKeyDown = (event: KeyboardEvent) => {
+    if (event.code === 'Escape') {
+      this.setState({ isModalOpen: false, modalClassName: 'modal' });
+    }
+  };
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown);
+  }
 }
 
 export default RestaurantItem;
