@@ -4,7 +4,7 @@
 
 ---
 
-## [🤤 다시, 점심 뭐 먹지 페이지 링크](hyeryongchoi.github.io/react-lunch/)
+## [🤤 다시, 점심 뭐 먹지 페이지 링크](https://hyeryongchoi.github.io/react-lunch/)
 
 <img width="400px" alt="점심 뭐 먹지 페이지 실행 화면" src="https://user-images.githubusercontent.com/24777828/231659514-fd6fc35d-9286-4d65-83a1-a88a4b35d8d0.gif">
 
