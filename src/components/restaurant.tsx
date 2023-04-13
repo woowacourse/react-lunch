@@ -5,24 +5,26 @@ import { RestaurantItem } from "../types";
 
 class Restaurant extends Component<RestaurantItem> {
   render() {
+    const { restaurant: restaurantInfo } = this.props;
+
     return (
       <RestaurantContainer onClick={this.props.onClick}>
         <div className="category">
           <img
             src={`../assets/category-${
-              ENGLISH_CATEGORY[this.props.restaurant.category]
+              ENGLISH_CATEGORY[restaurantInfo.category]
             }.png`}
-            alt={this.props.restaurant.category}
+            alt={restaurantInfo.category}
           />
         </div>
         <article>
-          <h3 className="text-subtitle">{this.props.restaurant.name}</h3>
-          <RestaurantTakingTime className="text-body takingTime">
-            캠퍼스부터 {this.props.restaurant.takingTime}분 내
-          </RestaurantTakingTime>
-          <RestaurantDescription className="text-body description">
-            {this.props.restaurant.description}
-          </RestaurantDescription>
+          <h3 className="text-subtitle">{restaurantInfo.name}</h3>
+          <TakingTime className="text-body takingTime">
+            캠퍼스부터 {restaurantInfo.takingTime}분 내
+          </TakingTime>
+          <Description className="text-body description">
+            {restaurantInfo.description}
+          </Description>
         </article>
       </RestaurantContainer>
     );
@@ -37,11 +39,11 @@ const RestaurantContainer = styled.li`
   cursor: pointer;
 `;
 
-const RestaurantTakingTime = styled.p`
+const TakingTime = styled.p`
   margin: 2px 0 8px;
 `;
 
-const RestaurantDescription = styled.p`
+const Description = styled.p`
   color: var(--grey-300);
 `;
 

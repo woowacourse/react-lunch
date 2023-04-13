@@ -29,18 +29,16 @@ class RestaurantInfoModal extends Component<RestaurantModal> {
                 />
               </div>
               <article>
-                <RestaurantName className="text-subtitle">
-                  {restaurant.name}
-                </RestaurantName>
-                <RestaurantTakingTime className="text-body takingTime">
+                <Name className="text-subtitle">{restaurant.name}</Name>
+                <TakingTime className="text-body takingTime">
                   캠퍼스부터 {restaurant.takingTime}분 내
-                </RestaurantTakingTime>
-                <RestaurantDescription className="text-body">
+                </TakingTime>
+                <Description className="text-body">
                   {restaurant.description}
-                </RestaurantDescription>
-                <RestaurantLink href={restaurant.link} target="_blank">
+                </Description>
+                <Link href={restaurant.link} target="_blank">
                   {restaurant.link}
-                </RestaurantLink>
+                </Link>
               </article>
               <button
                 type="button"
@@ -79,19 +77,19 @@ const Modal = styled.div`
   background: var(--grey-100);
 `;
 
-const RestaurantName = styled.h3`
+const Name = styled.h3`
   margin-top: 16px;
 `;
 
-const RestaurantTakingTime = styled.p`
+const TakingTime = styled.p`
   margin: 16px 0;
 `;
 
-const RestaurantDescription = styled.p`
+const Description = styled.p`
   color: var(--grey-500);
 `;
 
-const RestaurantLink = styled.a`
+const Link = styled.a`
   display: block;
   margin: 16px 0 32px;
   text-decoration: underline;
