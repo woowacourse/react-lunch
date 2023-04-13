@@ -11,10 +11,6 @@ interface ModalProps {
 }
 
 class Modal extends Component<ModalProps> {
-  constructor(props: ModalProps) {
-    super(props);
-  }
-
   render() {
     const { category, name, distance, description, link } =
       this.props.restaurant;
@@ -45,6 +41,7 @@ class Modal extends Component<ModalProps> {
                 <a
                   href={link}
                   target="_blank"
+                  rel="noreferrer"
                   className="restaurant__link-info text-body"
                 >
                   {link}
