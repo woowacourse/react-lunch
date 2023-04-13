@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './Header.tsx';
+import MainHeader from './MainHeader.tsx';
 import RestaurantList from './RestaurantList.tsx';
 import SelectContainer from './SelectContainer.tsx';
 import RestaurantDetailDrawer from './RestaurantDetailDrawer.tsx';
@@ -46,7 +46,7 @@ class App extends React.Component<{}, AppState> {
   render() {
     return (
       <div className="App">
-        <Header />
+        <MainHeader />
         <SelectContainer onChangeFilterOptions={this.onChangeFilterOptions} />
         <RestaurantList
           filterOptions={this.state.filterOptions}

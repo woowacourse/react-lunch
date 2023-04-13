@@ -1,10 +1,13 @@
 import React from 'react';
 
-class Header extends React.Component {
+type HeaderProps = {
+  children : React.ReactNode
+}
+class Header extends React.Component<HeaderProps> {
   render() {
     return (
       <header className="gnb">
-        <h1 className="gnb__title text-title">점심 뭐 먹지</h1>
+        {this.props.children}
       </header>
     );
   }
