@@ -1,6 +1,6 @@
 import { Component } from "react";
 import styled from "styled-components";
-import { CATEGORY } from "../constants";
+import { ENGLISH_CATEGORY } from "../constants";
 import { RestaurantItem } from "../types";
 
 class Restaurant extends Component<RestaurantItem> {
@@ -10,7 +10,7 @@ class Restaurant extends Component<RestaurantItem> {
         <div className="category">
           <img
             src={`../assets/category-${
-              CATEGORY[this.props.restaurant.category]
+              ENGLISH_CATEGORY[this.props.restaurant.category]
             }.png`}
             alt={this.props.restaurant.category}
           />

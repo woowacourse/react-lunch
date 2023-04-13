@@ -4,20 +4,21 @@ import { RestaurantApp, RestaurantInfo } from "./types";
 import Restaurants from "./components/Restaurants";
 import SelectBoxes from "./components/SelectBoxes";
 import HeaderSection from "./components/HeaderSection";
+import { CATEGORY, LANGUAGE, SORTING_SELECT } from "./constants";
 
 class App extends Component<{}, RestaurantApp> {
   state = {
     filteredRestaurants: this.filter(
-      localStorage.getItem("category") ?? "전체",
-      localStorage.getItem("sorting") ?? "이름순"
+      localStorage.getItem("category") ?? CATEGORY.ALL,
+      localStorage.getItem("sorting") ?? SORTING_SELECT.NAME
     ),
-    category: localStorage.getItem("category") ?? "전체",
-    sorting: localStorage.getItem("sorting") ?? "이름순",
+    category: localStorage.getItem("category") ?? CATEGORY.ALL,
+    sorting: localStorage.getItem("sorting") ?? SORTING_SELECT.NAME,
   };
 
   sortRestaurantsByName(restaurants: RestaurantInfo[]) {
     return [...restaurants].sort((resA, resB) =>
-      resA.name.localeCompare(resB.name, "ko-KR")
+      resA.name.localeCompare(resB.name, LANGUAGE)
     );
   }
 
@@ -45,10 +46,10 @@ class App extends Component<{}, RestaurantApp> {
     const filteredRestaurants = this.sortRestaurantsByName(
       restaurantMockData
     ).filter((restaurant) =>
-      category === "전체" ? restaurant : restaurant.category === category
+      category === CATEGORY.ALL ? restaurant : restaurant.category === category
     );
 
-    if (sorting === "이름순") {
+    if (sorting === SORTING_SELECT.NAME) {
       return this.sortRestaurantsByName(filteredRestaurants);
     } else {
       return [...filteredRestaurants].sort(

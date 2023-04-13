@@ -1,6 +1,7 @@
 import { ChangeEvent, Component } from "react";
 import styled from "styled-components";
 import { RestaurantSelect } from "../types";
+import { CATEGORY, SORTING_SELECT } from "../constants";
 
 class SelectBoxes extends Component<RestaurantSelect> {
   handleCategorySelect = ({ target }: ChangeEvent<HTMLSelectElement>) => {
@@ -12,22 +13,13 @@ class SelectBoxes extends Component<RestaurantSelect> {
   };
 
   render() {
-    const categorySelect = [
-      "전체",
-      "한식",
-      "중식",
-      "일식",
-      "양식",
-      "아시안",
-      "기타",
-    ];
-    const sortingSelect = ["이름순", "거리순"];
+    const categorySelect = Object.values(CATEGORY);
+    const sortingSelect = Object.values(SORTING_SELECT);
 
     return (
       <SelectBoxContainer>
         <SelectBox
           name="category"
-          id="category-filter"
           onChange={this.handleCategorySelect}
           value={this.props.selectedCategory}
         >
@@ -40,7 +32,6 @@ class SelectBoxes extends Component<RestaurantSelect> {
 
         <SelectBox
           name="sorting"
-          id="sorting-filter"
           onChange={this.handleSortingSelect}
           value={this.props.selectedSorting}
         >

@@ -1,7 +1,7 @@
 import { Component } from "react";
 import ReactDom from "react-dom";
 import styled from "styled-components";
-import { CATEGORY } from "../constants";
+import { ENGLISH_CATEGORY } from "../constants";
 import { RestaurantModal } from "../types";
 import { $ } from "../utils/selector";
 
@@ -14,7 +14,7 @@ class RestaurantInfoModal extends Component<RestaurantModal> {
     return (
       <>
         {ReactDom.createPortal(
-          <dialog id="restaurant-detail" ref={this.props.handleModal}>
+          <dialog ref={this.props.handleModal}>
             <ModalBackdrop
               className="modal-backdrop"
               onClick={this.props.onClose}
@@ -23,7 +23,7 @@ class RestaurantInfoModal extends Component<RestaurantModal> {
               <div className="category">
                 <img
                   src={`../assets/category-${
-                    CATEGORY[restaurant.category]
+                    ENGLISH_CATEGORY[restaurant.category]
                   }.png`}
                   alt={restaurant.category}
                 />
