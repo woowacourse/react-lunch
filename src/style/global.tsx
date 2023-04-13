@@ -35,7 +35,6 @@ const GlobalStyle = createGlobalStyle`
   .close_bottom_sheet {
     -webkit-transform: translateY(100%) !important;
             transform: translateY(100%) !important;
-    opacity: 0 !important;
   }
 `;
 
