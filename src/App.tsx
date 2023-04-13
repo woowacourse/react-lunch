@@ -66,13 +66,14 @@ class App extends Component {
         <Header />
         <MainLayout
           restaurants={this.state.restaurants}
-          onClickRestaurant={this.handleRestaurantClick}
+          onClickRestaurant={this.setRestaurantId}
         />
-        <RestaurantDetailModal
-          restaurant={restaurant}
-          isModalOpened={this.state.isModalOpened}
-          onCloseModal={this.handleModalClose}
-        />
+        {this.state.isModalOpened ? (
+          <RestaurantDetailModal
+            restaurant={restaurant}
+            onCloseModal={this.handleModalClose}
+          />
+        ) : null}
       </div>
     );
   }

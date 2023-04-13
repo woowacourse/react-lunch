@@ -9,7 +9,6 @@ import { Restaurant } from '../../domain/type';
 
 interface Props {
   restaurant: Restaurant | undefined;
-  isModalOpened: boolean;
   onCloseModal: () => void;
 }
 
@@ -21,10 +20,7 @@ class RestaurantDetailModal extends Component<Props> {
       this.props.restaurant;
 
     return (
-      <Modal
-        isModalOpened={this.props.isModalOpened}
-        onCloseModal={this.props.onCloseModal}
-      >
+      <Modal onCloseModal={this.props.onCloseModal}>
         <div className="restaurant-detail-modal">
           <div className="icon-container">
             <div className="restaurant__category">
