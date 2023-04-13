@@ -13,7 +13,11 @@ class DetailModal extends React.Component<DetailModalProps, DetailModalState> {
         <div className="restaurant__info">
           <div className="category-favorite-icon-container">
             <div className="restaurant__category">
-              <img src={IMAGE_PATH[data.category]} alt={data.category} className="category-icon" />
+              <img
+                src={`${process.env.PUBLIC_URL}${IMAGE_PATH[data.category]}`}
+                alt={data.category}
+                className="category-icon"
+              />
             </div>
           </div>
           <h3 className="restaurant__name text-subtitle">{data.name}</h3>
