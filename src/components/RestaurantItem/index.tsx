@@ -8,16 +8,17 @@ interface RestaurantItemProps {
   setModalContents: (restaurant: Restaurant) => void;
   openModal: () => void;
 }
+
 export default class RestaurantItem extends Component<RestaurantItemProps> {
   onClickRestaurantItem() {
     const { restaurant, setModalContents, openModal } = this.props;
+
     setModalContents(restaurant);
     openModal();
   }
 
   render() {
-    const { restaurant } = this.props;
-    const { name, category, description, distance } = restaurant;
+    const { name, category, description, distance } = this.props.restaurant;
 
     return (
       <li className="restaurant" onClick={this.onClickRestaurantItem.bind(this)}>
