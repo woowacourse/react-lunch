@@ -14,7 +14,7 @@ class Modal extends React.Component<ModalProps, {}>  {
 
   render() {
     const globalState = this.context as GlobalState;
-    const { name, distance, category, description } = this.props.restaurant;
+    const { name, distance, category, description } = globalState.restaurant;
     return (
       <>
         {

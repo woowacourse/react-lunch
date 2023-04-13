@@ -10,13 +10,18 @@ interface RestaurantItemProps {
 class RestaurantItem extends React.Component<RestaurantItemProps, {}> {
   static contextType = GlobalContext;
 
-  render() {
+  openModal = () => {
     const globalState = this.context as GlobalState;
+    globalState.setModalOpen(true);
+    globalState.setRestaurant(this.props.restaurant);
+  }
+
+  render() {
     const { name, distance, category, description } = this.props.restaurant;
 
     return (
       <>
-        <Card onClick={() => globalState.setModalOpen(true)}>
+        <Card onClick={() => this.openModal()}>
           <Favorite>
           </Favorite>
           <RestaurantInfo>
