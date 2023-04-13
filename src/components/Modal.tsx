@@ -7,33 +7,31 @@ interface ModalProps {
 }
 
 class Modal extends Component<ModalProps> {
-  dialog: RefObject<HTMLDialogElement>;
-
   constructor(props: ModalProps) {
     super(props);
-    this.dialog = React.createRef();
+    this.closeModalCallback = this.closeModalCallback.bind(this);
   }
 
-  componentDidUpdate() {
-    if (!this.dialog.current) return;
+  componentDidMount() {
+    window.addEventListener('keydown', this.closeModalCallback);
+  }
 
+  closeModalCallback(event: KeyboardEvent) {
     const { onClose } = this.props;
 
-    if (this.dialog.current.open) {
-      this.dialog.current.close();
+    if (event.key === 'Escape') {
+      window.removeEventListener('keydown', this.closeModalCallback);
       onClose();
-      return;
     }
-
-    this.dialog.current.showModal();
   }
 
   render() {
-    const { children } = this.props;
+    const { children, onClose } = this.props;
     return (
-      <dialog className={styles.modal} ref={this.dialog}>
-        {children}
-      </dialog>
+      <div>
+        <div onClick={onClose} aria-hidden="true" className={styles.background} />
+        <div className={styles.modal}>{children}</div>
+      </div>
     );
   }
 }

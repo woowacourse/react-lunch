@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import './styles/App.css';
 import { RestaurantInfo } from './types/restaurantInfo';
-import { getSavedRestaurantList, hasSavedRestaurantList } from './domain/initializeRestaurantList';
-import { saveNewRestaurantList } from './domain/initializeRestaurantList';
+import {
+  getSavedRestaurantList,
+  hasSavedRestaurantList,
+  saveNewRestaurantList,
+} from './domain/initializeRestaurantList';
 import RestaurantList from './components/RestaurantList';
 import Modal from './components/Modal';
 import RestaurantDetail from './components/RestaurantDetail';
@@ -51,7 +54,7 @@ class App extends Component<object, { restaurantList: RestaurantInfo[]; clickedR
         <RestaurantList onClick={this.setClickedRestaurant} restaurantList={restaurantList} />
         {clickedRestaurant && (
           <Modal onClose={this.resetClickedRestaurant}>
-            <RestaurantDetail restaurantInfo={clickedRestaurant} />
+            <RestaurantDetail onCloseClick={this.resetClickedRestaurant} restaurantInfo={clickedRestaurant} />
           </Modal>
         )}
       </div>
