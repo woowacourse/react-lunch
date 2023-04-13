@@ -18,14 +18,14 @@ export default class SortFilter extends Component<SortFilterProps> {
         id="sorting-filter"
         name="sorting"
         options={options}
-        onChange={this.onChangeSortOption.bind(this)}
+        onChange={this.onChangeSortOption}
       />
     );
   }
 
-  onChangeSortOption(e: React.ChangeEvent<HTMLSelectElement>) {
+  onChangeSortOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value as RestaurantSortOption;
 
     this.props.onChange(value);
-  }
+  };
 }

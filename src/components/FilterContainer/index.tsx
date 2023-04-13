@@ -13,8 +13,8 @@ export default class FilterContainer extends Component<FilterContainerProps> {
   render() {
     return (
       <section className="restaurant-filter-container">
-        <CategoryFilter onChange={this.props.onChangeCategoryFilter.bind(this)} />
-        <SortFilter onChange={this.props.onChangeSortFilter.bind(this)} />
+        <CategoryFilter onChange={this.props.onChangeCategoryFilter} />
+        <SortFilter onChange={this.props.onChangeSortFilter} />
       </section>
     );
   }

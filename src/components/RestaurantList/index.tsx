@@ -17,7 +17,7 @@ export default class RestaurantList extends Component<RestaurantListProps> {
           {this.props.restaurants.map((restaurant) => (
             <RestaurantItem
               restaurant={restaurant}
-              onClick={this.props.onClick.bind(this)}
+              onClick={this.props.onClick}
               key={restaurant.id}
             />
           ))}

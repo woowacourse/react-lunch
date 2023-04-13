@@ -41,17 +41,14 @@ export default class App extends Component<PropsWithChildren, AppState> {
 
     return (
       <div className="App">
-        <Header title={'점심 뭐 먹지?'} />
+        <Header title={'점심 뭐 먹지'} />
         <FilterContainer
-          onChangeCategoryFilter={this.onChangeCategoryFilter.bind(this)}
-          onChangeSortFilter={this.onChangeSortFilter.bind(this)}
+          onChangeCategoryFilter={this.onChangeCategoryFilter}
+          onChangeSortFilter={this.onChangeSortFilter}
         />
-        <RestaurantList
-          restaurants={sortedRestaurants}
-          onClick={this.onClickRestaurantItem.bind(this)}
-        />
+        <RestaurantList restaurants={sortedRestaurants} onClick={this.onClickRestaurantItem} />
         {isModalOpen && (
-          <Modal onClick={this.onClickModalCloseButton.bind(this)}>
+          <Modal onClick={this.onClickModalCloseButton}>
             <RestaurantDetailView restaurant={restaurantForDetailView} />
           </Modal>
         )}
@@ -59,21 +56,21 @@ export default class App extends Component<PropsWithChildren, AppState> {
     );
   }
 
-  onChangeCategoryFilter(category: RestaurantCategoryFilterOption) {
+  onChangeCategoryFilter = (category: RestaurantCategoryFilterOption) => {
     this.setState({ categoryFilterOption: category });
-  }
+  };
 
-  onChangeSortFilter(sortOption: RestaurantSortOption) {
+  onChangeSortFilter = (sortOption: RestaurantSortOption) => {
     this.setState({ sortOption: sortOption });
-  }
+  };
 
-  onClickRestaurantItem(restaurantId: number) {
+  onClickRestaurantItem = (restaurantId: number) => {
     const targetRestaurant = getRestaurantById(this.state.restaurants, restaurantId);
 
     this.setState({ restaurantForDetailView: targetRestaurant, isModalOpen: true });
-  }
+  };
 
-  onClickModalCloseButton() {
+  onClickModalCloseButton = () => {
     this.setState({ isModalOpen: false });
-  }
+  };
 }

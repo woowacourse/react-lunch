@@ -13,7 +13,7 @@ export default class RestaurantItem extends Component<RestaurantItemProps> {
     const { id } = this.props.restaurant;
 
     return (
-      <li className="restaurant" onClick={this.props.onClick.bind(this, id)}>
+      <li className="restaurant" onClick={() => this.props.onClick(id)}>
         <RestaurantInfo restaurant={this.props.restaurant} />
       </li>
     );

@@ -23,14 +23,14 @@ export default class CategoryFilter extends Component<CategoryFilterProps> {
         id="category-filter"
         name="category"
         options={options}
-        onChange={this.onChangeCategory.bind(this)}
+        onChange={this.onChangeCategory}
       />
     );
   }
 
-  onChangeCategory(e: React.ChangeEvent<HTMLSelectElement>) {
+  onChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value as RestaurantCategoryFilterOption;
 
     this.props.onChange(value);
-  }
+  };
 }

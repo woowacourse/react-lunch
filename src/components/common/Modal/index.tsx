@@ -16,7 +16,7 @@ export default class Modal extends Component<PropsWithChildren<ModalProps>> {
             <button
               id="modal-close-button"
               className="button button--primary text-caption"
-              onClick={this.props.onClick.bind(this)}
+              onClick={this.props.onClick}
             >
               닫기
             </button>
