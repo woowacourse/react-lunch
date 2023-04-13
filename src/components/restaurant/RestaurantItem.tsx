@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import CategoryIcon from './CategoryIcon';
 import { Restaurant, SetModalRestaurant } from '../../@types/type';
 
-const SRestaurant = styled.li`
+const RestaurantItemLayout = styled.li`
   display: flex;
   align-items: flex-start;
   padding: 16px 8px;
@@ -42,14 +42,14 @@ class RestaurantItem extends Component<Props> {
     const { category, name, distanceByMinutes, description } = this.props.restaurant;
 
     return (
-      <SRestaurant onClick={this.onClickRestaurant}>
+      <RestaurantItemLayout onClick={this.onClickRestaurant}>
         <CategoryIcon category={category} />
         <Information>
           <h3 className="text-subtitle">{name}</h3>
           <Distance className="text-body">캠퍼스부터 {distanceByMinutes}분 내</Distance>
           <Description className="text-body">{description}</Description>
         </Information>
-      </SRestaurant>
+      </RestaurantItemLayout>
     );
   }
 }
