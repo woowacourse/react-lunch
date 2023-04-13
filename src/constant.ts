@@ -64,10 +64,10 @@ export const CATEGORY_IMAGES = {
   '기타': etcImg
 };
 
-export const emptyObj = {
+export const NO_EXIST_RESTAURANT = {
   title: '오류가 발생했습니다.',
   category: '',
-  distance: '',
+  distance: 5,
   description: '존재하지 않는 음식점입니다.',
   link: '',
 };

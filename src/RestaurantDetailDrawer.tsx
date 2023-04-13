@@ -1,7 +1,7 @@
 import React from 'react';
 import Drawer from './Drawer.tsx';
 import { Restaurant } from './type';
-import { CATEGORY_IMAGES } from './constant.ts';
+import { CATEGORY_IMAGES, NO_EXIST_RESTAURANT } from './constant.ts';
 
 type RestaurantDetailDrawerProps = {
   isOpenDrawer: boolean;
@@ -19,43 +19,24 @@ class RestaurantDetailDrawer extends React.Component<
 > {
   constructor(props) {
     super(props);
-    const restaurantList = JSON.parse(localStorage.getItem('restaurantList'));
-
-    const emptyObj = {
-      title: '',
-      category: '',
-      distance: '',
-      description: '',
-      link: '',
-    };
     this.state = {
-      restaurant:
-        restaurantList.find(
-          (restaurant) => +restaurant.id === props.restaurantId
-        ) ?? emptyObj,
+      restaurant: this.fetchRestaurantById()
     };
   }
 
-  // TODO: 메서드 분리, NO select ID에 따른 페이지 분리
   componentDidUpdate(prevProps:RestaurantDetailDrawerProps): void {
     if (this.props.restaurantId !== prevProps.restaurantId) {
-      const emptyObj = {
-        title: '오류가 발생했습니다.',
-        category: '',
-        distance: '',
-        description: '',
-        link: '',
-      };
-
-      const restaurantList = JSON.parse(localStorage.getItem('restaurantList'));
-      
       this.setState({
-        restaurant:
-          restaurantList.find(
-            (restaurant) => +restaurant.id === +this.props.restaurantId
-          ) ?? emptyObj,
+        restaurant: this.fetchRestaurantById()
       });
     }
+  }
+
+  fetchRestaurantById() {
+    const rawRestaurantList = localStorage.getItem('restaurantList');
+    if (!rawRestaurantList) return NO_EXIST_RESTAURANT;
+    const restaurantList = JSON.parse(rawRestaurantList);
+    return restaurantList.find((restaurant:Restaurant) => +restaurant.id === +this.props.restaurantId) ?? NO_EXIST_RESTAURANT;
   }
 
   render() {
@@ -70,7 +51,7 @@ class RestaurantDetailDrawer extends React.Component<
         <span className="restaurant__distance text-body">
           캠퍼스로부터 {this.state.restaurant.distance}분 내
         </span>
-        <p className="restaurant__description text-body">
+        <p className="text-body">
           {this.state.restaurant.description}
         </p>
         <p className="restaurant__link text-body">
