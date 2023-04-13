@@ -2,6 +2,7 @@
 	display: flex;
 	height: 64px;
 	min-width: 64px;
+	max-width: 64px;
 	margin: 16px 8px;
 
 	justify-content: center;
@@ -10,17 +11,27 @@
 	background: #f6a88a;
 }
 
-li {
+.item {
 	display: flex;
 	height: 136px;
 
 	border-bottom: 1px solid #d0d5dd;
 }
 
+.itemModal {
+	flex-direction: column;
+	margin: 32px 16px;
+	height: 100%;
+}
+
 article {
 	display: flex;
 	flex-direction: column;
 	margin: 16px 8px;
+}
+
+.articleModal {
+	height: calc(100% - 182px);
 }
 
 .title {
@@ -42,4 +53,15 @@ article {
 	text-overflow: ellipsis;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
+}
+
+.descriptionModal {
+	margin-top: 8px;
+	overflow: scroll;
+	height: 100%;
+}
+
+.link {
+	margin: 16px 0;
+	text-decoration-line: underline;
 }

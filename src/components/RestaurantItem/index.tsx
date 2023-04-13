@@ -11,6 +11,7 @@ import Store from '../../store';
 
 interface MyProps {
 	restaurant: Restaurant;
+	isModal: boolean;
 }
 
 interface MyState {
@@ -38,24 +39,30 @@ const makeCategoryImgPath = (category: category) => {
 
 class RestaurantItem extends React.Component<MyProps, MyState> {
 	render() {
-		const { restaurant } = this.props;
+		const { restaurant, isModal } = this.props;
 		return (
 			<Store.Consumer>
 				{(store) => (
 					<li
+						className={isModal ? styles.itemModal : styles.item}
 						onClick={() => {
 							store?.toggleModal();
 							store?.setModalId(restaurant.id);
-							// document.body.style.overflow = 'hidden';
+							document.body.style.overflow = 'hidden';
 						}}
 					>
 						<div className={styles.icon}>
 							<img src={makeCategoryImgPath(restaurant.category)} alt={restaurant.category} />
 						</div>
-						<article>
+						<article className={isModal && styles.articleModal}>
 							<h2 className={styles.title}>{restaurant.name}</h2>
 							<div className={styles.distance}>캠퍼스로부터 {restaurant.distance}분 내</div>
-							<div className={styles.description}>{restaurant.description}</div>
+							<div className={isModal ? styles.descriptionModal : styles.description}>{restaurant.description}</div>
+							{isModal && restaurant.link && (
+								<a href={restaurant.link} className={styles.link}>
+									{restaurant.link}
+								</a>
+							)}
 						</article>
 					</li>
 				)}

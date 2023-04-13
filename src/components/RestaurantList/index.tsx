@@ -10,7 +10,7 @@ class RestaurantList extends React.Component {
 				<Store.Consumer>
 					{(store) =>
 						store?.restaurantList.map((restaurant) => {
-							return <RestaurantItem key={restaurant.id} restaurant={restaurant} />;
+							return <RestaurantItem key={restaurant.id} restaurant={restaurant} isModal={false} />;
 						})
 					}
 				</Store.Consumer>

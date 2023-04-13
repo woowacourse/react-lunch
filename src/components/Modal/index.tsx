@@ -14,7 +14,10 @@ class Modal extends React.Component {
 						<dialog open={store?.isModalOpen}>
 							<div className={styles.modalBackdrop}></div>
 							<div className={styles.modal}>
-								<RestaurantItem restaurant={store?.restaurantList.find((restaurant) => restaurant.id === store.modalId) as Restaurant} />
+								<RestaurantItem
+									restaurant={store?.restaurantList.find((restaurant) => restaurant.id === store.modalId) as Restaurant}
+									isModal={true}
+								/>
 								<button
 									onClick={() => {
 										store?.toggleModal();

@@ -81,7 +81,7 @@ class App extends React.Component<AppProps, State> {
 
 	render() {
 		return (
-			<main className='App'>
+			<main className={styles.app}>
 				<Header />
 				<section className={styles.mainSection}>
 					<Store.Provider value={this.state}>

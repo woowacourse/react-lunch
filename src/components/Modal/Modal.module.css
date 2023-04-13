@@ -5,7 +5,9 @@ dialog {
 }
 
 button {
-	width: 90vw;
+	position: absolute;
+	bottom: 0;
+	width: calc(100% - 32px);
 	height: 44px;
 
 	background: #ec4a0a;
@@ -25,7 +27,7 @@ button {
 	right: 0;
 	bottom: 0;
 	padding: 0;
-	height: 60%;
+	height: 70%;
 	background: white;
 	border-radius: 12px 12px 0;
 	z-index: 1;
