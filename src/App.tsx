@@ -68,6 +68,15 @@ class App extends Component<Props, State> {
     );
   }
 
+  componentDidMount() {
+    if (db.isRestaurantItemsExist()) {
+      this.setState({ restaurantItems: db.getRestaurants() });
+    } else {
+      this.setState({ restaurantItems: data.items as Restaurant[] });
+      db.setRestaurants(data.items as Restaurant[]);
+    }
+  }
+
   filterByCategory(restaurants: Restaurant[], categoryOption: CategoryFilter): Restaurant[] {
     if (categoryOption === '전체') return restaurants;
     return restaurants.filter((restaurant) => restaurant.category === categoryOption);
