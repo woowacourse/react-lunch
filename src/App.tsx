@@ -116,10 +116,13 @@ class App extends Component<Props, State> {
     this.setState({ isModalOpen: true });
   };
 
-  handleModalCloseButtonClick = (e: React.MouseEvent) => {
+  handleModalCloseButtonClick = () => {
     this.setState({ clickedRestaurant: null });
     this.setState({ isModalOpen: false });
   };
+
+
+
 }
 
 const FilterContainer = styled.section`

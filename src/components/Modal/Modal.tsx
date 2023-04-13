@@ -12,7 +12,7 @@ import {
 
 type Props = {
   restaurant: Restaurant;
-  onCloseButtonClick: React.MouseEventHandler<HTMLButtonElement>;
+  onCloseButtonClick: () => void;
 };
 
 export class Modal extends Component<Props> {
@@ -21,7 +21,7 @@ export class Modal extends Component<Props> {
   }
 
   render() {
-    const { id, name, category, distance, description, link } = this.props.restaurant;
+    const { name, category, distance, description, link } = this.props.restaurant;
     const onCloseButtonClick = this.props.onCloseButtonClick;
 
     return (
@@ -48,6 +48,14 @@ export class Modal extends Component<Props> {
         </Container>
       </Wrapper>
     );
+  }
+
+  componentDidMount() {
+     window.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        this.props.onCloseButtonClick();
+      }
+    });
   }
 }
 
