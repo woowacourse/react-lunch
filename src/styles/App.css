@@ -16,11 +16,11 @@ body[data-hide-scroll='true'] {
   right: 0;
 
   display: flex;
-  justify-content: center;
   flex-direction: column;
 
   min-width: 390px;
   max-width: 800px;
+  min-height: 100vh;
   margin: 0 auto;
 
   background-color: white;
