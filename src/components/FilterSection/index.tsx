@@ -1,8 +1,9 @@
+import './style.css';
 import { Component } from 'react';
-import { FilterOption } from '../types';
-import { FilterSectionProps, FilterSectionState } from '../types';
-import { RESTAURANT_CATEGORY_OPTION, SORT_BY } from '../constants';
-import Select from './Select';
+import { FilterOption } from '../../types';
+import { FilterSectionProps, FilterSectionState } from '../../types';
+import { RESTAURANT_CATEGORY_OPTION, SORT_BY } from '../../constants';
+import Select from '../Select';
 
 class FilterSection extends Component<FilterSectionProps, FilterSectionState> {
   state: FilterSectionState;
@@ -14,6 +15,10 @@ class FilterSection extends Component<FilterSectionProps, FilterSectionState> {
       category: '전체',
       sortBy: '이름순',
     };
+  }
+
+  shouldComponentUpdate() {
+    return false;
   }
 
   handleSelectChange(option: FilterOption) {
@@ -34,7 +39,7 @@ class FilterSection extends Component<FilterSectionProps, FilterSectionState> {
 
   render() {
     return (
-      <div>
+      <section className="restaurant-filter-container">
         <Select
           options={RESTAURANT_CATEGORY_OPTION}
           attributes={{ id: 'category-filter', name: 'category', className: 'restaurant-filter' }}
@@ -45,7 +50,7 @@ class FilterSection extends Component<FilterSectionProps, FilterSectionState> {
           attributes={{ id: 'sortBy-filter', name: 'sortBy', className: 'restaurant-filter' }}
           onChange={(option: FilterOption) => this.handleSelectChange(option)}
         />
-      </div>
+      </section>
     );
   }
 }
