@@ -57,9 +57,11 @@ class RestaurantList extends React.Component<object, RestaurantListStateType> {
   componentDidUpdate(prevProps: object, prevStates: RestaurantListStateType) {
     if (prevStates.category !== this.state.category) {
       this.filterRestaurants();
+      window.scrollTo(0, 0);
     }
     if (prevStates.order !== this.state.order || prevStates.filteredRestaurants !== this.state.filteredRestaurants) {
       this.sortRestaurants();
+      window.scrollTo(0, 0);
     }
   }
 
@@ -79,7 +81,6 @@ class RestaurantList extends React.Component<object, RestaurantListStateType> {
             options={Object.values(ORDER_KEY)}
             onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
               this.setState({ order: event.target.value });
-              this.sortRestaurants();
             }}
           />
         </SelectBoxContainer>
@@ -106,12 +107,18 @@ const RestaurantListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 16px;
+  margin-top: 156px;
 `;
 
 const SelectBoxContainer = styled.div`
+  position: fixed;
+  width: 100%;
+  top: 64px;
   display: flex;
   justify-content: space-between;
   padding: 24px 16px;
+
+  background: #ffffff;
 `;
 
 export default RestaurantList;
