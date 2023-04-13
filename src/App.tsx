@@ -9,7 +9,7 @@ import mockData from './mockData.json';
 
 class App extends Component {
   state = {
-    modalRestaurantID: null as null | number,
+    modalRestaurantID: null,
     restaurantList: mockData as Restaurant[],
   };
 
