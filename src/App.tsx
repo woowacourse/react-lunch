@@ -9,17 +9,29 @@ import { parseJson } from './utils/json';
 import { selectorCategory, selectorFilter } from './utils/types';
 import { sortingByCategory, sortingByFilter } from './domain/restaurantSort';
 import { CATEGORY_OPTIONS, FILTER_OPTIONS } from './utils/constants';
+import { localStorageValueCheck } from './utils/localStorage';
 
-const restaurantMockDataList = parseJson<Array<restaurant>>(JSON.stringify(mockData.restaurantList));
-const currentList = sortingByFilter('이름순', restaurantMockDataList);
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface Props {}
 
-class App extends React.Component {
-  state: appState = {
-    category: '전체',
-    filter: '이름순',
-    wholeList: restaurantMockDataList,
-    currentList: currentList,
-  };
+class App extends React.Component<Props, appState> {
+  constructor(props: Props | Readonly<Props>) {
+    super(props);
+    const localStorageSavedList = localStorageValueCheck<Array<restaurant>>({
+      key: 'restaurantList',
+      initialValue: [],
+    });
+    const restaurantMockDataList = parseJson<Array<restaurant>>(JSON.stringify(mockData.restaurantList));
+    const wholeList = [...localStorageSavedList, ...restaurantMockDataList];
+    const currentList = sortingByFilter('이름순', wholeList);
+
+    this.state = {
+      category: '전체',
+      filter: '이름순',
+      wholeList,
+      currentList,
+    };
+  }
 
   categoryOnChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const { value } = e.target;
