@@ -11,7 +11,7 @@ interface Props {
 class Modal extends Component<Props> {
   render() {
     return createPortal(
-      <div>
+      <div role="dialog" aria-modal>
         <div className="modal-backdrop" onClick={this.props.onCloseModal}></div>
         <div className="modal-container">{this.props.children}</div>
       </div>,
