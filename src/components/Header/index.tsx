@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Header.module.css';
 
-class Header extends React.Component {
+class Header extends React.PureComponent {
 	render() {
 		return (
 			<header className={styles.headerContainer}>

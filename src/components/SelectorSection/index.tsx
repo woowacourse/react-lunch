@@ -1,10 +1,10 @@
 import React from 'react';
-import CategorySelector from './CategorySelector';
 import SortedSelector from './SortedSelector';
+import CategorySelector from './CategorySelector';
 
 import styles from './SelectorSection.module.css';
 
-class SelectorSection extends React.Component {
+class SelectorSection extends React.PureComponent {
 	render() {
 		return (
 			<section className={styles.section}>

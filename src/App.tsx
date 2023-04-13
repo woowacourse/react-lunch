@@ -1,37 +1,37 @@
 import React from 'react';
 import Header from './components/Header';
-import RestaurantList from './components/RestaurantList';
 import SelectorSection from './components/SelectorSection';
+import RestaurantList from './components/RestaurantList';
 import styles from './App.module.css';
 import Store from './store';
-import type { category } from './components/RestaurantItem/type';
-import type { Restaurant } from './components/RestaurantItem/type';
+import type { Category, Restaurant } from './components/RestaurantItem/type';
 
 import mockData from './data/mockData.json';
 import Modal from './components/Modal';
 
-export type sort = '이름순' | '거리순';
+export type Sort = '이름순' | '거리순';
 export interface State {
-	category: category;
-	sort: sort;
+	category: Category;
+	sort: Sort;
 	restaurantList: Restaurant[];
 	isModalOpen: boolean;
 	modalId: string;
 	setModalId: (id: string) => void;
 	toggleModal: () => void;
-	setCategory: (category: category) => void;
-	setSortState: (sort: sort) => void;
+	setCategory: (category: Category) => void;
+	setSortState: (sort: Sort) => void;
 }
 
-type AppProps = {};
-
-class App extends React.Component<AppProps, State> {
+class App extends React.Component<object, State> {
 	toggleModal: () => void;
-	setModalId: (id: string) => void;
-	setCategory: (category: category) => void;
-	setSortState: (sort: sort) => void;
 
-	constructor(props: AppProps) {
+	setModalId: (id: string) => void;
+
+	setCategory: (category: Category) => void;
+
+	setSortState: (sort: Sort) => void;
+
+	constructor(props: object) {
 		super(props);
 		const { restaurantList } = mockData as { restaurantList: Restaurant[] };
 
@@ -43,11 +43,14 @@ class App extends React.Component<AppProps, State> {
 			this.setState({ modalId: id });
 		};
 
-		this.setCategory = (category: category) => {
+		this.setCategory = (category: Category) => {
 			this.setState({ category });
 
 			this.setState((prevState) => {
-				const filteredList = category === '전체' ? restaurantList : restaurantList.filter((restaurant) => restaurant.category === category);
+				const filteredList =
+					category === '전체'
+						? restaurantList
+						: restaurantList.filter((restaurant) => restaurant.category === category);
 				if (prevState.sort === '거리순') {
 					return { restaurantList: filteredList.sort((x, y) => Number(x.distance) - Number(y.distance)) };
 				}
@@ -56,7 +59,7 @@ class App extends React.Component<AppProps, State> {
 			});
 		};
 
-		this.setSortState = (sort: sort) => {
+		this.setSortState = (sort: Sort) => {
 			this.setState({ sort });
 			this.setState((prevState) => ({
 				restaurantList:

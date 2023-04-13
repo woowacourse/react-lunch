@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './RestaurantItem.module.css';
-import type { Restaurant, category } from './type';
+import type { Restaurant, Category } from './type';
 import categoryKorean from '../../assets/category-korean.png';
 import categoryAsian from '../../assets/category-asian.png';
 import categoryChinese from '../../assets/category-chinese.png';
@@ -18,7 +18,7 @@ interface MyState {
 	isModal: boolean;
 }
 
-const makeCategoryImgPath = (category: category) => {
+const makeCategoryImgPath = (category: Category) => {
 	switch (category) {
 		case '한식':
 			return categoryKorean;
@@ -30,14 +30,12 @@ const makeCategoryImgPath = (category: category) => {
 			return categoryAsian;
 		case '양식':
 			return categoryWestern;
-		case '기타':
-			return categoryEtc;
 		default:
-			return;
+			return categoryEtc;
 	}
 };
 
-class RestaurantItem extends React.Component<MyProps, MyState> {
+class RestaurantItem extends React.PureComponent<MyProps, MyState> {
 	render() {
 		const { restaurant, isModal } = this.props;
 		return (
@@ -54,7 +52,7 @@ class RestaurantItem extends React.Component<MyProps, MyState> {
 						<div className={styles.icon}>
 							<img src={makeCategoryImgPath(restaurant.category)} alt={restaurant.category} />
 						</div>
-						<article className={isModal && styles.articleModal}>
+						<article className={isModal ? styles.articleModal : undefined}>
 							<h2 className={styles.title}>{restaurant.name}</h2>
 							<div className={styles.distance}>캠퍼스로부터 {restaurant.distance}분 내</div>
 							<div className={isModal ? styles.descriptionModal : styles.description}>{restaurant.description}</div>
