@@ -1,12 +1,18 @@
-import { Component } from "react";
+import { RefObject, Component } from "react";
 import ReactDom from "react-dom";
 import styled from "styled-components";
 import { CATEGORY } from "../constants";
 import { RestaurantInfo } from "../types";
 import { $ } from "../utils/selector";
 
-class RestaurantInfoModal extends Component<RestaurantInfo | any> {
+class RestaurantInfoModal extends Component<{
+  selectedRestaurant: null | RestaurantInfo;
+  onClose: () => void;
+  handleModal: RefObject<HTMLDialogElement>;
+}> {
   render() {
+    if (!this.props.selectedRestaurant) return;
+
     const { selectedRestaurant: restaurant } = this.props;
 
     return (

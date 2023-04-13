@@ -13,7 +13,7 @@ class Restaurants extends Component<RestaurantProps> {
   restaurantInfoModal: RefObject<HTMLDialogElement> = createRef();
 
   state = {
-    restaurant: {},
+    restaurant: null,
   };
 
   handleModalOpenButton = (restaurantId: string) => {
@@ -47,7 +47,7 @@ class Restaurants extends Component<RestaurantProps> {
           {this.props.restaurantList.map((restaurant: RestaurantInfo) => (
             <Restaurant
               key={restaurant.id}
-              {...restaurant}
+              restaurant={restaurant}
               onClick={() => this.handleModalOpenButton(restaurant.id)}
             />
           ))}
