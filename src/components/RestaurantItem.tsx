@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { CATEGORY_IMAGE_MAP } from '../constants';
-import { textBody, textSubtitle } from '../mixin';
+import { textBody, textSubtitle } from '../style/mixin';
 
 interface Props {
   restaurant: Restaurant;

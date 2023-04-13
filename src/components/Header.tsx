@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import { textTitle } from '../mixin';
+import { textTitle } from '../style/mixin';
 
 class Header extends React.Component {
   render() {
