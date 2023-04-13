@@ -1,15 +1,10 @@
 import { Component, createRef, RefObject } from "react";
 import styled from "styled-components";
 import Restaurant from "./Restaurant";
-import { RestaurantInfo } from "../types";
+import { RestaurantInfo, RestaurantList } from "../types";
 import RestaurantInfoModal from "./RestaurantInfoModal";
 
-type RestaurantProps = {
-  restaurantList: RestaurantInfo[];
-  category: string;
-};
-
-class Restaurants extends Component<RestaurantProps> {
+class Restaurants extends Component<RestaurantList> {
   restaurantInfoModal: RefObject<HTMLDialogElement> = createRef();
 
   state = {
@@ -43,7 +38,7 @@ class Restaurants extends Component<RestaurantProps> {
   render() {
     return (
       <>
-        <RestaurantList>
+        <RestaurantListContainer>
           {this.props.restaurantList.map((restaurant: RestaurantInfo) => (
             <Restaurant
               key={restaurant.id}
@@ -51,7 +46,7 @@ class Restaurants extends Component<RestaurantProps> {
               onClick={() => this.handleModalOpenButton(restaurant.id)}
             />
           ))}
-        </RestaurantList>
+        </RestaurantListContainer>
 
         <RestaurantInfoModal
           selectedRestaurant={this.state.restaurant}
@@ -63,7 +58,7 @@ class Restaurants extends Component<RestaurantProps> {
   }
 }
 
-const RestaurantList = styled.ul`
+const RestaurantListContainer = styled.ul`
   padding: 0 16px;
   margin: 16px 0;
 `;

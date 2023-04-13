@@ -1,20 +1,12 @@
 import { Component } from "react";
 import restaurantMockData from "./mocks/restaurants.json";
-import { RestaurantInfo } from "./types";
+import { RestaurantApp, RestaurantInfo } from "./types";
 import Restaurants from "./components/Restaurants";
 import SelectBoxes from "./components/SelectBoxes";
 import HeaderSection from "./components/HeaderSection";
 
-type RestaurantProps = {
-  restaurants: RestaurantInfo[];
-  filteredRestaurants: RestaurantInfo[];
-  category: string;
-  sorting: string;
-};
-
-class App extends Component<{}, RestaurantProps> {
+class App extends Component<{}, RestaurantApp> {
   state = {
-    restaurants: this.sortRestaurantsByName(restaurantMockData),
     filteredRestaurants: this.filter(
       localStorage.getItem("category") ?? "전체",
       localStorage.getItem("sorting") ?? "이름순"

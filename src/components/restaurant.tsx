@@ -1,15 +1,12 @@
 import { Component } from "react";
 import styled from "styled-components";
 import { CATEGORY } from "../constants";
-import { RestaurantInfo } from "../types";
+import { RestaurantItem } from "../types";
 
-class Restaurant extends Component<{
-  restaurant: RestaurantInfo;
-  onClick: () => void;
-}> {
+class Restaurant extends Component<RestaurantItem> {
   render() {
     return (
-      <RestaurantItem onClick={this.props.onClick}>
+      <RestaurantContainer onClick={this.props.onClick}>
         <div className="category">
           <img
             src={`../assets/category-${
@@ -27,12 +24,12 @@ class Restaurant extends Component<{
             {this.props.restaurant.description}
           </RestaurantDescription>
         </div>
-      </RestaurantItem>
+      </RestaurantContainer>
     );
   }
 }
 
-const RestaurantItem = styled.li`
+const RestaurantContainer = styled.li`
   display: flex;
   align-items: center;
   padding: 16px 8px;

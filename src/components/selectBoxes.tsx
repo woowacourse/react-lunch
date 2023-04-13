@@ -1,12 +1,8 @@
 import { ChangeEvent, Component } from "react";
 import styled from "styled-components";
+import { RestaurantSelect } from "../types";
 
-class SelectBoxes extends Component<{
-  onChangeCategory: (event: string) => void;
-  onChangeSorting: (event: string) => void;
-  selectedCategory: string;
-  selectedSorting: string;
-}> {
+class SelectBoxes extends Component<RestaurantSelect> {
   handleCategorySelect = ({ target }: ChangeEvent<HTMLSelectElement>) => {
     this.props.onChangeCategory(target.value);
   };
