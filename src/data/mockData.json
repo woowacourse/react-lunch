@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "category": "한식",
+    "name": "김가네",
+    "distanceByMinutes": 5,
+    "description": "맛있는 김치찌개와 돼지갈비가 유명한 집입니다.",
+    "link": "https://map.naver.com/local/siteview.nhn?code=1616622306"
+  },
+  {
+    "id": 2,
+    "category": "한식",
+    "name": "고니네",
+    "distanceByMinutes": 10,
+    "description": "한국전통음식 농민식당으로 유명한 집입니다.",
+    "link": "https://map.kakao.com/link/map/고니네/16739167"
+  },
+  {
+    "id": 3,
+    "category": "한식",
+    "name": "진미식당",
+    "distanceByMinutes": 15,
+    "description": "수육과 냉면이 유명한 집입니다.",
+    "link": "https://www.mangoplate.com/restaurants/k5fbIpYw_L6e"
+  },
+  {
+    "id": 4,
+    "category": "중식",
+    "name": "홍콩반점",
+    "distanceByMinutes": 20,
+    "description": "중화요리 전문점으로 소문난 집입니다.",
+    "link": "https://www.siksinhot.com/P/279861"
+  },
+  {
+    "id": 5,
+    "category": "중식",
+    "name": "용호낙지",
+    "distanceByMinutes": 25,
+    "description": "새우튀김과 낙지볶음이 유명한 집입니다.",
+    "link": "https://www.yogiyo.co.kr/mobile/?gclid=Cj0KCQiAhZT9BRDmARIsAN2E-J3rsZiLEng7-cpTjYbTmXrXr6UxL6UfDM6jL7ZgDQZ07wDdSC-eKOMaAg6GEALw_wcB"
+  },
+  {
+    "id": 6,
+    "category": "중식",
+    "name": "금룡",
+    "distanceByMinutes": 30,
+    "description": "유명한 중화요리 전문점입니다.",
+    "link": "https://www.tripadvisor.co.kr/Restaurant_Review-g294197-d2620973-Reviews-Kum_Rung_Restaurant-Seoul.html"
+  },
+  {
+    "id": 7,
+    "category": "일식",
+    "name": "초밥의신",
+    "distanceByMinutes": 5,
+    "description": "신선한 재료와 뛰어난 셰프의 기술이 어우러진 초밥집입니다.",
+    "link": "https://www.mangoplate.com/restaurants/8aOwhR0zttZ7"
+  },
+  {
+    "id": 8,
+    "category": "일식",
+    "name": "무라카미",
+    "distanceByMinutes": 10,
+    "description": "사시미와 초밥이 맛있는 일식집입니다.",
+    "link": "https://www.tripadvisor.co.kr/Restaurant_Review-g294197-d10593727-Reviews-Murakami-Seoul.html"
+  },
+  {
+    "id": 9,
+    "category": "일식",
+    "name": "쉐프의식탁",
+    "distanceByMinutes": 25,
+    "description": "식당의 쉐프가 직접 요리를 하며 정성을 다하는 레스토랑입니다.",
+    "link": "https://www.siksinhot.com/P/352332"
+  },
+  {
+    "id": 10,
+    "category": "양식",
+    "name": "앤드유",
+    "distanceByMinutes": 30,
+    "description": "고급스러운 분위기와 정갈한 요리로 유명한 레스토랑입니다.",
+    "link": "https://www.tripadvisor.co.kr/Restaurant_Review-g294197-d12881928-Reviews-Endou-Seoul.html"
+  },
+  {
+    "id": 11,
+    "category": "아시안",
+    "name": "코이카레",
+    "distanceByMinutes": 5,
+    "description": "일본식 카레가 유명한 레스토랑입니다.",
+    "link": "https://www.mangoplate.com/restaurants/_nDPkTnPPbpN"
+  },
+  {
+    "id": 12,
+    "category": "아시안",
+    "name": "모모야마",
+    "distanceByMinutes": 10,
+    "description": "일식과 중식이 함께 있는 레스토랑으로 유명합니다.",
+    "link": "https://www.tripadvisor.co.kr/Restaurant_Review-g294197-d2361214-Reviews-Momoyama-Seoul.html"
+  },
+  {
+    "id": 13,
+    "category": "아시안",
+    "name": "텐동",
+    "distanceByMinutes": 15,
+    "description": "일본식 돈까스와 튀김우동이 맛있는 레스토랑입니다.",
+    "link": "https://www.mangoplate.com/restaurants/0s0BPbMPgOwl"
+  },
+  {
+    "id": 14,
+    "category": "기타",
+    "name": "황소곱창",
+    "distanceByMinutes": 20,
+    "description": "맛있는 곱창과 마늘볶음밥이 유명한 식당입니다.",
+    "link": "https://www.siksinhot.com/P/277994"
+  },
+  {
+    "id": 15,
+    "category": "기타",
+    "name": "마마스",
+    "distanceByMinutes": 25,
+    "description": "다양한 메뉴와 음식이 있는 카페입니다.",
+    "link": "https://www.mangoplate.com/restaurants/mnnAu6NUfzxd"
+  },
+  {
+    "id": 16,
+    "category": "양식",
+    "name": "푸드트럭",
+    "distanceByMinutes": 15,
+    "description": "양식, 일식, 중식 등 다양한 요리를 제공하는 푸드트럭입니다.",
+    "link": "https://www.instagram.com/seoul_foodtruck/"
+  },
+  {
+    "id": 17,
+    "category": "양식",
+    "name": "홍대타이거",
+    "distanceByMinutes": 20,
+    "description": "태국 음식 전문점으로 유명한 집입니다.",
+    "link": "https://www.mangoplate.com/restaurants/8jKp0fmP_JoO"
+  },
+  {
+    "id": 18,
+    "category": "기타",
+    "name": "온더보더",
+    "distanceByMinutes": 25,
+    "description": "태국 음식, 베트남 음식 등 아시아 요리를 맛볼 수 있는 집입니다.",
+    "link": "https://www.tripadvisor.co.kr/Restaurant_Review-g294197-d20322824-Reviews-On_The_Border-Seoul.html"
+  }
+]
