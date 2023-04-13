@@ -25,6 +25,24 @@
 	"rules": {
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",
-    "react/no-unused-state": "off"
+    "react/no-unused-state": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent", 
+          "sibling",
+          "object",
+          "type",
+          "index"
+        ],
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ]
   }
 }
