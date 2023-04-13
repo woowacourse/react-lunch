@@ -51,10 +51,9 @@ const ResetStyle = createGlobalStyle`
   a:hover, a:visited, a:link, a:active
   {
     text-decoration: none;
+    color: inherit;
   }
-  a:hover{
-    color: #a00;
-  }
+  
 `;
 
 export default ResetStyle;
