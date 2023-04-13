@@ -1,6 +1,5 @@
 import React from 'react';
 import CategorySelector from './CategorySelector';
-
 import styles from './SelectorSection.module.css';
 import SortedSelector from './SortedSelector';
 

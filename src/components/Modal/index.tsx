@@ -6,6 +6,9 @@ import styles from './Modal.module.css';
 import type { Restaurant } from '../RestaurantItem/type';
 
 class Modal extends React.PureComponent {
+	private static findRestaurantById = (restaurantList?: Restaurant[], id?: string) =>
+		restaurantList?.find((restaurant) => restaurant.id === id) as Restaurant;
+
 	render() {
 		return (
 			<Store.Consumer>
@@ -14,10 +17,7 @@ class Modal extends React.PureComponent {
 						<dialog open={store?.isModalOpen}>
 							<div className={styles.modalBackdrop} />
 							<div className={styles.modal}>
-								<RestaurantItem
-									restaurant={store?.restaurantList.find((restaurant) => restaurant.id === store.modalId) as Restaurant}
-									isModal
-								/>
+								<RestaurantItem restaurant={Modal.findRestaurantById(store?.restaurantList, store?.modalId)} isModal />
 								<button
 									type="button"
 									onClick={() => {
