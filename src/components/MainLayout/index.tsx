@@ -61,7 +61,7 @@ class MainLayout extends Component<Props, State> {
         </section>
         <section className="restaurant-list-section">
           <ul className="restaurant-list" onClick={this.handleRestaurantClick}>
-            {this.props.restaurants?.map((restaurant) => (
+            {sorted?.map((restaurant) => (
               <RestaurantItem key={restaurant.id} restaurant={restaurant} />
             ))}
           </ul>
