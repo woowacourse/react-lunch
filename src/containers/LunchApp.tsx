@@ -6,12 +6,12 @@ import SelectBox from '../components/SelectBox';
 import Header from '../components/Header';
 import styled from 'styled-components';
 
-interface AppState {
+interface LunchAppState {
   restaurants: Restaurant[];
   sortBy: Sort;
   categorizeBy: Category;
 }
-class LunchApp extends React.Component<{}, AppState> {
+class LunchApp extends React.Component<{}, LunchAppState> {
 
   constructor(props: Readonly<{}> | {}) {
     super(props);
