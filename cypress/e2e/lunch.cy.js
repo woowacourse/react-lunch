@@ -94,4 +94,20 @@ describe('점심 뭐 먹지 e2e 테스트', () => {
 
     cy.get('.modal').should('not.exist');
   });
+
+  it('처음 페이지에 들어갔을 때, 로컬스토리지는 비어있다.', () => {
+    cy.clearLocalStorage();
+    cy.getAllLocalStorage().then((result) => expect(result).to.deep.equal({}));
+  });
+
+  it('웹사이트 처음 방문 후, 새로고침을 하면 로컬스토리지에 음식점 데이터가 저장된다.', () => {
+    cy.clearLocalStorage();
+    cy.getAllLocalStorage().then((result) => expect(result).to.deep.equal({}));
+
+    cy.get('.gnb__title').click();
+
+    cy.getAllLocalStorage().then((result) => {
+      expect(result['http://localhost:3000']).to.have.keys('restaurantList');
+    });
+  });
 });
