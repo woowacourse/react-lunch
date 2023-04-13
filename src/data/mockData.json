@@ -1,0 +1,219 @@
+[
+  {
+    "category": "chinese",
+    "name": "우육면가",
+    "distance": 10,
+    "description": "크론이 한 번도 안 먹어 본 우육면가",
+    "favorite": false
+  },
+  {
+    "category": "chinese",
+    "name": "찐친",
+    "distance": 5,
+    "description": "찐친들이랑 가는 중국집",
+    "favorite": true
+  },
+  {
+    "category": "chinese",
+    "name": "춘리 마라탕",
+    "distance": 6,
+    "description": "위생 관리가 잘 되고 가성비가 좋은 마라탕 가게.",
+    "favorite": false
+  },
+  {
+    "category": "chinese",
+    "name": "용용선생",
+    "distance": 10,
+    "description": "마라 전골이 아주 유명한 곳",
+    "favorite": false
+  },
+  {
+    "category": "chinese",
+    "name": "마담밍",
+    "distance": 6,
+    "description": "잘 알려진 중국집",
+    "favorite": true
+  },
+  {
+    "category": "chinese",
+    "name": "명정루",
+    "distance": 8,
+    "description": "웨이팅이 기본 5분인 중국집",
+    "favorite": false
+  },
+  {
+    "category": "asian",
+    "name": "반포식스",
+    "distance": 7,
+    "description": "가격이 비싸지만 아시안 음식 종류가 많은 곳",
+    "favorite": false
+  },
+  {
+    "category": "asian",
+    "name": "포메인",
+    "distance": 10,
+    "description": "믿고 가는 포메인 쌀국수",
+    "favorite": false
+  },
+  {
+    "category": "asian",
+    "name": "딘타이펑",
+    "distance": 15,
+    "description": "아주 맛있는 딤섬 먹으러 오세요",
+    "favorite": true
+  },
+  {
+    "category": "etc",
+    "name": "커피베네",
+    "distance": 5,
+    "description": "성담빌딩 건물에 있는 커피베네",
+    "favorite": false
+  },
+  {
+    "category": "etc",
+    "name": "스타벅스 선릉역점",
+    "distance": 5,
+    "description": "면담하기 좋은 곳 스타벅스 시끌벅적함",
+    "favorite": true
+  },
+  {
+    "category": "etc",
+    "name": "컴포즈커피 선릉역점",
+    "distance": 1,
+    "description": "선릉역 공식 커피공장",
+    "favorite": true
+  },
+  {
+    "category": "etc",
+    "name": "더휴 런치 뷔페",
+    "distance": 3,
+    "description": "한식뷔페라고 알려져있지만 사실 이것 저것 나오는 뷔페 집",
+    "favorite": true
+  },
+  {
+    "category": "korean",
+    "name": "영동칼국수",
+    "distance": 15,
+    "description": "멀긴 한데 그래도 9,000원이라는 가격에 저렴하게 적게 먹을 수 있는 곳. 지갑 다이어트하기 좋은 곳",
+    "favorite": false
+  },
+  {
+    "category": "korean",
+    "name": "덮밥이맛있는집",
+    "distance": 15,
+    "description": "영동칼국수집 옆에 있는 연어덮밥, 스테이크덮밥 등을 파는 덮밥 집",
+    "favorite": false
+  },
+  {
+    "category": "korean",
+    "name": "시골밥상머리",
+    "distance": 10,
+    "description": "시골에서 주는 밥처럼 나오는 상머리",
+    "favorite": true
+  },
+  {
+    "category": "korean",
+    "name": "김돈이",
+    "distance": 20,
+    "description": "멀긴 한데 그래도 9,000원이라는 가격에 저렴하게 적게 먹을 수 있는 곳. 지갑 다이어트하기 좋은 곳",
+    "favorite": false
+  },
+  {
+    "category": "korean",
+    "name": "정식당",
+    "distance": 10,
+    "description": "영동칼국수집 옆에 있는 연어덮밥, 스테이크덮밥 등을 파는 덮밥 집",
+    "favorite": false
+  },
+  {
+    "category": "korean",
+    "name": "마초갈비",
+    "distance": 5,
+    "description": "시골에서 주는 밥처럼 나오는 상머리",
+    "favorite": true
+  },
+  {
+    "category": "japanese",
+    "name": "스노우폭스 선릉역점",
+    "distance": 5,
+    "description": "초밥 도시락과 샐러드를 파는 곳",
+    "favorite": true
+  },
+  {
+    "category": "japanese",
+    "name": "은행골 선릉점",
+    "distance": 10,
+    "description": "아주 유명한 초밥집",
+    "favorite": false
+  },
+  {
+    "category": "japanese",
+    "name": "돈카레",
+    "distance": 10,
+    "description": "도밥이 좋아하는 돈카레",
+    "favorite": false
+  },
+  {
+    "category": "japanese",
+    "name": "헤키",
+    "distance": 25,
+    "description": "초밥 도시락과 샐러드를 파는 곳",
+    "favorite": true
+  },
+  {
+    "category": "japanese",
+    "name": "카와카츠",
+    "distance": 15,
+    "description": "아주 유명한 초밥집",
+    "favorite": true
+  },
+  {
+    "category": "japanese",
+    "name": "정돈",
+    "distance": 5,
+    "description": "제레미가 좋아하는 돈카레",
+    "favorite": true
+  },
+  {
+    "category": "western",
+    "name": "파스타에 반하다",
+    "distance": 10,
+    "description": "투움바 파스타 쉬림프 파스타 추천",
+    "favorite": false
+  },
+  {
+    "category": "western",
+    "name": "파스타 어때",
+    "distance": 15,
+    "description": "우삼겹 파스타, 스파이시 쉬림프 파스타 맛집",
+    "favorite": true
+  },
+  {
+    "category": "western",
+    "name": "베어스타코 본점",
+    "distance": 20,
+    "description": "타코 맛집 비프타코, 치킨 퀘사디아 추천 ",
+    "favorite": false
+  },
+  {
+    "category": "western",
+    "name": "파스타입니다",
+    "distance": 15,
+    "description": "투움바 파스타 쉬림프 파스타 추천",
+    "favorite": true
+  },
+  {
+    "category": "western",
+    "name": "파스토보이",
+    "distance": 25,
+    "description": "우삼겹 파스타, 스파이시 쉬림프 파스타 맛집",
+    "favorite": false
+  },
+  {
+    "category": "western",
+    "name": "라이브볼",
+    "distance": 5,
+    "description": "타코 맛집 비프타코, 치킨 퀘사디아 추천 ",
+    "favorite": false
+  }
+]
