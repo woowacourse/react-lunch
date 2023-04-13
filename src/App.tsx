@@ -35,6 +35,16 @@ class App extends Component<Props, State> {
       clickedRestaurant: null,
     };
   }
+
+  componentDidMount() {
+    if (db.isRestaurantItemsExist()) {
+      this.setState({ restaurantItems: db.getRestaurants() });
+    } else {
+      this.setState({ restaurantItems: data.items as Restaurant[] });
+      db.setRestaurants(data.items as Restaurant[]);
+    }
+  }
+
   render() {
     return (
       <>
