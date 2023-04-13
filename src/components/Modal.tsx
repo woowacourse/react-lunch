@@ -9,10 +9,35 @@ type RestaurantItemProps = {
 };
 
 class Modal extends React.Component<RestaurantItemProps> {
+  constructor(props: RestaurantItemProps) {
+    super(props);
+    this.closeModalByESC = this.closeModalByESC.bind(this);
+    this.closeModalByBackdrop = this.closeModalByBackdrop.bind(this);
+  }
+
+  closeModalByBackdrop() {
+    this.props.closeModal();
+  }
+
+  closeModalByESC(event: KeyboardEvent) {
+    if (event.key === "Escape") this.props.closeModal();
+  }
+
+  componentDidMount() {
+    document.addEventListener("keydown", this.closeModalByESC);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.closeModalByESC);
+  }
+
   render() {
     return createPortal(
       <>
-        <div className="modal-backdrop"></div>
+        <div
+          className="modal-backdrop"
+          onClick={this.closeModalByBackdrop}
+        ></div>
         <div className="modal-container">
           <div className="information-modal-favorite">
             <div className="restaurant__category">
