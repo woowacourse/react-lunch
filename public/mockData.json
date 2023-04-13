@@ -9,6 +9,22 @@
     "isFavorite": true
   },
   {
+    "id": "8d43d5cc-d5d1-45ca-9d16-af9544129152",
+    "category": "한식",
+    "name": "김돈이",
+    "distance": 15,
+    "description": "계란말이 맛집",
+    "isFavorite": true
+  },
+  {
+    "id": "e1609c1e-8dde-408c-a9e1-7f5230545f11",
+    "category": "한식",
+    "name": "얌샘김밥",
+    "distance": 5,
+    "description": "가성비 분식집",
+    "isFavorite": true
+  },
+  {
     "id": "72450846-e579-4cd4-8169-4726e243dc52",
     "category": "중식",
     "name": "친친",
