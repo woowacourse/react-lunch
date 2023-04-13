@@ -35,7 +35,6 @@ const St = {
     padding: 8px 8px;
     width: 100%;
     height: 100%;
-    border-bottom: 1px solid #e9eaed;
   `,
   Title: styled.h3`
     font-size: 20px;
@@ -51,10 +50,11 @@ const St = {
     font-weight: 400;
   `,
   Description: styled.p`
-    display: -webkit-box;
     padding-top: 8px;
 
-    overflow: auto;
+    overflow-y: scroll;
+
+    word-wrap: break-word;
     width: 100%;
     height: 100%;
     max-height: 65%;
