@@ -4,6 +4,7 @@ import { CATEGORY_IMG } from '../constants';
 import { RestaurantItemType } from '../types';
 import BottomSheet from './BottomSheet';
 import RestaurantDetail from './RestaurantDetail';
+import { $ } from '../utils/domSelector';
 
 class RestaurantItem extends React.Component<RestaurantItemType, { isBottomSheetOpen: boolean }> {
   constructor(props: RestaurantItemType) {
@@ -11,6 +12,15 @@ class RestaurantItem extends React.Component<RestaurantItemType, { isBottomSheet
     this.state = {
       isBottomSheetOpen: false,
     };
+  }
+
+  closeBottomSheet() {
+    $<HTMLElement>('#bottom_sheet').classList.add('close_bottom_sheet');
+    $<HTMLElement>('#backdrop').classList.add('close_background');
+
+    setTimeout(() => {
+      this.setState({ isBottomSheetOpen: false });
+    }, 400);
   }
 
   render() {
@@ -27,7 +37,7 @@ class RestaurantItem extends React.Component<RestaurantItemType, { isBottomSheet
           </RestaurantInfo>
         </RestaurantItemWrapper>
         {this.state.isBottomSheetOpen && (
-          <BottomSheet onClose={() => this.setState({ isBottomSheetOpen: false })}>
+          <BottomSheet onClose={() => this.closeBottomSheet()}>
             <RestaurantDetail
               category={this.props.category}
               name={this.props.name}

@@ -24,7 +24,6 @@ const SelectBoxWrapper = styled.select`
 
   border: 1px solid #d0d5dd;
   border-radius: 8px;
-  background: transparent;
 
   font-size: 16px;
 `;
