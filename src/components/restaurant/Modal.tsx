@@ -1,8 +1,7 @@
 import { Component } from 'react';
 import styled from 'styled-components';
-import { Restaurant } from '../../App';
 import CategoryIcon from '../common/CategoryIcon';
-import { CATEGORIES } from '../restaurant/RestaurantList';
+import { Restaurant, SetModalRestaurant } from '../../@types/type';
 
 const ModalBackdrop = styled.div`
   position: fixed;
@@ -64,16 +63,7 @@ const ButtonContainer = styled.div`
   }
 `;
 
-export type Props = {
-  category: (typeof CATEGORIES)[keyof typeof CATEGORIES];
-  name: string;
-  distanceByMinutes: number;
-  description: string;
-  referenceUrl: string;
-  setModalRestaurant: (restaurant: Restaurant | null) => void;
-};
-
-class Modal extends Component<Props> {
+class Modal extends Component<Restaurant & SetModalRestaurant> {
   onCloseModal = () => {
     this.props.setModalRestaurant(null);
   };

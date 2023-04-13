@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import SelectBox from '../common/SelectBox';
 import mockData from '../../mockData.json';
 import RestaurantItem from './RestaurantItem';
-import { Restaurant } from '../../App';
 import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
+import { CATEGORIES, SORT_OPTIONS } from '../../constants';
+import { Restaurant, SetModalRestaurant } from '../../@types/type';
 
 const RestaurantListLayout = styled.main`
   padding: 16px;
@@ -22,30 +23,6 @@ const Restaurants = styled.ul`
   margin: 16px 0;
 `;
 
-export const CATEGORIES = {
-  KOREAN: '한식',
-  CHINESE: '중식',
-  JAPANESE: '일식',
-  WESTERN: '양식',
-  ASIAN: '아시안',
-  ETC: '기타',
-} as const;
-
-const SORT_OPTIONS = {
-  NAME: '이름순',
-  DISTANCE: '거리순',
-};
-
-type Props = {
-  setModalRestaurant: (restaurant: Restaurant) => void;
-};
-
-type State = {
-  restaurantList: Restaurant[];
-  filterOption: string;
-  sortOption: string;
-};
-
 const filterFn = (restaurants: Restaurant[], category: string) => {
   if (category === '전체') return restaurants;
   return restaurants.filter((restaurant) => restaurant.category === category);
@@ -56,7 +33,7 @@ const sortFn = (restaurants: Restaurant[], type: string): Restaurant[] => {
   return restaurants.sort((a, b) => (a.distanceByMinutes > b.distanceByMinutes ? 1 : -1));
 };
 
-class RestaurantList extends Component<Props, State> {
+class RestaurantList extends Component<SetModalRestaurant> {
   state = {
     restaurantList: mockData as Restaurant[],
     filterOption: '전체',
@@ -76,17 +53,6 @@ class RestaurantList extends Component<Props, State> {
   filterAndSort = () => {
     return sortFn(filterFn(this.state.restaurantList, this.state.filterOption), this.state.sortOption);
   };
-
-  // fn = (Option) => {
-  //   this.setState({
-  //     filterOption: '일식',
-  //   });
-  //   this.setState({
-  //     filter: () => {
-  //       filterFn(this.state.restaurantList, Option);
-  //     },
-  //   });
-  // };
 
   setFilterOption = (option: string) => {
     this.setState({

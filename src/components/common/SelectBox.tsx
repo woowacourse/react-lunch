@@ -1,11 +1,6 @@
 import { Component } from 'react';
 import styled from 'styled-components';
 
-type Props = {
-  options: string[];
-  setOption: (option: string) => void;
-};
-
 const Select = styled.select`
   height: 44px;
   min-width: 125px;
@@ -18,6 +13,11 @@ const Select = styled.select`
 
   font-size: 16px;
 `;
+
+type Props = {
+  options: string[];
+  setOption: (option: string) => void;
+};
 
 class SelectBox extends Component<Props> {
   render() {

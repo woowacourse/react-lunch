@@ -1,8 +1,7 @@
 import { Component } from 'react';
 import styled from 'styled-components';
-import { Restaurant } from '../../App';
-import { CATEGORIES } from './RestaurantList';
 import CategoryIcon from '../common/CategoryIcon';
+import { Restaurant, SetModalRestaurant } from '../../@types/type';
 
 const SRestaurant = styled.li`
   display: flex;
@@ -37,16 +36,7 @@ const Description = styled.p`
   -webkit-box-orient: vertical;
 `;
 
-export type Props = {
-  category: (typeof CATEGORIES)[keyof typeof CATEGORIES];
-  name: string;
-  distanceByMinutes: number;
-  description: string;
-  referenceUrl: string;
-  setModalRestaurant: (restaurant: Restaurant) => void;
-};
-
-class RestaurantItem extends Component<Props> {
+class RestaurantItem extends Component<SetModalRestaurant & Restaurant> {
   onClickRestaurant = () => {
     this.props.setModalRestaurant({
       category: this.props.category,

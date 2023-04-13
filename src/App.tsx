@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import Header from './components/common/Header';
-import RestaurantList, { CATEGORIES } from './components/restaurant/RestaurantList';
+import RestaurantList from './components/restaurant/RestaurantList';
 import Modal from './components/restaurant/Modal';
-
-export type Restaurant = {
-  category: (typeof CATEGORIES)[keyof typeof CATEGORIES];
-  name: string;
-  distanceByMinutes: number;
-  description: string;
-  referenceUrl: string;
-};
+import { Restaurant } from './@types/type';
 
 class App extends Component {
   state = {
