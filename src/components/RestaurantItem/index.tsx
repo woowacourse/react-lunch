@@ -5,6 +5,7 @@ import { Restaurant } from '../../types/restaurants';
 
 interface RestaurantItemProps {
   info: Restaurant;
+  onClick(): void;
 }
 class RestaurantItem extends Component<RestaurantItemProps> {
   constructor(props: RestaurantItemProps) {
@@ -13,10 +14,11 @@ class RestaurantItem extends Component<RestaurantItemProps> {
   render(): ReactNode {
     const {
       info: { title, detail, distance, category },
+      onClick,
     } = this.props;
 
     return (
-      <St.Layout>
+      <St.Layout onClick={onClick}>
         <St.LeftSection>
           <CategoryImg category={category} />
         </St.LeftSection>

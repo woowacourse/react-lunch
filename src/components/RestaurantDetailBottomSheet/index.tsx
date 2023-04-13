@@ -5,21 +5,37 @@ import St from './styled';
 
 interface RestaurantDetailBottomSheetProps {
   restaurant: Restaurant;
+  close: VoidFunction;
 }
 
 class RestaurantDetailBottomSheet extends Component<RestaurantDetailBottomSheetProps> {
+  escHandler(e: KeyboardEvent) {
+    if (e.key === 'Escape') this.props.close();
+  }
+  componentDidMount(): void {
+    window.addEventListener('keyup', this.escHandler.bind(this));
+  }
+
+  componentWillUnmount(): void {
+    window.removeEventListener('keyup', this.escHandler.bind(this));
+  }
+
   render(): ReactNode {
+    const {
+      restaurant: { title, distance, detail, link, category },
+      close,
+    } = this.props;
     return (
       <>
-        <St.Backdrop />
+        <St.Backdrop onClick={close} />
         <St.BottomSheet>
-          <CategoryImg category="양식" />
+          <CategoryImg category={category} />
           <St.Detail>
-            <St.Title>name</St.Title>
-            <St.Distance>캠퍼스부터 10분 이내</St.Distance>
-            <St.Description>description</St.Description>
-            <St.Link>lunk</St.Link>
-            <St.Button></St.Button>
+            <St.Title>{title}</St.Title>
+            <St.Distance>캠퍼스부터 {distance}분 이내</St.Distance>
+            <St.Description>{detail}</St.Description>
+            <St.Link href={link}>{link}</St.Link>
+            <St.Button onClick={close}>닫기</St.Button>
           </St.Detail>
         </St.BottomSheet>
       </>

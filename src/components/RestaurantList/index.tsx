@@ -15,10 +15,27 @@ interface RestaurantListProps {
 interface State {
   restaurantListOrigin: Restaurant[];
   restaurantList: Restaurant[];
+  isOpened: boolean;
+  focusedRestaurant: Restaurant | null;
 }
 
 class RestaurantList extends Component<RestaurantListProps, State> {
-  state = { restaurantListOrigin: [], restaurantList: [] };
+  state = {
+    restaurantListOrigin: [],
+    restaurantList: [],
+    isOpened: false,
+    focusedRestaurant: null,
+  };
+
+  onClickRestaurantItem: (restaurant: Restaurant) => void;
+  closeModalHandler: VoidFunction;
+
+  constructor(props: RestaurantListProps) {
+    super(props);
+
+    this.onClickRestaurantItem = this.focusRestaurant.bind(this);
+    this.closeModalHandler = this.closeModal.bind(this);
+  }
 
   async componentDidMount() {
     const restaurantList = await fetch('./mocks/mockData.json')
@@ -57,15 +74,32 @@ class RestaurantList extends Component<RestaurantListProps, State> {
     }));
   }
 
+  focusRestaurant(focusedRestaurant: Restaurant) {
+    this.setState({ focusedRestaurant, isOpened: true });
+  }
+
+  closeModal() {
+    this.setState({ isOpened: false });
+  }
+
   render(): ReactNode {
-    const { restaurantList } = this.state;
+    const { restaurantList, focusedRestaurant, isOpened } = this.state;
 
     return (
       <St.Layout>
         {restaurantList.map((restaurant: Restaurant) => (
-          <RestaurantItem key={restaurant.id} info={restaurant} />
+          <RestaurantItem
+            key={restaurant.id}
+            info={restaurant}
+            onClick={() => this.onClickRestaurantItem(restaurant)}
+          />
         ))}
-        <RestaurantDetailBottomSheet restaurant={restaurantList[0]} />
+        {isOpened ? (
+          <RestaurantDetailBottomSheet
+            restaurant={focusedRestaurant!}
+            close={this.closeModalHandler}
+          />
+        ) : null}
       </St.Layout>
     );
   }
