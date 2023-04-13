@@ -30,3 +30,5 @@ export const ORDER_KEY: Record<string, string> = {
   name: '이름순',
   distance: '거리순',
 } as const;
+
+export const LOCAL_STORAGE_RESTAURANTS_KEY = 'restaurants';

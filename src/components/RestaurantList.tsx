@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import mockData from '../mockData.json';
 import RestaurantItem from './RestaurantItem';
 import { RestaurantItemType, RestaurantListStateType, SelectKind } from '../types';
-import { CATEGORY_NAME, ORDER_KEY } from '../constants';
+import { CATEGORY_NAME, ORDER_KEY, LOCAL_STORAGE_RESTAURANTS_KEY } from '../constants';
 import SelectBox from './common/SelectBox';
 import { $ } from '../utils/domSelector';
 
@@ -45,12 +45,12 @@ class RestaurantList extends React.Component<object, RestaurantListStateType> {
   }
 
   getLocalStorage(): RestaurantItemType[] {
-    const restaurants = localStorage.getItem('restaurants');
+    const restaurants = localStorage.getItem(LOCAL_STORAGE_RESTAURANTS_KEY);
     return restaurants ? JSON.parse(restaurants) : [];
   }
 
   setLocalStorage(data: RestaurantItemType[]) {
-    localStorage.setItem('restaurants', JSON.stringify(data));
+    localStorage.setItem(LOCAL_STORAGE_RESTAURANTS_KEY, JSON.stringify(data));
   }
 
   sortRestaurants() {
