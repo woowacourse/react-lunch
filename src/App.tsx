@@ -40,10 +40,12 @@ class App extends Component<object, AppState> {
 
     const list = getSavedRestaurantList();
 
-    this.setState({
-      restaurantList: list,
-      originalRestaurantList: list,
-    });
+    this.setState(
+      {
+        originalRestaurantList: list,
+      },
+      this.filterRestaurantList,
+    );
   }
 
   setClickedRestaurant(restaurantInfo: RestaurantInfo) {
