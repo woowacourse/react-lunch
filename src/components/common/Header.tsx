@@ -7,21 +7,18 @@ const HeaderLayout = styled.header`
   align-items: center;
   height: 64px;
   padding: 0 16px;
-  background-color: ${({ theme }) => theme.color.primaryColor};
+  background-color: var(--primary-color);
 `;
 
 const Title = styled.h1`
-  font-size: 20px;
-  line-height: 24px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.color.fontColor};
+  color: var(--font-color);
 `;
 
 class Header extends Component {
   render() {
     return (
       <HeaderLayout>
-        <Title>점심 뭐 먹지</Title>
+        <Title className="text-title">점심 뭐 먹지</Title>
       </HeaderLayout>
     );
   }

@@ -16,7 +16,7 @@ const ModalBackdrop = styled.div`
   bottom: 0;
   left: 0;
 
-  background: ${({ theme }) => theme.color.backdropColor};
+  background: var(--backdrop-color);
 `;
 
 const ModalContent = styled.div`
@@ -29,22 +29,15 @@ const ModalContent = styled.div`
   padding: 32px 16px;
 
   border-radius: 8px 8px 0px 0px;
-  background: ${({ theme }) => theme.color.grey100};
+  background: var(--grey-100);
 `;
 
 const Title = styled.h2`
   padding: 16px 0;
-
-  font-size: 20px;
-  line-height: 24px;
-  font-weight: 600;
 `;
 
 const Distance = styled.span`
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-  color: ${({ theme }) => theme.color.primaryColor};
+  color: var(--primary-color);
 `;
 
 const CategoryIcon = styled.div`
@@ -59,7 +52,7 @@ const CategoryIcon = styled.div`
   margin-right: 16px;
 
   border-radius: 50%;
-  background: ${({ theme }) => theme.color.lightenColor};
+  background: var(--lighten-color);
   img {
     width: 36px;
     height: 36px;
@@ -68,14 +61,10 @@ const CategoryIcon = styled.div`
 
 const Description = styled.p`
   margin: 16px 0;
-
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
 `;
 
 const ReferenceURL = styled.a`
-  color: ${({ theme }) => theme.color.grey500};
+  color: var(--grey-500);
 `;
 
 const ButtonContainer = styled.div`
@@ -93,23 +82,9 @@ const ButtonContainer = styled.div`
 
     font-weight: 600;
     cursor: pointer;
-  }
 
-  button:last-child {
-    margin-right: 0;
-  }
-
-  .button--secondary {
-    border: 1px solid ${({ theme }) => theme.color.grey300};
-    background: transparent;
-
-    color: ${({ theme }) => theme.color.grey300};
-  }
-
-  .button--primary {
-    background: ${({ theme }) => theme.color.primaryColor};
-
-    color: ${({ theme }) => theme.color.grey100};
+    background: var(--primary-color);
+    color: var(--grey-100);
   }
 `;
 
@@ -157,14 +132,12 @@ class Modal extends Component<Props> {
           <CategoryIcon>
             <img src={categoryIcon[this.props.category]} alt={this.props.category} />
           </CategoryIcon>
-          <Title>{this.props.name}</Title>
-          <Distance>캠퍼스로부터 {this.props.distanceByMinutes}분 내</Distance>
-          <Description>{this.props.description}</Description>
+          <Title className="text-title">{this.props.name}</Title>
+          <Distance className="text-body">캠퍼스로부터 {this.props.distanceByMinutes}분 내</Distance>
+          <Description className="text-body">{this.props.description}</Description>
           <ReferenceURL href={this.props.referenceUrl}>{this.props.referenceUrl}</ReferenceURL>
           <ButtonContainer>
-            <button onClick={this.onCloseModal} className="button--primary">
-              닫기
-            </button>
+            <button onClick={this.onCloseModal}>닫기</button>
           </ButtonContainer>
         </ModalContent>
       </div>
