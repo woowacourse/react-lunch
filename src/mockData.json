@@ -76,7 +76,7 @@
       "id": "10",
       "category": "양식",
       "name": "뉴피자",
-      "distance": "",
+      "distance": 10,
       "description": "내가 만든 피자~",
       "link": "https://new-pizza.com"
     },
@@ -84,7 +84,7 @@
       "id": "11",
       "category": "양식",
       "name": "어쩔 햄버거",
-      "distance": "20",
+      "distance": 20,
       "description": "이래도 먹어? ㅋㅋ",
       "link": ""
     },
@@ -92,7 +92,7 @@
       "id": "12",
       "category": "양식",
       "name": "슈퍼게티",
-      "distance": "20",
+      "distance": 20,
       "description": "스파게티도 한접시 드셔보세요옹",
       "link": ""
     },
@@ -100,7 +100,7 @@
       "id": "13",
       "category": "아시안",
       "name": "인도인도인도카레야",
-      "distance": "15",
+      "distance": 15,
       "description": "카레카레카레카레야 완전 좋아 아 레알 좋아~",
       "link": ""
     },
@@ -108,7 +108,7 @@
       "id": "14",
       "category": "아시안",
       "name": "마콩국수 전문점",
-      "distance": "20",
+      "distance": 20,
       "description": "마! 콩국수 맛 함 볼래?",
       "link": "https://ma-kong.com"
     },
@@ -116,7 +116,7 @@
       "id": "15",
       "category": "아시안",
       "name": "베트남 쌀국수",
-      "distance": "10",
+      "distance": 10,
       "description": "왜 그런날 있잖아요. 쌀국수가 먹고 싶은 날",
       "link": ""
     },
@@ -124,7 +124,7 @@
       "id": "16",
       "category": "기타",
       "name": "삼성 디지털 디너",
-      "distance": "30",
+      "distance": 30,
       "description": "맛있는 갤럭시 디너를 원한다면!",
       "link": "https://samsung.co.kr"
     },
@@ -132,15 +132,15 @@
       "id": "17",
       "category": "기타",
       "name": "애플런치",
-      "distance": "애플 특유의 감성을 음식에 넣었습니다",
-      "description": "10",
+      "distance": 10,
+      "description": "애플 특유의 감성을 음식에 넣었습니다",
       "link": ""
     },
     {
       "id": "18",
       "category": "기타",
       "name": "상식이네 밥",
-      "distance": "25",
+      "distance": 25,
       "description": "상식이 아빠가 운영하는 맛집",
       "link": "https://www.sangsick.com"
     }
