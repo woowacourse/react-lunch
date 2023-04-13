@@ -1,9 +1,9 @@
-import React, { Component, PropsWithChildren, ReactNode } from 'react';
-import Layout from './components/common/Layout';
-import RestaurantList from './components/RestaurantList';
-import SelectBar from './components/SelectBar';
-import { ALIGN_FILTER, CATEGORY_FILTER } from './constants/restaurants';
-import { AlignFilter, CategoryFilter } from './types/restaurants';
+import React, { Component, PropsWithChildren, ReactNode } from "react";
+import Layout from "./components/common/Layout";
+import RestaurantList from "./components/RestaurantList";
+import SelectBar from "./components/SelectBar";
+import { ALIGN_FILTER, CATEGORY_FILTER } from "./constants/restaurants";
+import { AlignFilter, CategoryFilter } from "./types/restaurants";
 
 class App extends Component {
   state = { category: CATEGORY_FILTER[0], align: ALIGN_FILTER[0] };

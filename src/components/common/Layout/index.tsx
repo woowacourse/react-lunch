@@ -1,6 +1,6 @@
-import React, { Component, PropsWithChildren, ReactNode } from 'react';
-import Header from '../../Header';
-import St from './styled';
+import React, { Component, PropsWithChildren, ReactNode } from "react";
+import Header from "../../Header";
+import St from "./styled";
 
 class Layout extends Component<PropsWithChildren> {
   constructor(props: PropsWithChildren) {

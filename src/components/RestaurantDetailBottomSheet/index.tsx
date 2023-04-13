@@ -1,7 +1,7 @@
-import React, { Component, ReactNode } from 'react';
-import { Restaurant } from '../../types/restaurants';
-import CategoryImg from '../CategoryImg';
-import St from './styled';
+import React, { Component, ReactNode } from "react";
+import { Restaurant } from "../../types/restaurants";
+import CategoryImg from "../CategoryImg";
+import St from "./styled";
 
 interface RestaurantDetailBottomSheetProps {
   restaurant: Restaurant;
@@ -10,15 +10,15 @@ interface RestaurantDetailBottomSheetProps {
 
 class RestaurantDetailBottomSheet extends Component<RestaurantDetailBottomSheetProps> {
   escHandler(e: KeyboardEvent) {
-    if (e.key === 'Escape') this.props.close();
+    if (e.key === "Escape") this.props.close();
   }
 
   componentDidMount(): void {
-    window.addEventListener('keyup', this.escHandler.bind(this));
+    window.addEventListener("keyup", this.escHandler.bind(this));
   }
 
   componentWillUnmount(): void {
-    window.removeEventListener('keyup', this.escHandler.bind(this));
+    window.removeEventListener("keyup", this.escHandler.bind(this));
   }
 
   render(): ReactNode {

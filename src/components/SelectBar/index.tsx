@@ -1,8 +1,8 @@
-import React, { Component, ReactNode } from 'react';
-import { ALIGN_FILTER, CATEGORY_FILTER } from '../../constants/restaurants';
-import { AlignFilter, CategoryFilter } from '../../types/restaurants';
-import Select from '../Select';
-import St from './styled';
+import React, { Component, ReactNode } from "react";
+import { ALIGN_FILTER, CATEGORY_FILTER } from "../../constants/restaurants";
+import { AlignFilter, CategoryFilter } from "../../types/restaurants";
+import Select from "../Select";
+import St from "./styled";
 
 interface SelectBarProps {
   onChangeCategoryFilter(category: CategoryFilter): void;

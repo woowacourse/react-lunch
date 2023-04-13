@@ -1,15 +1,15 @@
-import React, { Component, ReactNode } from 'react';
-import { fetchMockRestaurants } from '../../api/restaurants';
-import { BY_NAME } from '../../constants/restaurants';
+import React, { Component, ReactNode } from "react";
+import { fetchMockRestaurants } from "../../api/restaurants";
+import { BY_NAME } from "../../constants/restaurants";
 import {
   AlignFilter,
   CategoryFilter,
   Restaurant,
-} from '../../types/restaurants';
-import { alignBy, filterBy } from '../../utils/restaurants';
-import RestaurantDetailBottomSheet from '../RestaurantDetailBottomSheet';
-import RestaurantItem from '../RestaurantItem';
-import St from './styled';
+} from "../../types/restaurants";
+import { alignBy, filterBy } from "../../utils/restaurants";
+import RestaurantDetailBottomSheet from "../RestaurantDetailBottomSheet";
+import RestaurantItem from "../RestaurantItem";
+import St from "./styled";
 
 interface RestaurantListProps {
   filterOptions: {

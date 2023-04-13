@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const St = {
   Backdrop: styled.div`
@@ -52,7 +52,7 @@ const St = {
   Description: styled.p`
     padding-top: 8px;
 
-    overflow-y: scroll;
+    overflow-y: auto;
 
     word-wrap: break-word;
     width: 100%;
@@ -80,13 +80,10 @@ const St = {
     font-weight: 400;
   `,
   Button: styled.button`
-    /* position: absolute; */
-    /* bottom: 30px;
-    left: 0; */
-
     width: 100%;
     height: 44px;
 
+    margin-top: auto;
     margin-right: 16px;
 
     border: none;

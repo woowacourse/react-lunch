@@ -5,7 +5,7 @@ export const fetchQuery = async <T,>(
   const response = await fetch(path, init);
   const body = await response.json();
 
-  if (!response.ok) throw new Error('Error');
+  if (!response.ok) throw new Error("Error");
 
   return body;
 };

@@ -1,6 +1,6 @@
-import { CATEGORY_ALL } from './../constants/restaurants';
-import { BY_DISTANCE, BY_NAME } from '../constants/restaurants';
-import { AlignFilter, CategoryFilter, Restaurant } from '../types/restaurants';
+import { CATEGORY_ALL } from "./../constants/restaurants";
+import { BY_DISTANCE, BY_NAME } from "../constants/restaurants";
+import { AlignFilter, CategoryFilter, Restaurant } from "../types/restaurants";
 
 export const filterBy = (
   categoryFilter: CategoryFilter,

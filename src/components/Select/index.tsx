@@ -1,5 +1,5 @@
-import React, { Component, ReactNode } from 'react';
-import St from './styled';
+import React, { Component, ReactNode } from "react";
+import St from "./styled";
 
 interface SelectProps {
   options: readonly string[];

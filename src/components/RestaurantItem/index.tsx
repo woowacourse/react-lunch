@@ -1,7 +1,7 @@
-import React, { Component, ReactNode } from 'react';
-import St from './styled';
-import CategoryImg from '../CategoryImg';
-import { Restaurant } from '../../types/restaurants';
+import React, { Component, ReactNode } from "react";
+import St from "./styled";
+import CategoryImg from "../CategoryImg";
+import { Restaurant } from "../../types/restaurants";
 
 interface RestaurantItemProps {
   info: Restaurant;
