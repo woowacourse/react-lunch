@@ -1,6 +1,6 @@
 import { Restaurant } from '../types';
 import { getLocalStorage } from '../utils/localStorage';
-import { validateCategory } from '../validations';
+import { validateCategory } from '../utils/validator';
 import mockData from './mockRestaurantData.json';
 
 const getRestaurantListData = () => {
