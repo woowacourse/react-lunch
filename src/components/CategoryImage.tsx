@@ -9,15 +9,11 @@ interface Props {
   category: Category;
 }
 
-class CategoryImage extends React.Component<Props> {
-  render() {
-    return (
-      <CategoryImageWrapper>
-        <img src={`./img/${CATEGORY_IMAGE_MAP[this.props.category]}`} alt={this.props.category} />
-      </CategoryImageWrapper>
-    );
-  }
-}
+const CategoryImage = ({ category }: Props) => (
+  <CategoryImageWrapper>
+    <img src={`./img/${CATEGORY_IMAGE_MAP[category]}`} alt={category} />
+  </CategoryImageWrapper>
+);
 
 const CategoryImageWrapper = styled.div`
   display: flex;
