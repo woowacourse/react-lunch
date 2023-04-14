@@ -6,6 +6,7 @@ import RestaurantList from './components/RestaurantList';
 import SelectorSection from './components/SelectorSection';
 import mockData from './data/mockData.json';
 import Store from './store';
+import getSortingFilteredList from './utils/getSortingFilteredList';
 import type { Category, Restaurant } from './components/RestaurantItem/type';
 import type { Dispatch, SetStateAction } from 'react';
 
@@ -30,12 +31,9 @@ function App() {
 	const [restaurantList, setRestaurantList] = useState<Restaurant[]>(mock);
 
 	useEffect(() => {
-		const filteredList = category === '전체' ? mock : mock.filter((restaurant) => restaurant.category === category);
-		if (sortOption === '거리순') {
-			setRestaurantList(filteredList.sort((x, y) => Number(x.distance) - Number(y.distance)));
-		} else if (sortOption === '이름순') {
-			setRestaurantList(filteredList.sort((x, y) => x.name.localeCompare(y.name)));
-		}
+		const resultList = getSortingFilteredList(category, sortOption, mock);
+
+		setRestaurantList(resultList);
 	}, [category, sortOption]);
 
 	const value = useMemo(
