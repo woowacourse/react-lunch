@@ -1,9 +1,9 @@
-import { Category } from '../types/restaurant';
+import { Category } from '../../types/restaurant';
 
 import React from 'react';
 import styled from 'styled-components';
 
-import { CATEGORY_IMAGE_MAP } from '../constants';
+import { CATEGORY_IMAGE_MAP } from '../../constants';
 
 interface Props {
   category: Category;

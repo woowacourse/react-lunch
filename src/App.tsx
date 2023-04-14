@@ -1,10 +1,9 @@
 import { Restaurant } from './types/restaurant';
 
 import React, { useState } from 'react';
-import { Header, RestaurantList, RestaurantDetail } from './components';
+import { Header, RestaurantList, Modal, RestaurantDetail } from './components';
 
 import mockData from './mockData.json';
-import Modal from './components/Modal';
 
 const App = () => {
   if (!localStorage.getItem('restaurants')) {
