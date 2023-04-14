@@ -1,7 +1,12 @@
 import { Component } from 'react';
 import styled from 'styled-components';
+import type { RestaurantInfo } from '../types';
 import { ENGLISH_CATEGORY } from '../constants';
-import { RestaurantItem } from '../types';
+
+interface RestaurantItem {
+  restaurant: RestaurantInfo;
+  onClick: () => void;
+}
 
 class Restaurant extends Component<RestaurantItem> {
   render() {

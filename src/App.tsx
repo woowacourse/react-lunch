@@ -1,23 +1,29 @@
-import { Component } from "react";
-import restaurantMockData from "./mocks/restaurants.json";
-import { RestaurantApp, RestaurantInfo } from "./types";
-import Restaurants from "./components/Restaurants";
-import SelectBoxes from "./components/SelectBoxes";
-import HeaderSection from "./components/HeaderSection";
-import { CATEGORY, LANGUAGE, SORTING_SELECT } from "./constants";
+import { Component } from 'react';
+import restaurantMockData from './mocks/restaurants.json';
+import type { RestaurantInfo } from './types';
+import { CATEGORY, LANGUAGE, SORTING_SELECT } from './constants';
 import {
   getItemFromLocalStorage,
   setItemInLocalStorage,
-} from "./utils/localStorageHandler";
+} from './utils/localStorageHandler';
+import Restaurants from './components/Restaurants';
+import SelectBoxes from './components/SelectBoxes';
+import HeaderSection from './components/HeaderSection';
+
+interface RestaurantApp {
+  filteredRestaurants: RestaurantInfo[];
+  category: string;
+  sorting: string;
+}
 
 class App extends Component<{}, RestaurantApp> {
   state = {
     filteredRestaurants: this.filterBySelectedOptions(
-      getItemFromLocalStorage("category") ?? CATEGORY.ALL,
-      getItemFromLocalStorage("sorting") ?? SORTING_SELECT.NAME
+      getItemFromLocalStorage('category') ?? CATEGORY.ALL,
+      getItemFromLocalStorage('sorting') ?? SORTING_SELECT.NAME
     ),
-    category: getItemFromLocalStorage("category") ?? CATEGORY.ALL,
-    sorting: getItemFromLocalStorage("sorting") ?? SORTING_SELECT.NAME,
+    category: getItemFromLocalStorage('category') ?? CATEGORY.ALL,
+    sorting: getItemFromLocalStorage('sorting') ?? SORTING_SELECT.NAME,
   };
 
   handleCategorySelect = (value: string) => {
@@ -27,7 +33,7 @@ class App extends Component<{}, RestaurantApp> {
       category: value,
     });
 
-    setItemInLocalStorage("category", value);
+    setItemInLocalStorage('category', value);
   };
 
   handleSortingSelect = (value: string) => {
@@ -37,7 +43,7 @@ class App extends Component<{}, RestaurantApp> {
     );
     this.setState({ filteredRestaurants: filteredRestaurants, sorting: value });
 
-    setItemInLocalStorage("sorting", value);
+    setItemInLocalStorage('sorting', value);
   };
 
   sortRestaurantsByName(restaurants: RestaurantInfo[]) {

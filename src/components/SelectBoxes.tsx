@@ -1,7 +1,13 @@
-import { ChangeEvent, Component } from "react";
-import styled from "styled-components";
-import { RestaurantSelect } from "../types";
-import { CATEGORY, SORTING_SELECT } from "../constants";
+import { ChangeEvent, Component } from 'react';
+import styled from 'styled-components';
+import { CATEGORY, SORTING_SELECT } from '../constants';
+
+interface RestaurantSelect {
+  onChangeCategory: (event: string) => void;
+  onChangeSorting: (event: string) => void;
+  selectedCategory: string;
+  selectedSorting: string;
+}
 
 class SelectBoxes extends Component<RestaurantSelect> {
   handleCategorySelect = ({ target }: ChangeEvent<HTMLSelectElement>) => {
@@ -19,7 +25,7 @@ class SelectBoxes extends Component<RestaurantSelect> {
     return (
       <SelectBoxContainer>
         <SelectBox
-          name="category"
+          name='category'
           onChange={this.handleCategorySelect}
           value={this.props.selectedCategory}
         >
@@ -31,7 +37,7 @@ class SelectBoxes extends Component<RestaurantSelect> {
         </SelectBox>
 
         <SelectBox
-          name="sorting"
+          name='sorting'
           onChange={this.handleSortingSelect}
           value={this.props.selectedSorting}
         >

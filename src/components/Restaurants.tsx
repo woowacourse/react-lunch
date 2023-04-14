@@ -1,8 +1,13 @@
-import { Component, createRef, RefObject } from "react";
-import styled from "styled-components";
-import Restaurant from "./Restaurant";
-import { RestaurantInfo, RestaurantList } from "../types";
-import RestaurantInfoModal from "./RestaurantInfoModal";
+import { Component, createRef, RefObject } from 'react';
+import styled from 'styled-components';
+import type { RestaurantInfo } from '../types';
+import Restaurant from './Restaurant';
+import RestaurantInfoModal from './RestaurantInfoModal';
+
+interface RestaurantList {
+  restaurantList: RestaurantInfo[];
+  category: string;
+}
 
 class Restaurants extends Component<RestaurantList> {
   restaurantInfoModal: RefObject<HTMLDialogElement> = createRef();
