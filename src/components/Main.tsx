@@ -24,7 +24,7 @@ function Main() {
     });
   }, [restaurantList, setDataBeforeUnload]);
 
-  const handleRestaurantItem = (restaurant: Restaurant) => {
+  const updateSelectedRestaurant = (restaurant: Restaurant) => {
     setSelectedRestaurant(restaurant);
     openModal();
   };
@@ -32,7 +32,10 @@ function Main() {
   return (
     <main>
       <FilterSection onChange={updateCurrentRestaurantList} />
-      <RestaurantList restaurantList={currentRestaurantList} onItemClick={handleRestaurantItem} />
+      <RestaurantList
+        restaurantList={currentRestaurantList}
+        onItemClick={updateSelectedRestaurant}
+      />
 
       {isModalOpen && (
         <Modal onClick={handleModalCloseClick} onKeyPress={handleModalClosePress}>
