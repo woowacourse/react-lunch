@@ -21,3 +21,19 @@
 
 - [x] 초기값 세팅시에 localStorage 값 가져오기
 - [x] 초기값 설정하는 파일 혹은 메서드 따로 생성하기.
+
+---
+
+## Step2 요구사항
+
+### 피드백 반영
+
+- [ ] type 및 interface 네이밍 형식 변경
+- [ ] typeChecker 메서드 역할 변경하기
+- [ ] 절대 경로 설정하기
+- [ ] 에러 타입에 대해 좀 더 명시적인 값 보여주기
+
+### 요구 사항
+
+- [ ] Class Component -> Function Component로 변경하기.
+- [ ] custom hooks를 사용해서 재사용 기능을 분리한다.
