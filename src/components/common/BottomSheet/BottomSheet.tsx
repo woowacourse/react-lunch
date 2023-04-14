@@ -6,7 +6,7 @@ type BottomSheetProps = React.PropsWithChildren<{
   onClose: () => void;
 }>;
 
-const BottomSheet: React.FC<BottomSheetProps> = ({ isOpened, onClose, children }) => {
+const BottomSheet = ({ isOpened, onClose, children }: BottomSheetProps) => {
   const handleClickContainer: React.MouseEventHandler<HTMLDivElement> = (event) => {
     event.stopPropagation();
   };
