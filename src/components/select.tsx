@@ -7,36 +7,35 @@ import {
   SelectedValue,
 } from "../types/select";
 
-interface PropsType {
+interface SelectProps {
   name: SelectNameType;
   options: string[];
   handleSelect: (selected: SelectedValue) => void;
 }
 
-export class Select extends React.Component<PropsType> {
-  render() {
-    return (
-      <SelectContianer
-        onChange={(e) => {
-          const value = e.target.value as SortingUnion | CategoryUnion;
-          this.props.handleSelect({
-            type: this.props.name,
-            value: value,
-          });
-        }}>
-        {this.props.options.map((option: string) => {
-          return (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          );
-        })}
-      </SelectContianer>
-    );
-  }
-}
+export const Select = ({ name, options, handleSelect }: SelectProps) => {
+  return (
+    <SelectContainer
+      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = e.target.value as SortingUnion | CategoryUnion;
+        handleSelect({
+          type: name,
+          value: value,
+        });
+      }}
+    >
+      {options.map((option: string) => {
+        return (
+          <Option key={option} value={option}>
+            {option}
+          </Option>
+        );
+      })}
+    </SelectContainer>
+  );
+};
 
-const SelectContianer = styled.select`
+const SelectContainer = styled.select`
   height: 44px;
   min-width: 125px;
 
@@ -48,3 +47,5 @@ const SelectContianer = styled.select`
 
   font-size: 16px;
 `;
+
+const Option = styled.option``;
