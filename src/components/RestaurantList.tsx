@@ -1,86 +1,65 @@
 import { Category, Restaurant, SortingType } from '../types/restaurant';
 
-import React, { MouseEvent, ChangeEvent } from 'react';
+import React, { MouseEvent, ChangeEvent, useState } from 'react';
 import { RestaurantItem } from './';
 import styled from 'styled-components';
 
-import { CATEGORIES, SORTING_TYPES } from '../constants';
 import filterRestaurants from '../domain/filterRestaurants';
+import { CATEGORIES, SORTING_TYPES } from '../constants';
 
 interface Props {
   restaurants: Restaurant[];
   openModal: (id: Restaurant['id']) => void;
 }
 
-interface State {
-  category: Category | '전체';
-  sortingType: SortingType;
-}
+const RestaurantList = ({ restaurants, openModal }: Props) => {
+  const [category, setCategory] = useState<Category | '전체'>('전체');
+  const [sortingType, setSortingType] = useState<SortingType>('이름순');
+  const filteredRestaurants = filterRestaurants(restaurants, category, sortingType);
 
-class RestaurantList extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      category: '전체',
-      sortingType: '이름순'
-    };
-  }
-
-  openDetailModal = (e: MouseEvent) => {
+  const openDetailModal = (e: MouseEvent) => {
     if (!(e.target instanceof HTMLElement)) return;
 
     const $li = e.target.closest('li');
-    if ($li) this.props.openModal($li.id as Restaurant['id']);
+    if ($li) openModal($li.id as Restaurant['id']);
   };
 
-  onChangeCategory = (e: ChangeEvent) => {
+  const onChangeSelect = (e: ChangeEvent) => {
     if (!(e.target instanceof HTMLSelectElement)) return;
-
-    const category = e.target.value as Category;
-    this.setState({ category });
+    const { name, value } = e.target;
+    if (name === 'category') setCategory(value as Category);
+    if (name === 'sorting') setSortingType(value as SortingType);
   };
 
-  onChangeSortingType = (e: ChangeEvent) => {
-    if (!(e.target instanceof HTMLSelectElement)) return;
+  return (
+    <main>
+      <FilterContainer>
+        <select name="category" onChange={onChangeSelect}>
+          {['전체', ...CATEGORIES].map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+        <select name="sorting" onChange={onChangeSelect}>
+          {SORTING_TYPES.map((sortingType, index) => (
+            <option key={index} value={sortingType}>
+              {sortingType}
+            </option>
+          ))}
+        </select>
+      </FilterContainer>
 
-    const sortingType = e.target.value as SortingType;
-    this.setState({ sortingType });
-  };
-
-  render() {
-    const { category, sortingType } = this.state;
-    const restaurants = filterRestaurants(this.props.restaurants, category, sortingType);
-
-    return (
-      <main>
-        <FilterContainer>
-          <select name="category" id="category-filter" onChange={this.onChangeCategory}>
-            {['전체', ...CATEGORIES].map((category, index) => (
-              <option key={index} value={category}>
-                {category}
-              </option>
-            ))}
-          </select>
-          <select name="sorting" id="sorting-filter" onChange={this.onChangeSortingType}>
-            {SORTING_TYPES.map((sortingType, index) => (
-              <option key={index} value={sortingType}>
-                {sortingType}
-              </option>
-            ))}
-          </select>
-        </FilterContainer>
-
-        <RestaurantListContainer>
-          <ul onClick={this.openDetailModal}>
-            {restaurants.map((restaurant) => (
-              <RestaurantItem key={restaurant.id} restaurant={restaurant} />
-            ))}
-          </ul>
-        </RestaurantListContainer>
-      </main>
-    );
-  }
-}
+      <RestaurantListContainer>
+        <ul onClick={openDetailModal}>
+          {filteredRestaurants.map((restaurant) => (
+            <RestaurantItem key={restaurant.id} restaurant={restaurant} />
+          ))}
+        </ul>
+      </RestaurantListContainer>
+    </main>
+  );
+};
 
 export default RestaurantList;
 
