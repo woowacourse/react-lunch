@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useContext } from 'react';
 import Store from '../../store';
-import { Category } from '../RestaurantItem/type';
 import styles from './SelectorSection.module.css';
+import type { Category } from '../RestaurantItem/type';
 
 function CategorySelector() {
 	const { setCategory } = useContext(Store);
