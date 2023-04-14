@@ -1,53 +1,40 @@
-import { useModal } from '../../../hooks/useModal';
 import './style.css';
-import { KeyboardEvent, MouseEvent, ReactNode, useEffect, useRef } from 'react';
+import { MouseEvent, ReactNode, memo, useEffect, useRef } from 'react';
+import { useModal } from '../../../hooks/useModal';
 
 interface ModalProps {
   children: ReactNode;
-  isModalOpen: boolean;
-  close: CallableFunction;
+  onClose: CallableFunction;
 }
 
-function Modal({ children, isModalOpen, close }: ModalProps) {
-  console.log('rendering Modal');
-
-  const { isOpen, handleClose, handleKeyPress } = useModal();
-
+function Modal({ children, onClose }: ModalProps) {
   const modalContainerRef = useRef<HTMLDivElement>(null);
 
+  const { isOpen, open, handleCloseClick, handleClosePress } = useModal();
+
   useEffect(() => {
-    if (modalContainerRef.current && isModalOpen) {
+    open();
+
+    if (modalContainerRef.current) {
       modalContainerRef.current.focus();
     }
-  }, [isModalOpen]);
+  }, [open]);
 
-  // const handleClose = (event: MouseEvent<HTMLElement>) => {
-  //   const target = event.target as HTMLElement;
-
-  //   if (
-  //     target.classList.contains('modal-backdrop') ||
-  //     target.classList.contains('modal-close-button')
-  //   ) {
-  //     close();
-  //   }
-  // };
-
-  // const handleKeyPress = (event: KeyboardEvent<HTMLElement>) => {
-  //   if (event.key === 'Escape') {
-  //     close();
-  //   }
-  // };
+  const handleClose = (event: MouseEvent<HTMLElement>) => {
+    handleCloseClick(event);
+    onClose();
+  };
 
   return (
     <>
-      {isModalOpen && (
+      {isOpen && (
         <div className="modal" onClick={handleClose}>
           <div className="modal-backdrop" />
           <div
             ref={modalContainerRef}
             className="modal-container"
-            onKeyDown={handleKeyPress}
-            tabIndex={1}
+            onKeyDown={handleClosePress}
+            tabIndex={0}
           >
             {children}
             <button className="button button--primary text-caption modal-close-button">닫기</button>
@@ -58,4 +45,4 @@ function Modal({ children, isModalOpen, close }: ModalProps) {
   );
 }
 
-export default Modal;
+export default memo(Modal);

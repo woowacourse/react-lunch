@@ -13,9 +13,8 @@ const useModal = () => {
     document.body.classList.remove('hide-overflow');
   }, []);
 
-  const handleClose = (event: MouseEvent<HTMLElement>) => {
+  const handleCloseClick = (event: MouseEvent<HTMLElement>) => {
     const target = event.target as HTMLElement;
-    console.log('!!');
 
     if (
       target.classList.contains('modal-backdrop') ||
@@ -25,13 +24,13 @@ const useModal = () => {
     }
   };
 
-  const handleKeyPress = (event: KeyboardEvent<HTMLElement>) => {
+  const handleClosePress = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === 'Escape') {
       close();
     }
   };
 
-  return { isOpen, open, close, handleClose, handleKeyPress };
+  return { isOpen, open, close, handleCloseClick, handleClosePress };
 };
 
 export { useModal };

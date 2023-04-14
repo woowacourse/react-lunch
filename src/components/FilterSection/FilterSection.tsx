@@ -23,6 +23,7 @@ function FilterSection({ onChange }: FilterSectionProps) {
   });
 
   const handleSelectChange = (option: FilterOption) => {
+    console.log(displayStatus);
     const updatedDisplayStatus = {
       ...displayStatus,
       ...option,

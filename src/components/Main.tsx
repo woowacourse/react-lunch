@@ -13,7 +13,6 @@ const restaurantList = filterAndSortRestaurantList(getRestaurantListData());
 function Main() {
   const [currentRestaurantList, setCurrentRestaurantList] = useState(restaurantList);
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     window.addEventListener('beforeunload', () => {
@@ -27,23 +26,9 @@ function Main() {
     setCurrentRestaurantList(updatedRestaurantList);
   }, []);
 
-  const openModal = useCallback(() => {
-    setIsModalOpen(true);
-    document.body.classList.add('hide-overflow');
+  const updateSelectedRestaurant = useCallback((restaurant: Restaurant) => {
+    setSelectedRestaurant(restaurant);
   }, []);
-
-  const closeModal = useCallback(() => {
-    setIsModalOpen(false);
-    document.body.classList.remove('hide-overflow');
-  }, []);
-
-  const updateSelectedRestaurant = useCallback(
-    (restaurant: Restaurant) => {
-      setSelectedRestaurant(restaurant);
-      openModal();
-    },
-    [openModal]
-  );
 
   return (
     <main>
@@ -52,9 +37,11 @@ function Main() {
         restaurantList={currentRestaurantList}
         onItemClick={updateSelectedRestaurant}
       />
-      <Modal isModalOpen={isModalOpen} close={closeModal}>
-        {selectedRestaurant && <RestaurantDetail restaurant={selectedRestaurant} />}
-      </Modal>
+      {selectedRestaurant && (
+        <Modal onClose={() => setSelectedRestaurant(null)}>
+          <RestaurantDetail restaurant={selectedRestaurant} />
+        </Modal>
+      )}
     </main>
   );
 }
