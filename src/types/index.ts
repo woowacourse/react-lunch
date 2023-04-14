@@ -10,19 +10,3 @@ export interface Restaurant {
   description: string;
   link: string;
 }
-
-export interface ModalProps {
-  children?: React.ReactNode;
-}
-
-export interface ModalState {
-  children?: React.ReactNode;
-}
-
-export interface DetailModalProps extends ModalProps {
-  data: Restaurant;
-}
-
-export interface DetailModalState extends ModalState {
-  data: Restaurant;
-}
