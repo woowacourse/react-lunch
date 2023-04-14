@@ -1,10 +1,11 @@
 import './style.css';
-import { MouseEvent, ReactNode, memo, useEffect, useRef } from 'react';
+import { Dispatch, MouseEvent, ReactNode, SetStateAction, memo, useEffect, useRef } from 'react';
+import { Restaurant } from '../../../types';
 import { useModal } from '../../../hooks/useModal';
 
 interface ModalProps {
   children: ReactNode;
-  onClose: CallableFunction;
+  onClose: Dispatch<SetStateAction<Restaurant | null>>;
 }
 
 function Modal({ children, onClose }: ModalProps) {
@@ -22,7 +23,7 @@ function Modal({ children, onClose }: ModalProps) {
 
   const handleClose = (event: MouseEvent<HTMLElement>) => {
     handleCloseClick(event);
-    onClose();
+    onClose(null);
   };
 
   return (

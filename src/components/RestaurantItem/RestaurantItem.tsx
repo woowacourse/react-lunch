@@ -1,10 +1,11 @@
 import './style.css';
+import { Dispatch, SetStateAction } from 'react';
 import { Restaurant } from '../../types';
 import { RESTAURANT_IMAGE } from '../../constants/images';
 
 interface RestaurantItemProps {
   restaurant: Restaurant;
-  onClick: (restaurant: Restaurant) => void;
+  onClick: Dispatch<SetStateAction<Restaurant | null>>;
 }
 
 function RestaurantItem({ restaurant, onClick }: RestaurantItemProps) {

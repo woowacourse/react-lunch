@@ -1,11 +1,11 @@
 import './style.css';
-import { memo } from 'react';
+import { Dispatch, SetStateAction, memo } from 'react';
 import { Restaurant } from '../../types';
 import RestaurantItem from '../RestaurantItem/RestaurantItem';
 
 interface RestaurantListProps {
   restaurantList: Restaurant[];
-  onItemClick: (restaurant: Restaurant) => void;
+  onItemClick: Dispatch<SetStateAction<Restaurant | null>>;
 }
 
 function RestaurantList({ restaurantList, onItemClick }: RestaurantListProps) {
