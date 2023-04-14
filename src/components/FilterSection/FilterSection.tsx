@@ -11,7 +11,7 @@ import {
 import Select from '../common/Select/Select';
 
 interface FilterSectionProps {
-  onChange: CallableFunction;
+  onChange: (displayStatus: FilterOption) => void;
 }
 
 function FilterSection({ onChange }: FilterSectionProps) {
