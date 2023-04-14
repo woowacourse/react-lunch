@@ -1,5 +1,5 @@
 import './style.css';
-import { memo, useState } from 'react';
+import { ChangeEvent, memo, useState } from 'react';
 import { FilterOption } from '../../types';
 import {
   DEFAULT_CATEGORY,
@@ -8,6 +8,7 @@ import {
   SELECT_ATTRIBUTES,
   SORT_BY,
 } from '../../constants';
+import { isElementOfType } from '../../utils/eventUtils';
 import Select from '../common/Select/Select';
 
 interface FilterSectionProps {
@@ -20,10 +21,12 @@ function FilterSection({ onChange }: FilterSectionProps) {
     sortBy: DEFAULT_SORT_BY,
   });
 
-  const handleSelectChange = (option: FilterOption) => {
+  const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    if (!isElementOfType<HTMLSelectElement>(event)) return;
+
     const updatedDisplayStatus = {
       ...displayStatus,
-      ...option,
+      [event.target.name]: event.target.value,
     };
 
     setDisplayStatus(updatedDisplayStatus);
@@ -33,14 +36,14 @@ function FilterSection({ onChange }: FilterSectionProps) {
   return (
     <section className="restaurant-filter-container">
       <Select
-        attributes={SELECT_ATTRIBUTES.CATEGORY_FILTER}
         options={RESTAURANT_CATEGORY_OPTION}
         onChange={handleSelectChange}
+        {...SELECT_ATTRIBUTES.CATEGORY_FILTER}
       />
       <Select
-        attributes={SELECT_ATTRIBUTES.SORT_BY_FILTER}
         options={SORT_BY}
         onChange={handleSelectChange}
+        {...SELECT_ATTRIBUTES.SORT_BY_FILTER}
       />
     </section>
   );
