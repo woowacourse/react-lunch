@@ -3,10 +3,10 @@ import { FilterOption, Restaurant } from '../types';
 import { saveToLocalStorage } from '../utils/localStorage';
 import { getRestaurantListData } from '../data/restaurantListData';
 import { filterAndSortRestaurantList } from '../domains/restaurantUtil';
-import FilterSection from './FilterSection';
-import RestaurantList from './RestaurantList';
-import Modal from './Modal';
-import RestaurantDetail from './RestaurantDetail';
+import FilterSection from './FilterSection/FilterSection';
+import RestaurantList from './RestaurantList/RestaurantList';
+import Modal from './common/Modal/Modal';
+import RestaurantDetail from './RestaurantDetail/RestaurantDetail';
 
 const restaurantList = filterAndSortRestaurantList(getRestaurantListData());
 

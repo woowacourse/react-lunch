@@ -2,7 +2,7 @@ import './style.css';
 import { MouseEvent } from 'react';
 import { Restaurant } from '../../types';
 import { RESTAURANT_LI_ELEMENT } from '../../constants';
-import RestaurantItem from '../RestaurantItem';
+import RestaurantItem from '../RestaurantItem/RestaurantItem';
 
 interface RestaurantListProps {
   restaurantList: Restaurant[];

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import RestaurantItem from '../components/RestaurantItem';
-import RestaurantList from '../components/RestaurantList';
+import RestaurantItem from '../components/RestaurantItem/RestaurantItem';
+import RestaurantList from '../components/RestaurantList/RestaurantList';
 import mockData from '../data/mockRestaurantData';
 
 describe('음식점 리스트 렌더링 테스트', () => {
