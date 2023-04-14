@@ -1,5 +1,3 @@
-import { Component } from 'react';
-
 import RestaurantItem from './RestaurantItem';
 import './RestaurantList.css';
 import { Restaurant } from '../../types';
@@ -9,20 +7,16 @@ type RestaurantListProps = {
   onClick: (restaurantId: number) => void;
 };
 
-export default class RestaurantList extends Component<RestaurantListProps> {
-  render() {
-    return (
-      <section className="restaurant-list-container">
-        <ul>
-          {this.props.restaurants.map((restaurant) => (
-            <RestaurantItem
-              restaurant={restaurant}
-              onClick={this.props.onClick}
-              key={restaurant.id}
-            />
-          ))}
-        </ul>
-      </section>
-    );
-  }
-}
+const RestaurantList = ({ restaurants, onClick }: RestaurantListProps) => {
+  return (
+    <section className="restaurant-list-container">
+      <ul>
+        {restaurants.map((restaurant) => (
+          <RestaurantItem restaurant={restaurant} onClick={onClick} key={restaurant.id} />
+        ))}
+      </ul>
+    </section>
+  );
+};
+
+export default RestaurantList;
