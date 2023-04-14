@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { RestaurantState } from '../types/component';
+import { Restaurant } from '../types';
 import { saveToLocalStorage } from '../utils/localStorage';
 import { getRestaurantListData } from '../data/restaurantListData';
 import { filterAndSortRestaurantList } from '../domains/restaurantUtil';
@@ -8,8 +8,15 @@ import RestaurantList from './RestaurantList';
 import Modal from './Modal';
 import RestaurantDetail from './RestaurantDetail';
 
-class Restaurant extends Component {
-  state: RestaurantState;
+interface MainState {
+  restaurantList: Restaurant[];
+  currentRestaurantList: Restaurant[];
+  selectedRestaurant: Restaurant | null;
+  isModalOpen: boolean;
+}
+
+class Main extends Component {
+  state: MainState;
 
   constructor(props: {}) {
     super(props);
@@ -77,4 +84,4 @@ class Restaurant extends Component {
   }
 }
 
-export default Restaurant;
+export default Main;
