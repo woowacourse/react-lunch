@@ -3,18 +3,14 @@ import styled from 'styled-components';
 
 import { textTitle } from '../style/mixin';
 
-class Header extends React.Component {
-  render() {
-    return (
-      <HeaderWrapper>
-        <h1>점심 뭐 먹지</h1>
-        <AddRestaurantButton>
-          <img src="./img/add-button.png" alt="add-restaurant-button" />
-        </AddRestaurantButton>
-      </HeaderWrapper>
-    );
-  }
-}
+const Header = () => (
+  <HeaderWrapper>
+    <h1>점심 뭐 먹지</h1>
+    <AddRestaurantButton>
+      <img src="./img/add-button.png" alt="add-restaurant-button" />
+    </AddRestaurantButton>
+  </HeaderWrapper>
+);
 
 export default Header;
 
