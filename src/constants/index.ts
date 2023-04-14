@@ -8,8 +8,6 @@ const SORT_BY = ['이름순', '거리순'] as const;
 
 const RESTAURANT_CATEGORY_OPTION = [DEFAULT_CATEGORY, ...RESTAURANT_CATEGORY];
 
-const RESTAURANT_LI_ELEMENT = '.restaurant[data-id]';
-
 const SELECT_ATTRIBUTES = {
   CATEGORY_FILTER: {
     id: 'category-filter',
@@ -30,6 +28,5 @@ export {
   SORT_BY,
   RESTAURANT_CATEGORY_OPTION,
   LOCAL_STORAGE_KEY,
-  RESTAURANT_LI_ELEMENT,
   SELECT_ATTRIBUTES,
 };

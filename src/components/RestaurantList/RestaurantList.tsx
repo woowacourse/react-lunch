@@ -1,35 +1,22 @@
 import './style.css';
-import { MouseEvent } from 'react';
 import { Restaurant } from '../../types';
-import { RESTAURANT_LI_ELEMENT } from '../../constants';
 import RestaurantItem from '../RestaurantItem/RestaurantItem';
 
 interface RestaurantListProps {
   restaurantList: Restaurant[];
-  onItemClick: CallableFunction;
+  onItemClick: (restaurant: Restaurant) => void;
 }
 
 function RestaurantList({ restaurantList, onItemClick }: RestaurantListProps) {
-  const handleItemClick = (event: MouseEvent<HTMLElement>) => {
-    const target = event.target as HTMLElement;
-    const item = target.closest(RESTAURANT_LI_ELEMENT);
-
-    if (item instanceof HTMLLIElement) {
-      onItemClick(Number(item.dataset.id));
-    }
-  };
-
   const createRestaurantItemElements = () => {
     return restaurantList.map((restaurant) => (
-      <RestaurantItem key={restaurant.id} restaurant={restaurant} />
+      <RestaurantItem key={restaurant.id} restaurant={restaurant} onClick={onItemClick} />
     ));
   };
 
   return (
     <section className="restaurant-list-container">
-      <ul className="restaurant-list" onClick={handleItemClick}>
-        {createRestaurantItemElements()}
-      </ul>
+      <ul className="restaurant-list">{createRestaurantItemElements()}</ul>
     </section>
   );
 }

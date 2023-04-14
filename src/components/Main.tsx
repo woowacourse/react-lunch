@@ -37,12 +37,8 @@ function Main() {
     document.body.classList.remove('hide-overflow');
   };
 
-  const updateSelectedRestaurant = (id: number) => {
-    const selected = currentRestaurantList.find((restaurant) => restaurant.id === id);
-
-    if (!selected) return;
-
-    setSelectedRestaurant(selected);
+  const updateSelectedRestaurant = (restaurant: Restaurant) => {
+    setSelectedRestaurant(restaurant);
     openModal();
   };
 

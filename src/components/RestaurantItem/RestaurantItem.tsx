@@ -4,11 +4,12 @@ import { RESTAURANT_IMAGE } from '../../constants/images';
 
 interface RestaurantItemProps {
   restaurant: Restaurant;
+  onClick: (restaurant: Restaurant) => void;
 }
 
-function RestaurantItem({ restaurant }: RestaurantItemProps) {
+function RestaurantItem({ restaurant, onClick }: RestaurantItemProps) {
   return (
-    <li className="restaurant" data-id={restaurant.id}>
+    <li className="restaurant" data-id={restaurant.id} onClick={() => onClick(restaurant)}>
       <div className="restaurant__category">
         <img
           src={RESTAURANT_IMAGE[restaurant.category]}
