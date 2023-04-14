@@ -3,20 +3,15 @@ import { createPortal } from 'react-dom';
 import Store from '../../store';
 import RestaurantItem from '../RestaurantItem';
 import styles from './Modal.module.css';
-import type { State } from '../../App';
-import type { Restaurant } from '../RestaurantItem/type';
 
 function Modal() {
-	const { isModalOpen, setIsModalOpen, restaurantList, modalId } = useContext(Store) as State;
-
+	const { isModalOpen, setIsModalOpen, restaurantList, modalId } = useContext(Store);
+	const restaurant = restaurantList?.find((item) => item.id === modalId);
 	return createPortal(
 		<dialog open={isModalOpen}>
 			<div className={styles.modalBackdrop} />
 			<div className={styles.modal}>
-				<RestaurantItem
-					restaurant={restaurantList?.find((restaurant) => restaurant.id === modalId) as Restaurant}
-					isModal
-				/>
+				{restaurant && <RestaurantItem restaurant={restaurant} isModal />}
 				<button
 					type="button"
 					onClick={() => {

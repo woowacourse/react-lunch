@@ -1,10 +1,10 @@
 import React, { ChangeEvent, useContext } from 'react';
 import Store from '../../store';
 import styles from './SelectorSection.module.css';
-import type { Sort, State } from '../../App';
+import type { Sort } from '../../App';
 
 function SortedSelector() {
-	const { setSortOption } = useContext(Store) as State;
+	const { setSortOption } = useContext(Store);
 	const handleSortedSelector = (e: ChangeEvent<HTMLSelectElement>) => {
 		setSortOption(e.target.value as Sort);
 	};

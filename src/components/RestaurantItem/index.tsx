@@ -7,12 +7,16 @@ import categoryKorean from '../../assets/category-korean.png';
 import categoryWestern from '../../assets/category-western.png';
 import Store from '../../store';
 import styles from './RestaurantItem.module.css';
-import type { Category } from './type';
-import type { State } from '../../App';
+import type { Category, Restaurant } from './type';
 
-function RestaurantItem(props: any) {
-	const { restaurant, isModal } = props;
-	const { setModalId, setIsModalOpen } = useContext(Store) as State;
+interface Props {
+	restaurant: Restaurant;
+	isModal: boolean;
+}
+
+function RestaurantItem({ restaurant, isModal }: Props) {
+	const { setModalId, setIsModalOpen } = useContext(Store);
+
 	const makeCategoryImgPath = (category: Category) => {
 		switch (category) {
 			case '한식':
@@ -29,8 +33,6 @@ function RestaurantItem(props: any) {
 				return categoryEtc;
 		}
 	};
-
-	if (restaurant === undefined) return <>no result</>;
 
 	return (
 		<li

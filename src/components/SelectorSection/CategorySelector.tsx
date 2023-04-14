@@ -2,10 +2,9 @@ import React, { ChangeEvent, useContext } from 'react';
 import Store from '../../store';
 import { Category } from '../RestaurantItem/type';
 import styles from './SelectorSection.module.css';
-import type { State } from '../../App';
 
 function CategorySelector() {
-	const { setCategory } = useContext(Store) as State;
+	const { setCategory } = useContext(Store);
 
 	const handleCategorySelector = (e: ChangeEvent<HTMLSelectElement>) => {
 		setCategory(e.target.value as Category);
