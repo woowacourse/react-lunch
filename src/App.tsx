@@ -5,23 +5,13 @@ import ItemList from './components/ItemList';
 import Selector from './components/Selector';
 import mockData from './mockData/restaurantList.json';
 import { AppState, Restaurant } from './utils/interfaces';
-import { parseJson } from './utils/json';
 import { SelectorCategory, SelectorFilter } from './utils/types';
 import { sortingByCategory, sortingByFilter } from './domain/restaurantSort';
 import { CATEGORY_OPTIONS, FILTER_OPTIONS } from './utils/constants';
-import { localStorageGetItem } from './utils/localStorage';
-import { typePredicates } from './utils/typeCheck';
 
 function App() {
-  const localStorageSavedList = typePredicates<Array<Restaurant>>({
-    data: parseJson(JSON.stringify(localStorageGetItem('restaurantList'))),
-    initialData: [],
-  });
-
-  const restaurantMockDataList = typePredicates<Array<Restaurant>>({
-    data: mockData.restaurantList,
-    initialData: [],
-  });
+  const localStorageSavedList = JSON.parse(localStorage.getItem('restaurantList') ?? '') as Array<Restaurant>;
+  const restaurantMockDataList = mockData.restaurantList as Array<Restaurant>;
 
   const wholeList = [...localStorageSavedList, ...restaurantMockDataList];
   const currentList = sortingByFilter('이름순', wholeList);
