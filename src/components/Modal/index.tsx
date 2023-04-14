@@ -1,5 +1,5 @@
 import './style.css';
-import { Component, KeyboardEvent, MouseEvent, ReactNode, RefObject, createRef } from 'react';
+import { KeyboardEvent, MouseEvent, ReactNode, useRef } from 'react';
 
 interface ModalProps {
   children: ReactNode;
@@ -7,16 +7,12 @@ interface ModalProps {
   close: CallableFunction;
 }
 
-class Modal extends Component<ModalProps> {
-  modalContainerRef: RefObject<HTMLDivElement>;
+function Modal({ children, isModalOpen, close }: ModalProps) {
+  const modalContainerRef = useRef<HTMLDivElement>(null);
 
-  constructor(props: ModalProps) {
-    super(props);
-
-    this.modalContainerRef = createRef();
-  }
-
-  shouldComponentUpdate(nextProps: ModalProps) {
+  /*
+  
+    shouldComponentUpdate(nextProps: ModalProps) {
     return this.props.isModalOpen !== nextProps.isModalOpen;
   }
 
@@ -25,48 +21,44 @@ class Modal extends Component<ModalProps> {
       this.modalContainerRef.current.focus();
     }
   }
+  
+  */
 
-  handleClose = (event: MouseEvent<HTMLElement>) => {
+  const handleClose = (event: MouseEvent<HTMLElement>) => {
     const target = event.target as HTMLElement;
 
     if (
       target.classList.contains('modal-backdrop') ||
       target.classList.contains('modal-close-button')
     ) {
-      this.props.close();
+      close();
     }
   };
 
-  handleKeyPress = (event: KeyboardEvent<HTMLElement>) => {
+  const handleKeyPress = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === 'Escape') {
-      this.props.close();
+      close();
     }
   };
 
-  render() {
-    const { isModalOpen } = this.props;
-
-    return (
-      <>
-        {isModalOpen && (
-          <div className="modal" onClick={this.handleClose}>
-            <div className="modal-backdrop" />
-            <div
-              ref={this.modalContainerRef}
-              className="modal-container"
-              onKeyDown={this.handleKeyPress}
-              tabIndex={1}
-            >
-              {this.props.children}
-              <button className="button button--primary text-caption modal-close-button">
-                닫기
-              </button>
-            </div>
+  return (
+    <>
+      {isModalOpen && (
+        <div className="modal" onClick={handleClose}>
+          <div className="modal-backdrop" />
+          <div
+            ref={modalContainerRef}
+            className="modal-container"
+            onKeyDown={handleKeyPress}
+            tabIndex={1}
+          >
+            {children}
+            <button className="button button--primary text-caption modal-close-button">닫기</button>
           </div>
-        )}
-      </>
-    );
-  }
+        </div>
+      )}
+    </>
+  );
 }
 
 export default Modal;
