@@ -6,7 +6,7 @@
   height: 100%;
 }
 
-.modal-backdrop {
+.modalBackdrop {
   position: fixed;
   top: 0;
   right: 0;
@@ -18,7 +18,7 @@
   cursor: pointer;
 }
 
-.modal-container {
+.modalContainer {
   position: fixed;
   left: 0;
   bottom: 0;
@@ -31,22 +31,6 @@
 
   border: none;
   outline: 0;
-}
-
-.restaurant__information {
-  display: flex;
-  align-items: center;
-}
-
-.restaurant-detail__description {
-  margin-top: 32px;
-}
-
-.restaurant__link {
-  display: block;
-  margin-top: 24px;
-  color: var(--darken-color-2);
-  cursor: pointer;
 }
 
 .modal button {

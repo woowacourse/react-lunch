@@ -1,4 +1,4 @@
-.restaurant-filter-container {
+.restaurantFilterContainer {
   display: flex;
   justify-content: space-between;
 
@@ -6,7 +6,7 @@
   margin-top: 24px;
 }
 
-.restaurant-filter-container select {
+.restaurantFilterContainer select {
   height: 44px;
   min-width: 125px;
 
@@ -17,6 +17,6 @@
   font-size: 16px;
 }
 
-.restaurant-filter {
+.restaurantFilter {
   padding: 8px;
 }

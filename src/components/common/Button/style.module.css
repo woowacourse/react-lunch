@@ -15,31 +15,31 @@ button:last-child {
   margin-right: 0;
 }
 
-.button--secondary {
+.buttonSecondary {
   border: 1px solid var(--grey-300);
   background: transparent;
 
   color: var(--grey-300);
 }
 
-.button--secondary:hover {
+.buttonSecondary:hover {
   background: var(--grey-150);
 }
 
-.button--secondary:active {
+.buttonSecondary:active {
   background: #dce1e8;
 }
 
-.button--primary {
+.buttonPrimary {
   background: var(--primary-color);
 
   color: var(--grey-100);
 }
 
-.button--primary:hover {
+.buttonPrimary:hover {
   background: var(--darken-color-2);
 }
 
-.button--primary:active {
+.buttonPrimary:active {
   background: var(--darken-color-1);
 }

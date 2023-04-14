@@ -1,4 +1,4 @@
-import './style.css';
+import styles from './style.module.css';
 import { KeyboardEvent, MouseEvent, ReactNode, memo, useEffect, useRef } from 'react';
 
 interface ModalProps {
@@ -17,9 +17,14 @@ function Modal({ children, onClick, onKeyPress }: ModalProps) {
   }, []);
 
   return (
-    <div className="modal" onClick={onClick}>
-      <div className="modal-backdrop" />
-      <div ref={modalContainerRef} className="modal-container" onKeyDown={onKeyPress} tabIndex={0}>
+    <div className={styles.modal} onClick={onClick}>
+      <div className={`${styles.modalBackdrop} modal-backdrop`} />
+      <div
+        ref={modalContainerRef}
+        className={styles.modalContainer}
+        onKeyDown={onKeyPress}
+        tabIndex={0}
+      >
         {children}
       </div>
     </div>

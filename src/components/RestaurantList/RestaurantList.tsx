@@ -1,4 +1,4 @@
-import './style.css';
+import styles from './style.module.css';
 import { memo } from 'react';
 import { Restaurant } from '../../types';
 import RestaurantItem from '../RestaurantItem/RestaurantItem';
@@ -16,7 +16,7 @@ function RestaurantList({ restaurantList, onItemClick }: RestaurantListProps) {
   };
 
   return (
-    <section className="restaurant-list-container">
+    <section className={styles.restaurantListContainer}>
       <ul className="restaurant-list">{createRestaurantItemElements()}</ul>
     </section>
   );

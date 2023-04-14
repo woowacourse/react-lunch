@@ -29,6 +29,8 @@ function Main() {
     openModal();
   };
 
+  console.log(isModalOpen);
+
   return (
     <main>
       <FilterSection onChange={updateCurrentRestaurantList} />

@@ -9,7 +9,7 @@
   cursor: pointer;
 }
 
-.restaurant__category {
+.restaurantCategory {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,33 +24,33 @@
   background: var(--lighten-color);
 }
 
-.category-icon {
+.categoryIcon {
   width: 36px;
   height: 36px;
 }
 
-.restaurant__info-container {
+.restaurantInfoContainer {
   width: 100%;
 
   display: flex;
   justify-content: space-between;
 }
 
-.restaurant__info {
+.restaurantInfo {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.restaurant__name {
+.restaurantName {
   margin: 0;
 }
 
-.restaurant__distance {
+.restaurantDistance {
   color: var(--primary-color);
 }
 
-.restaurant__description {
+.restaurantDescription {
   display: -webkit-box;
 
   padding-top: 8px;

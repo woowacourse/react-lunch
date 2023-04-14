@@ -1,4 +1,4 @@
-import './style.css';
+import styles from './style.module.css';
 import { ChangeEvent, memo, useState } from 'react';
 import { FilterOption } from '../../types';
 import {
@@ -34,15 +34,17 @@ function FilterSection({ onChange }: FilterSectionProps) {
   };
 
   return (
-    <section className="restaurant-filter-container">
+    <section className={styles.restaurantFilterContainer}>
       <Select
         options={RESTAURANT_CATEGORY_OPTION}
         onChange={handleSelectChange}
+        classStyle={styles.restaurantFilter}
         {...SELECT_ATTRIBUTES.CATEGORY_FILTER}
       />
       <Select
         options={SORT_BY}
         onChange={handleSelectChange}
+        classStyle={styles.restaurantFilter}
         {...SELECT_ATTRIBUTES.SORT_BY_FILTER}
       />
     </section>
