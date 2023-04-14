@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import type { RestaurantInfo } from '../types';
 import { ENGLISH_CATEGORY } from '../constants';
 
-interface RestaurantItem {
+interface RestaurantItemProps {
   restaurant: RestaurantInfo;
   onClick: () => void;
 }
 
-class Restaurant extends Component<RestaurantItem> {
+class RestaurantItem extends Component<RestaurantItemProps> {
   render() {
     const { restaurant: restaurantInfo } = this.props;
 
@@ -76,4 +76,4 @@ const Description = styled.p`
   color: var(--grey-300);
 `;
 
-export default Restaurant;
+export default RestaurantItem;

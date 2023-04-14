@@ -6,17 +6,17 @@ import {
   getItemFromLocalStorage,
   setItemInLocalStorage,
 } from './utils/localStorageHandler';
-import Restaurants from './components/Restaurants';
-import SelectBoxes from './components/SelectBoxes';
+import RestaurantList from './components/RestaurantList';
+import RestaurantSelect from './components/RestaurantSelect';
 import HeaderSection from './components/HeaderSection';
 
-interface RestaurantApp {
+interface RestaurantAppProps {
   filteredRestaurants: RestaurantInfo[];
   category: string;
   sorting: string;
 }
 
-class App extends Component<{}, RestaurantApp> {
+class App extends Component<{}, RestaurantAppProps> {
   state = {
     filteredRestaurants: this.filterBySelectedOptions(
       getItemFromLocalStorage('category') ?? CATEGORY.ALL,
@@ -78,13 +78,13 @@ class App extends Component<{}, RestaurantApp> {
     return (
       <>
         <HeaderSection></HeaderSection>
-        <SelectBoxes
+        <RestaurantSelect
           onChangeCategory={this.handleCategorySelect}
           onChangeSorting={this.handleSortingSelect}
           selectedCategory={this.state.category}
           selectedSorting={this.state.sorting}
         />
-        <Restaurants
+        <RestaurantList
           restaurantList={this.state.filteredRestaurants}
           category={this.state.category}
         />

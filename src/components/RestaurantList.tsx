@@ -1,15 +1,15 @@
 import { Component, createRef, RefObject } from 'react';
 import styled from 'styled-components';
 import type { RestaurantInfo } from '../types';
-import Restaurant from './Restaurant';
+import RestaurantItem from './RestaurantItem';
 import RestaurantInfoModal from './RestaurantInfoModal';
 
-interface RestaurantList {
+interface RestaurantListProps {
   restaurantList: RestaurantInfo[];
   category: string;
 }
 
-class Restaurants extends Component<RestaurantList> {
+class RestaurantList extends Component<RestaurantListProps> {
   restaurantInfoModal: RefObject<HTMLDialogElement> = createRef();
 
   state = {
@@ -45,7 +45,7 @@ class Restaurants extends Component<RestaurantList> {
       <>
         <RestaurantListContainer>
           {this.props.restaurantList.map((restaurant: RestaurantInfo) => (
-            <Restaurant
+            <RestaurantItem
               key={restaurant.id}
               restaurant={restaurant}
               onClick={() => this.handleModalOpenButton(restaurant.id)}
@@ -68,4 +68,4 @@ const RestaurantListContainer = styled.ul`
   margin: 16px 0;
 `;
 
-export default Restaurants;
+export default RestaurantList;

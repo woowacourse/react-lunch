@@ -4,13 +4,13 @@ import styled from 'styled-components';
 import type { RestaurantInfo } from '../types';
 import { ENGLISH_CATEGORY } from '../constants';
 
-interface RestaurantModal {
+interface RestaurantModalProps {
   selectedRestaurant: null | RestaurantInfo;
   refModal: RefObject<HTMLDialogElement>;
   onClose: () => void;
 }
 
-class RestaurantInfoModal extends Component<RestaurantModal> {
+class RestaurantInfoModal extends Component<RestaurantModalProps> {
   render() {
     const { selectedRestaurant: restaurant } = this.props;
 

@@ -2,14 +2,14 @@ import { ChangeEvent, Component } from 'react';
 import styled from 'styled-components';
 import { CATEGORY, SORTING_SELECT } from '../constants';
 
-interface RestaurantSelect {
+interface RestaurantSelectProps {
   onChangeCategory: (event: string) => void;
   onChangeSorting: (event: string) => void;
   selectedCategory: string;
   selectedSorting: string;
 }
 
-class SelectBoxes extends Component<RestaurantSelect> {
+class RestaurantSelect extends Component<RestaurantSelectProps> {
   handleCategorySelect = ({ target }: ChangeEvent<HTMLSelectElement>) => {
     this.props.onChangeCategory(target.value);
   };
@@ -67,4 +67,4 @@ const SelectBox = styled.select`
   background: #ffffff;
 `;
 
-export default SelectBoxes;
+export default RestaurantSelect;
