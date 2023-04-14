@@ -37,11 +37,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   /* Typography *************************************/
-  .text-title {
-    font-size: 20px;
-    line-height: 24px;
-    font-weight: 600;
-  }
   .text-subtitle {
     font-size: 18px;
     line-height: 28px;
@@ -50,11 +45,6 @@ export const GlobalStyle = createGlobalStyle`
   .text-body {
     font-size: 16px;
     line-height: 24px;
-    font-weight: 400;
-  }
-  .text-caption {
-    font-size: 14px;
-    line-height: 20px;
     font-weight: 400;
   }
 

@@ -141,6 +141,10 @@ const Close = styled.button`
 
   color: var(--grey-100);
   cursor: pointer;
+
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
 `;
 
 export default RestaurantInfoModal;
