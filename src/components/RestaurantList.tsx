@@ -1,24 +1,18 @@
-import React from "react";
-import { Restaurant } from "../types/Restaurant";
-import RestaurantItem from "./RestaurantItem";
+import RestaurantItem from './RestaurantItem';
+import type { Restaurant } from '../types/Restaurant';
 
-type RestaurantListProps = { restaurants: Restaurant[] };
+type RestaurantListProps = {
+  restaurants: Restaurant[];
+};
 
-class RestaurantList extends React.Component<RestaurantListProps> {
-  render() {
-    return (
-      <ul>
-        {this.props.restaurants.map((restaurant) => {
-          return (
-            <RestaurantItem
-              key={restaurant.storeName}
-              restaurant={restaurant}
-            />
-          );
-        })}
-      </ul>
-    );
-  }
+function RestaurantList({ restaurants }: RestaurantListProps) {
+  return (
+    <ul>
+      {restaurants.map((restaurant) => {
+        return <RestaurantItem key={restaurant.storeName} restaurant={restaurant} />;
+      })}
+    </ul>
+  );
 }
 
 export default RestaurantList;
