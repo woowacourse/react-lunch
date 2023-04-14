@@ -2,7 +2,7 @@ import './style.css';
 import { Component, KeyboardEvent, MouseEvent, ReactNode, RefObject, createRef } from 'react';
 
 interface ModalProps {
-  content: ReactNode;
+  children: ReactNode;
   isModalOpen: boolean;
   onToggle: CallableFunction;
 }
@@ -57,7 +57,7 @@ class Modal extends Component<ModalProps> {
               onKeyDown={this.handleKeyPress}
               tabIndex={1}
             >
-              {this.props.content}
+              {this.props.children}
               <button className="button button--primary text-caption modal-close-button">
                 닫기
               </button>

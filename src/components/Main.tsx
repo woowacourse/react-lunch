@@ -70,15 +70,11 @@ class Main extends Component {
           restaurantList={this.state.currentRestaurantList}
           onItemClick={this.updateSelectedRestaurant}
         />
-        <Modal
-          content={
-            this.state.selectedRestaurant && (
-              <RestaurantDetail restaurant={this.state.selectedRestaurant} />
-            )
-          }
-          isModalOpen={this.state.isModalOpen}
-          onToggle={this.toggleIsModalOpen}
-        />
+        <Modal isModalOpen={this.state.isModalOpen} onToggle={this.toggleIsModalOpen}>
+          {this.state.selectedRestaurant && (
+            <RestaurantDetail restaurant={this.state.selectedRestaurant} />
+          )}
+        </Modal>
       </main>
     );
   }
