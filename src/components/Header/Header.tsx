@@ -5,7 +5,7 @@ class Header extends React.PureComponent {
   render() {
     return (
       <styled.Header>
-        <styled.HeaderTitle>점심 뭐 먹지</styled.HeaderTitle>
+        <styled.HeaderTitleText>점심 뭐 먹지</styled.HeaderTitleText>
       </styled.Header>
     );
   }

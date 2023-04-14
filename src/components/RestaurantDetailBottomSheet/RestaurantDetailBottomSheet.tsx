@@ -1,5 +1,5 @@
 import React from 'react';
-import { Body, Title } from '../../styles/Text';
+import { BodyText, TitleText } from '../../styles/Text';
 import type Restaurant from '../../types/Restaurant';
 import CategoryIcon from '../CategoryIcon/CategoryIcon';
 import BottomSheet from '../common/BottomSheet/BottomSheet';
@@ -20,15 +20,15 @@ class RestaurantDetailBottomSheet extends React.PureComponent<RestaurantDetailBo
       <BottomSheet isOpened={isOpened} onClose={onClose}>
         <styled.RestaurantDetailBottomSheet>
           <CategoryIcon category={restaurant.category} />
-          <Title>{restaurant.name}</Title>
-          <styled.BottomSheetBody>
+          <TitleText>{restaurant.name}</TitleText>
+          <styled.BottomSheetBodyText>
             캠퍼스부터 {restaurant.distanceByMinutes}분 내
-          </styled.BottomSheetBody>
+          </styled.BottomSheetBodyText>
 
-          <Body>{restaurant.description}</Body>
+          <BodyText>{restaurant.description}</BodyText>
           {restaurant.link !== null && (
             <a href={restaurant.link} target="_blank" rel="noreferrer">
-              <Body>{restaurant.link}</Body>
+              <BodyText>{restaurant.link}</BodyText>
             </a>
           )}
 

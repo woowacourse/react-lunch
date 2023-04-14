@@ -17,15 +17,17 @@ class RestaurantListItem extends React.Component<RestaurantListItemProps> {
         <CategoryIcon category={restaurant.category} />
 
         <header>
-          <styled.RestaurantListItemHeaderTitle data-cy="title">
+          <styled.RestaurantListItemHeaderTitleText data-cy="TitleText">
             {restaurant.name}
-          </styled.RestaurantListItemHeaderTitle>
-          <styled.RestaurantListItemHeaderSubtitle>
+          </styled.RestaurantListItemHeaderTitleText>
+          <styled.RestaurantListItemHeaderSubTitleText>
             캠퍼스부터 {restaurant.distanceByMinutes}분 내
-          </styled.RestaurantListItemHeaderSubtitle>
+          </styled.RestaurantListItemHeaderSubTitleText>
         </header>
 
-        <styled.RestaurantListItemBody>{restaurant.description}</styled.RestaurantListItemBody>
+        <styled.RestaurantListItemBodyText>
+          {restaurant.description}
+        </styled.RestaurantListItemBodyText>
       </styled.RestaurantListItem>
     );
   }

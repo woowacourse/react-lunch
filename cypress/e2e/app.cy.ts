@@ -19,7 +19,7 @@ describe('E2E 테스트', () => {
     cy.get('[data-cy="restaurant-list-item"]').then(($items) => {
       const names = $items
         .toArray()
-        .map(($item) => $item.querySelector('[data-cy="title"]')!.textContent!.trim());
+        .map(($item) => $item.querySelector('[data-cy="TitleText"]')!.textContent!.trim());
       expect(names).to.deep.equal(names.slice().sort((a, b) => a.localeCompare(b)));
     });
   });

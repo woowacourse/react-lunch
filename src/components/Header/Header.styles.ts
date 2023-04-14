@@ -6,7 +6,7 @@ export const Header = styled.header`
 
   width: 100%;
   height: 64px;
-  padding: 0px 16px;
+  padding: 0 16px;
 
   background: var(--primary-color);
   color: var(--text-white);
@@ -14,7 +14,7 @@ export const Header = styled.header`
   user-select: none;
 `;
 
-export const HeaderTitle = styled.h2`
+export const HeaderTitleText = styled.h2`
   font-size: 1.5rem;
   font-weight: 700;
 `;
