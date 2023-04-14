@@ -1,21 +1,22 @@
-import React from "react";
 import styled from "styled-components";
 
-interface PropsType {
+interface ModalButtonProps {
   text: string;
   baseColor: string;
   handleClick?: () => void;
 }
 
-export class ModalButton extends React.Component<PropsType> {
-  render() {
-    return (
-      <Button baseColor={this.props.baseColor} onClick={this.props.handleClick}>
-        {this.props.text}
-      </Button>
-    );
-  }
-}
+export const ModalButton = ({
+  text,
+  baseColor = "orange",
+  handleClick,
+}: ModalButtonProps) => {
+  return (
+    <Button baseColor={baseColor} onClick={handleClick}>
+      {text}
+    </Button>
+  );
+};
 
 const Button = styled.button<{ baseColor: string }>`
   width: 100%;
