@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { restaurant } from '../utils/interfaces';
 import '../styles/ItemList.css';
 import Item from './Item';
@@ -9,59 +9,42 @@ interface Props {
   itemList: restaurant[];
 }
 
-interface State {
-  item: restaurant | null;
-}
+function ItemList({ itemList }: Props) {
+  const modalRef = useRef<HTMLDialogElement>(null);
+  const [specificItem, setSpecificItem] = useState<restaurant | null>(null);
 
-class ItemList extends React.Component<Props, State> {
-  modalRef: React.RefObject<HTMLDialogElement>;
-  constructor(props: Props | Readonly<Props>) {
-    super(props);
-    this.modalRef = React.createRef();
-    this.state = {
-      item: null,
-    };
-
-    this.ulOnClickListener = this.ulOnClickListener.bind(this);
-    this.closeEvent = this.closeEvent.bind(this);
-  }
-
-  ulOnClickListener(event: React.MouseEvent<HTMLUListElement>) {
+  const ulOnClickListener = (event: React.MouseEvent<HTMLUListElement>) => {
     if (!(event.target instanceof HTMLElement)) return;
 
     const closestLi = event.target.closest('li');
     const elementId = Number(closestLi?.dataset.id);
 
-    const selectedState = this.props.itemList.find(({ id }) => id === elementId) ?? null;
-    this.setState({ item: selectedState });
-  }
+    const selectedState = itemList.find(({ id }) => id === elementId) ?? null;
+    setSpecificItem(selectedState);
+  };
 
-  closeEvent() {
-    const current = this.modalRef.current;
+  const closeEvent = () => {
+    const current = modalRef.current;
     if (current) {
-      this.setState({
-        item: null,
-      });
+      setSpecificItem(null);
     }
-  }
+  };
 
-  render(): React.ReactNode {
-    return (
-      <section className="restaurant-list-container">
-        <ul className="restaurant-list" onClick={this.ulOnClickListener}>
-          {this.props.itemList.map(item => {
-            return <Item key={item.id} props={item} />;
-          })}
-        </ul>
+  return (
+    <section className="restaurant-list-container">
+      <ul className="restaurant-list" onClick={ulOnClickListener}>
+        {itemList.map(item => {
+          return <Item key={item.id} restaurant={item} />;
+        })}
+      </ul>
 
-        {this.state.item && (
-          <ModalPortal closeEvent={this.closeEvent} dialogRef={this.modalRef}>
-            <ItemInformation restaurant={this.state.item} closeEvent={this.closeEvent} />
-          </ModalPortal>
-        )}
-      </section>
-    );
-  }
+      {specificItem && (
+        <ModalPortal closeEvent={closeEvent} dialogRef={modalRef}>
+          <ItemInformation restaurant={specificItem} closeEvent={closeEvent} />
+        </ModalPortal>
+      )}
+    </section>
+  );
 }
 
 export default ItemList;
