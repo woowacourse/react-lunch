@@ -16,7 +16,7 @@ class RestaurantList extends Component<RestaurantListProps> {
     selectedRestaurant: null,
   };
 
-  handleModalOpenButton = (restaurantId: string) => {
+  handleModalOpen = (restaurantId: string) => {
     this.setState({
       selectedRestaurant: this.findSelectedRestaurant(restaurantId),
     });
@@ -27,7 +27,7 @@ class RestaurantList extends Component<RestaurantListProps> {
     }
   };
 
-  handleModalCloseButton = () => {
+  handleModalClose = () => {
     const restaurantInfoModal = this.restaurantInfoModal.current;
     if (restaurantInfoModal) {
       restaurantInfoModal.close();
@@ -48,14 +48,14 @@ class RestaurantList extends Component<RestaurantListProps> {
             <RestaurantItem
               key={restaurant.id}
               restaurant={restaurant}
-              onClick={() => this.handleModalOpenButton(restaurant.id)}
+              onClick={() => this.handleModalOpen(restaurant.id)}
             />
           ))}
         </RestaurantListContainer>
 
         <RestaurantInfoModal
           restaurant={this.state.selectedRestaurant}
-          onClose={this.handleModalCloseButton}
+          onClose={this.handleModalClose}
           refModal={this.restaurantInfoModal}
         ></RestaurantInfoModal>
       </>
