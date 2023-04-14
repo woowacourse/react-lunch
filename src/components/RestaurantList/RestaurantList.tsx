@@ -1,4 +1,5 @@
 import './style.css';
+import { memo } from 'react';
 import { Restaurant } from '../../types';
 import RestaurantItem from '../RestaurantItem/RestaurantItem';
 
@@ -8,6 +9,8 @@ interface RestaurantListProps {
 }
 
 function RestaurantList({ restaurantList, onItemClick }: RestaurantListProps) {
+  console.log('rendering RestaurantList');
+
   const createRestaurantItemElements = () => {
     return restaurantList.map((restaurant) => (
       <RestaurantItem key={restaurant.id} restaurant={restaurant} onClick={onItemClick} />
@@ -21,4 +24,4 @@ function RestaurantList({ restaurantList, onItemClick }: RestaurantListProps) {
   );
 }
 
-export default RestaurantList;
+export default memo(RestaurantList);
