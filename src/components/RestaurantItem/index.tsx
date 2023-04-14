@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import categoryAsian from '../../assets/category-asian.png';
 import categoryChinese from '../../assets/category-chinese.png';
 import categoryEtc from '../../assets/category-etc.png';
@@ -8,10 +8,11 @@ import categoryWestern from '../../assets/category-western.png';
 import Store from '../../store';
 import styles from './RestaurantItem.module.css';
 import type { Category } from './type';
+import type { State } from '../../App';
 
 function RestaurantItem(props: any) {
 	const { restaurant, isModal } = props;
-
+	const { setModalId, setIsModalOpen } = useContext(Store) as State;
 	const makeCategoryImgPath = (category: Category) => {
 		switch (category) {
 			case '한식':
@@ -32,32 +33,28 @@ function RestaurantItem(props: any) {
 	if (restaurant === undefined) return <>no result</>;
 
 	return (
-		<Store.Consumer>
-			{(store) => (
-				<li
-					className={isModal ? styles.itemModal : styles.item}
-					onClick={() => {
-						store?.toggleModal();
-						store?.setModalId(restaurant.id);
-						document.body.style.overflow = 'hidden';
-					}}
-				>
-					<div className={styles.icon}>
-						<img src={makeCategoryImgPath(restaurant.category)} alt={restaurant.category} />
-					</div>
-					<article className={isModal ? styles.articleModal : undefined}>
-						<h2 className={styles.title}>{restaurant.name}</h2>
-						<div className={styles.distance}>캠퍼스로부터 {restaurant.distance}분 내</div>
-						<div className={isModal ? styles.descriptionModal : styles.description}>{restaurant.description}</div>
-						{isModal && restaurant.link && (
-							<a href={restaurant.link} className={styles.link}>
-								{restaurant.link}
-							</a>
-						)}
-					</article>
-				</li>
-			)}
-		</Store.Consumer>
+		<li
+			className={isModal ? styles.itemModal : styles.item}
+			onClick={() => {
+				setIsModalOpen(true);
+				setModalId(restaurant.id);
+				document.body.style.overflow = 'hidden';
+			}}
+		>
+			<div className={styles.icon}>
+				<img src={makeCategoryImgPath(restaurant.category)} alt={restaurant.category} />
+			</div>
+			<article className={isModal ? styles.articleModal : undefined}>
+				<h2 className={styles.title}>{restaurant.name}</h2>
+				<div className={styles.distance}>캠퍼스로부터 {restaurant.distance}분 내</div>
+				<div className={isModal ? styles.descriptionModal : styles.description}>{restaurant.description}</div>
+				{isModal && restaurant.link && (
+					<a href={restaurant.link} className={styles.link}>
+						{restaurant.link}
+					</a>
+				)}
+			</article>
+		</li>
 	);
 }
 

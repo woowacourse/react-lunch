@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styles from './App.module.css';
 import Header from './components/Header';
 import Modal from './components/Modal';
@@ -7,67 +7,48 @@ import SelectorSection from './components/SelectorSection';
 import mockData from './data/mockData.json';
 import Store from './store';
 import type { Category, Restaurant } from './components/RestaurantItem/type';
+import type { Dispatch, SetStateAction } from 'react';
 
 export type Sort = '이름순' | '거리순';
 export interface State {
-	category: Category;
-	sort: Sort;
-	restaurantList: Restaurant[];
-	isModalOpen: boolean;
 	modalId: string;
-	setModalId: (id: string) => void;
-	toggleModal: () => void;
-	setCategory12: (category: Category) => void;
-	setSortState12: (sort: Sort) => void;
+	isModalOpen: boolean;
+	restaurantList: Restaurant[];
+	setCategory: Dispatch<SetStateAction<Category>>;
+	setSortOption: Dispatch<SetStateAction<Sort>>;
+	setModalId: Dispatch<SetStateAction<string>>;
+	setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const mock = mockData.restaurantList as Restaurant[];
 
 function App() {
 	const [category, setCategory] = useState<Category>('전체');
-	const [sort, setSort] = useState<Sort>('이름순');
+	const [sortOption, setSortOption] = useState<Sort>('이름순');
 	const [modalId, setModalId] = useState('1');
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [restaurantList, setRestaurantList] = useState<Restaurant[]>(mock);
 
-	const toggleModal = () => {
-		setIsModalOpen((prevState) => !prevState);
-	};
-
-	const setCategory12 = (category1: Category) => {
-		setCategory(category1);
-		setRestaurantList(() => {
-			const filteredList = category1 === '전체' ? mock : mock.filter((restaurant) => restaurant.category === category1);
-			if (sort === '거리순') {
-				return filteredList.sort((x, y) => Number(x.distance) - Number(y.distance));
-			}
-
-			return filteredList.sort((x, y) => x.name.localeCompare(y.name));
-		});
-	};
-
-	const setSortState12 = (sort2: Sort) => {
-		setSort(sort2);
-		setRestaurantList((prevState) =>
-			sort2 === '거리순'
-				? prevState.sort((x, y) => Number(x.distance) - Number(y.distance))
-				: prevState.sort((x, y) => x.name.localeCompare(y.name))
-		);
-	};
+	useEffect(() => {
+		const filteredList = category === '전체' ? mock : mock.filter((restaurant) => restaurant.category === category);
+		if (sortOption === '거리순') {
+			setRestaurantList(filteredList.sort((x, y) => Number(x.distance) - Number(y.distance)));
+		} else if (sortOption === '이름순') {
+			setRestaurantList(filteredList.sort((x, y) => x.name.localeCompare(y.name)));
+		}
+	}, [category, sortOption]);
 
 	const value = useMemo(
 		() => ({
-			category,
-			sort,
 			modalId,
 			isModalOpen,
 			restaurantList,
-			toggleModal,
+			setCategory,
+			setSortOption,
 			setModalId,
-			setCategory12,
-			setSortState12,
+			setIsModalOpen,
 		}),
-		[category, sort, modalId, isModalOpen, restaurantList, toggleModal, setModalId, setCategory12, setSortState12]
+		[category, sortOption, modalId, isModalOpen, restaurantList, setCategory, setSortOption, setModalId, setIsModalOpen]
 	);
 
 	return (

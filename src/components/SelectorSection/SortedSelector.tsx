@@ -1,22 +1,19 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useContext } from 'react';
 import Store from '../../store';
 import styles from './SelectorSection.module.css';
 import type { Sort, State } from '../../App';
 
 function SortedSelector() {
-	const handleSortedSelector = (store: State | null) => (e: ChangeEvent<HTMLSelectElement>) => {
-		store?.setSortState12(e.target.value as Sort);
+	const { setSortOption } = useContext(Store) as State;
+	const handleSortedSelector = (e: ChangeEvent<HTMLSelectElement>) => {
+		setSortOption(e.target.value as Sort);
 	};
 
 	return (
-		<Store.Consumer>
-			{(store) => (
-				<select name="sort" className={styles.selector} onChange={handleSortedSelector(store)}>
-					<option value="이름순">이름순</option>
-					<option value="거리순">거리순</option>
-				</select>
-			)}
-		</Store.Consumer>
+		<select name="sort" className={styles.selector} onChange={handleSortedSelector}>
+			<option value="이름순">이름순</option>
+			<option value="거리순">거리순</option>
+		</select>
 	);
 }
 
