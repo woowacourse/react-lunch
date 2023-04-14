@@ -105,7 +105,6 @@ button {
     cursor: pointer;
     font-size: 14px;
     line-height: 20px;
-    font-weight: 400;
 }
 
 button:first-of-type {
