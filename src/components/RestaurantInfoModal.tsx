@@ -29,7 +29,7 @@ class RestaurantInfoModal extends Component<RestaurantModal> {
                   </CategoryContainer>
                   <article>
                     <Name className='text-subtitle'>{restaurant.name}</Name>
-                    <TakingTime className='text-body takingTime'>
+                    <TakingTime className='text-body'>
                       캠퍼스부터 {restaurant.takingTime}분 내
                     </TakingTime>
                     <Description className='text-body'>
@@ -41,13 +41,13 @@ class RestaurantInfoModal extends Component<RestaurantModal> {
                   </article>
                 </>
               )}
-              <button
+              <Close
                 type='button'
-                className='text-caption close-btn'
+                className='text-caption'
                 onClick={this.props.onClose}
               >
                 닫기
-              </button>
+              </Close>
             </Modal>
           </dialog>,
           document.body
@@ -102,9 +102,15 @@ const Name = styled.h3`
 
 const TakingTime = styled.p`
   margin: 16px 0;
+  color: var(--primary-color);
 `;
 
 const Description = styled.p`
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   color: var(--grey-500);
 `;
 
@@ -113,6 +119,21 @@ const Link = styled.a`
   margin: 16px 0 32px;
   text-decoration: underline;
   outline: none;
+  cursor: pointer;
+`;
+
+const Close = styled.button`
+  position: fixed;
+  bottom: 32px;
+  width: calc(100% - 32px);
+  height: 44px;
+  padding: 10px 0px;
+  border: 1px solid #ec4a0a;
+  border-radius: 8px;
+  outline: none;
+  background: #ec4a0a;
+
+  color: var(--grey-100);
   cursor: pointer;
 `;
 
