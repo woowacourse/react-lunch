@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import MainHeader from './MainHeader.tsx';
 import RestaurantList from './RestaurantList.tsx';
 import SelectContainer from './SelectContainer.tsx';
@@ -10,60 +11,41 @@ import {
 } from './util/constant.ts';
 import { FilterOption } from './util/type.js';
 
-type AppState = {
-  filterOptions: FilterOption;
-  isOpenDrawer: boolean;
-  drawerSelectId: number;
-};
-class App extends React.Component<{}, AppState> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      filterOptions: {
-        category: DEFAULT_CATEGORY,
-        sorting: DEFAULT_SORTING,
-      },
-      isOpenDrawer: false,
-      drawerSelectId: NO_SELECT_ID,
-    };
+const App:React.FC = () => {
+  const [isOpenDrawer, setIsOpenDrawer] = useState<boolean>(false);
+  const [drawerSelectId, setDrawerSelectId] = useState<number>(NO_SELECT_ID);
+  const [filterOptions, setFilterOptions] = useState<FilterOption>({
+    category: DEFAULT_CATEGORY,
+    sorting: DEFAULT_SORTING,
+  });
 
-    this.onChangeFilterOptions = this.onChangeFilterOptions.bind(this);
-    this.onToggleDrawer = this.onToggleDrawer.bind(this);
-  }
-
-  onChangeFilterOptions(e: React.ChangeEvent<HTMLSelectElement>) {
-    this.setState({
-      filterOptions: {
-        ...this.state.filterOptions,
+  const onChangeFilterOptions = (e: React.ChangeEvent<HTMLSelectElement>):void => {
+    setFilterOptions({
+        ...filterOptions,
         [e.target.name]: e.target.value,
-      },
     });
   }
 
-  onToggleDrawer(id: number = NO_SELECT_ID) {
-    this.setState({
-      isOpenDrawer: !this.state.isOpenDrawer,
-      drawerSelectId: id,
-    });
+  const onToggleDrawer = (id: number = NO_SELECT_ID):void => {
+    setDrawerSelectId(id);
+    setIsOpenDrawer(!isOpenDrawer);
   }
 
-  render() {
     return (
       <div className="App">
         <MainHeader />
-        <SelectContainer onChangeFilterOptions={this.onChangeFilterOptions} />
+        <SelectContainer onChangeFilterOptions={onChangeFilterOptions} />
         <RestaurantList
-          filterOptions={this.state.filterOptions}
-          onToggleDrawer={this.onToggleDrawer}
+          filterOptions={filterOptions}
+          onToggleDrawer={onToggleDrawer}
         />
         <RestaurantDetailDrawer
-          isOpenDrawer={this.state.isOpenDrawer}
-          onToggleDrawer={this.onToggleDrawer}
-          restaurantId={this.state.drawerSelectId}
+          isOpenDrawer={isOpenDrawer}
+          onToggleDrawer={onToggleDrawer}
+          restaurantId={drawerSelectId}
         />
       </div>
     );
-  }
 }
 
 export default App;
