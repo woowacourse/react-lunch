@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
-import { FilterOption, Restaurant } from '../types';
+import { useEffect } from 'react';
 import { saveToLocalStorage } from '../utils/localStorage';
 import { getRestaurantListData } from '../data/restaurantListData';
 import { filterAndSortRestaurantList } from '../domains/restaurantUtil';
@@ -8,12 +7,13 @@ import RestaurantList from './RestaurantList/RestaurantList';
 import Modal from './common/Modal/Modal';
 import RestaurantDetail from './RestaurantDetail/RestaurantDetail';
 import { useRestaurantList } from '../hooks/useRestaurantList';
+import { useSelectRestaurant } from '../hooks/useSelectRestaurant';
 
 const restaurantList = filterAndSortRestaurantList(getRestaurantListData());
 
 function Main() {
   const { currentRestaurantList, updateCurrentRestaurantList } = useRestaurantList(restaurantList);
-  const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
+  const { selectedRestaurant, setSelectedRestaurant } = useSelectRestaurant();
 
   useEffect(() => {
     window.addEventListener('beforeunload', () => {
@@ -21,19 +21,12 @@ function Main() {
     });
   }, []);
 
-  const updateSelectedRestaurant = useCallback((restaurant: Restaurant) => {
-    setSelectedRestaurant(restaurant);
-  }, []);
-
   return (
     <main>
       <FilterSection onChange={updateCurrentRestaurantList} />
-      <RestaurantList
-        restaurantList={currentRestaurantList}
-        onItemClick={updateSelectedRestaurant}
-      />
+      <RestaurantList restaurantList={currentRestaurantList} onItemClick={setSelectedRestaurant} />
       {selectedRestaurant && (
-        <Modal onClose={() => setSelectedRestaurant(null)}>
+        <Modal onClose={setSelectedRestaurant}>
           <RestaurantDetail restaurant={selectedRestaurant} />
         </Modal>
       )}
