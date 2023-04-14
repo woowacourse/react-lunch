@@ -1,0 +1,32 @@
+@import './reset.css';
+
+:root {
+  --primary-color: #ec4a0a;
+  --secondary-color: #667085;
+}
+
+body {
+  width: 100vw;
+
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+body[data-hide-scroll='true'] {
+  overflow: hidden;
+}
+
+.app {
+  position: absolute;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 390px;
+  max-width: 800px;
+  min-height: 100vh;
+  margin: 0 auto;
+
+  background-color: white;
+}

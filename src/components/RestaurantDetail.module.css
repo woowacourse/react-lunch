@@ -1,0 +1,60 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+
+  padding: 32px 16px;
+  box-sizing: border-box;
+}
+
+.content > * {
+  margin-bottom: 16px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.estimatedTime {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: var(--primary-color);
+}
+
+.description {
+  max-height: 30vh;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+
+  overflow-y: scroll;
+}
+
+.link {
+  display: -webkit-box;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-self: flex-end;
+}
