@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { Options } from '../../types';
+import { Options } from '../../../types';
 
 interface SelectProps {
   attributes: {
