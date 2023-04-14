@@ -54,12 +54,17 @@ class Main extends Component {
     if (!selectedRestaurant) return;
 
     this.setState({ selectedRestaurant });
-    this.toggleIsModalOpen();
+    this.openModal();
   };
 
-  toggleIsModalOpen = () => {
-    this.setState({ isModalOpen: !this.state.isModalOpen });
-    document.body.classList.toggle('hide-overflow');
+  openModal = () => {
+    this.setState({ isModalOpen: true });
+    document.body.classList.add('hide-overflow');
+  };
+
+  closeModal = () => {
+    this.setState({ isModalOpen: false });
+    document.body.classList.remove('hide-overflow');
   };
 
   render() {
@@ -70,7 +75,7 @@ class Main extends Component {
           restaurantList={this.state.currentRestaurantList}
           onItemClick={this.updateSelectedRestaurant}
         />
-        <Modal isModalOpen={this.state.isModalOpen} onToggle={this.toggleIsModalOpen}>
+        <Modal isModalOpen={this.state.isModalOpen} close={this.closeModal}>
           {this.state.selectedRestaurant && (
             <RestaurantDetail restaurant={this.state.selectedRestaurant} />
           )}

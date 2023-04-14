@@ -4,7 +4,7 @@ import { Component, KeyboardEvent, MouseEvent, ReactNode, RefObject, createRef }
 interface ModalProps {
   children: ReactNode;
   isModalOpen: boolean;
-  onToggle: CallableFunction;
+  close: CallableFunction;
 }
 
 class Modal extends Component<ModalProps> {
@@ -33,13 +33,13 @@ class Modal extends Component<ModalProps> {
       target.classList.contains('modal-backdrop') ||
       target.classList.contains('modal-close-button')
     ) {
-      this.props.onToggle();
+      this.props.close();
     }
   };
 
   handleKeyPress = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === 'Escape') {
-      this.props.onToggle();
+      this.props.close();
     }
   };
 
