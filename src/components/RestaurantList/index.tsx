@@ -1,5 +1,5 @@
 import './style.css';
-import { Component, MouseEvent } from 'react';
+import { MouseEvent, PureComponent } from 'react';
 import { Restaurant } from '../../types';
 import { RESTAURANT_LI_ELEMENT } from '../../constants';
 import RestaurantItem from '../RestaurantItem';
@@ -9,11 +9,7 @@ interface RestaurantListProps {
   onItemClick: CallableFunction;
 }
 
-class RestaurantList extends Component<RestaurantListProps> {
-  shouldComponentUpdate(nextProps: RestaurantListProps) {
-    return this.props.restaurantList !== nextProps.restaurantList;
-  }
-
+class RestaurantList extends PureComponent<RestaurantListProps> {
   handleItemClick = (event: MouseEvent<HTMLElement>) => {
     const target = event.target as HTMLElement;
     const item = target.closest(RESTAURANT_LI_ELEMENT);
