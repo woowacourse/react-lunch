@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 type Props = {
   restaurant: Restaurant;
-  onRestaurantClick: React.MouseEventHandler<HTMLLIElement>;
+  onRestaurantClick: (id: number) => void;
 };
 
 export class RestaurantItem extends Component<Props> {
@@ -15,7 +15,7 @@ export class RestaurantItem extends Component<Props> {
     const onRestaurantClick = this.props.onRestaurantClick;
 
     return (
-      <RestaurantWrapper data-id={id} onClick={onRestaurantClick}>
+      <RestaurantWrapper onClick={() => {onRestaurantClick(id)}}>
         <RestaurantCategory>
           <Image src={imgSrc[category]} alt={category} />
         </RestaurantCategory>

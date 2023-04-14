@@ -5,7 +5,7 @@ import { RestaurantItem } from '../RestaurantItem/RestaurantItem';
 
 type Props = {
   restaurants: Restaurant[];
-  onRestaurantClick: React.MouseEventHandler<HTMLLIElement>;
+  onRestaurantClick: (id: number) => void;
 };
 
 export class RestaurantList extends Component<Props> {

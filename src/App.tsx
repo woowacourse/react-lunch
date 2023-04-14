@@ -109,12 +109,10 @@ class App extends Component<Props, State> {
     }
   };
 
-  handleRestaurantClick = (e: React.MouseEvent<HTMLElement>) => {
-    if (!(e.target !== null && e.target instanceof HTMLElement)) return;
-    const clickedId = e.target.closest('li')?.dataset.id;
+  handleRestaurantClick = (clickedRestaurantId: Restaurant['id']) => {
     const clickedRestaurant = db
       .getRestaurants()
-      .find((restaurant) => restaurant.id === Number(clickedId));
+      .find((restaurant) => restaurant.id === Number(clickedRestaurantId));
     this.setState({ clickedRestaurant });
     this.setState({ isModalOpen: true });
   };
