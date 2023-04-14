@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { FilterOption, Restaurant } from '../types';
 import { saveToLocalStorage } from '../utils/localStorage';
 import { getRestaurantListData } from '../data/restaurantListData';
@@ -21,26 +21,29 @@ function Main() {
     });
   }, []);
 
-  const updateCurrentRestaurantList = (displayStatus: FilterOption) => {
+  const updateCurrentRestaurantList = useCallback((displayStatus: FilterOption) => {
     const { category, sortBy } = displayStatus;
     const updatedRestaurantList = filterAndSortRestaurantList(restaurantList, category, sortBy);
     setCurrentRestaurantList(updatedRestaurantList);
-  };
+  }, []);
 
-  const openModal = () => {
+  const openModal = useCallback(() => {
     setIsModalOpen(true);
     document.body.classList.add('hide-overflow');
-  };
+  }, []);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setIsModalOpen(false);
     document.body.classList.remove('hide-overflow');
-  };
+  }, []);
 
-  const updateSelectedRestaurant = (restaurant: Restaurant) => {
-    setSelectedRestaurant(restaurant);
-    openModal();
-  };
+  const updateSelectedRestaurant = useCallback(
+    (restaurant: Restaurant) => {
+      setSelectedRestaurant(restaurant);
+      openModal();
+    },
+    [openModal]
+  );
 
   return (
     <main>

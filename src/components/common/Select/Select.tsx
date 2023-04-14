@@ -12,6 +12,8 @@ interface SelectProps {
 }
 
 function Select({ attributes, options, onChange }: SelectProps) {
+  console.log('rendering Select');
+
   const handleChangeOption = (event: ChangeEvent<HTMLSelectElement>) => {
     const target = event.target as HTMLSelectElement;
     const result = {

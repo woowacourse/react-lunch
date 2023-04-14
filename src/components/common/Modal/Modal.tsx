@@ -1,3 +1,4 @@
+import { useModal } from '../../../hooks/useModal';
 import './style.css';
 import { KeyboardEvent, MouseEvent, ReactNode, useEffect, useRef } from 'react';
 
@@ -10,6 +11,8 @@ interface ModalProps {
 function Modal({ children, isModalOpen, close }: ModalProps) {
   console.log('rendering Modal');
 
+  const { isOpen, handleClose, handleKeyPress } = useModal();
+
   const modalContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -18,22 +21,22 @@ function Modal({ children, isModalOpen, close }: ModalProps) {
     }
   }, [isModalOpen]);
 
-  const handleClose = (event: MouseEvent<HTMLElement>) => {
-    const target = event.target as HTMLElement;
+  // const handleClose = (event: MouseEvent<HTMLElement>) => {
+  //   const target = event.target as HTMLElement;
 
-    if (
-      target.classList.contains('modal-backdrop') ||
-      target.classList.contains('modal-close-button')
-    ) {
-      close();
-    }
-  };
+  //   if (
+  //     target.classList.contains('modal-backdrop') ||
+  //     target.classList.contains('modal-close-button')
+  //   ) {
+  //     close();
+  //   }
+  // };
 
-  const handleKeyPress = (event: KeyboardEvent<HTMLElement>) => {
-    if (event.key === 'Escape') {
-      close();
-    }
-  };
+  // const handleKeyPress = (event: KeyboardEvent<HTMLElement>) => {
+  //   if (event.key === 'Escape') {
+  //     close();
+  //   }
+  // };
 
   return (
     <>

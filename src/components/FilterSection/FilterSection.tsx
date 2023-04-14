@@ -15,6 +15,8 @@ interface FilterSectionProps {
 }
 
 function FilterSection({ onChange }: FilterSectionProps) {
+  console.log('rendering FilterSection');
+
   const [displayStatus, setDisplayStatus] = useState({
     category: DEFAULT_CATEGORY,
     sortBy: DEFAULT_SORT_BY,
