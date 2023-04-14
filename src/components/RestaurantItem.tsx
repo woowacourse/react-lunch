@@ -10,22 +10,20 @@ interface Props {
   restaurant: Restaurant;
 }
 
-class RestaurantItem extends React.Component<Props> {
-  render() {
-    const { id, name, category, distance, description } = this.props.restaurant;
+const RestaurantItem = ({ restaurant }: Props) => {
+  const { id, name, category, distance, description } = restaurant;
 
-    return (
-      <ItemWrapper id={id}>
-        <CategoryImage category={category} />
-        <RestaurantInfo>
-          <h3>{name}</h3>
-          <Distance>캠퍼스부터 {distance}분 내</Distance>
-          <Description>{description}</Description>
-        </RestaurantInfo>
-      </ItemWrapper>
-    );
-  }
-}
+  return (
+    <ItemWrapper id={id}>
+      <CategoryImage category={category} />
+      <RestaurantInfo>
+        <h3>{name}</h3>
+        <Distance>캠퍼스부터 {distance}분 내</Distance>
+        <Description>{description}</Description>
+      </RestaurantInfo>
+    </ItemWrapper>
+  );
+};
 
 export default RestaurantItem;
 
