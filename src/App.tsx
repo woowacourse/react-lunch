@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import styles from './App.module.css';
 import Header from './components/Header';
 import Modal from './components/Modal';
@@ -17,83 +17,71 @@ export interface State {
 	modalId: string;
 	setModalId: (id: string) => void;
 	toggleModal: () => void;
-	setCategory: (category: Category) => void;
-	setSortState: (sort: Sort) => void;
+	setCategory12: (category: Category) => void;
+	setSortState12: (sort: Sort) => void;
 }
 
-class App extends React.Component<object, State> {
-	toggleModal: () => void;
+const mock = mockData.restaurantList as Restaurant[];
 
-	setModalId: (id: string) => void;
+function App() {
+	const [category, setCategory] = useState<Category>('전체');
+	const [sort, setSort] = useState<Sort>('이름순');
+	const [modalId, setModalId] = useState('1');
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [restaurantList, setRestaurantList] = useState<Restaurant[]>(mock);
 
-	setCategory: (category: Category) => void;
+	const toggleModal = () => {
+		setIsModalOpen((prevState) => !prevState);
+	};
 
-	setSortState: (sort: Sort) => void;
+	const setCategory12 = (category1: Category) => {
+		setCategory(category1);
+		setRestaurantList(() => {
+			const filteredList = category1 === '전체' ? mock : mock.filter((restaurant) => restaurant.category === category1);
+			if (sort === '거리순') {
+				return filteredList.sort((x, y) => Number(x.distance) - Number(y.distance));
+			}
 
-	constructor(props: object) {
-		super(props);
-		const { restaurantList } = mockData as { restaurantList: Restaurant[] };
+			return filteredList.sort((x, y) => x.name.localeCompare(y.name));
+		});
+	};
 
-		this.toggleModal = () => {
-			this.setState((prevState) => ({ isModalOpen: !prevState.isModalOpen }));
-		};
-
-		this.setModalId = (id: string) => {
-			this.setState({ modalId: id });
-		};
-
-		this.setCategory = (category: Category) => {
-			this.setState({ category });
-			this.setState((prevState) => {
-				const filteredList =
-					category === '전체'
-						? restaurantList
-						: restaurantList.filter((restaurant) => restaurant.category === category);
-				if (prevState.sort === '거리순') {
-					return { restaurantList: filteredList.sort((x, y) => Number(x.distance) - Number(y.distance)) };
-				}
-
-				return { restaurantList: filteredList.sort((x, y) => x.name.localeCompare(y.name)) };
-			});
-		};
-
-		this.setSortState = (sort: Sort) => {
-			this.setState({ sort });
-			this.setState((prevState) => ({
-				restaurantList:
-					sort === '거리순'
-						? prevState.restaurantList.sort((x, y) => Number(x.distance) - Number(y.distance))
-						: prevState.restaurantList.sort((x, y) => x.name.localeCompare(y.name)),
-			}));
-		};
-
-		this.state = {
-			category: '전체',
-			sort: '이름순',
-			isModalOpen: false,
-			modalId: '1',
-			toggleModal: this.toggleModal,
-			restaurantList: restaurantList as Restaurant[],
-			setCategory: this.setCategory,
-			setSortState: this.setSortState,
-			setModalId: this.setModalId,
-		};
-	}
-
-	render() {
-		return (
-			<main className={styles.app}>
-				<Header />
-				<section className={styles.mainSection}>
-					<Store.Provider value={this.state}>
-						<SelectorSection />
-						<RestaurantList />
-						<Modal />
-					</Store.Provider>
-				</section>
-			</main>
+	const setSortState12 = (sort2: Sort) => {
+		setSort(sort2);
+		setRestaurantList((prevState) =>
+			sort2 === '거리순'
+				? prevState.sort((x, y) => Number(x.distance) - Number(y.distance))
+				: prevState.sort((x, y) => x.name.localeCompare(y.name))
 		);
-	}
+	};
+
+	const value = useMemo(
+		() => ({
+			category,
+			sort,
+			modalId,
+			isModalOpen,
+			restaurantList,
+			toggleModal,
+			setModalId,
+			setCategory12,
+			setSortState12,
+		}),
+		[category, sort, modalId, isModalOpen, restaurantList, toggleModal, setModalId, setCategory12, setSortState12]
+	);
+
+	return (
+		<main className={styles.app}>
+			<Header />
+			<section className={styles.mainSection}>
+				<Store.Provider value={value}>
+					<SelectorSection />
+					<RestaurantList />
+					<Modal />
+				</Store.Provider>
+			</section>
+		</main>
+	);
 }
 
 export default App;
