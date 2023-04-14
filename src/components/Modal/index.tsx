@@ -1,6 +1,11 @@
 import './style.css';
-import { Component, KeyboardEvent, MouseEvent, RefObject, createRef } from 'react';
-import { ModalProps } from '../../types/component';
+import { Component, KeyboardEvent, MouseEvent, ReactNode, RefObject, createRef } from 'react';
+
+interface ModalProps {
+  content: ReactNode;
+  isModalOpen: boolean;
+  onToggle: CallableFunction;
+}
 
 class Modal extends Component<ModalProps> {
   modalContainerRef: RefObject<HTMLDivElement>;

@@ -1,8 +1,13 @@
 import './style.css';
 import { Component, MouseEvent } from 'react';
-import { RestaurantListProps } from '../../types/component';
+import { Restaurant } from '../../types';
 import { RESTAURANT_LI_ELEMENT } from '../../constants';
 import RestaurantItem from '../RestaurantItem';
+
+interface RestaurantListProps {
+  restaurantList: Restaurant[];
+  onItemClick: CallableFunction;
+}
 
 class RestaurantList extends Component<RestaurantListProps> {
   shouldComponentUpdate(nextProps: RestaurantListProps) {
