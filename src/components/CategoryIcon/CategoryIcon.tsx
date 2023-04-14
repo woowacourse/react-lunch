@@ -22,7 +22,7 @@ type CategoryIconProps = {
   category: Category;
 };
 
-const CategoryIcon: React.FC<CategoryIconProps> = ({ category }) => {
+const CategoryIcon = ({ category }: CategoryIconProps) => {
   return (
     <styled.CategoryIcon>
       <img src={categoryToImageMapper[category]} alt={category} />
