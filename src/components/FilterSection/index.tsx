@@ -44,13 +44,15 @@ class FilterSection extends Component<FilterSectionProps, FilterSectionState> {
       <section className="restaurant-filter-container">
         <Select
           options={RESTAURANT_CATEGORY_OPTION}
-          attributes={SELECT_ATTRIBUTES.CATEGORY_FILTER}
-          onChange={this.handleSelectChange}
+          // attributes={SELECT_ATTRIBUTES.CATEGORY_FILTER}
+          onChangeOption={this.handleSelectChange}
+          {...SELECT_ATTRIBUTES.CATEGORY_FILTER}
         />
         <Select
           options={SORT_BY}
-          attributes={SELECT_ATTRIBUTES.SORT_BY_FILTER}
-          onChange={this.handleSelectChange}
+          {...SELECT_ATTRIBUTES.SORT_BY_FILTER}
+          // attributes={SELECT_ATTRIBUTES.SORT_BY_FILTER}
+          onChangeOption={this.handleSelectChange}
         />
       </section>
     );

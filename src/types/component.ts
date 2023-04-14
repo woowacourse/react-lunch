@@ -1,15 +1,5 @@
 import { ReactNode } from 'react';
-import { Options, Restaurant } from '.';
-
-interface SelectProps {
-  attributes: {
-    id: string;
-    name: string;
-    className: string;
-  };
-  options: Options;
-  onChange: CallableFunction;
-}
+import { Restaurant } from '.';
 
 interface RestaurantState {
   restaurantList: Restaurant[];
@@ -43,7 +33,6 @@ interface ModalProps {
 }
 
 export type {
-  SelectProps,
   RestaurantState,
   RestaurantListProps,
   RestaurantElementProps,

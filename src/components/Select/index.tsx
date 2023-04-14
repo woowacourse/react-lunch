@@ -1,5 +1,10 @@
-import { ChangeEvent, Component } from 'react';
-import { SelectProps } from '../../types/component';
+import { ChangeEvent, Component, SelectHTMLAttributes } from 'react';
+import { Options } from '../../types';
+
+interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+  options: Options;
+  onChangeOption: CallableFunction;
+}
 
 class Select extends Component<SelectProps> {
   shouldComponentUpdate(nextProps: SelectProps) {
@@ -7,16 +12,16 @@ class Select extends Component<SelectProps> {
   }
 
   handleChangeOption = (event: ChangeEvent<HTMLSelectElement>) => {
+    if (!this.props.name) return;
+
     const target = event.target as HTMLSelectElement;
     const result = {
-      [this.props.attributes.name]: target.value,
+      [this.props.name]: target.value,
     };
-    this.props.onChange(result);
+    this.props.onChangeOption(result);
   };
 
-  createOptionElements = () => {
-    const { options } = this.props;
-
+  createOptionElements = (options: Options) => {
     return options.map((option) => (
       <option key={option} value={option}>
         {option}
@@ -25,18 +30,11 @@ class Select extends Component<SelectProps> {
   };
 
   render() {
-    const { attributes } = this.props;
+    const { options, ...attributes } = this.props;
 
     return (
       <label htmlFor={attributes.id}>
-        <select
-          name={attributes.name}
-          id={attributes.id}
-          className={attributes.className}
-          onChange={this.handleChangeOption}
-        >
-          {this.createOptionElements()}
-        </select>
+        <select {...attributes}>{this.createOptionElements(options)}</select>
       </label>
     );
   }
