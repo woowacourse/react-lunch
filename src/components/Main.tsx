@@ -1,59 +1,23 @@
-import React from "react";
-import Select from "./Select";
-import type { Restaurant, Category, SortBy } from "../types/Restaurant";
-import RestaurantList from "./RestaurantList";
-import { filterByCategory, getRestaurants, sortBy } from "../utils/restaurant";
+import { useState } from 'react';
+import Select from './Select';
+import RestaurantList from './RestaurantList';
+import { filterByCategory, getRestaurants, sortBy } from '../utils/restaurant';
+import type { Category, SortBy } from '../types/Restaurant';
 
-type RestaurantListState = {
-  restaurants: Restaurant[];
-  category: Category;
-  sort: SortBy;
-};
+function Main() {
+  const [category, setCategory] = useState<Category>('전체');
+  const [sort, setSort] = useState<SortBy>('이름순');
 
-type RestaurantListProps = {};
+  const restaurants = getRestaurants();
+  const filtered = filterByCategory(restaurants, category);
+  const filteredAndSorted = sortBy(filtered, sort);
 
-class Main extends React.Component<RestaurantListProps, RestaurantListState> {
-  constructor(props: RestaurantListProps) {
-    super(props);
-
-    const storageData = getRestaurants();
-
-    this.state = {
-      restaurants: storageData,
-      category: "전체",
-      sort: "이름순",
-    };
-
-    this.setCategory = this.setCategory.bind(this);
-    this.setSort = this.setSort.bind(this);
-  }
-
-  setCategory(newCategory: Category) {
-    this.setState({
-      category: newCategory,
-    });
-  }
-
-  setSort(newSort: SortBy) {
-    this.setState({
-      sort: newSort,
-    });
-  }
-
-  render() {
-    const filteredData = filterByCategory(
-      this.state.restaurants,
-      this.state.category
-    );
-    const sortedData = sortBy(filteredData, this.state.sort);
-
-    return (
-      <>
-        <Select setCategory={this.setCategory} setSort={this.setSort} />
-        <RestaurantList restaurants={sortedData} />
-      </>
-    );
-  }
+  return (
+    <>
+      <Select setCategory={setCategory} setSort={setSort} />
+      <RestaurantList restaurants={filteredAndSorted} />
+    </>
+  );
 }
 
 export default Main;
