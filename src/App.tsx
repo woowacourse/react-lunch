@@ -3,6 +3,7 @@ import { Category, Restaurant, SortingType } from './types/restaurant';
 import React from 'react';
 import { Header, RestaurantList, RestaurantDetail } from './components';
 
+import filterRestaurants from './domain/filterRestaurants';
 import mockData from './mockData.json';
 
 interface Props {}
@@ -64,33 +65,14 @@ class App extends React.Component<Props, State> {
     });
   };
 
-  filterRestaurants = () => {
-    const { category, sortingType } = this.state;
-
-    const restaurants = this.state.restaurants.filter(
-      restaurant => category === '전체' || restaurant.category === category
-    );
-
-    const getPivot = (restaurant: Restaurant) => {
-      return sortingType === '이름순' ? restaurant.name : restaurant.distance;
-    };
-
-    return restaurants.sort((a, b) => {
-      const A = getPivot(a);
-      const B = getPivot(b);
-      if (A > B) return 1;
-      if (A < B) return -1;
-      return 0;
-    });
-  };
-
   render() {
+    const { restaurants, category, sortingType } = this.state;
     return (
       <div className="App">
         <Header />
 
         <RestaurantList
-          restaurants={this.filterRestaurants()}
+          restaurants={filterRestaurants(restaurants, category, sortingType)}
           openModal={this.openModal}
           setCategory={this.setCategory}
           setSortingType={this.setSortingType}
@@ -101,7 +83,7 @@ class App extends React.Component<Props, State> {
             closeModal={this.closeModal}
             restaurant={
               mockData.restaurants.find(
-                restaurant => restaurant.id === this.state.detailId
+                (restaurant) => restaurant.id === this.state.detailId
               ) as Restaurant
             }
           />
