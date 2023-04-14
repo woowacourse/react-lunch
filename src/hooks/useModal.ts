@@ -13,24 +13,30 @@ const useModal = () => {
     document.body.classList.remove('hide-overflow');
   }, []);
 
-  const handleCloseClick = (event: MouseEvent<HTMLElement>) => {
-    const target = event.target as HTMLElement;
+  const handleCloseClick = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
+      const target = event.target as HTMLElement;
 
-    if (
-      target.classList.contains('modal-backdrop') ||
-      target.classList.contains('modal-close-button')
-    ) {
-      close();
-    }
-  };
+      if (
+        target.classList.contains('modal-backdrop') ||
+        target.classList.contains('modal-close-button')
+      ) {
+        close();
+      }
+    },
+    [close]
+  );
 
-  const handleClosePress = (event: KeyboardEvent<HTMLElement>) => {
-    if (event.key === 'Escape') {
-      close();
-    }
-  };
+  const handleClosePress = useCallback(
+    (event: KeyboardEvent<HTMLElement>) => {
+      if (event.key === 'Escape') {
+        close();
+      }
+    },
+    [close]
+  );
 
-  return { isOpen, open, close, handleCloseClick, handleClosePress };
+  return { isOpen, open, handleCloseClick, handleClosePress };
 };
 
 export { useModal };
