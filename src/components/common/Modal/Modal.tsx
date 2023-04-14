@@ -1,5 +1,5 @@
 import './style.css';
-import { KeyboardEvent, MouseEvent, ReactNode, useRef } from 'react';
+import { KeyboardEvent, MouseEvent, ReactNode, useEffect, useRef } from 'react';
 
 interface ModalProps {
   children: ReactNode;
@@ -8,21 +8,15 @@ interface ModalProps {
 }
 
 function Modal({ children, isModalOpen, close }: ModalProps) {
+  console.log('rendering Modal');
+
   const modalContainerRef = useRef<HTMLDivElement>(null);
 
-  /*
-  
-    shouldComponentUpdate(nextProps: ModalProps) {
-    return this.props.isModalOpen !== nextProps.isModalOpen;
-  }
-
-  componentDidUpdate() {
-    if (this.modalContainerRef.current) {
-      this.modalContainerRef.current.focus();
+  useEffect(() => {
+    if (modalContainerRef.current && isModalOpen) {
+      modalContainerRef.current.focus();
     }
-  }
-  
-  */
+  }, [isModalOpen]);
 
   const handleClose = (event: MouseEvent<HTMLElement>) => {
     const target = event.target as HTMLElement;
