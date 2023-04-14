@@ -1,4 +1,4 @@
-import { ChangeEvent, PureComponent } from 'react';
+import { ChangeEvent } from 'react';
 import { Options } from '../../types';
 
 interface SelectProps {
@@ -11,34 +11,30 @@ interface SelectProps {
   onChange: CallableFunction;
 }
 
-class Select extends PureComponent<SelectProps> {
-  handleChangeOption = (event: ChangeEvent<HTMLSelectElement>) => {
+function Select({ attributes, options, onChange }: SelectProps) {
+  const handleChangeOption = (event: ChangeEvent<HTMLSelectElement>) => {
     const target = event.target as HTMLSelectElement;
     const result = {
-      [this.props.attributes.name]: target.value,
+      [attributes.name]: target.value,
     };
-    this.props.onChange(result);
+    onChange(result);
   };
 
-  createOptionElements = () => {
-    return this.props.options.map((option) => (
+  const createOptionElements = () => {
+    return options.map((option) => (
       <option key={option} value={option}>
         {option}
       </option>
     ));
   };
 
-  render() {
-    console.log('rendering Select');
-
-    return (
-      <label htmlFor={this.props.attributes.id}>
-        <select onChange={this.handleChangeOption} {...this.props.attributes}>
-          {this.createOptionElements()}
-        </select>
-      </label>
-    );
-  }
+  return (
+    <label htmlFor={attributes.id}>
+      <select onChange={handleChangeOption} {...attributes}>
+        {createOptionElements()}
+      </select>
+    </label>
+  );
 }
 
 export default Select;
