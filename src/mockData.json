@@ -1,0 +1,122 @@
+[
+  {
+    "id": "1",
+    "category": "한식",
+    "name": "피양콩 할마니",
+    "distance": 10,
+    "description": "평양 출신의 할머니가 수십 년간 운영해온 비지 전문점 피양콩 할마니. 두부를 빼지 않은 되비지를 맛볼 수 있는 곳으로, ‘피양’은 평안도 사투리로 ‘평양’을 의미한다. 딸과 함께 운영하는 이곳에선 맷돌로 직접 간 콩만을 사용하며, 일체의 조미료를 넣지 않은 건강식을 선보인다. 콩비지와 피양 만두가 이곳의 대표 메뉴지만, 할머니가 옛날 방식을 고수하며 만들어내는 비지전골 또한 이 집의 역사를 느낄 수 있는 특별한 메뉴다. 반찬은 손님들이 먹고 싶은 만큼 덜어 먹을 수 있게 준비돼 있다.",
+    "link": ""
+  },
+  {
+    "id": "2",
+    "category": "한식",
+    "name": "농민백암순대",
+    "distance": 10,
+    "description": "맛있는 순대국과 수육",
+    "link": ""
+  },
+  {
+    "id": "3",
+    "category": "한식",
+    "name": "라플레이스",
+    "distance": 10,
+    "description": "매일 메뉴가 바뀌는 한식 뷔페",
+    "link": ""
+  },
+  {
+    "id": "4",
+    "category": "양식",
+    "name": "이태리키친",
+    "distance": 20,
+    "description": "2005년 장모님에게 전수받은 설렁탕 조리법을 개선하여 시작했다는 외고...",
+    "link": ""
+  },
+  {
+    "id": "5",
+    "category": "양식",
+    "name": "버거킹",
+    "distance": 10,
+    "description": "통새우와퍼가 맛있음",
+    "link": ""
+  },
+  {
+    "id": "6",
+    "category": "양식",
+    "name": "도스타코스",
+    "distance": 5,
+    "description": "뭔가 맛있어보이는 타코집",
+    "link": ""
+  },
+  {
+    "id": "7",
+    "category": "일식",
+    "name": "잇쇼우",
+    "distance": 5,
+    "description": "잇쇼우는 정통 자가제면 사누끼 우동이 대표메뉴입니다. 기술은 정성을 이길...",
+    "link": ""
+  },
+  {
+    "id": "8",
+    "category": "일식",
+    "name": "은행골",
+    "distance": 10,
+    "description": "지점은 흔하지만 선릉점은 맛이 없다...",
+    "link": ""
+  },
+  {
+    "id": "9",
+    "category": "일식",
+    "name": "오또상스시",
+    "distance": 15,
+    "description": "런치 가성비가 괜찮았지만 가격이 최근에 올랐다",
+    "link": ""
+  },
+  {
+    "id": "10",
+    "category": "중식",
+    "name": "친친",
+    "distance": 10,
+    "description": "matzip에서 찾은 마라탕집",
+    "link": ""
+  },
+  {
+    "id": "11",
+    "category": "중식",
+    "name": "명정루",
+    "distance": 10,
+    "description": "matzip에서 찾은 중식집1",
+    "link": ""
+  },
+  {
+    "id": "12",
+    "category": "중식",
+    "name": "마담밍 선릉점",
+    "distance": 15,
+    "description": "matzip에서 찾은 중식집2",
+    "link": ""
+  },
+  {
+    "id": "13",
+    "category": "아시안",
+    "name": "반포식스 선릉역점",
+    "distance": 15,
+    "description": "matzip에서 찾은 아시안 식당1",
+    "link": ""
+  },
+  {
+    "id": "14",
+    "category": "아시안",
+    "name": "포하임",
+    "distance": 10,
+    "description": "matzip에서 찾은 아시안 식당2",
+    "link": ""
+  },
+  {
+    "id": "15",
+    "category": "아시안",
+    "name": "chop chop",
+    "distance": 30,
+    "description": "잠실 롯데몰 지하에 있는 아시안 음식점",
+    "link": ""
+  }
+]
