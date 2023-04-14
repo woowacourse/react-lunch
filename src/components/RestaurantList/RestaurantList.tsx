@@ -1,5 +1,5 @@
 import './style.css';
-import { Dispatch, SetStateAction, memo } from 'react';
+import { memo } from 'react';
 import { Restaurant } from '../../types';
 import RestaurantItem from '../RestaurantItem/RestaurantItem';
 

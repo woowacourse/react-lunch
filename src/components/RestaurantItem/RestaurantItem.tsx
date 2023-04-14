@@ -1,5 +1,4 @@
 import './style.css';
-import { Dispatch, SetStateAction } from 'react';
 import { Restaurant } from '../../types';
 import { RESTAURANT_IMAGE } from '../../constants/images';
 
