@@ -1,8 +1,8 @@
 import { Component, RefObject } from 'react';
-import ReactDom from 'react-dom';
 import styled from 'styled-components';
 import type { RestaurantInfo } from '../types';
 import { ENGLISH_CATEGORY } from '../constants';
+import ModalPortal from './ModalPortal';
 
 interface RestaurantModalProps {
   restaurant: null | RestaurantInfo;
@@ -15,62 +15,44 @@ class RestaurantInfoModal extends Component<RestaurantModalProps> {
     const { restaurant } = this.props;
 
     return (
-      <>
-        {ReactDom.createPortal(
-          <dialog ref={this.props.refModal}>
-            <ModalBackdrop
-              className='modal-backdrop'
-              onClick={this.props.onClose}
-            />
-            <Modal>
-              {restaurant && (
-                <>
-                  <CategoryContainer>
-                    <CategoryImage
-                      src={`${process.env.PUBLIC_URL}/assets/category-${
-                        ENGLISH_CATEGORY[restaurant.category]
-                      }.png`}
-                      alt={restaurant.category}
-                    />
-                  </CategoryContainer>
-                  <article>
-                    <Name className='text-subtitle'>{restaurant.name}</Name>
-                    <TakingTime className='text-body'>
-                      캠퍼스부터 {restaurant.takingTime}분 내
-                    </TakingTime>
-                    <Description className='text-body'>
-                      {restaurant.description}
-                    </Description>
-                    <Link href={restaurant.link} target='_blank'>
-                      {restaurant.link}
-                    </Link>
-                  </article>
-                </>
-              )}
-              <Close
-                type='button'
-                className='text-caption'
-                onClick={this.props.onClose}
-              >
-                닫기
-              </Close>
-            </Modal>
-          </dialog>,
-          document.body
-        )}
-      </>
+      <ModalPortal onClose={this.props.onClose} refModal={this.props.refModal}>
+        <Modal>
+          {restaurant && (
+            <>
+              <CategoryContainer>
+                <CategoryImage
+                  src={`${process.env.PUBLIC_URL}/assets/category-${
+                    ENGLISH_CATEGORY[restaurant.category]
+                  }.png`}
+                  alt={restaurant.category}
+                />
+              </CategoryContainer>
+              <article>
+                <Name className='text-subtitle'>{restaurant.name}</Name>
+                <TakingTime className='text-body'>
+                  캠퍼스부터 {restaurant.takingTime}분 내
+                </TakingTime>
+                <Description className='text-body'>
+                  {restaurant.description}
+                </Description>
+                <Link href={restaurant.link} target='_blank'>
+                  {restaurant.link}
+                </Link>
+              </article>
+            </>
+          )}
+          <Close
+            type='button'
+            className='text-caption'
+            onClick={this.props.onClose}
+          >
+            닫기
+          </Close>
+        </Modal>
+      </ModalPortal>
     );
   }
 }
-
-const ModalBackdrop = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.35);
-`;
 
 const Modal = styled.div`
   position: fixed;
