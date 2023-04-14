@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { Restaurant } from '../types';
 import { saveToLocalStorage } from '../utils/localStorage';
 import { getRestaurantListData } from '../data/restaurantListData';
@@ -8,81 +8,57 @@ import RestaurantList from './RestaurantList';
 import Modal from './Modal';
 import RestaurantDetail from './RestaurantDetail';
 
-interface MainState {
-  restaurantList: Restaurant[];
-  currentRestaurantList: Restaurant[];
-  selectedRestaurant: Restaurant | null;
-  isModalOpen: boolean;
-}
+const restaurantList = filterAndSortRestaurantList(getRestaurantListData());
 
-class Main extends Component {
-  state: MainState;
+function Main() {
+  const [currentRestaurantList, setCurrentRestaurantList] = useState(restaurantList);
+  const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  constructor(props: {}) {
-    super(props);
-
-    const restaurantList = filterAndSortRestaurantList(getRestaurantListData());
-
-    this.state = {
-      restaurantList: restaurantList,
-      currentRestaurantList: restaurantList,
-      selectedRestaurant: null,
-      isModalOpen: false,
-    };
-  }
-
+  /*
   componentDidMount() {
     window.addEventListener('beforeunload', () => {
       saveToLocalStorage(this.state.restaurantList);
     });
   }
+  */
 
-  updateCurrentRestaurantList = (filter: string, sortBy: string) => {
-    const updatedRestaurantList = filterAndSortRestaurantList(
-      this.state.restaurantList,
-      filter,
-      sortBy
-    );
-    this.setState({ currentRestaurantList: updatedRestaurantList });
+  const updateCurrentRestaurantList = (filter: string, sortBy: string) => {
+    const updatedRestaurantList = filterAndSortRestaurantList(restaurantList, filter, sortBy);
+    setCurrentRestaurantList(updatedRestaurantList);
   };
 
-  updateSelectedRestaurant = (id: number) => {
-    const selectedRestaurant = this.state.currentRestaurantList.find(
-      (restaurant) => restaurant.id === id
-    );
-
-    if (!selectedRestaurant) return;
-
-    this.setState({ selectedRestaurant });
-    this.openModal();
-  };
-
-  openModal = () => {
-    this.setState({ isModalOpen: true });
+  const openModal = () => {
+    setIsModalOpen(true);
     document.body.classList.add('hide-overflow');
   };
 
-  closeModal = () => {
-    this.setState({ isModalOpen: false });
+  const closeModal = () => {
+    setIsModalOpen(false);
     document.body.classList.remove('hide-overflow');
   };
 
-  render() {
-    return (
-      <main>
-        <FilterSection onChange={this.updateCurrentRestaurantList} />
-        <RestaurantList
-          restaurantList={this.state.currentRestaurantList}
-          onItemClick={this.updateSelectedRestaurant}
-        />
-        <Modal isModalOpen={this.state.isModalOpen} close={this.closeModal}>
-          {this.state.selectedRestaurant && (
-            <RestaurantDetail restaurant={this.state.selectedRestaurant} />
-          )}
-        </Modal>
-      </main>
-    );
-  }
+  const updateSelectedRestaurant = (id: number) => {
+    const selected = currentRestaurantList.find((restaurant) => restaurant.id === id);
+
+    if (!selected) return;
+
+    setSelectedRestaurant(selected);
+    openModal();
+  };
+
+  return (
+    <main>
+      <FilterSection onChange={updateCurrentRestaurantList} />
+      <RestaurantList
+        restaurantList={currentRestaurantList}
+        onItemClick={updateSelectedRestaurant}
+      />
+      <Modal isModalOpen={isModalOpen} close={closeModal}>
+        {selectedRestaurant && <RestaurantDetail restaurant={selectedRestaurant} />}
+      </Modal>
+    </main>
+  );
 }
 
 export default Main;
