@@ -11,6 +11,7 @@ import data from './data/mockData.json';
 import { db } from './db/restaurants';
 
 import variables from './components/styles/variables';
+import { isCategoryOption, isSortOption } from './utils';
 
 type Props = {};
 
@@ -91,20 +92,21 @@ class App extends Component<Props, State> {
   }
 
   handleCategoryBoxChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const categoryOption = e.target.value as CategoryOption; // 가드 고려
-    const categorizedRestaurants = this.filterByCategory(db.getRestaurants(), categoryOption);
-    const sortedRestaurants = this.filterBySort(
-      categorizedRestaurants,
-      this.state.selectedSortingOption
-    );
-    this.setState({ selectedCategoryOption: categoryOption, restaurantItems: sortedRestaurants });
-  };
+    if(isCategoryOption(e.target.value)) {
+      const categoryOption = e.target.value;
+      const categorizedRestaurants = this.filterByCategory(db.getRestaurants(), categoryOption);
+      const sortedRestaurants = this.filterBySort(categorizedRestaurants, this.state.selectedSortingOption);
+  
+      this.setState({ selectedCategoryOption: categoryOption, restaurantItems: sortedRestaurants });
+  }};
 
   handleSortingBoxChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const sortingOption = e.target.value as SortOption; // 가드 고려
-    const filteredRestaurants = this.filterBySort(this.state.restaurantItems, sortingOption);
-
-    this.setState({ selectedSortingOption: sortingOption, restaurantItems: filteredRestaurants });
+    if(isSortOption(e.target.value)) {
+      const sortingOption = e.target.value;
+      const filteredRestaurants = this.filterBySort(this.state.restaurantItems, sortingOption);
+  
+      this.setState({ selectedSortingOption: sortingOption, restaurantItems: filteredRestaurants });
+    }
   };
 
   handleRestaurantClick = (e: React.MouseEvent<HTMLElement>) => {
