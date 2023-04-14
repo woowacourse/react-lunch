@@ -1,4 +1,4 @@
-import { FILTERS, RESTAURANT_CATEGORY, WHOLE_CATEGORY, restaurantCategory } from './types';
+import { FILTERS, RESTAURANT_CATEGORY, WHOLE_CATEGORY, RestaurantCategory } from './types';
 import korea from '../assets/category-korean.png';
 import japanese from '../assets/category-japanese.png';
 import western from '../assets/category-western.png';
@@ -6,7 +6,7 @@ import chinese from '../assets/category-chinese.png';
 import asian from '../assets/category-asian.png';
 import etc from '../assets/category-etc.png';
 
-export const CATEGORY_IMAGE_PATH: Record<restaurantCategory, string> = {
+export const CATEGORY_IMAGE_PATH: Record<RestaurantCategory, string> = {
   한식: korea,
   일식: japanese,
   양식: western,

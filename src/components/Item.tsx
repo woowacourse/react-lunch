@@ -1,10 +1,10 @@
 import React from 'react';
-import { restaurant } from '../utils/interfaces';
+import { Restaurant } from '../utils/interfaces';
 import '../styles/Item.css';
 import { CATEGORY_IMAGE_PATH } from '../utils/constants';
 
 interface Props {
-  restaurant: restaurant;
+  restaurant: Restaurant;
 }
 
 function Item({ restaurant: { category, name, distance, description, id } }: Props) {

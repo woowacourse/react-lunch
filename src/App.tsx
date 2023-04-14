@@ -4,21 +4,21 @@ import Header from './components/Header';
 import ItemList from './components/ItemList';
 import Selector from './components/Selector';
 import mockData from './mockData/restaurantList.json';
-import { appState, restaurant } from './utils/interfaces';
+import { AppState, Restaurant } from './utils/interfaces';
 import { parseJson } from './utils/json';
-import { selectorCategory, selectorFilter } from './utils/types';
+import { SelectorCategory, SelectorFilter } from './utils/types';
 import { sortingByCategory, sortingByFilter } from './domain/restaurantSort';
 import { CATEGORY_OPTIONS, FILTER_OPTIONS } from './utils/constants';
 import { localStorageGetItem } from './utils/localStorage';
 import { typePredicates } from './utils/typeCheck';
 
 function App() {
-  const localStorageSavedList = typePredicates<Array<restaurant>>({
+  const localStorageSavedList = typePredicates<Array<Restaurant>>({
     data: parseJson(JSON.stringify(localStorageGetItem('restaurantList'))),
     initialData: [],
   });
 
-  const restaurantMockDataList = typePredicates<Array<restaurant>>({
+  const restaurantMockDataList = typePredicates<Array<Restaurant>>({
     data: mockData.restaurantList,
     initialData: [],
   });
@@ -26,10 +26,10 @@ function App() {
   const wholeList = [...localStorageSavedList, ...restaurantMockDataList];
   const currentList = sortingByFilter('이름순', wholeList);
 
-  const [appState, setAppState] = useState<appState>({ category: '전체', filter: '이름순', wholeList, currentList });
+  const [appState, setAppState] = useState<AppState>({ category: '전체', filter: '이름순', wholeList, currentList });
 
   const categoryOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedCategory = e.target.value as selectorCategory;
+    const selectedCategory = e.target.value as SelectorCategory;
     const { filter, wholeList } = appState;
 
     const categortSotredList = sortingByCategory(selectedCategory, wholeList);
@@ -39,7 +39,7 @@ function App() {
   };
 
   const filterOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedFilter = e.target.value as selectorFilter;
+    const selectedFilter = e.target.value as SelectorFilter;
 
     const { category, wholeList } = appState;
 
@@ -53,12 +53,12 @@ function App() {
     <>
       <Header />
       <div className="restaurant-filter-container">
-        <Selector<selectorCategory>
+        <Selector<SelectorCategory>
           selectedValue={appState.category}
           optionList={CATEGORY_OPTIONS}
           onChange={categoryOnChange}
         />
-        <Selector<selectorFilter>
+        <Selector<SelectorFilter>
           selectedValue={appState.filter}
           optionList={FILTER_OPTIONS}
           onChange={filterOnChange}

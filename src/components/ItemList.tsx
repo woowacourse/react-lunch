@@ -1,17 +1,17 @@
 import React, { useRef, useState } from 'react';
-import { restaurant } from '../utils/interfaces';
+import { Restaurant } from '../utils/interfaces';
 import '../styles/ItemList.css';
 import Item from './Item';
 import ModalPortal from './ModalPortal';
 import ItemInformation from './ItemInformation';
 
 interface Props {
-  itemList: restaurant[];
+  itemList: Restaurant[];
 }
 
 function ItemList({ itemList }: Props) {
   const modalRef = useRef<HTMLDialogElement>(null);
-  const [specificItem, setSpecificItem] = useState<restaurant | null>(null);
+  const [specificItem, setSpecificItem] = useState<Restaurant | null>(null);
 
   const ulOnClickListener = (event: React.MouseEvent<HTMLUListElement>) => {
     if (!(event.target instanceof HTMLElement)) return;
