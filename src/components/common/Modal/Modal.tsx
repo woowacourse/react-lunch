@@ -37,7 +37,6 @@ function Modal({ children, onClose }: ModalProps) {
             tabIndex={0}
           >
             {children}
-            <button className="button button--primary text-caption modal-close-button">닫기</button>
           </div>
         </div>
       )}

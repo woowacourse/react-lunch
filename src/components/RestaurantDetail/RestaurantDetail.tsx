@@ -1,5 +1,6 @@
 import { Restaurant } from '../../types';
 import { RESTAURANT_IMAGE } from '../../constants/images';
+import Button from '../common/Button/Button';
 
 interface RestaurantDetailProps {
   restaurant: Restaurant;
@@ -29,6 +30,7 @@ function RestaurantDetail({ restaurant }: RestaurantDetailProps) {
           웹사이트 방문하기
         </a>
       )}
+      <Button className="button--primary modal-close-button">닫기</Button>
     </>
   );
 }
