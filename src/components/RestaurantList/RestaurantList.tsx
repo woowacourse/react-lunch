@@ -9,10 +9,6 @@ type Props = {
 };
 
 export class RestaurantList extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   render() {
     const { restaurants, onRestaurantClick } = this.props;
 
