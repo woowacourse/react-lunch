@@ -7,23 +7,18 @@ import FilterSection from './FilterSection/FilterSection';
 import RestaurantList from './RestaurantList/RestaurantList';
 import Modal from './common/Modal/Modal';
 import RestaurantDetail from './RestaurantDetail/RestaurantDetail';
+import { useRestaurantList } from '../hooks/useRestaurantList';
 
 const restaurantList = filterAndSortRestaurantList(getRestaurantListData());
 
 function Main() {
-  const [currentRestaurantList, setCurrentRestaurantList] = useState(restaurantList);
+  const { currentRestaurantList, updateCurrentRestaurantList } = useRestaurantList(restaurantList);
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
 
   useEffect(() => {
     window.addEventListener('beforeunload', () => {
       saveToLocalStorage(restaurantList);
     });
-  }, []);
-
-  const updateCurrentRestaurantList = useCallback((displayStatus: FilterOption) => {
-    const { category, sortBy } = displayStatus;
-    const updatedRestaurantList = filterAndSortRestaurantList(restaurantList, category, sortBy);
-    setCurrentRestaurantList(updatedRestaurantList);
   }, []);
 
   const updateSelectedRestaurant = useCallback((restaurant: Restaurant) => {
