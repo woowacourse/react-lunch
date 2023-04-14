@@ -1,4 +1,4 @@
-import React from 'react';
-test('temp', () => {
+import React from "react";
+test("temp", () => {
   expect(true).toBeTruthy();
-})
+});
