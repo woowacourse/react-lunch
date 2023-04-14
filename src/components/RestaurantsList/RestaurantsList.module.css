@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px;
+  margin: 16px 0;
+}
+
+.restaurant {
+  display: flex;
+  align-items: flex-start;
+  padding: 16px 8px;
+  border-bottom: 1px solid #e9eaed;
+}
