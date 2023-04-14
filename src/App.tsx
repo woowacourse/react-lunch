@@ -1,9 +1,11 @@
 import { Component } from 'react';
 import { Header, Modal, RestaurantList, SelectBox } from './components';
-import { GlobalStyle } from './global-style';
-import { CategoryOption, Restaurant, SortOption } from './types';
 
+import { GlobalStyle } from './global-style';
 import styled, { ThemeProvider } from 'styled-components';
+
+import { CATEGORY, SORTING } from './constants/index';
+import { CategoryOption, Restaurant, SortOption } from './types';
 
 import data from './data/mockData.json';
 import { db } from './db/restaurants';
@@ -26,10 +28,10 @@ class App extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      categoryOptions: ['전체', '한식', '중식', '일식', '아시안', '양식', '기타'],
-      sortingOptions: ['거리순', '이름순'],
-      selectedCategoryOption: '전체',
-      selectedSortingOption: '거리순',
+      categoryOptions: Object.values(CATEGORY),
+      sortingOptions: Object.values(SORTING),
+      selectedCategoryOption: CATEGORY.ALL,
+      selectedSortingOption: SORTING.DISTANCE,
       restaurantItems: data.items as Restaurant[],
       isModalOpen: false,
       clickedRestaurant: null,
@@ -72,18 +74,17 @@ class App extends Component<Props, State> {
     if (db.isRestaurantItemsExist()) {
       this.setState({ restaurantItems: db.getRestaurants() });
     } else {
-      this.setState({ restaurantItems: data.items as Restaurant[] });
       db.setRestaurants(data.items as Restaurant[]);
     }
   }
 
   filterByCategory(restaurants: Restaurant[], categoryOption: CategoryOption): Restaurant[] {
-    if (categoryOption === '전체') return restaurants;
+    if (categoryOption === CATEGORY.ALL) return restaurants;
     return restaurants.filter((restaurant) => restaurant.category === categoryOption);
   }
 
   filterBySort(restaurants: Restaurant[], sortingOption: SortOption): Restaurant[] {
-    if (sortingOption === '이름순') {
+    if (sortingOption === SORTING.NAME) {
       return restaurants.sort((a, b) => (a.name > b.name ? 1 : -1));
     }
     return restaurants.sort((a, b) => a.distance - b.distance);
