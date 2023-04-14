@@ -8,29 +8,25 @@ type RestaurantListItemProps = {
   onClick: () => void;
 };
 
-class RestaurantListItem extends React.Component<RestaurantListItemProps> {
-  render() {
-    const { restaurant, onClick } = this.props;
+const RestaurantListItem = ({ restaurant, onClick }: RestaurantListItemProps) => {
+  return (
+    <styled.RestaurantListItem onClick={onClick} data-cy="restaurant-list-item">
+      <CategoryIcon category={restaurant.category} />
 
-    return (
-      <styled.RestaurantListItem onClick={onClick} data-cy="restaurant-list-item">
-        <CategoryIcon category={restaurant.category} />
+      <header>
+        <styled.RestaurantListItemHeaderTitleText data-cy="TitleText">
+          {restaurant.name}
+        </styled.RestaurantListItemHeaderTitleText>
+        <styled.RestaurantListItemHeaderSubTitleText>
+          캠퍼스부터 {restaurant.distanceByMinutes}분 내
+        </styled.RestaurantListItemHeaderSubTitleText>
+      </header>
 
-        <header>
-          <styled.RestaurantListItemHeaderTitleText data-cy="TitleText">
-            {restaurant.name}
-          </styled.RestaurantListItemHeaderTitleText>
-          <styled.RestaurantListItemHeaderSubTitleText>
-            캠퍼스부터 {restaurant.distanceByMinutes}분 내
-          </styled.RestaurantListItemHeaderSubTitleText>
-        </header>
-
-        <styled.RestaurantListItemBodyText>
-          {restaurant.description}
-        </styled.RestaurantListItemBodyText>
-      </styled.RestaurantListItem>
-    );
-  }
-}
+      <styled.RestaurantListItemBodyText>
+        {restaurant.description}
+      </styled.RestaurantListItemBodyText>
+    </styled.RestaurantListItem>
+  );
+};
 
 export default RestaurantListItem;
