@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, memo } from 'react';
 import { Options } from '../../../types';
 
 interface SelectProps {
@@ -12,8 +12,6 @@ interface SelectProps {
 }
 
 function Select({ attributes, options, onChange }: SelectProps) {
-  console.log('rendering Select');
-
   const handleChangeOption = (event: ChangeEvent<HTMLSelectElement>) => {
     const target = event.target as HTMLSelectElement;
     const result = {
@@ -39,4 +37,4 @@ function Select({ attributes, options, onChange }: SelectProps) {
   );
 }
 
-export default Select;
+export default memo(Select);

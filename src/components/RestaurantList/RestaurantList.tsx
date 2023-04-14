@@ -9,8 +9,6 @@ interface RestaurantListProps {
 }
 
 function RestaurantList({ restaurantList, onItemClick }: RestaurantListProps) {
-  console.log('rendering RestaurantList');
-
   const createRestaurantItemElements = () => {
     return restaurantList.map((restaurant) => (
       <RestaurantItem key={restaurant.id} restaurant={restaurant} onClick={onItemClick} />

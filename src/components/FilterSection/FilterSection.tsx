@@ -1,5 +1,5 @@
 import './style.css';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { FilterOption } from '../../types';
 import {
   DEFAULT_CATEGORY,
@@ -15,15 +15,12 @@ interface FilterSectionProps {
 }
 
 function FilterSection({ onChange }: FilterSectionProps) {
-  console.log('rendering FilterSection');
-
   const [displayStatus, setDisplayStatus] = useState({
     category: DEFAULT_CATEGORY,
     sortBy: DEFAULT_SORT_BY,
   });
 
   const handleSelectChange = (option: FilterOption) => {
-    console.log(displayStatus);
     const updatedDisplayStatus = {
       ...displayStatus,
       ...option,
@@ -49,4 +46,4 @@ function FilterSection({ onChange }: FilterSectionProps) {
   );
 }
 
-export default FilterSection;
+export default memo(FilterSection);
