@@ -1,6 +1,6 @@
 import { Restaurant } from '../types/restaurant';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Button, CategoryImage } from './';
 import styled from 'styled-components';
 
@@ -14,61 +14,24 @@ interface Props {
 const RestaurantDetail = ({ restaurant, closeModal }: Props) => {
   const { category, name, distance, description, link } = restaurant;
 
-  const onKeyUp = ({ key }: KeyboardEvent) => {
-    if (key === 'Escape') closeModal();
-  };
-
-  useEffect(() => {
-    window.addEventListener('keyup', onKeyUp);
-    return () => {
-      window.removeEventListener('keyup', onKeyUp);
-    };
-  }, []);
-
   return (
-    <>
-      <ModalBackdrop onClick={closeModal} />
-      <ModalContainer>
-        <Detail>
-          <CategoryImage category={category} />
-          <RestaurantName>{name}</RestaurantName>
-          <Distance>캠퍼스부터 {distance}분 내</Distance>
-          <Description>{description}</Description>
-          <Link href={link}>{link}</Link>
-          <ButtonContainer>
-            <RemoveButton>삭제하기</RemoveButton>
-            <CloseButton onClick={closeModal}>닫기</CloseButton>
-          </ButtonContainer>
-        </Detail>
-      </ModalContainer>
-    </>
+    <RestaurantDetailWrapper>
+      <CategoryImage category={category} />
+      <RestaurantName>{name}</RestaurantName>
+      <Distance>캠퍼스부터 {distance}분 내</Distance>
+      <Description>{description}</Description>
+      <Link href={link}>{link}</Link>
+      <ButtonContainer>
+        <RemoveButton>삭제하기</RemoveButton>
+        <CloseButton onClick={closeModal}>닫기</CloseButton>
+      </ButtonContainer>
+    </RestaurantDetailWrapper>
   );
 };
 
 export default RestaurantDetail;
 
-const ModalBackdrop = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  background: rgba(0, 0, 0, 0.35);
-`;
-
-const ModalContainer = styled.div`
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-
-  padding: 32px 16px;
-
-  border-radius: 8px 8px 0px 0px;
-  background: var(--grey-100);
-`;
-
-const Detail = styled.div`
+const RestaurantDetailWrapper = styled.div`
   position: relative;
 
   display: flex;

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Header, RestaurantList, RestaurantDetail } from './components';
 
 import mockData from './mockData.json';
+import Modal from './components/Modal';
 
 const App = () => {
   if (!localStorage.getItem('restaurants')) {
@@ -27,11 +28,14 @@ const App = () => {
     <div className="App">
       <Header />
       <RestaurantList restaurants={restaurants} openModal={openModal} />
+
       {isModalOpen && (
-        <RestaurantDetail
-          restaurant={restaurants.find((restaurant) => restaurant.id === detailId) as Restaurant}
-          closeModal={closeModal}
-        />
+        <Modal closeModal={closeModal}>
+          <RestaurantDetail
+            restaurant={restaurants.find((restaurant) => restaurant.id === detailId) as Restaurant}
+            closeModal={closeModal}
+          />
+        </Modal>
       )}
     </div>
   );
