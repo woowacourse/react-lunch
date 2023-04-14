@@ -43,7 +43,7 @@ class RestaurantItem extends React.Component<RestaurantItemProps, {}> {
 export default RestaurantItem;
 
 const Card = styled.li`
-listStyle:none;
+list-style:none;
 `;
 
 const Favorite = styled.div`
