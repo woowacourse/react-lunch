@@ -10,7 +10,8 @@ import { sortingByCategory, sortingByFilter } from './domain/restaurantSort';
 import { CATEGORY_OPTIONS, FILTER_OPTIONS } from './utils/constants';
 
 function App() {
-  const localStorageSavedList = JSON.parse(localStorage.getItem('restaurantList') ?? '') as Array<Restaurant>;
+  const localStorageItem = localStorage.getItem('restaurantList') ?? '[]';
+  const localStorageSavedList = JSON.parse(localStorageItem) as Array<Restaurant>;
   const restaurantMockDataList = mockData.restaurantList as Array<Restaurant>;
 
   const wholeList = [...localStorageSavedList, ...restaurantMockDataList];
