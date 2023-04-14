@@ -1,0 +1,172 @@
+{
+  "items": [
+    {
+      "id": 0,
+      "name": "피양콩할머니",
+      "category": "한식",
+      "distance": 10,
+      "description": "2005년 장모님에게 전수받은 설렁탕 조리법을 개선하여 시작했다는 외고...",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 1,
+      "name": "명정루",
+      "category": "중식",
+      "distance": 10,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 2,
+      "name": "장정정",
+      "category": "일식",
+      "distance": 10,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 3,
+      "name": "서양집할머니",
+      "category": "양식",
+      "distance": 10,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 4,
+      "name": "동남아할머니",
+      "category": "아시안",
+      "distance": 10,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 5,
+      "name": "얌샘김밥",
+      "category": "한식",
+      "distance": 20,
+      "description": "엄청나게 많은 메뉴, 골라 먹어 봐요!",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 6,
+      "name": "친친",
+      "category": "중식",
+      "distance": 20,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 7,
+      "name": "블랙랩",
+      "category": "양식",
+      "distance": 30,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 8,
+      "name": "알로이타이",
+      "category": "아시안",
+      "distance": 10,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 9,
+      "name": "농민백암순대",
+      "category": "한식",
+      "distance": 30,
+      "description": "최고의 국밥",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 10,
+      "name": "동보성",
+      "category": "중식",
+      "distance": 15,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 11,
+      "name": "돈카라",
+      "category": "일식",
+      "distance": 10,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 12,
+      "name": "서브웨이",
+      "category": "양식",
+      "distance": 10,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 13,
+      "name": "반포식스",
+      "category": "아시안",
+      "distance": 15,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 14,
+      "name": "맥도날드",
+      "category": "양식",
+      "distance": 20,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 15,
+      "name": "꺼벙이분식",
+      "category": "한식",
+      "distance": 20,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 16,
+      "name": "백소정",
+      "category": "일식",
+      "distance": 20,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 17,
+      "name": "버거킹",
+      "category": "양식",
+      "distance": 20,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 18,
+      "name": "기타1111",
+      "category": "기타",
+      "distance": 20,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 19,
+      "name": "2222기타",
+      "category": "기타",
+      "distance": 5,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    },
+    {
+      "id": 20,
+      "name": "기3타3",
+      "category": "기타",
+      "distance": 10,
+      "description": "desc",
+      "link": "https://www.naver.com"
+    }
+  ]
+}
