@@ -6,25 +6,36 @@ import Selector from './components/Selector';
 import mockData from './mockData/restaurantList.json';
 import { AppState, Restaurant } from './utils/interfaces';
 import { SelectorCategory, SelectorFilter } from './utils/types';
-import { sortingByCategory, sortingByFilter } from './domain/restaurantSort';
 import { CATEGORY_OPTIONS, FILTER_OPTIONS } from './utils/constants';
+import useSortRestaurantList from './hooks/useSortRestaurantList';
 
-function App() {
+const getInitialRestaunrantList = () => {
   const localStorageItem = localStorage.getItem('restaurantList') ?? '[]';
   const localStorageSavedList = JSON.parse(localStorageItem) as Array<Restaurant>;
   const restaurantMockDataList = mockData.restaurantList as Array<Restaurant>;
 
-  const wholeList = [...localStorageSavedList, ...restaurantMockDataList];
-  const currentList = sortingByFilter('이름순', wholeList);
+  return [...localStorageSavedList, ...restaurantMockDataList];
+};
 
-  const [appState, setAppState] = useState<AppState>({ category: '전체', filter: '이름순', wholeList, currentList });
+function App() {
+  const sortedRestaurantList = useSortRestaurantList();
+
+  const restaurantList = getInitialRestaunrantList();
+
+  const currentList = sortedRestaurantList({ category: '전체', filter: '이름순', restaurantList });
+
+  const [appState, setAppState] = useState<AppState>({
+    category: '전체',
+    filter: '이름순',
+    wholeList: restaurantList,
+    currentList,
+  });
 
   const categoryOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedCategory = e.target.value as SelectorCategory;
     const { filter, wholeList } = appState;
 
-    const categortSotredList = sortingByCategory(selectedCategory, wholeList);
-    const currentList = sortingByFilter(filter, categortSotredList);
+    const currentList = sortedRestaurantList({ category: selectedCategory, filter, restaurantList: wholeList });
 
     setAppState(prevState => ({ ...prevState, category: selectedCategory, currentList }));
   };
@@ -34,8 +45,7 @@ function App() {
 
     const { category, wholeList } = appState;
 
-    const filterSortedList = sortingByFilter(selectedFilter, wholeList);
-    const currentList = sortingByCategory(category, filterSortedList);
+    const currentList = sortedRestaurantList({ category, filter: selectedFilter, restaurantList: wholeList });
 
     setAppState(prevState => ({ ...prevState, filter: selectedFilter, currentList }));
   };
