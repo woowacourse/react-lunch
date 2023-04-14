@@ -28,12 +28,10 @@ class RestaurantDetail extends Component<RestaurantElementProps> {
             <p className="restaurant-detail__description text-body">
               {restaurant.description ?? ''}
             </p>
-            {restaurant.link ? (
+            {restaurant.link && (
               <a href={restaurant.link} className="restaurant__link" target="_blank">
                 웹사이트 방문하기
               </a>
-            ) : (
-              ''
             )}
           </>
         )}
