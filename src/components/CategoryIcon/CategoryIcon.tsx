@@ -22,16 +22,12 @@ type CategoryIconProps = {
   category: Category;
 };
 
-class CategoryIcon extends React.PureComponent<CategoryIconProps> {
-  render() {
-    const { category } = this.props;
-
-    return (
-      <styled.CategoryIcon>
-        <img src={categoryToImageMapper[category]} alt={category} />
-      </styled.CategoryIcon>
-    );
-  }
-}
+const CategoryIcon: React.FC<CategoryIconProps> = ({ category }) => {
+  return (
+    <styled.CategoryIcon>
+      <img src={categoryToImageMapper[category]} alt={category} />
+    </styled.CategoryIcon>
+  );
+};
 
 export default CategoryIcon;
