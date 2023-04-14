@@ -8,7 +8,7 @@ import {
   SELECT_ATTRIBUTES,
   SORT_BY,
 } from '../../constants';
-import Select from '../common/Select';
+import Select from '../common/Select/Select';
 
 interface FilterSectionProps {
   onChange: CallableFunction;
