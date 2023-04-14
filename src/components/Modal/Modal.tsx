@@ -1,55 +1,43 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import './Modal.css';
-import { ModalProps, ModalState } from '../../types';
 
-class Modal extends React.Component<ModalProps, ModalState> {
-  private modalRef: React.RefObject<HTMLDialogElement>;
+export interface ModalProps {
+  children?: React.ReactNode;
+}
 
-  constructor(props: ModalProps) {
-    super(props);
-    this.modalRef = React.createRef<HTMLDialogElement>();
-  }
+function Modal(props: ModalProps) {
+  const modalRef = useRef<HTMLDialogElement>(null);
 
-  componentDidMount() {
-    if (this.modalRef.current) {
-      this.modalRef.current.showModal();
-    }
-  }
+  useEffect(() => {
+    if (modalRef.current) modalRef.current.showModal();
+  }, [props]);
 
-  componentDidUpdate() {
-    if (this.modalRef.current) {
-      this.modalRef.current.showModal();
-    }
-  }
-
-  closeModal() {
-    if (this.modalRef.current) {
-      this.modalRef.current.close();
-    }
-  }
-
-  onBackdropClick = (event: React.MouseEvent<HTMLDialogElement>) => {
-    if (event.target === this.modalRef.current) {
-      this.closeModal();
+  const closeModal = () => {
+    if (modalRef.current) {
+      modalRef.current.close();
     }
   };
 
-  render() {
-    return (
-      <dialog ref={this.modalRef} onClick={this.onBackdropClick}>
-        <div className="modal-container">
-          {this.props.children}
-          <button
-            className="button button--primary text-caption"
-            id="restaurant-detail-modal-close-button"
-            onClick={() => this.closeModal()}
-          >
-            닫기
-          </button>
-        </div>
-      </dialog>
-    );
-  }
+  const onBackdropClick = (event: React.MouseEvent<HTMLDialogElement>) => {
+    if (event.target === modalRef.current) {
+      closeModal();
+    }
+  };
+
+  return (
+    <dialog ref={modalRef} onClick={onBackdropClick}>
+      <div className="modal-container">
+        {props.children}
+        <button
+          className="button button--primary text-caption"
+          id="restaurant-detail-modal-close-button"
+          onClick={() => closeModal()}
+        >
+          닫기
+        </button>
+      </div>
+    </dialog>
+  );
 }
 
 export default Modal;

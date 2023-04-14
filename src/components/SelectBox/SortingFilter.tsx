@@ -7,19 +7,12 @@ interface SortingProps {
   setCriterion: (newCriterion: Criterion) => void;
 }
 
-class SortingFilter extends React.Component<SortingProps> {
-  constructor(props: SortingProps) {
-    super(props);
-    this.onChangeCriterion = this.onChangeCriterion.bind(this);
-  }
+function SortingFilter(props: SortingProps) {
+  const onChangeCriterion = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    props.setCriterion(event.target.value as Criterion);
+  };
 
-  onChangeCriterion(event: React.ChangeEvent<HTMLSelectElement>) {
-    this.props.setCriterion(event.target.value as Criterion);
-  }
-
-  render() {
-    return <SelectBox filter={CRITERION} onOptionChange={this.onChangeCriterion} />;
-  }
+  return <SelectBox filter={CRITERION} onOptionChange={onChangeCriterion} />;
 }
 
 export default SortingFilter;
