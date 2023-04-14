@@ -6,6 +6,7 @@ import { Modal } from "./modal";
 import { ItemModalContent } from "./ItemModalContent";
 
 interface RestaurantItemProps {
+  key: string;
   restaurant: Restaurant;
 }
 
