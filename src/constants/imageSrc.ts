@@ -1,4 +1,4 @@
-import { Category } from './../types';
+import { Category } from 'types';
 
 export const imgSrc: Record<Category, string> = {
   한식: `${process.env.PUBLIC_URL}/assets/category-korean.png`,

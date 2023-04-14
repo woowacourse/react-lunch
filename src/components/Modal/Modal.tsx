@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import { Restaurant } from '../../types';
-import { imgSrc } from '../../constants/imageSrc';
+import { Restaurant } from 'types';
+import { imgSrc } from 'constants/imageSrc';
 import styled from 'styled-components';
 import {
   DistanceText,
@@ -8,7 +8,7 @@ import {
   Name,
   RestaurantCategory,
   RestaurantInfoWrapper,
-} from '../RestaurantItem/RestaurantItem';
+} from 'components/RestaurantItem/RestaurantItem';
 
 type Props = {
   restaurant: Restaurant;

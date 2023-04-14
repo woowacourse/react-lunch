@@ -1,7 +1,7 @@
+import { RestaurantItem } from 'components/RestaurantItem/RestaurantItem';
 import { Component } from 'react';
 import styled from 'styled-components';
-import { Restaurant } from '../../types';
-import { RestaurantItem } from '../RestaurantItem/RestaurantItem';
+import { Restaurant } from 'types';
 
 type Props = {
   restaurants: Restaurant[];

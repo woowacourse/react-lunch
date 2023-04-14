@@ -1,14 +1,14 @@
 import { Component } from 'react';
-import { Header, Modal, RestaurantList, SelectBox } from './components';
-import { GlobalStyle } from './global-style';
-import { CategoryFilter, Restaurant, SortFilter } from './types';
+import { Header, Modal, RestaurantList, SelectBox } from 'components';
+import { GlobalStyle } from 'global-style';
+import { CategoryFilter, Restaurant, SortFilter } from 'types';
 
 import styled, { ThemeProvider } from 'styled-components';
 
-import data from './data/mockData.json';
-import { db } from './db/restaurants';
+import data from 'data/mockData.json';
+import { db } from 'db/restaurants';
 
-import variables from './components/styles/variables';
+import variables from 'components/styles/variables';
 
 type Props = {};
 
