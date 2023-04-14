@@ -1,5 +1,5 @@
 import './style.css';
-import { PureComponent } from 'react';
+import { useState } from 'react';
 import { FilterOption } from '../../types';
 import {
   DEFAULT_CATEGORY,
@@ -14,53 +14,36 @@ interface FilterSectionProps {
   onChange: CallableFunction;
 }
 
-interface FilterSectionState {
-  category: string;
-  sortBy: string;
-}
+function FilterSection({ onChange }: FilterSectionProps) {
+  const [displayStatus, setDisplayStatus] = useState({
+    category: DEFAULT_CATEGORY,
+    sortBy: DEFAULT_SORT_BY,
+  });
 
-class FilterSection extends PureComponent<FilterSectionProps, FilterSectionState> {
-  state: FilterSectionState;
-
-  constructor(props: FilterSectionProps) {
-    super(props);
-
-    this.state = {
-      category: DEFAULT_CATEGORY,
-      sortBy: DEFAULT_SORT_BY,
+  const handleSelectChange = (option: FilterOption) => {
+    const updatedDisplayStatus = {
+      ...displayStatus,
+      ...option,
     };
-  }
 
-  handleSelectChange = (option: FilterOption) => {
-    this.setState(
-      {
-        ...this.state,
-        ...option,
-      },
-      () => {
-        this.props.onChange(this.state.category, this.state.sortBy);
-      }
-    );
+    setDisplayStatus(updatedDisplayStatus);
+    onChange(updatedDisplayStatus);
   };
 
-  render() {
-    console.log('rendering filter section');
-
-    return (
-      <section className="restaurant-filter-container">
-        <Select
-          attributes={SELECT_ATTRIBUTES.CATEGORY_FILTER}
-          options={RESTAURANT_CATEGORY_OPTION}
-          onChange={this.handleSelectChange}
-        />
-        <Select
-          attributes={SELECT_ATTRIBUTES.SORT_BY_FILTER}
-          options={SORT_BY}
-          onChange={this.handleSelectChange}
-        />
-      </section>
-    );
-  }
+  return (
+    <section className="restaurant-filter-container">
+      <Select
+        attributes={SELECT_ATTRIBUTES.CATEGORY_FILTER}
+        options={RESTAURANT_CATEGORY_OPTION}
+        onChange={handleSelectChange}
+      />
+      <Select
+        attributes={SELECT_ATTRIBUTES.SORT_BY_FILTER}
+        options={SORT_BY}
+        onChange={handleSelectChange}
+      />
+    </section>
+  );
 }
 
 export default FilterSection;
