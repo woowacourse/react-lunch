@@ -1,48 +1,45 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { convertImage } from "../utils/image";
-import { GlobalContext, GlobalState } from "../containers/GlobalProvider";
+import { GlobalContext } from "../containers/GlobalProvider";
 
-class Modal extends React.Component {
-  static contextType = GlobalContext;
-
-  render() {
-    const globalState = this.context as GlobalState;
-    const { name, distance, category, description } = globalState.restaurant;
-    return (
-      <>
-        {
-          globalState.modalOpen && (
-            <ModalContainer>
-              <ModalBackDrop onClick={() => globalState.setModalOpen(false)}></ModalBackDrop>
-              <ModalContent>
-                <div>
-                  <CategoryIcon>
-                    <img src={convertImage(category)} />
-                  </CategoryIcon>
-                  <div className="star-container"></div>
-                </div>
-                <h2 className="mt-16">{name}</h2>
-                <RestaurantInfo>
-                  <p>캠퍼스로부터 {distance}분 내</p>
-                  <div className="mt-16 mb-16">{description}</div>
-                  <ButtonContainer>
-                    <button onClick={() => alert('지원하지 않는 기능입니다.')}>
-                      삭제하기
-                    </button>
-                    <button onClick={() => globalState.setModalOpen(false)}>
-                      닫기
-                    </button>
-                  </ButtonContainer>
-                </RestaurantInfo>
-              </ModalContent>
-            </ModalContainer>
-          )
-        }
-      </>
-    )
-  }
+function Modal() {
+  const globalState = useContext(GlobalContext);
+  const { name, distance, category, description } = globalState.restaurant;
+  return (
+    <>
+      {
+        globalState.modalOpen && (
+          <ModalContainer>
+            <ModalBackDrop onClick={() => globalState.setModalOpen(false)}></ModalBackDrop>
+            <ModalContent>
+              <div>
+                <CategoryIcon>
+                  <img src={convertImage(category)} />
+                </CategoryIcon>
+                <div className="star-container"></div>
+              </div>
+              <h2 className="mt-16">{name}</h2>
+              <RestaurantInfo>
+                <p>캠퍼스로부터 {distance}분 내</p>
+                <div className="mt-16 mb-16">{description}</div>
+                <ButtonContainer>
+                  <button onClick={() => alert('지원하지 않는 기능입니다.')}>
+                    삭제하기
+                  </button>
+                  <button onClick={() => globalState.setModalOpen(false)}>
+                    닫기
+                  </button>
+                </ButtonContainer>
+              </RestaurantInfo>
+            </ModalContent>
+          </ModalContainer>
+        )
+      }
+    </>
+  )
 }
+
 export default Modal;
 
 const ModalContainer = styled.div`

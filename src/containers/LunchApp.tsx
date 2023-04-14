@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RestaurantList from '../components/RestaurantList';
 import mockData from "../data/mockData.json";
 import { Category, Restaurant, Sort } from '../types/Restaurant';
@@ -8,47 +8,37 @@ import styled from 'styled-components';
 import Modal from '../components/RestaurantModal';
 import { category, sort } from '../data/selects';
 
-interface LunchAppState {
-  restaurants: Restaurant[];
-  sortBy: Sort;
-  categorizeBy: Category;
+function LunchApp() {
+  const [restaurants, setRestaurants] = useState<Restaurant[]>(mockData);
+  const [sortBy, setSortBy] = useState<Sort>('name');
+  const [categorizeBy, setCategorizeBy] = useState<Category>('all');
+
+  const updateSortBy = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortBy(e.target.value as Sort);
+  }
+
+  const updateCategorizeBy = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCategorizeBy(e.target.value as Category);
+  }
+
+  return (
+    <>
+      <Header />
+      <SelectContainer>
+        <SelectBox
+          setState={(e) => updateCategorizeBy(e)}
+          options={category} />
+        <SelectBox
+          setState={(e) => updateSortBy(e)}
+          options={sort}
+        />
+      </SelectContainer>
+      <RestaurantList sortBy={sortBy} categorizeBy={categorizeBy} restaurants={restaurants} />
+      <Modal />
+    </>
+  );
 }
-class LunchApp extends React.Component<{}, LunchAppState> {
 
-  constructor(props: Readonly<{}> | {}) {
-    super(props);
-    this.state = { restaurants: mockData, sortBy: 'name', categorizeBy: 'all' };
-  }
-
-  updateSortBy(e: React.ChangeEvent<HTMLSelectElement>) {
-    this.setState({ sortBy: e.target.value as Sort });
-  }
-
-  updateCategorizeBy(e: React.ChangeEvent<HTMLSelectElement>) {
-    this.setState({ categorizeBy: e.target.value as Category });
-  }
-
-  render() {
-    const { sortBy, categorizeBy, restaurants } = this.state;
-
-    return (
-      <>
-        <Header />
-        <SelectContainer>
-          <SelectBox
-            setState={(e) => this.updateCategorizeBy(e)}
-            options={category} />
-          <SelectBox
-            setState={(e) => this.updateSortBy(e)}
-            options={sort}
-          />
-        </SelectContainer>
-        <RestaurantList sortBy={sortBy} categorizeBy={categorizeBy} restaurants={restaurants} />
-        <Modal />
-      </>
-    );
-  }
-}
 
 export default LunchApp;
 

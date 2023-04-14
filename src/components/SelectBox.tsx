@@ -7,19 +7,17 @@ interface SelectBoxProps {
   setState: ChangeEventHandler<HTMLSelectElement>;
 }
 
-class SelectBox extends React.Component<SelectBoxProps, {}> {
+function SelectBox({ options, setState }: SelectBoxProps) {
 
-  render() {
-    const { options, setState } = this.props;
-    return (
-      <Select onChange={setState}>
-        {options.map(option => (
-          <option value={option.value} key={option.value}>{option.label}</option>
-        ))}
-      </Select>
-    )
-  }
+  return (
+    <Select onChange={setState}>
+      {options.map(option => (
+        <option value={option.value} key={option.value}>{option.label}</option>
+      ))}
+    </Select>
+  )
 }
+
 
 export default SelectBox;
 

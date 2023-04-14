@@ -8,24 +8,20 @@ interface RestaurantListProps {
   categorizeBy: Category;
 }
 
-class RestaurantList extends React.Component<RestaurantListProps> {
+function RestaurantList({ restaurants, sortBy, categorizeBy }: RestaurantListProps) {
 
-  render() {
-    const { restaurants, sortBy, categorizeBy } = this.props;
-
-    return (
-      <ul>
-        {
-          restaurants
-            .sort((a, b) => a[sortBy] > b[sortBy] ? 1 : -1)
-            .filter((restaurant) => categorizeBy === 'all' ? true : restaurant.category === categorizeBy)
-            .map((restaurant) => (
-              <RestaurantItem key={restaurant.name} restaurant={restaurant} />
-            ))
-        }
-      </ul>
-    );
-  }
+  return (
+    <ul>
+      {
+        restaurants
+          .sort((a, b) => a[sortBy] > b[sortBy] ? 1 : -1)
+          .filter((restaurant) => categorizeBy === 'all' ? true : restaurant.category === categorizeBy)
+          .map((restaurant) => (
+            <RestaurantItem key={restaurant.name} restaurant={restaurant} />
+          ))
+      }
+    </ul>
+  );
 }
 
 export default RestaurantList;
