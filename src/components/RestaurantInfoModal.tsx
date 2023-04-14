@@ -3,7 +3,6 @@ import ReactDom from 'react-dom';
 import styled from 'styled-components';
 import { ENGLISH_CATEGORY } from '../constants';
 import { RestaurantModal } from '../types';
-import { $ } from '../utils/selector';
 
 class RestaurantInfoModal extends Component<RestaurantModal> {
   render() {
