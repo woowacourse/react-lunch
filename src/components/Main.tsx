@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
 import { Restaurant } from '../types';
-import { saveToLocalStorage } from '../utils/localStorage';
 import { getRestaurantListData } from '../data/restaurantListData';
 import FilterSection from './FilterSection/FilterSection';
 import RestaurantList from './RestaurantList/RestaurantList';
 import Modal from './common/Modal/Modal';
 import RestaurantDetail from './RestaurantDetail/RestaurantDetail';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 import { filterAndSortRestaurantList, useRestaurantList } from '../hooks/useRestaurantList';
 import { useModal } from '../hooks/useModal';
 
-const restaurantList = filterAndSortRestaurantList(getRestaurantListData());
+const restaurantListData = filterAndSortRestaurantList(getRestaurantListData());
 
 function Main() {
+  const { data: restaurantList, setDataBeforeUnload } = useLocalStorage(restaurantListData);
   const { currentRestaurantList, updateCurrentRestaurantList } = useRestaurantList(restaurantList);
   const { isModalOpen, openModal, handleModalCloseClick, handleModalClosePress } = useModal();
 
@@ -19,9 +20,9 @@ function Main() {
 
   useEffect(() => {
     window.addEventListener('beforeunload', () => {
-      saveToLocalStorage(restaurantList);
+      setDataBeforeUnload(restaurantList);
     });
-  }, []);
+  }, [restaurantList, setDataBeforeUnload]);
 
   const handleRestaurantItem = (restaurant: Restaurant) => {
     setSelectedRestaurant(restaurant);
