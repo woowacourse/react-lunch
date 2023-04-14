@@ -2,7 +2,7 @@ import React from 'react';
 import RestaurantItem from './RestaurantItem.tsx';
 import { FilterOption, Restaurant } from './util/type.js';
 import { pipe } from './util/util.ts';
-type StateType = {
+type RestaurantListState = {
   restaurantList: Omit<Restaurant, 'link'>[];
 };
 
@@ -11,7 +11,7 @@ type RestaurantListProps = {
   onToggleDrawer: (id?: number) => void;
 };
 
-class RestaurantList extends React.Component<RestaurantListProps, StateType> {
+class RestaurantList extends React.Component<RestaurantListProps, RestaurantListState> {
   constructor(props) {
     super(props);
     this.state = {
