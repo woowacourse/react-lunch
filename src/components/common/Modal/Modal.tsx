@@ -1,47 +1,55 @@
 import './style.css';
-import { Dispatch, MouseEvent, ReactNode, SetStateAction, memo, useEffect, useRef } from 'react';
-import { Restaurant } from '../../../types';
-import { useModal } from '../../../hooks/useModal';
+import { KeyboardEvent, MouseEvent, ReactNode, memo, useCallback, useEffect, useRef } from 'react';
 
 interface ModalProps {
   children: ReactNode;
-  onClose: Dispatch<SetStateAction<Restaurant | null>>;
+  close: () => void;
 }
 
-function Modal({ children, onClose }: ModalProps) {
+function Modal({ children, close }: ModalProps) {
   const modalContainerRef = useRef<HTMLDivElement>(null);
 
-  const { isOpen, open, handleCloseClick, handleClosePress } = useModal();
-
   useEffect(() => {
-    open();
-
     if (modalContainerRef.current) {
       modalContainerRef.current.focus();
     }
-  }, [open]);
+  }, []);
 
-  const handleClose = (event: MouseEvent<HTMLElement>) => {
-    handleCloseClick(event);
-    onClose(null);
-  };
+  const handleCloseClick = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
+      const target = event.target as HTMLElement;
+
+      if (
+        target.classList.contains('modal-backdrop') ||
+        target.classList.contains('modal-close-button')
+      ) {
+        close();
+      }
+    },
+    [close]
+  );
+
+  const handleClosePress = useCallback(
+    (event: KeyboardEvent<HTMLElement>) => {
+      if (event.key === 'Escape') {
+        close();
+      }
+    },
+    [close]
+  );
 
   return (
-    <>
-      {isOpen && (
-        <div className="modal" onClick={handleClose}>
-          <div className="modal-backdrop" />
-          <div
-            ref={modalContainerRef}
-            className="modal-container"
-            onKeyDown={handleClosePress}
-            tabIndex={0}
-          >
-            {children}
-          </div>
-        </div>
-      )}
-    </>
+    <div className="modal" onClick={handleCloseClick}>
+      <div className="modal-backdrop" />
+      <div
+        ref={modalContainerRef}
+        className="modal-container"
+        onKeyDown={handleClosePress}
+        tabIndex={0}
+      >
+        {children}
+      </div>
+    </div>
   );
 }
 

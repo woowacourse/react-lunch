@@ -5,7 +5,7 @@ import { RESTAURANT_IMAGE } from '../../constants/images';
 
 interface RestaurantItemProps {
   restaurant: Restaurant;
-  onClick: Dispatch<SetStateAction<Restaurant | null>>;
+  onClick: CallableFunction;
 }
 
 function RestaurantItem({ restaurant, onClick }: RestaurantItemProps) {

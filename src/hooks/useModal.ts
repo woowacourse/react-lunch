@@ -1,4 +1,4 @@
-import { KeyboardEvent, MouseEvent, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 const useModal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,30 +13,7 @@ const useModal = () => {
     document.body.classList.remove('hide-overflow');
   }, []);
 
-  const handleCloseClick = useCallback(
-    (event: MouseEvent<HTMLElement>) => {
-      const target = event.target as HTMLElement;
-
-      if (
-        target.classList.contains('modal-backdrop') ||
-        target.classList.contains('modal-close-button')
-      ) {
-        close();
-      }
-    },
-    [close]
-  );
-
-  const handleClosePress = useCallback(
-    (event: KeyboardEvent<HTMLElement>) => {
-      if (event.key === 'Escape') {
-        close();
-      }
-    },
-    [close]
-  );
-
-  return { isOpen, open, handleCloseClick, handleClosePress };
+  return { isModalOpen: isOpen, openModal: open, closeModal: close };
 };
 
 export { useModal };

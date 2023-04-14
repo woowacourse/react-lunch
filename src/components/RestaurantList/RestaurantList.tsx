@@ -5,7 +5,7 @@ import RestaurantItem from '../RestaurantItem/RestaurantItem';
 
 interface RestaurantListProps {
   restaurantList: Restaurant[];
-  onItemClick: Dispatch<SetStateAction<Restaurant | null>>;
+  onItemClick: CallableFunction;
 }
 
 function RestaurantList({ restaurantList, onItemClick }: RestaurantListProps) {
