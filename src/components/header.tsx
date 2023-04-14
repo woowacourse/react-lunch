@@ -1,54 +1,42 @@
-import React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import addButton from "../assets/add-button.png";
 import { Modal } from "./modal";
 import { WarningModalContent } from "./warningModalContent";
 
-interface StateType {
-  isModalOpen: boolean;
-}
-export class Header extends React.PureComponent<{}, StateType> {
-  constructor(props: {}) {
-    super(props);
+export const Header = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    this.state = {
-      isModalOpen: false,
-    };
-  }
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
 
-  openModal() {
-    this.setState({ isModalOpen: true });
-  }
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
-  closeModal() {
-    this.setState({ isModalOpen: false });
-  }
-
-  render() {
-    return (
-      <>
-        <Container>
-          <Title
-            onClick={() => {
-              window.location.reload();
-            }}>
-            점심 뭐 먹지
-          </Title>
-          <AddButton
-            aria-label="음식점 추가"
-            onClick={this.openModal.bind(this)}>
-            <AddIcon src={addButton} alt="음식점 추가" />
-          </AddButton>
-        </Container>
-        {this.state.isModalOpen && (
-          <Modal location="middle" closeModal={this.closeModal.bind(this)}>
-            <WarningModalContent />
-          </Modal>
-        )}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Container>
+        <Title
+          onClick={() => {
+            window.location.reload();
+          }}
+        >
+          점심 뭐 먹지
+        </Title>
+        <AddButton aria-label="음식점 추가" onClick={openModal}>
+          <AddIcon src={addButton} alt="음식점 추가" />
+        </AddButton>
+      </Container>
+      {isModalOpen && (
+        <Modal location="middle" closeModal={closeModal}>
+          <WarningModalContent />
+        </Modal>
+      )}
+    </>
+  );
+};
 
 const Container = styled.header`
   display: flex;
