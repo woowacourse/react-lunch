@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
 import Drawer from './common/Drawer.tsx';
 import { Restaurant } from './util/type.js';
 import { CATEGORY_IMAGES, NO_EXIST_RESTAURANT } from './util/constant.ts';
@@ -9,70 +10,52 @@ type RestaurantDetailDrawerProps = {
   onToggleDrawer: (id?: number) => void;
 };
 
-type RestaurantDetailDrawerState = {
-  restaurant: Omit<Restaurant, 'id'>;
-};
-
-class RestaurantDetailDrawer extends React.Component<
-  RestaurantDetailDrawerProps,
-  RestaurantDetailDrawerState
-> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      restaurant: this.fetchRestaurantById(),
-    };
-  }
-
-  componentDidUpdate(prevProps: RestaurantDetailDrawerProps): void {
-    if (this.props.restaurantId !== prevProps.restaurantId) {
-      this.setState({
-        restaurant: this.fetchRestaurantById(),
-      });
-    }
-  }
-
-  fetchRestaurantById() {
+const RestaurantDetailDrawer:React.FC<RestaurantDetailDrawerProps> = ({ isOpenDrawer, restaurantId, onToggleDrawer }) => {
+  const fetchRestaurantById = () => {
     const rawRestaurantList = localStorage.getItem('restaurantList');
     if (!rawRestaurantList) return NO_EXIST_RESTAURANT;
     const restaurantList = JSON.parse(rawRestaurantList);
     return (
       restaurantList.find(
-        (restaurant: Restaurant) => +restaurant.id === +this.props.restaurantId
+        (restaurant: Restaurant) => +restaurant.id === +restaurantId
       ) ?? NO_EXIST_RESTAURANT
     );
   }
 
-  render() {
+  const [restaurant, setRestaurant] = useState<Omit<Restaurant, 'id'>>(fetchRestaurantById());
+
+  useEffect(() => {
+    setRestaurant(fetchRestaurantById());
+  }, [restaurantId])
+  
     return (
-      <Drawer isOpenDrawer={this.props.isOpenDrawer}>
+      <Drawer isOpenDrawer={isOpenDrawer}>
         <div className="restaurant__category">
           <img
-            src={CATEGORY_IMAGES[this.state.restaurant.category]}
-            alt={this.state.restaurant.category}
+            src={CATEGORY_IMAGES[restaurant.category]}
+            alt={restaurant.category}
             className="category-icon"
           />
         </div>
         <h3 className="restaurant__name text-subtitle">
-          {this.state.restaurant.title}
+          {restaurant.title}
         </h3>
         <span className="restaurant__distance text-body">
-          캠퍼스로부터 {this.state.restaurant.distance}분 내
+          캠퍼스로부터 {restaurant.distance}분 내
         </span>
-        <p className="text-body">{this.state.restaurant.description}</p>
+        <p className="text-body">{restaurant.description}</p>
         <p className="restaurant__link text-body">
-          {this.state.restaurant.link ?? ''}
+          {restaurant.link ?? ''}
         </p>
         <button
           type="button"
           className="button button--secondary text-caption"
-          onClick={() => this.props.onToggleDrawer()}
+          onClick={() => onToggleDrawer()}
         >
           취소하기
         </button>
       </Drawer>
     );
-  }
 }
 
 export default RestaurantDetailDrawer;
