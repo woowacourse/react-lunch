@@ -1,28 +1,27 @@
-import { ChangeEvent, Component, SelectHTMLAttributes } from 'react';
+import { ChangeEvent, PureComponent } from 'react';
 import { Options } from '../../types';
 
-interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+interface SelectProps {
+  attributes: {
+    id: string;
+    name: string;
+    className: string;
+  };
   options: Options;
-  onChangeOption: CallableFunction;
+  onChange: CallableFunction;
 }
 
-class Select extends Component<SelectProps> {
-  shouldComponentUpdate(nextProps: SelectProps) {
-    return nextProps.options !== this.props.options;
-  }
-
+class Select extends PureComponent<SelectProps> {
   handleChangeOption = (event: ChangeEvent<HTMLSelectElement>) => {
-    if (!this.props.name) return;
-
     const target = event.target as HTMLSelectElement;
     const result = {
-      [this.props.name]: target.value,
+      [this.props.attributes.name]: target.value,
     };
-    this.props.onChangeOption(result);
+    this.props.onChange(result);
   };
 
-  createOptionElements = (options: Options) => {
-    return options.map((option) => (
+  createOptionElements = () => {
+    return this.props.options.map((option) => (
       <option key={option} value={option}>
         {option}
       </option>
@@ -30,11 +29,13 @@ class Select extends Component<SelectProps> {
   };
 
   render() {
-    const { options, ...attributes } = this.props;
+    console.log('rendering Select');
 
     return (
-      <label htmlFor={attributes.id}>
-        <select {...attributes}>{this.createOptionElements(options)}</select>
+      <label htmlFor={this.props.attributes.id}>
+        <select onChange={this.handleChangeOption} {...this.props.attributes}>
+          {this.createOptionElements()}
+        </select>
       </label>
     );
   }
