@@ -1,7 +1,7 @@
 import React from 'react';
 import RestaurantItem from './RestaurantItem.tsx';
 import { FilterOption, Restaurant } from './util/type.js';
-
+import { pipe } from './util/util.ts';
 type StateType = {
   restaurantList: Omit<Restaurant, 'link'>[];
 };
@@ -53,12 +53,6 @@ class RestaurantList extends React.Component<RestaurantListProps, StateType> {
     });
   }
 
-  pipe(...funcs) {
-    return (x, params) => {
-      return funcs.reduce((acc, f, i) => f(acc, params[i]), x);
-    };
-  }
-
   sortRestaurants(rl, category, sorting) {
     return this.filterBySort(this.filterByCategory(rl, category), sorting);
   }
@@ -69,7 +63,7 @@ class RestaurantList extends React.Component<RestaurantListProps, StateType> {
     return (
       <section className="restaurant-list-container">
         <ul className="restaurant-list">
-          {this.pipe(this.filterByCategory, this.filterBySort)(
+          {pipe(this.filterByCategory, this.filterBySort)(
             this.state.restaurantList,
             [category, sorting]
           ).map((restaurant) => (
