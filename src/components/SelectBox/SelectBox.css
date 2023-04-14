@@ -1,0 +1,12 @@
+.restaurant-filter-container select {
+  height: 44px;
+  border: 1px solid #d0d5dd;
+  background: transparent;
+  min-width: 125px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.restaurant-filter {
+  padding: 8px;
+}

@@ -1,0 +1,27 @@
+.in-detail-modal {
+  top: -64px;
+}
+
+.more-detail {
+  -webkit-line-clamp: 4;
+}
+
+.category-favorite-icon-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.restaurant__info {
+  display: flex;
+  position: relative;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 32px;
+}
+
+.restaurant__link {
+  color: #000000;
+  margin-top: 10px;
+}
