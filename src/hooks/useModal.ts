@@ -1,19 +1,47 @@
-import { useCallback, useState } from 'react';
+import { KeyboardEvent, MouseEvent, useCallback, useState } from 'react';
 
 const useModal = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const open = useCallback(() => {
-    setIsOpen(true);
+  const openModal = useCallback(() => {
+    setIsModalOpen(true);
     document.body.classList.add('hide-overflow');
   }, []);
 
-  const close = useCallback(() => {
-    setIsOpen(false);
+  const closeModal = useCallback(() => {
+    setIsModalOpen(false);
     document.body.classList.remove('hide-overflow');
   }, []);
 
-  return { isModalOpen: isOpen, openModal: open, closeModal: close };
+  const handleModalCloseClick = useCallback(
+    (event: MouseEvent<HTMLElement>) => {
+      const target = event.target as HTMLElement;
+
+      if (
+        target.classList.contains('modal-backdrop') ||
+        target.classList.contains('modal-close-button')
+      ) {
+        closeModal();
+      }
+    },
+    [closeModal]
+  );
+
+  const handleModalClosePress = useCallback(
+    (event: KeyboardEvent<HTMLElement>) => {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    },
+    [closeModal]
+  );
+
+  return {
+    isModalOpen,
+    openModal,
+    handleModalCloseClick,
+    handleModalClosePress,
+  };
 };
 
 export { useModal };
