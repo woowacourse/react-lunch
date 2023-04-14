@@ -1,0 +1,10 @@
+.restaurant-list-container {
+	position: relative;
+  display: flex;
+  flex-direction: column;
+
+	top: 140px;
+  padding: 0 16px;
+
+	overflow: auto;
+}

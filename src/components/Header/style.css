@@ -1,0 +1,22 @@
+header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+}
+
+.gnb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+
+  padding: 0 16px;
+
+  background-color: var(--primary-color);
+}
+
+.gnb__title {
+  color: #fcfcfd;
+}
