@@ -44,14 +44,12 @@ const App = () => {
   };
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Header />
-        <SelectSection handleSelect={handleSelect} />
-        <RestaurantSection restaurants={arrangeRestaurants()} />
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Header />
+      <SelectSection handleSelect={handleSelect} />
+      <RestaurantSection restaurants={arrangeRestaurants()} />
+    </ThemeProvider>
   );
 };
 

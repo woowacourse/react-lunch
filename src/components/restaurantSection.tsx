@@ -8,13 +8,11 @@ interface PropsType {
 
 export const RestaurantSection = ({ restaurants }: PropsType) => {
   return (
-    <>
-      <RestaurantContainer>
-        {restaurants?.map((restaurant: Restaurant) => (
-          <RestaurantItem key={restaurant.id} restaurant={restaurant} />
-        ))}
-      </RestaurantContainer>
-    </>
+    <RestaurantContainer>
+      {restaurants?.map((restaurant: Restaurant) => (
+        <RestaurantItem key={restaurant.id} restaurant={restaurant} />
+      ))}
+    </RestaurantContainer>
   );
 };
 
