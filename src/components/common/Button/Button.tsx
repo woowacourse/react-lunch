@@ -4,7 +4,7 @@ import * as styled from './Button.styles';
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   React.PropsWithChildren<{ variant?: 'primary' | 'outlined' }>;
 
-const Button: React.FC<ButtonProps> = ({ children, variant, ...buttonProps }) => {
+const Button = ({ children, variant, ...buttonProps }: ButtonProps) => {
   return (
     <styled.Button {...buttonProps} $variant={variant ?? 'outlined'}>
       {children}
