@@ -21,8 +21,9 @@ function Main() {
     });
   }, []);
 
-  const updateCurrentRestaurantList = (filter: string, sortBy: string) => {
-    const updatedRestaurantList = filterAndSortRestaurantList(restaurantList, filter, sortBy);
+  const updateCurrentRestaurantList = (displayStatus: FilterOption) => {
+    const { category, sortBy } = displayStatus;
+    const updatedRestaurantList = filterAndSortRestaurantList(restaurantList, category, sortBy);
     setCurrentRestaurantList(updatedRestaurantList);
   };
 
