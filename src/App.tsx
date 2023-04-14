@@ -3,15 +3,12 @@ import { Category, Restaurant, SortingType } from './types/restaurant';
 import React from 'react';
 import { Header, RestaurantList, RestaurantDetail } from './components';
 
-import filterRestaurants from './domain/filterRestaurants';
 import mockData from './mockData.json';
 
 interface Props {}
 
 interface State {
   restaurants: Restaurant[];
-  category: string;
-  sortingType: SortingType;
   isModalOpen: boolean;
   detailId: Restaurant['id'];
 }
@@ -27,8 +24,6 @@ class App extends React.Component<Props, State> {
     const restaurants = JSON.parse(localStorage.getItem('restaurants') || '[]');
     this.state = {
       restaurants,
-      category: '전체',
-      sortingType: '이름순',
       isModalOpen: false,
       detailId: '1'
     };
@@ -53,39 +48,16 @@ class App extends React.Component<Props, State> {
     });
   };
 
-  setCategory = (category: Category) => {
-    this.setState({
-      category
-    });
-  };
-
-  setSortingType = (sortingType: SortingType) => {
-    this.setState({
-      sortingType
-    });
-  };
-
   render() {
-    const { restaurants, category, sortingType } = this.state;
+    const { restaurants, detailId } = this.state;
     return (
       <div className="App">
         <Header />
-
-        <RestaurantList
-          restaurants={filterRestaurants(restaurants, category, sortingType)}
-          openModal={this.openModal}
-          setCategory={this.setCategory}
-          setSortingType={this.setSortingType}
-        />
-
+        <RestaurantList restaurants={restaurants} openModal={this.openModal} />
         {this.state.isModalOpen && (
           <RestaurantDetail
             closeModal={this.closeModal}
-            restaurant={
-              mockData.restaurants.find(
-                (restaurant) => restaurant.id === this.state.detailId
-              ) as Restaurant
-            }
+            restaurant={restaurants.find((restaurant) => restaurant.id === detailId) as Restaurant}
           />
         )}
       </div>

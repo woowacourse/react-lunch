@@ -5,15 +5,27 @@ import { RestaurantItem } from './';
 import styled from 'styled-components';
 
 import { CATEGORIES, SORTING_TYPES } from '../constants';
+import filterRestaurants from '../domain/filterRestaurants';
 
 interface Props {
   restaurants: Restaurant[];
   openModal: (id: Restaurant['id']) => void;
-  setCategory: (category: Category) => void;
-  setSortingType: (sortingType: SortingType) => void;
 }
 
-class RestaurantList extends React.Component<Props> {
+interface State {
+  category: Category | '전체';
+  sortingType: SortingType;
+}
+
+class RestaurantList extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      category: '전체',
+      sortingType: '이름순'
+    };
+  }
+
   openDetailModal = (e: MouseEvent) => {
     if (!(e.target instanceof HTMLElement)) return;
 
@@ -24,37 +36,44 @@ class RestaurantList extends React.Component<Props> {
   onChangeCategory = (e: ChangeEvent) => {
     if (!(e.target instanceof HTMLSelectElement)) return;
 
-    const { value: category } = e.target;
-    this.props.setCategory(category as Category);
+    const category = e.target.value as Category;
+    this.setState({ category });
   };
 
   onChangeSortingType = (e: ChangeEvent) => {
     if (!(e.target instanceof HTMLSelectElement)) return;
 
-    const { value: sortingType } = e.target;
-    this.props.setSortingType(sortingType as SortingType);
+    const sortingType = e.target.value as SortingType;
+    this.setState({ sortingType });
   };
 
   render() {
+    const { category, sortingType } = this.state;
+    const restaurants = filterRestaurants(this.props.restaurants, category, sortingType);
+
     return (
       <main>
         <FilterContainer>
           <select name="category" id="category-filter" onChange={this.onChangeCategory}>
-            {['전체', ...CATEGORIES].map(category => (
-              <option value={category}>{category}</option>
+            {['전체', ...CATEGORIES].map((category, index) => (
+              <option key={index} value={category}>
+                {category}
+              </option>
             ))}
           </select>
           <select name="sorting" id="sorting-filter" onChange={this.onChangeSortingType}>
-            {SORTING_TYPES.map(category => (
-              <option value={category}>{category}</option>
+            {SORTING_TYPES.map((sortingType, index) => (
+              <option key={index} value={sortingType}>
+                {sortingType}
+              </option>
             ))}
           </select>
         </FilterContainer>
 
         <RestaurantListContainer>
           <ul onClick={this.openDetailModal}>
-            {this.props.restaurants.map(restaurant => (
-              <RestaurantItem key={restaurant.id} restaurant={restaurant}></RestaurantItem>
+            {restaurants.map((restaurant) => (
+              <RestaurantItem key={restaurant.id} restaurant={restaurant} />
             ))}
           </ul>
         </RestaurantListContainer>
