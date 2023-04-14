@@ -10,6 +10,7 @@ import GlobalStyle from './styles/GlobalStyle';
 import ResetStyle from './styles/ResetStyle';
 import type Filter from './types/Filter';
 import type Restaurant from './types/Restaurant';
+import useFilteredRestaurants from './hooks/useFilteredRestaurants';
 
 type AppState = {
   restaurants: Restaurant[];
@@ -47,16 +48,11 @@ const App = () => {
     openedRestaurant: null,
   });
 
-  const getFilteredRestaurants = () => {
-    const filters = [appState.sortFilter, appState.categoryFilter].filter(
-      (filter): filter is Filter<Restaurant> => filter !== null,
-    );
-
-    return filters.reduce(
-      (restaurants, filter) => filter(restaurants),
-      appState.restaurants.slice(),
-    );
-  };
+  const filteredRestaurants = useFilteredRestaurants(
+    appState.restaurants,
+    appState.sortFilter,
+    appState.categoryFilter,
+  );
 
   const openBottomSheet = (restaurant: Restaurant) => {
     setAppState({ ...appState, openedRestaurant: restaurant });
@@ -86,7 +82,7 @@ const App = () => {
         />
       </styled.RestaurantFilterContainer>
 
-      <RestaurantList restaurants={getFilteredRestaurants()} onClickItem={openBottomSheet} />
+      <RestaurantList restaurants={filteredRestaurants} onClickItem={openBottomSheet} />
       {openedRestaurant !== null && (
         <RestaurantDetailBottomSheet
           restaurant={openedRestaurant}
