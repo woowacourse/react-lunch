@@ -1,40 +1,49 @@
 import { Restaurant } from '../types/restaurant';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, CategoryImage } from './';
 import styled from 'styled-components';
 
 import { textBody, textSubtitle } from '../style/mixin';
 
 interface Props {
-  closeModal: () => void;
   restaurant: Restaurant;
+  closeModal: () => void;
 }
 
-class RestaurantDetail extends React.Component<Props> {
-  render() {
-    const { category, name, distance, description, link } = this.props.restaurant;
+const RestaurantDetail = ({ restaurant, closeModal }: Props) => {
+  const { category, name, distance, description, link } = restaurant;
 
-    return (
-      <>
-        <ModalBackdrop onClick={this.props.closeModal} />
-        <ModalContainer>
-          <Detail>
-            <CategoryImage category={category} />
-            <RestaurantName>{name}</RestaurantName>
-            <Distance>캠퍼스부터 {distance}분 내</Distance>
-            <Description>{description}</Description>
-            <Link href={link}>{link}</Link>
-            <ButtonContainer>
-              <RemoveButton>삭제하기</RemoveButton>
-              <CloseButton onClick={this.props.closeModal}>닫기</CloseButton>
-            </ButtonContainer>
-          </Detail>
-        </ModalContainer>
-      </>
-    );
-  }
-}
+  const onKeyUp = ({ key }: KeyboardEvent) => {
+    if (key === 'Escape') closeModal();
+  };
+
+  useEffect(() => {
+    window.addEventListener('keyup', onKeyUp);
+    return () => {
+      window.removeEventListener('keyup', onKeyUp);
+    };
+  }, []);
+
+  return (
+    <>
+      <ModalBackdrop onClick={closeModal} />
+      <ModalContainer>
+        <Detail>
+          <CategoryImage category={category} />
+          <RestaurantName>{name}</RestaurantName>
+          <Distance>캠퍼스부터 {distance}분 내</Distance>
+          <Description>{description}</Description>
+          <Link href={link}>{link}</Link>
+          <ButtonContainer>
+            <RemoveButton>삭제하기</RemoveButton>
+            <CloseButton onClick={closeModal}>닫기</CloseButton>
+          </ButtonContainer>
+        </Detail>
+      </ModalContainer>
+    </>
+  );
+};
 
 export default RestaurantDetail;
 
