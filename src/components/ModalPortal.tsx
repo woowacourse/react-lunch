@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode } from 'react';
 import ReactDom from 'react-dom';
 
 interface Props {
@@ -9,15 +9,6 @@ interface Props {
 
 function ModalPortal({ children, dialogRef, closeEvent }: Props) {
   const $modalRoot = document.getElementById('modal-root') as HTMLElement;
-
-  useEffect(() => {
-    dialogRef?.current?.showModal();
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = 'visible';
-      dialogRef?.current?.close();
-    };
-  });
 
   const dialogKeyDownListener = (event: React.KeyboardEvent<HTMLDialogElement>) => {
     if (event.key === 'Escape') {
