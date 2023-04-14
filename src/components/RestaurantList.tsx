@@ -1,7 +1,7 @@
 import { Category, Restaurant, SortingType } from '../types/restaurant';
 
 import React, { MouseEvent, ChangeEvent, useState } from 'react';
-import { RestaurantItem } from './';
+import { Select, RestaurantItem } from './';
 import styled from 'styled-components';
 
 import filterRestaurants from '../domain/filterRestaurants';
@@ -34,20 +34,8 @@ const RestaurantList = ({ restaurants, openModal }: Props) => {
   return (
     <main>
       <FilterContainer>
-        <select name="category" onChange={onChangeSelect}>
-          {['전체', ...CATEGORIES].map((category, index) => (
-            <option key={index} value={category}>
-              {category}
-            </option>
-          ))}
-        </select>
-        <select name="sorting" onChange={onChangeSelect}>
-          {SORTING_TYPES.map((sortingType, index) => (
-            <option key={index} value={sortingType}>
-              {sortingType}
-            </option>
-          ))}
-        </select>
+        <Select name="category" options={['전체', ...CATEGORIES]} onChange={onChangeSelect} />
+        <Select name="sorting" options={SORTING_TYPES} onChange={onChangeSelect} />
       </FilterContainer>
 
       <RestaurantListContainer>
@@ -69,18 +57,6 @@ const FilterContainer = styled.section`
 
   margin-top: 24px;
   padding: 0 16px;
-
-  select {
-    height: 44px;
-    min-width: 125px;
-
-    border: 1px solid #d0d5dd;
-    border-radius: 8px;
-    padding: 8px;
-
-    background: transparent;
-    font-size: 16px;
-  }
 `;
 
 const RestaurantListContainer = styled.section`
