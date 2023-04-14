@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Restaurant } from '../types';
+import { useEffect, useState } from 'react';
+import { FilterOption, Restaurant } from '../types';
 import { saveToLocalStorage } from '../utils/localStorage';
 import { getRestaurantListData } from '../data/restaurantListData';
 import { filterAndSortRestaurantList } from '../domains/restaurantUtil';
@@ -15,13 +15,11 @@ function Main() {
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  /*
-  componentDidMount() {
+  useEffect(() => {
     window.addEventListener('beforeunload', () => {
-      saveToLocalStorage(this.state.restaurantList);
+      saveToLocalStorage(restaurantList);
     });
-  }
-  */
+  }, []);
 
   const updateCurrentRestaurantList = (filter: string, sortBy: string) => {
     const updatedRestaurantList = filterAndSortRestaurantList(restaurantList, filter, sortBy);
