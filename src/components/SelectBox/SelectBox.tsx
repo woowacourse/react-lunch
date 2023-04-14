@@ -7,10 +7,6 @@ type Props = {
 };
 
 export class SelectBox extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   render() {
     const { options, onOptionChange } = this.props;
 

@@ -16,10 +16,6 @@ type Props = {
 };
 
 export class Modal extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   render() {
     const { name, category, distance, description, link } = this.props.restaurant;
     const onCloseButtonClick = this.props.onCloseButtonClick;
@@ -37,7 +33,7 @@ export class Modal extends Component<Props> {
             <Name>{name}</Name>
             <DistanceText>캠퍼스로부터 {distance}분 내</DistanceText>
             <Description>{description}</Description>
-            <a href={link} target="_blank">
+            <a href={link} target="_blank" rel="noreferrer">
               {link}
             </a>
           </RestaurantInfoWrapper>
@@ -50,12 +46,18 @@ export class Modal extends Component<Props> {
     );
   }
 
+  closeModalByESC(callback: () => void, e: KeyboardEvent) {
+    if (e.key === 'Escape') {
+      callback();
+    }
+  }
+  
   componentDidMount() {
-     window.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        this.props.onCloseButtonClick();
-      }
-    });
+    window.addEventListener('keydown', (e) => {this.closeModalByESC(this.props.onCloseButtonClick, e)});
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', (e) => {this.closeModalByESC(this.props.onCloseButtonClick, e)});
   }
 }
 
