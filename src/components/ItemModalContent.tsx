@@ -1,34 +1,30 @@
-import React from "react";
 import styled from "styled-components";
 import { Restaurant } from "../types/restaurant";
 import { convertImage } from "../utils/imageConverter";
 
-interface PropsType {
+interface ItemModalProps {
   restaurant: Restaurant;
 }
 
-export class ItemModalContent extends React.Component<PropsType> {
-  render() {
-    const { category, takingTime, name, link, description } =
-      this.props.restaurant;
+export const ItemModalContent = ({ restaurant }: ItemModalProps) => {
+  const { category, takingTime, name, link, description } = restaurant;
 
-    return (
-      <>
-        <ModalIcon>
-          <img src={convertImage(category)} alt={category} />
-        </ModalIcon>
-        <Information>
-          <Name>{name}</Name>
-          <TakingTime>캠퍼스부터 {takingTime}분 내</TakingTime>
-          <Description>{description}</Description>
-          <Link target="_blank" href={link}>
-            {link}
-          </Link>
-        </Information>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <ModalIcon>
+        <Image src={convertImage(category)} alt={category} />
+      </ModalIcon>
+      <Information>
+        <Name>{name}</Name>
+        <TakingTime>캠퍼스부터 {takingTime}분 내</TakingTime>
+        <Description>{description}</Description>
+        <Link target="_blank" href={link}>
+          {link}
+        </Link>
+      </Information>
+    </>
+  );
+};
 
 const ModalIcon = styled.div`
   display: flex;
@@ -44,6 +40,8 @@ const ModalIcon = styled.div`
   border-radius: 50%;
   background: ${({ theme }) => theme.colors.lighten};
 `;
+
+const Image = styled.img``;
 
 const Information = styled.div`
   height: 70%;
