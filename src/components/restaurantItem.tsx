@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Restaurant } from "../types/restaurant";
 import { convertImage } from "../utils/imageConverter";
 import { Modal } from "./modal";
-import { ItemModalContent } from "./itemModalContent";
+import { ItemModalContent } from "./ItemModalContent";
 
 interface PropsType {
   restaurant: Restaurant;
