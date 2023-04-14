@@ -51,7 +51,7 @@ class RestaurantInfoModal extends Component<RestaurantModal> {
               </button>
             </Modal>
           </dialog>,
-          $('body')
+          document.body
         )}
       </>
     );
