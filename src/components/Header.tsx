@@ -1,5 +1,3 @@
-import React from 'react';
-
 function Header() {
   return (
     <header className="gnb">
@@ -8,4 +6,4 @@ function Header() {
   );
 }
 
-export default React.memo(Header);
+export default Header;
