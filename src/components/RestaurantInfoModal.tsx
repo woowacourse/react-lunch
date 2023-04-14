@@ -5,14 +5,14 @@ import type { RestaurantInfo } from '../types';
 import { ENGLISH_CATEGORY } from '../constants';
 
 interface RestaurantModalProps {
-  selectedRestaurant: null | RestaurantInfo;
+  restaurant: null | RestaurantInfo;
   refModal: RefObject<HTMLDialogElement>;
   onClose: () => void;
 }
 
 class RestaurantInfoModal extends Component<RestaurantModalProps> {
   render() {
-    const { selectedRestaurant: restaurant } = this.props;
+    const { restaurant } = this.props;
 
     return (
       <>

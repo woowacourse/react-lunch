@@ -54,7 +54,7 @@ class RestaurantList extends Component<RestaurantListProps> {
         </RestaurantListContainer>
 
         <RestaurantInfoModal
-          selectedRestaurant={this.state.selectedRestaurant}
+          restaurant={this.state.selectedRestaurant}
           onClose={this.handleModalCloseButton}
           refModal={this.restaurantInfoModal}
         ></RestaurantInfoModal>
