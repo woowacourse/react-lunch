@@ -1,6 +1,6 @@
 import { Category, Restaurant, SortingType } from '../types/restaurant';
 
-import React, { ChangeEvent } from 'react';
+import React, { MouseEvent, ChangeEvent } from 'react';
 import { RestaurantItem } from './';
 import styled from 'styled-components';
 
@@ -14,9 +14,11 @@ interface Props {
 }
 
 class RestaurantList extends React.Component<Props> {
-  openDetailModal = (e: any) => {
-    const { id } = e.target.closest('li');
-    this.props.openModal(id);
+  openDetailModal = (e: MouseEvent) => {
+    if (!(e.target instanceof HTMLElement)) return;
+
+    const $li = e.target.closest('li');
+    if ($li) this.props.openModal($li.id as Restaurant['id']);
   };
 
   onChangeCategory = (e: ChangeEvent) => {
