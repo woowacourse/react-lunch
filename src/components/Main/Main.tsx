@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Restaurant } from '../types';
-import { getRestaurantListData } from '../data/restaurantListData';
-import FilterSection from './FilterSection/FilterSection';
-import RestaurantList from './RestaurantList/RestaurantList';
-import Modal from './common/Modal/Modal';
-import RestaurantDetail from './RestaurantDetail/RestaurantDetail';
-import { useLocalStorage } from '../hooks/useLocalStorage';
-import { filterAndSortRestaurantList, useRestaurantList } from '../hooks/useRestaurantList';
-import { useModal } from '../hooks/useModal';
+import { Restaurant } from '../../types';
+import { getRestaurantListData } from '../../data/restaurantListData';
+import FilterSection from '../FilterSection/FilterSection';
+import RestaurantList from '../RestaurantList/RestaurantList';
+import Modal from '../common/Modal/Modal';
+import RestaurantDetail from '../RestaurantDetail/RestaurantDetail';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { filterAndSortRestaurantList, useRestaurantList } from '../../hooks/useRestaurantList';
+import { useModal } from '../../hooks/useModal';
 
 const restaurantListData = filterAndSortRestaurantList(getRestaurantListData());
 
