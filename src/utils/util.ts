@@ -1,5 +1,6 @@
 import { FilterState } from '../App';
-import { CategoryOption, Restaurant, SortOption } from '../type';
+import { Category, CategoryOption, Restaurant, SortOption } from '../type';
+import { imgSrc } from '../constants';
 
 export const filterAndSortRestaurantList = (
   restaurantList: Restaurant[],
@@ -33,4 +34,8 @@ export const sortRestaurantList = (
     case 'distance':
       return [...restaurantList].sort((a, b) => a.distance - b.distance);
   }
+};
+
+export const getImageSrc = (category: Category) => {
+  return `${process.env.PUBLIC_URL}/images/category-${imgSrc[category]}.png`;
 };

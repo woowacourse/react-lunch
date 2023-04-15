@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { imgSrc } from '../../constants';
 import { RestaurantProps } from '../../type';
+import { getImageSrc } from '../../utils/util';
 
 export const Style = {
   Wrapper: styled.li`
@@ -61,12 +61,7 @@ export function RestaurantItem({ restaurant }: RestaurantProps) {
   return (
     <Style.Wrapper id={restaurant.id}>
       <Style.RestaurantCategory>
-        <img
-          src={`${process.env.PUBLIC_URL}/images/category-${
-            imgSrc[restaurant.category]
-          }.png`}
-          alt={restaurant.category}
-        />
+        <img src={getImageSrc(restaurant.category)} alt={restaurant.category} />
       </Style.RestaurantCategory>
       <Style.RestaurantInfo>
         <Style.DescriptionWrapper>

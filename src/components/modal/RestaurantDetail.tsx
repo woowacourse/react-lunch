@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Style as RestaurantStyle } from '../restaurant/RestaurantItem';
-import { imgSrc } from '../../constants';
-import { Restaurant, RestaurantProps } from '../../type';
+import { RestaurantProps } from '../../type';
+import { getImageSrc } from '../../utils/util';
 
 const Style = {
   ...RestaurantStyle,
@@ -29,9 +29,7 @@ export function RestaurantDetail({ restaurant }: RestaurantProps) {
       <Style.ImageWrapper>
         <Style.RestaurantCategory>
           <img
-            src={`${process.env.PUBLIC_URL}/images/category-${
-              imgSrc[restaurant.category]
-            }.png`}
+            src={getImageSrc(restaurant.category)}
             alt={restaurant.category}
           />
         </Style.RestaurantCategory>
