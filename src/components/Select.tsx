@@ -1,39 +1,19 @@
-import React, { ChangeEvent, useCallback } from "react";
+import React, { ChangeEvent } from "react";
 import { CATEGORIES, SORT_BY } from "../constants/constants";
-import type { Category, SortBy } from "../types/Restaurant";
-import { isCategory, isSortBy } from "../types/Restaurant.guard";
 
 type SelectProps = {
-  setCategory: (newCategory: Category) => void;
-  setSort: (newSort: SortBy) => void;
+  setCategory: (event: ChangeEvent<HTMLSelectElement>) => void;
+  setSort: (event: ChangeEvent<HTMLSelectElement>) => void;
 };
 
 const Select = (props: SelectProps) => {
-  const onChangeCategory = useCallback(
-    (event: ChangeEvent<HTMLSelectElement>) => {
-      if (isCategory(event.target.value)) {
-        props.setCategory(event.target.value);
-      }
-    },
-    [props]
-  );
-
-  const onChangeSort = useCallback(
-    (event: ChangeEvent<HTMLSelectElement>) => {
-      if (isSortBy(event.target.value)) {
-        props.setSort(event.target.value);
-      }
-    },
-    [props]
-  );
-
   return (
     <section className="restaurant-filter-container">
       <select
         name="category"
         id="category-filter"
         className="restaurant-filter"
-        onChange={(event) => onChangeCategory(event)}
+        onChange={(event) => props.setCategory(event)}
       >
         {CATEGORIES.map((category) => {
           return <option value={category}>{category}</option>;
@@ -44,7 +24,7 @@ const Select = (props: SelectProps) => {
         name="sorting"
         id="sorting-filter"
         className="restaurant-filter"
-        onChange={(event) => onChangeSort(event)}
+        onChange={(event) => props.setSort(event)}
       >
         {SORT_BY.map((sortBy) => {
           return <option value={sortBy}>{sortBy}</option>;
