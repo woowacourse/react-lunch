@@ -13,9 +13,7 @@ function RestaurantItem({ restaurant, handleClick }: RestaurantItemProps) {
   return (
     <li className="restaurant" id={String(id)} onClick={handleClick}>
       <div className="restaurant__category">
-        {category !== '전체' ? (
-          <img src={`${IMAGE_PATH[category]}`} alt={category} className="category-icon" />
-        ) : null}
+        <img src={`${IMAGE_PATH[category]}`} alt={category} className="category-icon" />
       </div>
       <div className="restaurant__info">
         <div className="restaurant__text">
