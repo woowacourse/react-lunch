@@ -15,7 +15,7 @@ interface Props {
   restaurants: Restaurant[];
 }
 
-const MainLayout = ({ restaurants }: Props) => {
+const RestaurantListContainer = ({ restaurants }: Props) => {
   const [clickedRestaurant, setClickedRestaurant] = useState<Restaurant | null>(
     null,
   );
@@ -55,4 +55,4 @@ const MainLayout = ({ restaurants }: Props) => {
   );
 };
 
-export default MainLayout;
+export default RestaurantListContainer;

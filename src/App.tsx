@@ -1,7 +1,7 @@
 import './css/App.css';
 
 import Header from './components/Header';
-import MainLayout from './components/MainLayout';
+import RestaurantListContainer from './components/RestaurantListContainer';
 
 import { useRestaurants } from './domain/hooks/useRestaurants';
 
@@ -11,7 +11,7 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <MainLayout restaurants={restaurants} />
+      <RestaurantListContainer restaurants={restaurants} />
     </div>
   );
 };
