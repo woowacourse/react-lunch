@@ -5,8 +5,6 @@ import { Header, RestaurantList, RestaurantDetail } from './components';
 
 import mockData from './mockData.json';
 
-interface Props {}
-
 interface State {
   restaurants: Restaurant[];
   category: string;
@@ -15,7 +13,7 @@ interface State {
   detailId: Restaurant['id'];
 }
 
-const App = (props: Props) => {
+const App = () => {
   const [state, setState] = useState<State>({
     restaurants: JSON.parse(localStorage.getItem('restaurants') || '[]'),
     category: '전체',
@@ -61,34 +59,27 @@ const App = (props: Props) => {
 
   const filterRestaurants = () => {
     const { category, sortingType } = state;
+    const sortKey = sortingType === '이름순' ? 'name' : 'distance';
 
     const restaurants = state.restaurants.filter(
       (restaurant) => category === '전체' || restaurant.category === category
     );
 
-    const getPivot = (restaurant: Restaurant) => {
-      return sortingType === '이름순' ? restaurant.name : restaurant.distance;
-    };
-
-    return restaurants.sort((a, b) => {
-      const A = getPivot(a);
-      const B = getPivot(b);
-      if (A > B) return 1;
-      if (A < B) return -1;
-      return 0;
-    });
+    return restaurants.sort((a, b) => (a[sortKey] > b[sortKey] ? 1 : -1));
   };
 
   return (
     <div className="App">
       <Header />
 
-      <RestaurantList
-        restaurants={filterRestaurants()}
-        openModal={openModal}
-        setCategory={setCategory}
-        setSortingType={setSortingType}
-      />
+      <main>
+        <RestaurantList
+          restaurants={filterRestaurants()}
+          openModal={openModal}
+          setCategory={setCategory}
+          setSortingType={setSortingType}
+        />
+      </main>
 
       {state.isModalOpen && (
         <RestaurantDetail
