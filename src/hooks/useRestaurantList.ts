@@ -28,9 +28,9 @@ const filterAndSortRestaurantList = (
   filter: string = DEFAULT_CATEGORY,
   sortBy: string = DEFAULT_SORT_BY
 ) => {
-  const filteredRestaurantList = filterRestaurant([...restaurantList], filter);
+  const filteredRestaurantList = filterRestaurant(restaurantList, filter);
 
-  return sortRestaurant([...filteredRestaurantList], sortBy);
+  return sortRestaurant(filteredRestaurantList, sortBy);
 };
 
 const useRestaurantList = (data: Restaurant[]) => {
