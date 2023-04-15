@@ -1,7 +1,7 @@
 import { FilterState } from '../App';
 import { CategoryOption, Restaurant, SortOption } from '../type';
 
-export const filterAndSortArray = (
+export const filterAndSortRestaurantList = (
   restaurantList: Restaurant[],
   filter: FilterState
 ) => {

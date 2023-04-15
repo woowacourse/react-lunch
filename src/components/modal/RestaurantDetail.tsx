@@ -1,8 +1,7 @@
-import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 import { Style as RestaurantStyle } from '../restaurant/RestaurantItem';
 import { imgSrc } from '../../constants';
-import { RestaurantProps } from '../../type';
+import { Restaurant, RestaurantProps } from '../../type';
 
 const Style = {
   ...RestaurantStyle,
@@ -24,31 +23,29 @@ const Style = {
   `,
 };
 
-export class RestaurantDetail extends Component<RestaurantProps> {
-  render(): ReactNode {
-    return (
-      <>
-        <Style.ImageWrapper>
-          <Style.RestaurantCategory>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/category-${
-                imgSrc[this.props.info.category]
-              }.png`}
-              alt={this.props.info.category}
-            />
-          </Style.RestaurantCategory>
-        </Style.ImageWrapper>
-        <Style.RestaurantName>{this.props.info.name}</Style.RestaurantName>
-        <Style.RestaurantDistance>
-          캠퍼스로부터 {this.props.info.distance}분 내
-        </Style.RestaurantDistance>
-        <Style.RestaurantDescription>
-          {this.props.info.description}
-        </Style.RestaurantDescription>
-        <a href={this.props.info.link}>
-          <Style.RestaurantLink>{this.props.info.link}</Style.RestaurantLink>
-        </a>
-      </>
-    );
-  }
+export function RestaurantDetail({ restaurant }: RestaurantProps) {
+  return (
+    <>
+      <Style.ImageWrapper>
+        <Style.RestaurantCategory>
+          <img
+            src={`${process.env.PUBLIC_URL}/images/category-${
+              imgSrc[restaurant.category]
+            }.png`}
+            alt={restaurant.category}
+          />
+        </Style.RestaurantCategory>
+      </Style.ImageWrapper>
+      <Style.RestaurantName>{restaurant.name}</Style.RestaurantName>
+      <Style.RestaurantDistance>
+        캠퍼스로부터 {restaurant.distance}분 내
+      </Style.RestaurantDistance>
+      <Style.RestaurantDescription>
+        {restaurant.description}
+      </Style.RestaurantDescription>
+      <a href={restaurant.link}>
+        <Style.RestaurantLink>{restaurant.link}</Style.RestaurantLink>
+      </a>
+    </>
+  );
 }

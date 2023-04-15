@@ -20,7 +20,7 @@ export interface Restaurant {
 }
 
 export interface RestaurantProps {
-  info: Restaurant;
+  restaurant: Restaurant;
 }
 
 export interface Option<T> {

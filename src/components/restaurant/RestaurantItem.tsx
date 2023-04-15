@@ -1,4 +1,3 @@
-import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 import { imgSrc } from '../../constants';
 import { RestaurantProps } from '../../type';
@@ -58,34 +57,30 @@ export const Style = {
   `,
 };
 
-export class RestaurantItem extends Component<RestaurantProps> {
-  render(): ReactNode {
-    return (
-      <Style.Wrapper id={this.props.info.id}>
-        <Style.RestaurantCategory>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/category-${
-              imgSrc[this.props.info.category]
-            }.png`}
-            alt={this.props.info.category}
-          />
-        </Style.RestaurantCategory>
-        <Style.RestaurantInfo>
-          <Style.DescriptionWrapper>
-            <div>
-              <Style.RestaurantName>
-                {this.props.info.name}
-              </Style.RestaurantName>
-              <Style.RestaurantDistance>
-                캠퍼스부터 {this.props.info.distance}분 내
-              </Style.RestaurantDistance>
-            </div>
-          </Style.DescriptionWrapper>
-          <Style.RestaurantDescription>
-            {this.props.info.description}
-          </Style.RestaurantDescription>
-        </Style.RestaurantInfo>
-      </Style.Wrapper>
-    );
-  }
+export function RestaurantItem({ restaurant }: RestaurantProps) {
+  return (
+    <Style.Wrapper id={restaurant.id}>
+      <Style.RestaurantCategory>
+        <img
+          src={`${process.env.PUBLIC_URL}/images/category-${
+            imgSrc[restaurant.category]
+          }.png`}
+          alt={restaurant.category}
+        />
+      </Style.RestaurantCategory>
+      <Style.RestaurantInfo>
+        <Style.DescriptionWrapper>
+          <div>
+            <Style.RestaurantName>{restaurant.name}</Style.RestaurantName>
+            <Style.RestaurantDistance>
+              캠퍼스부터 {restaurant.distance}분 내
+            </Style.RestaurantDistance>
+          </div>
+        </Style.DescriptionWrapper>
+        <Style.RestaurantDescription>
+          {restaurant.description}
+        </Style.RestaurantDescription>
+      </Style.RestaurantInfo>
+    </Style.Wrapper>
+  );
 }
