@@ -1,4 +1,4 @@
-import React, { Component, RefObject } from 'react';
+import React, { RefObject } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
@@ -8,20 +8,15 @@ interface ModalPortalProps {
   onClose: () => void;
 }
 
-class ModalPortal extends Component<ModalPortalProps> {
-  render() {
-    return ReactDOM.createPortal(
-      <dialog ref={this.props.refModal}>
-        <ModalBackdrop
-          className='modal-backdrop'
-          onClick={this.props.onClose}
-        />
-        {this.props.children}
-      </dialog>,
-      document.body
-    );
-  }
-}
+const ModalPortal = ({ children, refModal, onClose }: ModalPortalProps) => {
+  return ReactDOM.createPortal(
+    <dialog ref={refModal}>
+      <ModalBackdrop className='modal-backdrop' onClick={onClose} />
+      {children}
+    </dialog>,
+    document.body
+  );
+};
 
 const ModalBackdrop = styled.div`
   position: fixed;
