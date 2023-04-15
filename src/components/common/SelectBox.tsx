@@ -1,5 +1,21 @@
-import { Component } from 'react';
 import styled from 'styled-components';
+
+type Props = {
+  options: string[];
+  setOption: (option: string) => void;
+};
+
+const SelectBox = ({ options, setOption }: Props) => {
+  return (
+    <Select onChange={(e) => setOption(e.target.value)}>
+      {options.map((option, index) => (
+        <option key={index} value={option}>
+          {option}
+        </option>
+      ))}
+    </Select>
+  );
+};
 
 const Select = styled.select`
   height: 44px;
@@ -10,24 +26,5 @@ const Select = styled.select`
   background: transparent;
   font-size: 16px;
 `;
-
-type Props = {
-  options: string[];
-  setOption: (option: string) => void;
-};
-
-class SelectBox extends Component<Props> {
-  render() {
-    return (
-      <Select onChange={(e) => this.props.setOption(e.target.value)}>
-        {this.props.options.map((option, index) => (
-          <option key={index} value={option}>
-            {option}
-          </option>
-        ))}
-      </Select>
-    );
-  }
-}
 
 export default SelectBox;

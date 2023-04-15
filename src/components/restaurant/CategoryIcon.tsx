@@ -1,7 +1,18 @@
-import { Component } from 'react';
 import styled from 'styled-components';
 import { Categories } from '../../@types/type';
 import restaurant from '../../domain/restaurant';
+
+type Props = {
+  category: Categories;
+};
+
+const CategoryIcon = ({ category }: Props) => {
+  return (
+    <CategoryIconLayout>
+      <img src={restaurant.categoryIcon[category]} alt={category} />
+    </CategoryIconLayout>
+  );
+};
 
 const CategoryIconLayout = styled.div`
   display: flex;
@@ -19,19 +30,5 @@ const CategoryIconLayout = styled.div`
     height: 36px;
   }
 `;
-
-type Props = {
-  category: Categories;
-};
-
-class CategoryIcon extends Component<Props> {
-  render() {
-    return (
-      <CategoryIconLayout>
-        <img src={restaurant.categoryIcon[this.props.category]} alt={this.props.category} />
-      </CategoryIconLayout>
-    );
-  }
-}
 
 export default CategoryIcon;

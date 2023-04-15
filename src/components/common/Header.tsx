@@ -1,5 +1,12 @@
-import { Component } from 'react';
 import styled from 'styled-components';
+
+const Header = () => {
+  return (
+    <HeaderLayout>
+      <Title className="text-title">점심 뭐 먹지</Title>
+    </HeaderLayout>
+  );
+};
 
 const HeaderLayout = styled.header`
   display: flex;
@@ -13,15 +20,5 @@ const HeaderLayout = styled.header`
 const Title = styled.h1`
   color: var(--font-color);
 `;
-
-class Header extends Component {
-  render() {
-    return (
-      <HeaderLayout>
-        <Title className="text-title">점심 뭐 먹지</Title>
-      </HeaderLayout>
-    );
-  }
-}
 
 export default Header;

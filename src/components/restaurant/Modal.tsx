@@ -1,7 +1,43 @@
-import { Component } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import CategoryIcon from './CategoryIcon';
 import { Restaurant, SetModalRestaurantId } from '../../@types/type';
+
+type Props = { restaurant: Restaurant } & SetModalRestaurantId;
+
+const Modal = ({ restaurant, setModalRestaurantId }: Props) => {
+  const { category, name, distanceByMinutes, description, referenceUrl } = restaurant;
+
+  const onCloseModal = () => {
+    setModalRestaurantId(null);
+  };
+
+  const onKeyDownEscape = (event: KeyboardEvent) => {
+    if (event.code !== 'Escape') return;
+    onCloseModal();
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', onKeyDownEscape);
+    return () => window.removeEventListener('keydown', onKeyDownEscape);
+  });
+
+  return (
+    <div>
+      <ModalBackdrop onClick={onCloseModal} />
+      <ModalContent>
+        <CategoryIcon category={category} />
+        <Title className="text-title">{name}</Title>
+        <Distance className="text-body">캠퍼스로부터 {distanceByMinutes}분 내</Distance>
+        <Description className="text-body">{description}</Description>
+        <ReferenceURL href={referenceUrl}>{referenceUrl}</ReferenceURL>
+        <ButtonContainer>
+          <button onClick={onCloseModal}>닫기</button>
+        </ButtonContainer>
+      </ModalContent>
+    </div>
+  );
+};
 
 const ModalBackdrop = styled.div`
   position: fixed;
@@ -55,46 +91,5 @@ const ButtonContainer = styled.div`
     color: var(--grey-100);
   }
 `;
-
-type Props = { restaurant: Restaurant } & SetModalRestaurantId;
-
-class Modal extends Component<Props> {
-  onCloseModal = () => {
-    this.props.setModalRestaurantId(null);
-  };
-
-  onKeyDownEscape = (event: KeyboardEvent) => {
-    if (event.code !== 'Escape') return;
-    this.onCloseModal();
-  };
-
-  componentDidMount() {
-    window.addEventListener('keydown', this.onKeyDownEscape);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.onKeyDownEscape);
-  }
-
-  render() {
-    const { category, name, distanceByMinutes, description, referenceUrl } = this.props.restaurant;
-
-    return (
-      <div>
-        <ModalBackdrop onClick={this.onCloseModal} />
-        <ModalContent>
-          <CategoryIcon category={category} />
-          <Title className="text-title">{name}</Title>
-          <Distance className="text-body">캠퍼스로부터 {distanceByMinutes}분 내</Distance>
-          <Description className="text-body">{description}</Description>
-          <ReferenceURL href={referenceUrl}>{referenceUrl}</ReferenceURL>
-          <ButtonContainer>
-            <button onClick={this.onCloseModal}>닫기</button>
-          </ButtonContainer>
-        </ModalContent>
-      </div>
-    );
-  }
-}
 
 export default Modal;
