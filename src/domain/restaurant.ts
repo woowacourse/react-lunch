@@ -1,12 +1,11 @@
 import { Restaurant } from '../@types/type';
-import { CATEGORIES, SORT_OPTIONS } from '../constants';
-
 import asian from '../asset/category-asian.png';
 import chinese from '../asset/category-chinese.png';
-import korean from '../asset/category-korean.png';
-import japanese from '../asset/category-japanese.png';
-import western from '../asset/category-western.png';
 import etc from '../asset/category-etc.png';
+import japanese from '../asset/category-japanese.png';
+import korean from '../asset/category-korean.png';
+import western from '../asset/category-western.png';
+import { CATEGORIES, SORT_OPTIONS } from '../constants';
 
 const restaurant = {
   categoryIcon: {

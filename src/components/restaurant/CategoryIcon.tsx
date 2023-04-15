@@ -1,5 +1,6 @@
-import { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+
 import { Categories } from '../../@types/type';
 import restaurant from '../../domain/restaurant';
 
@@ -24,14 +25,12 @@ type Props = {
   category: Categories;
 };
 
-class CategoryIcon extends Component<Props> {
-  render() {
-    return (
-      <CategoryIconLayout>
-        <img src={restaurant.categoryIcon[this.props.category]} alt={this.props.category} />
-      </CategoryIconLayout>
-    );
-  }
-}
+const CategoryIcon = ({ category }: Props) => {
+  return (
+    <CategoryIconLayout>
+      <img src={restaurant.categoryIcon[category]} alt={category} />
+    </CategoryIconLayout>
+  );
+};
 
 export default CategoryIcon;

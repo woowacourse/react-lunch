@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const HeaderLayout = styled.header`
@@ -14,14 +14,12 @@ const Title = styled.h1`
   color: var(--font-color);
 `;
 
-class Header extends Component {
-  render() {
-    return (
-      <HeaderLayout>
-        <Title className="text-title">점심 뭐 먹지</Title>
-      </HeaderLayout>
-    );
-  }
-}
+const Header = () => {
+  return (
+    <HeaderLayout>
+      <Title className="text-title">점심 뭐 먹지</Title>
+    </HeaderLayout>
+  );
+};
 
 export default Header;
