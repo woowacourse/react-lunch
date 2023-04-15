@@ -6,6 +6,7 @@ import {
   RestaurantInfoWrapper,
 } from 'components/RestaurantItem/RestaurantItem';
 import { imgSrc } from 'contants';
+import { useKeyDownEvent } from 'hooks/useKeyDownEvent';
 import { useEffect } from 'react';
 import { Button } from 'styled';
 import styled from 'styled-components';
@@ -19,13 +20,7 @@ type Props = {
 export function Modal({ restaurant, onCloseButtonClick }: Props) {
   const { category, name, distance, description, link } = restaurant;
 
-  useEffect(() => {
-    document.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onCloseButtonClick();
-      }
-    });
-  });
+  useKeyDownEvent('Escape', onCloseButtonClick);
 
   return (
     <Wrapper>
