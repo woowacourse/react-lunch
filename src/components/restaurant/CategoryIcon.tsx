@@ -9,7 +9,7 @@ type Props = {
 const CategoryIcon = ({ category }: Props) => {
   return (
     <CategoryIconLayout>
-      <img src={restaurant.categoryIcon[category]} alt={category} />
+      <img src={restaurant.categoryIcon[category]} alt={`${category} 카테고리`} />
     </CategoryIconLayout>
   );
 };
