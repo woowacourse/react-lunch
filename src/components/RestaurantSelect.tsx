@@ -1,4 +1,4 @@
-import { ChangeEvent, Component } from 'react';
+import { ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { CATEGORY, SORTING_SELECT } from '../constants';
 
@@ -9,48 +9,50 @@ interface RestaurantSelectProps {
   selectedSorting: string;
 }
 
-class RestaurantSelect extends Component<RestaurantSelectProps> {
-  handleCategorySelect = ({ target }: ChangeEvent<HTMLSelectElement>) => {
-    this.props.onChangeCategory(target.value);
+const RestaurantSelect = ({
+  onChangeCategory,
+  onChangeSorting,
+  selectedCategory,
+  selectedSorting,
+}: RestaurantSelectProps) => {
+  const categorySelect = Object.values(CATEGORY);
+  const sortingSelect = Object.values(SORTING_SELECT);
+
+  const handleCategorySelect = ({ target }: ChangeEvent<HTMLSelectElement>) => {
+    onChangeCategory(target.value);
   };
 
-  handleSortingSelect = ({ target }: ChangeEvent<HTMLSelectElement>) => {
-    this.props.onChangeSorting(target.value);
+  const handleSortingSelect = ({ target }: ChangeEvent<HTMLSelectElement>) => {
+    onChangeSorting(target.value);
   };
 
-  render() {
-    const categorySelect = Object.values(CATEGORY);
-    const sortingSelect = Object.values(SORTING_SELECT);
-
-    return (
-      <SelectBoxContainer>
-        <SelectBox
-          name='category'
-          onChange={this.handleCategorySelect}
-          value={this.props.selectedCategory}
-        >
-          {categorySelect.map((category, index) => (
-            <option key={index} value={category}>
-              {category}
-            </option>
-          ))}
-        </SelectBox>
-
-        <SelectBox
-          name='sorting'
-          onChange={this.handleSortingSelect}
-          value={this.props.selectedSorting}
-        >
-          {sortingSelect.map((sorting, index) => (
-            <option key={index} value={sorting}>
-              {sorting}
-            </option>
-          ))}
-        </SelectBox>
-      </SelectBoxContainer>
-    );
-  }
-}
+  return (
+    <SelectBoxContainer>
+      <SelectBox
+        name='category'
+        onChange={handleCategorySelect}
+        value={selectedCategory}
+      >
+        {categorySelect.map((category, index) => (
+          <option key={index} value={category}>
+            {category}
+          </option>
+        ))}
+      </SelectBox>
+      <SelectBox
+        name='sorting'
+        onChange={handleSortingSelect}
+        value={selectedSorting}
+      >
+        {sortingSelect.map((sorting, index) => (
+          <option key={index} value={sorting}>
+            {sorting}
+          </option>
+        ))}
+      </SelectBox>
+    </SelectBoxContainer>
+  );
+};
 
 const SelectBoxContainer = styled.div`
   display: flex;
