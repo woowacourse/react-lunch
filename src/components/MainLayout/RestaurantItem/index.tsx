@@ -2,7 +2,7 @@ import './style.css';
 
 import CategoryIcon from '../../common/CategoryIcon';
 
-import { Restaurant } from '../../../domain/type';
+import type { Restaurant } from '../../../domain/type';
 
 interface Props {
   restaurant: Restaurant;

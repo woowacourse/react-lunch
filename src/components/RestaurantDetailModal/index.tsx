@@ -3,7 +3,7 @@ import './style.css';
 import Modal from '../common/Modal';
 import CategoryIcon from '../common/CategoryIcon';
 
-import { Restaurant } from '../../domain/type';
+import type { Restaurant } from '../../domain/type';
 
 interface Props {
   restaurant: Restaurant;

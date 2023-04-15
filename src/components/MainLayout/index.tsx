@@ -6,8 +6,8 @@ import CategoryFilter from './CategoryFilter';
 import Sorting from './Sorting';
 import RestaurantItem from './RestaurantItem';
 
-import { Restaurant } from '../../domain/type';
 import { restaurantService } from '../../domain/restaurantService';
+import type { Restaurant } from '../../domain/type';
 
 interface Props {
   restaurants: Restaurant[];

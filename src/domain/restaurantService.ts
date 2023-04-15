@@ -1,4 +1,4 @@
-import { Restaurant } from './type';
+import type { Restaurant } from './type';
 
 interface RestaurantService {
   filterByCategory: (
