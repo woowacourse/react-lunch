@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import { Restaurant } from './@types/type';
 import Header from './components/common/Header';
-import Modal from './components/common/Modal';
 import RestaurantList from './components/restaurant/RestaurantList';
+import RestaurantModal from './components/restaurant/RestaurantModal';
 import { LOCAL_STORAGE_KEY } from './constants';
 import mockData from './mockData.json';
 import { getLocalStorage, setLocalStorage } from './utils/localStorage';
@@ -34,7 +34,7 @@ function App() {
     <React.Fragment>
       <Header />
       <RestaurantList restaurantList={restaurantList} openModal={openModal} />
-      {modalRestaurantId && <Modal restaurant={findModalRestaurant()} closeModal={closeModal} />}
+      {modalRestaurantId && <RestaurantModal restaurant={findModalRestaurant()} closeModal={closeModal} />}
     </React.Fragment>
   );
 }
