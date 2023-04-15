@@ -33,9 +33,11 @@ function ItemInformation({ restaurant, closeEvent }: Props) {
           <p className="modal-detail-restaurant__description text-body">{restaurant.description}</p>
         </div>
 
-        <div className="detail-item">
-          <a className="modal-detail-restaurant__link">{restaurant.link}</a>
-        </div>
+        {restaurant.link && (
+          <div className="detail-item">
+            <a className="modal-detail-restaurant__link">{restaurant.link}</a>
+          </div>
+        )}
 
         <div className="button-container detail-button-container">
           <button type="button" className="button button--close button--primary text-caption" onClick={closeEvent}>
