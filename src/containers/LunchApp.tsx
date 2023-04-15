@@ -12,8 +12,7 @@ import useRestaurant from '../hooks/useRestaurants';
 function LunchApp() {
 
   const {
-    restaurants, sortBy, categorizeBy,
-    updateSortBy, updateCategorizeBy,
+    restaurants, updateSortBy, updateCategorizeBy,
   } = useRestaurant(mockData as Restaurant[]);
 
   return (
@@ -28,7 +27,7 @@ function LunchApp() {
           options={sort}
         />
       </SelectContainer>
-      <RestaurantList sortBy={sortBy} categorizeBy={categorizeBy} restaurants={restaurants} />
+      <RestaurantList restaurants={restaurants} />
       <Modal />
     </>
   );
