@@ -1,4 +1,4 @@
-import { Component, RefObject } from 'react';
+import { RefObject } from 'react';
 import styled from 'styled-components';
 import type { RestaurantInfo } from '../types';
 import { ENGLISH_CATEGORY } from '../constants';
@@ -10,49 +10,45 @@ interface RestaurantModalProps {
   onClose: () => void;
 }
 
-class RestaurantInfoModal extends Component<RestaurantModalProps> {
-  render() {
-    const { restaurant } = this.props;
-
-    return (
-      <ModalPortal onClose={this.props.onClose} refModal={this.props.refModal}>
-        <Modal>
-          {restaurant && (
-            <>
-              <CategoryContainer>
-                <CategoryImage
-                  src={`${process.env.PUBLIC_URL}/assets/category-${
-                    ENGLISH_CATEGORY[restaurant.category]
-                  }.png`}
-                  alt={restaurant.category}
-                />
-              </CategoryContainer>
-              <article>
-                <Name className='text-subtitle'>{restaurant.name}</Name>
-                <TakingTime className='text-body'>
-                  캠퍼스부터 {restaurant.takingTime}분 내
-                </TakingTime>
-                <Description className='text-body'>
-                  {restaurant.description}
-                </Description>
-                <Link href={restaurant.link} target='_blank'>
-                  {restaurant.link}
-                </Link>
-              </article>
-            </>
-          )}
-          <Close
-            type='button'
-            className='text-caption'
-            onClick={this.props.onClose}
-          >
-            닫기
-          </Close>
-        </Modal>
-      </ModalPortal>
-    );
-  }
-}
+const RestaurantInfoModal = ({
+  restaurant,
+  refModal,
+  onClose,
+}: RestaurantModalProps) => {
+  return (
+    <ModalPortal onClose={onClose} refModal={refModal}>
+      <Modal>
+        {restaurant && (
+          <>
+            <CategoryContainer>
+              <CategoryImage
+                src={`${process.env.PUBLIC_URL}/assets/category-${
+                  ENGLISH_CATEGORY[restaurant.category]
+                }.png`}
+                alt={restaurant.category}
+              />
+            </CategoryContainer>
+            <article>
+              <Name className='text-subtitle'>{restaurant.name}</Name>
+              <TakingTime className='text-body'>
+                캠퍼스부터 {restaurant.takingTime}분 내
+              </TakingTime>
+              <Description className='text-body'>
+                {restaurant.description}
+              </Description>
+              <Link href={restaurant.link} target='_blank'>
+                {restaurant.link}
+              </Link>
+            </article>
+          </>
+        )}
+        <Close type='button' className='text-caption' onClick={onClose}>
+          닫기
+        </Close>
+      </Modal>
+    </ModalPortal>
+  );
+};
 
 const Modal = styled.div`
   position: fixed;
