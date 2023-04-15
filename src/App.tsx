@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import restaurantMockData from './mocks/restaurants.json';
 import type { RestaurantInfo } from './types';
 import { CATEGORY, LANGUAGE, SORTING_SELECT } from './constants';
@@ -10,87 +10,78 @@ import RestaurantList from './components/RestaurantList';
 import RestaurantSelect from './components/RestaurantSelect';
 import HeaderSection from './components/HeaderSection';
 
-interface RestaurantAppProps {
-  filteredRestaurants: RestaurantInfo[];
-  category: string;
-  sorting: string;
-}
+const App = () => {
+  const [filteredRestaurants, setFilteredRestaurants] = useState<
+    RestaurantInfo[]
+  >([]);
+  const [category, setCategory] = useState<string>(
+    getItemFromLocalStorage('category') ?? CATEGORY.ALL
+  );
+  const [sorting, setSorting] = useState<string>(
+    getItemFromLocalStorage('sorting') ?? SORTING_SELECT.NAME
+  );
 
-class App extends Component<{}, RestaurantAppProps> {
-  state = {
-    filteredRestaurants: this.filterBySelectedOptions(
-      getItemFromLocalStorage('category') ?? CATEGORY.ALL,
-      getItemFromLocalStorage('sorting') ?? SORTING_SELECT.NAME
-    ),
-    category: getItemFromLocalStorage('category') ?? CATEGORY.ALL,
-    sorting: getItemFromLocalStorage('sorting') ?? SORTING_SELECT.NAME,
-  };
-
-  handleCategorySelect = (value: string) => {
-    const filteredRestaurants = this.filterBySelectedOptions(value);
-    this.setState({
-      filteredRestaurants: filteredRestaurants,
-      category: value,
-    });
-
-    setItemInLocalStorage('category', value);
-  };
-
-  handleSortingSelect = (value: string) => {
-    const filteredRestaurants = this.filterBySelectedOptions(
-      this.state.category,
-      value
-    );
-    this.setState({ filteredRestaurants: filteredRestaurants, sorting: value });
-
-    setItemInLocalStorage('sorting', value);
-  };
-
-  sortRestaurantsByName(restaurants: RestaurantInfo[]) {
-    return [...restaurants].sort((resA, resB) =>
-      resA.name.localeCompare(resB.name, LANGUAGE)
-    );
-  }
-
-  filterBySelectedOptions(
-    category: string = this.state.category,
-    sorting: string = this.state.sorting
-  ) {
-    const filteredRestaurants = this.sortRestaurantsByName(
+  const filterBySelectedOptions = (category: string, sorting: string) => {
+    const filteredRestaurants = sortRestaurantsByName(
       restaurantMockData
     ).filter((restaurant) =>
       category === CATEGORY.ALL ? restaurant : restaurant.category === category
     );
+    return sortBySelectedOption(sorting, filteredRestaurants);
+  };
 
-    return this.sortBySelectedOption(sorting, filteredRestaurants);
-  }
+  const handleCategorySelect = (value: string) => {
+    const filteredRestaurants = filterBySelectedOptions(value, sorting);
+    setFilteredRestaurants(filteredRestaurants);
+    setCategory(value);
+    setItemInLocalStorage('category', value);
+  };
 
-  sortBySelectedOption(sorting: string, filteredRestaurants: RestaurantInfo[]) {
+  const handleSortingSelect = (value: string) => {
+    const filteredRestaurants = filterBySelectedOptions(category, value);
+    setFilteredRestaurants(filteredRestaurants);
+    setSorting(value);
+    setItemInLocalStorage('sorting', value);
+  };
+
+  const sortRestaurantsByName = (restaurants: RestaurantInfo[]) => {
+    return [...restaurants].sort((resA, resB) =>
+      resA.name.localeCompare(resB.name, LANGUAGE)
+    );
+  };
+
+  const sortBySelectedOption = (
+    sorting: string,
+    filteredRestaurants: RestaurantInfo[]
+  ) => {
     if (sorting === SORTING_SELECT.NAME) {
-      return this.sortRestaurantsByName(filteredRestaurants);
+      return sortRestaurantsByName(filteredRestaurants);
     }
     return [...filteredRestaurants].sort(
       (resA, resB) => resA.takingTime - resB.takingTime
     );
-  }
+  };
 
-  render() {
-    return (
-      <>
-        <HeaderSection></HeaderSection>
-        <RestaurantSelect
-          onChangeCategory={this.handleCategorySelect}
-          onChangeSorting={this.handleSortingSelect}
-          selectedCategory={this.state.category}
-          selectedSorting={this.state.sorting}
-        />
-        <RestaurantList
-          restaurantList={this.state.filteredRestaurants}
-          category={this.state.category}
-        />
-      </>
-    );
-  }
-}
+  useEffect(() => {
+    const filteredRestaurants = filterBySelectedOptions(category, sorting);
+    setFilteredRestaurants(filteredRestaurants);
+  }, [category, sorting]);
+
+  return (
+    <>
+      <HeaderSection></HeaderSection>
+      <RestaurantSelect
+        onChangeCategory={handleCategorySelect}
+        onChangeSorting={handleSortingSelect}
+        selectedCategory={category}
+        selectedSorting={sorting}
+      />
+      <RestaurantList
+        restaurantList={filteredRestaurants}
+        category={category}
+      />
+    </>
+  );
+};
 
 export default App;
