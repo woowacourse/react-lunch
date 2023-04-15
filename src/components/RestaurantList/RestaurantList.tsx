@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Restaurant, Category, All, Criterion } from '../../types';
+import { Restaurant, Category, Criterion } from '../../types';
 import RestaurantItem from '../RestaurantItem/RestaurantItem';
 import LunchDataService from '../../domains/LunchDataService';
 import DetailModal from '../Modal/DetailModal';
@@ -19,7 +19,7 @@ function RestaurantList() {
     description: '',
     link: '',
   });
-  const [category, setCategory] = useState<Category | All>('전체');
+  const [category, setCategory] = useState<Category>('전체');
   const [criterion, setCriterion] = useState<Criterion>('이름순');
 
   const handleItemClick = (id: string) => {
@@ -27,7 +27,7 @@ function RestaurantList() {
     setClickedData(LunchDataService.getRestaurant(id));
   };
 
-  const handleChangeCategory = (newCategory: Category | All) => {
+  const handleChangeCategory = (newCategory: Category) => {
     setIsItemClick(false);
     setCategory(newCategory);
     setRestaurantsData(LunchDataService.getRestaurants(newCategory, criterion));

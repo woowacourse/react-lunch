@@ -1,4 +1,5 @@
 export const IMAGE_PATH = {
+  전체: '',
   한식: `${process.env.PUBLIC_URL}/assets/category-korean.png`,
   양식: `${process.env.PUBLIC_URL}/assets/category-western.png`,
   중식: `${process.env.PUBLIC_URL}/assets/category-chinese.png`,
