@@ -2,6 +2,7 @@ import './css/App.css';
 
 import Header from './components/Header';
 import MainLayout from './components/MainLayout';
+
 import { useRestaurants } from './domain/hooks/useRestaurants';
 
 const App = () => {
