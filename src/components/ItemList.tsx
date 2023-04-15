@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { Restaurant } from '../utils/interfaces';
 import '../styles/ItemList.css';
 import Item from './Item';
@@ -11,10 +11,7 @@ interface Props {
 }
 
 function ItemList({ itemList }: Props) {
-  const modalRef = useRef<HTMLDialogElement>(null);
-  const { openDialog, closeDialog } = useModal({ dialogRef: modalRef });
-
-  const [specificItem, setSpecificItem] = useState<Restaurant | null>(null);
+  const { modalRef, modalContent, setModalContent } = useModal<Restaurant>();
 
   const ulOnClickListener = (event: React.MouseEvent<HTMLUListElement>) => {
     if (!(event.target instanceof HTMLElement)) return;
@@ -23,16 +20,11 @@ function ItemList({ itemList }: Props) {
     const elementId = Number(closestLi?.dataset.id);
 
     const selectedState = itemList.find(({ id }) => id === elementId) ?? null;
-    setSpecificItem(selectedState);
-    openDialog();
+    setModalContent(selectedState);
   };
 
   const closeEvent = () => {
-    const current = modalRef.current;
-    if (current) {
-      setSpecificItem(null);
-      closeDialog();
-    }
+    setModalContent(null);
   };
 
   return (
@@ -44,7 +36,7 @@ function ItemList({ itemList }: Props) {
       </ul>
 
       <ModalPortal closeEvent={closeEvent} dialogRef={modalRef}>
-        <ItemInformation restaurant={specificItem} closeEvent={closeEvent} />
+        <ItemInformation restaurant={modalContent} closeEvent={closeEvent} />
       </ModalPortal>
     </section>
   );

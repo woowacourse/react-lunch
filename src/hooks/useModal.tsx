@@ -1,27 +1,22 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-interface Props {
-  dialogRef: React.RefObject<HTMLDialogElement>;
-}
+function useModal<T>() {
+  const modalRef = useRef<HTMLDialogElement>(null);
+  const [modalContent, setModalContent] = useState<T | null>(null);
 
-function useModal({ dialogRef }: Props) {
-  const openDialog = () => {
-    const current = dialogRef.current;
-    if (current) {
-      current.showModal();
+  useEffect(() => {
+    const current = modalRef.current;
+
+    if (modalContent) {
+      current?.showModal();
       document.body.style.overflow = 'hidden';
-    }
-  };
-
-  const closeDialog = () => {
-    const current = dialogRef.current;
-    if (current) {
+    } else {
       document.body.style.overflow = 'visible';
-      current.close();
+      current?.close();
     }
-  };
+  }, [modalContent]);
 
-  return { openDialog, closeDialog };
+  return { modalRef, modalContent, setModalContent };
 }
 
 export default useModal;
