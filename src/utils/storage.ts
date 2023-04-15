@@ -1,12 +1,12 @@
 import dummyList from '../mockData.json';
 import { Restaurant } from '../type';
 
-export const getRestaurantList = () => {
+export const getRestaurantList = (): Restaurant[] => {
   const localStorageData = localStorage.getItem('restaurantList');
 
   if (localStorageData === null) {
     setRestaurantList(dummyList as Restaurant[]);
-    return dummyList;
+    return dummyList as Restaurant[];
   }
 
   return JSON.parse(localStorageData);

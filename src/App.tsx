@@ -1,8 +1,6 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { GlobalStyle } from './styles/GlobalStyle';
-import { getRestaurantList } from './utils/storage';
-import { filterAndSortArray } from './utils/util';
 import { RestaurantList } from './components/restaurant/RestaurantList';
 import { Modal } from './components/modal/Modal';
 import { RestaurantDetail } from './components/modal/RestaurantDetail';
@@ -10,9 +8,10 @@ import { SelectBox } from './components/SelectBox';
 import { categoryOption, sortOption } from './constants';
 import { Restaurant, SortOption, CategoryOption } from './type';
 import { Layout } from './layout';
+import { getRestaurantListObj } from './domain/Restaurant';
 
 const Style = {
-  Wrapper: styled.div`
+  SelectBoxWrapper: styled.div`
     display: flex;
     justify-content: space-between;
 
@@ -20,12 +19,6 @@ const Style = {
     margin-top: 24px;
   `,
 };
-
-interface AppState {
-  isOpen: boolean;
-  selectedItem: Restaurant | null;
-  filter: FilterState;
-}
 
 export interface FilterState {
   category: CategoryOption;
@@ -48,91 +41,83 @@ const isCategoryFilterTye = (arg: any): arg is CategoryOption => {
   );
 };
 
-export class App extends Component<any, AppState> {
-  restaurantList: Restaurant[] = getRestaurantList();
+export function App() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<Restaurant | null>();
+  const [filter, setFilter] = useState<FilterState>({
+    category: '전체',
+    sort: 'name',
+  });
 
-  constructor(props: any) {
-    super(props);
+  const restaurantListObj = getRestaurantListObj();
 
-    this.state = {
-      isOpen: false,
-      selectedItem: null,
-      filter: {
-        category: '전체',
-        sort: 'name',
-      },
-    };
-  }
+  const openModal = () => setIsOpen(true);
 
-  openModal() {
-    this.setState(() => ({ isOpen: true }));
-  }
+  const closeModal = () => setIsOpen(false);
 
-  closeModal() {
-    this.setState(() => ({ isOpen: false }));
-  }
-
-  handleClickRestaurantItem(e: React.MouseEvent<HTMLElement>) {
+  const handleClickRestaurantItem = (e: React.MouseEvent<HTMLElement>) => {
     if (!(e.target instanceof HTMLElement)) return;
 
     const selectedId = e.target.closest('li')?.id;
-    const selectedRestaurant = this.restaurantList.find(
-      ({ id }) => id === selectedId
-    );
 
-    if (selectedRestaurant === undefined) return;
+    if (selectedId === undefined) {
+      alert('선택한 레스토랑의 상세 정보를 불러올 수 없습니다.');
+      return;
+    }
 
-    this.setState(() => ({ selectedItem: selectedRestaurant }));
-    this.openModal();
-  }
+    const selectedRestaurant =
+      restaurantListObj.getRestaurantInfoById(selectedId);
 
-  handleSelectFilter(e: React.ChangeEvent<HTMLSelectElement>) {
+    setSelectedItem(selectedRestaurant);
+    openModal();
+  };
+
+  const handleSelectCategoryOption = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const selectedOption = e.target.value;
+
+    if (isCategoryFilterTye(selectedOption))
+      setFilter({
+        ...filter,
+        category: selectedOption,
+      });
+  };
+
+  const handleSelectSortOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOption = e.target.value;
 
     if (isSortFilterType(selectedOption)) {
-      this.setState(() => ({
-        filter: { ...this.state.filter, sort: selectedOption },
-      }));
+      setFilter({
+        ...filter,
+        sort: selectedOption,
+      });
     }
+  };
 
-    if (isCategoryFilterTye(selectedOption)) {
-      this.setState(() => ({
-        filter: {
-          ...this.state.filter,
-          category: selectedOption,
-        },
-      }));
-    }
-  }
-
-  render() {
-    return (
-      <Layout>
-        <GlobalStyle />
-        <Style.Wrapper>
-          <SelectBox
-            option={categoryOption}
-            handleOptionChange={this.handleSelectFilter.bind(this)}
-          />
-          <SelectBox
-            option={sortOption}
-            handleOptionChange={this.handleSelectFilter.bind(this)}
-          />
-        </Style.Wrapper>
-        <RestaurantList
-          list={filterAndSortArray(this.restaurantList, this.state.filter)}
-          clickRestaurantItem={this.handleClickRestaurantItem.bind(this)}
+  return (
+    <Layout>
+      <GlobalStyle />
+      <Style.SelectBoxWrapper>
+        <SelectBox
+          option={categoryOption}
+          handleOptionChange={handleSelectCategoryOption}
         />
+        <SelectBox
+          option={sortOption}
+          handleOptionChange={handleSelectSortOption}
+        />
+      </Style.SelectBoxWrapper>
+      <RestaurantList
+        list={restaurantListObj.getFilteredRestaurant(filter)}
+        clickRestaurantItem={handleClickRestaurantItem}
+      />
+      {isOpen && (
         <Modal
-          isOpen={this.state.isOpen}
-          children={
-            this.state.selectedItem && (
-              <RestaurantDetail info={this.state.selectedItem} />
-            )
-          }
-          closeModal={this.closeModal.bind(this)}
+          children={selectedItem && <RestaurantDetail info={selectedItem} />}
+          closeModal={closeModal}
         />
-      </Layout>
-    );
-  }
+      )}
+    </Layout>
+  );
 }

@@ -1,4 +1,3 @@
-import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 
 const Style = {
@@ -24,16 +23,14 @@ interface OptionProps {
   handleOptionChange: React.ChangeEventHandler<HTMLSelectElement>;
 }
 
-export class SelectBox extends Component<OptionProps> {
-  render(): ReactNode {
-    return (
-      <Style.Wrapper onChange={this.props.handleOptionChange}>
-        {this.props.option.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.text}
-          </option>
-        ))}
-      </Style.Wrapper>
-    );
-  }
+export function SelectBox({ option, handleOptionChange }: OptionProps) {
+  return (
+    <Style.Wrapper onChange={handleOptionChange}>
+      {option.map((option) => (
+        <option key={option.value} value={option.value}>
+          {option.text}
+        </option>
+      ))}
+    </Style.Wrapper>
+  );
 }
