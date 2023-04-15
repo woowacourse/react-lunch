@@ -73,13 +73,15 @@ export function App() {
     openModal();
   };
 
-  const handleSelectFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSortFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOption = e.target.value;
-
     if (isSortFilterType(selectedOption)) {
       setFilter({ ...filter, sort: selectedOption });
     }
+  };
 
+  const handleCategoryFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedOption = e.target.value;
     if (isCategoryFilterTye(selectedOption)) {
       setFilter({ ...filter, category: selectedOption });
     }
@@ -91,12 +93,9 @@ export function App() {
       <Style.Wrapper>
         <SelectBox
           option={categoryOption}
-          handleOptionChange={handleSelectFilter}
+          handleOptionChange={handleCategoryFilter}
         />
-        <SelectBox
-          option={sortOption}
-          handleOptionChange={handleSelectFilter}
-        />
+        <SelectBox option={sortOption} handleOptionChange={handleSortFilter} />
       </Style.Wrapper>
       <RestaurantList
         list={filterAndSortRestaurantList(restaurantList, filter)}
