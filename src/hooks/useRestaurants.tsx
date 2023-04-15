@@ -5,40 +5,38 @@ const sortRestaurants = (restaurants: Restaurant[], sortBy: Sort) => [...restaur
 const filterRestaurants = (restaurants: Restaurant[], categorizeBy: Category) => [...restaurants].filter((restaurant) => categorizeBy === 'all' ? true : restaurant.category === categorizeBy);
 
 const defaultOptions = {
-  categorizeBy: 'all' as Category,
-  sortBy: 'name' as Sort,
+  category: 'all' as Category,
+  sort: 'name' as Sort,
 }
 
 const useRestaurant = (initRestaurants: Restaurant[]) => {
-  const restaurantsRef = useRef(sortRestaurants(initRestaurants, defaultOptions.sortBy));
+  const restaurantsRef = useRef(sortRestaurants(initRestaurants, defaultOptions.sort));
 
   const [restaurants, setRestaurants] = useState<Restaurant[]>(restaurantsRef.current);
-  const [sortBy, setSortBy] = useState<Sort>(defaultOptions.sortBy);
-  const [categorizeBy, setCategorizeBy] = useState<Category>(defaultOptions.categorizeBy);
+  const [sort, setSort] = useState<Sort>(defaultOptions.sort);
+  const [category, setCategory] = useState<Category>(defaultOptions.category);
 
-  const updateSortBy = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortBy(e.target.value as Sort);
+  const updateSort = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSort(e.target.value as Sort);
   }
 
-  const updateCategorizeBy = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategorizeBy(e.target.value as Category);
+  const updateCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCategory(e.target.value as Category);
   }
 
   useEffect(() => {
-    restaurantsRef.current = sortRestaurants(restaurants, sortBy);
-    const sortedRestaurants = sortRestaurants(restaurants, sortBy);
+    restaurantsRef.current = sortRestaurants(restaurants, sort);
+    const sortedRestaurants = sortRestaurants(restaurants, sort);
     setRestaurants(sortedRestaurants);
-  }, [sortBy]);
+  }, [sort]);
 
   useEffect(() => {
-    const filteredRestaurants = filterRestaurants(restaurantsRef.current, categorizeBy);
+    const filteredRestaurants = filterRestaurants(restaurantsRef.current, category);
     setRestaurants(filteredRestaurants);
-  }, [categorizeBy]);
+  }, [category]);
 
   return {
-    restaurants,
-    updateSortBy,
-    updateCategorizeBy,
+    restaurants, updateSort, updateCategory,
   };
 };
 

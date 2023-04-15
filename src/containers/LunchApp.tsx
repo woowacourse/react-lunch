@@ -12,7 +12,7 @@ import useRestaurant from '../hooks/useRestaurants';
 function LunchApp() {
 
   const {
-    restaurants, updateSortBy, updateCategorizeBy,
+    restaurants, updateSort, updateCategory,
   } = useRestaurant(mockData as Restaurant[]);
 
   return (
@@ -20,10 +20,10 @@ function LunchApp() {
       <Header />
       <SelectContainer>
         <SelectBox
-          setState={(e) => updateCategorizeBy(e)}
+          onChange={updateCategory}
           options={category} />
         <SelectBox
-          setState={(e) => updateSortBy(e)}
+          onChange={updateSort}
           options={sort}
         />
       </SelectContainer>

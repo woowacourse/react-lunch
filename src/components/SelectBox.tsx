@@ -4,13 +4,13 @@ import { SelectBoxOption } from "../types/Restaurant";
 
 interface SelectBoxProps {
   options: SelectBoxOption[];
-  setState: ChangeEventHandler<HTMLSelectElement>;
+  onChange: ChangeEventHandler<HTMLSelectElement>;
 }
 
-function SelectBox({ options, setState }: SelectBoxProps) {
+function SelectBox({ options, onChange }: SelectBoxProps) {
 
   return (
-    <Select onChange={setState}>
+    <Select onChange={onChange}>
       {options.map(option => (
         <option value={option.value} key={option.value}>{option.label}</option>
       ))}
