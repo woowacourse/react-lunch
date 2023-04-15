@@ -13,7 +13,7 @@ const restaurantListData = filterAndSortRestaurantList(getRestaurantListData());
 
 function Main() {
   const { data: restaurantList, setDataBeforeUnload } = useLocalStorage(restaurantListData);
-  const { currentRestaurantList, updateCurrentRestaurantList } = useRestaurantList(restaurantList);
+  const { currentRestaurantList, handleRestaurantFilterChange } = useRestaurantList(restaurantList);
   const {
     isOpen: isModalOpen,
     open: openModal,
@@ -36,7 +36,7 @@ function Main() {
 
   return (
     <main>
-      <FilterSection onChange={updateCurrentRestaurantList} />
+      <FilterSection onChange={handleRestaurantFilterChange} />
       <RestaurantList
         restaurantList={currentRestaurantList}
         onItemClick={updateSelectedRestaurant}

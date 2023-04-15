@@ -1,6 +1,7 @@
-import { useCallback, useState } from 'react';
+import { ChangeEvent, useCallback, useState } from 'react';
 import { FilterOption, Restaurant } from '../types';
 import { DEFAULT_CATEGORY, DEFAULT_SORT_BY } from '../constants';
+import { isElementOfType } from '../utils/eventUtils';
 
 const filterRestaurant = (restaurantList: Restaurant[], filter: string) => {
   if (filter === DEFAULT_CATEGORY) return restaurantList;
@@ -34,6 +35,10 @@ const filterAndSortRestaurantList = (
 
 const useRestaurantList = (restaurantList: Restaurant[]) => {
   const [currentRestaurantList, setCurrentRestaurantList] = useState(restaurantList);
+  const [displayStatus, setDisplayStatus] = useState({
+    category: DEFAULT_CATEGORY,
+    sortBy: DEFAULT_SORT_BY,
+  });
 
   const updateCurrentRestaurantList = useCallback(
     (displayStatus: FilterOption) => {
@@ -44,7 +49,22 @@ const useRestaurantList = (restaurantList: Restaurant[]) => {
     [restaurantList]
   );
 
-  return { currentRestaurantList, updateCurrentRestaurantList };
+  const handleRestaurantFilterChange = useCallback(
+    (event: ChangeEvent<HTMLSelectElement>) => {
+      if (!isElementOfType<HTMLSelectElement>(event)) return;
+
+      const updatedDisplayStatus = {
+        ...displayStatus,
+        [event.target.name]: event.target.value,
+      };
+
+      setDisplayStatus(updatedDisplayStatus);
+      updateCurrentRestaurantList(updatedDisplayStatus);
+    },
+    [displayStatus, updateCurrentRestaurantList]
+  );
+
+  return { currentRestaurantList, handleRestaurantFilterChange };
 };
 
 export { filterAndSortRestaurantList, useRestaurantList };

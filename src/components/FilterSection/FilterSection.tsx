@@ -1,49 +1,24 @@
 import styles from './style.module.css';
-import { ChangeEvent, memo, useState } from 'react';
-import { FilterOption } from '../../types';
-import {
-  DEFAULT_CATEGORY,
-  DEFAULT_SORT_BY,
-  RESTAURANT_CATEGORY_OPTION,
-  SELECT_ATTRIBUTES,
-  SORT_BY,
-} from '../../constants';
-import { isElementOfType } from '../../utils/eventUtils';
+import { ChangeEvent, memo } from 'react';
+import { RESTAURANT_CATEGORY_OPTION, SELECT_ATTRIBUTES, SORT_BY } from '../../constants';
 import Select from '../common/Select/Select';
 
 interface FilterSectionProps {
-  onChange: (displayStatus: FilterOption) => void;
+  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 function FilterSection({ onChange }: FilterSectionProps) {
-  const [displayStatus, setDisplayStatus] = useState({
-    category: DEFAULT_CATEGORY,
-    sortBy: DEFAULT_SORT_BY,
-  });
-
-  const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    if (!isElementOfType<HTMLSelectElement>(event)) return;
-
-    const updatedDisplayStatus = {
-      ...displayStatus,
-      [event.target.name]: event.target.value,
-    };
-
-    setDisplayStatus(updatedDisplayStatus);
-    onChange(updatedDisplayStatus);
-  };
-
   return (
     <section className={styles.restaurantFilterContainer}>
       <Select
         options={RESTAURANT_CATEGORY_OPTION}
-        onChange={handleSelectChange}
+        onChange={onChange}
         elementStyle={styles.restaurantFilter}
         {...SELECT_ATTRIBUTES.CATEGORY_FILTER}
       />
       <Select
         options={SORT_BY}
-        onChange={handleSelectChange}
+        onChange={onChange}
         elementStyle={styles.restaurantFilter}
         {...SELECT_ATTRIBUTES.SORT_BY_FILTER}
       />
