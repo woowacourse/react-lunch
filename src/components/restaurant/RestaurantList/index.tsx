@@ -1,26 +1,11 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 
-import RestaurantItem from './RestaurantItem';
-import { Categories, Restaurant, SortOptions } from '../../@types/type';
-import { CATEGORIES, SORT_OPTIONS } from '../../constants';
-import restaurant from '../../domain/restaurant';
-import SelectBox from '../common/SelectBox';
-
-const RestaurantListLayout = styled.main`
-  padding: 16px;
-`;
-
-const SelectBoxContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Restaurants = styled.ul`
-  display: flex;
-  flex-direction: column;
-  margin: 16px 0;
-`;
+import * as S from './style';
+import { Categories, Restaurant, SortOptions } from '../../../@types/type';
+import { CATEGORIES, SORT_OPTIONS } from '../../../constants';
+import restaurant from '../../../domain/restaurant';
+import SelectBox from '../../common/SelectBox';
+import RestaurantItem from '../RestaurantItem';
 
 type Props = {
   restaurantList: Restaurant[];
@@ -47,17 +32,17 @@ const RestaurantList = ({ restaurantList, openModal }: Props) => {
   };
 
   return (
-    <RestaurantListLayout>
-      <SelectBoxContainer>
+    <S.RestaurantListContainer>
+      <S.SelectBoxContainer>
         <SelectBox options={Object.values(CATEGORIES)} setOption={changeFilterOption} />
         <SelectBox options={Object.values(SORT_OPTIONS)} setOption={changeSortOption} />
-      </SelectBoxContainer>
-      <Restaurants>
+      </S.SelectBoxContainer>
+      <S.RestaurantList>
         {filterAndSortPipe().map((restaurant, index) => (
           <RestaurantItem key={index} restaurant={restaurant} openModal={openModal} />
         ))}
-      </Restaurants>
-    </RestaurantListLayout>
+      </S.RestaurantList>
+    </S.RestaurantListContainer>
   );
 };
 

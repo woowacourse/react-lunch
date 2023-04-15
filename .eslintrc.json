@@ -17,21 +17,19 @@
   },
   "plugins": ["import", "react", "@typescript-eslint"],
   "rules": {
+    "import/no-unresolved": "off",
     "import/order": [
       "error",
       {
         "groups": [["builtin", "external"], "internal", ["parent", "sibling"], "index"],
         "newlines-between": "always",
-        "pathGroups": [
-          {
-            "group": "internal",
-            "position": "after"
-          }
-        ],
         "alphabetize": {
           "order": "asc"
         }
       }
     ]
+  },
+  "settings": {
+    "import/resolver": {}
   }
 }
