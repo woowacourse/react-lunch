@@ -1,18 +1,11 @@
-import { useEffect } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
 import styled from 'styled-components';
-import CategoryIcon from './CategoryIcon';
-import { Restaurant, SetModalRestaurantId } from '../../@types/type';
-import { BodyText, SubTitleText } from '../../style/typography';
 
-type ModalProps = { restaurant: Restaurant } & SetModalRestaurantId;
+interface ModalProps {
+  onCloseModal: () => void;
+}
 
-const Modal = ({ restaurant, setModalRestaurantId }: ModalProps) => {
-  const { category, name, distanceByMinutes, description, referenceUrl } = restaurant;
-
-  const onCloseModal = () => {
-    setModalRestaurantId(null);
-  };
-
+const Modal = ({ children, onCloseModal }: PropsWithChildren<ModalProps>) => {
   const onKeyDownEscape = (event: KeyboardEvent) => {
     if (event.code !== 'Escape') return;
     onCloseModal();
@@ -27,11 +20,7 @@ const Modal = ({ restaurant, setModalRestaurantId }: ModalProps) => {
     <>
       <ModalBackdrop onClick={onCloseModal} />
       <ModalContent>
-        <CategoryIcon category={category} />
-        <Title>{name}</Title>
-        <Distance>캠퍼스로부터 {distanceByMinutes}분 내</Distance>
-        <Description>{description}</Description>
-        <ReferenceURL href={referenceUrl}>{referenceUrl}</ReferenceURL>
+        {children}
         <CloseButton onClick={onCloseModal}>닫기</CloseButton>
       </ModalContent>
     </>
@@ -56,23 +45,6 @@ const ModalContent = styled.div`
   padding: 32px 16px;
   border-radius: 8px 8px 0px 0px;
   background: var(--grey-100);
-`;
-
-const Title = styled(SubTitleText)`
-  padding: 16px 0;
-`;
-
-const Distance = styled(BodyText)`
-  color: var(--primary-color);
-`;
-
-const Description = styled(BodyText)`
-  margin: 16px 0;
-`;
-
-const ReferenceURL = styled.a`
-  color: var(--grey-500);
-  word-break: break-all;
 `;
 
 const CloseButton = styled.button`
