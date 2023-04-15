@@ -15,8 +15,8 @@ const St = {
   `,
 
   CategoryImg: styled.img`
-    width: 36px;
-    height: 36px;
+    width: 56%;
+    height: 56%;
   `,
 };
 
