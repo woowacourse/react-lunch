@@ -9,20 +9,19 @@ import data from 'data/mockData.json';
 import { db } from 'db/restaurants';
 
 import variables from 'components/styles/variables';
+import { CategoryFilters, SortFilters } from 'contants';
 
 function App() {
-  const [categoryOptions, setCategoryOptions] = useState<CategoryFilter[]>([
-    '전체',
-    '한식',
-    '중식',
-    '일식',
-    '아시안',
-    '양식',
-    '기타',
-  ]);
-  const [sortingOptions, setSortingOptions] = useState<SortFilter[]>(['거리순', '이름순']);
-  const [selectedCategoryOption, setSelectedCategoryOption] = useState<CategoryFilter>('전체');
-  const [selectedSortingOption, setSelectedSortingOption] = useState<SortFilter>('거리순');
+  const [categoryOptions, setCategoryOptions] = useState<CategoryFilter[]>(
+    Object.values(CategoryFilters)
+  );
+  const [sortingOptions, setSortingOptions] = useState<SortFilter[]>(Object.values(SortFilters));
+  const [selectedCategoryOption, setSelectedCategoryOption] = useState<CategoryFilter>(
+    CategoryFilters.all
+  );
+  const [selectedSortingOption, setSelectedSortingOption] = useState<SortFilter>(
+    SortFilters.distance
+  );
   const [restaurantItems, setRestaurantItems] = useState<Restaurant[]>(data.items as Restaurant[]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [clickedRestaurant, setClickedRestaurant] = useState<Restaurant | null>(null);
@@ -40,12 +39,12 @@ function App() {
     restaurants: Restaurant[],
     categoryOption: CategoryFilter
   ): Restaurant[] => {
-    if (categoryOption === '전체') return restaurants;
+    if (categoryOption === CategoryFilters.all) return restaurants;
     return restaurants.filter((restaurant) => restaurant.category === categoryOption);
   };
 
   const filterBySort = (restaurants: Restaurant[], sortingOption: SortFilter): Restaurant[] => {
-    if (sortingOption === '이름순') {
+    if (sortingOption === SortFilters.name) {
       return restaurants.sort((a, b) => (a.name > b.name ? 1 : -1));
     }
     return restaurants.sort((a, b) => a.distance - b.distance);

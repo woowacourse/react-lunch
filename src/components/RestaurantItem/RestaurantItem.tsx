@@ -1,7 +1,7 @@
 import { Restaurant } from 'types';
-import { imgSrc } from 'constants/imageSrc';
 
 import styled from 'styled-components';
+import { imgSrc } from 'contants';
 
 type Props = {
   restaurant: Restaurant;

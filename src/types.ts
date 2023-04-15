@@ -1,6 +1,6 @@
-export type Category = '한식' | '중식' | '일식' | '아시안' | '양식' | '기타';
-export type Distance = 5 | 10 | 15 | 20 | 30;
+import { CategoryFilters, SortFilters } from 'contants';
 
+export type Distance = 5 | 10 | 15 | 20 | 30;
 export interface Restaurant {
   id: number;
   category: Category;
@@ -10,5 +10,7 @@ export interface Restaurant {
   link?: string;
 }
 
-export type CategoryFilter = '전체' | Category;
-export type SortFilter = '이름순' | '거리순';
+export type CategoryFilter = typeof CategoryFilters[keyof typeof CategoryFilters];
+export type Category = Exclude<CategoryFilter, typeof CategoryFilters.all>;
+
+export type SortFilter = typeof SortFilters[keyof typeof SortFilters];

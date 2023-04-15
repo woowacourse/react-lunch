@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Restaurant } from 'types';
-import { imgSrc } from 'constants/imageSrc';
+import { imgSrc } from 'contants';
 import styled from 'styled-components';
 import {
   DistanceText,
