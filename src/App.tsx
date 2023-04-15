@@ -12,10 +12,10 @@ const App = () => {
 
   const restaurants = JSON.parse(localStorage.getItem('restaurants') || '[]') as Restaurant[];
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [detailId, setDetailId] = useState<Restaurant['id']>('');
+  const [restaurantDetail, setRestaurantDetail] = useState<Restaurant | null>(null);
 
   const openModal = (id: Restaurant['id']) => {
-    setDetailId(id);
+    setRestaurantDetail(restaurants.find((restaurant) => restaurant.id === id) as Restaurant);
     setIsModalOpen(true);
   };
 
@@ -28,12 +28,9 @@ const App = () => {
       <Header />
       <RestaurantList restaurants={restaurants} openModal={openModal} />
 
-      {isModalOpen && (
+      {isModalOpen && restaurantDetail && (
         <Modal closeModal={closeModal}>
-          <RestaurantDetail
-            restaurant={restaurants.find((restaurant) => restaurant.id === detailId) as Restaurant}
-            closeModal={closeModal}
-          />
+          <RestaurantDetail restaurant={restaurantDetail} closeModal={closeModal} />
         </Modal>
       )}
     </div>
