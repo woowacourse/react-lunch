@@ -18,7 +18,7 @@ export const useRestaurants = () => {
     }
 
     const fetchRestaurants = async () => {
-      const response = await fetch('./react-lunch/mockData.json');
+      const response = await fetch('./mockData.json');
 
       if (!response.ok) {
         throw new Error('음식점 목록을 불러올 수 없습니다.');
