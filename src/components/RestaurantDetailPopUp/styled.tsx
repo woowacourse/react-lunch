@@ -21,7 +21,7 @@ const St = {
 
     background: rgba(0, 0, 0, 0.35);
   `,
-  BottomSheet: styled.div`
+  PopUp: styled.div`
     position: fixed;
     left: 0;
     bottom: 0;

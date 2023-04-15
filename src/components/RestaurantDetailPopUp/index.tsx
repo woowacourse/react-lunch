@@ -3,12 +3,12 @@ import { Restaurant } from "../../types/restaurants";
 import CategoryImg from "../CategoryImg";
 import St from "./styled";
 
-interface RestaurantDetailBottomSheetProps {
+interface RestaurantDetailPopUpProps {
   restaurant: Restaurant;
   close: VoidFunction;
 }
 
-class RestaurantDetailBottomSheet extends Component<RestaurantDetailBottomSheetProps> {
+class RestaurantDetailPopUp extends Component<RestaurantDetailPopUpProps> {
   escHandler(e: KeyboardEvent) {
     if (e.key === "Escape") this.props.close();
   }
@@ -29,7 +29,7 @@ class RestaurantDetailBottomSheet extends Component<RestaurantDetailBottomSheetP
     return (
       <>
         <St.Backdrop onClick={close} />
-        <St.BottomSheet>
+        <St.PopUp>
           <CategoryImg category={category} />
           <St.Detail>
             <St.Title>{title}</St.Title>
@@ -38,10 +38,10 @@ class RestaurantDetailBottomSheet extends Component<RestaurantDetailBottomSheetP
             <St.Link href={link}>{link}</St.Link>
             <St.Button onClick={close}>닫기</St.Button>
           </St.Detail>
-        </St.BottomSheet>
+        </St.PopUp>
       </>
     );
   }
 }
 
-export default RestaurantDetailBottomSheet;
+export default RestaurantDetailPopUp;
