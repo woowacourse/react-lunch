@@ -4,13 +4,14 @@ import { IMAGE_PATH } from '../../constants';
 
 interface RestaurantItemProps {
   restaurant: Restaurant;
+  handleClick: () => void;
 }
 
-function RestaurantItem({ restaurant }: RestaurantItemProps) {
+function RestaurantItem({ restaurant, handleClick }: RestaurantItemProps) {
   const { id, category, name, distance, description } = restaurant;
 
   return (
-    <li className="restaurant" id={String(id)}>
+    <li className="restaurant" id={String(id)} onClick={handleClick}>
       <div className="restaurant__category">
         <img src={`${IMAGE_PATH[category]}`} alt={category} className="category-icon" />
       </div>
