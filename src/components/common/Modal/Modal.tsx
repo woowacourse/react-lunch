@@ -1,5 +1,5 @@
 import styles from './style.module.css';
-import { KeyboardEvent, MouseEvent, ReactNode, memo, useEffect, useRef } from 'react';
+import { KeyboardEvent, MouseEvent, ReactNode, useEffect, useRef } from 'react';
 
 interface ModalProps {
   children: ReactNode;
@@ -31,4 +31,4 @@ function Modal({ children, onClick, onKeyPress }: ModalProps) {
   );
 }
 
-export default memo(Modal);
+export default Modal;

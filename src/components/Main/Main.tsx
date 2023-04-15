@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Restaurant } from '../../types';
 import { getRestaurantListData } from '../../data/restaurantListData';
 import FilterSection from '../FilterSection/FilterSection';
@@ -29,10 +29,13 @@ function Main() {
     });
   }, [restaurantList, setDataBeforeUnload]);
 
-  const updateSelectedRestaurant = (restaurant: Restaurant) => {
-    setSelectedRestaurant(restaurant);
-    openModal();
-  };
+  const updateSelectedRestaurant = useCallback(
+    (restaurant: Restaurant) => {
+      setSelectedRestaurant(restaurant);
+      openModal();
+    },
+    [openModal]
+  );
 
   return (
     <main>
@@ -41,7 +44,6 @@ function Main() {
         restaurantList={currentRestaurantList}
         onItemClick={updateSelectedRestaurant}
       />
-
       {isModalOpen && (
         <Modal onClick={handleModalCloseClick} onKeyPress={handleModalClosePress}>
           {selectedRestaurant && <RestaurantDetail restaurant={selectedRestaurant} />}

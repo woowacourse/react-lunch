@@ -33,7 +33,9 @@ const filterAndSortRestaurantList = (
   return sortRestaurant([...filteredRestaurantList], sortBy);
 };
 
-const useRestaurantList = (restaurantList: Restaurant[]) => {
+const useRestaurantList = (data: Restaurant[]) => {
+  const [restaurantList] = useState(data);
+
   const [currentRestaurantList, setCurrentRestaurantList] = useState(restaurantList);
   const [displayStatus, setDisplayStatus] = useState({
     category: DEFAULT_CATEGORY,
@@ -41,8 +43,7 @@ const useRestaurantList = (restaurantList: Restaurant[]) => {
   });
 
   const updateCurrentRestaurantList = useCallback(
-    (displayStatus: FilterOption) => {
-      const { category, sortBy } = displayStatus;
+    ({ category, sortBy }: FilterOption) => {
       const updatedRestaurantList = filterAndSortRestaurantList(restaurantList, category, sortBy);
       setCurrentRestaurantList(updatedRestaurantList);
     },
