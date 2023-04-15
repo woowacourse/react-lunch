@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import { convertImage } from "../utils/image";
 import { useModal } from "../hooks/useModal";
-import { GlobalContext } from "../containers/GlobalProvider";
+import useRestaurant from "../hooks/useRestaurant";
 
 function Modal() {
   const { modalOpen, closeModal } = useModal();
-  const globalState = useContext(GlobalContext);
-  const { name, distance, category, description } = globalState.restaurant;
+  const { restaurant } = useRestaurant();
+  const { name, distance, category, description } = restaurant;
 
   return (
     <>
