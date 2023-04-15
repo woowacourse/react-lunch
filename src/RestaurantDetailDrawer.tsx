@@ -2,8 +2,8 @@ import React from 'react';
 
 import Drawer from './common/Drawer.tsx';
 import { Restaurant } from './util/type.js';
-import { CATEGORY_IMAGES, NO_EXIST_RESTAURANT } from './util/constant.ts';
 import useRestaurantList from './hooks/useRestaurantList.ts';
+import { CATEGORY_IMAGES, NO_EXIST_RESTAURANT } from './util/constant.ts';
 
 type RestaurantDetailDrawerProps = {
   isOpenDrawer: boolean;
@@ -19,7 +19,7 @@ const getRestaurantById = (restaurantList, id:number) => {
 const RestaurantDetailDrawer:React.FC<RestaurantDetailDrawerProps> = ({ isOpenDrawer, restaurantId, onToggleDrawer }) => {
   const restaurantList = useRestaurantList('restaurantList', []);
   const restaurant = getRestaurantById(restaurantList, restaurantId);
-  
+
     return (
       <Drawer isOpenDrawer={isOpenDrawer}>
         <div className="restaurant__category">

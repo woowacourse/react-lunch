@@ -1,4 +1,4 @@
-import React , { useState, useEffect } from 'react';
+import React from 'react';
 import RestaurantItem from './RestaurantItem.tsx';
 import { FilterOption, Restaurant } from './util/type.js';
 import { pipe } from './util/util.ts';
