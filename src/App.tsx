@@ -9,6 +9,7 @@ import RestaurantDetailModal from './components/RestaurantDetailModal';
 import { Restaurant, RestaurantId } from './domain/type';
 import { getLocalStorage, setLocalStorage } from './utils/localStorage';
 import { getMockData } from './domain/mockData';
+import { LOCAL_STORAGE } from './CONSTANT';
 
 interface State {
   restaurants: Restaurant[];
@@ -23,26 +24,8 @@ class App extends Component {
     isModalOpened: false,
   };
 
-  // async componentDidMount() {
-  //   const localStorageData = getLocalStorage('restaurants');
-  //   console.log('aaa');
-
-  //   if (localStorageData) {
-  //     this.setState({ restaurants: localStorageData });
-  //     return;
-  //   }
-
-  //   const response = await fetch('./mockData.json');
-  //   const data = await response.json();
-
-  //   console.log('a', data);
-
-  //   setLocalStorage('restaurants', data);
-  //   this.setState({ restaurants: data });
-  // }
-
   async componentDidMount() {
-    const localStorageData = getLocalStorage('restaurants');
+    const localStorageData = getLocalStorage(LOCAL_STORAGE.restaurantData);
 
     if (localStorageData) {
       this.setState({ ...this.state, restaurants: localStorageData });
@@ -51,7 +34,7 @@ class App extends Component {
 
     const data = await getMockData();
 
-    setLocalStorage('restaurants', data);
+    setLocalStorage(LOCAL_STORAGE.restaurantData, data);
     this.setState({ ...this.state, restaurants: data });
   }
 
