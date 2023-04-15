@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 
+import { RESTAURANTS_LOCAL_STORAGE_KEY } from '../constants';
 import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
-
 import type { Restaurant } from '../type';
 
 export const useRestaurants = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
 
   useEffect(() => {
-    const localStorageData = getLocalStorage('restaurants') as Restaurant[];
+    const localStorageData = getLocalStorage(
+      RESTAURANTS_LOCAL_STORAGE_KEY,
+    ) as Restaurant[];
 
     if (localStorageData) {
       setRestaurants(localStorageData);
@@ -25,7 +27,7 @@ export const useRestaurants = () => {
       const data = await response.json();
 
       setRestaurants(data);
-      setLocalStorage('restaurants', data);
+      setLocalStorage(RESTAURANTS_LOCAL_STORAGE_KEY, data);
     };
 
     fetchRestaurants();
