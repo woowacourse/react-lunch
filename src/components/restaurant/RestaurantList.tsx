@@ -6,11 +6,11 @@ import restaurant from '../../domain/restaurant';
 import { CATEGORIES, DEFAULT_CATEGORY_OPTION, DEFAULT_SORT_OPTION, SORT_OPTIONS } from '../../constants';
 import { Restaurant, SetModalRestaurantId } from '../../@types/type';
 
-type Props = SetModalRestaurantId & {
+type RestaurantListProps = SetModalRestaurantId & {
   restaurantList: Restaurant[];
 };
 
-const RestaurantList = ({ restaurantList, setModalRestaurantId }: Props) => {
+const RestaurantList = ({ restaurantList, setModalRestaurantId }: RestaurantListProps) => {
   const [filterOption, setFilterOption] = useState(DEFAULT_CATEGORY_OPTION);
   const [sortOption, setSortOption] = useState(DEFAULT_SORT_OPTION);
 

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-type Props = {
+type SelectBoxProps = {
   options: string[];
   setOption: (option: string) => void;
 };
 
-const SelectBox = ({ options, setOption }: Props) => {
+const SelectBox = ({ options, setOption }: SelectBoxProps) => {
   return (
     <Select onChange={(e) => setOption(e.target.value)}>
       {options.map((option, index) => (

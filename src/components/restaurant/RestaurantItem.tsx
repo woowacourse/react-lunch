@@ -3,9 +3,9 @@ import CategoryIcon from './CategoryIcon';
 import { Restaurant, SetModalRestaurantId } from '../../@types/type';
 import { BodyText, SubTitleText } from '../../style/typography';
 
-type Props = { restaurant: Restaurant } & SetModalRestaurantId;
+type RestaurantItemProps = { restaurant: Restaurant } & SetModalRestaurantId;
 
-const RestaurantItem = ({ restaurant, setModalRestaurantId }: Props) => {
+const RestaurantItem = ({ restaurant, setModalRestaurantId }: RestaurantItemProps) => {
   const { category, name, distanceByMinutes, description } = restaurant;
 
   const onClickRestaurant = () => {

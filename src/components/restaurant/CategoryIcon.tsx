@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import { Categories } from '../../@types/type';
 import restaurant from '../../domain/restaurant';
 
-type Props = {
+type CategoryIconProps = {
   category: Categories;
 };
 
-const CategoryIcon = ({ category }: Props) => {
+const CategoryIcon = ({ category }: CategoryIconProps) => {
   return (
     <CategoryIconLayout>
       <img src={restaurant.categoryIcon[category]} alt={`${category} 카테고리`} />
