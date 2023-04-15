@@ -15,11 +15,7 @@ function DetailModal({ restaurant }: DetailModalProps) {
       <div className="restaurant__info">
         <div className="category-favorite-icon-container">
           <div className="restaurant__category">
-            <img
-              src={`${process.env.PUBLIC_URL}${IMAGE_PATH[category]}`}
-              alt={category}
-              className="category-icon"
-            />
+            <img src={`${IMAGE_PATH[category]}`} alt={category} className="category-icon" />
           </div>
         </div>
         <h3 className="restaurant__name text-subtitle">{name}</h3>

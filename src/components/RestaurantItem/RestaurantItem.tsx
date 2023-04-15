@@ -12,11 +12,7 @@ function RestaurantItem({ restaurant }: RestaurantItemProps) {
   return (
     <li className="restaurant" id={String(id)}>
       <div className="restaurant__category">
-        <img
-          src={`${process.env.PUBLIC_URL}${IMAGE_PATH[category]}`}
-          alt={category}
-          className="category-icon"
-        />
+        <img src={`${IMAGE_PATH[category]}`} alt={category} className="category-icon" />
       </div>
       <div className="restaurant__info">
         <div className="restaurant__text">
