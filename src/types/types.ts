@@ -40,7 +40,6 @@ export interface RestaurantItemProps {
 export interface ModalProps {
   restaurantId: number | undefined;
   handleClose: () => void;
-  isOpen: boolean;
 }
 
 export interface Restaurant {

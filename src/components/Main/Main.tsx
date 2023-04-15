@@ -42,7 +42,6 @@ export default class Main extends Component<object, MainState> {
     const modalProps: ModalProps = {
       restaurantId: this.state.restaurantId,
       handleClose: this.handleCloseModal,
-      isOpen: this.state.isModalOpen,
     };
 
     return (
