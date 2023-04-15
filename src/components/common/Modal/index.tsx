@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 import './style.css';
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
   onCloseModal: () => void;
 }
 
