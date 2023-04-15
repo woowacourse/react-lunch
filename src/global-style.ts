@@ -19,8 +19,8 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 16px;
   }
   
-  /* Colors *****************************************/
   :root {
+    /* Colors *****************************************/
     --primary-color: #ec4a0a;
     --lighten-color: #f6a88a;
     --grey-100: #ffffff;
@@ -29,6 +29,7 @@ export const GlobalStyle = createGlobalStyle`
     --grey-400: #344054;
     --grey-500: #000000;
 
+    /* Texts *****************************************/
     --text-title: 600 20px/24px san-serif;
     --text-subtitle: 600 18px/28px san-serif;
     --text-body: 400 16px/24px san-serif;
