@@ -33,7 +33,7 @@ function RestaurantDetail({ restaurant }: RestaurantDetailProps) {
           웹사이트 방문하기
         </a>
       )}
-      <Button className="text-caption modal-close-button">닫기</Button>
+      <Button className="text-caption close-button">닫기</Button>
     </>
   );
 }
