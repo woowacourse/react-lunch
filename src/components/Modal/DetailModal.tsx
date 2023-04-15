@@ -7,12 +7,13 @@ import { IMAGE_PATH } from '../../constants';
 interface DetailModalProps {
   children?: React.ReactNode;
   data: Restaurant;
+  isClicked: boolean;
 }
 
 function DetailModal(props: DetailModalProps) {
-  const { data } = props;
+  const { data, isClicked } = props;
   return (
-    <Modal>
+    <Modal isClicked={isClicked}>
       <div className="restaurant__info">
         <div className="category-favorite-icon-container">
           <div className="restaurant__category">

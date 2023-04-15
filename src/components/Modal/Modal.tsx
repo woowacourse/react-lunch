@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Modal.css';
 
 interface ModalProps {
   children?: React.ReactNode;
+  isClicked: boolean;
 }
 
 const useModalRef = (props: ModalProps) => {
@@ -16,6 +17,7 @@ const useModalRef = (props: ModalProps) => {
 };
 
 function Modal(props: ModalProps) {
+  const [, setIsClicked] = useState(props.isClicked);
   const [modalRef] = useModalRef(props);
 
   const closeModal = () => {
@@ -26,6 +28,7 @@ function Modal(props: ModalProps) {
 
   const onBackdropClick = (event: React.MouseEvent<HTMLDialogElement>) => {
     if (event.target === modalRef.current) {
+      setIsClicked(false);
       closeModal();
     }
   };
