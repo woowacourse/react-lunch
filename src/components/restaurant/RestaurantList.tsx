@@ -4,7 +4,7 @@ import SelectBox from '../common/SelectBox';
 import RestaurantItem from './RestaurantItem';
 import restaurant from '../../domain/restaurant';
 import { CATEGORIES, SORT_OPTIONS } from '../../constants';
-import { Restaurant, SetModalRestaurantId } from '../../@types/type';
+import { Categories, Restaurant, SetModalRestaurantId, SortOptions } from '../../@types/type';
 
 const RestaurantListLayout = styled.main`
   padding: 16px;
@@ -38,13 +38,13 @@ class RestaurantList extends Component<Props> {
     ].reduce((_restaurant, fn) => fn(_restaurant), this.props.restaurantList);
   };
 
-  setFilterOption = (option: string) => {
+  setFilterOption = (option: Categories) => {
     this.setState({
       filterOption: option,
     });
   };
 
-  setSortOption = (option: string) => {
+  setSortOption = (option: SortOptions) => {
     this.setState({
       sortOption: option,
     });

@@ -11,12 +11,12 @@ const Select = styled.select`
   font-size: 16px;
 `;
 
-type Props = {
-  options: string[];
-  setOption: (option: string) => void;
+type Props<T> = {
+  options: T[];
+  setOption: (option: T) => void;
 };
 
-class SelectBox extends Component<Props> {
+class SelectBox<T extends string> extends Component<Props<T>> {
   render() {
     return (
       <Select onChange={(e) => this.props.setOption(e.target.value)}>
