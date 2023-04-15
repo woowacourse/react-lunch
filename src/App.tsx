@@ -1,15 +1,12 @@
-import { Component, useEffect, useState } from 'react';
 import { Header, Modal, RestaurantList, SelectBox } from 'components';
-import { GlobalStyle } from 'global-style';
-import { CategoryFilter, Restaurant, SortFilter } from 'types';
-
-import styled, { ThemeProvider } from 'styled-components';
-
-import data from 'data/mockData.json';
-import { db } from 'db/restaurants';
-
 import variables from 'components/styles/variables';
 import { CategoryFilters, SortFilters } from 'contants';
+import data from 'data/mockData.json';
+import { db } from 'db/restaurants';
+import { GlobalStyle } from 'global-style';
+import { useEffect, useState } from 'react';
+import styled, { ThemeProvider } from 'styled-components';
+import { CategoryFilter, Restaurant, SortFilter } from 'types';
 
 function App() {
   const [categoryOptions, setCategoryOptions] = useState<CategoryFilter[]>(

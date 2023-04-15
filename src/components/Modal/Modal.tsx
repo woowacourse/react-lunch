@@ -1,7 +1,3 @@
-import { useEffect } from 'react';
-import { Restaurant } from 'types';
-import { imgSrc } from 'contants';
-import styled from 'styled-components';
 import {
   DistanceText,
   Image,
@@ -9,6 +5,10 @@ import {
   RestaurantCategory,
   RestaurantInfoWrapper,
 } from 'components/RestaurantItem/RestaurantItem';
+import { imgSrc } from 'contants';
+import { useEffect } from 'react';
+import styled from 'styled-components';
+import { Restaurant } from 'types';
 
 type Props = {
   restaurant: Restaurant;

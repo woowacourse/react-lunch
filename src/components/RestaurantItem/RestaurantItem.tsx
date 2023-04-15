@@ -1,7 +1,6 @@
-import { Restaurant } from 'types';
-
-import styled from 'styled-components';
 import { imgSrc } from 'contants';
+import styled from 'styled-components';
+import { Restaurant } from 'types';
 
 type Props = {
   restaurant: Restaurant;
