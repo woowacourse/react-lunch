@@ -9,7 +9,7 @@ const defaultOptions = {
   sort: 'name' as Sort,
 }
 
-const useRestaurant = (initRestaurants: Restaurant[]) => {
+const useRestaurants = (initRestaurants: Restaurant[]) => {
   const restaurantsRef = useRef(sortRestaurants(initRestaurants, defaultOptions.sort));
 
   const [restaurants, setRestaurants] = useState<Restaurant[]>(restaurantsRef.current);
@@ -40,4 +40,4 @@ const useRestaurant = (initRestaurants: Restaurant[]) => {
   };
 };
 
-export default useRestaurant;
+export default useRestaurants;

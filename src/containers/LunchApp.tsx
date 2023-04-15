@@ -7,13 +7,13 @@ import Header from '../components/Header';
 import styled from 'styled-components';
 import Modal from '../components/RestaurantModal';
 import { category, sort } from '../data/selects';
-import useRestaurant from '../hooks/useRestaurants';
+import useRestaurants from '../hooks/useRestaurants';
 
 function LunchApp() {
 
   const {
     restaurants, updateSort, updateCategory,
-  } = useRestaurant(mockData as Restaurant[]);
+  } = useRestaurants(mockData as Restaurant[]);
 
   return (
     <>
