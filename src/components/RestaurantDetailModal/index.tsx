@@ -25,8 +25,8 @@ const RestaurantDetailModal = ({ restaurant, onCloseModal }: Props) => {
         <span className="restaurant__distance text-body detail-distance">
           캠퍼스부터 {distance}분 내
         </span>
-        <div className="description">{description}</div>
-        {link ? (
+        {description && <div className="description">{description}</div>}
+        {link && (
           <a
             href={link}
             target="_blank"
@@ -35,7 +35,7 @@ const RestaurantDetailModal = ({ restaurant, onCloseModal }: Props) => {
           >
             {link}
           </a>
-        ) : null}
+        )}
         <div className="button-container detail-button-container">
           <button
             type="button"

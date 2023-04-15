@@ -30,7 +30,7 @@ const RestaurantItem = ({ restaurant, onClickRestaurant }: Props) => {
             </span>
           </div>
         </div>
-        <p className="restaurant__description text-body">{description}</p>
+        {description && <div className="description">{description}</div>}
       </div>
     </li>
   );
