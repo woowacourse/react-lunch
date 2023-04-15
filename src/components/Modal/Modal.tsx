@@ -34,7 +34,7 @@ export class Modal extends Component<Props> {
 
     return (
       <Wrapper>
-        <Backdrop></Backdrop>
+        <Backdrop />
         <Container>
           <IconContainer>
             <RestaurantCategory>

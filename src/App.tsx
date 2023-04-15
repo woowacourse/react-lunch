@@ -45,39 +45,6 @@ class App extends Component<Props, State> {
     }
   }
 
-  render() {
-    return (
-      <>
-        <ThemeProvider theme={{ variables }}>
-          <GlobalStyle />
-          <div className="App">
-            <Header></Header>
-            <FilterContainer>
-              <SelectBox
-                options={this.state.categoryOptions}
-                onOptionChange={this.handleCategoryBoxChange}
-              ></SelectBox>
-              <SelectBox
-                options={this.state.sortingOptions}
-                onOptionChange={this.handleSortingBoxChange}
-              ></SelectBox>
-            </FilterContainer>
-            <RestaurantList
-              restaurants={this.state.restaurantItems}
-              onRestaurantClick={this.handleRestaurantClick}
-            ></RestaurantList>
-            {this.state.clickedRestaurant && this.state.isModalOpen && (
-              <Modal
-                restaurant={this.state.clickedRestaurant}
-                onCloseButtonClick={this.handleModalCloseButtonClick}
-              ></Modal>
-            )}
-          </div>
-        </ThemeProvider>
-      </>
-    );
-  }
-
   filterByCategory(restaurants: Restaurant[], categoryOption: CategoryFilter): Restaurant[] {
     if (categoryOption === '전체') return restaurants;
     return restaurants.filter((restaurant) => restaurant.category === categoryOption);
@@ -121,6 +88,37 @@ class App extends Component<Props, State> {
     this.setState({ clickedRestaurant: null });
     this.setState({ isModalOpen: false });
   };
+
+  render() {
+    return (
+      <ThemeProvider theme={{ variables }}>
+        <GlobalStyle />
+        <div className="App">
+          <Header />
+          <FilterContainer>
+            <SelectBox
+              options={this.state.categoryOptions}
+              onOptionChange={this.handleCategoryBoxChange}
+            ></SelectBox>
+            <SelectBox
+              options={this.state.sortingOptions}
+              onOptionChange={this.handleSortingBoxChange}
+            ></SelectBox>
+          </FilterContainer>
+          <RestaurantList
+            restaurants={this.state.restaurantItems}
+            onRestaurantClick={this.handleRestaurantClick}
+          />
+          {this.state.clickedRestaurant && this.state.isModalOpen && (
+            <Modal
+              restaurant={this.state.clickedRestaurant}
+              onCloseButtonClick={this.handleModalCloseButtonClick}
+            />
+          )}
+        </div>
+      </ThemeProvider>
+    );
+  }
 }
 
 const FilterContainer = styled.section`

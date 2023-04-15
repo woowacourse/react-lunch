@@ -23,7 +23,7 @@ export class RestaurantList extends Component<Props> {
             key={restaurant.id}
             restaurant={restaurant}
             onRestaurantClick={onRestaurantClick}
-          ></RestaurantItem>
+          />
         ))}
       </RestaurantListWrapper>
     );
