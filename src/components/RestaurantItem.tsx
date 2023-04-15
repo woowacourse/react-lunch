@@ -5,11 +5,11 @@ import type { Restaurant } from "../types/restaurant";
 
 import styles from "./RestaurantItem.module.css";
 
-interface Props {
+interface RestaurantItemProps {
   restaurant: Restaurant;
 }
 
-const RestaurantItem = (props: Props) => {
+const RestaurantItem = (props: RestaurantItemProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { name, category, distance, description } = props.restaurant;
 

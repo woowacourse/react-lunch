@@ -3,12 +3,12 @@ import { createPortal } from "react-dom";
 
 import styles from "./ModalPortal.module.css";
 
-interface Props {
+interface ModalPortalProps {
   children: ReactNode;
   onClose: () => void;
 }
 
-const ModalPortal = (props: Props) => {
+const ModalPortal = (props: ModalPortalProps) => {
   const { children, onClose } = props;
 
   return createPortal(

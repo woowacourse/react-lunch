@@ -6,13 +6,13 @@ import styles from "./RestaurantList.module.css";
 import { CATEGORY_OPTIONS, SORTING_OPTIONS } from "../constants/options";
 import { isCategory } from "../assets/images/category";
 
-interface Props {
+interface RestaurantListProps {
   options: { category: string; sorting: string };
 }
 
 const restaurants: Restaurant[] = JSON.parse(localStorage.getItem("restaurant") ?? JSON.stringify(mockData));
 
-const RestaurantList = (props: Props) => {
+const RestaurantList = (props: RestaurantListProps) => {
   const filterList = () => {
     const { category } = props.options;
 

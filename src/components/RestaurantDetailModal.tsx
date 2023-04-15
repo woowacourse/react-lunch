@@ -5,12 +5,12 @@ import type { Restaurant } from "../types/restaurant";
 
 import styles from "./RestaurantDetailModal.module.css";
 
-interface Props {
+interface RestaurantDetailModalProps {
   restaurant: Restaurant;
   onClose: () => void;
 }
 
-const RestaurantDetailModal = (props: Props) => {
+const RestaurantDetailModal = (props: RestaurantDetailModalProps) => {
   const { restaurant, onClose } = props;
   const { name, category, distance, description, link } = restaurant;
 

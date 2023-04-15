@@ -2,13 +2,13 @@ import type { ChangeEventHandler } from "react";
 
 import styles from "./SelectBox.module.css";
 
-interface Props {
+interface SelectBoxProps {
   name: string;
   options: readonly string[];
   onChange: ChangeEventHandler;
 }
 
-const SelectBox = (props: Props) => {
+const SelectBox = (props: SelectBoxProps) => {
   const { name, options, onChange } = props;
 
   return (

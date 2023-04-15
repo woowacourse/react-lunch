@@ -4,11 +4,11 @@ import { CATEGORIES, SELECT_NAME, SORTING } from "../constants/options";
 
 import styles from "./RestaurantFilterContainer.module.css";
 
-interface Props {
+interface RestaurantFilterContainerProps {
   setOption: (key: string, option: string) => void;
 }
 
-const RestaurantFilterContainer = (props: Props) => {
+const RestaurantFilterContainer = (props: RestaurantFilterContainerProps) => {
   const onChangeCategorySelect = (event: ChangeEvent<HTMLSelectElement>) => {
     props.setOption(SELECT_NAME.CATEGORY, event.target.value);
   };

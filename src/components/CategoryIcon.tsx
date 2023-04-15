@@ -2,11 +2,11 @@ import getCategoryImage from "../assets/images/category";
 
 import styles from "./CategoryIcon.module.css";
 
-interface Props {
+interface CategoryIconProps {
   category: string;
 }
 
-const CategoryIcon = (props: Props) => {
+const CategoryIcon = (props: CategoryIconProps) => {
   const { category } = props;
 
   return (
