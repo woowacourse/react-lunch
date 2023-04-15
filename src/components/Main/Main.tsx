@@ -7,19 +7,14 @@ import Modal from '../common/Modal/Modal';
 import RestaurantDetail from '../RestaurantDetail/RestaurantDetail';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { filterAndSortRestaurantList, useRestaurantList } from '../../hooks/useRestaurantList';
-import { useContainer as useModal } from '../../hooks/useContainer';
+import { useModal } from '../../hooks/useModal';
 
 const restaurantListData = filterAndSortRestaurantList(getRestaurantListData());
 
 function Main() {
   const { data: restaurantList, setDataBeforeUnload } = useLocalStorage(restaurantListData);
   const { currentRestaurantList, handleRestaurantFilterChange } = useRestaurantList(restaurantList);
-  const {
-    isOpen: isModalOpen,
-    open: openModal,
-    handleCloseClick: handleModalCloseClick,
-    handleClosePress: handleModalClosePress,
-  } = useModal();
+  const { isModalOpen, openModal, handleModalCloseClick, handleModalClosePress } = useModal();
 
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
 

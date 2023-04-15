@@ -1,6 +1,6 @@
 import { KeyboardEvent, MouseEvent, useCallback, useState } from 'react';
 
-const useContainer = () => {
+const useModal = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const open = useCallback(() => {
@@ -34,11 +34,11 @@ const useContainer = () => {
   );
 
   return {
-    isOpen,
-    open,
-    handleCloseClick,
-    handleClosePress,
+    isModalOpen: isOpen,
+    openModal: open,
+    handleModalCloseClick: handleCloseClick,
+    handleModalClosePress: handleClosePress,
   };
 };
 
-export { useContainer };
+export { useModal };
