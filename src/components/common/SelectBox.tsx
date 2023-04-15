@@ -19,7 +19,7 @@ type Props<T> = {
 class SelectBox<T extends string> extends Component<Props<T>> {
   render() {
     return (
-      <Select onChange={(e) => this.props.setOption(e.target.value)}>
+      <Select onChange={(e) => this.props.setOption(e.target.value as T)}>
         {this.props.options.map((option, index) => (
           <option key={index} value={option}>
             {option}
