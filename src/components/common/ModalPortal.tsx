@@ -1,4 +1,3 @@
-import { Component } from "react";
 import type { ReactNode } from "react";
 import { createPortal } from "react-dom";
 
@@ -9,20 +8,16 @@ interface Props {
   onClose: () => void;
 }
 
-class ModalPortal extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
+const ModalPortal = (props: Props) => {
+  const { children, onClose } = props;
 
-  render() {
-    return createPortal(
-      <>
-        <div className={styles.backdrop} onClick={this.props.onClose}></div>
-        {this.props.children}
-      </>,
-      document.getElementById("modal-root") as HTMLDivElement
-    );
-  }
-}
+  return createPortal(
+    <>
+      <div className={styles.backdrop} onClick={onClose}></div>
+      {children}
+    </>,
+    document.getElementById("modal-root") as HTMLDivElement
+  );
+};
 
 export default ModalPortal;

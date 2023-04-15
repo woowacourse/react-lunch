@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { useState } from "react";
 
 import RestaurantFilterContainer from "./RestaurantFilterContainer";
 import RestaurantList from "./RestaurantList";
@@ -6,28 +6,26 @@ import { CATEGORY_OPTIONS, SORTING_OPTIONS } from "../constants/options";
 
 import styles from "./Main.module.css";
 
-interface State {
+interface Options {
   category: string;
   sorting: string;
 }
 
-class Main extends Component<{}, State> {
-  state = { category: CATEGORY_OPTIONS.TOTAL, sorting: SORTING_OPTIONS.NAME };
+const Main = () => {
+  const [options, setOptions] = useState<Options>({ category: CATEGORY_OPTIONS.TOTAL, sorting: SORTING_OPTIONS.NAME });
 
-  setOption(key: string, option: string): void {
-    this.setState((prev) => ({ ...prev, [key]: option }));
-  }
+  const setOption = (key: string, option: string) => {
+    setOptions((prev) => ({ ...prev, [key]: option }));
+  };
 
-  render() {
-    return (
-      <main className={styles.container}>
-        <RestaurantFilterContainer setOption={this.setOption.bind(this)} />
-        <section>
-          <RestaurantList options={this.state} />
-        </section>
-      </main>
-    );
-  }
-}
+  return (
+    <main className={styles.container}>
+      <RestaurantFilterContainer setOption={setOption} />
+      <section>
+        <RestaurantList options={options} />
+      </section>
+    </main>
+  );
+};
 
 export default Main;

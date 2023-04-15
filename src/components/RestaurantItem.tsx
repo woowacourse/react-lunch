@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { useState } from "react";
 import RestaurantDetailModal from "./RestaurantDetailModal";
 import CategoryIcon from "./CategoryIcon";
 import type { Restaurant } from "../types/restaurant";
@@ -9,45 +9,31 @@ interface Props {
   restaurant: Restaurant;
 }
 
-interface State {
-  isModalOpen: boolean;
-}
+const RestaurantItem = (props: Props) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { name, category, distance, description } = props.restaurant;
 
-class RestaurantItem extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      isModalOpen: false,
-    };
-  }
+  const onClick = () => {
+    setIsModalOpen(true);
+  };
 
-  onClick() {
-    this.setState({ isModalOpen: true });
-  }
+  const onClose = () => {
+    setIsModalOpen(false);
+  };
 
-  onClose() {
-    this.setState({ isModalOpen: false });
-  }
-
-  render() {
-    const { name, category, distance, description } = this.props.restaurant;
-
-    return (
-      <>
-        <li className={styles.restaurant} onClick={this.onClick.bind(this)}>
-          <CategoryIcon category={category} />
-          <div className={styles.info}>
-            <h3 className={`${styles.name} text-subtitle`}>{name}</h3>
-            <span className={`${styles.distance} text-body`}>캠퍼스부터 {distance}분 내</span>
-            <p className={`${styles.description} text-body`}>{description}</p>
-          </div>
-        </li>
-        {this.state.isModalOpen && (
-          <RestaurantDetailModal restaurant={this.props.restaurant} onClose={this.onClose.bind(this)} />
-        )}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <li className={styles.restaurant} onClick={onClick}>
+        <CategoryIcon category={category} />
+        <div className={styles.info}>
+          <h3 className={`${styles.name} text-subtitle`}>{name}</h3>
+          <span className={`${styles.distance} text-body`}>캠퍼스부터 {distance}분 내</span>
+          <p className={`${styles.description} text-body`}>{description}</p>
+        </div>
+      </li>
+      {isModalOpen && <RestaurantDetailModal restaurant={props.restaurant} onClose={onClose} />}
+    </>
+  );
+};
 
 export default RestaurantItem;
