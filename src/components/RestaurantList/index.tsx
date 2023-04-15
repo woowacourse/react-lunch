@@ -7,9 +7,9 @@ import {
   Restaurant,
 } from "../../types/restaurants";
 import { alignBy, filterBy } from "../../domain/restaurants";
-import RestaurantDetailBottomSheet from "../RestaurantDetailBottomSheet";
 import RestaurantItem from "../RestaurantItem";
 import St from "./styled";
+import RestaurantDetailPopUp from "../RestaurantDetailPopUp";
 
 interface RestaurantListProps {
   filterOptions: {
@@ -97,7 +97,7 @@ class RestaurantList extends Component<RestaurantListProps, State> {
           />
         ))}
         {isBottomSheetOpened && (
-          <RestaurantDetailBottomSheet
+          <RestaurantDetailPopUp
             restaurant={focusedRestaurant}
             close={this.closeModalHandler}
           />

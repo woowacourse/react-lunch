@@ -1,15 +1,5 @@
 import styled from "styled-components";
-
-const FadeInUp = `
-@keyframes fadeInUp {
-  from {
-      transform: translate3d(0, 100%, 0);
-  }
-  to {
-      transform: translateZ(0);
-  }
-}
-`;
+import { FadeInUp } from "../common/GlobalStyle";
 
 const St = {
   Backdrop: styled.div`
