@@ -39,7 +39,7 @@ export function Modal({ restaurant, onCloseButtonClick }: Props) {
           <Name>{name}</Name>
           <DistanceText>캠퍼스로부터 {distance}분 내</DistanceText>
           <Description>{description}</Description>
-          <a href={link} target="_blank">
+          <a href={link} target="_blank" rel="noreferrer noopener">
             {link}
           </a>
         </RestaurantInfoWrapper>
