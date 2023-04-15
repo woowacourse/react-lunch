@@ -7,19 +7,12 @@ interface CategoryProps {
   setCategory: (newCategory: Category | All) => void;
 }
 
-class CategoryFilter extends React.Component<CategoryProps> {
-  constructor(props: CategoryProps) {
-    super(props);
-    this.onChangeCategory = this.onChangeCategory.bind(this);
-  }
+function CategoryFilter({ setCategory }: CategoryProps) {
+  const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setCategory(event.target.value as Category | All);
+  };
 
-  onChangeCategory(event: React.ChangeEvent<HTMLSelectElement>) {
-    this.props.setCategory(event.target.value as Category | All);
-  }
-
-  render() {
-    return <SelectBox filter={CATEGORY} onOptionChange={this.onChangeCategory} />;
-  }
+  return <SelectBox filter={CATEGORY} handleOptionChange={handleCategoryChange} />;
 }
 
 export default CategoryFilter;
