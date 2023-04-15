@@ -3,12 +3,11 @@ import { useState } from 'react';
 import './style.css';
 
 import CategoryFilter from './CategoryFilter';
-import RestaurantItem from './RestaurantItem';
 import SortBySelect from './SortBySelect';
+import RestaurantList from './RestaurantList';
 import RestaurantDetailModal from '../RestaurantDetailModal';
 
 import { useModal } from '../common/Modal/useModal';
-import { restaurantService } from '../../domain/restaurantService';
 import { DEFAULT_CATEGORY, DEFAULT_SORT_BY } from '../../domain/constants';
 import type { Restaurant } from '../../domain/type';
 
@@ -24,11 +23,6 @@ const MainLayout = ({ restaurants }: Props) => {
   const [sortBy, setSortBy] = useState(DEFAULT_SORT_BY);
   const { isModalOpen, openModal, closeModal } = useModal();
   const canModalOpen = isModalOpen && clickedRestaurant !== null;
-  const filtered = restaurantService.filterByCategory(restaurants, category);
-  const sorted =
-    sortBy === DEFAULT_SORT_BY
-      ? restaurantService.sortByName(filtered)
-      : restaurantService.sortByDistance(filtered);
 
   const handleRestaurantClick = (restaurant: Restaurant) => {
     openModal();
@@ -43,15 +37,12 @@ const MainLayout = ({ restaurants }: Props) => {
           <SortBySelect onChangeSortBy={setSortBy} />
         </section>
         <section className="restaurant-list-section">
-          <ul className="restaurant-list">
-            {sorted.map((restaurant) => (
-              <RestaurantItem
-                key={restaurant.id}
-                restaurant={restaurant}
-                onClickRestaurant={handleRestaurantClick}
-              />
-            ))}
-          </ul>
+          <RestaurantList
+            restaurants={restaurants}
+            category={category}
+            sortBy={sortBy}
+            onClickRestaurant={handleRestaurantClick}
+          />
         </section>
       </main>
       {canModalOpen && (
