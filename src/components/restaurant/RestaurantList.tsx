@@ -25,8 +25,8 @@ const RestaurantList = ({ restaurantList, setModalRestaurantId }: RestaurantList
         <SelectBox options={Object.values(SORT_OPTIONS)} setOption={setSortOption} />
       </SelectBoxContainer>
       <Restaurants>
-        {filterAndSort().map((restaurant, index) => (
-          <RestaurantItem key={index} restaurant={restaurant} setModalRestaurantId={setModalRestaurantId} />
+        {filterAndSort().map((restaurant) => (
+          <RestaurantItem key={restaurant.id} restaurant={restaurant} setModalRestaurantId={setModalRestaurantId} />
         ))}
       </Restaurants>
     </RestaurantListLayout>
