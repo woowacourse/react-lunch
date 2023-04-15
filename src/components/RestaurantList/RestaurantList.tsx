@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Restaurant, Category, All, Criterion } from '../../types';
 import RestaurantItem from '../RestaurantItem/RestaurantItem';
 import RestaurantDataService from '../../domains/LunchDataService';
@@ -22,15 +22,10 @@ function RestaurantList() {
     RestaurantDataService.getRestaurants('전체', '이름순'),
   );
 
-  const onClick = (event: React.MouseEvent) => {
-    const target = event.target;
-
-    if (!(target instanceof HTMLElement)) return;
-    const id = target.closest('[id]')?.id;
-
-    if (!id) return;
+  const onClick = (targetId: string) => {
+    if (!targetId) return;
     setIsClicked(true);
-    setClickedData(RestaurantDataService.getRestaurant(id));
+    setClickedData(RestaurantDataService.getRestaurant(targetId));
   };
 
   const handleSetCategory = (newCategory: Category | All) => {
@@ -51,9 +46,9 @@ function RestaurantList() {
         <CategoryFilter setCategory={handleSetCategory} />
         <SortingFilter setCriterion={handleSetCriterion} />
       </section>
-      <ul onClick={onClick}>
+      <ul>
         {restaurantsData.map((restaurantData: Restaurant) => {
-          return <RestaurantItem key={restaurantData.id} data={restaurantData} />;
+          return <RestaurantItem key={restaurantData.id} data={restaurantData} onClick={onClick} />;
         })}
       </ul>
       {isClicked && <DetailModal data={clickedData} />}

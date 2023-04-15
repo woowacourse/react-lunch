@@ -1,17 +1,17 @@
-import React from 'react';
 import './RestaurantItem.css';
 import { Restaurant } from '../../types';
 import { IMAGE_PATH } from '../../constants';
 
 interface RestaurantItemProps {
   data: Restaurant;
+  onClick: (targetId: string) => void;
 }
 
 function RestaurantItem(props: RestaurantItemProps) {
   const { id, category, name, distance, description } = props.data;
 
   return (
-    <li className="restaurant" id={String(id)}>
+    <li className="restaurant" data-set-id={String(id)} onClick={() => props.onClick(String(id))}>
       <div className="restaurant__category">
         <img
           src={`${process.env.PUBLIC_URL}${IMAGE_PATH[category]}`}
