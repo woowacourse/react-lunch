@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import './Modal.css';
-import useModal from './useModal';
 
-export interface ModalProps {
+interface ModalProps {
   children?: React.ReactNode;
 }
 
+const useModalRef = (props: ModalProps) => {
+  const modalRef = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    if (modalRef.current) modalRef.current.showModal();
+  }, [props]);
+
+  return [modalRef];
+};
+
 function Modal(props: ModalProps) {
-  const { modalRef, closeModal, onBackdropClick } = useModal(props);
+  const [modalRef] = useModalRef(props);
+
+  const closeModal = () => {
+    if (modalRef.current) {
+      modalRef.current.close();
+    }
+  };
+
+  const onBackdropClick = (event: React.MouseEvent<HTMLDialogElement>) => {
+    if (event.target === modalRef.current) {
+      closeModal();
+    }
+  };
 
   return (
     <dialog ref={modalRef} onClick={onBackdropClick}>
