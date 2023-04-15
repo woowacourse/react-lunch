@@ -1,58 +1,38 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Header from './Header/Header';
 import FilterListContainer from './FilterListContainer/FilterListContainer';
 import RestaurantList from './RestaurantList/RestaurantList';
 
 import './App.css';
+import { Category, Sort } from './data/type';
 
-interface AppProps {}
+function App() {
+  const [seletedCategory, setSeletedCategory] = useState<Category>('전체');
+  const [seletedSort, setSeletedSort] = useState<Sort>('이름순');
 
-interface AppState {
-  selectedCategory: string;
-  selectedSort: string;
-}
-
-class App extends Component<AppProps, AppState> {
-  constructor(props: AppProps) {
-    super(props);
-
-    this.state = {
-      selectedCategory: '전체',
-      selectedSort: '이름순',
-    };
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <Header />
-        <FilterListContainer
-          selectedCategory={this.state.selectedCategory}
-          selectedSort={this.state.selectedSort}
-          categoryEvent={this.handleCategoryChange}
-          sortEvent={this.handleSortChange}
-        />
-        <RestaurantList
-          selectedCategory={this.state.selectedCategory}
-          selectedSort={this.state.selectedSort}
-        />
-      </div>
-    );
-  }
-
-  handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    this.setState({
-      ...this.state,
-      selectedCategory: e.target.value,
-    });
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSeletedCategory(e.target.value as Category);
   };
 
-  handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    this.setState({
-      ...this.state,
-      selectedSort: e.target.value,
-    });
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSeletedSort(e.target.value as Sort);
   };
+
+  return (
+    <div className="App">
+      <Header />
+      <FilterListContainer
+        selectedCategory={seletedCategory}
+        selectedSort={seletedSort}
+        categoryEvent={handleCategoryChange}
+        sortEvent={handleSortChange}
+      />
+      <RestaurantList
+        selectedCategory={seletedCategory}
+        selectedSort={seletedSort}
+      />
+    </div>
+  );
 }
 
 export default App;
