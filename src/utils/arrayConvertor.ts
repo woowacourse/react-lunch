@@ -15,4 +15,6 @@ export const getSortedArray = (array: Restaurant[], sortingType: string) => {
   if (sortingType === SELECT_OPTION.TAKING_TIME) {
     return [...array].sort((resA, resB) => resA.takingTime - resB.takingTime);
   }
+
+  return [...array];
 };

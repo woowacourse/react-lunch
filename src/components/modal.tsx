@@ -29,11 +29,7 @@ export const Modal = ({ location, children, closeModal }: PropsType) => {
       <ModalContainer location={location}>
         {children}
         <ButtonContainer>
-          <ModalButton
-            text="닫기"
-            baseColor="orange"
-            handleClick={closeModal}
-          />
+          <ModalButton text="닫기" handleClick={closeModal} />
         </ButtonContainer>
       </ModalContainer>
     </>

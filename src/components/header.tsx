@@ -7,14 +7,6 @@ import { WarningModalContent } from "./warningModalContent";
 export const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <>
       <Container>
@@ -25,12 +17,22 @@ export const Header = () => {
         >
           점심 뭐 먹지
         </Title>
-        <AddButton aria-label="음식점 추가" onClick={openModal}>
+        <AddButton
+          aria-label="음식점 추가"
+          onClick={() => {
+            setIsModalOpen(true);
+          }}
+        >
           <AddIcon src={addButton} alt="음식점 추가" />
         </AddButton>
       </Container>
       {isModalOpen && (
-        <Modal location="middle" closeModal={closeModal}>
+        <Modal
+          location="middle"
+          closeModal={() => {
+            setIsModalOpen(false);
+          }}
+        >
           <WarningModalContent />
         </Modal>
       )}

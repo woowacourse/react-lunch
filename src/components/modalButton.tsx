@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 interface ModalButtonProps {
   text: string;
-  baseColor: string;
+  baseColor?: string;
   handleClick?: () => void;
 }
 
