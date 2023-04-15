@@ -9,6 +9,7 @@ import RestaurantDetailModal from '../RestaurantDetailModal';
 
 import { useModal } from '../common/Modal/useModal';
 import { restaurantService } from '../../domain/restaurantService';
+import { DEFAULT_CATEGORY, DEFAULT_SORT_BY } from '../../domain/constants';
 import type { Restaurant } from '../../domain/type';
 
 interface Props {
@@ -19,13 +20,13 @@ const MainLayout = ({ restaurants }: Props) => {
   const [clickedRestaurant, setClickedRestaurant] = useState<Restaurant | null>(
     null,
   );
-  const [category, setCategory] = useState('전체');
-  const [sortBy, setSortBy] = useState('이름순');
+  const [category, setCategory] = useState(DEFAULT_CATEGORY);
+  const [sortBy, setSortBy] = useState(DEFAULT_SORT_BY);
   const { isModalOpen, openModal, closeModal } = useModal();
   const canModalOpen = isModalOpen && clickedRestaurant !== null;
   const filtered = restaurantService.filterByCategory(restaurants, category);
   const sorted =
-    sortBy === '이름순'
+    sortBy === DEFAULT_SORT_BY
       ? restaurantService.sortByName(filtered)
       : restaurantService.sortByDistance(filtered);
 

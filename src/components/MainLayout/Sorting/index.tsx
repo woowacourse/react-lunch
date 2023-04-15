@@ -1,6 +1,6 @@
 import Select from '../../common/Select';
 
-const SORT_BY = ['이름순', '거리순'];
+import { SORT_BY } from '../../../domain/constants';
 
 interface Props {
   onChangeSorting: (sortBy: string) => void;
