@@ -16,12 +16,12 @@ class FilterListContainer extends Component<FilterListContainerProps> {
       <section className="restaurant-filter-container">
         <FilterList
           changeEvent={this.props.categoryEvent}
-          title="category"
+          type="category"
           name={['전체', '한식', '중식', '양식', '일식', '아시안', '기타']}
         />
         <FilterList
           changeEvent={this.props.sortEvent}
-          title="sort"
+          type="sort"
           name={['이름순', '거리순']}
         />
       </section>
