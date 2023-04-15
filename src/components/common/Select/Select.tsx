@@ -3,10 +3,10 @@ import { Options } from '../../../types';
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   options: Options;
-  classStyle?: string;
+  elementStyle?: string;
 }
 
-function Select({ options, classStyle, className, ...attributes }: SelectProps) {
+function Select({ options, elementStyle, className, ...attributes }: SelectProps) {
   const createOptionElements = () => {
     return options.map((option) => (
       <option key={option} value={option}>
@@ -17,7 +17,7 @@ function Select({ options, classStyle, className, ...attributes }: SelectProps) 
 
   return (
     <label htmlFor={attributes.id}>
-      <select className={`${className} ${classStyle}`} {...attributes}>
+      <select className={`${className} ${elementStyle}`} {...attributes}>
         {createOptionElements()}
       </select>
     </label>

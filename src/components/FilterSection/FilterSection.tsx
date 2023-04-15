@@ -38,13 +38,13 @@ function FilterSection({ onChange }: FilterSectionProps) {
       <Select
         options={RESTAURANT_CATEGORY_OPTION}
         onChange={handleSelectChange}
-        classStyle={styles.restaurantFilter}
+        elementStyle={styles.restaurantFilter}
         {...SELECT_ATTRIBUTES.CATEGORY_FILTER}
       />
       <Select
         options={SORT_BY}
         onChange={handleSelectChange}
-        classStyle={styles.restaurantFilter}
+        elementStyle={styles.restaurantFilter}
         {...SELECT_ATTRIBUTES.SORT_BY_FILTER}
       />
     </section>
