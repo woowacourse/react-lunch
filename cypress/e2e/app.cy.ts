@@ -67,6 +67,13 @@ describe('점심 뭐 먹지 앱 테스트', () => {
 
         cy.get('.modal-container').should('not.exist');
       });
+
+      it('ESC 키를 누르면 모달이 닫힌다', () => {
+        cy.get('.restaurant').contains('김돈이').click();
+        cy.get('body').type('{esc}');
+
+        cy.get('.modal-container').should('not.exist');
+      });
     });
   });
 });
