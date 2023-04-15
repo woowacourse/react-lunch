@@ -18,13 +18,8 @@ function Modal({ children, onClick, onKeyPress }: ModalProps) {
 
   return (
     <div className={styles.modal} onClick={onClick}>
-      <div className={`${styles.modalBackdrop} backdrop`} />
-      <div
-        ref={modalContainerRef}
-        className={styles.modalContainer}
-        onKeyDown={onKeyPress}
-        tabIndex={0}
-      >
+      <div className="backdrop" />
+      <div ref={modalContainerRef} className="modal-container" onKeyDown={onKeyPress} tabIndex={0}>
         {children}
       </div>
     </div>
