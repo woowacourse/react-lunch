@@ -1,37 +1,54 @@
+import { useEffect, useState } from 'react';
 import { Restaurant } from '../utils/interfaces';
 import { SelectorCategory, SelectorFilter } from '../utils/types';
 
 interface Props {
-  category: SelectorCategory;
-  filter: SelectorFilter;
-  restaurantList: Array<Restaurant>;
+  wholeList: Array<Restaurant>;
 }
 
-function useSortRestaurantList() {
-  const sortingByCategory = (category: SelectorCategory, wholeList: Array<Restaurant>) =>
-    category === '전체' ? wholeList : wholeList.filter(item => item.category === category);
+const sort = {
+  sortByName: (restaurants: Array<Restaurant>) =>
+    restaurants.sort((a, b) => (sort.compareName(a, b) ? sort.compareName(a, b) : sort.compareDistance(a, b))),
 
-  const sortingByFilter = (filter: SelectorFilter, wholeList: Array<Restaurant>) =>
-    filter === '이름순' ? sortByName(wholeList) : sortByDistance(wholeList);
+  sortByDistance: (restaurants: Array<Restaurant>) =>
+    restaurants.sort((a, b) => (sort.compareDistance(a, b) ? sort.compareDistance(a, b) : sort.compareName(a, b))),
 
-  const sortByName = (restaurants: Array<Restaurant>) =>
-    [...restaurants].sort((a, b) => (compareName(a, b) ? compareName(a, b) : compareDistance(a, b)));
+  compareName: (standard: Restaurant, compare: Restaurant) => standard.name.localeCompare(compare.name),
 
-  const sortByDistance = (restaurants: Array<Restaurant>) =>
-    [...restaurants].sort((a, b) => (compareDistance(a, b) ? compareDistance(a, b) : compareName(a, b)));
+  compareDistance: (standard: Restaurant, compare: Restaurant) => standard.distance - compare.distance,
+};
 
-  const compareName = (standard: Restaurant, compare: Restaurant) => standard.name.localeCompare(compare.name);
+const sortFilterOrCategory = {
+  sortingByCategory: (category: SelectorCategory, wholeList: Array<Restaurant>) => {
+    if (category === '전체') {
+      return wholeList;
+    }
 
-  const compareDistance = (standard: Restaurant, compare: Restaurant) => standard.distance - compare.distance;
+    return wholeList.filter(item => item.category === category);
+  },
 
-  const sortedRestaurantList = ({ category, filter, restaurantList }: Props) => {
-    const categorySortedList = sortingByCategory(category, restaurantList);
-    const cateogrySortedAndFilterSortedList = sortingByFilter(filter, categorySortedList);
+  sortingByFilter: (filter: SelectorFilter, wholeList: Array<Restaurant>) => {
+    if (filter === '이름순') {
+      return sort.sortByName(wholeList);
+    }
 
-    return cateogrySortedAndFilterSortedList;
-  };
+    return sort.sortByDistance(wholeList);
+  },
+};
 
-  return sortedRestaurantList;
+function useSortedRestaurantList({ wholeList }: Props) {
+  const [sortedList, setSortedList] = useState<Array<Restaurant>>([]);
+  const [category, setCategory] = useState<SelectorCategory>('전체');
+  const [filter, setFilter] = useState<SelectorFilter>('이름순');
+
+  useEffect(() => {
+    const categorySortedList = sortFilterOrCategory.sortingByCategory(category, wholeList);
+    const cateogrySortedAndFilterSortedList = sortFilterOrCategory.sortingByFilter(filter, categorySortedList);
+
+    setSortedList(cateogrySortedAndFilterSortedList);
+  }, [category, filter]);
+
+  return { sortedList, setCategory, setFilter };
 }
 
-export default useSortRestaurantList;
+export default useSortedRestaurantList;

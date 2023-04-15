@@ -1,11 +1,4 @@
-import { RestaurantCategory, SelectorCategory, SelectorFilter, TakingTime } from './types';
-
-export interface AppState {
-  category: SelectorCategory;
-  filter: SelectorFilter;
-  wholeList: Array<Restaurant>;
-  currentList: Array<Restaurant>;
-}
+import { RestaurantCategory, TakingTime } from './types';
 
 export interface Restaurant {
   id: number;
