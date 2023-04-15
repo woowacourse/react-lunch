@@ -2,10 +2,10 @@ export const RESTAURANT_CATEGORY = ['한식', '양식', '일식', '아시안', '
 export const WHOLE_CATEGORY = '전체' as const;
 export const FILTERS = ['이름순', '거리순'] as const;
 
-export type restaurantCategory = typeof RESTAURANT_CATEGORY[number];
+export type RestaurantCategory = typeof RESTAURANT_CATEGORY[number];
 
-export type selectorCategory = typeof WHOLE_CATEGORY | restaurantCategory;
+export type SelectorCategory = typeof WHOLE_CATEGORY | RestaurantCategory;
 
-export type selectorFilter = typeof FILTERS[number];
+export type SelectorFilter = typeof FILTERS[number];
 
-export type takingTime = 5 | 10 | 15 | 20 | 30;
+export type TakingTime = 5 | 10 | 15 | 20 | 30;
