@@ -14,7 +14,7 @@ const Style = {
 
 interface RestaurantListProps {
   list: Restaurant[];
-  handleClickRestaurantItem: React.MouseEventHandler<HTMLUListElement>;
+  handleClickRestaurantItem: (restaurant: Restaurant) => void;
 }
 
 export function RestaurantList({
@@ -23,11 +23,13 @@ export function RestaurantList({
 }: RestaurantListProps) {
   return (
     <Style.Wrapper>
-      <ul onClick={handleClickRestaurantItem}>
-        {list.map((restaurant) => (
-          <RestaurantItem key={restaurant.id} restaurant={restaurant} />
-        ))}
-      </ul>
+      {list.map((restaurant) => (
+        <RestaurantItem
+          key={restaurant.id}
+          restaurant={restaurant}
+          onClick={() => handleClickRestaurantItem(restaurant)}
+        />
+      ))}
     </Style.Wrapper>
   );
 }

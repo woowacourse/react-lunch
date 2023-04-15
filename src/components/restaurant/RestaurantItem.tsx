@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { RestaurantProps } from '../../type';
+import { Restaurant } from '../../type';
 import { getImageSrc } from '../../utils/util';
 
 export const Style = {
@@ -57,9 +57,14 @@ export const Style = {
   `,
 };
 
-export function RestaurantItem({ restaurant }: RestaurantProps) {
+interface RestaurantItemProps {
+  restaurant: Restaurant;
+  onClick: () => void;
+}
+
+export function RestaurantItem({ restaurant, onClick }: RestaurantItemProps) {
   return (
-    <Style.Wrapper id={restaurant.id}>
+    <Style.Wrapper id={restaurant.id} onClick={onClick}>
       <Style.RestaurantCategory>
         <img src={getImageSrc(restaurant.category)} alt={restaurant.category} />
       </Style.RestaurantCategory>

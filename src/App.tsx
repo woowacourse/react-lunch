@@ -59,10 +59,8 @@ export function App() {
     setIsModalOpen(false);
   };
 
-  const handleClickRestaurantItem = (e: React.MouseEvent<HTMLElement>) => {
-    if (!(e.target instanceof HTMLElement)) return;
-
-    const selectedId = e.target.closest('li')?.id;
+  const handleClickRestaurantItem = (restaurant: Restaurant) => {
+    const selectedId = restaurant.id;
     const selectedRestaurant = restaurantList.find(
       ({ id }) => id === selectedId
     );
