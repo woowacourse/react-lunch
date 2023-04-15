@@ -1,34 +1,28 @@
-import { PureComponent } from 'react';
-import RestaurantItem from './RestaurantItem';
+import { RestaurantItem } from './RestaurantItem';
 import RestaurantManager from '../domain/RestaurantManager';
 import { Category } from '../types/RestaurantDetail';
 
-interface RestuarantListProps {
+interface RestaurantListProps {
   category: Category;
   sort: string;
   onOpenModal: (event: React.MouseEvent<HTMLUListElement>) => void;
 }
 
-export default class RestaurantList extends PureComponent<RestuarantListProps> {
-  constructor(props: RestuarantListProps) {
-    super(props);
-  }
-
-  render() {
-    const { onOpenModal, category, sort } = this.props;
-
-    return (
-      <ul onClick={onOpenModal}>
-        {RestaurantManager.getRestaurantListFilteredByOptions(
-          category,
-          sort
-        ).map((itemDetail) => (
+export const RestaurantList = ({
+  category,
+  sort,
+  onOpenModal,
+}: RestaurantListProps) => {
+  return (
+    <ul onClick={onOpenModal}>
+      {RestaurantManager.getRestaurantListFilteredByOptions(category, sort).map(
+        (itemDetail) => (
           <RestaurantItem
             key={itemDetail.id}
-            detail={itemDetail}
+            itemDetail={itemDetail}
           ></RestaurantItem>
-        ))}
-      </ul>
-    );
-  }
-}
+        )
+      )}
+    </ul>
+  );
+};
