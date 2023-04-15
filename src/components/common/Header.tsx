@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { TitleText } from '../../style/typography';
 
 const Header = () => {
   return (
     <HeaderLayout>
-      <Title className="text-title">점심 뭐 먹지</Title>
+      <Title>점심 뭐 먹지</Title>
     </HeaderLayout>
   );
 };
@@ -17,7 +18,7 @@ const HeaderLayout = styled.header`
   background-color: var(--primary-color);
 `;
 
-const Title = styled.h1`
+const Title = styled(TitleText)`
   color: var(--font-color);
 `;
 

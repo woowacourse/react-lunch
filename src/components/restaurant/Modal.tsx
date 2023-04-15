@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 import CategoryIcon from './CategoryIcon';
 import { Restaurant, SetModalRestaurantId } from '../../@types/type';
+import { BodyText, SubTitleText } from '../../style/typography';
 
 type Props = { restaurant: Restaurant } & SetModalRestaurantId;
 
@@ -23,19 +24,19 @@ const Modal = ({ restaurant, setModalRestaurantId }: Props) => {
   });
 
   return (
-    <div>
+    <>
       <ModalBackdrop onClick={onCloseModal} />
       <ModalContent>
         <CategoryIcon category={category} />
-        <Title className="text-title">{name}</Title>
-        <Distance className="text-body">캠퍼스로부터 {distanceByMinutes}분 내</Distance>
-        <Description className="text-body">{description}</Description>
+        <Title>{name}</Title>
+        <Distance>캠퍼스로부터 {distanceByMinutes}분 내</Distance>
+        <Description>{description}</Description>
         <ReferenceURL href={referenceUrl}>{referenceUrl}</ReferenceURL>
         <ButtonContainer>
           <button onClick={onCloseModal}>닫기</button>
         </ButtonContainer>
       </ModalContent>
-    </div>
+    </>
   );
 };
 
@@ -59,15 +60,15 @@ const ModalContent = styled.div`
   background: var(--grey-100);
 `;
 
-const Title = styled.h2`
+const Title = styled(SubTitleText)`
   padding: 16px 0;
 `;
 
-const Distance = styled.span`
+const Distance = styled(BodyText)`
   color: var(--primary-color);
 `;
 
-const Description = styled.p`
+const Description = styled(BodyText)`
   margin: 16px 0;
 `;
 

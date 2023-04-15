@@ -30,30 +30,6 @@ const GlobalStyle = createGlobalStyle`
     --backdrop-color: #00000059;
     --divide-color: #e9eaed;
   }
-
-  .text-title {
-    font-size: 20px;
-    line-height: 24px;
-    font-weight: 600;
-  }
-
-  .text-subtitle {
-    font-size: 18px;
-    line-height: 28px;
-    font-weight: 600;
-  }
-
-  .text-body {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 400;
-  }
-
-  .text-caption {
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 400;
-  }
 `;
 
 export default GlobalStyle;

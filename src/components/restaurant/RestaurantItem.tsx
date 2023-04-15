@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import CategoryIcon from './CategoryIcon';
 import { Restaurant, SetModalRestaurantId } from '../../@types/type';
+import { BodyText, SubTitleText } from '../../style/typography';
 
 type Props = { restaurant: Restaurant } & SetModalRestaurantId;
 
@@ -15,9 +16,9 @@ const RestaurantItem = ({ restaurant, setModalRestaurantId }: Props) => {
     <RestaurantItemLayout onClick={onClickRestaurant}>
       <CategoryIcon category={category} />
       <Information>
-        <h3 className="text-subtitle">{name}</h3>
-        <Distance className="text-body">캠퍼스부터 {distanceByMinutes}분 내</Distance>
-        <Description className="text-body">{description}</Description>
+        <Title>{name}</Title>
+        <Distance>캠퍼스부터 {distanceByMinutes}분 내</Distance>
+        <Description>{description}</Description>
       </Information>
     </RestaurantItemLayout>
   );
@@ -31,6 +32,8 @@ const RestaurantItemLayout = styled.li`
   cursor: pointer;
 `;
 
+const Title = styled(SubTitleText)``;
+
 const Information = styled.div`
   display: flex;
   flex-direction: column;
@@ -38,11 +41,11 @@ const Information = styled.div`
   flex-grow: 1;
 `;
 
-const Distance = styled.span`
+const Distance = styled(BodyText)`
   color: var(--primary-color);
 `;
 
-const Description = styled.p`
+const Description = styled(BodyText)`
   display: -webkit-box;
   padding-top: 8px;
   overflow: hidden;
