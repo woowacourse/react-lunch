@@ -1,9 +1,13 @@
 import './Header.css';
 
-function Header() {
+interface HeaderProps {
+  title: string;
+}
+
+function Header({ title }: HeaderProps) {
   return (
     <header className="gnb">
-      <h1 className="gnb__title text-title">점심 뭐 먹지</h1>
+      <h1 className="gnb__title text-title">{title}</h1>
     </header>
   );
 }
