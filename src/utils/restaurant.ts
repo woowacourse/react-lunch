@@ -19,7 +19,7 @@ export const sortBy = (restaurants: Restaurant[], sort: SortBy) => {
 };
 
 export const getRestaurants = () => {
-  const storageRestaurants = localStorage.getItem("restaurant");
+  const storageRestaurants = localStorage.getItem("restaurants");
   if (storageRestaurants) return JSON.parse(storageRestaurants);
 
   const { restaurants } = mockData as { restaurants: Restaurant[] };

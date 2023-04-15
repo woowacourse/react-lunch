@@ -1,59 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import Select from "./Select";
-import type { Restaurant, Category, SortBy } from "../types/Restaurant";
+import type { Category, SortBy } from "../types/Restaurant";
 import RestaurantList from "./RestaurantList";
 import { filterByCategory, getRestaurants, sortBy } from "../utils/restaurant";
 
-type RestaurantListState = {
-  restaurants: Restaurant[];
-  category: Category;
-  sort: SortBy;
+import { useSelect } from "../hooks/useSelect";
+
+const Main = () => {
+  const storageData = getRestaurants();
+  const [restaurants] = useState(storageData);
+  const [category, handleCategory] = useSelect("전체");
+  const [sortByData, handleSort] = useSelect("이름순");
+
+  const filteredData = filterByCategory(restaurants, category as Category);
+  const sortedData = sortBy(filteredData, sortByData as SortBy);
+
+  return (
+    <>
+      <Select setCategory={handleCategory} setSort={handleSort} />
+      <RestaurantList restaurants={sortedData} />
+    </>
+  );
 };
-
-type RestaurantListProps = {};
-
-class Main extends React.Component<RestaurantListProps, RestaurantListState> {
-  constructor(props: RestaurantListProps) {
-    super(props);
-
-    const storageData = getRestaurants();
-
-    this.state = {
-      restaurants: storageData,
-      category: "전체",
-      sort: "이름순",
-    };
-
-    this.setCategory = this.setCategory.bind(this);
-    this.setSort = this.setSort.bind(this);
-  }
-
-  setCategory(newCategory: Category) {
-    this.setState({
-      category: newCategory,
-    });
-  }
-
-  setSort(newSort: SortBy) {
-    this.setState({
-      sort: newSort,
-    });
-  }
-
-  render() {
-    const filteredData = filterByCategory(
-      this.state.restaurants,
-      this.state.category
-    );
-    const sortedData = sortBy(filteredData, this.state.sort);
-
-    return (
-      <>
-        <Select setCategory={this.setCategory} setSort={this.setSort} />
-        <RestaurantList restaurants={sortedData} />
-      </>
-    );
-  }
-}
 
 export default Main;
