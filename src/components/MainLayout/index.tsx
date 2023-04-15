@@ -1,4 +1,4 @@
-import { Component, MouseEvent } from 'react';
+import { MouseEvent, useState } from 'react';
 
 import './style.css';
 
@@ -14,61 +14,40 @@ interface Props {
   onClickRestaurant: (restaurantId: string) => void;
 }
 
-interface State {
-  category: string;
-  sortBy: string;
-}
+const MainLayout = ({ restaurants, onClickRestaurant }: Props) => {
+  const [category, setCategory] = useState('전체');
+  const [sortBy, setSortBy] = useState('이름순');
+  const filtered = restaurantService.filterByCategory(restaurants, category);
+  const sorted =
+    sortBy === '이름순'
+      ? restaurantService.sortByName(filtered)
+      : restaurantService.sortByDistance(filtered);
 
-class MainLayout extends Component<Props, State> {
-  state = {
-    category: '전체',
-    sortBy: '이름순',
-  };
-
-  setCategory = (category: string) => {
-    this.setState({ ...this.state, category });
-  };
-
-  setSorting = (sortBy: string) => {
-    this.setState({ ...this.state, sortBy });
-  };
-
-  handleRestaurantClick = (event: MouseEvent<HTMLUListElement>) => {
+  const handleRestaurantClick = (event: MouseEvent<HTMLUListElement>) => {
     const target = event.target as HTMLElement;
     const item = target.closest('.restaurant') as HTMLLIElement;
     const restaurantId = item.dataset.id;
 
     if (!restaurantId) return;
 
-    this.props.onClickRestaurant(restaurantId);
+    onClickRestaurant(restaurantId);
   };
 
-  render() {
-    const filtered = restaurantService.filterByCategory(
-      this.props.restaurants,
-      this.state.category,
-    );
-    const sorted =
-      this.state.sortBy === '이름순'
-        ? restaurantService.sortByName(filtered)
-        : restaurantService.sortByDistance(filtered);
-
-    return (
-      <main>
-        <section className="filter-section">
-          <CategoryFilter onChangeCategory={this.setCategory} />
-          <Sorting onChangeSorting={this.setSorting} />
-        </section>
-        <section className="restaurant-list-section">
-          <ul className="restaurant-list" onClick={this.handleRestaurantClick}>
-            {sorted?.map((restaurant) => (
-              <RestaurantItem key={restaurant.id} restaurant={restaurant} />
-            ))}
-          </ul>
-        </section>
-      </main>
-    );
-  }
-}
+  return (
+    <main>
+      <section className="filter-section">
+        <CategoryFilter onChangeCategory={setCategory} />
+        <Sorting onChangeSorting={setSortBy} />
+      </section>
+      <section className="restaurant-list-section">
+        <ul className="restaurant-list" onClick={handleRestaurantClick}>
+          {sorted.map((restaurant) => (
+            <RestaurantItem key={restaurant.id} restaurant={restaurant} />
+          ))}
+        </ul>
+      </section>
+    </main>
+  );
+};
 
 export default MainLayout;
