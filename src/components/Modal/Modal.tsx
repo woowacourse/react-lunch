@@ -7,6 +7,7 @@ import {
 } from 'components/RestaurantItem/RestaurantItem';
 import { imgSrc } from 'contants';
 import { useEffect } from 'react';
+import { Button } from 'styled';
 import styled from 'styled-components';
 import { Restaurant } from 'types';
 
@@ -89,8 +90,7 @@ const ButtonContainer = styled.div`
   display: flex;
 `;
 
-const DeleteButton = styled.button`
-  ${(props) => props.theme.variables.button}
+const DeleteButton = styled(Button)`
   border: 1px solid var(--grey-300);
   background: transparent;
 
@@ -98,8 +98,7 @@ const DeleteButton = styled.button`
   font: var(--text-caption);
 `;
 
-const CloseButton = styled.button`
-  ${(props) => props.theme.variables.button}
+const CloseButton = styled(Button)`
   background: var(--primary-color);
 
   color: var(--grey-100);
