@@ -76,10 +76,7 @@ const App = () => {
         selectedCategory={category}
         selectedSorting={sorting}
       />
-      <RestaurantList
-        restaurantList={filteredRestaurants}
-        category={category}
-      />
+      <RestaurantList restaurantList={filteredRestaurants} />
     </>
   );
 };
