@@ -47,7 +47,7 @@ const St = {
     justify-content: flex-start;
     padding: 8px 8px;
     width: 100%;
-    height: 100%;
+    height: 90%;
   `,
   Title: styled.h3`
     font-size: 20px;
@@ -70,7 +70,7 @@ const St = {
     word-wrap: break-word;
     width: 100%;
     height: 100%;
-    max-height: 65%;
+    max-height: 60%;
 
     font-size: 16px;
     line-height: 24px;
