@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import type { FilterOption } from './util/type.js';
 import MainHeader from './MainHeader.tsx';
 import RestaurantList from './RestaurantList.tsx';
 import SelectContainer from './SelectContainer.tsx';
@@ -9,7 +10,6 @@ import {
   DEFAULT_SORTING,
   NO_SELECT_ID,
 } from './util/constant.ts';
-import { FilterOption } from './util/type.js';
 
 const App: React.FC = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState<boolean>(false);

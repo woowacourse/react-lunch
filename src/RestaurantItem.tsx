@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { Restaurant } from './util/type';
+import type { Restaurant } from './util/type';
 import { CATEGORY_IMAGES } from './util/constant.ts';
 
 type RestaurantProps = {
   restaurant: Omit<Restaurant, 'link'>;
   onToggleDrawer: (id?: number) => void;
 };
+
 const RestaurantItem: React.FC<RestaurantProps> = ({
   restaurant,
   onToggleDrawer,

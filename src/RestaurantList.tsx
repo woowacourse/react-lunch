@@ -1,6 +1,7 @@
 import React from 'react';
+
+import type { FilterOption, Restaurant } from './util/type';
 import RestaurantItem from './RestaurantItem.tsx';
-import { FilterOption, Restaurant } from './util/type.js';
 import { pipe } from './util/util.ts';
 import useRestaurantList from './hooks/useRestaurantList.ts';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
+import type { Restaurant } from './util/type.js';
 import Drawer from './common/Drawer.tsx';
-import { Restaurant } from './util/type.js';
 import useRestaurantList from './hooks/useRestaurantList.ts';
 import { CATEGORY_IMAGES, NO_EXIST_RESTAURANT } from './util/constant.ts';
 
