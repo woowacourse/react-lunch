@@ -32,9 +32,7 @@ const Modal = ({ restaurant, setModalRestaurantId }: Props) => {
         <Distance>캠퍼스로부터 {distanceByMinutes}분 내</Distance>
         <Description>{description}</Description>
         <ReferenceURL href={referenceUrl}>{referenceUrl}</ReferenceURL>
-        <ButtonContainer>
-          <button onClick={onCloseModal}>닫기</button>
-        </ButtonContainer>
+        <CloseButton onClick={onCloseModal}>닫기</CloseButton>
       </ModalContent>
     </>
   );
@@ -77,20 +75,16 @@ const ReferenceURL = styled.a`
   word-break: break-all;
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
+const CloseButton = styled.button`
   margin-top: 16px;
-  button {
-    width: 100%;
-    height: 44px;
-    margin-right: 16px;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    background: var(--primary-color);
-    color: var(--grey-100);
-  }
+  width: 100%;
+  height: 44px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--primary-color);
+  color: var(--grey-100);
 `;
 
 export default Modal;
