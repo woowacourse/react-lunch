@@ -1,17 +1,17 @@
 import { Component } from 'react';
 import styled from 'styled-components';
 
-class HeaderSection extends Component {
+class Header extends Component {
   render() {
     return (
-      <Header>
+      <HeaderSection>
         <Title>점심 뭐 먹지</Title>
-      </Header>
+      </HeaderSection>
     );
   }
 }
 
-const Header = styled.header`
+const HeaderSection = styled.header`
   height: 64px;
   padding: 19px 16px;
   background-color: var(--primary-color);
@@ -24,4 +24,4 @@ const Title = styled.h1`
   font-weight: 600;
 `;
 
-export default HeaderSection;
+export default Header;

@@ -8,7 +8,7 @@ import {
 } from './utils/localStorageHandler';
 import RestaurantList from './components/RestaurantList';
 import RestaurantSelect from './components/RestaurantSelect';
-import HeaderSection from './components/HeaderSection';
+import Header from './components/Header';
 
 const App = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState<
@@ -69,7 +69,7 @@ const App = () => {
 
   return (
     <>
-      <HeaderSection></HeaderSection>
+      <Header></Header>
       <RestaurantSelect
         onChangeCategory={handleCategorySelect}
         onChangeSorting={handleSortingSelect}
