@@ -1,9 +1,9 @@
 import { PropsWithChildren, useEffect } from 'react';
 import styled from 'styled-components';
 
-interface ModalProps {
+type ModalProps = {
   onCloseModal: () => void;
-}
+};
 
 const Modal = ({ children, onCloseModal }: PropsWithChildren<ModalProps>) => {
   const onKeyDownEscape = (event: KeyboardEvent) => {
