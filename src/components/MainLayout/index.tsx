@@ -25,8 +25,8 @@ const MainLayout = ({ restaurants }: Props) => {
   const canModalOpen = isModalOpen && clickedRestaurant !== null;
 
   const handleRestaurantClick = (restaurant: Restaurant) => {
-    openModal();
     setClickedRestaurant(restaurant);
+    openModal();
   };
 
   return (
