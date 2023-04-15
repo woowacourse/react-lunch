@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Category, Restaurant, Sort } from '../types/Restaurant';
 
 const sortRestaurants = (restaurants: Restaurant[], sortBy: Sort) => [...restaurants].sort((a, b) => a[sortBy] > b[sortBy] ? 1 : -1);
@@ -10,8 +10,9 @@ const defaultOptions = {
 }
 
 const useRestaurant = (initRestaurants: Restaurant[]) => {
-  const restaurantsBackup = sortRestaurants(initRestaurants, defaultOptions.sortBy);
-  const [restaurants, setRestaurants] = useState<Restaurant[]>(restaurantsBackup);
+  const restaurantsRef = useRef(sortRestaurants(initRestaurants, defaultOptions.sortBy));
+
+  const [restaurants, setRestaurants] = useState<Restaurant[]>(restaurantsRef.current);
   const [sortBy, setSortBy] = useState<Sort>(defaultOptions.sortBy);
   const [categorizeBy, setCategorizeBy] = useState<Category>(defaultOptions.categorizeBy);
 
@@ -24,13 +25,13 @@ const useRestaurant = (initRestaurants: Restaurant[]) => {
   }
 
   useEffect(() => {
+    restaurantsRef.current = sortRestaurants(restaurants, sortBy);
     const sortedRestaurants = sortRestaurants(restaurants, sortBy);
     setRestaurants(sortedRestaurants);
   }, [sortBy]);
 
   useEffect(() => {
-    console.log(categorizeBy);
-    const filteredRestaurants = filterRestaurants(restaurantsBackup, categorizeBy);
+    const filteredRestaurants = filterRestaurants(restaurantsRef.current, categorizeBy);
     setRestaurants(filteredRestaurants);
   }, [categorizeBy]);
 
