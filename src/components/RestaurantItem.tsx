@@ -3,24 +3,25 @@ import styled from 'styled-components'
 import { Restaurant } from "../types/Restaurant";
 import { convertImage } from "../utils/image";
 import { GlobalContext } from "../containers/GlobalProvider";
+import { useModal } from "../hooks/useModal";
 interface RestaurantItemProps {
   restaurant: Restaurant;
 }
 
-function RestaurantItem(
-  { restaurant }: RestaurantItemProps
-) {
+function RestaurantItem({ restaurant }: RestaurantItemProps) {
   const globalState = useContext(GlobalContext);
   const { name, distance, category, description } = restaurant;
+  const { openModal } = useModal();
 
-  const openModal = () => {
-    globalState.setModalOpen(true);
+
+  const clickRestaurantItem = () => {
+    openModal();
     globalState.setRestaurant(restaurant);
   }
 
   return (
     <>
-      <Card onClick={() => openModal()}>
+      <Card onClick={() => clickRestaurantItem()}>
         <Favorite>
         </Favorite>
         <RestaurantInfo>

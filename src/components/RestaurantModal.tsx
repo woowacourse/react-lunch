@@ -1,17 +1,20 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { convertImage } from "../utils/image";
+import { useModal } from "../hooks/useModal";
 import { GlobalContext } from "../containers/GlobalProvider";
 
 function Modal() {
+  const { modalOpen, closeModal } = useModal();
   const globalState = useContext(GlobalContext);
   const { name, distance, category, description } = globalState.restaurant;
+
   return (
     <>
       {
-        globalState.modalOpen && (
+        modalOpen && (
           <ModalContainer>
-            <ModalBackDrop onClick={() => globalState.setModalOpen(false)}></ModalBackDrop>
+            <ModalBackDrop onClick={() => closeModal()}></ModalBackDrop>
             <ModalContent>
               <div>
                 <CategoryIcon>
@@ -27,7 +30,7 @@ function Modal() {
                   <button onClick={() => alert('지원하지 않는 기능입니다.')}>
                     삭제하기
                   </button>
-                  <button onClick={() => globalState.setModalOpen(false)}>
+                  <button onClick={() => closeModal()}>
                     닫기
                   </button>
                 </ButtonContainer>
