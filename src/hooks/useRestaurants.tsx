@@ -25,7 +25,7 @@ const useRestaurants = (initRestaurants: Restaurant[]) => {
   }
 
   useEffect(() => {
-    restaurantsRef.current = sortRestaurants(restaurants, sort);
+    restaurantsRef.current = sortRestaurants(restaurantsRef.current, sort);
     const sortedRestaurants = sortRestaurants(restaurants, sort);
     setRestaurants(sortedRestaurants);
   }, [sort]);
