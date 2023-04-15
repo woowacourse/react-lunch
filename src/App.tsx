@@ -6,12 +6,13 @@ import Header from './components/Header';
 import MainLayout from './components/MainLayout';
 import RestaurantDetailModal from './components/RestaurantDetailModal';
 
-import { Restaurant } from './domain/type';
+import { Restaurant, RestaurantId } from './domain/type';
 import { getLocalStorage, setLocalStorage } from './utils/localStorage';
+import { getMockData } from './domain/mockData';
 
 interface State {
   restaurants: Restaurant[];
-  restaurantId: string;
+  restaurantId: RestaurantId;
   isModalOpened: boolean;
 }
 
@@ -22,19 +23,36 @@ class App extends Component {
     isModalOpened: false,
   };
 
+  // async componentDidMount() {
+  //   const localStorageData = getLocalStorage('restaurants');
+  //   console.log('aaa');
+
+  //   if (localStorageData) {
+  //     this.setState({ restaurants: localStorageData });
+  //     return;
+  //   }
+
+  //   const response = await fetch('./mockData.json');
+  //   const data = await response.json();
+
+  //   console.log('a', data);
+
+  //   setLocalStorage('restaurants', data);
+  //   this.setState({ restaurants: data });
+  // }
+
   async componentDidMount() {
     const localStorageData = getLocalStorage('restaurants');
 
     if (localStorageData) {
-      this.setState({ restaurants: localStorageData });
+      this.setState({ ...this.state, restaurants: localStorageData });
       return;
     }
 
-    const response = await fetch('./mockData.json');
-    const data = await response.json();
+    const data = await getMockData();
 
     setLocalStorage('restaurants', data);
-    this.setState({ restaurants: data });
+    this.setState({ ...this.state, restaurants: data });
   }
 
   setRestaurantId = (restaurantId: string) => {
