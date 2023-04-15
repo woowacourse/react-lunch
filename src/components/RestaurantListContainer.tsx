@@ -3,6 +3,10 @@ import RestaurantList from './RestaurantList';
 import FilterBar from './FilterBar';
 import { Category } from '../types/RestaurantDetail';
 import Modal from './Modal';
+import {
+  RESTAURANT_CATEGORY,
+  SORTING_OPTION,
+} from '../constants/filterOptions';
 
 export default class RestaurantListContainer extends Component {
   state: {
@@ -10,8 +14,8 @@ export default class RestaurantListContainer extends Component {
     sort: string;
     restaurantID: number;
   } = {
-    category: '전체',
-    sort: 'name',
+    category: RESTAURANT_CATEGORY.all,
+    sort: SORTING_OPTION.name,
     restaurantID: 0,
   };
 
