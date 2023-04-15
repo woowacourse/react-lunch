@@ -3,8 +3,8 @@ import { useState } from 'react';
 import './style.css';
 
 import CategoryFilter from './CategoryFilter';
-import Sorting from './Sorting';
 import RestaurantItem from './RestaurantItem';
+import SortBySelect from './SortBySelect';
 import RestaurantDetailModal from '../RestaurantDetailModal';
 
 import { useModal } from '../common/Modal/useModal';
@@ -40,7 +40,7 @@ const MainLayout = ({ restaurants }: Props) => {
       <main>
         <section className="filter-section">
           <CategoryFilter onChangeCategory={setCategory} />
-          <Sorting onChangeSorting={setSortBy} />
+          <SortBySelect onChangeSortBy={setSortBy} />
         </section>
         <section className="restaurant-list-section">
           <ul className="restaurant-list">
