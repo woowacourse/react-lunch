@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import Drawer from './common/Drawer.tsx';
 import { Restaurant } from './util/type.js';
 import { CATEGORY_IMAGES, NO_EXIST_RESTAURANT } from './util/constant.ts';
+import useRestaurantList from './hooks/useRestaurantList.ts';
 
 type RestaurantDetailDrawerProps = {
   isOpenDrawer: boolean;
@@ -10,23 +11,14 @@ type RestaurantDetailDrawerProps = {
   onToggleDrawer: (id?: number) => void;
 };
 
+const getRestaurantById = (restaurantList, id:number) => {
+  return restaurantList.find(
+    (restaurant: Restaurant) => +restaurant.id === +id
+  ) ?? NO_EXIST_RESTAURANT;
+}
 const RestaurantDetailDrawer:React.FC<RestaurantDetailDrawerProps> = ({ isOpenDrawer, restaurantId, onToggleDrawer }) => {
-  const fetchRestaurantById = () => {
-    const rawRestaurantList = localStorage.getItem('restaurantList');
-    if (!rawRestaurantList) return NO_EXIST_RESTAURANT;
-    const restaurantList = JSON.parse(rawRestaurantList);
-    return (
-      restaurantList.find(
-        (restaurant: Restaurant) => +restaurant.id === +restaurantId
-      ) ?? NO_EXIST_RESTAURANT
-    );
-  }
-
-  const [restaurant, setRestaurant] = useState<Omit<Restaurant, 'id'>>(fetchRestaurantById());
-
-  useEffect(() => {
-    setRestaurant(fetchRestaurantById());
-  }, [restaurantId])
+  const restaurantList = useRestaurantList('restaurantList', []);
+  const restaurant = getRestaurantById(restaurantList, restaurantId);
   
     return (
       <Drawer isOpenDrawer={isOpenDrawer}>
