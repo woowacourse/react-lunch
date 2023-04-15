@@ -29,15 +29,13 @@ class App extends Component {
     const { category, align } = this.state;
 
     return (
-      <>
-        <Layout>
-          <SelectBar
-            onChangeCategoryFilter={this.onChangeCategoryFilter}
-            onChangeAlignFilter={this.onChangeAlignFilter}
-          />
-          <RestaurantList filterOptions={{ category, align }} />
-        </Layout>
-      </>
+      <Layout>
+        <SelectBar
+          onChangeCategoryFilter={this.onChangeCategoryFilter}
+          onChangeAlignFilter={this.onChangeAlignFilter}
+        />
+        <RestaurantList filterOptions={{ category, align }} />
+      </Layout>
     );
   }
 }
