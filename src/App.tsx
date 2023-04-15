@@ -11,7 +11,7 @@ import {
 } from './util/constant.ts';
 import { FilterOption } from './util/type.js';
 
-const App:React.FC = () => {
+const App: React.FC = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState<boolean>(false);
   const [drawerSelectId, setDrawerSelectId] = useState<number>(NO_SELECT_ID);
   const [filterOptions, setFilterOptions] = useState<FilterOption>({
@@ -19,33 +19,35 @@ const App:React.FC = () => {
     sorting: DEFAULT_SORTING,
   });
 
-  const onChangeFilterOptions = (e: React.ChangeEvent<HTMLSelectElement>):void => {
+  const onChangeFilterOptions = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ): void => {
     setFilterOptions({
-        ...filterOptions,
-        [e.target.name]: e.target.value,
+      ...filterOptions,
+      [e.target.name]: e.target.value,
     });
-  }
+  };
 
-  const onToggleDrawer = (id: number = NO_SELECT_ID):void => {
+  const onToggleDrawer = (id: number = NO_SELECT_ID): void => {
     setDrawerSelectId(id);
     setIsOpenDrawer(!isOpenDrawer);
-  }
+  };
 
-    return (
-      <div className="App">
-        <MainHeader />
-        <SelectContainer onChangeFilterOptions={onChangeFilterOptions} />
-        <RestaurantList
-          filterOptions={filterOptions}
-          onToggleDrawer={onToggleDrawer}
-        />
-        <RestaurantDetailDrawer
-          isOpenDrawer={isOpenDrawer}
-          onToggleDrawer={onToggleDrawer}
-          restaurantId={drawerSelectId}
-        />
-      </div>
-    );
-}
+  return (
+    <div className="App">
+      <MainHeader />
+      <SelectContainer onChangeFilterOptions={onChangeFilterOptions} />
+      <RestaurantList
+        filterOptions={filterOptions}
+        onToggleDrawer={onToggleDrawer}
+      />
+      <RestaurantDetailDrawer
+        isOpenDrawer={isOpenDrawer}
+        onToggleDrawer={onToggleDrawer}
+        restaurantId={drawerSelectId}
+      />
+    </div>
+  );
+};
 
 export default App;

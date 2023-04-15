@@ -8,7 +8,11 @@ type SelectProps = {
   onChangeFilterOptions: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const Select:React.FC<SelectProps> = ({ name, options, onChangeFilterOptions }) => {
+const Select: React.FC<SelectProps> = ({
+  name,
+  options,
+  onChangeFilterOptions,
+}) => {
   return (
     <select
       name={name}
@@ -24,5 +28,5 @@ const Select:React.FC<SelectProps> = ({ name, options, onChangeFilterOptions }) 
     </select>
   );
 };
-  
+
 export default Select;

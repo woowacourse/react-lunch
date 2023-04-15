@@ -9,14 +9,14 @@ type RestaurantListProps = {
   onToggleDrawer: (id?: number) => void;
 };
 
-const filterByCategory = (restaurantList, category):Restaurant[] =>  {
+const filterByCategory = (restaurantList, category): Restaurant[] => {
   if (category === '전체') return restaurantList;
   return restaurantList.filter(
     (restaurant) => restaurant.category === category
   );
-}
+};
 
-const filterBySort = (restaurantList, sorting):Restaurant[] => {
+const filterBySort = (restaurantList, sorting): Restaurant[] => {
   return restaurantList.sort((firstElement, secondElement) => {
     if (sorting === 'name') {
       return firstElement.title.localeCompare(secondElement.title);
@@ -26,28 +26,31 @@ const filterBySort = (restaurantList, sorting):Restaurant[] => {
     }
     return 0;
   });
-}
+};
 
-const RestaurantList:React.FC<RestaurantListProps> = ({ filterOptions, onToggleDrawer }) => {
+const RestaurantList: React.FC<RestaurantListProps> = ({
+  filterOptions,
+  onToggleDrawer,
+}) => {
   const { category, sorting } = filterOptions;
   const restaurantList = useRestaurantList('restaurantList', []);
-  
-    return (
-      <section className="restaurant-list-container">
-        <ul className="restaurant-list">
-          {pipe(filterByCategory, filterBySort)(
-            restaurantList,
-            [category, sorting]
-          ).map((restaurant) => (
-            <RestaurantItem
-              key={restaurant.id}
-              restaurant={restaurant}
-              onToggleDrawer={onToggleDrawer}
-            />
-          ))}
-        </ul>
-      </section>
-    );
-}
+
+  return (
+    <section className="restaurant-list-container">
+      <ul className="restaurant-list">
+        {pipe(filterByCategory, filterBySort)(restaurantList, [
+          category,
+          sorting,
+        ]).map((restaurant) => (
+          <RestaurantItem
+            key={restaurant.id}
+            restaurant={restaurant}
+            onToggleDrawer={onToggleDrawer}
+          />
+        ))}
+      </ul>
+    </section>
+  );
+};
 
 export default RestaurantList;
