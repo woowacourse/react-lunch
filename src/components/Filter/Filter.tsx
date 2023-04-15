@@ -6,7 +6,7 @@ const Filter = (props: FilterProps) => {
 
   const optionElements = options.map(option => {
     return (
-      <option key={option.value} value={option.value}>
+      <option key={option.value} value={option.value} label={option.label}>
         {option.label}
       </option>
     );
