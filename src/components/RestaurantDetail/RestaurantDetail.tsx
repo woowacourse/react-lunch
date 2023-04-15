@@ -9,22 +9,20 @@ interface Props {
   restaurant: Restaurant;
 }
 
-const RestaurantDetail = (props: Props) => {
-  const { category, name, distance, description, link } = props.restaurant;
-
+const RestaurantDetail = ({ closeModal, restaurant }: Props) => {
   return (
     <>
-      <styled.ModalBackdrop onClick={props.closeModal} />
+      <styled.ModalBackdrop onClick={closeModal} />
       <styled.ModalContainer>
         <styled.Detail>
-          <CategoryImage category={category} />
-          <styled.RestaurantName>{name}</styled.RestaurantName>
-          <styled.Distance>캠퍼스부터 {distance}분 내</styled.Distance>
-          <styled.Description>{description}</styled.Description>
-          <styled.Link href={link}>{link}</styled.Link>
+          <CategoryImage category={restaurant.category} />
+          <styled.RestaurantName>{restaurant.name}</styled.RestaurantName>
+          <styled.Distance>캠퍼스부터 {restaurant.distance}분 내</styled.Distance>
+          <styled.Description>{restaurant.description}</styled.Description>
+          <styled.Link href={restaurant.link}>{restaurant.link}</styled.Link>
           <styled.ButtonContainer>
             <styled.RemoveButton>삭제하기</styled.RemoveButton>
-            <styled.CloseButton onClick={props.closeModal}>닫기</styled.CloseButton>
+            <styled.CloseButton onClick={closeModal}>닫기</styled.CloseButton>
           </styled.ButtonContainer>
         </styled.Detail>
       </styled.ModalContainer>

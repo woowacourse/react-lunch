@@ -8,16 +8,14 @@ interface Props {
   restaurant: Restaurant;
 }
 
-const RestaurantItem = (props: Props) => {
-  const { id, name, category, distance, description } = props.restaurant;
-
+const RestaurantItem = ({ restaurant }: Props) => {
   return (
-    <styled.ItemWrapper id={id}>
-      <CategoryImage category={category} />
+    <styled.ItemWrapper id={restaurant.id}>
+      <CategoryImage category={restaurant.category} />
       <styled.RestaurantInfo>
-        <h3>{name}</h3>
-        <styled.Distance>캠퍼스부터 {distance}분 내</styled.Distance>
-        <styled.Description>{description}</styled.Description>
+        <styled.RestaurantName>{restaurant.name}</styled.RestaurantName>
+        <styled.Distance>캠퍼스부터 {restaurant.distance}분 내</styled.Distance>
+        <styled.Description>{restaurant.description}</styled.Description>
       </styled.RestaurantInfo>
     </styled.ItemWrapper>
   );

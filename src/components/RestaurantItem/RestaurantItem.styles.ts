@@ -16,11 +16,11 @@ export const RestaurantInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+`;
 
-  h3 {
-    margin: 0;
-    ${textSubtitle}
-  }
+export const RestaurantName = styled.h3`
+  margin: 0;
+  ${textSubtitle}
 `;
 
 export const Distance = styled.span`

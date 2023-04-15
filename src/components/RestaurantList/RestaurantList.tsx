@@ -14,22 +14,18 @@ interface Props {
 }
 
 const RestaurantList = (props: Props) => {
-  const openDetailModal = (e: any) => {
-    const { id } = e.target.closest('li');
+  const openDetailModal = ({ target }: React.MouseEvent) => {
+    const { id } = (target as HTMLUListElement).closest('li');
     props.openModal(id);
   };
 
-  const onChangeCategory = (e: ChangeEvent) => {
-    if (!(e.target instanceof HTMLSelectElement)) return;
-
-    const { value: category } = e.target;
+  const onChangeCategory = ({ target: { value: category } }: ChangeEvent<HTMLSelectElement>) => {
     props.setCategory(category as Category);
   };
 
-  const onChangeSortingType = (e: ChangeEvent) => {
-    if (!(e.target instanceof HTMLSelectElement)) return;
-
-    const { value: sortingType } = e.target;
+  const onChangeSortingType = ({
+    target: { value: sortingType },
+  }: ChangeEvent<HTMLSelectElement>) => {
     props.setSortingType(sortingType as SortingType);
   };
 
@@ -37,13 +33,17 @@ const RestaurantList = (props: Props) => {
     <main>
       <styled.FilterContainer>
         <select name="category" id="category-filter" onChange={onChangeCategory}>
-          {['전체', ...CATEGORIES].map((category) => (
-            <option value={category}>{category}</option>
+          {['전체', ...CATEGORIES].map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
           ))}
         </select>
         <select name="sorting" id="sorting-filter" onChange={onChangeSortingType}>
-          {SORTING_TYPES.map((category) => (
-            <option value={category}>{category}</option>
+          {SORTING_TYPES.map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
           ))}
         </select>
       </styled.FilterContainer>
