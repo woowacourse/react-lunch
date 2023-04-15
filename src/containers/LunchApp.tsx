@@ -5,7 +5,7 @@ import { Restaurant } from '../types/Restaurant';
 import SelectBox from '../components/SelectBox';
 import Header from '../components/Header';
 import styled from 'styled-components';
-import Modal from '../components/RestaurantModal';
+import Modal from '../components/Modal';
 import { category, sort } from '../data/selects';
 import useRestaurants from '../hooks/useRestaurants';
 
