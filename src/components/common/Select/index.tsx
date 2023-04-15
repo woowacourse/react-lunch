@@ -2,7 +2,7 @@ import { ChangeEvent } from 'react';
 
 interface Props {
   name: string;
-  options: string[];
+  options: readonly string[];
   onChange: (value: string) => void;
 }
 
