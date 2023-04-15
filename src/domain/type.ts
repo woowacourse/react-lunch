@@ -1,5 +1,6 @@
+export type RestaurantId = string;
 export interface Restaurant {
-  id: string;
+  id: RestaurantId;
   category: string;
   name: string;
   distance: number;
