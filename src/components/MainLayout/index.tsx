@@ -51,7 +51,7 @@ class MainLayout extends Component<Props, State> {
     const sorted =
       this.state.sortBy === '이름순'
         ? restaurantService.sortByName(filtered)
-        : restaurantService.sortByDistance(filtered);
+        : restaurantService.sortByTakingTime(filtered);
 
     return (
       <main>

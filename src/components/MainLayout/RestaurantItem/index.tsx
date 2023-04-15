@@ -12,7 +12,7 @@ interface Props {
 
 class RestaurantItem extends Component<Props> {
   render() {
-    const { id, category, name, distance, description } = this.props.restaurant;
+    const { id, category, name, takeTime, description } = this.props.restaurant;
 
     return (
       <li className="restaurant" data-id={id}>
@@ -23,8 +23,8 @@ class RestaurantItem extends Component<Props> {
           <div className="flex">
             <div>
               <h2 className="restaurant__name text-subtitle">{name}</h2>
-              <span className="restaurant__distance text-body">
-                캠퍼스부터 {distance}분 내
+              <span className="restaurant__takeTime text-body">
+                캠퍼스부터 {takeTime}분 내
               </span>
             </div>
           </div>

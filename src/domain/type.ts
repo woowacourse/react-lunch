@@ -3,7 +3,7 @@ export interface Restaurant {
   id: RestaurantId;
   category: string;
   name: string;
-  distance: number;
+  takeTime: number;
   description?: string;
   link?: string;
   isFavorite?: boolean;

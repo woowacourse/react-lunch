@@ -16,7 +16,7 @@ class RestaurantDetailModal extends Component<Props> {
   render() {
     if (!this.props.restaurant) return;
 
-    const { category, name, distance, description, link } =
+    const { category, name, takeTime, description, link } =
       this.props.restaurant;
 
     return (
@@ -28,8 +28,8 @@ class RestaurantDetailModal extends Component<Props> {
             </div>
           </div>
           <h2 className="modal-title text-title detail-title">{name}</h2>
-          <span className="restaurant__distance text-body detail-distance">
-            캠퍼스부터 {distance}분 내
+          <span className="restaurant__takeTime text-body detail-takeTime">
+            캠퍼스부터 {takeTime}분 내
           </span>
           <div className="description">{description}</div>
           {link ? (
