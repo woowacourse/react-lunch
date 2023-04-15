@@ -28,12 +28,11 @@
 
 ### 피드백 반영
 
-- [ ] type 및 interface 네이밍 형식 변경
-- [ ] typeChecker 메서드 역할 변경하기
-- [ ] 절대 경로 설정하기
-- [ ] 에러 타입에 대해 좀 더 명시적인 값 보여주기
+- [x] type 및 interface 네이밍 형식 변경
+- [x] typeChecker 메서드 역할 변경하기
+- [x] baseUrl 설정하기
 
 ### 요구 사항
 
-- [ ] Class Component -> Function Component로 변경하기.
-- [ ] custom hooks를 사용해서 재사용 기능을 분리한다.
+- [x] Class Component -> Function Component로 변경하기.
+- [x] custom hooks를 사용해서 재사용 기능을 분리한다.
