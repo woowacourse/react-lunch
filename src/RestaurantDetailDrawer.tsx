@@ -17,6 +17,7 @@ const getRestaurantById = (restaurantList, id: number) => {
     NO_EXIST_RESTAURANT
   );
 };
+
 const RestaurantDetailDrawer: React.FC<RestaurantDetailDrawerProps> = ({
   isOpenDrawer,
   restaurantId,
