@@ -6,13 +6,18 @@ import type { Restaurant } from '../../../domain/type';
 
 interface Props {
   restaurant: Restaurant;
+  onClickRestaurant: (restaurant: Restaurant) => void;
 }
 
-const RestaurantItem = ({ restaurant }: Props) => {
-  const { id, category, name, distance, description } = restaurant;
+const RestaurantItem = ({ restaurant, onClickRestaurant }: Props) => {
+  const { category, name, distance, description } = restaurant;
+
+  const handleClick = () => {
+    onClickRestaurant(restaurant);
+  };
 
   return (
-    <li className="restaurant" data-id={id}>
+    <li className="restaurant" onClick={handleClick}>
       <div className="restaurant__category">
         <CategoryIcon category={category} />
       </div>

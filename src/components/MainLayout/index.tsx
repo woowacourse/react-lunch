@@ -1,52 +1,65 @@
-import { MouseEvent, useState } from 'react';
+import { useState } from 'react';
 
 import './style.css';
 
 import CategoryFilter from './CategoryFilter';
 import Sorting from './Sorting';
 import RestaurantItem from './RestaurantItem';
+import RestaurantDetailModal from '../RestaurantDetailModal';
 
+import { useModal } from '../common/Modal/useModal';
 import { restaurantService } from '../../domain/restaurantService';
 import type { Restaurant } from '../../domain/type';
 
 interface Props {
   restaurants: Restaurant[];
-  onClickRestaurant: (restaurantId: string) => void;
 }
 
-const MainLayout = ({ restaurants, onClickRestaurant }: Props) => {
+const MainLayout = ({ restaurants }: Props) => {
+  const [clickedRestaurant, setClickedRestaurant] = useState<Restaurant | null>(
+    null,
+  );
   const [category, setCategory] = useState('전체');
   const [sortBy, setSortBy] = useState('이름순');
+  const { isModalOpen, openModal, closeModal } = useModal();
+  const canModalOpen = isModalOpen && clickedRestaurant !== null;
   const filtered = restaurantService.filterByCategory(restaurants, category);
   const sorted =
     sortBy === '이름순'
       ? restaurantService.sortByName(filtered)
       : restaurantService.sortByDistance(filtered);
 
-  const handleRestaurantClick = (event: MouseEvent<HTMLUListElement>) => {
-    const target = event.target as HTMLElement;
-    const item = target.closest('.restaurant') as HTMLLIElement;
-    const restaurantId = item.dataset.id;
-
-    if (!restaurantId) return;
-
-    onClickRestaurant(restaurantId);
+  const handleRestaurantClick = (restaurant: Restaurant) => {
+    openModal();
+    setClickedRestaurant(restaurant);
   };
 
   return (
-    <main>
-      <section className="filter-section">
-        <CategoryFilter onChangeCategory={setCategory} />
-        <Sorting onChangeSorting={setSortBy} />
-      </section>
-      <section className="restaurant-list-section">
-        <ul className="restaurant-list" onClick={handleRestaurantClick}>
-          {sorted.map((restaurant) => (
-            <RestaurantItem key={restaurant.id} restaurant={restaurant} />
-          ))}
-        </ul>
-      </section>
-    </main>
+    <>
+      <main>
+        <section className="filter-section">
+          <CategoryFilter onChangeCategory={setCategory} />
+          <Sorting onChangeSorting={setSortBy} />
+        </section>
+        <section className="restaurant-list-section">
+          <ul className="restaurant-list">
+            {sorted.map((restaurant) => (
+              <RestaurantItem
+                key={restaurant.id}
+                restaurant={restaurant}
+                onClickRestaurant={handleRestaurantClick}
+              />
+            ))}
+          </ul>
+        </section>
+      </main>
+      {canModalOpen && (
+        <RestaurantDetailModal
+          restaurant={clickedRestaurant}
+          onCloseModal={closeModal}
+        />
+      )}
+    </>
   );
 };
 
