@@ -1,10 +1,10 @@
-import { Category, Restaurant, SortingType } from '../types/restaurant';
+import { Category, Restaurant, SortingType } from '../../types/restaurant';
 
 import React, { ChangeEvent } from 'react';
-import { RestaurantItem } from './';
-import styled from 'styled-components';
+import * as styled from './RestaurantList.styles';
+import { RestaurantItem } from '..';
 
-import { CATEGORIES, SORTING_TYPES } from '../constants';
+import { CATEGORIES, SORTING_TYPES } from '../../constants';
 
 interface Props {
   restaurants: Restaurant[];
@@ -36,57 +36,29 @@ class RestaurantList extends React.Component<Props> {
   render() {
     return (
       <main>
-        <FilterContainer>
+        <styled.FilterContainer>
           <select name="category" id="category-filter" onChange={this.onChangeCategory}>
-            {['전체', ...CATEGORIES].map(category => (
+            {['전체', ...CATEGORIES].map((category) => (
               <option value={category}>{category}</option>
             ))}
           </select>
           <select name="sorting" id="sorting-filter" onChange={this.onChangeSortingType}>
-            {SORTING_TYPES.map(category => (
+            {SORTING_TYPES.map((category) => (
               <option value={category}>{category}</option>
             ))}
           </select>
-        </FilterContainer>
+        </styled.FilterContainer>
 
-        <RestaurantListContainer>
+        <styled.RestaurantListContainer>
           <ul onClick={this.openDetailModal}>
-            {this.props.restaurants.map(restaurant => (
+            {this.props.restaurants.map((restaurant) => (
               <RestaurantItem key={restaurant.id} restaurant={restaurant}></RestaurantItem>
             ))}
           </ul>
-        </RestaurantListContainer>
+        </styled.RestaurantListContainer>
       </main>
     );
   }
 }
 
 export default RestaurantList;
-
-const FilterContainer = styled.section`
-  display: flex;
-  justify-content: space-between;
-
-  margin-top: 24px;
-  padding: 0 16px;
-
-  select {
-    height: 44px;
-    min-width: 125px;
-
-    border: 1px solid #d0d5dd;
-    border-radius: 8px;
-    padding: 8px;
-
-    background: transparent;
-    font-size: 16px;
-  }
-`;
-
-const RestaurantListContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-
-  margin: 16px 0;
-  padding: 0 16px;
-`;
