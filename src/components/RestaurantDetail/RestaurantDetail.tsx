@@ -9,29 +9,27 @@ interface Props {
   restaurant: Restaurant;
 }
 
-class RestaurantDetail extends React.Component<Props> {
-  render() {
-    const { category, name, distance, description, link } = this.props.restaurant;
+const RestaurantDetail = (props: Props) => {
+  const { category, name, distance, description, link } = props.restaurant;
 
-    return (
-      <>
-        <styled.ModalBackdrop onClick={this.props.closeModal} />
-        <styled.ModalContainer>
-          <styled.Detail>
-            <CategoryImage category={category} />
-            <styled.RestaurantName>{name}</styled.RestaurantName>
-            <styled.Distance>캠퍼스부터 {distance}분 내</styled.Distance>
-            <styled.Description>{description}</styled.Description>
-            <styled.Link href={link}>{link}</styled.Link>
-            <styled.ButtonContainer>
-              <styled.RemoveButton>삭제하기</styled.RemoveButton>
-              <styled.CloseButton onClick={this.props.closeModal}>닫기</styled.CloseButton>
-            </styled.ButtonContainer>
-          </styled.Detail>
-        </styled.ModalContainer>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <styled.ModalBackdrop onClick={props.closeModal} />
+      <styled.ModalContainer>
+        <styled.Detail>
+          <CategoryImage category={category} />
+          <styled.RestaurantName>{name}</styled.RestaurantName>
+          <styled.Distance>캠퍼스부터 {distance}분 내</styled.Distance>
+          <styled.Description>{description}</styled.Description>
+          <styled.Link href={link}>{link}</styled.Link>
+          <styled.ButtonContainer>
+            <styled.RemoveButton>삭제하기</styled.RemoveButton>
+            <styled.CloseButton onClick={props.closeModal}>닫기</styled.CloseButton>
+          </styled.ButtonContainer>
+        </styled.Detail>
+      </styled.ModalContainer>
+    </>
+  );
+};
 
 export default RestaurantDetail;

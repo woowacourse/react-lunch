@@ -9,14 +9,12 @@ interface Props {
   category: Category;
 }
 
-class CategoryImage extends React.Component<Props> {
-  render() {
-    return (
-      <styled.CategoryImageWrapper>
-        <img src={`./img/${CATEGORY_IMAGE_MAP[this.props.category]}`} alt={this.props.category} />
-      </styled.CategoryImageWrapper>
-    );
-  }
-}
+const CategoryImage = (props: Props) => {
+  return (
+    <styled.CategoryImageWrapper>
+      <img src={`./img/${CATEGORY_IMAGE_MAP[props.category]}`} alt={props.category} />
+    </styled.CategoryImageWrapper>
+  );
+};
 
 export default CategoryImage;

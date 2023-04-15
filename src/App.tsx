@@ -1,6 +1,6 @@
 import { Category, Restaurant, SortingType } from './types/restaurant';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header, RestaurantList, RestaurantDetail } from './components';
 
 import mockData from './mockData.json';
@@ -15,60 +15,55 @@ interface State {
   detailId: Restaurant['id'];
 }
 
-class App extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
+const App = (props: Props) => {
+  const [state, setState] = useState<State>({
+    restaurants: JSON.parse(localStorage.getItem('restaurants') || '[]'),
+    category: '전체',
+    sortingType: '이름순',
+    isModalOpen: false,
+    detailId: '1',
+  });
 
+  useEffect(() => {
     if (!localStorage.getItem('restaurants')) {
       localStorage.setItem('restaurants', JSON.stringify(mockData.restaurants));
     }
+  }, []);
 
-    const restaurants = JSON.parse(localStorage.getItem('restaurants') || '[]');
-    this.state = {
-      restaurants,
-      category: '전체',
-      sortingType: '이름순',
-      isModalOpen: false,
-      detailId: '1'
-    };
-
-    window.addEventListener('keyup', ({ key }) => {
-      if (this.state.isModalOpen && key === 'Escape') {
-        this.closeModal();
-      }
-    });
-  }
-
-  openModal = (id: Restaurant['id']) => {
-    this.setState({
+  const openModal = (id: Restaurant['id']) => {
+    setState({
+      ...state,
       detailId: id,
-      isModalOpen: true
+      isModalOpen: true,
     });
   };
 
-  closeModal = () => {
-    this.setState({
-      isModalOpen: false
+  const closeModal = () => {
+    setState({
+      ...state,
+      isModalOpen: false,
     });
   };
 
-  setCategory = (category: Category) => {
-    this.setState({
-      category
+  const setCategory = (category: Category) => {
+    setState({
+      ...state,
+      category,
     });
   };
 
-  setSortingType = (sortingType: SortingType) => {
-    this.setState({
-      sortingType
+  const setSortingType = (sortingType: SortingType) => {
+    setState({
+      ...state,
+      sortingType,
     });
   };
 
-  filterRestaurants = () => {
-    const { category, sortingType } = this.state;
+  const filterRestaurants = () => {
+    const { category, sortingType } = state;
 
-    const restaurants = this.state.restaurants.filter(
-      restaurant => category === '전체' || restaurant.category === category
+    const restaurants = state.restaurants.filter(
+      (restaurant) => category === '전체' || restaurant.category === category
     );
 
     const getPivot = (restaurant: Restaurant) => {
@@ -84,31 +79,29 @@ class App extends React.Component<Props, State> {
     });
   };
 
-  render() {
-    return (
-      <div className="App">
-        <Header />
+  return (
+    <div className="App">
+      <Header />
 
-        <RestaurantList
-          restaurants={this.filterRestaurants()}
-          openModal={this.openModal}
-          setCategory={this.setCategory}
-          setSortingType={this.setSortingType}
+      <RestaurantList
+        restaurants={filterRestaurants()}
+        openModal={openModal}
+        setCategory={setCategory}
+        setSortingType={setSortingType}
+      />
+
+      {state.isModalOpen && (
+        <RestaurantDetail
+          closeModal={closeModal}
+          restaurant={
+            mockData.restaurants.find(
+              (restaurant) => restaurant.id === state.detailId
+            ) as Restaurant
+          }
         />
-
-        {this.state.isModalOpen && (
-          <RestaurantDetail
-            closeModal={this.closeModal}
-            restaurant={
-              mockData.restaurants.find(
-                restaurant => restaurant.id === this.state.detailId
-              ) as Restaurant
-            }
-          />
-        )}
-      </div>
-    );
-  }
-}
+      )}
+    </div>
+  );
+};
 
 export default App;
