@@ -35,8 +35,8 @@ const RestaurantDetailDrawer: React.FC<RestaurantDetailDrawerProps> = ({
         />
       </div>
       <h3 className="restaurant__name text-subtitle">{restaurant.title}</h3>
-      <span className="restaurant__distance text-body">
-        캠퍼스로부터 {restaurant.distance}분 내
+      <span className="restaurant__estimate-time text-body">
+        캠퍼스로부터 {restaurant.estimateTime}분 내
       </span>
       <p className="text-body">{restaurant.description}</p>
       <p className="restaurant__link text-body">{restaurant.link ?? ''}</p>

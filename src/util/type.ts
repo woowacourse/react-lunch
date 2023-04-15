@@ -2,7 +2,7 @@ export type Restaurant = {
   id: number;
   title: string;
   category: string;
-  distance: number;
+  estimateTime: number;
   description: string;
   link?: string;
 };
@@ -16,7 +16,7 @@ export type Category =
   | '아시안'
   | '기타';
 
-export type Sorting = 'name' | 'distance';
+export type Sorting = 'name' | 'estimateTime';
 
 export type SelectOption<T> = {
   value: T;

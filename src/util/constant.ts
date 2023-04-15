@@ -44,7 +44,7 @@ export const SORTING_OPTIONS: SelectOption<Sorting>[] = [
     textContent: '이름순',
   },
   {
-    value: 'distance',
+    value: 'estimateTime',
     textContent: '거리순',
   },
 ];
@@ -67,7 +67,7 @@ export const CATEGORY_IMAGES = {
 export const NO_EXIST_RESTAURANT = {
   title: '오류가 발생했습니다.',
   category: '',
-  distance: 5,
+  estimateTime: 5,
   description: '존재하지 않는 음식점입니다.',
   link: '',
 };

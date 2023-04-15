@@ -22,8 +22,8 @@ const filterBySort = (restaurantList, sorting): Restaurant[] => {
     if (sorting === 'name') {
       return firstElement.title.localeCompare(secondElement.title);
     }
-    if (sorting === 'distance') {
-      return firstElement.distance - secondElement.distance;
+    if (sorting === 'estimateTime') {
+      return firstElement.estimateTime - secondElement.estimateTime;
     }
     return 0;
   });
