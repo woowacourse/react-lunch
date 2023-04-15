@@ -44,6 +44,7 @@ const RestaurantDetailModal = ({ restaurant, onCloseModal }: Props) => {
             삭제하기
           </button>
           <button
+            type="button"
             className="button button--primary text-caption"
             onClick={onCloseModal}
           >
