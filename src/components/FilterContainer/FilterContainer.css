@@ -1,0 +1,8 @@
+/* 카테고리/정렬 필터 */
+.restaurant-filter-container {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 0 16px;
+  margin-top: 24px;
+}
