@@ -38,7 +38,7 @@ class App extends Component {
     this.setState({ ...this.state, restaurants: data });
   }
 
-  setRestaurantId = (restaurantId: string) => {
+  openRestaurantInfoModal = (restaurantId: string) => {
     this.setState({
       ...this.state,
       restaurantId,
@@ -63,7 +63,7 @@ class App extends Component {
         <Header />
         <MainLayout
           restaurants={this.state.restaurants}
-          onClickRestaurant={this.setRestaurantId}
+          onClickRestaurant={this.openRestaurantInfoModal}
         />
         {this.state.isModalOpened ? (
           <RestaurantDetailModal
