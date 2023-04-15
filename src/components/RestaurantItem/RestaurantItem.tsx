@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import { Restaurant } from 'types';
 import { imgSrc } from 'constants/imageSrc';
 
@@ -9,28 +8,21 @@ type Props = {
   onRestaurantClick: React.MouseEventHandler<HTMLLIElement>;
 };
 
-export class RestaurantItem extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
+export function RestaurantItem({ restaurant, onRestaurantClick }: Props) {
+  const { id, name, category, distance, description } = restaurant;
 
-  render() {
-    const { id, name, category, distance, description } = this.props.restaurant;
-    const onRestaurantClick = this.props.onRestaurantClick;
-
-    return (
-      <RestaurantWrapper data-id={id} onClick={onRestaurantClick}>
-        <RestaurantCategory>
-          <Image src={imgSrc[category]} alt={category} />
-        </RestaurantCategory>
-        <RestaurantInfoWrapper>
-          <Name>{name}</Name>
-          <DistanceText>캠퍼스로부터 {distance}분 내</DistanceText>
-          <Description>{description}</Description>
-        </RestaurantInfoWrapper>
-      </RestaurantWrapper>
-    );
-  }
+  return (
+    <RestaurantWrapper data-id={id} onClick={onRestaurantClick}>
+      <RestaurantCategory>
+        <Image src={imgSrc[category]} alt={category} />
+      </RestaurantCategory>
+      <RestaurantInfoWrapper>
+        <Name>{name}</Name>
+        <DistanceText>캠퍼스로부터 {distance}분 내</DistanceText>
+        <Description>{description}</Description>
+      </RestaurantInfoWrapper>
+    </RestaurantWrapper>
+  );
 }
 
 const RestaurantWrapper = styled.li`

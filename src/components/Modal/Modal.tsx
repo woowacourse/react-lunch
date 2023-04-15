@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useEffect } from 'react';
 import { Restaurant } from 'types';
 import { imgSrc } from 'constants/imageSrc';
 import styled from 'styled-components';
@@ -15,48 +15,41 @@ type Props = {
   onCloseButtonClick: () => void;
 };
 
-export class Modal extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
+export function Modal({ restaurant, onCloseButtonClick }: Props) {
+  const { category, name, distance, description, link } = restaurant;
 
-  componentDidMount(): void {
+  useEffect(() => {
     document.addEventListener('keydown', (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        this.props.onCloseButtonClick();
+        onCloseButtonClick();
       }
     });
-  }
+  });
 
-  render() {
-    const { id, name, category, distance, description, link } = this.props.restaurant;
-    const onCloseButtonClick = this.props.onCloseButtonClick;
-
-    return (
-      <Wrapper>
-        <Backdrop />
-        <Container>
-          <IconContainer>
-            <RestaurantCategory>
-              <Image src={imgSrc[category]} alt={category} />
-            </RestaurantCategory>
-          </IconContainer>
-          <RestaurantInfoWrapper>
-            <Name>{name}</Name>
-            <DistanceText>캠퍼스로부터 {distance}분 내</DistanceText>
-            <Description>{description}</Description>
-            <a href={link} target="_blank">
-              {link}
-            </a>
-          </RestaurantInfoWrapper>
-          <ButtonContainer>
-            <DeleteButton>삭제하기</DeleteButton>
-            <CloseButton onClick={onCloseButtonClick}>닫기</CloseButton>
-          </ButtonContainer>
-        </Container>
-      </Wrapper>
-    );
-  }
+  return (
+    <Wrapper>
+      <Backdrop />
+      <Container>
+        <IconContainer>
+          <RestaurantCategory>
+            <Image src={imgSrc[category]} alt={category} />
+          </RestaurantCategory>
+        </IconContainer>
+        <RestaurantInfoWrapper>
+          <Name>{name}</Name>
+          <DistanceText>캠퍼스로부터 {distance}분 내</DistanceText>
+          <Description>{description}</Description>
+          <a href={link} target="_blank">
+            {link}
+          </a>
+        </RestaurantInfoWrapper>
+        <ButtonContainer>
+          <DeleteButton>삭제하기</DeleteButton>
+          <CloseButton onClick={onCloseButtonClick}>닫기</CloseButton>
+        </ButtonContainer>
+      </Container>
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.div``;

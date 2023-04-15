@@ -1,17 +1,14 @@
-import { Component } from 'react';
 import styled from 'styled-components';
 
-export class Header extends Component {
-  render() {
-    return (
-      <HeaderWrapper>
-        <Title>점심 뭐 먹지</Title>
-        <AddRestaurantButton type="button" aria-label="음식점 추가">
-          <img src={`${process.env.PUBLIC_URL}/assets/add-button.png`} alt="음식점 추가" />
-        </AddRestaurantButton>
-      </HeaderWrapper>
-    );
-  }
+export function Header() {
+  return (
+    <HeaderWrapper>
+      <Title>점심 뭐 먹지</Title>
+      <AddRestaurantButton type="button" aria-label="음식점 추가">
+        <img src={`${process.env.PUBLIC_URL}/assets/add-button.png`} alt="음식점 추가" />
+      </AddRestaurantButton>
+    </HeaderWrapper>
+  );
 }
 
 const HeaderWrapper = styled.header`

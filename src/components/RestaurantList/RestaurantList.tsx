@@ -1,5 +1,4 @@
 import { RestaurantItem } from 'components/RestaurantItem/RestaurantItem';
-import { Component } from 'react';
 import styled from 'styled-components';
 import { Restaurant } from 'types';
 
@@ -8,26 +7,18 @@ type Props = {
   onRestaurantClick: React.MouseEventHandler<HTMLLIElement>;
 };
 
-export class RestaurantList extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
-  render() {
-    const { restaurants, onRestaurantClick } = this.props;
-
-    return (
-      <RestaurantListWrapper>
-        {restaurants.map((restaurant) => (
-          <RestaurantItem
-            key={restaurant.id}
-            restaurant={restaurant}
-            onRestaurantClick={onRestaurantClick}
-          />
-        ))}
-      </RestaurantListWrapper>
-    );
-  }
+export function RestaurantList({ restaurants, onRestaurantClick }: Props) {
+  return (
+    <RestaurantListWrapper>
+      {restaurants.map((restaurant) => (
+        <RestaurantItem
+          key={restaurant.id}
+          restaurant={restaurant}
+          onRestaurantClick={onRestaurantClick}
+        />
+      ))}
+    </RestaurantListWrapper>
+  );
 }
 
 const RestaurantListWrapper = styled.ul`
