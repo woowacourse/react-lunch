@@ -5,7 +5,7 @@ import './css/App.css';
 import Header from './components/Header';
 import MainLayout from './components/MainLayout';
 import RestaurantDetailModal from './components/RestaurantDetailModal';
-import { useRestaurants } from './components/MainLayout/useRestaurants';
+import { useRestaurants } from './domain/hooks/useRestaurants';
 
 const App = () => {
   const { restaurants } = useRestaurants();

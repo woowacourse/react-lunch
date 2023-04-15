@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import { Restaurant } from '../../domain/type';
 import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
+
+import type { Restaurant } from '../type';
 
 export const useRestaurants = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
