@@ -39,7 +39,7 @@ const Modal = (props: ModalProps) => {
             <a href={selectedRestaurant.link}>{selectedRestaurant.link}</a>
           </div>
         </div>
-        <button className={styles.button} onClick={handleClose}>
+        <button type="button" className={styles.button} onClick={handleClose}>
           닫기
         </button>
       </div>
