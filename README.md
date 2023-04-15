@@ -1,3 +1,5 @@
+![example workflow](https://github.com/hyeryongchoi/react-lunch/actions/workflows/deploy.yml/badge.svg)
+
 <h1 align="middle">🤤</h1>
 <h2 align="middle">Level2 - 다시, 점심 뭐 먹지 미션</h2>
 <p align="middle">우아한테크코스 레벨2 다시, 점심 뭐 먹지 미션</p>
