@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { ReactNode, useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
 
 import styles from "./ModalPortal.module.css";
@@ -10,6 +10,23 @@ interface ModalPortalProps {
 
 const ModalPortal = (props: ModalPortalProps) => {
   const { children, onClose } = props;
+
+  const onKeydown = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    },
+    [onClose]
+  );
+
+  useEffect(() => {
+    window.addEventListener("keydown", onKeydown);
+
+    return () => {
+      window.removeEventListener("keydown", onKeydown);
+    };
+  }, [onKeydown]);
 
   return createPortal(
     <>
