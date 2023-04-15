@@ -31,7 +31,9 @@ class RestaurantDetailModal extends Component<Props> {
           <span className="restaurant__takeTime text-body detail-takeTime">
             캠퍼스부터 {takeTime}분 내
           </span>
-          <div className="description">{description}</div>
+          {description ? (
+            <div className="description">{description}</div>
+          ) : null}
           {link ? (
             <a
               href={link}

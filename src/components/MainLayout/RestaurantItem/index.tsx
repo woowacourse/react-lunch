@@ -28,7 +28,9 @@ class RestaurantItem extends Component<Props> {
               </span>
             </div>
           </div>
-          <p className="restaurant__description text-body">{description}</p>
+          {description ? (
+            <p className="restaurant__description text-body">{description}</p>
+          ) : null}
         </div>
       </li>
     );
