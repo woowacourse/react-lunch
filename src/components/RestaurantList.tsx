@@ -1,5 +1,7 @@
-import { RestaurantItem } from './RestaurantItem';
+import styled from 'styled-components';
+
 import RestaurantManager from '../domain/RestaurantManager';
+import { RestaurantItem } from './RestaurantItem';
 import { Category, RestaurantDetail } from '../types/RestaurantDetail';
 import { useEffect, useRef, useState } from 'react';
 import { DetailModal } from './DetailModal';
@@ -28,7 +30,6 @@ export const RestaurantList = ({ category, sort }: RestaurantListProps) => {
   const idRef = useRef(0);
 
   const handleClickItem: React.MouseEventHandler<HTMLLIElement> = (event) => {
-    // TODO: event target 의 타입을 지정하는 방법
     const eventTarget = event.target as HTMLElement;
 
     if ('id' in eventTarget) {
@@ -40,7 +41,7 @@ export const RestaurantList = ({ category, sort }: RestaurantListProps) => {
 
   return (
     <>
-      <ul>
+      <RestaurantListContainer>
         {restaurants.map((itemDetail) => (
           <RestaurantItem
             key={itemDetail.id}
@@ -48,7 +49,7 @@ export const RestaurantList = ({ category, sort }: RestaurantListProps) => {
             onClickItem={handleClickItem}
           ></RestaurantItem>
         ))}
-      </ul>
+      </RestaurantListContainer>
       {show &&
         createPortal(
           <DetailModal
@@ -60,3 +61,11 @@ export const RestaurantList = ({ category, sort }: RestaurantListProps) => {
     </>
   );
 };
+
+const RestaurantListContainer = styled.ul`
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 16px;
+  margin: 16px 0;
+`;
