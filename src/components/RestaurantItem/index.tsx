@@ -18,6 +18,22 @@ interface MyProps {
 interface MyState {
 	isModal: boolean;
 }
+const makeCategoryImgPath = (category: Category) => {
+	switch (category) {
+		case '한식':
+			return categoryKorean;
+		case '일식':
+			return categoryJapanese;
+		case '중식':
+			return categoryChinese;
+		case '아시안':
+			return categoryAsian;
+		case '양식':
+			return categoryWestern;
+		default:
+			return categoryEtc;
+	}
+};
 
 class RestaurantItem extends React.PureComponent<MyProps, MyState> {
 	private static makeCategoryImgPath = (category: Category) => {

@@ -8,6 +8,8 @@ import styles from './Modal.module.css';
 class Modal extends React.PureComponent {
 	private static findRestaurantById = (restaurantList?: Restaurant[], id?: string) =>
 		restaurantList?.find((restaurant) => restaurant.id === id) as Restaurant;
+const findRestaurantById = (restaurantList?: Restaurant[], id?: string) =>
+	restaurantList?.find((restaurant) => restaurant.id === id) as Restaurant;
 
 	render() {
 		return (
