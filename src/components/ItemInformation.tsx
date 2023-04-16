@@ -28,13 +28,17 @@ class ItemInformation extends React.Component<Props> {
           </span>
         </DetailItem>
 
-        <DetailItem class={'detail-item'}>
-          <p className="modal-detail-restaurant__description text-body">{description}</p>
-        </DetailItem>
+        {description && (
+          <DetailItem class={'detail-item'}>
+            <p className="modal-detail-restaurant__description text-body">{description}</p>
+          </DetailItem>
+        )}
 
-        <DetailItem class={'detail-item'}>
-          <a className="modal-detail-restaurant__link">{link}</a>
-        </DetailItem>
+        {link && (
+          <DetailItem class={'detail-item'}>
+            <a className="modal-detail-restaurant__link">{link}</a>
+          </DetailItem>
+        )}
 
         <div className="button-container detail-button-container">
           <button
