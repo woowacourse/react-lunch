@@ -12,16 +12,8 @@ const categoryImages: Readonly<Record<Category, string>> = {
   일식: categoryJapaneseImage,
   아시안: categoryAsianImage,
   양식: categoryWesternImage,
+  기타: categoryEtcImage,
 };
 
-export const isCategory = (targetCategory: string): targetCategory is Category => {
-  return Object.keys(categoryImages).includes(targetCategory);
-};
+export default categoryImages
 
-const getCategoryImage = (category: string) => {
-  if (isCategory(category)) return categoryImages[category];
-
-  return categoryEtcImage;
-};
-
-export default getCategoryImage;

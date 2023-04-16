@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import mockData from "../assets/mockData.json";
-import { isCategory } from "../assets/images/category";
 import { CATEGORY_OPTIONS, SORTING_OPTIONS } from "../constants/options";
 import type { Restaurant } from "../types/restaurant";
 
@@ -20,10 +19,6 @@ const useRestaurants = () => {
 
     if (category === CATEGORY_OPTIONS.TOTAL) {
       return initRestaurants;
-    }
-
-    if (category === CATEGORY_OPTIONS.ETC) {
-      return initRestaurants.filter((data) => !isCategory(data.category));
     }
 
     return initRestaurants.filter((data) => data.category === category);
