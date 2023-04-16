@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as styled from './App.styles';
 import Header from './components/Header';
 import RestaurantDetailBottomSheet from './components/RestaurantDetailBottomSheet';
@@ -6,13 +6,13 @@ import RestaurantList from './components/RestaurantList';
 import type { DropdownOption } from './components/common/Dropdown';
 import Dropdown from './components/common/Dropdown';
 import { CATEGORIES } from './constants/Restaurants';
-import mockRestaurantsData from './data/mockData.json';
+import useRestaurants from './hooks/useRestaurants';
 import GlobalStyle from './styles/GlobalStyle';
 import ResetStyle from './styles/ResetStyle';
 import type Filter from './types/Filter';
 import type Restaurant from './types/Restaurant';
 
-const DROPDOWN_SORT_FILTERS = [
+const DROPDOWN_SORT_FILTERS: DropdownOption<Filter<Restaurant>>[] = [
   {
     label: '이름순',
     value: (restaurants: Restaurant[]) => restaurants.sort((a, b) => a.name.localeCompare(b.name)),
@@ -24,7 +24,7 @@ const DROPDOWN_SORT_FILTERS = [
   },
 ];
 
-const DROPDOWN_CATEGORY_FILTERS = [
+const DROPDOWN_CATEGORY_FILTERS: DropdownOption<Filter<Restaurant>>[] = [
   { label: '전체', value: (restaurants: Restaurant[]) => restaurants },
   ...CATEGORIES.map((category) => ({
     label: category,
@@ -34,33 +34,26 @@ const DROPDOWN_CATEGORY_FILTERS = [
 ];
 
 const App = () => {
-  const [restaurants, setRestaurants] = useState(mockRestaurantsData as Restaurant[]);
-  const [sortOption, setSortOption] = useState<DropdownOption<Filter<Restaurant>>>(
-    DROPDOWN_SORT_FILTERS[0],
-  );
-  const [categoryOption, setCategoryOption] = useState<DropdownOption<Filter<Restaurant>>>(
-    DROPDOWN_CATEGORY_FILTERS[0],
-  );
+  const { filteredRestaurants, sortFilter, setSortFilter, categoryFilter, setCategoryFilter } =
+    useRestaurants();
+
+  useEffect(() => {
+    setSortFilter(() => DROPDOWN_SORT_FILTERS[0].value);
+    setCategoryFilter(() => DROPDOWN_CATEGORY_FILTERS[0].value);
+  }, []);
+
+  const sortOption =
+    DROPDOWN_SORT_FILTERS.find(({ value: filter }) => sortFilter === filter) ??
+    DROPDOWN_SORT_FILTERS[0];
+  const categoryOption =
+    DROPDOWN_CATEGORY_FILTERS.find(({ value: filter }) => categoryFilter === filter) ??
+    DROPDOWN_CATEGORY_FILTERS[0];
+
   const [openedRestaurant, setOpenedRestaurant] = useState<Restaurant | null>(null);
 
-  const getFilteredRestaurants = () => {
-    const filters = [sortOption, categoryOption]
-      .map(({ value: filter }) => filter)
-      .filter((filter): filter is Filter<Restaurant> => filter !== null);
-    const filteredRestaurants = filters.reduce(
-      (_restaurants, filter) => filter(_restaurants),
-      restaurants.slice(),
-    );
-    return filteredRestaurants;
-  };
+  const openBottomSheet = (restaurant: Restaurant) => setOpenedRestaurant(restaurant);
 
-  const openBottomSheet = (restaurant: Restaurant) => {
-    setOpenedRestaurant(restaurant);
-  };
-
-  const closeBottomSheet = () => {
-    setOpenedRestaurant(null);
-  };
+  const closeBottomSheet = () => setOpenedRestaurant(null);
 
   return (
     <>
@@ -73,17 +66,17 @@ const App = () => {
         <Dropdown
           options={DROPDOWN_CATEGORY_FILTERS}
           selectedOption={categoryOption}
-          onChange={(option) => setCategoryOption(option)}
+          onChange={({ value: filter }) => setCategoryFilter(() => filter)}
         />
 
         <Dropdown
           options={DROPDOWN_SORT_FILTERS}
           selectedOption={sortOption}
-          onChange={(option) => setSortOption(option)}
+          onChange={({ value: filter }) => setSortFilter(() => filter)}
         />
       </styled.RestaurantFilterContainer>
 
-      <RestaurantList restaurants={getFilteredRestaurants()} onClickItem={openBottomSheet} />
+      <RestaurantList restaurants={filteredRestaurants} onClickItem={openBottomSheet} />
       {openedRestaurant !== null && (
         <RestaurantDetailBottomSheet
           restaurant={openedRestaurant}
