@@ -6,7 +6,7 @@ import RestaurantList from './RestaurantList/RestaurantList';
 import './App.css';
 import { Category, Sort } from './data/type';
 
-function App() {
+const App = () => {
   const [seletedCategory, setSeletedCategory] = useState<Category>('전체');
   const [seletedSort, setSeletedSort] = useState<Sort>('이름순');
 
@@ -22,8 +22,6 @@ function App() {
     <div className="App">
       <Header />
       <FilterListContainer
-        selectedCategory={seletedCategory}
-        selectedSort={seletedSort}
         categoryEvent={handleCategoryChange}
         sortEvent={handleSortChange}
       />
@@ -33,6 +31,6 @@ function App() {
       />
     </div>
   );
-}
+};
 
 export default App;
