@@ -16,8 +16,13 @@ import { typePredicates } from './utils/typeCheck';
 interface Props {}
 
 class App extends React.Component<Props, appState> {
+  categoryRef: React.RefObject<HTMLSelectElement>;
+  sortRef: React.RefObject<HTMLSelectElement>;
   constructor(props: Props | Readonly<Props>) {
     super(props);
+
+    this.categoryRef = React.createRef();
+    this.sortRef = React.createRef();
 
     const localStorageSavedList = typePredicates<Array<restaurant>>({
       data: parseJson(JSON.stringify(localStorageGetItem('restaurantList'))),
@@ -40,8 +45,9 @@ class App extends React.Component<Props, appState> {
     };
   }
 
-  categoryOnChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    const { value } = e.target;
+  categoryOnChange() {
+    const value = this.categoryRef.current?.value ?? '전체';
+
     if (!this.isFilterOptions<selectorCategory>(value, CATEGORY_OPTIONS)) return;
 
     const { filter } = this.state;
@@ -52,8 +58,9 @@ class App extends React.Component<Props, appState> {
     this.setState({ ...this.state, category: value, currentList });
   }
 
-  filterOnChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    const { value } = e.target;
+  filterOnChange() {
+    const value = this.sortRef.current?.value ?? '이름순';
+
     if (!this.isFilterOptions<selectorFilter>(value, FILTER_OPTIONS)) return;
 
     const { category } = this.state;
@@ -74,11 +81,13 @@ class App extends React.Component<Props, appState> {
         <Header />
         <div className="restaurant-filter-container">
           <Selector<selectorCategory>
+            filterRef={this.categoryRef}
             selectedValue={this.state.category}
             optionList={CATEGORY_OPTIONS}
             onChange={this.categoryOnChange.bind(this)}
           />
           <Selector<selectorFilter>
+            filterRef={this.sortRef}
             selectedValue={this.state.filter}
             optionList={FILTER_OPTIONS}
             onChange={this.filterOnChange.bind(this)}
