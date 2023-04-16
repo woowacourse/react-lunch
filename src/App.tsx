@@ -1,7 +1,7 @@
 import React, { createContext, useState } from "react";
 import RestaurantList from "./components/RestaurantList";
 import mockData from "./data/mockData.json";
-import { CATEGORY, SORTINGWAY } from "./types/Restaurant";
+import { AppState, CATEGORY, SORTINGWAY } from "./types/Restaurant";
 import SelectBox from "./components/SelectBox";
 import Header from "./components/Header";
 import styled from "styled-components";
@@ -10,7 +10,7 @@ import Modal from "./components/Modal";
 export const RestaurantContext = createContext(null);
 
 const App = () => {
-  const [state, setState] = useState({
+  const [state, setState]: [AppState, Function] = useState({
     restaurants: mockData,
     modalOpen: false,
     modalInfo: {},
@@ -32,7 +32,7 @@ const App = () => {
 
   return (
     <>
-      <RestaurantContext.Provider value={{ state, setState }}>
+      <RestaurantContext.Provider value={{ state, setState } as any}>
         <Header />
         <SelectContainer>
           <SelectBox name="categoryBy" options={categoryOptions} />

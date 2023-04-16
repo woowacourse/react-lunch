@@ -13,6 +13,13 @@ export const SORTINGWAY = {
   거리순: "distance",
 };
 
+export interface AppState {
+  restaurants: object[];
+  modalOpen: boolean;
+  modalInfo: object;
+  sortBy: typeof SORTINGWAY[keyof typeof SORTINGWAY];
+  categorizeBy: typeof CATEGORY[keyof typeof CATEGORY];
+}
 // export type Category = typeof CATEGORY[keyof typeof CATEGORY];
 
 // export interface Restaurant {
