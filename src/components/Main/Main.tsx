@@ -1,56 +1,57 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import RestaurantFilter from '../RestaurantFilter/RestaurantFilter';
-import { RestaurantFilterProps, MainState, RestaurantListProps, ModalProps } from '../../types/types';
+import { RestaurantFilterProps, RestaurantListProps, ModalProps } from '../../types/types';
 import RestaurantsList from '../RestaurantsList/RestaurantsList';
 import Modal from '../Modal/Modal';
 
-export default class Main extends Component<object, MainState> {
-  state: MainState = {
-    category: '전체',
-    sorting: '이름순',
-    restaurantId: undefined,
-    isModalOpen: false,
+const Main = () => {
+  const [category, setCategory] = useState('전체');
+  const [sorting, setSorting] = useState('이름순');
+  const [restaurantId, setRestaurantId] = useState<number | undefined>(undefined);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCategoryChange = (category: string) => {
+    setCategory(category);
   };
 
-  handleCategoryChange = (category: string) => {
-    this.setState({ category });
+  const handleSortingChange = (sorting: string) => {
+    setSorting(sorting);
   };
 
-  handleSortingChange = (sorting: string) => {
-    this.setState({ sorting });
+  const handleRestaurantIdChange = (restaurantId: number) => {
+    setRestaurantId(restaurantId);
+    setIsModalOpen(true);
   };
 
-  handleRestaurantIdChange = (restaurantId: number) => {
-    this.setState({ restaurantId, isModalOpen: true });
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
-  handleCloseModal = () => {
-    this.setState({ isModalOpen: false });
+  const restaurantFilterProps: RestaurantFilterProps = {
+    onCategoryChange: handleCategoryChange,
+    onSortingChange: handleSortingChange,
   };
 
-  render() {
-    const restaurantFilterProps: RestaurantFilterProps = {
-      onCategoryChange: this.handleCategoryChange,
-      onSortingChange: this.handleSortingChange,
-    };
+  const restaurantListProps: RestaurantListProps = {
+    category,
+    sorting,
+    restaurantId,
+    changeRestaurantId: handleRestaurantIdChange,
+  };
 
-    const restaurantListProps: RestaurantListProps = {
-      ...this.state,
-      changeRestaurantId: this.handleRestaurantIdChange,
-    };
+  const modalProps: ModalProps = {
+    restaurantId,
+    handleClose: handleCloseModal,
+    isOpen: isModalOpen,
+  };
 
-    const modalProps: ModalProps = {
-      restaurantId: this.state.restaurantId,
-      handleClose: this.handleCloseModal,
-      isOpen: this.state.isModalOpen,
-    };
+  return (
+    <>
+      <RestaurantFilter {...restaurantFilterProps} />
+      <RestaurantsList {...restaurantListProps} />
+      {isModalOpen && <Modal {...modalProps} />}
+    </>
+  );
+};
 
-    return (
-      <>
-        <RestaurantFilter {...restaurantFilterProps} />
-        <RestaurantsList {...restaurantListProps} />
-        {this.state.isModalOpen && <Modal {...modalProps} />}
-      </>
-    );
-  }
-}
+export default Main;
