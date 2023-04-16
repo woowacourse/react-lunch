@@ -1,7 +1,7 @@
 import { restaurant } from '../utils/interfaces';
-import { selectorCategory, selectorFilter } from '../utils/types';
+import { SelectorCategory, SelectorFilter } from '../utils/types';
 
-export function sortingByCategory(category: selectorCategory, wholeList: Array<restaurant>) {
+export function sortingByCategory(category: SelectorCategory, wholeList: Array<restaurant>) {
   if (category === '전체') {
     return wholeList;
   }
@@ -9,7 +9,7 @@ export function sortingByCategory(category: selectorCategory, wholeList: Array<r
   return wholeList.filter(item => item.category === category);
 }
 
-export function sortingByFilter(filter: selectorFilter, wholeList: Array<restaurant>) {
+export function sortingByFilter(filter: SelectorFilter, wholeList: Array<restaurant>) {
   if (filter === '이름순') {
     return sortByName(wholeList);
   }

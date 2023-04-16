@@ -6,7 +6,7 @@ import Selector from './components/Selector';
 import mockData from './mockData/restaurantList.json';
 import { appState, restaurant } from './utils/interfaces';
 import { parseJson } from './utils/json';
-import { selectorCategory, selectorFilter } from './utils/types';
+import { SelectorCategory, SelectorFilter } from './utils/types';
 import { sortingByCategory, sortingByFilter } from './domain/restaurantSort';
 import { CATEGORY_OPTIONS, FILTER_OPTIONS } from './utils/constants';
 import { localStorageGetItem } from './utils/localStorage';
@@ -48,7 +48,7 @@ class App extends React.Component<Props, appState> {
   categoryOnChange() {
     const value = this.categoryRef.current?.value ?? '전체';
 
-    if (!this.isFilterOptions<selectorCategory>(value, CATEGORY_OPTIONS)) return;
+    if (!this.isFilterOptions<SelectorCategory>(value, CATEGORY_OPTIONS)) return;
 
     const { filter } = this.state;
 
@@ -61,7 +61,7 @@ class App extends React.Component<Props, appState> {
   filterOnChange() {
     const value = this.sortRef.current?.value ?? '이름순';
 
-    if (!this.isFilterOptions<selectorFilter>(value, FILTER_OPTIONS)) return;
+    if (!this.isFilterOptions<SelectorFilter>(value, FILTER_OPTIONS)) return;
 
     const { category } = this.state;
 
@@ -80,13 +80,13 @@ class App extends React.Component<Props, appState> {
       <>
         <Header />
         <div className="restaurant-filter-container">
-          <Selector<selectorCategory>
+          <Selector<SelectorCategory>
             filterRef={this.categoryRef}
             selectedValue={this.state.category}
             optionList={CATEGORY_OPTIONS}
             onChange={this.categoryOnChange.bind(this)}
           />
-          <Selector<selectorFilter>
+          <Selector<SelectorFilter>
             filterRef={this.sortRef}
             selectedValue={this.state.filter}
             optionList={FILTER_OPTIONS}
