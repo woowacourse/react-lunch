@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import ReactDom from 'react-dom';
 
 interface Props {
@@ -7,46 +7,37 @@ interface Props {
   closeEvent: () => void;
 }
 
-class ModalPortal extends React.Component<Props> {
-  $modalRoot: HTMLElement;
-  
-  constructor(props: Props | Readonly<Props>) {
-    super(props);
-    this.$modalRoot = document.getElementById('modal-root') as HTMLElement;
-    this.dialogKeyDownListener = this.dialogKeyDownListener.bind(this);
-    this.dialogBackdropListener = this.dialogBackdropListener.bind(this);
-  }
+const ModalPortal:React.FC<Props>=(props)=> {
+  const $modalRoot = document.getElementById('modal-root') as HTMLElement;
 
-  dialogKeyDownListener(event: React.KeyboardEvent<HTMLDialogElement>) {
+  const dialogKeyDownListener=(event: React.KeyboardEvent<HTMLDialogElement>)=>{
     if (event.key === 'Escape') {
-      this.props.closeEvent();
+      props.closeEvent();
     }
   }
 
-  dialogBackdropListener(event: React.MouseEvent<HTMLDialogElement>) {
+  const dialogBackdropListener=(event: React.MouseEvent<HTMLDialogElement>)=>{
     if (event.target === event.currentTarget) {
-      this.props.closeEvent();
+      props.closeEvent();
     }
   }
 
-  componentDidMount(): void {
-    this.props.dialogRef.current?.showModal();
+  useEffect(() => {
+    props.dialogRef.current?.showModal();
     document.body.style.overflow = 'hidden';
-  }
+    
+    return () => {
+      document.body.style.overflow = 'visible';
+      props.dialogRef.current?.close();
+    };
+  }, [props.dialogRef]);
 
-  componentWillUnmount(): void {
-    document.body.style.overflow = 'visible';
-    this.props.dialogRef.current?.close();
-  }
-
-  render() {
     return ReactDom.createPortal(
-      <dialog ref={this.props.dialogRef} onKeyDown={this.dialogKeyDownListener} onClick={this.dialogBackdropListener}>
-        {this.props.children}
+      <dialog ref={props.dialogRef} onKeyDown={dialogKeyDownListener} onClick={dialogBackdropListener}>
+        {props.children}
       </dialog>,
-      this.$modalRoot
+      $modalRoot
     );
-  }
 }
 
 export default ModalPortal;
