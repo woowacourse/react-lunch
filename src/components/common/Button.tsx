@@ -5,8 +5,8 @@ interface ButtonType {
   onClick: () => void;
 }
 
-const Button = ({ text, onClick }: ButtonType) => {
-  return <ButtonWrapper onClick={onClick}>{text}</ButtonWrapper>;
+const Button = (props: ButtonType) => {
+  return <ButtonWrapper onClick={props.onClick}>{props.text}</ButtonWrapper>;
 };
 
 const ButtonWrapper = styled.button`
