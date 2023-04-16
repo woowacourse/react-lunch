@@ -16,7 +16,7 @@ interface Props {
   onClickRestaurant: OnClickRestaurant;
 }
 
-const setFilterSectionOption = () => {
+const useFilterSectionState = () => {
   const [category, setCategory] = useState('전체');
   const [sortBy, setSortBy] = useState('이름순');
 
@@ -46,7 +46,7 @@ const handleRestaurantClick = (
 
 export default function MainLayout(props: Props) {
   const { category, sortBy, settingCategory, settingSortBy } =
-    setFilterSectionOption();
+    useFilterSectionState();
 
   const filtered = restaurantService.filterByCategory(
     props.restaurants,
