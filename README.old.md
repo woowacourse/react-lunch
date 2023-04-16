@@ -21,3 +21,9 @@
 
 - [x] 초기값 세팅시에 localStorage 값 가져오기
 - [x] 초기값 설정하는 파일 혹은 메서드 따로 생성하기.
+
+
+## 2단계 요구 사항
+
+- [ ] Step1의 Class Component를 Function Component로 마이그레이션 한다.
+- [ ] Custom Hooks을 이용하여 재사용 가능한 기능을 분리한다.
