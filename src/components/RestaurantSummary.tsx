@@ -1,27 +1,32 @@
-import React, { Component } from 'react';
+import React, { KeyboardEvent } from 'react';
 import { RestaurantInfo } from '../types/restaurantInfo';
 import CategoryImage from './CategoryImage/CategoryImage';
 import styles from './RestaurantSummary.module.css';
 
-class RestaurantSummary extends Component<{
+interface RestaurantSummaryProps {
   restaurant: RestaurantInfo;
   onClick: (restaurantInfo: RestaurantInfo) => void;
-}> {
-  render() {
-    const { restaurant, onClick } = this.props;
-    const { title, estimatedTime, description, category } = restaurant;
+}
 
-    return (
-      <li className={styles.summary} onClick={() => onClick(restaurant)} aria-hidden="true">
-        <CategoryImage category={category} />
-        <div className={styles.content}>
-          <h3 className={styles.title}>{title}</h3>
-          <h6 className={styles.estimatedTime}>캠퍼스로부터 {estimatedTime}분 내</h6>
-          <p className={styles.description}>{description}</p>
-        </div>
-      </li>
-    );
+function RestaurantSummary(props: RestaurantSummaryProps) {
+  const { restaurant, onClick } = props;
+  const { title, estimatedTime, description, category } = restaurant;
+
+  const clickEventHandler = () => onClick(restaurant);
+  const keyboardEventHandler = (event: KeyboardEvent<HTMLLIElement>) => {
+    if (event.key === 'Enter') clickEventHandler();
   }
+
+  return (
+    <li className={styles.summary} onClick={clickEventHandler} onKeyUp={keyboardEventHandler}>
+      <CategoryImage category={category} />
+      <div className={styles.content}>
+        <h3 className={styles.title}>{title}</h3>
+        <h6 className={styles.estimatedTime}>캠퍼스로부터 {estimatedTime}분 내</h6>
+        <p className={styles.description}>{description}</p>
+      </div>
+    </li>
+  );
 }
 
 export default RestaurantSummary;
