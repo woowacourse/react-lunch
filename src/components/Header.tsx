@@ -1,9 +1,23 @@
 import styled from 'styled-components';
+import { SelectKind } from '../types';
+import { $ } from '../utils/domSelector';
 
 const Header = () => {
+  const initSelectOption = () => {
+    const categorySelectBox = $<HTMLSelectElement>(`select[name="${SelectKind.category}"]`);
+    categorySelectBox.selectedIndex = 0;
+    categorySelectBox.dispatchEvent(new Event('change', { bubbles: true }));
+
+    const orderSelectBox = $<HTMLSelectElement>(`select[name="${SelectKind.order}"]`);
+    orderSelectBox.selectedIndex = 0;
+    orderSelectBox.dispatchEvent(new Event('change', { bubbles: true }));
+  };
+
   return (
     <HeaderWrapper>
-      <h3 id="header_title">점심 뭐먹지</h3>
+      <h3 onClick={() => initSelectOption()} id="header_title">
+        점심 뭐먹지
+      </h3>
     </HeaderWrapper>
   );
 };
