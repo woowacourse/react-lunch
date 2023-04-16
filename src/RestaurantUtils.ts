@@ -18,19 +18,15 @@ export const getFilteredRestaurantsByCategory = (
 };
 
 export const getSortedRestaurantsByName = (restaurants: Restaurant[]) => {
-  const sortedRestaurants = restaurants.sort((restaurant1, restaurant2) => {
+  return restaurants.sort((restaurant1, restaurant2) => {
     return restaurant1.name.localeCompare(restaurant2.name);
   });
-
-  return sortedRestaurants;
 };
 
 export const getSortedRestaurantsByDistance = (restaurants: Restaurant[]) => {
-  const sortedRestaurants = restaurants.sort((restaurant1, restaurant2) => {
+  return restaurants.sort((restaurant1, restaurant2) => {
     return Number(restaurant1.distance) - Number(restaurant2.distance);
   });
-
-  return sortedRestaurants;
 };
 
 const sortMethods: Record<RestaurantSortOption, (restaurants: Restaurant[]) => Restaurant[]> = {
