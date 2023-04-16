@@ -6,7 +6,7 @@ import ModalButton from "./modalButton";
 interface PropsType {
   location: string;
   children: ReactElement;
-  closeModal: any;
+  closeModal: () => void;
 }
 
 export default function Modal(props: PropsType) {

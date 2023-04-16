@@ -10,10 +10,6 @@ interface PropsType {
   restaurant: Restaurant;
 }
 
-interface StateType {
-  isModalOpen: boolean;
-}
-
 export default function RestaurantItem(props: PropsType) {
   const { restaurant } = props;
   const { category, name, takingTime, description } = restaurant;

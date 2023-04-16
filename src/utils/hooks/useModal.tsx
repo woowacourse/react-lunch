@@ -1,10 +1,5 @@
 import { useState, useEffect } from "react";
 
-interface PropsType {
-  isClicked: boolean;
-  closeButton: any;
-}
-
 export default function useModal() {
   const [open, setOpen] = useState<boolean>(false);
 

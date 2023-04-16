@@ -4,7 +4,7 @@ import styled from "styled-components";
 interface PropsType {
   text: string;
   baseColor: string;
-  closeModal: any;
+  closeModal: () => void;
 }
 
 export default function ModalButton(props: PropsType) {
