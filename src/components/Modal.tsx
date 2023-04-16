@@ -16,11 +16,14 @@ class Modal extends Component<ModalProps> {
     window.addEventListener('keydown', this.closeModalCallback);
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.closeModalCallback);
+  }
+
   closeModalCallback(event: KeyboardEvent) {
     const { onClose } = this.props;
 
     if (event.key === 'Escape') {
-      window.removeEventListener('keydown', this.closeModalCallback);
       onClose();
     }
   }
