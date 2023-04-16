@@ -2,43 +2,43 @@ import React from 'react';
 import styled from 'styled-components';
 import ModalPortal from './ModalPortal';
 import { $ } from '../../utils/domSelector';
+import { useEffect } from 'react';
+import { useRef } from 'react';
 
 interface BottomSheetType {
   children: React.ReactNode;
   onClose: () => void;
 }
 
-class BottomSheet extends React.Component<BottomSheetType> {
-  bottomSheetRef: React.RefObject<HTMLDivElement> = React.createRef<HTMLDivElement>();
-  backdropRef: React.RefObject<HTMLDivElement> = React.createRef<HTMLDivElement>();
+const BottomSheet = (props: BottomSheetType) => {
+  const bottomSheetRef = useRef<HTMLDivElement>(null);
+  const backdropRef = useRef<HTMLDivElement>(null);
 
-  componentDidMount() {
+  useEffect(() => {
     setTimeout(() => {
-      if (this.bottomSheetRef.current) this.bottomSheetRef.current.classList.remove('close_bottom_sheet');
-      if (this.backdropRef.current) this.backdropRef.current?.classList.remove('close_background');
+      if (bottomSheetRef.current) bottomSheetRef.current.classList.remove('close_bottom_sheet');
+      if (backdropRef.current) backdropRef.current.classList.remove('close_background');
     });
-    this.handleScroll(false);
-  }
+    handleScroll(false);
 
-  componentWillUnmount() {
-    this.handleScroll(true);
-  }
+    return () => {
+      handleScroll(true);
+    };
+  }, []);
 
-  private handleScroll(isAvailable: boolean) {
+  const handleScroll = (isAvailable: boolean) => {
     isAvailable ? ($<HTMLElement>('body').style.overflow = '') : ($<HTMLElement>('body').style.overflow = 'hidden');
-  }
+  };
 
-  render() {
-    return (
-      <ModalPortal>
-        <BackDrop ref={this.backdropRef} id="backdrop" className="close_background" onClick={this.props.onClose} />
-        <BottomSheetWrapper ref={this.bottomSheetRef} id="bottom_sheet" className="close_bottom_sheet">
-          {this.props.children}
-        </BottomSheetWrapper>
-      </ModalPortal>
-    );
-  }
-}
+  return (
+    <ModalPortal>
+      <BackDrop ref={backdropRef} id="backdrop" className="close_background" onClick={props.onClose} />
+      <BottomSheetWrapper ref={bottomSheetRef} id="bottom_sheet" className="close_bottom_sheet">
+        {props.children}
+      </BottomSheetWrapper>
+    </ModalPortal>
+  );
+};
 
 const BottomSheetWrapper = styled.div`
   position: fixed;
