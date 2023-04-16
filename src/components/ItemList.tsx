@@ -39,10 +39,14 @@ class ItemList extends React.Component<Props, State> {
   closeEvent() {
     const current = this.modalRef.current;
     if (current) {
-      this.setState({
-        item: null,
-      });
+      this.initializeItemValue();
     }
+  }
+
+  initializeItemValue() {
+    this.setState({
+      item: null,
+    });
   }
 
   render(): React.ReactNode {
