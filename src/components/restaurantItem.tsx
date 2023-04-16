@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { Restaurant } from "../types/restaurant";
+import useModal from "../utils/hooks/useModal";
 import { convertImage } from "../utils/imageConverter";
 import ItemModalContent from "./ItemModalContent";
 import Modal from "./modal";
@@ -16,15 +17,7 @@ interface StateType {
 export default function RestaurantItem(props: PropsType) {
   const { restaurant } = props;
   const { category, name, takingTime, description } = restaurant;
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  function openModal() {
-    setIsModalOpen(true);
-  }
-
-  function closeModal() {
-    setIsModalOpen(false);
-  }
+  const { open, closeModal, openModal } = useModal();
 
   return (
     <>
@@ -38,7 +31,7 @@ export default function RestaurantItem(props: PropsType) {
           <Description>{description}</Description>
         </ItemInfo>
       </ItemContainer>
-      {isModalOpen && (
+      {open && (
         <Modal location="bottom" closeModal={closeModal}>
           <ItemModalContent restaurant={restaurant} />
         </Modal>

@@ -1,27 +1,16 @@
-import React, { ReactElement, useEffect } from "react";
+import React, { ReactElement, useEffect, useState, useRef } from "react";
 import styled from "styled-components";
+import useModal from "../utils/hooks/useModal";
 import ModalButton from "./modalButton";
 
 interface PropsType {
-  closeModal: () => void;
   location: string;
   children: ReactElement;
+  closeModal: any;
 }
 
 export default function Modal(props: PropsType) {
-  const { closeModal, location, children } = props;
-
-  useEffect(() => {
-    closeModalByESC();
-  }, []);
-
-  function closeModalByESC() {
-    window.addEventListener("keyup", (e) => {
-      if (e.key === "Escape") {
-        closeModal();
-      }
-    });
-  }
+  const { location, children, closeModal } = props;
 
   return (
     <>
@@ -29,11 +18,7 @@ export default function Modal(props: PropsType) {
       <ModalContainer location={location}>
         {children}
         <ButtonContainer>
-          <ModalButton
-            text="닫기"
-            baseColor="orange"
-            handleClick={closeModal}
-          />
+          <ModalButton text="닫기" baseColor="orange" closeModal={closeModal} />
         </ButtonContainer>
       </ModalContainer>
     </>

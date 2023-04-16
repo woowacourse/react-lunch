@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 interface PropsType {
   text: string;
   baseColor: string;
-  handleClick?: () => void;
+  closeModal: any;
 }
 
 export default function ModalButton(props: PropsType) {
-  const { text, baseColor, handleClick } = props;
+  const { text, baseColor, closeModal } = props;
 
   return (
-    <Button baseColor={baseColor} onClick={handleClick}>
+    <Button baseColor={baseColor} onClick={closeModal}>
       {text}
     </Button>
   );
