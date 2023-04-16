@@ -1,29 +1,21 @@
-import { useState } from "react";
 import RestaurantDetailModal from "./RestaurantDetailModal";
 import CategoryIcon from "./CategoryIcon";
 import type { Restaurant } from "../types/restaurant";
 
 import styles from "./RestaurantItem.module.css";
+import useModal from "../hooks/useModal";
 
 interface RestaurantItemProps {
   restaurant: Restaurant;
 }
 
 const RestaurantItem = (props: RestaurantItemProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isModalOpen, openModal, closeModal } = useModal();
   const { name, category, distance, description } = props.restaurant;
-
-  const onClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const onClose = () => {
-    setIsModalOpen(false);
-  };
 
   return (
     <>
-      <li className={styles.restaurant} onClick={onClick}>
+      <li className={styles.restaurant} onClick={openModal}>
         <CategoryIcon category={category} />
         <div className={styles.info}>
           <h3 className={`${styles.name} text-subtitle`}>{name}</h3>
@@ -31,7 +23,7 @@ const RestaurantItem = (props: RestaurantItemProps) => {
           <p className={`${styles.description} text-body`}>{description}</p>
         </div>
       </li>
-      {isModalOpen && <RestaurantDetailModal restaurant={props.restaurant} onClose={onClose} />}
+      {isModalOpen && <RestaurantDetailModal restaurant={props.restaurant} onClose={closeModal} />}
     </>
   );
 };
