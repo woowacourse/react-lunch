@@ -13,45 +13,43 @@ class RestaurantInfoModal extends Component<RestaurantModal> {
       <>
         {ReactDom.createPortal(
           <dialog ref={this.props.refModal}>
-            <ModalBackdrop
-              className="modal-backdrop"
-              onClick={this.props.onClose}
-            />
-            <Modal>
-              <div className="category">
-                {restaurant && (
-                  <img
-                    src={`${process.env.PUBLIC_URL}/assets/category-${
-                      ENGLISH_CATEGORY[restaurant.category]
-                    }.png`}
-                    alt={restaurant.category}
-                  />
-                )}
-              </div>
-              <article>
-                <Name className="text-subtitle">
-                  {restaurant && restaurant.name}
-                </Name>
-                <TakingTime className="text-body takingTime">
-                  캠퍼스부터 {restaurant && restaurant.takingTime}분 내
-                </TakingTime>
-                <Description className="text-body">
-                  {restaurant && restaurant.description}
-                </Description>
-                {restaurant && (
-                  <Link href={restaurant.link} target="_blank">
-                    {restaurant && restaurant.link}
-                  </Link>
-                )}
-              </article>
-              <CloseButton
-                type="button"
-                className="text-caption"
-                onClick={this.props.onClose}
-              >
-                닫기
-              </CloseButton>
-            </Modal>
+            {restaurant && (
+              <>
+                <ModalBackdrop
+                  className="modal-backdrop"
+                  onClick={this.props.onClose}
+                />
+                <Modal>
+                  <div className="category">
+                    <img
+                      src={`${process.env.PUBLIC_URL}/assets/category-${
+                        ENGLISH_CATEGORY[restaurant.category]
+                      }.png`}
+                      alt={restaurant.category}
+                    />
+                  </div>
+                  <article>
+                    <Name className="text-subtitle">{restaurant.name}</Name>
+                    <TakingTime className="text-body takingTime">
+                      캠퍼스부터 {restaurant.takingTime}분 내
+                    </TakingTime>
+                    <Description className="text-body">
+                      {restaurant.description}
+                    </Description>
+                    <Link href={restaurant.link} target="_blank">
+                      {restaurant.link}
+                    </Link>
+                  </article>
+                  <CloseButton
+                    type="button"
+                    className="text-caption close-btn"
+                    onClick={this.props.onClose}
+                  >
+                    닫기
+                  </CloseButton>
+                </Modal>
+              </>
+            )}
           </dialog>,
           $("body")
         )}
