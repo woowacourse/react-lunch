@@ -9,7 +9,7 @@
 - [x] Modal
 - [x] RestaurantDetail
 - [x] RestaurantList
-- [ ] RestaurantSummary
+- [x] RestaurantSummary
 - [ ] Select
 
 ## Custom Hooks을 이용하여 재사용 가능한 기능을 분리한다.
