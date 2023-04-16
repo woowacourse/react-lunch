@@ -6,7 +6,7 @@ type SelectContainerProps = {
   onChangeFilterOptions: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-class SelectContainer extends React.Component<SelectContainerProps> {
+class SelectContainer extends React.PureComponent<SelectContainerProps> {
   render() {
     return (
       <section className="restaurant-filter-container">

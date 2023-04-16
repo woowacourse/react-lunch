@@ -8,7 +8,7 @@ type SelectProps = {
   onChangeFilterOptions: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-class Select extends React.Component<SelectProps> {
+class Select extends React.PureComponent<SelectProps> {
   render() {
     return (
       <select
