@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { Restaurant } from '../../types/restaurants';
+import BottomSheet from '../@common/BottomSheet';
 import CategoryImg from '../CategoryImg';
 import St from './styled';
 
@@ -11,25 +11,11 @@ interface RestaurantDetailBottomSheetProps {
 export default function RestaurantDetailBottomSheet(
   props: RestaurantDetailBottomSheetProps
 ) {
-  const {
-    restaurant: { title, distance, detail, link, category },
-    close,
-  } = props;
+  const { restaurant, close } = props;
+  const { title, distance, detail, link, category } = restaurant;
 
-  useEffect(() => {
-    const escHandler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') close();
-    };
-
-    window.addEventListener('keyup', escHandler);
-
-    return () => {
-      window.removeEventListener('keyup', escHandler);
-    };
-  }, []);
   return (
-    <>
-      <St.Backdrop onClick={close} />
+    <BottomSheet onClose={close}>
       <St.BottomSheet>
         <CategoryImg category={category} />
         <St.Detail>
@@ -40,6 +26,6 @@ export default function RestaurantDetailBottomSheet(
           <St.Button onClick={close}>닫기</St.Button>
         </St.Detail>
       </St.BottomSheet>
-    </>
+    </BottomSheet>
   );
 }
