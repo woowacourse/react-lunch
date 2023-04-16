@@ -68,16 +68,14 @@ export function App() {
 
   const handleSortFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOption = e.target.value;
-    if (isSortFilterType(selectedOption)) {
-      setFilter({ ...filter, sort: selectedOption });
-    }
+    if (!isSortFilterType(selectedOption)) return;
+    setFilter({ ...filter, sort: selectedOption });
   };
 
   const handleCategoryFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOption = e.target.value;
-    if (isCategoryFilterTye(selectedOption)) {
-      setFilter({ ...filter, category: selectedOption });
-    }
+    if (!isCategoryFilterTye(selectedOption)) return;
+    setFilter({ ...filter, category: selectedOption });
   };
 
   return (
