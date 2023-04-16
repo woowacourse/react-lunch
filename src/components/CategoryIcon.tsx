@@ -1,9 +1,10 @@
 import getCategoryImage from "../assets/images/category";
+import { CategoryOptions } from "../constants/options";
 
 import styles from "./CategoryIcon.module.css";
 
 interface Props {
-  category: string;
+  category: CategoryOptions;
 }
 
 const CategoryIcon = (props: Props) => {

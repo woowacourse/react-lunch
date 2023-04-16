@@ -17,7 +17,7 @@ const RestaurantList = (props: Props) => {
   const [getRestaurants] = useLocalStorage("restaurant");
   const restaurants: Restaurant[] = getRestaurants();
 
-  const { filterList, sortList } = useSelectBox(restaurants);
+  const { filterList, sortList } = useSelectBox<Restaurant>(restaurants);
   const selctedRestaurnants = sortList(filterList(category), sorting);
 
   return (
