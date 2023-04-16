@@ -6,15 +6,21 @@ import { imgSrc } from '../../constants/imageSrc';
 type Props = {
   restaurant: Restaurant;
   onRestaurantClick: (id: Restaurant['id']) => void;
+  openModal: () => void;
 };
 
-export function RestaurantItem({ restaurant, onRestaurantClick }: Props) {
+export function RestaurantItem({
+  restaurant,
+  onRestaurantClick,
+  openModal,
+}: Props) {
   const { id, name, category, distance, description } = restaurant;
 
   return (
     <RestaurantWrapper
       onClick={() => {
         onRestaurantClick(id);
+        openModal();
       }}
     >
       <RestaurantCategory>

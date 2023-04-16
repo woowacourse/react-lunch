@@ -1,7 +1,7 @@
-import { Component } from 'react';
+import styled from 'styled-components';
+
 import { Restaurant } from '../../types';
 import { imgSrc } from '../../constants/imageSrc';
-import styled from 'styled-components';
 import {
   DistanceText,
   Image,
@@ -15,50 +15,33 @@ type Props = {
   onCloseButtonClick: () => void;
 };
 
-export class Modal extends Component<Props> {
-  render() {
-    const { name, category, distance, description, link } = this.props.restaurant;
-    const onCloseButtonClick = this.props.onCloseButtonClick;
+export function Modal({ restaurant, onCloseButtonClick }: Props) {
+  const { name, category, distance, description, link } = restaurant;
 
-    return (
-      <Wrapper>
-        <Backdrop></Backdrop>
-        <Container>
-          <IconContainer>
-            <RestaurantCategory>
-              <Image src={imgSrc[category]} alt={category} />
-            </RestaurantCategory>
-          </IconContainer>
-          <RestaurantInfoWrapper>
-            <Name>{name}</Name>
-            <DistanceText>캠퍼스로부터 {distance}분 내</DistanceText>
-            <Description>{description}</Description>
-            <a href={link} target="_blank" rel="noreferrer">
-              {link}
-            </a>
-          </RestaurantInfoWrapper>
-          <ButtonContainer>
-            <DeleteButton>삭제하기</DeleteButton>
-            <CloseButton onClick={onCloseButtonClick}>닫기</CloseButton>
-          </ButtonContainer>
-        </Container>
-      </Wrapper>
-    );
-  }
-
-  closeModalByESC(callback: () => void, e: KeyboardEvent) {
-    if (e.key === 'Escape') {
-      callback();
-    }
-  }
-  
-  componentDidMount() {
-    window.addEventListener('keydown', (e) => {this.closeModalByESC(this.props.onCloseButtonClick, e)});
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('keydown', (e) => {this.closeModalByESC(this.props.onCloseButtonClick, e)});
-  }
+  return (
+    <Wrapper>
+      <Backdrop></Backdrop>
+      <Container>
+        <IconContainer>
+          <RestaurantCategory>
+            <Image src={imgSrc[category]} alt={category} />
+          </RestaurantCategory>
+        </IconContainer>
+        <RestaurantInfoWrapper>
+          <Name>{name}</Name>
+          <DistanceText>캠퍼스로부터 {distance}분 내</DistanceText>
+          <Description>{description}</Description>
+          <a href={link} target='_blank' rel='noreferrer'>
+            {link}
+          </a>
+        </RestaurantInfoWrapper>
+        <ButtonContainer>
+          <DeleteButton>삭제하기</DeleteButton>
+          <CloseButton onClick={onCloseButtonClick}>닫기</CloseButton>
+        </ButtonContainer>
+      </Container>
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.div``;

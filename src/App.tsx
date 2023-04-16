@@ -1,24 +1,19 @@
-import { Component, useEffect } from 'react';
 import { Header, Modal, RestaurantList, SelectBox } from './components';
 
 import { GlobalStyle } from './global-style';
 import styled, { ThemeProvider } from 'styled-components';
 
-import { CATEGORY, SORTING } from './constants/index';
-import { CategoryOption, Restaurant, SortOption } from './types';
-
-import data from './data/mockData.json';
-import { db } from './db/restaurants';
-
 import variables from './components/styles/variables';
 import { isCategoryOption, isSortOption } from './utils';
-import useRestaurants from './hooks/useRestaurants';
+import { useRestaurants, useBoolean } from './hooks';
 
 export default function App() {
   const {
-    values: { restaurants },
+    values: { restaurants, clickedRestaurant },
     handlers: { handleRestaurantClick },
   } = useRestaurants();
+
+  const [isModalOpen, openModal, closeModal] = useBoolean(false);
 
   return (
     <>
@@ -29,7 +24,14 @@ export default function App() {
           <RestaurantList
             restaurants={restaurants}
             onRestaurantClick={handleRestaurantClick}
+            openModal={openModal}
           ></RestaurantList>
+          {clickedRestaurant && isModalOpen && (
+            <Modal
+              restaurant={clickedRestaurant}
+              onCloseButtonClick={closeModal}
+            ></Modal>
+          )}
         </div>
       </ThemeProvider>
     </>

@@ -5,7 +5,7 @@ import { CATEGORY, SORTING } from '../constants';
 
 const allRestaurants = db.getRestaurants();
 
-export default function useRestaurants() {
+export function useRestaurants() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>(allRestaurants);
   const [category, setCategory] = useState<CategoryOption>(CATEGORY.ALL);
   const [sorting, setSorting] = useState<SortOption>(SORTING.DISTANCE);

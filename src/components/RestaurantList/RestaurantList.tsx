@@ -6,9 +6,14 @@ import { RestaurantItem } from '../RestaurantItem/RestaurantItem';
 type Props = {
   restaurants: Restaurant[];
   onRestaurantClick: (id: Restaurant['id']) => void;
+  openModal: () => void;
 };
 
-export function RestaurantList({ restaurants, onRestaurantClick }: Props) {
+export function RestaurantList({
+  restaurants,
+  onRestaurantClick,
+  openModal,
+}: Props) {
   return (
     <RestaurantListWrapper>
       {restaurants.map((restaurant) => (
@@ -16,6 +21,7 @@ export function RestaurantList({ restaurants, onRestaurantClick }: Props) {
           key={restaurant.id}
           restaurant={restaurant}
           onRestaurantClick={onRestaurantClick}
+          openModal={openModal}
         ></RestaurantItem>
       ))}
     </RestaurantListWrapper>
