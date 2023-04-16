@@ -88,7 +88,7 @@ class RestaurantList extends React.Component<object, RestaurantListStateType> {
   render() {
     return (
       <>
-        <SelectBoxContainer>
+        <SelectBoxWrapper>
           <SelectBox
             selectType={SelectKind.category}
             options={Object.values(CATEGORY_NAME)}
@@ -103,7 +103,7 @@ class RestaurantList extends React.Component<object, RestaurantListStateType> {
               this.setState({ order: event.target.value });
             }}
           />
-        </SelectBoxContainer>
+        </SelectBoxWrapper>
         <RestaurantListWrapper>
           {this.state.filteredRestaurants.map((restaurant: RestaurantItemType, index: number) => {
             return (
@@ -130,7 +130,7 @@ const RestaurantListWrapper = styled.div`
   margin-top: 156px;
 `;
 
-const SelectBoxContainer = styled.div`
+const SelectBoxWrapper = styled.div`
   position: fixed;
   width: 100%;
   top: 64px;

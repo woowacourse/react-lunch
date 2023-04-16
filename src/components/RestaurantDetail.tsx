@@ -11,12 +11,12 @@ class RestaurantDetail extends React.Component<RestaurantItemType & { onClose: (
         <CategoryWrapper>
           <CategoryIcon src={CATEGORY_IMG[this.props.category]} alt={this.props.category} />
         </CategoryWrapper>
-        <RestaurantInfo>
+        <RestaurantInfoWrapper>
           <h3>{this.props.name}</h3>
           <span>캠퍼스부터 {this.props.distance}분 이내</span>
           <p>{this.props.description}</p>
           <a href={this.props.link}>{this.props.link}</a>
-        </RestaurantInfo>
+        </RestaurantInfoWrapper>
         <Button text="닫기" onClick={this.props.onClose} />
       </RestaurantDetailWrapper>
     );
@@ -44,7 +44,7 @@ const CategoryIcon = styled.img`
   height: 36px;
 `;
 
-const RestaurantInfo = styled.div`
+const RestaurantInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
