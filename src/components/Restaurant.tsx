@@ -1,4 +1,3 @@
-import { Component } from "react";
 import styled from "styled-components";
 import { ENGLISH_CATEGORY } from "../constants";
 import { RestaurantInfo } from "../types";
@@ -8,33 +7,31 @@ interface Props {
   onClick: () => void;
 }
 
-class Restaurant extends Component<Props> {
-  render() {
-    const { restaurant: restaurantInfo } = this.props;
+const Restaurant = (props: Props) => {
+  const { restaurant: restaurantInfo } = props;
 
-    return (
-      <RestaurantContainer onClick={this.props.onClick}>
-        <div className="category">
-          <img
-            src={`${process.env.PUBLIC_URL}/assets/category-${
-              ENGLISH_CATEGORY[restaurantInfo.category]
-            }.png`}
-            alt={restaurantInfo.category}
-          />
-        </div>
-        <article>
-          <h3 className="text-subtitle">{restaurantInfo.name}</h3>
-          <TakingTime className="text-body takingTime">
-            캠퍼스부터 {restaurantInfo.takingTime}분 내
-          </TakingTime>
-          <Description className="text-body description">
-            {restaurantInfo.description}
-          </Description>
-        </article>
-      </RestaurantContainer>
-    );
-  }
-}
+  return (
+    <RestaurantContainer onClick={props.onClick}>
+      <div className="category">
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/category-${
+            ENGLISH_CATEGORY[restaurantInfo.category]
+          }.png`}
+          alt={restaurantInfo.category}
+        />
+      </div>
+      <article>
+        <h3 className="text-subtitle">{restaurantInfo.name}</h3>
+        <TakingTime className="text-body takingTime">
+          캠퍼스부터 {restaurantInfo.takingTime}분 내
+        </TakingTime>
+        <Description className="text-body description">
+          {restaurantInfo.description}
+        </Description>
+      </article>
+    </RestaurantContainer>
+  );
+};
 
 const RestaurantContainer = styled.li`
   display: flex;

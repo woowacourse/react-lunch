@@ -1,15 +1,12 @@
-import { Component } from "react";
 import styled from "styled-components";
 
-class HeaderSection extends Component {
-  render() {
-    return (
-      <Header>
-        <Title className="text-title">점심 뭐 먹지</Title>
-      </Header>
-    );
-  }
-}
+const HeaderSection = () => {
+  return (
+    <Header>
+      <Title className="text-title">점심 뭐 먹지</Title>
+    </Header>
+  );
+};
 
 const Header = styled.header`
   height: 64px;

@@ -1,4 +1,4 @@
-import { RefObject, Component } from "react";
+import { RefObject } from "react";
 import ReactDom from "react-dom";
 import styled from "styled-components";
 import { ENGLISH_CATEGORY } from "../constants";
@@ -6,63 +6,61 @@ import { RestaurantInfo } from "../types";
 import { $ } from "../utils/selector";
 
 interface Props {
-  selectedRestaurant: null | RestaurantInfo;
+  selectedRestaurant: undefined | RestaurantInfo;
   onClose: () => void;
   refModal: RefObject<HTMLDialogElement>;
 }
 
-class RestaurantInfoModal extends Component<Props> {
-  render() {
-    const { selectedRestaurant: restaurant } = this.props;
+const RestaurantInfoModal = (props: Props) => {
+  const { selectedRestaurant: restaurant } = props;
 
-    return (
-      <>
-        {ReactDom.createPortal(
-          <dialog ref={this.props.refModal}>
-            {restaurant && (
-              <>
-                <ModalBackdrop
-                  className="modal-backdrop"
-                  onClick={this.props.onClose}
-                />
-                <Modal>
-                  <div className="category">
-                    <img
-                      src={`${process.env.PUBLIC_URL}/assets/category-${
-                        ENGLISH_CATEGORY[restaurant.category]
-                      }.png`}
-                      alt={restaurant.category}
-                    />
-                  </div>
-                  <article>
-                    <Name className="text-subtitle">{restaurant.name}</Name>
-                    <TakingTime className="text-body takingTime">
-                      캠퍼스부터 {restaurant.takingTime}분 내
-                    </TakingTime>
-                    <Description className="text-body">
-                      {restaurant.description}
-                    </Description>
-                    <Link href={restaurant.link} target="_blank">
-                      {restaurant.link}
-                    </Link>
-                  </article>
-                  <CloseButton
-                    type="button"
-                    className="text-caption close-btn"
-                    onClick={this.props.onClose}
-                  >
-                    닫기
-                  </CloseButton>
-                </Modal>
-              </>
-            )}
-          </dialog>,
-          $("body")
-        )}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      {ReactDom.createPortal(
+        <dialog ref={props.refModal}>
+          {restaurant && (
+            <>
+              <ModalBackdrop
+                className="modal-backdrop"
+                onClick={props.onClose}
+              />
+              <Modal>
+                <div className="category">
+                  <img
+                    src={`${process.env.PUBLIC_URL}/assets/category-${
+                      ENGLISH_CATEGORY[restaurant.category]
+                    }.png`}
+                    alt={restaurant.category}
+                  />
+                </div>
+                <article>
+                  <Name className="text-subtitle">{restaurant.name}</Name>
+                  <TakingTime className="text-body takingTime">
+                    캠퍼스부터 {restaurant.takingTime}분 내
+                  </TakingTime>
+                  <Description className="text-body">
+                    {restaurant.description}
+                  </Description>
+                  <Link href={restaurant.link} target="_blank">
+                    {restaurant.link}
+                  </Link>
+                </article>
+                <CloseButton
+                  type="button"
+                  className="text-caption close-btn"
+                  onClick={props.onClose}
+                >
+                  닫기
+                </CloseButton>
+              </Modal>
+            </>
+          )}
+        </dialog>,
+        $("body")
+      )}
+    </>
+  );
+};
 
 const ModalBackdrop = styled.div`
   position: fixed;
@@ -90,7 +88,7 @@ const Name = styled.h3`
 `;
 
 const TakingTime = styled.p`
-  margin: 16px 0;
+  margin: 12px 0 18px;
 `;
 
 const Description = styled.p`

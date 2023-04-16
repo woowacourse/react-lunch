@@ -1,4 +1,4 @@
-import { Component, createRef, RefObject } from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
 import Restaurant from "./Restaurant";
 import { RestaurantInfo } from "../types";
@@ -9,59 +9,51 @@ interface Props {
   category: string;
 }
 
-class Restaurants extends Component<Props> {
-  restaurantInfoModal: RefObject<HTMLDialogElement> = createRef();
+const Restaurants = (props: Props) => {
+  const restaurantInfoModal = useRef<HTMLDialogElement>(null);
 
-  state = {
-    selectedRestaurant: null,
+  const [restaurant, setRestaurant] = useState<RestaurantInfo | undefined>(
+    undefined
+  );
+
+  const handleModalOpenButton = (restaurantId: string) => {
+    setRestaurant(findSelectedRestaurant(restaurantId));
+
+    const modal = restaurantInfoModal.current;
+    if (modal) modal.showModal();
   };
 
-  handleModalOpenButton = (restaurantId: string) => {
-    this.setState({
-      selectedRestaurant: this.findSelectedRestaurant(restaurantId),
-    });
-
-    const restaurantInfoModal = this.restaurantInfoModal.current;
-    if (restaurantInfoModal) {
-      restaurantInfoModal.showModal();
-    }
+  const handleModalCloseButton = () => {
+    const modal = restaurantInfoModal.current;
+    if (modal) modal.close();
   };
 
-  handleModalCloseButton = () => {
-    const restaurantInfoModal = this.restaurantInfoModal.current;
-    if (restaurantInfoModal) {
-      restaurantInfoModal.close();
-    }
-  };
-
-  findSelectedRestaurant = (restaurantId: string) => {
-    return this.props.restaurantList.find(
+  const findSelectedRestaurant = (restaurantId: string) => {
+    return props.restaurantList.find(
       (restaurant) => restaurant.id === restaurantId
     );
   };
 
-  render() {
-    return (
-      <>
-        <RestaurantListContainer>
-          {this.props.restaurantList.map((restaurant: RestaurantInfo) => (
-            <Restaurant
-              key={restaurant.id}
-              restaurant={restaurant}
-              onClick={() => this.handleModalOpenButton(restaurant.id)}
-            />
-          ))}
-        </RestaurantListContainer>
+  return (
+    <>
+      <RestaurantListContainer>
+        {props.restaurantList.map((restaurant: RestaurantInfo) => (
+          <Restaurant
+            key={restaurant.id}
+            restaurant={restaurant}
+            onClick={() => handleModalOpenButton(restaurant.id)}
+          />
+        ))}
+      </RestaurantListContainer>
 
-        <RestaurantInfoModal
-          selectedRestaurant={this.state.selectedRestaurant}
-          onClose={this.handleModalCloseButton}
-          refModal={this.restaurantInfoModal}
-        ></RestaurantInfoModal>
-      </>
-    );
-  }
-}
+      <RestaurantInfoModal
+        selectedRestaurant={restaurant}
+        onClose={() => handleModalCloseButton()}
+        refModal={restaurantInfoModal}
+      />
+    </>
+  );
+};
 
 const RestaurantListContainer = styled.ul`
   padding: 0 16px;
