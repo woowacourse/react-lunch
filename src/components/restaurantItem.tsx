@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Restaurant } from "../types/restaurant";
 import { convertImage } from "../utils/imageConverter";
-import { Modal } from "./modal";
-import { ItemModalContent } from "./ItemModalContent";
+import ItemModalContent from "./ItemModalContent";
+import Modal from "./modal";
 
 interface PropsType {
   restaurant: Restaurant;
@@ -13,46 +13,38 @@ interface StateType {
   isModalOpen: boolean;
 }
 
-export class RestaurantItem extends React.Component<PropsType, StateType> {
-  constructor(props: PropsType) {
-    super(props);
+export default function RestaurantItem(props: PropsType) {
+  const { restaurant } = props;
+  const { category, name, takingTime, description } = restaurant;
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    this.state = {
-      isModalOpen: false,
-    };
+  function openModal() {
+    setIsModalOpen(true);
   }
 
-  openModal() {
-    this.setState({ isModalOpen: true });
+  function closeModal() {
+    setIsModalOpen(false);
   }
 
-  closeModal() {
-    this.setState({ isModalOpen: false });
-  }
-
-  render() {
-    const { category, name, takingTime, description } = this.props.restaurant;
-
-    return (
-      <>
-        <ItemContainer onClick={this.openModal.bind(this)}>
-          <ImgWrapper>
-            <CategoryImg src={convertImage(category)} alt={category} />
-          </ImgWrapper>
-          <ItemInfo>
-            <Name>{name}</Name>
-            <TakingTime>캠퍼스로부터 {takingTime}분 내</TakingTime>
-            <Description>{description}</Description>
-          </ItemInfo>
-        </ItemContainer>
-        {this.state.isModalOpen && (
-          <Modal location="bottom" closeModal={this.closeModal.bind(this)}>
-            <ItemModalContent restaurant={this.props.restaurant} />
-          </Modal>
-        )}
-      </>
-    );
-  }
+  return (
+    <>
+      <ItemContainer onClick={openModal}>
+        <ImgWrapper>
+          <CategoryImg src={convertImage(category)} alt={category} />
+        </ImgWrapper>
+        <ItemInfo>
+          <Name>{name}</Name>
+          <TakingTime>캠퍼스로부터 {takingTime}분 내</TakingTime>
+          <Description>{description}</Description>
+        </ItemInfo>
+      </ItemContainer>
+      {isModalOpen && (
+        <Modal location="bottom" closeModal={closeModal}>
+          <ItemModalContent restaurant={restaurant} />
+        </Modal>
+      )}
+    </>
+  );
 }
 
 const ItemContainer = styled.li`

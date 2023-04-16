@@ -1,50 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { getRestaurantData } from "../api/getData";
 import { SELECT_OPTION } from "../constant/select";
 import { Restaurant } from "../types/restaurant";
 import { CategoryUnion, SortingUnion } from "../types/select";
-import { RestaurantItem } from "./restaurantItem";
+import RestaurantItem from "./restaurantItem";
 
 interface PropsType {
   sorting: SortingUnion;
   category: CategoryUnion;
 }
 
-interface StateType {
-  restaurants: Restaurant[];
-}
+export default function RestaurantSection(props: PropsType) {
+  const { sorting, category } = props;
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
 
-export class RestaurantSection extends React.Component<PropsType, StateType> {
-  constructor(props: PropsType) {
-    super(props);
+  useEffect(() => {
+    async function getData() {
+      const data = await getRestaurantData();
+      setRestaurants([...data]);
+    }
+    getData();
+  }, []);
 
-    this.state = {
-      restaurants: [],
-    };
+  function getFilteredRestaurants() {
+    if (category === SELECT_OPTION.ALL) return restaurants;
+
+    return restaurants.filter((restaurant) => restaurant.category === category);
   }
 
-  async componentDidMount() {
-    const data = await getRestaurantData();
-
-    this.setState({
-      restaurants: data,
-    });
-  }
-
-  getFilteredRestaurants() {
-    const category = this.props.category;
-
-    if (category === SELECT_OPTION.ALL) return this.state.restaurants;
-
-    return this.state.restaurants.filter(
-      (restaurant) => restaurant.category === category
-    );
-  }
-
-  getSortedRestaurants(filteredRestaurant: Restaurant[]) {
-    const sorting = this.props.sorting;
-
+  function getSortedRestaurants(filteredRestaurant: Restaurant[]) {
     if (sorting === SELECT_OPTION.NAME) {
       return filteredRestaurant.sort((resA, resB) =>
         resA.name.localeCompare(resB.name)
@@ -58,22 +43,20 @@ export class RestaurantSection extends React.Component<PropsType, StateType> {
     }
   }
 
-  getFinalRestaurants() {
-    const filteredRestaurants = this.getFilteredRestaurants();
-    return this.getSortedRestaurants(filteredRestaurants);
+  function getFinalRestaurants() {
+    const filteredRestaurants = getFilteredRestaurants();
+    return getSortedRestaurants(filteredRestaurants);
   }
 
-  render() {
-    return (
-      <>
-        <RestaurantContainer>
-          {this.getFinalRestaurants()?.map((restaurant: Restaurant) => (
-            <RestaurantItem key={restaurant.id} restaurant={restaurant} />
-          ))}
-        </RestaurantContainer>
-      </>
-    );
-  }
+  return (
+    <>
+      <RestaurantContainer>
+        {getFinalRestaurants()?.map((restaurant: Restaurant) => (
+          <RestaurantItem key={restaurant.id} restaurant={restaurant} />
+        ))}
+      </RestaurantContainer>
+    </>
+  );
 }
 
 const RestaurantContainer = styled.ul`

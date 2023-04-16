@@ -7,14 +7,14 @@ interface PropsType {
   handleClick?: () => void;
 }
 
-export class ModalButton extends React.Component<PropsType> {
-  render() {
-    return (
-      <Button baseColor={this.props.baseColor} onClick={this.props.handleClick}>
-        {this.props.text}
-      </Button>
-    );
-  }
+export default function ModalButton(props: PropsType) {
+  const { text, baseColor, handleClick } = props;
+
+  return (
+    <Button baseColor={baseColor} onClick={handleClick}>
+      {text}
+    </Button>
+  );
 }
 
 const Button = styled.button<{ baseColor: string }>`

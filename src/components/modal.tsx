@@ -1,6 +1,6 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
 import styled from "styled-components";
-import { ModalButton } from "./modalButton";
+import ModalButton from "./modalButton";
 
 interface PropsType {
   closeModal: () => void;
@@ -8,36 +8,36 @@ interface PropsType {
   children: ReactElement;
 }
 
-export class Modal extends React.Component<PropsType> {
-  closeModalByESC() {
+export default function Modal(props: PropsType) {
+  const { closeModal, location, children } = props;
+
+  useEffect(() => {
+    closeModalByESC();
+  }, []);
+
+  function closeModalByESC() {
     window.addEventListener("keyup", (e) => {
       if (e.key === "Escape") {
-        this.props.closeModal();
+        closeModal();
       }
     });
   }
 
-  componentDidMount() {
-    this.closeModalByESC();
-  }
-
-  render() {
-    return (
-      <>
-        <BackDrop onClick={this.props.closeModal} />
-        <ModalContainer location={this.props.location}>
-          {this.props.children}
-          <ButtonContainer>
-            <ModalButton
-              text="닫기"
-              baseColor="orange"
-              handleClick={this.props.closeModal}
-            />
-          </ButtonContainer>
-        </ModalContainer>
-      </>
-    );
-  }
+  return (
+    <>
+      <BackDrop onClick={closeModal} />
+      <ModalContainer location={location}>
+        {children}
+        <ButtonContainer>
+          <ModalButton
+            text="닫기"
+            baseColor="orange"
+            handleClick={closeModal}
+          />
+        </ButtonContainer>
+      </ModalContainer>
+    </>
+  );
 }
 
 const BackDrop = styled.div`

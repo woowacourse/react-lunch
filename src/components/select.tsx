@@ -13,27 +13,27 @@ interface PropsType {
   handleSelect: (selected: SelectedValue) => void;
 }
 
-export class Select extends React.Component<PropsType> {
-  render() {
-    return (
-      <SelectContianer
-        onChange={(e) => {
-          const value = e.target.value as SortingUnion | CategoryUnion;
-          this.props.handleSelect({
-            type: this.props.name,
-            value: value,
-          });
-        }}>
-        {this.props.options.map((option: string) => {
-          return (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          );
-        })}
-      </SelectContianer>
-    );
-  }
+export default function Select(props: PropsType) {
+  const { name, options, handleSelect } = props;
+
+  return (
+    <SelectContianer
+      onChange={(e) => {
+        const value = e.target.value as SortingUnion | CategoryUnion;
+        handleSelect({
+          type: name,
+          value: value,
+        });
+      }}>
+      {options.map((option: string) => {
+        return (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        );
+      })}
+    </SelectContianer>
+  );
 }
 
 const SelectContianer = styled.select`
