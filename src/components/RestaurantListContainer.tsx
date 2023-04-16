@@ -4,12 +4,17 @@ import FilterBar from './FilterBar';
 import { Category } from '../types/RestaurantDetail';
 import Modal from './Modal';
 
-export default class RestaurantListContainer extends Component {
-  state: {
-    category: Category;
-    sort: string;
-    restaurantID: number;
-  } = {
+interface RestaurantListContainerType {
+  category: Category;
+  sort: string;
+  restaurantID: number;
+}
+
+export default class RestaurantListContainer extends Component<
+  object,
+  RestaurantListContainerType
+> {
+  state: RestaurantListContainerType = {
     category: '전체',
     sort: '이름순',
     restaurantID: 0,
@@ -19,11 +24,28 @@ export default class RestaurantListContainer extends Component {
     category: Category;
     sort: string;
   }) => {
-    this.setState({ filterOptions });
+    this.setState({ ...filterOptions });
+  };
+
+  isCategory = (category: string): category is Category => {
+    const categoris = [
+      '전체',
+      '한식',
+      '중식',
+      '일식',
+      '양식',
+      '아시안',
+      '기타',
+    ];
+
+    if (categoris.includes(category)) return true;
+    return false;
   };
 
   handleCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const category = event.target.value;
+
+    if (!this.isCategory(category)) return;
 
     this.setState({
       ...this.state,
