@@ -7,9 +7,8 @@ interface Props {
   restaurantItem: restaurant;
 }
 
-class Item extends React.Component<Props> {
-  render(): React.ReactNode {
-    const { category, name, distance, description, id } = this.props.restaurantItem;
+const Item: React.FC<Props> = (props)=>{
+    const { category, name, distance, description, id } = props.restaurantItem;
     return (
       <li className="restaurant" data-id={id}>
         <div className="restaurant_info">
@@ -24,7 +23,6 @@ class Item extends React.Component<Props> {
         </div>
       </li>
     );
-  }
 }
 
 export default Item;

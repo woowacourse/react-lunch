@@ -1,14 +1,12 @@
-import React, { ReactNode } from 'react';
+import React, { useState } from 'react';
 
 interface Props{
     class: string;
-    children: ReactNode;
+    children: React.ReactNode;
 }
 
-class DetailItem extends React.Component<Props> {
-  render(): React.ReactNode {
-    return <div className={this.props.class}>{this.props.children}</div>;
-  }
+const DetailItem:React.FC<Props> = (props:Props)=>{
+    return <div className={props.class}>{props.children}</div>;
 }
 
 export default DetailItem;

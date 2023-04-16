@@ -9,9 +9,9 @@ interface Props {
   closeEvent: () => void;
 }
 
-class ItemInformation extends React.Component<Props> {
-  render(): React.ReactNode {
-    const { category, name, description, link, distance } = this.props.restaurant;
+const ItemInformation: React.FC<Props> = (props) => {
+
+    const { category, name, description, link, distance } = props.restaurant;
     return (
       <div className="modal-container">
         <div className="detail-item restaurant__category">
@@ -44,14 +44,13 @@ class ItemInformation extends React.Component<Props> {
           <button
             type="button"
             className="button button--close button--primary text-caption"
-            onClick={this.props.closeEvent}
+            onClick={props.closeEvent}
           >
             닫기
           </button>
         </div>
       </div>
     );
-  }
 }
 
 export default ItemInformation;
