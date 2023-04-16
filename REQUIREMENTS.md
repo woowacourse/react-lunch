@@ -47,7 +47,7 @@
 ## step2 UX 개선 사항
 
 - [ ] 카테고리 아이콘에 마우스 올리면 카테고리 이름 표시하게 하기
-- [ ] BottomSheet의 최대 width 설정하기
+- [x] BottomSheet의 최대 width 설정하기
   - 데스크탑에서는 너무 길게 보임
 - [ ] 레스토랑 링크 스타일 수정하기
   - hover 시 underline으로 표시되게 하기

@@ -20,6 +20,7 @@ export const BottomSheetBackDrop = styled.div<BottomSheetBackDropProps>`
 
 export const BottomSheetContainer = styled.div`
   width: 100%;
+  max-width: 600px;
   max-height: 88vh;
 
   padding: 32px 16px;
