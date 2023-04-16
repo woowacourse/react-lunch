@@ -1,13 +1,9 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import addButton from "../assets/add-button.png";
 import useModal from "../utils/hooks/useModal";
 import Modal from "./modal";
 import WarningModalContent from "./warningModalContent";
 
-interface StateType {
-  isModalOpen: boolean;
-}
 export default function Header() {
   const { open, openModal, closeModal } = useModal();
 

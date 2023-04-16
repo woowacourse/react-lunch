@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { Restaurant } from "../types/restaurant";
 import { convertImage } from "../utils/imageConverter";

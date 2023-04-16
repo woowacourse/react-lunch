@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { getRestaurantData } from "../api/getData";
 import { SELECT_OPTION } from "../constant/select";
@@ -14,14 +14,6 @@ interface PropsType {
 export default function RestaurantSection(props: PropsType) {
   const { sorting, category } = props;
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-
-  useEffect(() => {
-    async function getData() {
-      const data = await getRestaurantData();
-      setRestaurants([...data]);
-    }
-    getData();
-  }, []);
 
   function getFilteredRestaurants(): Restaurant[] {
     if (category === SELECT_OPTION.ALL) return restaurants;
@@ -49,6 +41,14 @@ export default function RestaurantSection(props: PropsType) {
     const filteredRestaurants = getFilteredRestaurants();
     return getSortedRestaurants(filteredRestaurants);
   }
+
+  useEffect(() => {
+    async function getData() {
+      const data = await getRestaurantData();
+      setRestaurants([...data]);
+    }
+    getData();
+  }, []);
 
   return (
     <RestaurantContainer>

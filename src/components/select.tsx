@@ -1,11 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  CategoryUnion,
-  SelectNameType,
-  SortingUnion,
-  SelectedValue,
-} from "../types/select";
+import { SelectNameType } from "../types/select";
 
 interface PropsType {
   name: SelectNameType;

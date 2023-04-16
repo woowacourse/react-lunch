@@ -1,4 +1,3 @@
-import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { Restaurant } from "../types/restaurant";
 import useModal from "../utils/hooks/useModal";

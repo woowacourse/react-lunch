@@ -1,7 +1,6 @@
-import React, { ReactElement, useEffect, useState, useRef } from "react";
+import { ReactElement } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-import useModal from "../utils/hooks/useModal";
 import ModalButton from "./modalButton";
 
 interface PropsType {
