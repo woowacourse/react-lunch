@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class ModalPortal extends React.Component<{ children: React.ReactNode }> {
-  render(): React.ReactNode {
-    const modalRoot = document.getElementById('modal-root') as Element;
-    const children = this.props.children;
-
-    return ReactDOM.createPortal(children, modalRoot);
-  }
+interface ModalPortalType {
+  children: React.ReactNode;
 }
+
+const ModalPortal = (props: ModalPortalType) => {
+  const modalRoot = document.getElementById('modal-root') as Element;
+
+  return ReactDOM.createPortal(props.children, modalRoot);
+};
 
 export default ModalPortal;
