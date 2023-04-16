@@ -1,6 +1,9 @@
 import { useState } from 'react';
 
-export const useLocalStorage = <Type>(key: string, initializeValue: Type) => {
+export const useLocalStorage = <Type>(
+  key: string,
+  initializeValue: Type,
+): [value: Type, setValue: (newValue: Type) => void] => {
   const getSavedList = JSON.parse(localStorage.getItem(key) || '[]');
 
   const initializeState = getSavedList || initializeValue;

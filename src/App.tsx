@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import './styles/App.css';
-import { FoodCategory, RestaurantInfo, SortMethod, isFoodCategory, isSortMethod } from './types/restaurantInfo';
+import { FoodCategory, RestaurantInfo, SortMethod } from './types/restaurantInfo';
 import RestaurantList from './components/RestaurantList';
 import Modal from './components/Modal';
 import RestaurantDetail from './components/RestaurantDetail';
 import { deleteTargetRestaurant, filterFoodCategory, sortRestaurants } from './domain/RestaurantSelector';
 import { useLocalStorage } from './hooks/useLocalStorage';
-import { RESTUARNT_LIST_LOCAL_STORAGE_KEY } from './constants';
+import { FOOD_CATEGORY, RESTUARNT_LIST_LOCAL_STORAGE_KEY, SORT_METHOD } from './constants';
 import MOCK_DATA from './data/MockData.json';
+import { useSafeUnionTypeState } from './hooks/useSafeUnionTypeState';
 
 export default function App() {
   const [originalRestaurantList, setOriginalRestaurantList] = useLocalStorage<RestaurantInfo[]>(
@@ -17,25 +18,13 @@ export default function App() {
   );
   const [restaurantList, setRestaurantList] = useState<RestaurantInfo[]>([]);
   const [clickedRestaurant, setClickedRestaurant] = useState<RestaurantInfo | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<FoodCategory>('전체');
-  const [selectedSortingMethod, setSelectedSortingMethod] = useState<SortMethod>('이름순');
+  const [selectedCategory, setSelectedCategory] = useSafeUnionTypeState<FoodCategory>('전체', FOOD_CATEGORY);
+  const [selectedSortingMethod, setSelectedSortingMethod] = useSafeUnionTypeState<SortMethod>('이름순', SORT_METHOD);
 
   const changeClickedRestaurant = (restaurantInfo: RestaurantInfo) => {
     setClickedRestaurant(restaurantInfo);
 
     document.body.dataset.hideScroll = 'true';
-  };
-
-  const changeSelectedCategory = (value: string) => {
-    if (!isFoodCategory(value)) return;
-
-    setSelectedCategory(value);
-  };
-
-  const changeSelectedSortingMethod = (value: string) => {
-    if (!isSortMethod(value)) return;
-
-    setSelectedSortingMethod(value);
   };
 
   const resetClickedRestaurant = () => {
@@ -63,17 +52,13 @@ export default function App() {
 
   const selectChangeCallback = (value: string, kind: 'filter' | 'sort') => {
     if (kind === 'filter') {
-      changeSelectedCategory(value);
+      setSelectedCategory(value);
     }
 
     if (kind === 'sort') {
-      changeSelectedSortingMethod(value);
+      setSelectedSortingMethod(value);
     }
   };
-
-  useEffect(() => {
-    filterRestaurantList();
-  }, []);
 
   useEffect(() => {
     filterRestaurantList();

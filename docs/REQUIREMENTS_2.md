@@ -16,6 +16,8 @@
 
 - [x] useLocalStorage hook 구현 (로컬스토리지 값 초기 설정, 불러오기, 저장 기능을 하는 훅)
 
+- [x] useSafeUnionTypeState hook 구현 (커스텀 타입 가드가 적용된 useState 훅)
+
 ## 리팩터링 목록
 
 - [x] 상수 파일에서 이용하는 값 네이밍 구체적으로 적기
