@@ -11,34 +11,37 @@ import { getLocalStorage, setLocalStorage } from './utils/localStorage';
 import { getMockData } from './domain/mockData';
 import { LOCAL_STORAGE } from './CONSTANT';
 
-const state = () => {
+const setInitialData = async (
+  callback: React.Dispatch<React.SetStateAction<Restaurant[]>>,
+) => {
+  const localStorageData = getLocalStorage(LOCAL_STORAGE.restaurantData);
+
+  if (localStorageData) {
+    callback(localStorageData);
+    return;
+  }
+
+  const data = await getMockData();
+
+  callback(data);
+  setLocalStorage(LOCAL_STORAGE.restaurantData, data);
+};
+
+const useRestaurantState = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-  const [restaurantId, setRestaurantId] = useState('');
-  const [isModalOpened, setIsModalOpened] = useState(false);
-
-  const fetchData = async () => {
-    const response = await getMockData();
-
-    if (!response.ok) {
-      throw new Error('Error fetching data');
-    }
-
-    const data = await response.json();
-
-    setRestaurants(data);
-    setLocalStorage(LOCAL_STORAGE.restaurantData, data);
-  };
 
   useEffect(() => {
-    const localStorageData = getLocalStorage(LOCAL_STORAGE.restaurantData);
-
-    if (localStorageData) {
-      setRestaurants(localStorageData);
-      return;
-    }
-
-    fetchData();
+    setInitialData(setRestaurants);
   }, []);
+
+  return {
+    restaurants,
+  };
+};
+
+const useModalState = () => {
+  const [restaurantId, setRestaurantId] = useState<RestaurantId>('');
+  const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
 
   const openRestaurantInfoModal = (restaurantId: string) => {
     setRestaurantId(restaurantId);
@@ -50,7 +53,6 @@ const state = () => {
   };
 
   return {
-    restaurants,
     restaurantId,
     isModalOpened,
     openRestaurantInfoModal,
@@ -59,13 +61,14 @@ const state = () => {
 };
 
 export default function App() {
+  const { restaurants } = useRestaurantState();
+
   const {
-    restaurants,
     restaurantId,
     isModalOpened,
     openRestaurantInfoModal,
     handleModalClose,
-  } = state();
+  } = useModalState();
 
   const restaurant = restaurants.find(
     (restaurant: Restaurant) => restaurant.id === restaurantId,
