@@ -1,11 +1,11 @@
 import Header from './components/Header/Header';
-import RestaurantLayer from './components/RestaurantLayer/RestaurantLayer';
+import Main from './components/Main/Main';
 
 const App = () => {
   return (
     <div className="App">
       <Header />
-      <RestaurantLayer />
+      <Main />
     </div>
   );
 };

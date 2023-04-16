@@ -10,7 +10,7 @@ import RestaurantDetail from '../RestaurantDetail/RestaurantDetail';
 
 const restaurantList = filterAndSortRestaurantList(getRestaurantListData());
 
-const RestaurantLayer = () => {
+const Main = () => {
   const [currentRestaurantList, setCurrentRestaurantList] = useState(restaurantList);
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,4 +47,4 @@ const RestaurantLayer = () => {
   );
 };
 
-export default RestaurantLayer;
+export default Main;
