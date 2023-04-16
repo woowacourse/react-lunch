@@ -1,39 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component, PropsWithChildren, useEffect } from 'react';
 import styles from './Modal.module.css';
 
-interface ModalProps {
-  children: JSX.Element;
+interface ModalOriginalProps {
   onClose: () => void;
 }
 
-class Modal extends Component<ModalProps> {
-  constructor(props: ModalProps) {
-    super(props);
-    this.closeModalCallback = this.closeModalCallback.bind(this);
+function Modal(props: PropsWithChildren<ModalOriginalProps>) {
+  const { children, onClose } = props;
+
+  const closeModalCallback = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') onClose();
   }
 
-  componentDidMount() {
-    window.addEventListener('keydown', this.closeModalCallback);
-  }
+  useEffect(() => {
+    window.addEventListener('keydown', closeModalCallback);
+    
+    return () => {
+      window.removeEventListener('keydown', closeModalCallback);
+    };
+  }, []);
 
-  closeModalCallback(event: KeyboardEvent) {
-    const { onClose } = this.props;
-
-    if (event.key === 'Escape') {
-      window.removeEventListener('keydown', this.closeModalCallback);
-      onClose();
-    }
-  }
-
-  render() {
-    const { children, onClose } = this.props;
-    return (
-      <div>
-        <div onClick={onClose} aria-hidden="true" className={styles.background} />
-        <div className={styles.modal}>{children}</div>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <div onClick={onClose} aria-hidden="true" className={styles.background} />
+      <div className={styles.modal}>{children}</div>
+    </div>
+  );
 }
 
 export default Modal;
