@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const St = {
+const Styled = {
   Backdrop: styled.div`
     position: fixed;
     top: 0;
@@ -100,4 +100,4 @@ const St = {
   `,
 };
 
-export default St;
+export default Styled;

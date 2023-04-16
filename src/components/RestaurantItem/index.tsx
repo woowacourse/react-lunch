@@ -1,4 +1,4 @@
-import St from './styled';
+import Styled from './styled';
 import CategoryImg from '../CategoryImg';
 import { Restaurant } from '../../types/restaurants';
 
@@ -14,18 +14,18 @@ export default function RestaurantItem(props: RestaurantItemProps) {
   } = props;
 
   return (
-    <St.Layout
+    <Styled.Layout
       onClick={onClick}
       data-cy-category={`${category}-restaurant`}
       data-cy-distance={distance}>
-      <St.LeftSection>
+      <Styled.LeftSection>
         <CategoryImg category={category} />
-      </St.LeftSection>
-      <St.RightSection>
-        <St.Title>{title}</St.Title>
-        <St.Distance>캠퍼스 부터 {distance}분</St.Distance>
-        <St.Detail>{detail}</St.Detail>
-      </St.RightSection>
-    </St.Layout>
+      </Styled.LeftSection>
+      <Styled.RightSection>
+        <Styled.Title>{title}</Styled.Title>
+        <Styled.Distance>캠퍼스 부터 {distance}분</Styled.Distance>
+        <Styled.Detail>{detail}</Styled.Detail>
+      </Styled.RightSection>
+    </Styled.Layout>
   );
 }

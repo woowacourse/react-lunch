@@ -1,7 +1,7 @@
 import { ALIGN_FILTER, CATEGORY_FILTER } from '../../constants/restaurants';
 import { AlignFilter, CategoryFilter } from '../../types/restaurants';
 import Select from '../Select';
-import St from './styled';
+import Styled from './styled';
 
 interface SelectBarProps {
   onChangeCategoryFilter(category: CategoryFilter): void;
@@ -11,7 +11,7 @@ interface SelectBarProps {
 export default function SelectBar(props: SelectBarProps) {
   const { onChangeCategoryFilter, onChangeAlignFilter } = props;
   return (
-    <St.Layout>
+    <Styled.Layout>
       <Select
         options={CATEGORY_FILTER}
         onChange={onChangeCategoryFilter}
@@ -22,6 +22,6 @@ export default function SelectBar(props: SelectBarProps) {
         onChange={onChangeAlignFilter}
         data-cy="align-select"
       />
-    </St.Layout>
+    </Styled.Layout>
   );
 }

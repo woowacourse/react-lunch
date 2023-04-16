@@ -1,5 +1,5 @@
 import { PropsWithChildren, useEffect } from 'react';
-import St from './styled';
+import Styled from './styled';
 
 interface BottomSheetProps {
   onClose: VoidFunction;
@@ -24,7 +24,7 @@ export default function BottomSheet(
 
   return (
     <>
-      <St.Backdrop onClick={close} />
+      <Styled.Backdrop onClick={close} />
       {children}
     </>
   );

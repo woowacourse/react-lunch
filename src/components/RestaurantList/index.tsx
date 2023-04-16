@@ -3,7 +3,7 @@ import useRestaurantList from '../../hooks/restaurants/useRestaurantList';
 import { FilterOptions, Restaurant } from '../../types/restaurants';
 import RestaurantDetailBottomSheet from '../RestaurantDetailBottomSheet';
 import RestaurantItem from '../RestaurantItem';
-import St from './styled';
+import Styled from './styled';
 
 interface RestaurantListProps {
   filterOptions: FilterOptions;
@@ -15,7 +15,7 @@ export default function RestaurantList(props: RestaurantListProps) {
   const { restaurantList } = useRestaurantList(filterOptions);
 
   return (
-    <St.Layout data-cy="restaurant-list">
+    <Styled.Layout data-cy="restaurant-list">
       {restaurantList.map((restaurant: Restaurant) => (
         <RestaurantItem
           key={restaurant.id}
@@ -26,6 +26,6 @@ export default function RestaurantList(props: RestaurantListProps) {
       {isOpened && (
         <RestaurantDetailBottomSheet restaurant={focused} close={close} />
       )}
-    </St.Layout>
+    </Styled.Layout>
   );
 }

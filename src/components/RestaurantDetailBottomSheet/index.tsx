@@ -1,7 +1,7 @@
 import { Restaurant } from '../../types/restaurants';
 import BottomSheet from '../@common/BottomSheet';
 import CategoryImg from '../CategoryImg';
-import St from './styled';
+import Styled from './styled';
 
 interface RestaurantDetailBottomSheetProps {
   restaurant: Restaurant;
@@ -16,16 +16,16 @@ export default function RestaurantDetailBottomSheet(
 
   return (
     <BottomSheet onClose={close}>
-      <St.BottomSheet>
+      <Styled.BottomSheet>
         <CategoryImg category={category} />
-        <St.Detail>
-          <St.Title>{title}</St.Title>
-          <St.Distance>캠퍼스부터 {distance}분 이내</St.Distance>
-          <St.Description>{detail}</St.Description>
-          <St.Link href={link}>{link}</St.Link>
-          <St.Button onClick={close}>닫기</St.Button>
-        </St.Detail>
-      </St.BottomSheet>
+        <Styled.Detail>
+          <Styled.Title>{title}</Styled.Title>
+          <Styled.Distance>캠퍼스부터 {distance}분 이내</Styled.Distance>
+          <Styled.Description>{detail}</Styled.Description>
+          <Styled.Link href={link}>{link}</Styled.Link>
+          <Styled.Button onClick={close}>닫기</Styled.Button>
+        </Styled.Detail>
+      </Styled.BottomSheet>
     </BottomSheet>
   );
 }

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const St = {
+const Styled = {
   Layout: styled.section`
     display: flex;
     justify-content: space-between;
@@ -14,4 +14,4 @@ const St = {
   `,
 };
 
-export default St;
+export default Styled;

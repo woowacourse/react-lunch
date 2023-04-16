@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const St = {
+const Styled = {
   Layout: styled.select`
     height: 44px;
     min-width: 125px;
@@ -16,4 +16,4 @@ const St = {
   Option: styled.option``,
 };
 
-export default St;
+export default Styled;

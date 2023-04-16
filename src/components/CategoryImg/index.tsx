@@ -1,4 +1,4 @@
-import St from './styled';
+import Styled from './styled';
 import categoryAsian from '../../assets/category-asian.png';
 import categoryChinese from '../../assets/category-chinese.png';
 import categoryJapanese from '../../assets/category-japanese.png';
@@ -23,8 +23,8 @@ const CATEGORY_SRC: Record<Category, string> = {
 export default function CategoryImg(props: CategoryImgProps) {
   const { category } = props;
   return (
-    <St.Layout>
-      <St.CategoryImg src={CATEGORY_SRC[category]} alt={category} />
-    </St.Layout>
+    <Styled.Layout>
+      <Styled.CategoryImg src={CATEGORY_SRC[category]} alt={category} />
+    </Styled.Layout>
   );
 }

@@ -1,5 +1,5 @@
-import St from './styled';
+import Styled from './styled';
 
 export default function Header() {
-  return <St.Header>점심 뭐 먹지</St.Header>;
+  return <Styled.Header>점심 뭐 먹지</Styled.Header>;
 }
