@@ -13,14 +13,19 @@ export interface Restaurant {
 
 export type Sort = '이름순' | '거리순';
 
+export type Action = {
+	type: string;
+	payload?: any;
+};
+
 export interface State {
 	category: Category;
 	sort: Sort;
 	restaurantList: Restaurant[];
 	isModalOpen: boolean;
 	modalId: string;
-	setModalId: (id: string) => void;
-	toggleModal: () => void;
-	setCategory: (category: Category) => void;
-	setSortState: (sort: Sort) => void;
+	setModalId?: (id: string) => void;
+	toggleModal?: () => void;
+	setCategory?: (category: Category) => void;
+	setSortState?: (sort: Sort) => void;
 }
