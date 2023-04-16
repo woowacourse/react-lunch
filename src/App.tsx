@@ -19,10 +19,10 @@ interface Props {
 class App extends Component<{}, Props> {
   state = {
     filteredRestaurants: this.filterBySelectedOptions(
-      getItemFromLocalStorage("category") ?? CATEGORY.ALL,
+      getItemFromLocalStorage("category") ?? CATEGORY.전체,
       getItemFromLocalStorage("sorting") ?? SORTING_SELECT.NAME
     ),
-    category: getItemFromLocalStorage("category") ?? CATEGORY.ALL,
+    category: getItemFromLocalStorage("category") ?? CATEGORY.전체,
     sorting: getItemFromLocalStorage("sorting") ?? SORTING_SELECT.NAME,
   };
 
@@ -59,7 +59,7 @@ class App extends Component<{}, Props> {
     const filteredRestaurants = this.sortRestaurantsByName(
       restaurantMockData
     ).filter((restaurant) =>
-      category === CATEGORY.ALL ? restaurant : restaurant.category === category
+      category === CATEGORY.전체 ? restaurant : restaurant.category === category
     );
 
     return this.sortBySelectedOption(sorting, filteredRestaurants);
