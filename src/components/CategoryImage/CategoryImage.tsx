@@ -21,7 +21,7 @@ interface CategoryImageProps {
   category: FoodCategory;
 };
 
-export function CategoryImage (props: CategoryImageProps) {
+function CategoryImage(props: CategoryImageProps) {
   const { category } = props;
 
   return (
