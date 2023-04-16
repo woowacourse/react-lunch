@@ -24,7 +24,7 @@ const useRestaurants = (category: Category, sort: string) => {
 
 export const RestaurantList = ({ category, sort }: RestaurantListProps) => {
   const restaurants = useRestaurants(category, sort);
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const idRef = useRef(0);
 
   const handleClickItem: React.MouseEventHandler<HTMLLIElement> = (event) => {
