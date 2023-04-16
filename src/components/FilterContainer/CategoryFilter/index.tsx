@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Filter from '../../common/Filter';
-import { RestaurantCategoryFilterOption } from '../../../RestaurantUtils';
+import { RestaurantCategoryFilterOption } from '../../../helpers/RestaurantHelper';
 
 type CategoryFilterProps = {
   onChange: (category: RestaurantCategoryFilterOption) => void;

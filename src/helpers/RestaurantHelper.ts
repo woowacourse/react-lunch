@@ -1,4 +1,4 @@
-import { Restaurant, RestaurantCategory } from '../src/types';
+import { Restaurant, RestaurantCategory } from '../types';
 
 const restaurantSortOption = {
   name: 'name',

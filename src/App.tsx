@@ -2,14 +2,19 @@ import { Component } from 'react';
 import { Header, Modal } from './components/common';
 import { FilterContainer, RestaurantDetailView, RestaurantList } from './components';
 
-import { Restaurant } from './types';
-import mockData from './mockData.json';
 import {
   getFilteredRestaurantsByCategory,
   getSortedRestaurants,
   getRestaurantById,
-} from './RestaurantUtils';
-import type { RestaurantSortOption, RestaurantCategoryFilterOption } from './RestaurantUtils';
+} from './helpers/RestaurantHelper';
+
+import type {
+  RestaurantSortOption,
+  RestaurantCategoryFilterOption,
+} from './helpers/RestaurantHelper';
+
+import type { Restaurant } from './types';
+import mockData from './mockData.json';
 import './App.css';
 
 type AppState = {

@@ -2,7 +2,10 @@ import { Component } from 'react';
 import CategoryFilter from './CategoryFilter';
 import SortFilter from './SortFilter';
 import './FilterContainer.css';
-import { RestaurantCategoryFilterOption, RestaurantSortOption } from '../../RestaurantUtils';
+import {
+  RestaurantCategoryFilterOption,
+  RestaurantSortOption,
+} from '../../helpers/RestaurantHelper';
 
 type FilterContainerProps = {
   onChangeCategoryFilter: (category: RestaurantCategoryFilterOption) => void;
