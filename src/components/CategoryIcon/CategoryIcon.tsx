@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Category } from '../../constants/categories';
 import * as styled from './CategoryIcon.styles';
 
@@ -22,16 +21,12 @@ type CategoryIconProps = {
   category: Category;
 };
 
-class CategoryIcon extends React.PureComponent<CategoryIconProps> {
-  render() {
-    const { category } = this.props;
-
-    return (
-      <styled.CategoryIcon>
-        <img src={categoryToImageMapper[category]} alt={category} />
-      </styled.CategoryIcon>
-    );
-  }
+const CategoryIcon = ({ category }: CategoryIconProps) => {
+  return (
+    <styled.CategoryIcon>
+      <img src={categoryToImageMapper[category]} alt={category} />
+    </styled.CategoryIcon>
+  );
 }
 
 export default CategoryIcon;

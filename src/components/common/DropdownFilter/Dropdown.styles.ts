@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const DropdownFilter = styled.select`
+export const Dropdown = styled.select`
   height: 44px;
   min-width: 125px;
 

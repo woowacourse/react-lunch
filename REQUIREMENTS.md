@@ -9,7 +9,7 @@
 
 ## step2 요구사항
 
-- [ ] 기존의 Class Component를 Function Component로 바꾼다.
+- [x] 기존의 Class Component를 Function Component로 바꾼다.
 - [ ] 커스텀 훅을 사용해야 한다.
 
 ## step2 리뷰 관련 사항
@@ -34,7 +34,7 @@
 - [ ] `close-button` 을 구체적으로 네이밍하기
 - [ ] `BottomSheetActions` 를 `BottomSheetButtonGroup` 으로 이름 바꾸기
 - [ ] `Button` variant 평가를 한 파일에서 하도록 수정하기
-- [ ] `DropdownFilter` 컴포넌트를 Stateless로 바꾸기
+- [x] `DropdownFilter` 컴포넌트를 Stateless로 바꾸기
 - [ ] `.eslintrc.json` 을 `.eslintrc` 로 수정
 - [ ] 아무런 기능이 없는 버튼은 `disabled` 처리
 
@@ -42,7 +42,7 @@
 
 - [ ] styled-components 에서 제공하는 theme 기능 사용하기
   - https://styled-components.com/docs/tooling#styled-theming
-- [ ] `DropdownFilter` 를 `Dropdown` 으로 수정
+- [x] `DropdownFilter` 를 `Dropdown` 으로 수정
 
 ## step2 UX 개선 사항
 

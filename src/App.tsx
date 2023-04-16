@@ -1,22 +1,16 @@
-import React from 'react';
+import { useState } from 'react';
 import * as styled from './App.styles';
 import Header from './components/Header/Header';
 import RestaurantDetailBottomSheet from './components/RestaurantDetailBottomSheet/RestaurantDetailBottomSheet';
 import RestaurantList from './components/RestaurantList/RestaurantList';
-import DropdownFilter from './components/common/DropdownFilter/DropdownFilter';
+import type { DropdownOption } from './components/common/DropdownFilter/Dropdown';
+import Dropdown from './components/common/DropdownFilter/Dropdown';
 import CATEGORIES from './constants/categories';
 import mockRestaurantsData from './data/mockData.json';
 import GlobalStyle from './styles/GlobalStyle';
 import ResetStyle from './styles/ResetStyle';
 import type Filter from './types/Filter';
 import type Restaurant from './types/Restaurant';
-
-type AppState = {
-  restaurants: Restaurant[];
-  sortFilter: Filter<Restaurant> | null;
-  categoryFilter: Filter<Restaurant> | null;
-  openedRestaurant: Restaurant | null;
-};
 
 const DROPDOWN_SORT_FILTERS = [
   {
@@ -39,39 +33,31 @@ const DROPDOWN_CATEGORY_FILTERS = [
   })),
 ];
 
-class App extends React.Component<Record<string, never>, AppState> {
-  constructor() {
-    super({});
+const App = () => {
+  const [restaurants, setRestaurants] = useState(mockRestaurantsData as Restaurant[]);
+  const [sortOption, setSortOption] = useState<DropdownOption<Filter<Restaurant>>>(DROPDOWN_SORT_FILTERS[0]);
+  const [categoryOption, setCategoryOption] = useState<DropdownOption<Filter<Restaurant>>>(DROPDOWN_CATEGORY_FILTERS[0]);
+  const [openedRestaurant, setOpenedRestaurant] = useState<Restaurant | null>(null);
 
-    this.state = {
-      restaurants: mockRestaurantsData as Restaurant[],
-      sortFilter: null,
-      categoryFilter: null,
-      openedRestaurant: null,
-    };
-  }
-
-  getFilteredRestaurants() {
-    const filters = [this.state.sortFilter, this.state.categoryFilter].filter(
+  const getFilteredRestaurants = () => {
+    const filters = [sortOption, categoryOption].map(({ value: filter }) => filter).filter(
       (filter): filter is Filter<Restaurant> => filter !== null,
     );
     const filteredRestaurants = filters.reduce(
-      (restaurants, filter) => filter(restaurants),
-      this.state.restaurants.slice(),
+      (_restaurants, filter) => filter(_restaurants),
+      restaurants.slice(),
     );
     return filteredRestaurants;
   }
 
-  openBottomSheet = (restaurant: Restaurant) => {
-    this.setState({ openedRestaurant: restaurant });
+  const openBottomSheet = (restaurant: Restaurant) => {
+    setOpenedRestaurant(restaurant);
   };
 
-  closeBottomSheet = () => {
-    this.setState({ openedRestaurant: null });
+  const closeBottomSheet = () => {
+    setOpenedRestaurant(null);
   };
 
-  render() {
-    const { openedRestaurant } = this.state;
     return (
       <>
         <ResetStyle />
@@ -80,31 +66,32 @@ class App extends React.Component<Record<string, never>, AppState> {
         <Header />
 
         <styled.RestaurantFilterContainer>
-          <DropdownFilter
+          <Dropdown
             options={DROPDOWN_CATEGORY_FILTERS}
-            onChange={({ value: filter }) => this.setState({ categoryFilter: filter })}
+            selectedOption={categoryOption}
+            onChange={(option) => setCategoryOption(option)}
           />
 
-          <DropdownFilter
+          <Dropdown
             options={DROPDOWN_SORT_FILTERS}
-            onChange={({ value: filter }) => this.setState({ sortFilter: filter })}
+            selectedOption={sortOption}
+            onChange={(option) => setSortOption(option)}
           />
         </styled.RestaurantFilterContainer>
 
         <RestaurantList
-          restaurants={this.getFilteredRestaurants()}
-          onClickItem={this.openBottomSheet}
+          restaurants={getFilteredRestaurants()}
+          onClickItem={openBottomSheet}
         />
         {openedRestaurant !== null && (
           <RestaurantDetailBottomSheet
             restaurant={openedRestaurant}
             isOpened
-            onClose={this.closeBottomSheet}
+            onClose={closeBottomSheet}
           />
         )}
       </>
     );
-  }
 }
 
 export default App;
