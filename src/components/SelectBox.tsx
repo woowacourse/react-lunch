@@ -4,22 +4,20 @@ import { SelectBoxOption } from "../types/Restaurant";
 
 interface SelectBoxProps {
   options: SelectBoxOption[];
-  setState: ChangeEventHandler<HTMLSelectElement>;
+  onChange: ChangeEventHandler<HTMLSelectElement>;
 }
 
-class SelectBox extends React.Component<SelectBoxProps, {}> {
+function SelectBox({ options, onChange }: SelectBoxProps) {
 
-  render() {
-    const { options, setState } = this.props;
-    return (
-      <Select onChange={setState}>
-        {options.map(option => (
-          <option value={option.value} key={option.value}>{option.label}</option>
-        ))}
-      </Select>
-    )
-  }
+  return (
+    <Select onChange={onChange}>
+      {options.map(option => (
+        <option value={option.value} key={option.value}>{option.label}</option>
+      ))}
+    </Select>
+  )
 }
+
 
 export default SelectBox;
 

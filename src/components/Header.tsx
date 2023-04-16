@@ -2,17 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import addButton from "../assets/images/add-button.png";
 
-class Header extends React.Component {
-  render() {
-    return (
-      <HeaderComponent>
-        <Title>점심 뭐 먹지</Title>
-        <Button onClick={() => alert('지원하지 않는 기능입니다.')}>
-          <ButtonImage src={addButton} alt="음식점 추가" />
-        </Button>
-      </HeaderComponent>
-    )
-  }
+function Header() {
+  return (
+    <HeaderComponent>
+      <Title>점심 뭐 먹지</Title>
+      <Button onClick={() => alert('지원하지 않는 기능입니다.')}>
+        <ButtonImage src={addButton} alt="음식점 추가" />
+      </Button>
+    </HeaderComponent>
+  )
 }
 export default Header;
 

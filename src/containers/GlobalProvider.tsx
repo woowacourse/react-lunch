@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Restaurant } from "../types/Restaurant";
 
 export interface GlobalState {
@@ -28,21 +28,20 @@ interface GlobalProviderProps {
 }
 
 
-class GlobalProvider extends React.Component<GlobalProviderProps, GlobalState> {
-  state: GlobalState = {
-    modalOpen: false,
-    setModalOpen: (newValue) => this.setState({ modalOpen: newValue }),
-    restaurant: defaultRestaurant,
-    setRestaurant: (newValue) => this.setState({ restaurant: newValue }),
+function GlobalProvider({ children }: GlobalProviderProps) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [restaurant, setRestaurant] = useState(defaultRestaurant);
+  const state = {
+    modalOpen, setModalOpen,
+    restaurant, setRestaurant,
   };
 
-  render() {
-    return (
-      <GlobalContext.Provider value={this.state}>
-        {this.props.children}
-      </GlobalContext.Provider>
-    );
-  }
+  return (
+    <GlobalContext.Provider value={state}>
+      {children}
+    </GlobalContext.Provider>
+  );
 }
+
 
 export default GlobalProvider;

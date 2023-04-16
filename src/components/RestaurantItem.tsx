@@ -1,49 +1,48 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from 'styled-components'
 import { Restaurant } from "../types/Restaurant";
 import { convertImage } from "../utils/image";
-import { GlobalContext, GlobalState } from "../containers/GlobalProvider";
+import { GlobalContext } from "../containers/GlobalProvider";
+import { useModal } from "../hooks/useModal";
 interface RestaurantItemProps {
   restaurant: Restaurant;
 }
 
-class RestaurantItem extends React.Component<RestaurantItemProps, {}> {
-  static contextType = GlobalContext;
+function RestaurantItem({ restaurant }: RestaurantItemProps) {
+  const globalState = useContext(GlobalContext);
+  const { name, distance, category, description } = restaurant;
+  const { openModal } = useModal();
 
-  openModal = () => {
-    const globalState = this.context as GlobalState;
-    globalState.setModalOpen(true);
-    globalState.setRestaurant(this.props.restaurant);
+
+  const clickRestaurantItem = () => {
+    openModal();
+    globalState.setRestaurant(restaurant);
   }
 
-  render() {
-    const { name, distance, category, description } = this.props.restaurant;
-
-    return (
-      <>
-        <Card onClick={() => this.openModal()}>
-          <Favorite>
-          </Favorite>
-          <RestaurantInfo>
-            <CategoryIcon>
-              <img src={convertImage(category)} />
-            </CategoryIcon>
-            <article>
-              <h3>{name}</h3>
-              <p>캠퍼스부터 {distance}분 내</p>
-              <p>{description}</p>
-            </article>
-          </RestaurantInfo>
-        </Card>
-      </>
-    )
-  }
+  return (
+    <>
+      <Card onClick={() => clickRestaurantItem()}>
+        <Favorite>
+        </Favorite>
+        <RestaurantInfo>
+          <CategoryIcon>
+            <img src={convertImage(category)} />
+          </CategoryIcon>
+          <article>
+            <h3>{name}</h3>
+            <p>캠퍼스부터 {distance}분 내</p>
+            <p>{description}</p>
+          </article>
+        </RestaurantInfo>
+      </Card>
+    </>
+  )
 }
 
 export default RestaurantItem;
 
 const Card = styled.li`
-listStyle:none;
+list-style:none;
 `;
 
 const Favorite = styled.div`

@@ -1,53 +1,36 @@
 import React from 'react';
 import RestaurantList from '../components/RestaurantList';
 import mockData from "../data/mockData.json";
-import { Category, Restaurant, Sort } from '../types/Restaurant';
+import { Restaurant } from '../types/Restaurant';
 import SelectBox from '../components/SelectBox';
 import Header from '../components/Header';
 import styled from 'styled-components';
-import Modal from '../components/RestaurantModal';
+import Modal from '../components/Modal';
 import { category, sort } from '../data/selects';
+import useRestaurants from '../hooks/useRestaurants';
 
-interface LunchAppState {
-  restaurants: Restaurant[];
-  sortBy: Sort;
-  categorizeBy: Category;
-}
-class LunchApp extends React.Component<{}, LunchAppState> {
+function LunchApp() {
 
-  constructor(props: Readonly<{}> | {}) {
-    super(props);
-    this.state = { restaurants: mockData, sortBy: 'name', categorizeBy: 'all' };
-  }
+  const {
+    restaurants, updateSort, updateCategory,
+  } = useRestaurants(mockData as Restaurant[]);
 
-  updateSortBy(e: React.ChangeEvent<HTMLSelectElement>) {
-    this.setState({ sortBy: e.target.value as Sort });
-  }
-
-  updateCategorizeBy(e: React.ChangeEvent<HTMLSelectElement>) {
-    this.setState({ categorizeBy: e.target.value as Category });
-  }
-
-  render() {
-    const { sortBy, categorizeBy, restaurants } = this.state;
-
-    return (
-      <>
-        <Header />
-        <SelectContainer>
-          <SelectBox
-            setState={(e) => this.updateCategorizeBy(e)}
-            options={category} />
-          <SelectBox
-            setState={(e) => this.updateSortBy(e)}
-            options={sort}
-          />
-        </SelectContainer>
-        <RestaurantList sortBy={sortBy} categorizeBy={categorizeBy} restaurants={restaurants} />
-        <Modal />
-      </>
-    );
-  }
+  return (
+    <>
+      <Header />
+      <SelectContainer>
+        <SelectBox
+          onChange={updateCategory}
+          options={category} />
+        <SelectBox
+          onChange={updateSort}
+          options={sort}
+        />
+      </SelectContainer>
+      <RestaurantList restaurants={restaurants} />
+      <Modal />
+    </>
+  );
 }
 
 export default LunchApp;
