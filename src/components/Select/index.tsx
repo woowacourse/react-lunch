@@ -1,4 +1,4 @@
-import React, { Component, ReactNode } from "react";
+import React from "react";
 import St from "./styled";
 
 interface SelectProps {
@@ -6,24 +6,14 @@ interface SelectProps {
   onChange(value: string): void;
 }
 
-class Select extends Component<SelectProps> {
-  constructor(props: SelectProps) {
-    super(props);
-  }
-
-  render(): ReactNode {
-    const { options, onChange } = this.props;
-
-    return (
-      <St.Layout onChange={(e) => onChange(e.target.value)}>
-        {options.map((option) => (
-          <St.Option value={option} key={option}>
-            {option}
-          </St.Option>
-        ))}
-      </St.Layout>
-    );
-  }
+export default function Select({ options, onChange }: SelectProps) {
+  return (
+    <St.Layout onChange={(e) => onChange(e.target.value)}>
+      {options.map((option) => (
+        <St.Option value={option} key={option}>
+          {option}
+        </St.Option>
+      ))}
+    </St.Layout>
+  );
 }
-
-export default Select;
