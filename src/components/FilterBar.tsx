@@ -20,8 +20,10 @@ export const FilterBar = ({
         id="category-filter"
         className="restaurant-filter"
       >
-        {Object.values(RESTAURANT_CATEGORY).map((category) => (
-          <option value={category}>{category}</option>
+        {Object.values(RESTAURANT_CATEGORY).map((category, index) => (
+          <option value={category} key={index}>
+            {category}
+          </option>
         ))}
       </select>
 
@@ -31,8 +33,10 @@ export const FilterBar = ({
         id="sorting-filter"
         className="restaurant-filter"
       >
-        {Object.values(SORTING_OPTION).map((sortingName) => (
-          <option value={sortingName}>{sortingName}</option>
+        {Object.values(SORTING_OPTION).map((sortingName, index) => (
+          <option value={sortingName} key={index}>
+            {sortingName}
+          </option>
         ))}
       </select>
     </section>
