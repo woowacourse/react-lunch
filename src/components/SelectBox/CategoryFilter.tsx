@@ -2,6 +2,7 @@ import React from 'react';
 import SelectBox from './SelectBox';
 import { CATEGORY } from '../../constants';
 import { Category } from '../../types';
+import { isCategoryType } from '../../types/guard';
 
 interface CategoryProps {
   setCategory: (newCategory: Category) => void;
@@ -9,7 +10,7 @@ interface CategoryProps {
 
 function CategoryFilter({ setCategory }: CategoryProps) {
   const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategory(event.target.value as Category);
+    if (isCategoryType(event.target.value)) setCategory(event.target.value);
   };
 
   return <SelectBox filter={CATEGORY} handleOptionChange={handleCategoryChange} />;
