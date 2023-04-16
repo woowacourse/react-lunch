@@ -12,3 +12,8 @@ export interface Restaurant {
 
 export type CategoryFilter = typeof CATEGORY_ALL | Category;
 export type AlignFilter = typeof BY_DISTANCE | typeof BY_NAME;
+
+export interface FilterOptions {
+  category: CategoryFilter;
+  align: AlignFilter;
+}

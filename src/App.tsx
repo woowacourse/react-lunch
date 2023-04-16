@@ -3,12 +3,11 @@ import Layout from './components/common/Layout';
 import RestaurantList from './components/RestaurantList';
 import SelectBar from './components/SelectBar';
 import { ALIGN_FILTER, CATEGORY_FILTER } from './constants/restaurants';
-import { AlignFilter, CategoryFilter } from './types/restaurants';
-
-interface FilterOptions {
-  category: CategoryFilter;
-  align: AlignFilter;
-}
+import {
+  AlignFilter,
+  CategoryFilter,
+  FilterOptions,
+} from './types/restaurants';
 
 export default function App() {
   const [filterOptions, setFilterOptions] = useState<FilterOptions>({
