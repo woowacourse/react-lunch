@@ -7,7 +7,7 @@ import {
   SORTING_OPTION,
 } from '../constants/filterOptions';
 
-export const RestaurantListContainer = () => {
+export const Main = () => {
   const [category, setCategory] = useState<Category>(RESTAURANT_CATEGORY.all);
   const [sortOption, setSortOption] = useState(SORTING_OPTION.name);
 
@@ -24,12 +24,12 @@ export const RestaurantListContainer = () => {
   };
 
   return (
-    <>
+    <main>
       <FilterBar
         onChangeCategory={handleCategory}
         onChangeSort={handleSort}
       ></FilterBar>
       <RestaurantList category={category} sort={sortOption}></RestaurantList>
-    </>
+    </main>
   );
 };
