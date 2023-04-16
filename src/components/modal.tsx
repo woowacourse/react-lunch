@@ -1,4 +1,5 @@
 import React, { ReactElement, useEffect, useState, useRef } from "react";
+import ReactDOM from "react-dom";
 import styled from "styled-components";
 import useModal from "../utils/hooks/useModal";
 import ModalButton from "./modalButton";
@@ -12,16 +13,17 @@ interface PropsType {
 export default function Modal(props: PropsType) {
   const { location, children, closeModal } = props;
 
-  return (
+  return ReactDOM.createPortal(
     <>
       <BackDrop onClick={closeModal} />
       <ModalContainer location={location}>
         {children}
         <ButtonContainer>
-          <ModalButton text="닫기" baseColor="orange" closeModal={closeModal} />
+          <ModalButton text="닫기" closeModal={closeModal} />
         </ButtonContainer>
       </ModalContainer>
-    </>
+    </>,
+    document.body
   );
 }
 
