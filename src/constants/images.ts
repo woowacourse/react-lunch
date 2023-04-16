@@ -6,13 +6,11 @@ import asianCategory from '../assets/category-asian.png';
 import westernCategory from '../assets/category-western.png';
 import etcCategory from '../assets/category-etc.png';
 
-const RESTAURANT_IMAGE: Record<Category, string> = {
+export const RESTAURANT_IMAGE: Record<Category, string> = {
   중식: chineseCategory,
   한식: koreanCategory,
   일식: japaneseCategory,
   양식: westernCategory,
   아시안식: asianCategory,
   기타: etcCategory,
-};
-
-export { RESTAURANT_IMAGE };
+} as const;
