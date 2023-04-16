@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { Restaurant } from "../types/restaurant";
 import { convertImage } from "../utils/imageConverter";
 
-interface PropsType {
+interface ItemModalContentPropsType {
   restaurant: Restaurant;
 }
 
-export default function ItemModalContent(props: PropsType) {
+export default function ItemModalContent(props: ItemModalContentPropsType) {
   const { restaurant } = props;
   const { category, takingTime, name, link, description } = restaurant;
 

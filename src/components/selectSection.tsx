@@ -9,11 +9,11 @@ import {
 } from "../types/select";
 import Select from "./select";
 
-interface PropsType {
+interface SelectSectionPropsType {
   handleSelect: (select: SelectedValue) => void;
 }
 
-export default function SelectSection(props: PropsType) {
+export default function SelectSection(props: SelectSectionPropsType) {
   const { handleSelect } = props;
 
   function selectOption(

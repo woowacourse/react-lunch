@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { SelectNameType } from "../types/select";
 
-interface PropsType {
+interface SelectPropsType {
   name: SelectNameType;
   options: string[];
   selectOption: (
@@ -11,7 +11,7 @@ interface PropsType {
   ) => void;
 }
 
-export default function Select(props: PropsType) {
+export default function Select(props: SelectPropsType) {
   const { name, options, selectOption } = props;
 
   return (

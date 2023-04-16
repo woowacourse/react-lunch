@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-interface PropsType {
+interface ModalButtonPropsType {
   text: string;
   buttonColor?: string;
   closeModal: () => void;
 }
 
-export default function ModalButton(props: PropsType) {
+export default function ModalButton(props: ModalButtonPropsType) {
   const { text, buttonColor, closeModal } = props;
 
   return (

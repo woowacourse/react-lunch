@@ -3,13 +3,13 @@ import ReactDOM from "react-dom";
 import styled from "styled-components";
 import ModalButton from "./modalButton";
 
-interface PropsType {
+interface ModalPropsType {
   location: string;
   children: ReactElement;
   closeModal: () => void;
 }
 
-export default function Modal(props: PropsType) {
+export default function Modal(props: ModalPropsType) {
   const { location, children, closeModal } = props;
 
   return ReactDOM.createPortal(

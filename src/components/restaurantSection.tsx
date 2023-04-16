@@ -6,12 +6,12 @@ import { Restaurant } from "../types/restaurant";
 import { CategoryUnion, SortingUnion } from "../types/select";
 import RestaurantItem from "./restaurantItem";
 
-interface PropsType {
+interface RestaurantSectionPropsType {
   sorting: SortingUnion;
   category: CategoryUnion;
 }
 
-export default function RestaurantSection(props: PropsType) {
+export default function RestaurantSection(props: RestaurantSectionPropsType) {
   const { sorting, category } = props;
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
 

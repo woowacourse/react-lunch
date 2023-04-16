@@ -5,11 +5,11 @@ import { convertImage } from "../utils/imageConverter";
 import ItemModalContent from "./ItemModalContent";
 import Modal from "./modal";
 
-interface PropsType {
+interface RestaurantItemPropsType {
   restaurant: Restaurant;
 }
 
-export default function RestaurantItem(props: PropsType) {
+export default function RestaurantItem(props: RestaurantItemPropsType) {
   const { restaurant } = props;
   const { category, name, takingTime, description } = restaurant;
   const { open, closeModal, openModal } = useModal();
