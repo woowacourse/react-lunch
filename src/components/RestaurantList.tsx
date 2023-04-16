@@ -1,28 +1,42 @@
 import { RestaurantItem } from './RestaurantItem';
 import RestaurantManager from '../domain/RestaurantManager';
-import { Category } from '../types/RestaurantDetail';
+import { Category, RestaurantDetail } from '../types/RestaurantDetail';
+import { useEffect, useState } from 'react';
 
 interface RestaurantListProps {
   category: Category;
   sort: string;
-  onOpenModal: (event: React.MouseEvent<HTMLUListElement>) => void;
+  onClickItem: React.MouseEventHandler<HTMLLIElement>;
 }
+
+const useRestaurants = (category: Category, sort: string) => {
+  const [restaurants, setRestaurants] = useState<RestaurantDetail[]>([]);
+
+  useEffect(() => {
+    setRestaurants(
+      RestaurantManager.getRestaurantListFilteredByOptions(category, sort)
+    );
+  }, [category, sort]);
+
+  return restaurants;
+};
 
 export const RestaurantList = ({
   category,
   sort,
-  onOpenModal,
+  onClickItem,
 }: RestaurantListProps) => {
+  const restaurants = useRestaurants(category, sort);
+
   return (
-    <ul onClick={onOpenModal}>
-      {RestaurantManager.getRestaurantListFilteredByOptions(category, sort).map(
-        (itemDetail) => (
-          <RestaurantItem
-            key={itemDetail.id}
-            itemDetail={itemDetail}
-          ></RestaurantItem>
-        )
-      )}
+    <ul>
+      {restaurants.map((itemDetail) => (
+        <RestaurantItem
+          key={itemDetail.id}
+          itemDetail={itemDetail}
+          onClickItem={onClickItem}
+        ></RestaurantItem>
+      ))}
     </ul>
   );
 };

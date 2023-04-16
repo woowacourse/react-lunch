@@ -3,14 +3,18 @@ import { IMAGE_PATH } from '../constants/images';
 
 interface RestaurantItemProps {
   itemDetail: RestaurantDetail;
+  onClickItem: React.MouseEventHandler<HTMLLIElement>;
 }
 
-export const RestaurantItem = ({ itemDetail }: RestaurantItemProps) => {
+export const RestaurantItem = ({
+  itemDetail,
+  onClickItem,
+}: RestaurantItemProps) => {
   const { id, category, name, distance, description } = itemDetail;
 
   return (
     <>
-      <li className="restaurant" id={String(id)}>
+      <li className="restaurant" id={String(id)} onClick={onClickItem}>
         <div className="restaurant__category">
           <img
             src={IMAGE_PATH[category]}
