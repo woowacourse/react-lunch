@@ -46,8 +46,8 @@ class App extends React.Component<Props, appState> {
 
     const { filter } = this.state;
 
-    const categortSotredList = sortingByCategory(value, this.state.wholeList);
-    const currentList = sortingByFilter(filter, categortSotredList);
+    const categortSortedList = sortingByCategory(value, this.state.wholeList);
+    const currentList = sortingByFilter(filter, categortSortedList);
 
     this.setState({ ...this.state, category: value, currentList });
   }
