@@ -57,7 +57,7 @@ export default class App extends Component {
   };
 
   onChangeSortFilter = (sortOption: RestaurantSortOption) => {
-    this.setState({ sortOption: sortOption });
+    this.setState({ sortOption });
   };
 
   onClickRestaurantItem = (restaurantId: number) => {
