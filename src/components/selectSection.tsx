@@ -1,7 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { CATEGORIES, SELECT_OPTION, SORTS } from "../constant/select";
-import { SelectedValue } from "../types/select";
+import {
+  CategoryUnion,
+  SelectedValue,
+  SelectNameType,
+  SortingUnion,
+} from "../types/select";
 import Select from "./select";
 
 interface PropsType {
@@ -11,17 +16,25 @@ interface PropsType {
 export default function SelectSection(props: PropsType) {
   const { handleSelect } = props;
 
+  function selectOption(
+    e: React.ChangeEvent<HTMLSelectElement>,
+    name: SelectNameType
+  ) {
+    const value = e.target.value as SortingUnion | CategoryUnion;
+    handleSelect({ type: name, value: value });
+  }
+
   return (
     <Container>
       <Select
         name={SELECT_OPTION.CATEGORY}
         options={CATEGORIES}
-        handleSelect={handleSelect}
+        selectOption={selectOption}
       />
       <Select
         name={SELECT_OPTION.SORTING}
         options={SORTS}
-        handleSelect={handleSelect}
+        selectOption={selectOption}
       />
     </Container>
   );

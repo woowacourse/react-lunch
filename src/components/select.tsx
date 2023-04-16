@@ -10,21 +10,17 @@ import {
 interface PropsType {
   name: SelectNameType;
   options: string[];
-  handleSelect: (selected: SelectedValue) => void;
+  selectOption: (
+    e: React.ChangeEvent<HTMLSelectElement>,
+    name: SelectNameType
+  ) => void;
 }
 
 export default function Select(props: PropsType) {
-  const { name, options, handleSelect } = props;
+  const { name, options, selectOption } = props;
 
   return (
-    <SelectContianer
-      onChange={(e) => {
-        const value = e.target.value as SortingUnion | CategoryUnion;
-        handleSelect({
-          type: name,
-          value: value,
-        });
-      }}>
+    <SelectContianer onChange={(e) => selectOption(e, name)}>
       {options.map((option: string) => {
         return (
           <option key={option} value={option}>

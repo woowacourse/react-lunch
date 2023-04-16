@@ -28,14 +28,12 @@ function App() {
   }
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Header />
-        <SelectSection handleSelect={handleSelect} />
-        <RestaurantSection sorting={sorting} category={category} />
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Header />
+      <SelectSection handleSelect={handleSelect} />
+      <RestaurantSection sorting={sorting} category={category} />
+    </ThemeProvider>
   );
 }
 
