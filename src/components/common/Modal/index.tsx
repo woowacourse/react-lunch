@@ -8,29 +8,24 @@ interface Props {
   onCloseModal: () => void;
 }
 
-const handleEscapeKeydown = (callback: () => void, event: KeyboardEvent) => {
-  if (event.key === 'Escape') {
-    callback();
-  }
+const handleEscapeKeydown = (callback: () => void) => {
+  document.body.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      callback();
+    }
+  });
 };
 
-const test = (props: Props) => {
-  useEffect(() => {
-    document.body.addEventListener('keydown', (e) =>
-      handleEscapeKeydown(props.onCloseModal, e),
-    );
-  }, []);
+const setModalCloseEvent = (props: Props) => {
+  useEffect(() => handleEscapeKeydown(props.onCloseModal), []);
 
   useEffect(() => {
-    return () =>
-      document.body.addEventListener('keydown', (e) =>
-        handleEscapeKeydown(props.onCloseModal, e),
-      );
+    return () => handleEscapeKeydown(props.onCloseModal);
   });
 };
 
 export default function Modal(props: Props) {
-  test(props);
+  setModalCloseEvent(props);
 
   return createPortal(
     <div role="dialog" aria-modal>
