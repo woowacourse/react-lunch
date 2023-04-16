@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 
 import './css/App.css';
 
@@ -11,69 +11,79 @@ import { getLocalStorage, setLocalStorage } from './utils/localStorage';
 import { getMockData } from './domain/mockData';
 import { LOCAL_STORAGE } from './CONSTANT';
 
-interface State {
-  restaurants: Restaurant[];
-  restaurantId: RestaurantId;
-  isModalOpened: boolean;
-}
+const state = () => {
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const [restaurantId, setRestaurantId] = useState('');
+  const [isModalOpened, setIsModalOpened] = useState(false);
 
-class App extends Component {
-  state: State = {
-    restaurants: [],
-    restaurantId: '',
-    isModalOpened: false,
+  const fetchData = async () => {
+    const response = await getMockData();
+
+    if (!response.ok) {
+      throw new Error('Error fetching data');
+    }
+
+    const data = await response.json();
+
+    setRestaurants(data);
+    setLocalStorage(LOCAL_STORAGE.restaurantData, data);
   };
 
-  async componentDidMount() {
+  useEffect(() => {
     const localStorageData = getLocalStorage(LOCAL_STORAGE.restaurantData);
 
     if (localStorageData) {
-      this.setState({ ...this.state, restaurants: localStorageData });
+      setRestaurants(localStorageData);
       return;
     }
 
-    const data = await getMockData();
+    fetchData();
+  }, []);
 
-    setLocalStorage(LOCAL_STORAGE.restaurantData, data);
-    this.setState({ ...this.state, restaurants: data });
-  }
-
-  openRestaurantInfoModal = (restaurantId: string) => {
-    this.setState({
-      ...this.state,
-      restaurantId,
-      isModalOpened: true,
-    });
+  const openRestaurantInfoModal = (restaurantId: string) => {
+    setRestaurantId(restaurantId);
+    setIsModalOpened(true);
   };
 
-  handleModalClose = () => {
-    this.setState({
-      ...this.state,
-      isModalOpened: false,
-    });
+  const handleModalClose = () => {
+    setIsModalOpened(false);
   };
 
-  render() {
-    const restaurant = this.state.restaurants.find(
-      (restaurant: Restaurant) => restaurant.id === this.state.restaurantId,
-    );
+  return {
+    restaurants,
+    restaurantId,
+    isModalOpened,
+    openRestaurantInfoModal,
+    handleModalClose,
+  };
+};
 
-    return (
-      <div className="App">
-        <Header />
-        <MainLayout
-          restaurants={this.state.restaurants}
-          onClickRestaurant={this.openRestaurantInfoModal}
+export default function App() {
+  const {
+    restaurants,
+    restaurantId,
+    isModalOpened,
+    openRestaurantInfoModal,
+    handleModalClose,
+  } = state();
+
+  const restaurant = restaurants.find(
+    (restaurant: Restaurant) => restaurant.id === restaurantId,
+  );
+
+  return (
+    <div className="App">
+      <Header />
+      <MainLayout
+        restaurants={restaurants}
+        onClickRestaurant={openRestaurantInfoModal}
+      />
+      {isModalOpened && restaurant ? (
+        <RestaurantDetailModal
+          restaurant={restaurant}
+          onCloseModal={handleModalClose}
         />
-        {this.state.isModalOpened ? (
-          <RestaurantDetailModal
-            restaurant={restaurant}
-            onCloseModal={this.handleModalClose}
-          />
-        ) : null}
-      </div>
-    );
-  }
+      ) : null}
+    </div>
+  );
 }
-
-export default App;
