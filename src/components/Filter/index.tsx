@@ -1,19 +1,6 @@
 import "./index.css";
 import { CategoryOption, SortOption } from "../../types/restaurant";
-
-const CATEGORY_LIST = {
-  all: "전체",
-  korean: "한식",
-  japanese: "일식",
-  western: "양식",
-  asian: "아시안",
-  etc: "기타",
-};
-
-const SORT_LIST = {
-  name: "이름순",
-  distance: "거리순",
-};
+import { CATEGORY_LIST, SORT_LIST } from "../../data/constants";
 
 interface FilterProps {
   setSelectedCategory: (category: CategoryOption) => void;

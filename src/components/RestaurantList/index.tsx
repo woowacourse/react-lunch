@@ -1,28 +1,13 @@
 import "./index.css";
 import RestaurantItem from "../RestaurantItem";
 import { CategoryOption, Restaurant, SortOption } from "../../types/restaurant";
-import mockData from "../../data/mockData.json";
-import { LocalStorage } from "../../utils/LocalStorage";
 import { useCallback, useEffect, useState } from "react";
-
-const LOCAL_STORAGE_KEY = "RESTAURANT_LIST";
+import { getInitList } from "../../domain/restaurantInitList";
 
 interface RestaurantListProps {
   selectedCategory: CategoryOption;
   selectedSort: SortOption;
 }
-
-const getInitList = () => {
-  const localStorageData: Restaurant[] = LocalStorage.getData(LOCAL_STORAGE_KEY);
-  if (localStorageData) {
-    return localStorageData;
-  }
-
-  const mockList: Restaurant[] = JSON.parse(JSON.stringify(mockData.restaurants));
-  LocalStorage.setData(LOCAL_STORAGE_KEY, mockList);
-
-  return mockList;
-};
 
 const allRestaurants: Restaurant[] = getInitList();
 
