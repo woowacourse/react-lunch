@@ -26,7 +26,9 @@ export default function RestaurantSection(props: PropsType) {
   function getFilteredRestaurants() {
     if (category === SELECT_OPTION.ALL) return restaurants;
 
-    return restaurants.filter((restaurant) => restaurant.category === category);
+    return [...restaurants].filter(
+      (restaurant) => restaurant.category === category
+    );
   }
 
   function getSortedRestaurants(filteredRestaurant: Restaurant[]) {
