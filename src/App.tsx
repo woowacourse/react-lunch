@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import './styles/App.css';
 import { FoodCategory, RestaurantInfo, SortMethod, isFoodCategory, isSortMethod } from './types/restaurantInfo';
@@ -8,141 +8,95 @@ import Modal from './components/Modal';
 import RestaurantDetail from './components/RestaurantDetail';
 import { deleteTargetRestaurant, filterFoodCategory, sortRestaurants } from './domain/RestaurantSelector';
 
-interface AppState {
-  restaurantList: RestaurantInfo[];
-  originalRestaurantList: RestaurantInfo[];
-  clickedRestaurant: RestaurantInfo | null;
-  selectedCategory: FoodCategory;
-  selectedSortingMethod: SortMethod;
-}
+export default function App() {
+  const [restaurantList, setRestaurantList] = useState<RestaurantInfo[]>([]);
+  const [originalRestaurantList, setOriginalRestaurantList] = useState<RestaurantInfo[]>([]);
+  const [clickedRestaurant, setClickedRestaurant] = useState<RestaurantInfo | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<FoodCategory>('전체');
+  const [selectedSortingMethod, setSelectedSortingMethod] = useState<SortMethod>('이름순');
 
-class App extends Component<object, AppState> {
-  constructor(props: object) {
-    super(props);
-
-    this.state = {
-      restaurantList: [],
-      originalRestaurantList: [],
-      clickedRestaurant: null,
-      selectedCategory: '전체',
-      selectedSortingMethod: '이름순',
-    };
-
-    this.setClickedRestaurant = this.setClickedRestaurant.bind(this);
-    this.resetClickedRestaurant = this.resetClickedRestaurant.bind(this);
-    this.selectChangeCallback = this.selectChangeCallback.bind(this);
-    this.filterRestaurantList = this.filterRestaurantList.bind(this);
-    this.deleteRestaurant = this.deleteRestaurant.bind(this);
-  }
-
-  componentDidMount() {
-    if (!hasSavedRestaurantList()) saveRestaurantList();
-
-    const list = getSavedRestaurantList();
-
-    this.setState(
-      {
-        originalRestaurantList: list,
-      },
-      this.filterRestaurantList,
-    );
-  }
-
-  setClickedRestaurant(restaurantInfo: RestaurantInfo) {
-    this.setState({
-      clickedRestaurant: restaurantInfo,
-    });
+  const changeClickedRestaurant = (restaurantInfo: RestaurantInfo) => {
+    setClickedRestaurant(restaurantInfo);
 
     document.body.dataset.hideScroll = 'true';
-  }
+  };
 
-  setSelectedCategory(value: string) {
+  const changeSelectedCategory = (value: string) => {
     if (!isFoodCategory(value)) return;
 
-    this.setState(
-      {
-        selectedCategory: value,
-      },
-      this.filterRestaurantList,
-    );
-  }
+    setSelectedCategory(value);
+  };
 
-  setSelectedSortingMethod(value: string) {
+  const changeSelectedSortingMethod = (value: string) => {
     if (!isSortMethod(value)) return;
 
-    this.setState(
-      {
-        selectedSortingMethod: value,
-      },
-      this.filterRestaurantList,
-    );
-  }
+    setSelectedSortingMethod(value);
+  };
 
-  resetClickedRestaurant() {
-    this.setState({
-      clickedRestaurant: null,
-    });
+  const resetClickedRestaurant = () => {
+    setClickedRestaurant(null);
 
     document.body.dataset.hideScroll = 'false';
-  }
+  };
 
-  deleteRestaurant() {
-    const { originalRestaurantList, clickedRestaurant } = this.state;
-
+  const deleteRestaurant = () => {
     if (!clickedRestaurant) return;
 
     const updatedList = deleteTargetRestaurant(originalRestaurantList, clickedRestaurant);
 
-    this.setState(
-      {
-        originalRestaurantList: updatedList,
-      },
-      this.filterRestaurantList,
-    );
+    setOriginalRestaurantList(updatedList);
 
     saveRestaurantList(updatedList);
-    this.resetClickedRestaurant();
-  }
+    resetClickedRestaurant();
+  };
 
-  filterRestaurantList() {
-    const { selectedCategory, selectedSortingMethod, originalRestaurantList } = this.state;
-
+  const filterRestaurantList = () => {
     const filteredList = filterFoodCategory(originalRestaurantList, selectedCategory);
     const sortedList = sortRestaurants(filteredList, selectedSortingMethod);
 
-    this.setState({
-      restaurantList: sortedList,
-    });
-  }
+    setRestaurantList(sortedList);
+  };
 
-  selectChangeCallback(value: string, kind: 'filter' | 'sort') {
+  const selectChangeCallback = (value: string, kind: 'filter' | 'sort') => {
     if (kind === 'filter') {
-      this.setSelectedCategory(value);
+      if (!isFoodCategory(value)) return;
+
+      changeSelectedCategory(value);
     }
 
     if (kind === 'sort') {
-      this.setSelectedSortingMethod(value);
+      if (!isSortMethod(value)) return;
+
+      changeSelectedSortingMethod(value);
     }
-  }
+  };
 
-  render() {
-    const { restaurantList, clickedRestaurant } = this.state;
-    return (
-      <div className="app">
-        <Header onChange={this.selectChangeCallback} />
-        <RestaurantList onClick={this.setClickedRestaurant} restaurantList={restaurantList} />
-        {clickedRestaurant && (
-          <Modal onClose={this.resetClickedRestaurant}>
-            <RestaurantDetail
-              onDeleteClick={this.deleteRestaurant}
-              onCloseClick={this.resetClickedRestaurant}
-              restaurantInfo={clickedRestaurant}
-            />
-          </Modal>
-        )}
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (!hasSavedRestaurantList()) saveRestaurantList();
+
+    const list = getSavedRestaurantList();
+
+    setOriginalRestaurantList(list);
+    filterRestaurantList();
+  }, []);
+
+  useEffect(() => {
+    filterRestaurantList();
+  }, [originalRestaurantList, selectedCategory, selectedSortingMethod]);
+
+  return (
+    <div className="app">
+      <Header onChange={selectChangeCallback} />
+      <RestaurantList onClick={changeClickedRestaurant} restaurantList={restaurantList} />
+      {clickedRestaurant && (
+        <Modal onClose={resetClickedRestaurant}>
+          <RestaurantDetail
+            onDeleteClick={deleteRestaurant}
+            onCloseClick={resetClickedRestaurant}
+            restaurantInfo={clickedRestaurant}
+          />
+        </Modal>
+      )}
+    </div>
+  );
 }
-
-export default App;

@@ -3,7 +3,7 @@
 ## Class Component를 Function Component로 마이그레이션 한다.
 
 - [x] Header
-- [ ] App
+- [x] App
 - [ ] Button
 - [ ] CategoryImage
 - [ ] Modal
