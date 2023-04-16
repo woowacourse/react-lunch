@@ -47,8 +47,8 @@ class App extends Component<{}, Props> {
   };
 
   sortRestaurantsByName(restaurants: RestaurantInfo[]) {
-    return [...restaurants].sort((resA, resB) =>
-      resA.name.localeCompare(resB.name, LANGUAGE)
+    return [...restaurants].sort((a, b) =>
+      a.name.localeCompare(b.name, LANGUAGE)
     );
   }
 
@@ -69,9 +69,7 @@ class App extends Component<{}, Props> {
     if (sorting === SORTING_SELECT.NAME) {
       return this.sortRestaurantsByName(filteredRestaurants);
     }
-    return [...filteredRestaurants].sort(
-      (resA, resB) => resA.takingTime - resB.takingTime
-    );
+    return [...filteredRestaurants].sort((a, b) => a.takingTime - b.takingTime);
   }
 
   render() {
