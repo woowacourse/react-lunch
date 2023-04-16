@@ -7,7 +7,7 @@ import { CATEGORY_IMAGES, NO_EXIST_RESTAURANT } from './util/constant.ts';
 type RestaurantDetailDrawerProps = {
   isOpenDrawer: boolean;
   restaurantId: number;
-  onToggleDrawer: (id?: number) => void;
+  onToggleDrawer: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 type RestaurantDetailDrawerState = {
@@ -53,6 +53,10 @@ class RestaurantDetailDrawer extends React.Component<
     );
   }
 
+  shouldComponentUpdate(nextProps: RestaurantDetailDrawerProps, nextState: RestaurantDetailDrawerState) {
+    return nextProps.isOpenDrawer !== this.props.isOpenDrawer || nextState.restaurant !== this.state.restaurant;
+  }
+  
   render() {
     return ReactDOM.createPortal(
       <Drawer isOpenDrawer={this.props.isOpenDrawer}>
@@ -76,7 +80,7 @@ class RestaurantDetailDrawer extends React.Component<
         <button
           type='button'
           className='button button--secondary text-caption'
-          onClick={() => this.props.onToggleDrawer()}
+          onClick={this.props.onToggleDrawer}
         >
           취소하기
         </button>
