@@ -10,8 +10,8 @@ type Props<T> = {
 const SelectBox = <T extends string>({ options, setOption }: Props<T>) => {
   return (
     <S.Select onChange={(e) => setOption(e.target.value as T)}>
-      {options.map((option, index) => (
-        <option key={index} value={option}>
+      {options.map((option) => (
+        <option key={option} value={option}>
           {option}
         </option>
       ))}

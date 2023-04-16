@@ -44,8 +44,8 @@ const RestaurantList = ({ restaurantList, openModal }: Props) => {
         <SelectBox options={Object.values(SORT_OPTIONS)} setOption={changeSortOption} />
       </S.SelectBoxContainer>
       <S.RestaurantList>
-        {filteringRestaurantList.map((restaurant, index) => (
-          <RestaurantItem key={index} restaurant={restaurant} openModal={openModal} />
+        {filteringRestaurantList.map((restaurant) => (
+          <RestaurantItem key={restaurant.id} restaurant={restaurant} openModal={openModal} />
         ))}
       </S.RestaurantList>
     </S.RestaurantListContainer>
