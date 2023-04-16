@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styles from './RestaurantList.module.css';
 import { RestaurantInfo } from '../types/restaurantInfo';
 import RestaurantSummary from './RestaurantSummary';
