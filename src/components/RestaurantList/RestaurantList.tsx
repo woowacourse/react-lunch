@@ -1,78 +1,59 @@
-import React from 'react';
-import { Restaurant, Category, All, Criterion } from '../../types';
+import { useState } from 'react';
+import { Restaurant, Category, Criterion } from '../../types';
 import RestaurantItem from '../RestaurantItem/RestaurantItem';
-import RestaurantDataService from '../../domains/LunchDataService';
 import DetailModal from '../Modal/DetailModal';
 import CategoryFilter from '../SelectBox/CategoryFilter';
 import SortingFilter from '../SelectBox/SortingFilter';
+import LunchDataService from '../../domains/LunchDataService';
 
-interface RestaurantListState {
-  isClicked: boolean;
-  clickedData: Restaurant;
-  category: Category | All;
-  criterion: Criterion;
-  restaurantsData: Restaurant[];
-}
+function RestaurantList() {
+  const [isItemClicked, setIsItemClicked] = useState<boolean>(false);
+  const [clickedData, setClickedData] = useState<Restaurant>({
+    id: 0,
+    category: '한식',
+    name: '',
+    distance: 0,
+    description: '',
+    link: '',
+  });
+  const [category, setCategory] = useState<Category>('전체');
+  const [criterion, setCriterion] = useState<Criterion>('이름순');
+  const [restaurantsData, setRestaurantsData] = useState<Restaurant[]>(
+    LunchDataService.getRestaurants('전체', '이름순'),
+  );
 
-class RestaurantList extends React.Component<{}, RestaurantListState> {
-  constructor() {
-    super({});
-    this.setCategory = this.setCategory.bind(this);
-    this.setCriterion = this.setCriterion.bind(this);
-    this.state = {
-      restaurantsData: RestaurantDataService.getRestaurants('전체', '이름순'),
-      isClicked: false,
-      clickedData: { id: 0, category: '한식', name: '', distance: 0, description: '', link: '' },
-      category: '전체',
-      criterion: '이름순',
-    };
-  }
-
-  onClick = (event: React.MouseEvent) => {
-    const target = event?.target;
-
-    if (!(target instanceof HTMLElement)) return;
-    const id = target.closest('[id]')?.id;
-
-    if (!id) return;
-
-    this.setState({ isClicked: true, clickedData: RestaurantDataService.getRestaurant(id) });
+  const onClick = (targetId: string) => {
+    if (!targetId) return;
+    setIsItemClicked(true);
+    setClickedData(LunchDataService.getRestaurant(targetId));
   };
 
-  setCategory(newCategory: Category | All) {
-    this.setState({
-      isClicked: false,
-      category: newCategory,
-      restaurantsData: RestaurantDataService.getRestaurants(newCategory, this.state.criterion),
-    });
-  }
+  const handleSetCategory = (newCategory: Category) => {
+    setIsItemClicked(false);
+    setCategory(newCategory);
+    setRestaurantsData(LunchDataService.getRestaurants(newCategory, criterion));
+  };
 
-  setCriterion(newCriterion: Criterion) {
-    this.setState({
-      isClicked: false,
-      criterion: newCriterion,
-      restaurantsData: RestaurantDataService.getRestaurants(this.state.category, newCriterion),
-    });
-  }
+  const handleSetCriterion = (newCriterion: Criterion) => {
+    setIsItemClicked(false);
+    setCriterion(newCriterion);
+    setRestaurantsData(LunchDataService.getRestaurants(category, newCriterion));
+  };
 
-  render() {
-    const { isClicked, clickedData, restaurantsData } = this.state;
-
-    return (
-      <>
-        <section className="restaurant-filter-container">
-          <CategoryFilter setCategory={this.setCategory} />
-          <SortingFilter setCriterion={this.setCriterion} />
-        </section>
-        <ul onClick={this.onClick}>
-          {restaurantsData.map((restaurantData: Restaurant) => {
-            return <RestaurantItem key={restaurantData.id} data={restaurantData} />;
-          })}
-        </ul>
-        {isClicked && <DetailModal data={clickedData} />}
-      </>
-    );
-  }
+  return (
+    <>
+      <section className="restaurant-filter-container">
+        <CategoryFilter setCategory={handleSetCategory} />
+        <SortingFilter setCriterion={handleSetCriterion} />
+      </section>
+      <ul>
+        {restaurantsData.map((restaurantData: Restaurant) => {
+          return <RestaurantItem key={restaurantData.id} data={restaurantData} onClick={onClick} />;
+        })}
+      </ul>
+      {isItemClicked && <DetailModal data={clickedData} isClicked={isItemClicked} />}
+    </>
+  );
 }
 
 export default RestaurantList;

@@ -1,25 +1,23 @@
 import React from 'react';
 import SelectBox from './SelectBox';
-import { CRITERION } from '../../constants';
+import { CRITERION, CRITERION_LIST } from '../../constants';
 import { Criterion } from '../../types';
 
 interface SortingProps {
   setCriterion: (newCriterion: Criterion) => void;
 }
 
-class SortingFilter extends React.Component<SortingProps> {
-  constructor(props: SortingProps) {
-    super(props);
-    this.onChangeCriterion = this.onChangeCriterion.bind(this);
-  }
+const isCriterion = (filter: string): filter is Criterion => {
+  if (CRITERION_LIST.includes(filter)) return true;
+  return false;
+};
 
-  onChangeCriterion(event: React.ChangeEvent<HTMLSelectElement>) {
-    this.props.setCriterion(event.target.value as Criterion);
-  }
+function SortingFilter({ setCriterion }: SortingProps) {
+  const onChangeCriterion = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    if (isCriterion(event.target.value)) setCriterion(event.target.value);
+  };
 
-  render() {
-    return <SelectBox filter={CRITERION} onOptionChange={this.onChangeCriterion} />;
-  }
+  return <SelectBox filter={CRITERION} onOptionChange={onChangeCriterion} />;
 }
 
 export default SortingFilter;

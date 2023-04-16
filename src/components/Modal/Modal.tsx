@@ -1,55 +1,52 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Modal.css';
-import { ModalProps, ModalState } from '../../types';
 
-class Modal extends React.Component<ModalProps, ModalState> {
-  private modalRef: React.RefObject<HTMLDialogElement>;
+interface ModalProps {
+  children?: React.ReactNode;
+  isClicked: boolean;
+}
 
-  constructor(props: ModalProps) {
-    super(props);
-    this.modalRef = React.createRef<HTMLDialogElement>();
-  }
+const useModalRef = (props: ModalProps) => {
+  const modalRef = useRef<HTMLDialogElement>(null);
 
-  componentDidMount() {
-    if (this.modalRef.current) {
-      this.modalRef.current.showModal();
-    }
-  }
+  useEffect(() => {
+    if (modalRef.current) modalRef.current.showModal();
+  }, [props]);
 
-  componentDidUpdate() {
-    if (this.modalRef.current) {
-      this.modalRef.current.showModal();
-    }
-  }
+  return [modalRef];
+};
 
-  closeModal() {
-    if (this.modalRef.current) {
-      this.modalRef.current.close();
-    }
-  }
+function Modal(props: ModalProps) {
+  const [, setIsClicked] = useState(props.isClicked);
+  const [modalRef] = useModalRef(props);
 
-  onBackdropClick = (event: React.MouseEvent<HTMLDialogElement>) => {
-    if (event.target === this.modalRef.current) {
-      this.closeModal();
+  const closeModal = () => {
+    if (modalRef.current) {
+      modalRef.current.close();
     }
   };
 
-  render() {
-    return (
-      <dialog ref={this.modalRef} onClick={this.onBackdropClick}>
-        <div className="modal-container">
-          {this.props.children}
-          <button
-            className="button button--primary text-caption"
-            id="restaurant-detail-modal-close-button"
-            onClick={() => this.closeModal()}
-          >
-            닫기
-          </button>
-        </div>
-      </dialog>
-    );
-  }
+  const onBackdropClick = (event: React.MouseEvent<HTMLDialogElement>) => {
+    if (event.target === modalRef.current) {
+      setIsClicked(false);
+      closeModal();
+    }
+  };
+
+  return (
+    <dialog ref={modalRef} onClick={onBackdropClick}>
+      <div className="modal-container">
+        {props.children}
+        <button
+          className="button button--primary text-caption"
+          id="restaurant-detail-modal-close-button"
+          onClick={closeModal}
+        >
+          닫기
+        </button>
+      </div>
+    </dialog>
+  );
 }
 
 export default Modal;
