@@ -1,28 +1,26 @@
 import React, { ChangeEvent } from 'react';
-import Store from '../../store';
-import { Category, State } from '../../store/type';
-
+import { useLunchDispatch } from '../../hooks';
+import { CHANGE_CATEGORY } from '../../store/action';
+import { Category } from '../../store/type';
 import styles from './SelectorSection.module.css';
 
 function CategorySelector() {
-	const handleCategorySelector = (store: State | null) => (e: ChangeEvent<HTMLSelectElement>) => {
-		store?.setCategory(e.target.value as Category);
+	const dispatch = useLunchDispatch();
+
+	const handleCategorySelector = (e: ChangeEvent<HTMLSelectElement>) => {
+		dispatch({ type: CHANGE_CATEGORY, payload: { category: e.target.value as Category } });
 	};
 
 	return (
-		<Store.Consumer>
-			{(store) => (
-				<select name="category" className={styles.selector} onChange={handleCategorySelector(store)}>
-					<option value="전체">전체</option>
-					<option value="한식">한식</option>
-					<option value="양식">양식</option>
-					<option value="일식">일식</option>
-					<option value="중식">중식</option>
-					<option value="아시안">아시안</option>
-					<option value="기타">기타</option>
-				</select>
-			)}
-		</Store.Consumer>
+		<select name="category" className={styles.selector} onChange={handleCategorySelector}>
+			<option value="전체">전체</option>
+			<option value="한식">한식</option>
+			<option value="양식">양식</option>
+			<option value="일식">일식</option>
+			<option value="중식">중식</option>
+			<option value="아시안">아시안</option>
+			<option value="기타">기타</option>
+		</select>
 	);
 }
 

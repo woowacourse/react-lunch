@@ -1,23 +1,22 @@
 import React, { ChangeEvent } from 'react';
-import Store from '../../store';
-import { Sort, State } from '../../store/type';
+import { useLunchDispatch } from '../../hooks';
+import { CHANGE_SORT_STATE } from '../../store/action';
+import { Sort } from '../../store/type';
 
 import styles from './SelectorSection.module.css';
 
 function SortedSelector() {
-	const handleSortedSelector = (store: State | null) => (e: ChangeEvent<HTMLSelectElement>) => {
-		store?.setSortState(e.target.value as Sort);
+	const dispatch = useLunchDispatch();
+
+	const handleSortedSelector = (e: ChangeEvent<HTMLSelectElement>) => {
+		dispatch({ type: CHANGE_SORT_STATE, payload: { sort: e.target.value as Sort } });
 	};
 
 	return (
-		<Store.Consumer>
-			{(store) => (
-				<select name="sort" className={styles.selector} onChange={handleSortedSelector(store)}>
-					<option value="이름순">이름순</option>
-					<option value="거리순">거리순</option>
-				</select>
-			)}
-		</Store.Consumer>
+		<select name="sort" className={styles.selector} onChange={handleSortedSelector}>
+			<option value="이름순">이름순</option>
+			<option value="거리순">거리순</option>
+		</select>
 	);
 }
 

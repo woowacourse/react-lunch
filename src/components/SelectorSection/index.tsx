@@ -12,4 +12,4 @@ function SelectorSection() {
 	);
 }
 
-export default SelectorSection;
+export default React.memo(SelectorSection);
