@@ -8,17 +8,15 @@ interface SelectBoxType {
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
 }
 
-class SelectBox extends React.Component<SelectBoxType> {
-  render() {
-    return (
-      <SelectBoxWrapper name={this.props.selectType} onChange={this.props.onChange}>
-        {this.props.options.map((option: string, index: number) => (
-          <option key={index}>{option}</option>
-        ))}
-      </SelectBoxWrapper>
-    );
-  }
-}
+const SelectBox = (props: SelectBoxType) => {
+  return (
+    <SelectBoxWrapper name={props.selectType} onChange={props.onChange}>
+      {props.options.map((option: string, index: number) => (
+        <option key={index}>{option}</option>
+      ))}
+    </SelectBoxWrapper>
+  );
+};
 
 const SelectBoxWrapper = styled.select`
   height: 44px;
