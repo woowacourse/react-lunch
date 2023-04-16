@@ -9,10 +9,13 @@ interface BottomSheetType {
 }
 
 class BottomSheet extends React.Component<BottomSheetType> {
+  bottomSheetRef: React.RefObject<HTMLDivElement> = React.createRef<HTMLDivElement>();
+  backdropRef: React.RefObject<HTMLDivElement> = React.createRef<HTMLDivElement>();
+
   componentDidMount() {
     setTimeout(() => {
-      $<HTMLElement>('#bottom_sheet').classList.remove('close_bottom_sheet');
-      $<HTMLElement>('#backdrop').classList.remove('close_background');
+      if (this.bottomSheetRef.current) this.bottomSheetRef.current.classList.remove('close_bottom_sheet');
+      if (this.backdropRef.current) this.backdropRef.current?.classList.remove('close_background');
     });
     this.handleScroll(false);
   }
@@ -28,8 +31,8 @@ class BottomSheet extends React.Component<BottomSheetType> {
   render() {
     return (
       <ModalPortal>
-        <BackDrop id="backdrop" className="close_background" onClick={this.props.onClose} />
-        <BottomSheetWrapper id="bottom_sheet" className="close_bottom_sheet">
+        <BackDrop ref={this.backdropRef} id="backdrop" className="close_background" onClick={this.props.onClose} />
+        <BottomSheetWrapper ref={this.bottomSheetRef} id="bottom_sheet" className="close_bottom_sheet">
           {this.props.children}
         </BottomSheetWrapper>
       </ModalPortal>
