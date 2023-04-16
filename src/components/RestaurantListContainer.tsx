@@ -62,7 +62,7 @@ const RestaurantListContainer = () => {
       <Modal
         category={category}
         sort={sort}
-        restaurantID={restaurantId}
+        restaurantId={restaurantId}
       ></Modal>
     </>
   );
