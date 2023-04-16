@@ -14,7 +14,6 @@ const Select = ({
   options: Options;
   onChange: CallableFunction;
 }) => {
-  // 각 컴포넌트에서 event를 받아 핸들링하는 함수를 hook으로 만들 필요가 있을까?
   const handleChangeOption = (event: ChangeEvent<HTMLSelectElement>) => {
     const target = event.target as HTMLSelectElement;
     onChange({
@@ -22,7 +21,6 @@ const Select = ({
     });
   };
 
-  // hook으로 만들 필요가 있을까?
   const createOptionElements = () => {
     return options.map(option => (
       <option key={option} value={option}>
