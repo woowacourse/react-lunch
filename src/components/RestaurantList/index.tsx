@@ -1,5 +1,5 @@
-import useModal from '../../hooks/useModal';
-import useRestaurantList from '../../hooks/useRestaurantList';
+import useModal from '../../hooks/@common/useModal';
+import useRestaurantList from '../../hooks/restaurants/useRestaurantList';
 import { FilterOptions, Restaurant } from '../../types/restaurants';
 import RestaurantDetailBottomSheet from '../RestaurantDetailBottomSheet';
 import RestaurantItem from '../RestaurantItem';

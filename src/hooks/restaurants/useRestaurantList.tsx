@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
-import { fetchMockRestaurants } from '../api/restaurants';
-import { BY_NAME } from '../constants/restaurants';
-import { AlignFilter, FilterOptions, Restaurant } from '../types/restaurants';
-import { alignBy, filterBy } from '../utils/restaurants';
+import { fetchMockRestaurants } from '../../api/restaurants';
+import { BY_NAME } from '../../constants/restaurants';
+import {
+  AlignFilter,
+  FilterOptions,
+  Restaurant,
+} from '../../types/restaurants';
+import { alignBy, filterBy } from '../../utils/restaurants';
 
 export default function useRestaurantList(filterOptions: FilterOptions) {
   const { category, align } = filterOptions;
