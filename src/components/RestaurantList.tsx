@@ -1,6 +1,5 @@
-import { Component, useState } from "react";
 import RestaurantItem from "./RestaurantItem";
-import mockData from "../assets/mockData.json";
+import useLocalStorage from "../hooks/useLocalStorage";
 import type { Restaurant } from "../types/restaurant";
 
 import styles from "./RestaurantList.module.css";
@@ -12,7 +11,8 @@ interface Props {
 }
 
 const RestaurantList = (props: Props) => {
-  const restaurants: Restaurant[] = JSON.parse(localStorage.getItem("restaurant") ?? JSON.stringify(mockData));
+  const [getRestaurant] = useLocalStorage("restaurant");
+  const restaurants: Restaurant[] = getRestaurant();
 
   const filterList = () => {
     const { category } = props.options;
