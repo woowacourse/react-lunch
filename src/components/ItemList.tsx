@@ -4,6 +4,7 @@ import '../styles/ItemList.css';
 import Item from './Item';
 import ModalPortal from './ModalPortal';
 import ItemInformation from './ItemInformation';
+import { useCloseModal } from '../hook/useClose'
 
 interface Props {
   itemList: restaurant[];
@@ -27,18 +28,13 @@ const ItemList: React.FC<Props> = props => {
     setmodalInformation({ modalItem: selectedState });
   };
 
-  const closeEvent = () => {
-    const current = modalRef.current;
-    if (current) {
-      initializeItemValue();
-    }
-  };
-
   const initializeItemValue = () => {
     setmodalInformation({
       modalItem: null,
     });
   };
+
+  const [closeEvent] = useCloseModal(modalRef, initializeItemValue)
 
   return (
     <section className="restaurant-list-container">
