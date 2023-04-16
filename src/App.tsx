@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import theme from './styles/theme';
 import { GlobalStyle } from './styles/GlobalStyle';
 import { getRestaurantList } from './utils/storage';
 import { filterAndSortRestaurantList } from './utils/util';
@@ -86,26 +87,31 @@ export function App() {
   };
 
   return (
-    <Layout>
-      <GlobalStyle />
-      <Style.Wrapper>
-        <SelectBox
-          option={categoryOption}
-          handleOptionChange={handleCategoryFilter}
+    <ThemeProvider theme={theme}>
+      <Layout>
+        <GlobalStyle />
+        <Style.Wrapper>
+          <SelectBox
+            option={categoryOption}
+            handleOptionChange={handleCategoryFilter}
+          />
+          <SelectBox
+            option={sortOption}
+            handleOptionChange={handleSortFilter}
+          />
+        </Style.Wrapper>
+        <RestaurantList
+          list={filterAndSortRestaurantList(restaurantList, filter)}
+          handleClickRestaurantItem={handleClickRestaurantItem}
         />
-        <SelectBox option={sortOption} handleOptionChange={handleSortFilter} />
-      </Style.Wrapper>
-      <RestaurantList
-        list={filterAndSortRestaurantList(restaurantList, filter)}
-        handleClickRestaurantItem={handleClickRestaurantItem}
-      />
-      <Modal
-        isOpen={isModalOpen}
-        children={
-          selectedItem && <RestaurantDetail restaurant={selectedItem} />
-        }
-        closeModal={closeModal}
-      />
-    </Layout>
+        <Modal
+          isOpen={isModalOpen}
+          children={
+            selectedItem && <RestaurantDetail restaurant={selectedItem} />
+          }
+          closeModal={closeModal}
+        />
+      </Layout>
+    </ThemeProvider>
   );
 }

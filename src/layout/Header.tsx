@@ -1,5 +1,6 @@
 import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
+import theme from '../styles/theme';
 
 const Style = {
   Wrapper: styled.header`
@@ -7,15 +8,12 @@ const Style = {
     justify-content: space-between;
     align-items: center;
     height: 64px;
-
     padding: 0 16px;
-
-    background-color: var(--primary-color);
+    background-color: ${theme.color.primary};
   `,
   Title: styled.h1`
-    font: var(--lunch-title);
-    color: var(--grey-100);
-
+    font: ${theme.font.title};
+    color: ${theme.color.grey100};
     cursor: pointer;
   `,
 };

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from '../../styles/theme';
 import { Style as RestaurantStyle } from '../restaurant/RestaurantItem';
 import { RestaurantProps } from '../../type';
 import { getImageSrc } from '../../utils/util';
@@ -11,7 +12,7 @@ const Style = {
     justify-content: space-between;
   `,
   RestaurantLink: styled.p`
-    color: var(--grey-500);
+    color: ${theme.color.grey500};
   `,
   RestaurantDescription: styled.p`
     display: -webkit-box;
@@ -19,7 +20,7 @@ const Style = {
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
-    font: var(--lunch-body);
+    font: ${theme.font.body};
   `,
 };
 

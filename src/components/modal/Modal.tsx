@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
+import theme from '../../styles/theme';
 
 const Style = {
   BackDrop: styled.div`
@@ -19,12 +20,12 @@ const Style = {
     padding: 16px;
 
     border-radius: 8px 8px 0px 0px;
-    background: var(--grey-100);
+    background: ${theme.color.grey100};
   `,
   CloseButton: styled.button`
     border: none;
-    background-color: var(--primary-color);
-    color: var(--grey-100);
+    background-color: ${theme.color.primary};
+    color: ${theme.color.grey100};
     width: 100%;
     height: 44px;
     margin-right: 16px;

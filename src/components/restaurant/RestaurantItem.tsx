@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from '../../styles/theme';
 import { Restaurant } from '../../type';
 import { getImageSrc } from '../../utils/util';
 
@@ -28,7 +29,7 @@ export const Style = {
     min-height: 64px;
     margin-right: 16px;
     border-radius: 50%;
-    background: var(--lighten-color);
+    background: ${theme.color.lighten};
   `,
 
   DescriptionWrapper: styled.div`
@@ -38,12 +39,12 @@ export const Style = {
   `,
 
   RestaurantName: styled.h3`
-    font: var(--lunch-subtitle);
+    font: ${theme.font.subtitle};
   `,
 
   RestaurantDistance: styled.span`
-    font: var(--lunch-body);
-    color: var(--primary-color);
+    font: ${theme.font.body};
+    color: ${theme.color.primary};
   `,
 
   RestaurantDescription: styled.p`
@@ -53,7 +54,7 @@ export const Style = {
     text-overflow: ellipsis;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    font: var(--lunch-body);
+    font: ${theme.font.body};
   `,
 };
 
