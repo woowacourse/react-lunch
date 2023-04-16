@@ -12,7 +12,7 @@ interface Props {
 const RestaurantItem = (props: Props) => {
   const { name, category, distance, description } = props.restaurant;
 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onClick = () => {
     setIsModalOpen(true);
@@ -24,7 +24,7 @@ const RestaurantItem = (props: Props) => {
 
   return (
     <>
-      <li className={styles.restaurant} onClick={onClick.bind(this)}>
+      <li className={styles.restaurant} onClick={onClick}>
         <CategoryIcon category={category} />
         <div className={styles.info}>
           <h3 className={`${styles.name} text-subtitle`}>{name}</h3>

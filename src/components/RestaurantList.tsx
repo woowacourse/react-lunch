@@ -5,42 +5,24 @@ import type { Restaurant } from "../types/restaurant";
 import styles from "./RestaurantList.module.css";
 import { CATEGORY_OPTIONS, SORTING_OPTIONS } from "../constants/options";
 import { isCategory } from "../assets/images/category";
+import useSelectBox from "../hooks/useSelectBox";
 
 interface Props {
   options: { category: string; sorting: string };
 }
 
 const RestaurantList = (props: Props) => {
-  const [getRestaurant] = useLocalStorage("restaurant");
-  const restaurants: Restaurant[] = getRestaurant();
+  const { category, sorting } = props.options;
 
-  const filterList = () => {
-    const { category } = props.options;
+  const [getRestaurants] = useLocalStorage("restaurant");
+  const restaurants: Restaurant[] = getRestaurants();
 
-    if (category === CATEGORY_OPTIONS.TOTAL) {
-      return restaurants;
-    }
-
-    if (category === CATEGORY_OPTIONS.ETC) {
-      return restaurants.filter((data) => !isCategory(data.category));
-    }
-
-    return restaurants.filter((data) => data.category === category);
-  };
-
-  const sortList = (restaurants: Restaurant[]) => {
-    const { sorting } = props.options;
-
-    if (sorting === SORTING_OPTIONS.NAME) {
-      return [...restaurants].sort((first, second) => first.name.localeCompare(second.name));
-    }
-
-    return [...restaurants].sort((first, second) => first.distance - second.distance);
-  };
+  const { filterList, sortList } = useSelectBox(restaurants);
+  const selctedRestaurnants = sortList(filterList(category), sorting);
 
   return (
     <ul className={styles.restaurantList}>
-      {sortList(filterList()).map((restaurant) => (
+      {selctedRestaurnants.map((restaurant) => (
         <RestaurantItem key={restaurant.id} restaurant={restaurant} />
       ))}
     </ul>
