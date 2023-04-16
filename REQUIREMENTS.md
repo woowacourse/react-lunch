@@ -15,7 +15,7 @@
 ## step2 리뷰 관련 사항
 
 - [ ] `styled.` prefix 제거
-- [ ] prettier 기본값 제거
+- [x] prettier 기본값 제거
 - [x] 불필요한 eslint 관련 의존성 제거
   - @typescript-eslint/eslint-plugin
   - @typescript-eslint/parser
