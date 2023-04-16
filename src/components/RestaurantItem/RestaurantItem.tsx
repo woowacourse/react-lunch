@@ -1,3 +1,4 @@
+import variables from 'components/styles/variables';
 import { imgSrc } from 'contants';
 import styled from 'styled-components';
 import { Restaurant } from 'types';
@@ -33,9 +34,7 @@ const RestaurantWrapper = styled.li`
   cursor: pointer;
 `;
 export const RestaurantCategory = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  ${variables.flexCenter}
   width: 64px;
   height: 64px;
   min-width: 64px;
@@ -69,14 +68,7 @@ export const DistanceText = styled.span`
   font: var(--text-body);
 `;
 const Description = styled.p`
-  display: -webkit-box;
-
   padding-top: 8px;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-
+  ${variables.ellipsis(2)}
   font: var(--text-body);
 `;
