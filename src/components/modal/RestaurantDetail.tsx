@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import theme from '../../styles/theme';
 import { RestaurantCategoryImage } from '../restaurant/RestaurantCategoryImage';
 import { Style as RestaurantStyle } from '../restaurant/RestaurantItem';
-import { RestaurantProps } from '../../type';
-import { getImageSrc } from '../../utils/util';
+import { Restaurant } from '../../type';
 
 const Style = {
   ...RestaurantStyle,
@@ -25,7 +24,11 @@ const Style = {
   `,
 };
 
-export function RestaurantDetail({ restaurant }: RestaurantProps) {
+export interface RestaurantDetailProps {
+  restaurant: Restaurant;
+}
+
+export function RestaurantDetail({ restaurant }: RestaurantDetailProps) {
   const { category, name, distance, description, link } = restaurant;
   return (
     <>
