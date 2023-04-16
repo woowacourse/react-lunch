@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Component } from 'react';
+import React, { Component } from 'react';
 import Header from './components/Header';
 import './styles/App.css';
 import { FoodCategory, RestaurantInfo, SortMethod, isFoodCategory, isSortMethod } from './types/restaurantInfo';
@@ -115,9 +115,7 @@ class App extends Component<object, AppState> {
     });
   }
 
-  selectChangeCallback(event: ChangeEvent<HTMLSelectElement>, kind: 'filter' | 'sort') {
-    const { value } = event.currentTarget;
-
+  selectChangeCallback(value: string, kind: 'filter' | 'sort') {
     if (kind === 'filter') {
       this.setSelectedCategory(value);
     }
