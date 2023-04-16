@@ -7,7 +7,13 @@ interface ModalContainerProps {
 }
 
 const ModalContainer = (props: ModalContainerProps) => {
-  return createPortal(<>{props.children}</>, document.getElementById("modal") as HTMLDivElement);
+  return createPortal(
+    <div className="modal">
+      <div className="modal-backdrop" onClick={props.closeModal}></div>
+      <div className="modal-container">{props.children}</div>
+    </div>,
+    document.getElementById("modal") as HTMLDivElement
+  );
 };
 
 export default ModalContainer;

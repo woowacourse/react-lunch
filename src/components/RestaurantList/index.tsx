@@ -10,8 +10,6 @@ const LOCAL_STORAGE_KEY = "RESTAURANT_LIST";
 interface RestaurantListProps {
   selectedCategory: CategoryOption;
   selectedSort: SortOption;
-  setModalContents: (Restaurant: Restaurant) => void;
-  openModal: () => void;
 }
 
 const getInitList = () => {
@@ -30,7 +28,7 @@ const allRestaurants: Restaurant[] = getInitList();
 
 const RestaurantList = (props: RestaurantListProps) => {
   const [filteredRestaurants, setfilteredRestaurants] = useState(allRestaurants);
-  const { selectedCategory, selectedSort, setModalContents, openModal } = props;
+  const { selectedCategory, selectedSort } = props;
 
   useEffect(() => {
     const restaurantListByCategory = getListByCategory(allRestaurants);
@@ -76,12 +74,7 @@ const RestaurantList = (props: RestaurantListProps) => {
     <section className="restaurant-list-container">
       <ul className="restaurant-list">
         {filteredRestaurants.map((restaurant) => (
-          <RestaurantItem
-            key={restaurant.id}
-            restaurant={restaurant}
-            setModalContents={setModalContents}
-            openModal={openModal}
-          />
+          <RestaurantItem key={restaurant.id} restaurant={restaurant} />
         ))}
       </ul>
     </section>
