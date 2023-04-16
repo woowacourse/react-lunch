@@ -53,12 +53,12 @@ const SelectBoxContainer = styled.div`
 `;
 
 const SelectBox = styled.select`
-  width: 125px;
+  flex: 0.2;
   height: 44px;
   padding: 10px 14px;
-  border: 1px solid #d0d5dd;
+  border: 1px solid var(--grey-200);
   border-radius: 8px;
-  background: #ffffff;
+  background: var(--grey-100);
 `;
 
 export default SelectBoxes;

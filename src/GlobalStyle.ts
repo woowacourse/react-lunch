@@ -29,11 +29,12 @@ export const GlobalStyle = createGlobalStyle`
   :root {
     --primary-color: #ec4a0a;
     --lighten-color: #f6a88a;
-    --grey-100: #ffffff;
+    --darken-color:#db4105;
+    --grey-100: #fff;
     --grey-200: #d0d5dd;
     --grey-300: #667085;
     --grey-400: #344054;
-    --grey-500: #000000;
+    --grey-500: #000;
   }
 
   /* Typography *************************************/
@@ -86,22 +87,6 @@ export const GlobalStyle = createGlobalStyle`
     text-overflow: ellipsis;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-  }
-  
-  /* Buttons *****************************************/
-  button.close-btn {
-    position: fixed;
-    bottom: 32px;
-    width: calc(100% - 32px);
-    height: 44px;
-    padding: 10px 0px;
-    border: 1px solid #EC4A0A;
-    border-radius: 8px;
-    outline: none;
-    background: #EC4A0A;
-
-    color: var(--grey-100);
-    cursor: pointer;
   }
 
   // reset.css

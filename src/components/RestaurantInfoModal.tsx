@@ -44,13 +44,13 @@ class RestaurantInfoModal extends Component<RestaurantModal> {
                   </Link>
                 )}
               </article>
-              <button
+              <CloseButton
                 type="button"
-                className="text-caption close-btn"
+                className="text-caption"
                 onClick={this.props.onClose}
               >
                 닫기
-              </button>
+              </CloseButton>
             </Modal>
           </dialog>,
           $("body")
@@ -99,6 +99,30 @@ const Link = styled.a`
   text-decoration: underline;
   outline: none;
   cursor: pointer;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  bottom: 32px;
+  width: calc(100% - 32px);
+  height: 44px;
+  padding: 10px 0px;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  outline: none;
+  background: var(--primary-color);
+
+  color: var(--grey-100);
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid var(--darken-color);
+    background: var(--darken-color);
+  }
+
+  &:active {
+    bottom: 30px;
+  }
 `;
 
 export default RestaurantInfoModal;
