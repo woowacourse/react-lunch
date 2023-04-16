@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Restaurant, Category, All, Criterion } from '../../types';
+import { Restaurant, Category, Criterion } from '../../types';
 import RestaurantItem from '../RestaurantItem/RestaurantItem';
 import DetailModal from '../Modal/DetailModal';
 import CategoryFilter from '../SelectBox/CategoryFilter';
@@ -16,7 +16,7 @@ function RestaurantList() {
     description: '',
     link: '',
   });
-  const [category, setCategory] = useState<Category | All>('전체');
+  const [category, setCategory] = useState<Category>('전체');
   const [criterion, setCriterion] = useState<Criterion>('이름순');
   const [restaurantsData, setRestaurantsData] = useState<Restaurant[]>(
     LunchDataService.getRestaurants('전체', '이름순'),
@@ -28,7 +28,7 @@ function RestaurantList() {
     setClickedData(LunchDataService.getRestaurant(targetId));
   };
 
-  const handleSetCategory = (newCategory: Category | All) => {
+  const handleSetCategory = (newCategory: Category) => {
     setIsItemClicked(false);
     setCategory(newCategory);
     setRestaurantsData(LunchDataService.getRestaurants(newCategory, criterion));

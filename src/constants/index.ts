@@ -1,4 +1,5 @@
 export const IMAGE_PATH = {
+  전체: '',
   한식: '/assets/category-korean.png',
   양식: '/assets/category-western.png',
   중식: '/assets/category-chinese.png',
@@ -16,6 +17,10 @@ export const CATEGORY = {
   asian: '아시안',
   etc: '기타',
 };
+
+export const CATEGORY_LIST = ['전체', '한식', '일식', '양식', '중식', '아시안', '기타'];
+
+export const CRITERION_LIST = ['이름순', '거리순'];
 
 export const CRITERION = {
   name: '이름순',
