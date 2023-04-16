@@ -30,6 +30,18 @@ export default function RestaurantList({
     null
   );
 
+  useEffect(() => {
+    if (!localStorage.getItem("restaurantListOrigin")) {
+      setData();
+    }
+
+    const data = localStorage.getItem("restaurantListOrigin");
+    if (data) {
+      const restaurantListOrigin = JSON.parse(data);
+      setRestaurantListOrigin(restaurantListOrigin);
+      setRestaurantList(restaurantListOrigin);
+    }
+  }, []);
 
   useEffect(() => {
     restaurantFilter();
@@ -40,6 +52,9 @@ export default function RestaurantList({
     restaurantAlign();
   }, [align]);
 
+  const setData = async () => {
+    const data = await fetchMockRestaurants({ align: BY_NAME });
+    localStorage.setItem("restaurantListOrigin", JSON.stringify(data));
   };
 
   const restaurantFilter = () => {
