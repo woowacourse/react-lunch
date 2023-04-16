@@ -7,6 +7,15 @@ export default function useModal() {
     closeModalByESC();
   }, []);
 
+  useEffect(() => {
+    !open &&
+      window.removeEventListener("keyup", (e) => {
+        if (e.key === "Escape") {
+          setOpen(false);
+        }
+      });
+  }, [open]);
+
   function closeModalByESC() {
     window.addEventListener("keyup", (e) => {
       if (e.key === "Escape") {
