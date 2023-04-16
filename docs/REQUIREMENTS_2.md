@@ -8,7 +8,7 @@
 - [x] CategoryImage
 - [x] Modal
 - [x] RestaurantDetail
-- [ ] RestaurantList
+- [x] RestaurantList
 - [ ] RestaurantSummary
 - [ ] Select
 
