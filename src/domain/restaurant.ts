@@ -26,7 +26,7 @@ const restaurant = {
 
   sort: (restaurants: Restaurant[], type: string): Restaurant[] => {
     if (type === SORT_OPTIONS.NAME) return restaurants.sort((a, b) => (a.name > b.name ? 1 : -1));
-    return restaurants.sort((a, b) => (a.distanceByMinutes > b.distanceByMinutes ? 1 : -1));
+    return [...restaurants].sort((a, b) => (a.distanceByMinutes > b.distanceByMinutes ? 1 : -1));
   },
 };
 
