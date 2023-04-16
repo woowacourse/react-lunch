@@ -25,26 +25,24 @@ const Style = {
 };
 
 export function RestaurantDetail({ restaurant }: RestaurantProps) {
+  const { category, name, distance, description, link } = restaurant;
   return (
     <>
       <Style.ImageWrapper>
         <Style.RestaurantCategory>
-          <img
-            src={getImageSrc(restaurant.category)}
-            alt={restaurant.category}
-          />
+          <img src={getImageSrc(category)} alt={category} />
         </Style.RestaurantCategory>
       </Style.ImageWrapper>
-      <Style.RestaurantName>{restaurant.name}</Style.RestaurantName>
+      <Style.RestaurantName>{name}</Style.RestaurantName>
       <Style.RestaurantDistance>
-        캠퍼스로부터 {restaurant.distance}분 내
+        캠퍼스로부터 {distance}분 내
       </Style.RestaurantDistance>
-      <Style.RestaurantDescription>
-        {restaurant.description}
-      </Style.RestaurantDescription>
-      <a href={restaurant.link}>
-        <Style.RestaurantLink>{restaurant.link}</Style.RestaurantLink>
-      </a>
+      <Style.RestaurantDescription>{description}</Style.RestaurantDescription>
+      {link && (
+        <a href={link} target='_blank' rel='noopener noreferrer'>
+          <Style.RestaurantLink>{link}</Style.RestaurantLink>
+        </a>
+      )}
     </>
   );
 }
