@@ -1,4 +1,4 @@
-import React, { Component, ReactNode } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchMockRestaurants } from '../../api/restaurants';
 import { BY_NAME } from '../../constants/restaurants';
 import {
@@ -18,93 +18,61 @@ interface RestaurantListProps {
   };
 }
 
-interface State {
-  restaurantListOrigin: Restaurant[];
-  restaurantList: Restaurant[];
-  isOpened: boolean;
-  focusedRestaurant: Restaurant | null;
-}
+export default function RestaurantList(props: RestaurantListProps) {
+  const {
+    filterOptions: { category, align },
+  } = props;
+  const [isOpened, setIsOpened] = useState(false);
+  const [focusedRestaurant, setFocusedRestaurant] = useState<Restaurant | null>(
+    null
+  );
+  const isBottomSheetOpened = isOpened && focusedRestaurant;
+  const [restaurantList, setRestaurantList] = useState<Restaurant[]>([]);
+  const [restaurantListOrigin, setRestaurantListOrigin] = useState<
+    Restaurant[]
+  >([]);
 
-class RestaurantList extends Component<RestaurantListProps, State> {
-  state = {
-    restaurantListOrigin: [],
-    restaurantList: [],
-    isOpened: false,
-    focusedRestaurant: null,
+  const onClickRestaurantItem = (restaurant: Restaurant) => {
+    setFocusedRestaurant(restaurant);
+    setIsOpened(true);
   };
 
-  onClickRestaurantItem: (restaurant: Restaurant) => void;
-  closeModalHandler: VoidFunction;
+  const closeModalHandler = () => {
+    setFocusedRestaurant(null);
+    setIsOpened(false);
+  };
 
-  constructor(props: RestaurantListProps) {
-    super(props);
+  useEffect(() => {
+    (async () => {
+      const restaurantList = await fetchMockRestaurants({ align: BY_NAME });
 
-    this.onClickRestaurantItem = this.focusRestaurant.bind(this);
-    this.closeModalHandler = this.closeModal.bind(this);
-  }
+      setRestaurantListOrigin(restaurantList);
+      setRestaurantList(restaurantList);
+    })();
+  }, []);
 
-  async componentDidMount() {
-    const restaurantList = await fetchMockRestaurants({ align: BY_NAME });
+  useEffect(() => {
+    const filtered = [...filterBy(category, restaurantListOrigin)];
+    const aligned = [...alignBy(align, filtered)];
 
-    this.setState({ restaurantListOrigin: restaurantList, restaurantList });
-  }
+    setRestaurantList(aligned);
+  }, [category, align]);
 
-  componentDidUpdate(prevProps: Readonly<RestaurantListProps>): void {
-    const { category: prevCategory, align: prevAlign } =
-      prevProps.filterOptions;
-    const { category: nextCategory, align: nextAlign } =
-      this.props.filterOptions;
-
-    if (prevCategory !== nextCategory) this.filter();
-    if (prevCategory !== nextCategory || prevAlign !== nextAlign) this.align();
-  }
-
-  filter() {
-    const { category } = this.props.filterOptions;
-
-    this.setState(({ restaurantListOrigin }) => ({
-      restaurantList: filterBy(category, restaurantListOrigin),
-    }));
-  }
-
-  align() {
-    const { align } = this.props.filterOptions;
-
-    this.setState(({ restaurantList }) => ({
-      restaurantList: alignBy(align, restaurantList),
-    }));
-  }
-
-  focusRestaurant(focusedRestaurant: Restaurant) {
-    this.setState({ focusedRestaurant, isOpened: true });
-  }
-
-  closeModal() {
-    this.setState({ focusedRestaurant: null, isOpened: false });
-  }
-
-  render(): ReactNode {
-    const { restaurantList, focusedRestaurant, isOpened } = this.state;
-    const isBottomSheetOpened = isOpened && focusedRestaurant;
-
-    return (
-      <St.Layout data-cy="restaurant-list">
-        {restaurantList.map((restaurant: Restaurant) => (
-          <RestaurantItem
-            key={restaurant.id}
-            info={restaurant}
-            onClick={() => this.onClickRestaurantItem(restaurant)}
-          />
-        ))}
-        {isBottomSheetOpened && (
-          <RestaurantDetailBottomSheet
-            restaurant={focusedRestaurant}
-            close={this.closeModalHandler}
-          />
-        )}
-      </St.Layout>
-    );
-  }
+  return (
+    <St.Layout data-cy="restaurant-list">
+      {restaurantList.map((restaurant: Restaurant) => (
+        <RestaurantItem
+          key={restaurant.id}
+          info={restaurant}
+          onClick={() => onClickRestaurantItem(restaurant)}
+        />
+      ))}
+      {isBottomSheetOpened && (
+        <RestaurantDetailBottomSheet
+          restaurant={focusedRestaurant}
+          close={closeModalHandler}
+        />
+      )}
+    </St.Layout>
+  );
 }
-
-export default RestaurantList;
