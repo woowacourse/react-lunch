@@ -5,7 +5,7 @@ import { RestaurantItem } from '../RestaurantItem/RestaurantItem';
 
 type Props = {
   restaurants: Restaurant[];
-  onRestaurantClick: (id: number) => void;
+  onRestaurantClick: (id: Restaurant['id']) => void;
 };
 
 export function RestaurantList({ restaurants, onRestaurantClick }: Props) {

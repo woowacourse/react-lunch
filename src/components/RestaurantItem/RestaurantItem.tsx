@@ -5,7 +5,7 @@ import { imgSrc } from '../../constants/imageSrc';
 
 type Props = {
   restaurant: Restaurant;
-  onRestaurantClick: (id: number) => void;
+  onRestaurantClick: (id: Restaurant['id']) => void;
 };
 
 export function RestaurantItem({ restaurant, onRestaurantClick }: Props) {
