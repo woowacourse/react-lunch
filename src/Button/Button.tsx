@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './Button.css';
 
@@ -8,18 +8,16 @@ interface ButtonProps {
   onClose: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
-class Button extends Component<ButtonProps> {
-  render() {
-    return (
-      <button
-        type="button"
-        className={`button button--${this.props.color} text-caption`}
-        onClick={this.props.onClose}
-      >
-        {this.props.name}
-      </button>
-    );
-  }
-}
+const Button = ({ color, name, onClose }: ButtonProps) => {
+  return (
+    <button
+      type="button"
+      className={`button button--${color} text-caption`}
+      onClick={onClose}
+    >
+      {name}
+    </button>
+  );
+};
 
 export default Button;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Button from '../Button/Button';
 import { RestaurantInfo } from '../data/type';
@@ -7,19 +7,36 @@ import './Modal.css';
 
 interface ModalProps {
   restaurant: RestaurantInfo;
-  modalClassName: string;
-  onClose: (e: React.MouseEvent<HTMLElement>) => void;
+  isModalOpen: boolean;
+  onCloseModal: (e: React.MouseEvent<HTMLElement> | KeyboardEvent) => void;
 }
 
-const Modal = ({ restaurant, modalClassName, onClose }: ModalProps) => {
+const Modal = ({ restaurant, isModalOpen, onCloseModal }: ModalProps) => {
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.code === 'Escape') {
+        onCloseModal(event);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onCloseModal]);
+
   return (
     <>
       <div
         id="modalBackdrop"
-        onClick={onClose}
+        onClick={onCloseModal}
         className="modal-backdrop"
       ></div>
-      <div id="modalContainer" className={modalClassName}>
+      <div
+        id="modalContainer"
+        className={isModalOpen ? 'modal--open' : 'modal'}
+      >
         <div id="restaurantDetails" className="modal-container-info">
           <div className="restaurant-info">
             <div className="restaurant__category-info">
@@ -50,7 +67,7 @@ const Modal = ({ restaurant, modalClassName, onClose }: ModalProps) => {
             </div>
           </div>
           <div className="button-container">
-            <Button color="orange" name="닫기" onClose={onClose} />
+            <Button color="orange" name="닫기" onClose={onCloseModal} />
           </div>
         </div>
       </div>

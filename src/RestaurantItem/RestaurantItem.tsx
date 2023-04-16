@@ -1,44 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { RestaurantInfo } from '../data/type';
 import { CATEGORY_IMAGES } from '../assets/images';
 import './RestaurantItem.css';
-import Modal from '../Modal/Modal';
 
 interface RestaurantItemProps {
   restaurant: RestaurantInfo;
+  onModalOpen: (restaurant: RestaurantInfo) => void;
 }
 
-const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
-  const [modalClassName, setModalClassName] = useState('modal');
-
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.code === 'Escape') {
-        setModalClassName('modal');
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, []);
-
-  const handleOpenModal = () => {
-    setModalClassName('modal--open');
-  };
-
-  const handleCloseModal = (e: React.MouseEvent<HTMLElement>) => {
-    e.stopPropagation();
-    setModalClassName('modal');
+const RestaurantItem = ({ restaurant, onModalOpen }: RestaurantItemProps) => {
+  const handleModalOpen = () => {
+    onModalOpen(restaurant);
   };
 
   return (
     <li
       id={restaurant.id.toString()}
-      onClick={handleOpenModal}
+      onClick={handleModalOpen}
       className="restaurant pointer"
     >
       <div className="restaurant__category">
@@ -57,13 +36,6 @@ const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
           {restaurant.description}
         </p>
       </div>
-      {modalClassName === 'modal--open' && (
-        <Modal
-          restaurant={restaurant}
-          modalClassName={modalClassName}
-          onClose={handleCloseModal}
-        />
-      )}
     </li>
   );
 };
