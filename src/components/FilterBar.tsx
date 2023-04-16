@@ -56,6 +56,7 @@ const FilterContainer = styled.div`
 const FilterSelect = styled.select`
   height: 44px;
   min-width: 125px;
+  padding-left: 10px;
 
   border: 1px solid #d0d5dd;
   border-radius: 8px;
