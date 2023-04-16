@@ -18,6 +18,8 @@
 
 - [x] useSafeUnionTypeState hook 구현 (커스텀 타입 가드가 적용된 useState 훅)
 
+- [x] useModalState hook 구현 (모달창을 열고 닫을 때 스크롤 방지하는 기능이 적용된 useState 훅)
+
 ## 리팩터링 목록
 
 - [x] 상수 파일에서 이용하는 값 네이밍 구체적으로 적기
