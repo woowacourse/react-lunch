@@ -27,13 +27,13 @@ function RestaurantList() {
     setClickedData(LunchDataService.getRestaurant(id));
   };
 
-  const handleChangeCategory = (newCategory: Category) => {
+  const handleCategoryChange = (newCategory: Category) => {
     setIsItemClick(false);
     setCategory(newCategory);
     setRestaurantsData(LunchDataService.getRestaurants(newCategory, criterion));
   };
 
-  const handleChangeCriterion = (newCriterion: Criterion) => {
+  const handleCriterionChange = (newCriterion: Criterion) => {
     setIsItemClick(false);
     setCriterion(newCriterion);
     setRestaurantsData(LunchDataService.getRestaurants(category, newCriterion));
@@ -42,8 +42,8 @@ function RestaurantList() {
   return (
     <>
       <section className="restaurant-filter-container">
-        <CategoryFilter setCategory={handleChangeCategory} />
-        <SortingFilter setCriterion={handleChangeCriterion} />
+        <CategoryFilter setCategory={handleCategoryChange} />
+        <SortingFilter setCriterion={handleCriterionChange} />
       </section>
       <ul>
         {restaurantsData.map((restaurantData: Restaurant) => {
