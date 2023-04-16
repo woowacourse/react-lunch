@@ -11,6 +11,7 @@ import { SelectBox } from './components/SelectBox';
 import { categoryOption, sortOption } from './constants';
 import { Restaurant, SortOption, CategoryOption } from './type';
 import { Layout } from './layout';
+import { useModal } from './hooks/useModal';
 
 const Style = {
   Wrapper: styled.div`
@@ -45,20 +46,13 @@ const isCategoryFilterTye = (arg: any): arg is CategoryOption => {
 
 export function App() {
   const restaurantList: Restaurant[] = getRestaurantList();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<Restaurant | null>(null);
   const [filter, setFilter] = useState<FilterState>({
     category: '전체',
     sort: 'name',
   });
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const { isModalOpen, openModal, closeModal } = useModal();
 
   const handleClickRestaurantItem = (restaurant: Restaurant) => {
     const selectedId = restaurant.id;
