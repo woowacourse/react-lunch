@@ -1,9 +1,14 @@
 import { Component } from "react";
 import styled from "styled-components";
 import { ENGLISH_CATEGORY } from "../constants";
-import { RestaurantItem } from "../types";
+import { RestaurantInfo } from "../types";
 
-class Restaurant extends Component<RestaurantItem> {
+interface Props {
+  restaurant: RestaurantInfo;
+  onClick: () => void;
+}
+
+class Restaurant extends Component<Props> {
   render() {
     const { restaurant: restaurantInfo } = this.props;
 

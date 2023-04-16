@@ -1,6 +1,6 @@
 import { Component } from "react";
 import restaurantMockData from "./mocks/restaurants.json";
-import { RestaurantApp, RestaurantInfo } from "./types";
+import { RestaurantInfo } from "./types";
 import Restaurants from "./components/Restaurants";
 import SelectBoxes from "./components/SelectBoxes";
 import HeaderSection from "./components/HeaderSection";
@@ -10,7 +10,13 @@ import {
   setItemInLocalStorage,
 } from "./utils/localStorageHandler";
 
-class App extends Component<{}, RestaurantApp> {
+interface Props {
+  filteredRestaurants: RestaurantInfo[];
+  category: string;
+  sorting: string;
+}
+
+class App extends Component<{}, Props> {
   state = {
     filteredRestaurants: this.filterBySelectedOptions(
       getItemFromLocalStorage("category") ?? CATEGORY.ALL,
