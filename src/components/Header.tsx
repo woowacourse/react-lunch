@@ -3,18 +3,14 @@ import styled from 'styled-components';
 
 import { textTitle } from '../style/mixin';
 
-class Header extends React.Component {
-  render() {
-    return (
-      <HeaderWrapper>
-        <h1>점심 뭐 먹지</h1>
-        <AddRestaurantButton>
-          <img src="./img/add-button.png" alt="add-restaurant-button" />
-        </AddRestaurantButton>
-      </HeaderWrapper>
-    );
-  }
-}
+const Header = () => (
+  <HeaderWrapper>
+    <Title>점심 뭐 먹지</Title>
+    <AddRestaurantButton>
+      <img src="./img/add-button.png" alt="add-restaurant-button" />
+    </AddRestaurantButton>
+  </HeaderWrapper>
+);
 
 export default Header;
 
@@ -27,11 +23,11 @@ const HeaderWrapper = styled.header`
   padding: 0 16px;
 
   background-color: var(--primary-color);
+`;
 
-  h1 {
-    ${textTitle}
-    color: #fcfcfd;
-  }
+const Title = styled.h1`
+  ${textTitle}
+  color: #fcfcfd;
 `;
 
 const AddRestaurantButton = styled.button`

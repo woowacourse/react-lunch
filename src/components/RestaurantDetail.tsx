@@ -7,59 +7,31 @@ import styled from 'styled-components';
 import { textBody, textSubtitle } from '../style/mixin';
 
 interface Props {
-  closeModal: () => void;
   restaurant: Restaurant;
+  closeModal: () => void;
 }
 
-class RestaurantDetail extends React.Component<Props> {
-  render() {
-    const { category, name, distance, description, link } = this.props.restaurant;
+const RestaurantDetail = ({ restaurant, closeModal }: Props) => {
+  const { category, name, distance, description, link } = restaurant;
 
-    return (
-      <>
-        <ModalBackdrop onClick={this.props.closeModal} />
-        <ModalContainer>
-          <Detail>
-            <CategoryImage category={category} />
-            <RestaurantName>{name}</RestaurantName>
-            <Distance>캠퍼스부터 {distance}분 내</Distance>
-            <Description>{description}</Description>
-            <Link href={link}>{link}</Link>
-            <ButtonContainer>
-              <RemoveButton>삭제하기</RemoveButton>
-              <CloseButton onClick={this.props.closeModal}>닫기</CloseButton>
-            </ButtonContainer>
-          </Detail>
-        </ModalContainer>
-      </>
-    );
-  }
-}
+  return (
+    <RestaurantDetailWrapper>
+      <CategoryImage category={category} />
+      <RestaurantName>{name}</RestaurantName>
+      <Distance>캠퍼스부터 {distance}분 내</Distance>
+      <Description>{description}</Description>
+      <Link href={link}>{link}</Link>
+      <ButtonContainer>
+        <RemoveButton>삭제하기</RemoveButton>
+        <CloseButton onClick={closeModal}>닫기</CloseButton>
+      </ButtonContainer>
+    </RestaurantDetailWrapper>
+  );
+};
 
 export default RestaurantDetail;
 
-const ModalBackdrop = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  background: rgba(0, 0, 0, 0.35);
-`;
-
-const ModalContainer = styled.div`
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-
-  padding: 32px 16px;
-
-  border-radius: 8px 8px 0px 0px;
-  background: var(--grey-100);
-`;
-
-const Detail = styled.div`
+const RestaurantDetailWrapper = styled.div`
   position: relative;
 
   display: flex;

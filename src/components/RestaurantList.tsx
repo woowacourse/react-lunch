@@ -1,65 +1,53 @@
 import { Category, Restaurant, SortingType } from '../types/restaurant';
 
-import React, { ChangeEvent } from 'react';
-import { RestaurantItem } from './';
+import React, { MouseEvent, ChangeEvent, useState } from 'react';
+import { Select, RestaurantItem } from './';
 import styled from 'styled-components';
 
+import filterRestaurants from '../domain/filterRestaurants';
 import { CATEGORIES, SORTING_TYPES } from '../constants';
 
 interface Props {
   restaurants: Restaurant[];
   openModal: (id: Restaurant['id']) => void;
-  setCategory: (category: Category) => void;
-  setSortingType: (sortingType: SortingType) => void;
 }
 
-class RestaurantList extends React.Component<Props> {
-  openDetailModal = (e: any) => {
-    const { id } = e.target.closest('li');
-    this.props.openModal(id);
+const RestaurantList = ({ restaurants, openModal }: Props) => {
+  const [category, setCategory] = useState<Category | '전체'>('전체');
+  const [sortingType, setSortingType] = useState<SortingType>('이름순');
+  const filteredRestaurants = filterRestaurants(restaurants, category, sortingType);
+
+  const openDetailModal = (e: MouseEvent) => {
+    if (!(e.target instanceof HTMLElement)) return;
+
+    const $li = e.target.closest('li');
+    if ($li) openModal($li.id as Restaurant['id']);
   };
 
-  onChangeCategory = (e: ChangeEvent) => {
+  const onChangeSelect = (e: ChangeEvent) => {
     if (!(e.target instanceof HTMLSelectElement)) return;
-
-    const { value: category } = e.target;
-    this.props.setCategory(category as Category);
+    const { name, value } = e.target;
+    if (name === 'category') setCategory(value as Category);
+    if (name === 'sorting') setSortingType(value as SortingType);
   };
 
-  onChangeSortingType = (e: ChangeEvent) => {
-    if (!(e.target instanceof HTMLSelectElement)) return;
+  return (
+    <main>
+      <FilterContainer>
+        <Select name="category" options={['전체', ...CATEGORIES]} onChange={onChangeSelect} />
+        <Select name="sorting" options={SORTING_TYPES} onChange={onChangeSelect} />
+      </FilterContainer>
 
-    const { value: sortingType } = e.target;
-    this.props.setSortingType(sortingType as SortingType);
-  };
-
-  render() {
-    return (
-      <main>
-        <FilterContainer>
-          <select name="category" id="category-filter" onChange={this.onChangeCategory}>
-            {['전체', ...CATEGORIES].map(category => (
-              <option value={category}>{category}</option>
-            ))}
-          </select>
-          <select name="sorting" id="sorting-filter" onChange={this.onChangeSortingType}>
-            {SORTING_TYPES.map(category => (
-              <option value={category}>{category}</option>
-            ))}
-          </select>
-        </FilterContainer>
-
-        <RestaurantListContainer>
-          <ul onClick={this.openDetailModal}>
-            {this.props.restaurants.map(restaurant => (
-              <RestaurantItem key={restaurant.id} restaurant={restaurant}></RestaurantItem>
-            ))}
-          </ul>
-        </RestaurantListContainer>
-      </main>
-    );
-  }
-}
+      <RestaurantListContainer>
+        <ul onClick={openDetailModal}>
+          {filteredRestaurants.map((restaurant) => (
+            <RestaurantItem key={restaurant.id} restaurant={restaurant} />
+          ))}
+        </ul>
+      </RestaurantListContainer>
+    </main>
+  );
+};
 
 export default RestaurantList;
 
@@ -69,18 +57,6 @@ const FilterContainer = styled.section`
 
   margin-top: 24px;
   padding: 0 16px;
-
-  select {
-    height: 44px;
-    min-width: 125px;
-
-    border: 1px solid #d0d5dd;
-    border-radius: 8px;
-    padding: 8px;
-
-    background: transparent;
-    font-size: 16px;
-  }
 `;
 
 const RestaurantListContainer = styled.section`
