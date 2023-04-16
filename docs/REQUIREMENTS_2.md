@@ -6,7 +6,7 @@
 - [x] App
 - [x] Button
 - [x] CategoryImage
-- [ ] Modal
+- [x] Modal
 - [ ] RestaurantDetail
 - [ ] RestaurantList
 - [ ] RestaurantSummary

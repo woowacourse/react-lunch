@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import styles from './Modal.module.css';
 
 interface ModalProps {
@@ -6,37 +6,25 @@ interface ModalProps {
   onClose: () => void;
 }
 
-class Modal extends Component<ModalProps> {
-  constructor(props: ModalProps) {
-    super(props);
-    this.closeModalCallback = this.closeModalCallback.bind(this);
-  }
-
-  componentDidMount() {
-    window.addEventListener('keydown', this.closeModalCallback);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.closeModalCallback);
-  }
-
-  closeModalCallback(event: KeyboardEvent) {
-    const { onClose } = this.props;
-
+export default function Modal({ children, onClose }: ModalProps) {
+  const closeModalCallback = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
       onClose();
     }
-  }
+  };
 
-  render() {
-    const { children, onClose } = this.props;
-    return (
-      <div>
-        <div onClick={onClose} aria-hidden="true" className={styles.background} />
-        <div className={styles.modal}>{children}</div>
-      </div>
-    );
-  }
+  useEffect(() => {
+    window.addEventListener('keydown', closeModalCallback);
+
+    return () => {
+      window.removeEventListener('keydown', closeModalCallback);
+    };
+  }, []);
+
+  return (
+    <div>
+      <div onClick={onClose} aria-hidden="true" className={styles.background} />
+      <div className={styles.modal}>{children}</div>
+    </div>
+  );
 }
-
-export default Modal;
