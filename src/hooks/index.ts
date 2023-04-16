@@ -10,7 +10,7 @@ export function useLunchState() {
 	return state;
 }
 
-export function useSampleDispatch() {
+export function useLunchDispatch() {
 	const dispatch = useContext(LunchDispatchContext);
 	if (!dispatch) throw new Error('Cannot find LunchDispatchProvider');
 	return dispatch;

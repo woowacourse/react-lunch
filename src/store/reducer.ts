@@ -11,7 +11,7 @@ function reducer(state: State, action: Action): State {
 			return {
 				...state,
 				category: action.payload.category,
-				restaurantList: filterRestaurantList(state.restaurantList, action.payload.catgory, state.sort),
+				restaurantList: filterRestaurantList(action.payload.category, state.sort),
 			};
 
 		case CHANGE_SORT_STATE:
