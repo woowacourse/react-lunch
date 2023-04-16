@@ -24,7 +24,7 @@
   - eslint-plugin-react
   - eslint-plugin-react-hooks
 - [ ] 새로운 Reset CSS 찾아 적용하기
-- [ ] 불필요한 상수 파일 분리 하나로 합치기
+- [x] 불필요한 상수 파일 분리 하나로 합치기
 - [ ] 배포될 때 `data-cy` 제거하기
 - [ ] `RestaurantFilterContainer`를 `SearchBar`로 이름 변경하기
 - [x] 컴포넌트 폴더 없애 depth 낮추기

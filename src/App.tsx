@@ -5,7 +5,7 @@ import RestaurantDetailBottomSheet from './components/RestaurantDetailBottomShee
 import RestaurantList from './components/RestaurantList';
 import type { DropdownOption } from './components/common/Dropdown';
 import Dropdown from './components/common/Dropdown';
-import CATEGORIES from './constants/categories';
+import { CATEGORIES } from './constants/Restaurants';
 import mockRestaurantsData from './data/mockData.json';
 import GlobalStyle from './styles/GlobalStyle';
 import ResetStyle from './styles/ResetStyle';

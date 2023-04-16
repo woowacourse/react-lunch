@@ -1,4 +1,4 @@
-import type { Category } from '../constants/categories';
+import type { Category } from '../constants/Restaurants';
 import * as styled from './CategoryIcon.styles';
 
 import 기타 from '../assets/categories/기타.png';
