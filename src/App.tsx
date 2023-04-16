@@ -1,16 +1,17 @@
-import { Header, Modal, RestaurantList, SelectBox } from './components';
-
 import { GlobalStyle } from './global-style';
 import styled, { ThemeProvider } from 'styled-components';
-
 import variables from './components/styles/variables';
-import { isCategoryOption, isSortOption } from './utils';
+
 import { useRestaurants, useBoolean } from './hooks';
+import { Header, Modal, RestaurantList, SelectBox } from './components';
+
+import { CATEGORY, SORTING } from './constants';
+import { CategoryOption, SortOption } from './types';
 
 export default function App() {
   const {
     values: { restaurants, clickedRestaurant },
-    handlers: { handleRestaurantClick },
+    handlers: { handleCategory, handleSorting, handleRestaurantClick },
   } = useRestaurants();
 
   const [isModalOpen, openModal, closeModal] = useBoolean(false);
@@ -21,6 +22,20 @@ export default function App() {
         <GlobalStyle />
         <div className='App'>
           <Header></Header>
+          <FilterContainer>
+            <SelectBox
+              options={Object.values(CATEGORY)}
+              onOptionChange={(e) => {
+                handleCategory(e.target.value as CategoryOption);
+              }}
+            ></SelectBox>
+            <SelectBox
+              options={Object.values(SORTING)}
+              onOptionChange={(e) => {
+                handleSorting(e.target.value as SortOption);
+              }}
+            ></SelectBox>
+          </FilterContainer>
           <RestaurantList
             restaurants={restaurants}
             onRestaurantClick={handleRestaurantClick}
