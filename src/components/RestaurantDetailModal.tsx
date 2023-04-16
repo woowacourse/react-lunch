@@ -9,8 +9,7 @@ interface RestaurantDetailModalProps {
   onClose: () => void;
 }
 
-const RestaurantDetailModal = (props: RestaurantDetailModalProps) => {
-  const { restaurant, onClose } = props;
+const RestaurantDetailModal = ({ restaurant, onClose }: RestaurantDetailModalProps) => {
   const { name, category, distance, description, link } = restaurant;
 
   return (

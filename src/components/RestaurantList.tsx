@@ -7,10 +7,10 @@ interface RestaurantListProps {
   restaurants: Restaurant[];
 }
 
-const RestaurantList = (props: RestaurantListProps) => {
+const RestaurantList = ({ restaurants }: RestaurantListProps) => {
   return (
     <ul className={styles.restaurantList}>
-      {props.restaurants.map((restaurant) => (
+      {restaurants.map((restaurant) => (
         <RestaurantItem key={restaurant.id} restaurant={restaurant} />
       ))}
     </ul>

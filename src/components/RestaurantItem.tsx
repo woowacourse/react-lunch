@@ -9,9 +9,9 @@ interface RestaurantItemProps {
   restaurant: Restaurant;
 }
 
-const RestaurantItem = (props: RestaurantItemProps) => {
+const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
   const { isModalOpen, openModal, closeModal } = useModal();
-  const { name, category, distance, description } = props.restaurant;
+  const { name, category, distance, description } = restaurant;
 
   return (
     <>
@@ -23,7 +23,7 @@ const RestaurantItem = (props: RestaurantItemProps) => {
           <p className={`${styles.description} text-body`}>{description}</p>
         </div>
       </li>
-      {isModalOpen && <RestaurantDetailModal restaurant={props.restaurant} onClose={closeModal} />}
+      {isModalOpen && <RestaurantDetailModal restaurant={restaurant} onClose={closeModal} />}
     </>
   );
 };

@@ -1,12 +1,10 @@
 import styles from "./Header.module.css";
 
 interface HeaderProps {
-  title: string
+  title: string;
 }
 
-const Header = (props: HeaderProps) => {
-  const {title} = props
-
+const Header = ({ title }: HeaderProps) => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>

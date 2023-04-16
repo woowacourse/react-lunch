@@ -8,9 +8,7 @@ interface ModalPortalProps {
   onClose: () => void;
 }
 
-const ModalPortal = (props: ModalPortalProps) => {
-  const { children, onClose } = props;
-
+const ModalPortal = ({ children, onClose }: ModalPortalProps) => {
   const onKeydown = useCallback(
     (event: KeyboardEvent) => {
       if (event.key === "Escape") {

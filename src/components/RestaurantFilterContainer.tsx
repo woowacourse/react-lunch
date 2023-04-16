@@ -8,13 +8,13 @@ interface RestaurantFilterContainerProps {
   setOption: (key: string, option: string) => void;
 }
 
-const RestaurantFilterContainer = (props: RestaurantFilterContainerProps) => {
+const RestaurantFilterContainer = ({ setOption }: RestaurantFilterContainerProps) => {
   const onChangeCategorySelect = (event: ChangeEvent<HTMLSelectElement>) => {
-    props.setOption(SELECT_NAME.CATEGORY, event.target.value);
+    setOption(SELECT_NAME.CATEGORY, event.target.value);
   };
 
   const onChangeSortingSelect = (event: ChangeEvent<HTMLSelectElement>) => {
-    props.setOption(SELECT_NAME.SORTING, event.target.value);
+    setOption(SELECT_NAME.SORTING, event.target.value);
   };
 
   return (

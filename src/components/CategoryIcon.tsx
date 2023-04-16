@@ -7,9 +7,7 @@ interface CategoryIconProps {
   category: Category;
 }
 
-const CategoryIcon = (props: CategoryIconProps) => {
-  const { category } = props;
-
+const CategoryIcon = ({ category }: CategoryIconProps) => {
   return (
     <div className={styles.category}>
       <img src={categoryImages[category]} alt={category} className={styles.categoryIcon} />

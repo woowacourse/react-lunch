@@ -8,9 +8,7 @@ interface SelectBoxProps {
   onChange: ChangeEventHandler;
 }
 
-const SelectBox = (props: SelectBoxProps) => {
-  const { name, options, onChange } = props;
-
+const SelectBox = ({ name, options, onChange }: SelectBoxProps) => {
   return (
     <select name={name} className={styles.container} onChange={onChange}>
       {options.map((option) => (
