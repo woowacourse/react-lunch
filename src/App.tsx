@@ -16,7 +16,7 @@ type AppState = {
   restaurants: Restaurant[];
   categoryFilterOption: RestaurantCategoryFilterOption;
   sortOption: RestaurantSortOption;
-  restaurantForDetailView: Restaurant;
+  selectedRestaurant: Restaurant;
   isOpenModal: boolean;
 };
 
@@ -25,12 +25,12 @@ export default class App extends Component {
     restaurants: mockData as Restaurant[],
     categoryFilterOption: '전체',
     sortOption: 'name',
-    restaurantForDetailView: mockData[0] as Restaurant,
+    selectedRestaurant: mockData[0] as Restaurant,
     isOpenModal: false,
   };
 
   render() {
-    const { restaurants, categoryFilterOption, sortOption, isOpenModal, restaurantForDetailView } =
+    const { restaurants, categoryFilterOption, sortOption, isOpenModal, selectedRestaurant } =
       this.state;
     const filteredRestaurants = getFilteredRestaurantsByCategory(restaurants, categoryFilterOption);
     const sortedRestaurants = getSortedRestaurants(filteredRestaurants, sortOption);
@@ -45,7 +45,7 @@ export default class App extends Component {
         <RestaurantList restaurants={sortedRestaurants} onClick={this.onClickRestaurantItem} />
         {isOpenModal && (
           <Modal onClick={this.onClickModalCloseButton}>
-            <RestaurantDetailView restaurant={restaurantForDetailView} />
+            <RestaurantDetailView restaurant={selectedRestaurant} />
           </Modal>
         )}
       </div>
@@ -63,7 +63,7 @@ export default class App extends Component {
   onClickRestaurantItem = (restaurantId: number) => {
     const targetRestaurant = getRestaurantById(this.state.restaurants, restaurantId);
 
-    this.setState({ restaurantForDetailView: targetRestaurant, isOpenModal: true });
+    this.setState({ selectedRestaurant: targetRestaurant, isOpenModal: true });
   };
 
   onClickModalCloseButton = () => {
