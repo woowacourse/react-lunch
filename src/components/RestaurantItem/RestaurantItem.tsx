@@ -37,4 +37,5 @@ const RestaurantWrapper = styled.li`
 
 const Description = styled(Styled.Restaurant.Description)`
   ${variables.ellipsis(2)}
+  margin-top: 8px;
 `;
