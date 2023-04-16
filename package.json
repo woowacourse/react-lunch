@@ -4,7 +4,6 @@
   "private": true,
   "homepage": "https://creative-lee.github.io/react-lunch",
   "dependencies": {
-    "@babel/preset-env": "^7.21.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
