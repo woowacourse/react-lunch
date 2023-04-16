@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 import {
   RESTAURANT_CATEGORY,
   SORTING_OPTION,
@@ -13,8 +15,8 @@ export const FilterBar = ({
   onChangeSort,
 }: FilterBarProps) => {
   return (
-    <section className="restaurant-filter-container">
-      <select
+    <FilterContainer>
+      <FilterSelect
         onChange={onChangeCategory}
         name="category"
         id="category-filter"
@@ -25,9 +27,9 @@ export const FilterBar = ({
             {category}
           </option>
         ))}
-      </select>
+      </FilterSelect>
 
-      <select
+      <FilterSelect
         onChange={onChangeSort}
         name="sorting"
         id="sorting-filter"
@@ -38,7 +40,26 @@ export const FilterBar = ({
             {sortingName}
           </option>
         ))}
-      </select>
-    </section>
+      </FilterSelect>
+    </FilterContainer>
   );
 };
+
+const FilterContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  padding: 0 16px;
+  margin-top: 24px;
+`;
+
+const FilterSelect = styled.select`
+  height: 44px;
+  min-width: 125px;
+
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  background: transparent;
+
+  font-size: 16px;
+`;
