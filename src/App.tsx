@@ -62,7 +62,7 @@ const App = () => {
 
       <Header />
 
-      <styled.RestaurantFilterContainer>
+      <styled.SearchBar>
         <Dropdown
           options={DROPDOWN_CATEGORY_FILTERS}
           selectedOption={categoryOption}
@@ -74,7 +74,7 @@ const App = () => {
           selectedOption={sortOption}
           onChange={({ value: filter }) => setSortFilter(() => filter)}
         />
-      </styled.RestaurantFilterContainer>
+      </styled.SearchBar>
 
       <RestaurantList restaurants={filteredRestaurants} onClickItem={openBottomSheet} />
       {openedRestaurant !== null && (

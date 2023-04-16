@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const RestaurantFilterContainer = styled.section`
+export const SearchBar = styled.section`
   display: flex;
   justify-content: space-between;
 
