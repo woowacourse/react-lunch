@@ -48,8 +48,6 @@ function RestaurantItem(props: MyProps) {
 		[]
 	);
 
-	if (restaurant === undefined) return <>no result</>;
-
 	return (
 		<li className={isModal ? styles.itemModal : styles.item} onClick={handleRestaurantItemModal(restaurant.id)}>
 			<div className={styles.icon}>
