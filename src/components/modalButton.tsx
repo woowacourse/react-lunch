@@ -3,21 +3,21 @@ import styled from "styled-components";
 
 interface PropsType {
   text: string;
-  baseColor: string;
+  buttonColor?: string;
   closeModal: () => void;
 }
 
 export default function ModalButton(props: PropsType) {
-  const { text, baseColor, closeModal } = props;
+  const { text, buttonColor, closeModal } = props;
 
   return (
-    <Button baseColor={baseColor} onClick={closeModal}>
+    <Button buttonColor={buttonColor} onClick={closeModal}>
       {text}
     </Button>
   );
 }
 
-const Button = styled.button<{ baseColor: string }>`
+const Button = styled.button<{ buttonColor: string | undefined }>`
   width: 100%;
   height: 44px;
 
@@ -27,5 +27,6 @@ const Button = styled.button<{ baseColor: string }>`
   cursor: pointer;
 
   ${({ theme }) => theme.fonts.caption};
-  ${({ theme, baseColor }) => theme.buttons[baseColor]}
+  ${({ theme, buttonColor }) =>
+    buttonColor ? theme.buttons.white : theme.buttons.orange}
 `;
