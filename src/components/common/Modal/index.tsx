@@ -22,10 +22,10 @@ const Modal = ({ children, closeModal }: Props) => {
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <S.ModalBackdropBox onClick={closeModal} />
       {children}
-    </React.Fragment>
+    </>
   );
 };
 

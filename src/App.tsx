@@ -31,11 +31,11 @@ function App() {
   }, []);
 
   return (
-    <React.Fragment>
+    <>
       <Header />
       <RestaurantList restaurantList={restaurantList} openModal={openModal} />
       {modalRestaurantId && <RestaurantModal restaurant={findModalRestaurant()} closeModal={closeModal} />}
-    </React.Fragment>
+    </>
   );
 }
 
