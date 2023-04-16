@@ -1,28 +1,12 @@
-import { useCallback, useEffect } from 'react';
 import styles from '../Modal/Modal.module.css';
 import { getSelectedRestaurant } from '../../data/parseFn';
 import { ModalProps } from '../../types/types';
 import { CATEGORY_TO_FILENAME } from '../../image/image';
+import useEscapeKey from '../../hooks/useEscapeKey';
 
 const Modal = ({ restaurantId, handleClose }: ModalProps) => {
-  const handleKeyDown = useCallback(
-    (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        handleClose();
-      }
-    },
-    [handleClose]
-  );
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [handleKeyDown]);
-
+  useEscapeKey(handleClose);
   const selectedRestaurant = getSelectedRestaurant(restaurantId);
-
   const imageFile = CATEGORY_TO_FILENAME[selectedRestaurant.category];
 
   return (
