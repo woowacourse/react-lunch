@@ -26,19 +26,15 @@ export interface FilterState {
 }
 
 const isSortFilterType = (arg: any): arg is SortOption => {
-  return arg === 'distance' || arg === 'name';
+  const sortOptions = sortOption.map((option) => option.value);
+
+  return sortOptions.includes(arg);
 };
 
-const isCategoryFilterTye = (arg: any): arg is CategoryOption => {
-  return (
-    arg === '전체' ||
-    arg === '한식' ||
-    arg === '중식' ||
-    arg === '일식' ||
-    arg === '양식' ||
-    arg === '아시안' ||
-    arg === '기타'
-  );
+const isCategoryFilterType = (arg: any): arg is CategoryOption => {
+  const categoryOptions = categoryOption.map((option) => option.value);
+
+  return categoryOptions.includes(arg);
 };
 
 export function App() {
@@ -77,7 +73,7 @@ export function App() {
   ) => {
     const selectedOption = e.target.value;
 
-    if (isCategoryFilterTye(selectedOption))
+    if (isCategoryFilterType(selectedOption))
       setFilter({
         ...filter,
         category: selectedOption,
