@@ -1,5 +1,5 @@
-import type Restaurant from '../../types/Restaurant';
-import CategoryIcon from '../CategoryIcon/CategoryIcon';
+import type Restaurant from '../types/Restaurant';
+import CategoryIcon from './CategoryIcon';
 import * as styled from './RestaurantListItem.styles';
 
 type RestaurantListItemProps = {

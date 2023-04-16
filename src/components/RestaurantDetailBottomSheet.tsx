@@ -1,8 +1,8 @@
-import { Body, Title } from '../../styles/Text';
-import type Restaurant from '../../types/Restaurant';
-import CategoryIcon from '../CategoryIcon/CategoryIcon';
-import BottomSheet from '../common/BottomSheet/BottomSheet';
-import Button from '../common/Button/Button';
+import { Body, Title } from '../styles/Text';
+import type Restaurant from '../types/Restaurant';
+import CategoryIcon from './CategoryIcon';
+import BottomSheet from './common/BottomSheet';
+import Button from './common/Button';
 import * as styled from './RestaurantDetailBottomSheet.styles';
 
 type RestaurantDetailBottomSheetProps = {

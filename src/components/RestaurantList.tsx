@@ -1,6 +1,6 @@
-import type Restaurant from '../../types/Restaurant';
-import RestaurantListItem from '../RestaurantListItem/RestaurantListItem';
+import type Restaurant from '../types/Restaurant';
 import * as styled from './RestaurantList.styles';
+import RestaurantListItem from './RestaurantListItem';
 
 type RestaurantListProps = {
   restaurants: Restaurant[];

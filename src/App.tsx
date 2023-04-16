@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import * as styled from './App.styles';
-import Header from './components/Header/Header';
-import RestaurantDetailBottomSheet from './components/RestaurantDetailBottomSheet/RestaurantDetailBottomSheet';
-import RestaurantList from './components/RestaurantList/RestaurantList';
-import type { DropdownOption } from './components/common/DropdownFilter/Dropdown';
-import Dropdown from './components/common/DropdownFilter/Dropdown';
+import Header from './components/Header';
+import RestaurantDetailBottomSheet from './components/RestaurantDetailBottomSheet';
+import RestaurantList from './components/RestaurantList';
+import type { DropdownOption } from './components/common/Dropdown';
+import Dropdown from './components/common/Dropdown';
 import CATEGORIES from './constants/categories';
 import mockRestaurantsData from './data/mockData.json';
 import GlobalStyle from './styles/GlobalStyle';

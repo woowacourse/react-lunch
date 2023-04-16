@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body, Subtitle } from '../../styles/Text';
+import { Body, Subtitle } from '../styles/Text';
 
 export const RestaurantListItem = styled.li`
   display: grid;
