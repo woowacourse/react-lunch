@@ -84,11 +84,11 @@ export function App() {
         <GlobalStyle />
         <Style.Wrapper>
           <SelectBox
-            option={categoryOption}
+            options={categoryOption}
             handleOptionChange={handleCategoryFilter}
           />
           <SelectBox
-            option={sortOption}
+            options={sortOption}
             handleOptionChange={handleSortFilter}
           />
         </Style.Wrapper>
