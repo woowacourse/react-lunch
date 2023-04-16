@@ -3,7 +3,7 @@ import Header from './components/Header';
 import RestaurantList from './components/RestaurantList';
 import Modal from './components/Modal';
 import RestaurantDetail from './components/RestaurantDetail';
-import { deleteTargetRestaurant, filterFoodCategory, sortRestaurants } from './domain/RestaurantSelector';
+import { deleteTargetRestaurant, filterFoodCategory, sortRestaurants } from './domain/restaurantSelector';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { useSafeUnionTypeState } from './hooks/useSafeUnionTypeState';
 import { useModalState } from './hooks/useModalState';

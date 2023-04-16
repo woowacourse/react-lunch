@@ -4,7 +4,7 @@ import {
   filterFoodCategory,
   sortByEstimatedTime,
   sortByTitle,
-} from '../src/domain/RestaurantSelector';
+} from '../src/domain/restaurantSelector';
 
 const RESTAURANT_LIST: RestaurantInfo[] = [
   {

@@ -1,14 +1,19 @@
 import { useState } from 'react';
+import {
+  getSavedLocalStorageList,
+  hasSavedLocalStorageList,
+  saveLocalStorageList,
+} from '../domain/initializeRestaurantList';
 
 export const useLocalStorage = <Type>(
   key: string,
   initializeValue: Type,
 ): [value: Type, setValue: (newValue: Type) => void] => {
-  const getSavedList = JSON.parse(localStorage.getItem(key) || '[]');
+  const getSavedList = getSavedLocalStorageList(key);
 
   const initializeState = getSavedList || initializeValue;
 
-  if (!getSavedList || getSavedList.length === 0) {
+  if (!hasSavedLocalStorageList(key)) {
     localStorage.setItem(key, JSON.stringify(initializeValue));
   }
 
@@ -16,7 +21,7 @@ export const useLocalStorage = <Type>(
 
   const setValue = (newValue: Type) => {
     setState(newValue);
-    localStorage.setItem(key, JSON.stringify(newValue));
+    saveLocalStorageList<Type>(key, newValue);
   };
 
   return [value, setValue];
