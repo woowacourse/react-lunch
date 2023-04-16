@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, Component } from 'react';
+import React, { ChangeEventHandler } from 'react';
 
 import './FilterList.css';
 
@@ -8,23 +8,20 @@ interface FilterProps {
   changeEvent: ChangeEventHandler<HTMLSelectElement>;
 }
 
-class FilterList extends Component<FilterProps> {
-  render() {
-    const { type, name, changeEvent } = this.props;
-    const option = name.map((category) => {
-      return (
-        <option key={category} value={category}>
-          {category}
-        </option>
-      );
-    });
-
+const FilterList = ({ type, name, changeEvent }: FilterProps) => {
+  const option = name.map((category) => {
     return (
-      <select className={`restaurant-filter ${type}`} onChange={changeEvent}>
-        {option}
-      </select>
+      <option key={category} value={category}>
+        {category}
+      </option>
     );
-  }
-}
+  });
+
+  return (
+    <select className={`restaurant-filter ${type}`} onChange={changeEvent}>
+      {option}
+    </select>
+  );
+};
 
 export default FilterList;
