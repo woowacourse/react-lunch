@@ -37,7 +37,7 @@ export default class App extends Component {
 
     return (
       <div className="App">
-        <Header title={'점심 뭐 먹지'} />
+        <Header>{'점심 뭐 먹지'}</Header>
         <FilterContainer
           onChangeCategoryFilter={this.onChangeCategoryFilter}
           onChangeSortFilter={this.onChangeSortFilter}
