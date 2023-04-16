@@ -10,7 +10,7 @@ export const BottomSheetBody = styled.div`
   color: var(--primary-color);
 `;
 
-export const BottomSheetActions = styled.div`
+export const BottomSheetButtonGroup = styled.div`
   display: flex;
   gap: 16px;
 

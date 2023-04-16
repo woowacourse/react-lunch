@@ -32,12 +32,12 @@ const RestaurantDetailBottomSheet = ({
           </a>
         )}
 
-        <styled.BottomSheetActions>
+        <styled.BottomSheetButtonGroup>
           <Button variant="outlined">삭제하기</Button>
           <Button variant="primary" onClick={onClose} data-cy="close-button">
             닫기
           </Button>
-        </styled.BottomSheetActions>
+        </styled.BottomSheetButtonGroup>
       </styled.RestaurantDetailBottomSheet>
     </BottomSheet>
   );
