@@ -1,8 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { Restaurant } from "../types/Restaurant";
 import { convertImage } from "../utils/image";
 
-const Modal = (props) => {
+interface ModalProps {
+  restaurant: Restaurant;
+  closeModal: Function;
+}
+
+const Modal = (props: ModalProps) => {
   const { name, distance, category, description } = props.restaurant;
 
   return (

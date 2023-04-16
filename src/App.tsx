@@ -13,7 +13,13 @@ const App = () => {
   const [state, setState]: [AppState, Function] = useState({
     restaurants: mockData,
     modalOpen: false,
-    modalInfo: {},
+    modalInfo: {
+      category: "",
+      name: "",
+      distance: 0,
+      description: "",
+      favorite: false,
+    },
     sortBy: "name",
     categorizeBy: "all",
   });

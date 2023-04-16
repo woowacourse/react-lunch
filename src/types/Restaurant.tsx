@@ -16,21 +16,17 @@ export const SORTINGWAY = {
 export interface AppState {
   restaurants: object[];
   modalOpen: boolean;
-  modalInfo: object;
+  modalInfo: Restaurant;
   sortBy: typeof SORTINGWAY[keyof typeof SORTINGWAY];
   categorizeBy: typeof CATEGORY[keyof typeof CATEGORY];
 }
-// export type Category = typeof CATEGORY[keyof typeof CATEGORY];
-
-// export interface Restaurant {
-//   category: Category;
-//   name: string;
-//   distance: number;
-//   description: string;
-//   favorite: boolean;
-// }
-
-// export type Sort = typeof SORTINGWAY[keyof typeof SORTINGWAY];
+export interface Restaurant {
+  category: typeof CATEGORY[keyof typeof CATEGORY];
+  name: string;
+  distance: number;
+  description: string;
+  favorite: boolean;
+}
 
 // export type SelectBoxOption = {
 //   label: string;
@@ -51,18 +47,7 @@ export interface AppState {
 //   modalOpen: boolean;
 // }
 
-// interface ModalProps {
-//   restaurant: Restaurant;
-//   closeModal: () => void;
-// }
-
 // interface SelectBoxProps {
 //   options: SelectBoxOption[];
 //   setState: ChangeEventHandler<HTMLSelectElement>;
-// }
-
-// interface AppState {
-//   restaurants: Restaurant[];
-//   sortBy: Sort;
-//   categorizeBy: Category;
 // }
