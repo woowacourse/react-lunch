@@ -9,7 +9,6 @@ import RestaurantDetail from './components/RestaurantDetail';
 import { deleteTargetRestaurant, filterFoodCategory, sortRestaurants } from './domain/RestaurantSelector';
 
 interface AppState {
-  restaurantList: RestaurantInfo[];
   originalRestaurantList: RestaurantInfo[];
   clickedRestaurant: RestaurantInfo | null;
   selectedCategory: FoodCategory;
@@ -21,7 +20,6 @@ class App extends Component<object, AppState> {
     super(props);
 
     this.state = {
-      restaurantList: [],
       originalRestaurantList: [],
       clickedRestaurant: null,
       selectedCategory: '전체',
@@ -31,7 +29,6 @@ class App extends Component<object, AppState> {
     this.setClickedRestaurant = this.setClickedRestaurant.bind(this);
     this.resetClickedRestaurant = this.resetClickedRestaurant.bind(this);
     this.selectChangeCallback = this.selectChangeCallback.bind(this);
-    this.filterRestaurantList = this.filterRestaurantList.bind(this);
     this.deleteRestaurant = this.deleteRestaurant.bind(this);
   }
 
@@ -44,7 +41,6 @@ class App extends Component<object, AppState> {
       {
         originalRestaurantList: list,
       },
-      this.filterRestaurantList,
     );
   }
 
@@ -63,7 +59,6 @@ class App extends Component<object, AppState> {
       {
         selectedCategory: value,
       },
-      this.filterRestaurantList,
     );
   }
 
@@ -74,7 +69,6 @@ class App extends Component<object, AppState> {
       {
         selectedSortingMethod: value,
       },
-      this.filterRestaurantList,
     );
   }
 
@@ -97,7 +91,6 @@ class App extends Component<object, AppState> {
       {
         originalRestaurantList: updatedList,
       },
-      this.filterRestaurantList,
     );
 
     saveRestaurantList(updatedList);
@@ -110,9 +103,7 @@ class App extends Component<object, AppState> {
     const filteredList = filterFoodCategory(originalRestaurantList, selectedCategory);
     const sortedList = sortRestaurants(filteredList, selectedSortingMethod);
 
-    this.setState({
-      restaurantList: sortedList,
-    });
+    return sortedList;
   }
 
   selectChangeCallback(event: ChangeEvent<HTMLSelectElement>, kind: 'filter' | 'sort') {
@@ -128,11 +119,14 @@ class App extends Component<object, AppState> {
   }
 
   render() {
-    const { restaurantList, clickedRestaurant } = this.state;
+    const { clickedRestaurant } = this.state;
+
+    const list = this.filterRestaurantList();
+
     return (
       <div className="app">
         <Header onChange={this.selectChangeCallback} />
-        <RestaurantList onClick={this.setClickedRestaurant} restaurantList={restaurantList} />
+        <RestaurantList onClick={this.setClickedRestaurant} restaurantList={list} />
         {clickedRestaurant && (
           <Modal onClose={this.resetClickedRestaurant}>
             <RestaurantDetail
