@@ -20,7 +20,7 @@ const RestaurantDetailBottomSheet = ({
   return (
     <BottomSheet isOpened={isOpened} onClose={onClose}>
       <styled.RestaurantDetailBottomSheet>
-        <styled.RestaurantDetailCategoryIcon>
+        <styled.RestaurantDetailCategoryIcon title={restaurant.category}>
           <Icon mapper={CATEGORY_ICONS} name={restaurant.category} />
         </styled.RestaurantDetailCategoryIcon>
 

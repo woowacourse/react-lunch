@@ -11,7 +11,7 @@ type RestaurantListItemProps = {
 const RestaurantListItem = ({ restaurant, onClick }: RestaurantListItemProps) => {
   return (
     <styled.RestaurantListItem onClick={onClick} data-cy="restaurant-list-item">
-      <styled.RestaurantListItemCategoryIcon>
+      <styled.RestaurantListItemCategoryIcon title={restaurant.category}>
         <Icon mapper={CATEGORY_ICONS} name={restaurant.category} />
       </styled.RestaurantListItemCategoryIcon>
 
