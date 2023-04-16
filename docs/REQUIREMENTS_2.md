@@ -7,7 +7,7 @@
 - [x] Button
 - [x] CategoryImage
 - [x] Modal
-- [ ] RestaurantDetail
+- [x] RestaurantDetail
 - [ ] RestaurantList
 - [ ] RestaurantSummary
 - [ ] Select
