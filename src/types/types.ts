@@ -5,13 +5,6 @@ export interface Option {
   label: string;
 }
 
-export interface MainState {
-  category: string;
-  sorting: string;
-  restaurantId: number | undefined;
-  isModalOpen: boolean;
-}
-
 export interface FilterProps {
   name: string;
   options: Option[];
