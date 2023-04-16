@@ -10,11 +10,11 @@ export type RestaurantCategoryFilterOption = RestaurantCategory | '전체';
 
 export const getFilteredRestaurantsByCategory = (
   restaurants: Restaurant[],
-  category: RestaurantCategoryFilterOption
+  categoryFilterOption: RestaurantCategoryFilterOption
 ) => {
-  if (category === '전체') return restaurants;
+  if (categoryFilterOption === '전체') return restaurants;
 
-  return restaurants.filter((restaurant) => restaurant.category === category);
+  return restaurants.filter((restaurant) => restaurant.category === categoryFilterOption);
 };
 
 export const getSortedRestaurantsByName = (restaurants: Restaurant[]) => {
@@ -37,8 +37,8 @@ const sortMethods: Record<RestaurantSortOption, (restaurants: Restaurant[]) => R
 export const getSortedRestaurants = (restaurants: Restaurant[], sortOption: RestaurantSortOption) =>
   sortMethods[sortOption](restaurants);
 
-export const getRestaurantById = (restaurants: Restaurant[], restaurantId: number) => {
-  const targetRestaurant = restaurants.find((restaurant) => restaurant.id === restaurantId);
+export const getRestaurantById = (restaurants: Restaurant[], targetRestaurantId: number) => {
+  const targetRestaurant = restaurants.find((restaurant) => restaurant.id === targetRestaurantId);
   if (!targetRestaurant) throw new Error('음식점 정보를 불러오는 데 실패했습니다.');
 
   return targetRestaurant;
