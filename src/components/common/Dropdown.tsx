@@ -3,7 +3,7 @@ import * as styled from './Dropdown.styles';
 export type DropdownOption<Value> = {
   label: string;
   value: Value;
-}
+};
 
 export type DropdownProps<Value> = {
   options: DropdownOption<Value>[];
@@ -24,12 +24,10 @@ const Dropdown = <Value,>({ options, selectedOption, onChange }: DropdownProps<V
       data-cy="dropdown-filter"
     >
       {options.map(({ label }) => (
-        <option key={label}>
-          {label}
-        </option>
+        <option key={label}>{label}</option>
       ))}
     </styled.Dropdown>
   );
-}
+};
 
 export default Dropdown;

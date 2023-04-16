@@ -29,6 +29,6 @@ const BottomSheet = ({ isOpened, onClose, children }: PropsWithChildren<BottomSh
       </styled.BottomSheetContainer>
     </styled.BottomSheetBackDrop>
   );
-}
+};
 
 export default BottomSheet;

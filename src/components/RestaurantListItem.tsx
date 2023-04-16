@@ -7,7 +7,7 @@ type RestaurantListItemProps = {
   onClick: () => void;
 };
 
-const RestaurantListItem = ({restaurant, onClick}: RestaurantListItemProps) => {
+const RestaurantListItem = ({ restaurant, onClick }: RestaurantListItemProps) => {
   return (
     <styled.RestaurantListItem onClick={onClick} data-cy="restaurant-list-item">
       <CategoryIcon category={restaurant.category} />
@@ -24,6 +24,6 @@ const RestaurantListItem = ({restaurant, onClick}: RestaurantListItemProps) => {
       <styled.RestaurantListItemBody>{restaurant.description}</styled.RestaurantListItemBody>
     </styled.RestaurantListItem>
   );
-}
+};
 
 export default RestaurantListItem;

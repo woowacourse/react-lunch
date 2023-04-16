@@ -11,7 +11,11 @@ type RestaurantDetailBottomSheetProps = {
   onClose: () => void;
 };
 
-const RestaurantDetailBottomSheet = ({ restaurant, isOpened, onClose }: RestaurantDetailBottomSheetProps) => {
+const RestaurantDetailBottomSheet = ({
+  restaurant,
+  isOpened,
+  onClose,
+}: RestaurantDetailBottomSheetProps) => {
   return (
     <BottomSheet isOpened={isOpened} onClose={onClose}>
       <styled.RestaurantDetailBottomSheet>
@@ -37,6 +41,6 @@ const RestaurantDetailBottomSheet = ({ restaurant, isOpened, onClose }: Restaura
       </styled.RestaurantDetailBottomSheet>
     </BottomSheet>
   );
-}
+};
 
 export default RestaurantDetailBottomSheet;

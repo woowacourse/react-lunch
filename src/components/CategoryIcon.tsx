@@ -27,6 +27,6 @@ const CategoryIcon = ({ category }: CategoryIconProps) => {
       <img src={categoryToImageMapper[category]} alt={category} />
     </styled.CategoryIcon>
   );
-}
+};
 
 export default CategoryIcon;

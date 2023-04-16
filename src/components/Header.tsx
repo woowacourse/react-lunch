@@ -6,6 +6,6 @@ const Header = () => {
       <styled.HeaderTitle>점심 뭐 먹지</styled.HeaderTitle>
     </styled.Header>
   );
-}
+};
 
 export default Header;

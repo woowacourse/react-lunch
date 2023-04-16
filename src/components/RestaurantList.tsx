@@ -7,7 +7,7 @@ type RestaurantListProps = {
   onClickItem: (restaurant: Restaurant) => void;
 };
 
-const RestaurantList = ({restaurants, onClickItem}: RestaurantListProps) => {
+const RestaurantList = ({ restaurants, onClickItem }: RestaurantListProps) => {
   return (
     <styled.RestaurantList>
       {restaurants.map((restaurant) => (
@@ -19,6 +19,6 @@ const RestaurantList = ({restaurants, onClickItem}: RestaurantListProps) => {
       ))}
     </styled.RestaurantList>
   );
-}
+};
 
 export default RestaurantList;
