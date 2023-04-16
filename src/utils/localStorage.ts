@@ -1,4 +1,4 @@
-export const getLocalStorage = (key: string): unknown => {
+export const getLocalStorage = (key: string): null | [] => {
   const item = localStorage.getItem(key);
 
   if (item == null) {
@@ -8,5 +8,5 @@ export const getLocalStorage = (key: string): unknown => {
   return JSON.parse(item);
 };
 
-export const setLocalStorage = (key: string, value: unknown) =>
+export const setLocalStorage = (key: string, value: []) =>
   localStorage.setItem(key, JSON.stringify(value));
