@@ -10,9 +10,11 @@ type RestaurantItemProps = {
 
 export default class RestaurantItem extends Component<RestaurantItemProps> {
   render() {
+    const { link, ...restaurant } = this.props.restaurant;
+
     return (
       <li className="restaurant" onClick={this.onClickRestaurantItem}>
-        <RestaurantInfo restaurant={this.props.restaurant} />
+        <RestaurantInfo restaurant={restaurant} />
       </li>
     );
   }

@@ -11,7 +11,7 @@ export default class RestaurantDetailView extends Component<RestaurantDetailView
   render() {
     return (
       <div className="detail-view">
-        <RestaurantInfo restaurant={this.props.restaurant} showLink={true} />
+        <RestaurantInfo restaurant={this.props.restaurant} />
       </div>
     );
   }
