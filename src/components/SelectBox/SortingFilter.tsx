@@ -1,15 +1,20 @@
 import React from 'react';
 import SelectBox from './SelectBox';
-import { CRITERION } from '../../constants';
+import { CRITERION, CRITERION_LIST } from '../../constants';
 import { Criterion } from '../../types';
 
 interface SortingProps {
   setCriterion: (newCriterion: Criterion) => void;
 }
 
-function SortingFilter(props: SortingProps) {
+const isCriterion = (filter: string): filter is Criterion => {
+  if (CRITERION_LIST.includes(filter)) return true;
+  return false;
+};
+
+function SortingFilter({ setCriterion }: SortingProps) {
   const onChangeCriterion = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    props.setCriterion(event.target.value as Criterion);
+    if (isCriterion(event.target.value)) setCriterion(event.target.value);
   };
 
   return <SelectBox filter={CRITERION} onOptionChange={onChangeCriterion} />;
