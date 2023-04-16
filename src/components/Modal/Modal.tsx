@@ -1,15 +1,8 @@
-import {
-  DistanceText,
-  Image,
-  Name,
-  RestaurantCategory,
-  RestaurantInfoWrapper,
-} from 'components/RestaurantItem/RestaurantItem';
 import { imgSrc } from 'contants';
 import { useClickEvent } from 'hooks/useClickEvent';
 import { useKeyDownEvent } from 'hooks/useKeyDownEvent';
 import { useRef } from 'react';
-import { Button } from 'styled';
+import { Styled } from 'styled';
 import styled from 'styled-components';
 import { Restaurant } from 'types';
 
@@ -30,18 +23,18 @@ export function Modal({ restaurant, onCloseButtonClick }: Props) {
       <Backdrop ref={BackdropRef} />
       <Container>
         <IconContainer>
-          <RestaurantCategory>
-            <Image src={imgSrc[category]} alt={category} />
-          </RestaurantCategory>
+          <Styled.Restaurant.CategoryImgWrapper>
+            <img src={imgSrc[category]} alt={category} />
+          </Styled.Restaurant.CategoryImgWrapper>
         </IconContainer>
-        <RestaurantInfoWrapper>
-          <Name>{name}</Name>
-          <DistanceText>캠퍼스로부터 {distance}분 내</DistanceText>
+        <Styled.Restaurant.InfoWrapper>
+          <Styled.Restaurant.Name>{name}</Styled.Restaurant.Name>
+          <Styled.Restaurant.Distance>캠퍼스로부터 {distance}분 내</Styled.Restaurant.Distance>
           <Description>{description}</Description>
           <a href={link} target="_blank" rel="noreferrer noopener">
             {link}
           </a>
-        </RestaurantInfoWrapper>
+        </Styled.Restaurant.InfoWrapper>
         <ButtonContainer>
           <DeleteButton>삭제하기</DeleteButton>
           <CloseButton onClick={onCloseButtonClick}>닫기</CloseButton>
@@ -80,15 +73,16 @@ const IconContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-const Description = styled.p`
-  font: var(--text-body);
+const Description = styled(Styled.Restaurant.Description)`
+  padding-top: 8px;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
+  padding-top: 16px;
 `;
 
-const DeleteButton = styled(Button)`
+const DeleteButton = styled(Styled.Button)`
   border: 1px solid var(--grey-300);
   background: transparent;
 
@@ -96,7 +90,7 @@ const DeleteButton = styled(Button)`
   font: var(--text-caption);
 `;
 
-const CloseButton = styled(Button)`
+const CloseButton = styled(Styled.Button)`
   background: var(--primary-color);
 
   color: var(--grey-100);
