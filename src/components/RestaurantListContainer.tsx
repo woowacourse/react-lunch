@@ -11,7 +11,7 @@ export default class RestaurantListContainer extends Component {
     restaurantID: number;
   } = {
     category: '전체',
-    sort: 'name',
+    sort: '이름순',
     restaurantID: 0,
   };
 

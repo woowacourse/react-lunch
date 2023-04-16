@@ -46,13 +46,13 @@ const getRestaurantListFilteredByOptions = (
   category: Category,
   sort: string
 ) => {
-  if (sort === 'distance') {
+  if (sort === '거리순') {
     return getFiltered(
       [sortByDistance, filterByCategory(category)],
       getRestaurantList()
     );
   }
-  if (sort === 'name') {
+  if (sort === '이름순') {
     return getFiltered(
       [sortByName, filterByCategory(category)],
       getRestaurantList()
