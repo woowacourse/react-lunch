@@ -4,7 +4,7 @@ import * as S from './style';
 import { Categories, Restaurant, SortOptions } from '../../../@types/type';
 import { CATEGORIES, SORT_OPTIONS } from '../../../constants';
 import restaurant from '../../../domain/restaurant';
-import useFilteringList from '../../../hooks/useFilteringRestaurantList';
+import useFilteringList from '../../../hooks/useFilteringList';
 import SelectBox from '../../common/SelectBox';
 import RestaurantItem from '../RestaurantItem';
 
@@ -14,27 +14,17 @@ type Props = {
 };
 
 const RestaurantList = ({ restaurantList, openModal }: Props) => {
-  const [filteringRestaurantList, setFilteringRestaurantList] = useFilteringList(restaurantList, {
-    category: (_restaurant: Restaurant[]) => restaurant.filter(_restaurant, CATEGORIES.ALL),
-    sort: (_restaurant: Restaurant[]) => restaurant.sort(_restaurant, SORT_OPTIONS.NAME),
+  const [filteringRestaurantList, changeFilteringFn] = useFilteringList(restaurantList, {
+    category: restaurant.filtering(CATEGORIES.ALL),
+    sort: restaurant.sorting(SORT_OPTIONS.NAME),
   });
 
   const changeCategoryOption = (option: Categories) => {
-    setFilteringRestaurantList((prev) => {
-      return {
-        ...prev,
-        category: (_restaurant: Restaurant[]) => restaurant.filter(_restaurant, option),
-      };
-    });
+    changeFilteringFn('category', restaurant.filtering(option));
   };
 
   const changeSortOption = (option: SortOptions) => {
-    setFilteringRestaurantList((prev) => {
-      return {
-        ...prev,
-        sort: (_restaurant: Restaurant[]) => restaurant.sort(_restaurant, option),
-      };
-    });
+    changeFilteringFn('sort', restaurant.sorting(option));
   };
 
   return (

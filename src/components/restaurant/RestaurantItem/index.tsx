@@ -10,12 +10,8 @@ type Props = {
 };
 
 const RestaurantItem = ({ restaurant: { category, name, distanceByMinutes, description, id }, openModal }: Props) => {
-  const onClickRestaurant = () => {
-    openModal(id);
-  };
-
   return (
-    <S.RestaurantItem onClick={onClickRestaurant}>
+    <S.RestaurantItem onClick={() => openModal(id)}>
       <CategoryIcon category={category} />
       <S.InformationContainer>
         <S.RestaurantTitle>{name}</S.RestaurantTitle>
