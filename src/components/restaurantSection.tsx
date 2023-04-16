@@ -51,13 +51,11 @@ export default function RestaurantSection(props: PropsType) {
   }
 
   return (
-    <>
-      <RestaurantContainer>
-        {getFinalRestaurants()?.map((restaurant: Restaurant) => (
-          <RestaurantItem key={restaurant.id} restaurant={restaurant} />
-        ))}
-      </RestaurantContainer>
-    </>
+    <RestaurantContainer>
+      {getFinalRestaurants()?.map((restaurant: Restaurant) => (
+        <RestaurantItem key={restaurant.id} restaurant={restaurant} />
+      ))}
+    </RestaurantContainer>
   );
 }
 
