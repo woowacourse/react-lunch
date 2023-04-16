@@ -1,4 +1,3 @@
-import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 import theme from '../styles/theme';
 
@@ -18,14 +17,10 @@ const Style = {
   `,
 };
 
-export class Header extends Component {
-  render(): ReactNode {
-    return (
-      <Style.Wrapper>
-        <Style.Title onClick={() => window.location.reload()}>
-          점심 뭐 먹지
-        </Style.Title>
-      </Style.Wrapper>
-    );
-  }
+export function Header() {
+  return (
+    <Style.Wrapper>
+      <Style.Title>점심 뭐 먹지</Style.Title>
+    </Style.Wrapper>
+  );
 }
