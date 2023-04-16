@@ -21,5 +21,3 @@ export const SORTING_SELECT: Readonly<{ [key: string]: string }> = {
   NAME: "이름순",
   DISTANCE: "거리순",
 };
-
-export const LANGUAGE: Readonly<string> = "ko-KR";

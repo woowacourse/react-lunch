@@ -6,7 +6,6 @@ import RestaurantInfoModal from "./RestaurantInfoModal";
 
 interface Props {
   restaurantList: RestaurantInfo[];
-  category: string;
 }
 
 const Restaurants = (props: Props) => {
