@@ -53,17 +53,26 @@ const Modal = ({ restaurant, isModalOpen, onCloseModal }: ModalProps) => {
               <span className="restaurant__distance-info text-body">
                 캠퍼스부터 {restaurant.distance}분 내
               </span>
-              <p className="restaurant__description-info text-body">
-                {restaurant.description}
-              </p>
-              <a
-                href={restaurant.link}
-                target="_blank"
-                rel="noreferrer"
-                className="restaurant__link-info text-body"
-              >
-                {restaurant.link}
-              </a>
+              {restaurant.description ? (
+                <p className="restaurant__description-info text-body">
+                  {restaurant.description}
+                </p>
+              ) : (
+                <p className="restaurant__description-info text-body">
+                  등록된 설명이 없습니다.
+                </p>
+              )}
+
+              {restaurant.link && (
+                <a
+                  href={restaurant.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="restaurant__link-info text-body"
+                >
+                  {restaurant.link}
+                </a>
+              )}
             </div>
           </div>
           <div className="button-container">

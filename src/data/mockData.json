@@ -44,9 +44,7 @@
       "id": 6,
       "category": "중식",
       "name": "금룡",
-      "distance": 30,
-      "description": "유명한 중화요리 전문점입니다.",
-      "link": "https://www.tripadvisor.co.kr/Restaurant_Review-g294197-d2620973-Reviews-Kum_Rung_Restaurant-Seoul.html"
+      "distance": 30
     },
     {
       "id": 7,
