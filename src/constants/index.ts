@@ -19,4 +19,4 @@ export const LOCAL_STORAGE_KEY = {
 
 export const DEFAULT_CATEGORY_OPTION = '전체';
 
-export const DEFAULT_SORT_OPTION = '거리순';
+export const DEFAULT_SORT_OPTION = '이름순';
