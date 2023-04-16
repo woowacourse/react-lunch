@@ -3,11 +3,12 @@ import './Modal.css';
 
 type ModalProps = {
   children: ReactNode;
+  isOpen: boolean;
   onClick: () => void;
 };
 
-const Modal = ({ children, onClick }: ModalProps) => {
-  return (
+const Modal = ({ children, isOpen, onClick }: ModalProps) => {
+  return isOpen ? (
     <div className="modal">
       <div className="modal-backdrop"></div>
       <div className="modal-container">
@@ -23,7 +24,7 @@ const Modal = ({ children, onClick }: ModalProps) => {
         </div>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export default Modal;

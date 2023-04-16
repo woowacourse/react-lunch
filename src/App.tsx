@@ -11,14 +11,6 @@ import {
 import type { RestaurantSortOption, RestaurantCategoryFilterOption } from './RestaurantUtils';
 import './App.css';
 
-/*type AppState = {
-  restaurants: Restaurant[];
-  categoryFilterOption: RestaurantCategoryFilterOption;
-  sortOption: RestaurantSortOption;
-  restaurantForDetailView: Restaurant;
-  isModalOpen: boolean;
-};*/
-
 const App = () => {
   const [restaurants] = useState<Restaurant[]>(mockData as Restaurant[]);
   const [categoryFilterOption, setCategoryFilterOption] =
@@ -59,11 +51,9 @@ const App = () => {
         onChangeSortFilter={onChangeSortFilter}
       />
       <RestaurantList restaurants={sortedRestaurants} onClick={onClickRestaurantItem} />
-      {isModalOpen && (
-        <Modal onClick={onClickModalCloseButton}>
-          <RestaurantDetailView restaurant={restaurantForDetailView} />
-        </Modal>
-      )}
+      <Modal isOpen={isModalOpen} onClick={onClickModalCloseButton}>
+        <RestaurantDetailView restaurant={restaurantForDetailView} />
+      </Modal>
     </div>
   );
 };
