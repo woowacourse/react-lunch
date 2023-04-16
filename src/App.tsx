@@ -6,20 +6,7 @@ import RestaurantList from './components/RestaurantList';
 import SelectorSection from './components/SelectorSection';
 import mockData from './data/mockData.json';
 import Store from './store';
-import type { Category, Restaurant } from './components/RestaurantItem/type';
-
-export type Sort = '이름순' | '거리순';
-export interface State {
-	category: Category;
-	sort: Sort;
-	restaurantList: Restaurant[];
-	isModalOpen: boolean;
-	modalId: string;
-	setModalId: (id: string) => void;
-	toggleModal: () => void;
-	setCategory: (category: Category) => void;
-	setSortState: (sort: Sort) => void;
-}
+import { Category, Restaurant, Sort, State } from './store/type';
 
 class App extends React.Component<object, State> {
 	toggleModal: () => void;

@@ -1,7 +1,8 @@
 import React, { ChangeEvent } from 'react';
 import Store from '../../store';
+import { Sort, State } from '../../store/type';
+
 import styles from './SelectorSection.module.css';
-import type { Sort, State } from '../../App';
 
 class SortedSelector extends React.PureComponent {
 	private static handleSortedSelector = (store: State | null) => (e: ChangeEvent<HTMLSelectElement>) => {

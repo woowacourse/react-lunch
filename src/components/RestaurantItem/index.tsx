@@ -6,8 +6,9 @@ import categoryJapanese from '../../assets/category-japanese.png';
 import categoryKorean from '../../assets/category-korean.png';
 import categoryWestern from '../../assets/category-western.png';
 import Store from '../../store';
+import { Category, Restaurant, State } from '../../store/type';
+
 import styles from './RestaurantItem.module.css';
-import type { Restaurant, Category } from './type';
 
 interface MyProps {
 	restaurant: Restaurant;
