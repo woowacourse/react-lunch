@@ -10,7 +10,7 @@ interface Props {
 }
 
 interface State {
-  item: restaurant | null;
+  modalItem: restaurant | null;
 }
 
 class ItemList extends React.Component<Props, State> {
@@ -19,7 +19,7 @@ class ItemList extends React.Component<Props, State> {
     super(props);
     this.modalRef = React.createRef();
     this.state = {
-      item: null,
+      modalItem: null,
     };
 
     this.ulOnClickListener = this.ulOnClickListener.bind(this);
@@ -33,7 +33,7 @@ class ItemList extends React.Component<Props, State> {
     const elementId = Number(closestLi?.dataset.id);
 
     const selectedState = this.props.itemList.find(({ id }) => id === elementId) ?? null;
-    this.setState({ item: selectedState });
+    this.setState({ modalItem: selectedState });
   }
 
   closeEvent() {
@@ -45,7 +45,7 @@ class ItemList extends React.Component<Props, State> {
 
   initializeItemValue() {
     this.setState({
-      item: null,
+      modalItem: null,
     });
   }
 
@@ -58,9 +58,9 @@ class ItemList extends React.Component<Props, State> {
           })}
         </ul>
 
-        {this.state.item && (
+        {this.state.modalItem && (
           <ModalPortal closeEvent={this.closeEvent} dialogRef={this.modalRef}>
-            <ItemInformation restaurant={this.state.item} closeEvent={this.closeEvent} />
+            <ItemInformation restaurant={this.state.modalItem} closeEvent={this.closeEvent} />
           </ModalPortal>
         )}
       </section>
