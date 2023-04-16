@@ -5,13 +5,14 @@ import { Restaurant } from '../../types';
 
 export interface DetailModalProps extends ModalProps {
   restaurant: Restaurant;
+  handleModalClose: () => void;
 }
 
-function DetailModal({ restaurant }: DetailModalProps) {
+function DetailModal({ restaurant, handleModalClose }: DetailModalProps) {
   const { category, name, distance, description, link } = restaurant;
 
   return (
-    <Modal>
+    <Modal handleModalClose={handleModalClose}>
       <div className="restaurant__info">
         <div className="category-favorite-icon-container">
           <div className="restaurant__category">

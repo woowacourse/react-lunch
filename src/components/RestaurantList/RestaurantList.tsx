@@ -28,15 +28,17 @@ function RestaurantList() {
   };
 
   const handleCategoryChange = (newCategory: Category) => {
-    setIsItemClick(false);
     setCategory(newCategory);
     setRestaurantsData(LunchDataService.getRestaurants(newCategory, criterion));
   };
 
   const handleCriterionChange = (newCriterion: Criterion) => {
-    setIsItemClick(false);
     setCriterion(newCriterion);
     setRestaurantsData(LunchDataService.getRestaurants(category, newCriterion));
+  };
+
+  const handleModalClose = () => {
+    setIsItemClick(false);
   };
 
   return (
@@ -56,7 +58,7 @@ function RestaurantList() {
           );
         })}
       </ul>
-      {isItemClick && <DetailModal restaurant={clickedData} />}
+      {isItemClick && <DetailModal restaurant={clickedData} handleModalClose={handleModalClose} />}
     </>
   );
 }

@@ -3,9 +3,10 @@ import React, { useEffect } from 'react';
 
 export interface ModalProps {
   children?: React.ReactNode;
+  handleModalClose: () => void;
 }
 
-function Modal({ children }: ModalProps) {
+function Modal({ children, handleModalClose }: ModalProps) {
   const modalRef = React.createRef<HTMLDialogElement>();
 
   useEffect(() => {
@@ -20,6 +21,7 @@ function Modal({ children }: ModalProps) {
 
   const closeModal = () => {
     modalRef.current?.close();
+    handleModalClose();
   };
 
   return (
