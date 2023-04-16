@@ -1,5 +1,5 @@
 import mockData from '../data/mockRestaurantData.json';
-import { filterAndSortRestaurantList } from '../domains/restaurantUtil';
+import { filterAndSortRestaurantList } from '../hooks/restaurantUtil';
 
 describe('도메인 테스트', () => {
   const restaurantList = filterAndSortRestaurantList(mockData.restaurantList);
@@ -34,8 +34,7 @@ describe('도메인 테스트', () => {
         category: '한식',
         name: '삼원가든',
         distance: 5,
-        description:
-          '일상 속 만남이 모여 잔치가 됩니다. 만남이 잔치가 되는 곳, 이곳은 삼원가든입니다.',
+        description: '일상 속 만남이 모여 잔치가 됩니다. 만남이 잔치가 되는 곳, 이곳은 삼원가든입니다.',
         link: '',
         id: 9,
       },
@@ -59,8 +58,7 @@ describe('도메인 테스트', () => {
         category: '한식',
         name: '영동칼국수',
         distance: 15,
-        description:
-          '멀긴 한데 그래도 9,000원이라는 가격에 저렴하게 적게 먹을 수 있는 곳. 지갑 다이어트하기 좋은 곳',
+        description: '멀긴 한데 그래도 9,000원이라는 가격에 저렴하게 적게 먹을 수 있는 곳. 지갑 다이어트하기 좋은 곳',
         link: 'https://naver.me/xv06UHYh',
         id: 4,
       },
@@ -100,8 +98,7 @@ describe('도메인 테스트', () => {
         category: '한식',
         name: '삼원가든',
         distance: 5,
-        description:
-          '일상 속 만남이 모여 잔치가 됩니다. 만남이 잔치가 되는 곳, 이곳은 삼원가든입니다.',
+        description: '일상 속 만남이 모여 잔치가 됩니다. 만남이 잔치가 되는 곳, 이곳은 삼원가든입니다.',
         link: '',
         id: 9,
       },
@@ -165,8 +162,7 @@ describe('도메인 테스트', () => {
         category: '한식',
         name: '영동칼국수',
         distance: 15,
-        description:
-          '멀긴 한데 그래도 9,000원이라는 가격에 저렴하게 적게 먹을 수 있는 곳. 지갑 다이어트하기 좋은 곳',
+        description: '멀긴 한데 그래도 9,000원이라는 가격에 저렴하게 적게 먹을 수 있는 곳. 지갑 다이어트하기 좋은 곳',
         link: 'https://naver.me/xv06UHYh',
         id: 4,
       },
@@ -244,8 +240,7 @@ describe('도메인 테스트', () => {
         category: '한식',
         name: '삼원가든',
         distance: 5,
-        description:
-          '일상 속 만남이 모여 잔치가 됩니다. 만남이 잔치가 되는 곳, 이곳은 삼원가든입니다.',
+        description: '일상 속 만남이 모여 잔치가 됩니다. 만남이 잔치가 되는 곳, 이곳은 삼원가든입니다.',
         link: '',
         id: 9,
       },
@@ -261,8 +256,7 @@ describe('도메인 테스트', () => {
         category: '한식',
         name: '영동칼국수',
         distance: 15,
-        description:
-          '멀긴 한데 그래도 9,000원이라는 가격에 저렴하게 적게 먹을 수 있는 곳. 지갑 다이어트하기 좋은 곳',
+        description: '멀긴 한데 그래도 9,000원이라는 가격에 저렴하게 적게 먹을 수 있는 곳. 지갑 다이어트하기 좋은 곳',
         link: 'https://naver.me/xv06UHYh',
         id: 4,
       },
@@ -286,8 +280,7 @@ describe('도메인 테스트', () => {
         category: '한식',
         name: '삼원가든',
         distance: 5,
-        description:
-          '일상 속 만남이 모여 잔치가 됩니다. 만남이 잔치가 되는 곳, 이곳은 삼원가든입니다.',
+        description: '일상 속 만남이 모여 잔치가 됩니다. 만남이 잔치가 되는 곳, 이곳은 삼원가든입니다.',
         link: '',
         id: 9,
       },
@@ -311,8 +304,7 @@ describe('도메인 테스트', () => {
         category: '한식',
         name: '영동칼국수',
         distance: 15,
-        description:
-          '멀긴 한데 그래도 9,000원이라는 가격에 저렴하게 적게 먹을 수 있는 곳. 지갑 다이어트하기 좋은 곳',
+        description: '멀긴 한데 그래도 9,000원이라는 가격에 저렴하게 적게 먹을 수 있는 곳. 지갑 다이어트하기 좋은 곳',
         link: 'https://naver.me/xv06UHYh',
         id: 4,
       },
