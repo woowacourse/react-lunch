@@ -26,6 +26,7 @@ const restaurant = {
   sort: (restaurants: Restaurant[], type: string): Restaurant[] => {
     if (type === SORT_OPTIONS.NAME) return restaurants.sort((a, b) => (a.name > b.name ? 1 : -1));
     return restaurants.sort((a, b) =>
+      // 거리가 같다면 이름순으로 정렬한다.
       a.distanceByMinutes - b.distanceByMinutes === 0
         ? a.name > b.name
           ? 1
