@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useCallback } from 'react';
 import { useLunchDispatch } from '../../hooks';
 import { CHANGE_SORT_STATE } from '../../store/action';
 import { Sort } from '../../store/type';
@@ -8,9 +8,9 @@ import styles from './SelectorSection.module.css';
 function SortedSelector() {
 	const dispatch = useLunchDispatch();
 
-	const handleSortedSelector = (e: ChangeEvent<HTMLSelectElement>) => {
+	const handleSortedSelector = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
 		dispatch({ type: CHANGE_SORT_STATE, payload: { sort: e.target.value as Sort } });
-	};
+	}, []);
 
 	return (
 		<select name="sort" className={styles.selector} onChange={handleSortedSelector}>
@@ -20,4 +20,4 @@ function SortedSelector() {
 	);
 }
 
-export default SortedSelector;
+export default React.memo(SortedSelector);

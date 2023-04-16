@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import categoryAsian from '../../assets/category-asian.png';
 import categoryChinese from '../../assets/category-chinese.png';
 import categoryEtc from '../../assets/category-etc.png';
@@ -38,12 +38,15 @@ function RestaurantItem(props: MyProps) {
 
 	const dispatch = useLunchDispatch();
 
-	const handleRestaurantItemModal = (id: string) => () => {
-		dispatch({ type: TOGGLE_MODAL });
-		dispatch({ type: CHANGE_MODAL_ID, payload: { modalId: id } });
+	const handleRestaurantItemModal = useCallback(
+		(id: string) => () => {
+			dispatch({ type: TOGGLE_MODAL });
+			dispatch({ type: CHANGE_MODAL_ID, payload: { modalId: id } });
 
-		document.body.style.overflow = 'hidden';
-	};
+			document.body.style.overflow = 'hidden';
+		},
+		[]
+	);
 
 	if (restaurant === undefined) return <>no result</>;
 
@@ -66,4 +69,4 @@ function RestaurantItem(props: MyProps) {
 	);
 }
 
-export default RestaurantItem;
+export default React.memo(RestaurantItem);

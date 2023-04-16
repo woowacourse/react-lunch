@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useLunchDispatch, useLunchState } from '../../hooks';
 import { TOGGLE_MODAL } from '../../store/action';
@@ -13,10 +13,10 @@ function Modal() {
 	const state = useLunchState();
 	const dispatch = useLunchDispatch();
 
-	const handleCloseModal = () => {
+	const handleCloseModal = useCallback(() => {
 		dispatch({ type: TOGGLE_MODAL });
 		document.body.style.removeProperty('overflow');
-	};
+	}, []);
 
 	return (
 		<>
@@ -36,4 +36,4 @@ function Modal() {
 	);
 }
 
-export default Modal;
+export default React.memo(Modal);

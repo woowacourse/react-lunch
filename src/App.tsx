@@ -9,17 +9,19 @@ import LunchProvider from './context/LunchProvider';
 
 function App() {
 	return (
-		<LunchProvider>
+		<>
+			<Header />
 			<main className={styles.app}>
-				<Header />
 				<section className={styles.mainSection}>
-					<SelectorSection />
-					<RestaurantList />
-					<Modal />
+					<LunchProvider>
+						<SelectorSection />
+						<RestaurantList />
+						<Modal />
+					</LunchProvider>
 				</section>
 			</main>
-		</LunchProvider>
+		</>
 	);
 }
 
-export default App;
+export default React.memo(App);

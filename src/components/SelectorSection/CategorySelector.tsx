@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useCallback } from 'react';
 import { useLunchDispatch } from '../../hooks';
 import { CHANGE_CATEGORY } from '../../store/action';
 import { Category } from '../../store/type';
@@ -7,9 +7,9 @@ import styles from './SelectorSection.module.css';
 function CategorySelector() {
 	const dispatch = useLunchDispatch();
 
-	const handleCategorySelector = (e: ChangeEvent<HTMLSelectElement>) => {
+	const handleCategorySelector = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
 		dispatch({ type: CHANGE_CATEGORY, payload: { category: e.target.value as Category } });
-	};
+	}, []);
 
 	return (
 		<select name="category" className={styles.selector} onChange={handleCategorySelector}>
@@ -24,4 +24,4 @@ function CategorySelector() {
 	);
 }
 
-export default CategorySelector;
+export default React.memo(CategorySelector);
