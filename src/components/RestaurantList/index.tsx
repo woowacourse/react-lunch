@@ -31,38 +31,21 @@ export default function RestaurantList({
   );
 
   useEffect(() => {
-    if (!localStorage.getItem("restaurantListOrigin")) {
-      setData();
-    }
+    const setData = async () => {
+      const data = await fetchMockRestaurants({ align: BY_NAME });
+      setRestaurantList(data);
+      setRestaurantListOrigin(data);
+    };
 
-    const data = localStorage.getItem("restaurantListOrigin");
-    if (data) {
-      const restaurantListOrigin = JSON.parse(data);
-      setRestaurantListOrigin(restaurantListOrigin);
-      setRestaurantList(restaurantListOrigin);
-    }
+    setData();
   }, []);
 
   useEffect(() => {
-    restaurantFilter();
-    restaurantAlign();
-  }, [category]);
+    const resFilter = [...filterBy(category, restaurantListOrigin)];
+    const resAlign = [...alignBy(align, resFilter)];
+    setRestaurantList(resAlign);
+  }, [category, align]);
 
-  useEffect(() => {
-    restaurantAlign();
-  }, [align]);
-
-  const setData = async () => {
-    const data = await fetchMockRestaurants({ align: BY_NAME });
-    localStorage.setItem("restaurantListOrigin", JSON.stringify(data));
-  };
-
-  const restaurantFilter = () => {
-    setRestaurantList(filterBy(category, restaurantListOrigin));
-  };
-  const restaurantAlign = () => {
-    setRestaurantList(alignBy(align, restaurantList));
-  };
   const focusRestaurant = (focusedRestaurant: Restaurant) => {
     setFocusedRestaurant(focusedRestaurant);
     setIsOpened(true);
@@ -74,7 +57,6 @@ export default function RestaurantList({
   };
 
   const isBottomSheetOpened = isOpened && focusedRestaurant;
-
   return (
     <St.Layout>
       {restaurantList.map((restaurant: Restaurant) => (
