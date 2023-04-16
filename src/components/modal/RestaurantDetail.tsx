@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import { RestaurantCategoryImage } from '../restaurant/RestaurantCategoryImage';
 import { Style as RestaurantStyle } from '../restaurant/RestaurantItem';
 import { RestaurantProps } from '../../type';
 import { getImageSrc } from '../../utils/util';
@@ -29,9 +30,7 @@ export function RestaurantDetail({ restaurant }: RestaurantProps) {
   return (
     <>
       <Style.ImageWrapper>
-        <Style.RestaurantCategory>
-          <img src={getImageSrc(category)} alt={category} />
-        </Style.RestaurantCategory>
+        <RestaurantCategoryImage category={category} />
       </Style.ImageWrapper>
       <Style.RestaurantName>{name}</Style.RestaurantName>
       <Style.RestaurantDistance>

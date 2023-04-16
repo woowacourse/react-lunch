@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme';
+import { RestaurantCategoryImage } from './RestaurantCategoryImage';
 import { Restaurant } from '../../type';
-import { getImageSrc } from '../../utils/util';
 
 export const Style = {
   Wrapper: styled.li`
@@ -17,19 +17,6 @@ export const Style = {
     flex-direction: column;
     justify-content: flex-start;
     width: 100%;
-  `,
-
-  RestaurantCategory: styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 64px;
-    height: 64px;
-    min-width: 64px;
-    min-height: 64px;
-    margin-right: 16px;
-    border-radius: 50%;
-    background: ${theme.color.lighten};
   `,
 
   DescriptionWrapper: styled.div`
@@ -64,23 +51,21 @@ interface RestaurantItemProps {
 }
 
 export function RestaurantItem({ restaurant, onClick }: RestaurantItemProps) {
+  const { id, category, name, distance, description } = restaurant;
+
   return (
-    <Style.Wrapper id={restaurant.id} onClick={onClick}>
-      <Style.RestaurantCategory>
-        <img src={getImageSrc(restaurant.category)} alt={restaurant.category} />
-      </Style.RestaurantCategory>
+    <Style.Wrapper id={id} onClick={onClick}>
+      <RestaurantCategoryImage category={category} />
       <Style.RestaurantInfo>
         <Style.DescriptionWrapper>
           <div>
-            <Style.RestaurantName>{restaurant.name}</Style.RestaurantName>
+            <Style.RestaurantName>{name}</Style.RestaurantName>
             <Style.RestaurantDistance>
-              캠퍼스부터 {restaurant.distance}분 내
+              캠퍼스부터 {distance}분 내
             </Style.RestaurantDistance>
           </div>
         </Style.DescriptionWrapper>
-        <Style.RestaurantDescription>
-          {restaurant.description}
-        </Style.RestaurantDescription>
+        <Style.RestaurantDescription>{description}</Style.RestaurantDescription>
       </Style.RestaurantInfo>
     </Style.Wrapper>
   );
