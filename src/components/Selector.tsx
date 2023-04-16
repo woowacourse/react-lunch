@@ -8,18 +8,16 @@ interface Props<T> {
   filterRef: React.RefObject<HTMLSelectElement>;
 }
 
-class Selector<T extends string> extends React.Component<Props<T>> {
-  render(): React.ReactNode {
+const Selector = <T extends string>(props:Props<T>)=> {
     return (
-      <select ref={this.props.filterRef} onChange={this.props.onChange} defaultValue={this.props.selectedValue}>
-        {this.props.optionList.map(option => (
+      <select ref={props.filterRef} onChange={props.onChange} defaultValue={props.selectedValue}>
+        {props.optionList.map(option => (
           <option key={option} value={option}>
             {option}
           </option>
         ))}
       </select>
     );
-  }
 }
 
 export default Selector;
