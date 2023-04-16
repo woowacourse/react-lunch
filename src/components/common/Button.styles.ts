@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 type ButtonProps = {
-  $variant: 'primary' | 'outlined';
+  $variant?: 'primary' | 'outlined';
 };
 
 export const Button = styled.button<ButtonProps>`

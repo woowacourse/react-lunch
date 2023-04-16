@@ -33,7 +33,7 @@
   - 도메인 의존성이 없는 방향으로 분리하기
 - [ ] `close-button` 을 구체적으로 네이밍하기
 - [x] `BottomSheetActions` 를 `BottomSheetButtonGroup` 으로 이름 바꾸기
-- [ ] `Button` variant 평가를 한 파일에서 하도록 수정하기
+- [x] `Button` variant 평가를 한 파일에서 하도록 수정하기
 - [x] `DropdownFilter` 컴포넌트를 Stateless로 바꾸기
 - [x] `.eslintrc.json` 을 `.eslintrc` 로 수정
 - [ ] 아무런 기능이 없는 버튼은 `disabled` 처리

@@ -10,7 +10,7 @@ type ButtonProps = Omit<
 
 const Button = ({ children, variant, ...buttonProps }: ButtonProps) => {
   return (
-    <styled.Button {...buttonProps} $variant={variant ?? 'outlined'}>
+    <styled.Button {...buttonProps} $variant={variant}>
       {children}
     </styled.Button>
   );
