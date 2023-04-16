@@ -37,30 +37,23 @@ class App extends Component<{}, Props> {
   };
 
   handleSortingSelect = (value: string) => {
-    const filteredRestaurants = this.filterBySelectedOptions(
-      this.state.category,
-      value
-    );
+    const filteredRestaurants = this.filterBySelectedOptions(undefined, value);
     this.setState({ filteredRestaurants: filteredRestaurants, sorting: value });
 
     setItemInLocalStorage("sorting", value);
   };
 
-  sortRestaurantsByName(restaurants: RestaurantInfo[]) {
-    return [...restaurants].sort((a, b) =>
-      a.name.localeCompare(b.name, LANGUAGE)
-    );
-  }
-
   filterBySelectedOptions(
     category: string = this.state.category,
     sorting: string = this.state.sorting
   ) {
-    const filteredRestaurants = this.sortRestaurantsByName(
-      restaurantMockData
-    ).filter((restaurant) =>
-      category === CATEGORY.전체 ? restaurant : restaurant.category === category
+    const allRestaurants = restaurantMockData;
+    const selectedCategoryRestaurants = allRestaurants.filter(
+      (restaurant) => restaurant.category === category
     );
+
+    const filteredRestaurants =
+      category === CATEGORY.전체 ? allRestaurants : selectedCategoryRestaurants;
 
     return this.sortBySelectedOption(sorting, filteredRestaurants);
   }
@@ -70,6 +63,12 @@ class App extends Component<{}, Props> {
       return this.sortRestaurantsByName(filteredRestaurants);
     }
     return [...filteredRestaurants].sort((a, b) => a.takingTime - b.takingTime);
+  }
+
+  sortRestaurantsByName(restaurants: RestaurantInfo[]) {
+    return [...restaurants].sort((a, b) =>
+      a.name.localeCompare(b.name, LANGUAGE)
+    );
   }
 
   render() {
