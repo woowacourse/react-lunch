@@ -5,7 +5,7 @@
 - [x] Header
 - [x] App
 - [x] Button
-- [ ] CategoryImage
+- [x] CategoryImage
 - [ ] Modal
 - [ ] RestaurantDetail
 - [ ] RestaurantList
