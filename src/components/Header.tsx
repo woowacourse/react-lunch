@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Component, KeyboardEvent, ReactNode } from 'react';
+import React, { ChangeEvent, KeyboardEvent } from 'react';
 import styles from './Header.module.css';
 import Select from './Select';
 
