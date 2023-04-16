@@ -23,29 +23,29 @@ export default function RestaurantSection(props: PropsType) {
     getData();
   }, []);
 
-  function getFilteredRestaurants() {
+  function getFilteredRestaurants(): Restaurant[] {
     if (category === SELECT_OPTION.ALL) return restaurants;
 
-    return [...restaurants].filter(
-      (restaurant) => restaurant.category === category
-    );
+    return restaurants.filter((restaurant) => restaurant.category === category);
   }
 
-  function getSortedRestaurants(filteredRestaurant: Restaurant[]) {
+  function getSortedRestaurants(
+    filteredRestaurant: Restaurant[]
+  ): Restaurant[] | void {
     if (sorting === SELECT_OPTION.NAME) {
-      return filteredRestaurant.sort((resA, resB) =>
+      return [...filteredRestaurant].sort((resA, resB) =>
         resA.name.localeCompare(resB.name)
       );
     }
 
     if (sorting === SELECT_OPTION.TAKING_TIME) {
-      return filteredRestaurant.sort(
+      return [...filteredRestaurant].sort(
         (resA, resB) => resA.takingTime - resB.takingTime
       );
     }
   }
 
-  function getFinalRestaurants() {
+  function getFinalRestaurants(): Restaurant[] | void {
     const filteredRestaurants = getFilteredRestaurants();
     return getSortedRestaurants(filteredRestaurants);
   }
