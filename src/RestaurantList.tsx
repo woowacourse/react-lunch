@@ -1,6 +1,7 @@
 import React from 'react';
 import RestaurantItem from './RestaurantItem.tsx';
-import { FilterOption, Restaurant } from './util/type.js';
+import { FilterOption, Restaurant } from './util/type.ts';
+import { pipe } from './util/util.ts';
 
 type StateType = {
   restaurantList: Omit<Restaurant, 'link'>[];
@@ -34,14 +35,14 @@ class RestaurantList extends React.Component<RestaurantListProps, StateType> {
       });
   }
 
-  filterByCategory(restaurantList, category): Restaurant[] {
+  filterByCategory = (category) => (restaurantList) => {
     if (category === '전체') return restaurantList;
     return restaurantList.filter(
       (restaurant) => restaurant.category === category
     );
   }
 
-  filterBySort(restaurantList, sorting): Restaurant[] {
+  filterBySort = (sorting) => (restaurantList) => {
     return restaurantList.sort((firstElement, secondElement) => {
       if (sorting === 'name') {
         return firstElement.title.localeCompare(secondElement.title);
@@ -53,33 +54,27 @@ class RestaurantList extends React.Component<RestaurantListProps, StateType> {
     });
   }
 
-  pipe(...funcs) {
-    return (x, params) => {
-      return funcs.reduce((acc, f, i) => f(acc, params[i]), x);
-    }
-  }
-  
-  sortRestaurants(rl, category, sorting) {
-    return this.filterBySort(this.filterByCategory(rl, category), sorting);
-  }
-
   render() {
     const { category, sorting } = this.props.filterOptions; 
     
     return (
       <section className="restaurant-list-container">
         <ul className="restaurant-list">
-          {this.pipe(this.filterByCategory, this.filterBySort)(this.state.restaurantList, [category, sorting]).map((restaurant) => (
-            <RestaurantItem
-              key={restaurant.id}
-              restaurant={restaurant}
-              onToggleDrawer={this.props.onToggleDrawer}
-            />
-          ))}
+          {pipe(
+            this.filterByCategory(category),
+            this.filterBySort(sorting)
+          )(this.state.restaurantList)
+            .map((restaurant) => (
+              <RestaurantItem
+                key={restaurant.id}
+                restaurant={restaurant}
+                onToggleDrawer={this.props.onToggleDrawer}
+              />
+            ))}
         </ul>
       </section>
     );
   }
 }
 
-export default RestaurantList;
+export default RestaurantList
