@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import addButton from "../assets/add-button.png";
+import useModal from "../utils/hooks/useModal";
 import Modal from "./modal";
 import WarningModalContent from "./warningModalContent";
 
@@ -8,15 +9,7 @@ interface StateType {
   isModalOpen: boolean;
 }
 export default function Header() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  function openModal() {
-    setIsModalOpen(true);
-  }
-
-  function closeModal() {
-    setIsModalOpen(false);
-  }
+  const { open, openModal, closeModal } = useModal();
 
   return (
     <>
@@ -31,7 +24,7 @@ export default function Header() {
           <AddIcon src={addButton} alt="음식점 추가" />
         </AddButton>
       </Container>
-      {isModalOpen && (
+      {open && (
         <Modal location="middle" closeModal={closeModal}>
           <WarningModalContent />
         </Modal>
