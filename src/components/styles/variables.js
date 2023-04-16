@@ -1,17 +1,19 @@
 import { css } from 'styled-components';
 
 const variables = {
-  button: css`
-    width: 100%;
-    height: 44px;
+  flexCenter: css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `,
 
-    margin-right: 16px;
+  ellipsis: (lines) => css`
+    display: -webkit-box;
 
-    border: none;
-    border-radius: 8px;
-
-    font-weight: 600;
-    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: ${lines};
+    -webkit-box-orient: vertical;
   `,
 };
 

@@ -1,62 +1,47 @@
-import { Component } from 'react';
-import { Restaurant } from '../../types';
-import { imgSrc } from '../../constants/imageSrc';
+import { imgSrc } from 'contants';
+import { useClickEvent } from 'hooks/useClickEvent';
+import { useKeyDownEvent } from 'hooks/useKeyDownEvent';
+import { useRef } from 'react';
+import { Styled } from 'styled';
 import styled from 'styled-components';
-import {
-  DistanceText,
-  Image,
-  Name,
-  RestaurantCategory,
-  RestaurantInfoWrapper,
-} from '../RestaurantItem/RestaurantItem';
+import { Restaurant } from 'types';
 
 type Props = {
   restaurant: Restaurant;
   onCloseButtonClick: () => void;
 };
 
-export class Modal extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
+export function Modal({ restaurant, onCloseButtonClick }: Props) {
+  const { category, name, distance, description, link } = restaurant;
+  const BackdropRef = useRef<HTMLDivElement>(null);
 
-  componentDidMount(): void {
-    document.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        this.props.onCloseButtonClick();
-      }
-    });
-  }
+  useKeyDownEvent('Escape', onCloseButtonClick);
+  useClickEvent(BackdropRef, onCloseButtonClick);
 
-  render() {
-    const { id, name, category, distance, description, link } = this.props.restaurant;
-    const onCloseButtonClick = this.props.onCloseButtonClick;
-
-    return (
-      <Wrapper>
-        <Backdrop></Backdrop>
-        <Container>
-          <IconContainer>
-            <RestaurantCategory>
-              <Image src={imgSrc[category]} alt={category} />
-            </RestaurantCategory>
-          </IconContainer>
-          <RestaurantInfoWrapper>
-            <Name>{name}</Name>
-            <DistanceText>캠퍼스로부터 {distance}분 내</DistanceText>
-            <Description>{description}</Description>
-            <a href={link} target="_blank">
-              {link}
-            </a>
-          </RestaurantInfoWrapper>
-          <ButtonContainer>
-            <DeleteButton>삭제하기</DeleteButton>
-            <CloseButton onClick={onCloseButtonClick}>닫기</CloseButton>
-          </ButtonContainer>
-        </Container>
-      </Wrapper>
-    );
-  }
+  return (
+    <Wrapper>
+      <Backdrop ref={BackdropRef} />
+      <Container>
+        <IconContainer>
+          <Styled.Restaurant.CategoryImgWrapper>
+            <img src={imgSrc[category]} alt={category} />
+          </Styled.Restaurant.CategoryImgWrapper>
+        </IconContainer>
+        <Styled.Restaurant.InfoWrapper>
+          <Styled.Restaurant.Name>{name}</Styled.Restaurant.Name>
+          <Styled.Restaurant.Distance>캠퍼스로부터 {distance}분 내</Styled.Restaurant.Distance>
+          <Description>{description}</Description>
+          <a href={link} target="_blank" rel="noreferrer noopener">
+            {link}
+          </a>
+        </Styled.Restaurant.InfoWrapper>
+        <ButtonContainer>
+          <DeleteButton>삭제하기</DeleteButton>
+          <CloseButton onClick={onCloseButtonClick}>닫기</CloseButton>
+        </ButtonContainer>
+      </Container>
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.div``;
@@ -88,16 +73,16 @@ const IconContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-const Description = styled.p`
-  font: var(--text-body);
+const Description = styled(Styled.Restaurant.Description)`
+  padding-top: 8px;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
+  padding-top: 16px;
 `;
 
-const DeleteButton = styled.button`
-  ${(props) => props.theme.variables.button}
+const DeleteButton = styled(Styled.Button)`
   border: 1px solid var(--grey-300);
   background: transparent;
 
@@ -105,8 +90,7 @@ const DeleteButton = styled.button`
   font: var(--text-caption);
 `;
 
-const CloseButton = styled.button`
-  ${(props) => props.theme.variables.button}
+const CloseButton = styled(Styled.Button)`
   background: var(--primary-color);
 
   color: var(--grey-100);
