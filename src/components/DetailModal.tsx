@@ -4,7 +4,7 @@ import RestaurantManager from '../domain/RestaurantManager';
 import { RestaurantDetail } from '../types/RestaurantDetail';
 import { ModalBottom } from './ModalBottom';
 
-type DialogModalProps = {
+type DetailModalProps = {
   setShow: (isShow: boolean) => void;
   restaurantID: number;
 };
@@ -23,7 +23,7 @@ const useRestaurantDetail = (restaurantID: number) => {
   return restaurantDetail;
 };
 
-export const DialogModal = ({ setShow, restaurantID }: DialogModalProps) => {
+export const DetailModal = ({ setShow, restaurantID }: DetailModalProps) => {
   const restaurantDetail = useRestaurantDetail(restaurantID);
 
   const { category, description, distance, name, link } = restaurantDetail;

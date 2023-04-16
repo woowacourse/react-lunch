@@ -2,7 +2,7 @@ import { RestaurantItem } from './RestaurantItem';
 import RestaurantManager from '../domain/RestaurantManager';
 import { Category, RestaurantDetail } from '../types/RestaurantDetail';
 import { useEffect, useRef, useState } from 'react';
-import { DialogModal } from './DialogModal';
+import { DetailModal } from './DetailModal';
 import { createPortal } from 'react-dom';
 
 interface RestaurantListProps {
@@ -51,10 +51,10 @@ export const RestaurantList = ({ category, sort }: RestaurantListProps) => {
       </ul>
       {show &&
         createPortal(
-          <DialogModal
+          <DetailModal
             setShow={setShow}
             restaurantID={idRef.current}
-          ></DialogModal>,
+          ></DetailModal>,
           document.body
         )}
     </>
