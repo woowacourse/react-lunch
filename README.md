@@ -6,23 +6,29 @@
 
 ### <a href="https://gilpop8663.github.io/react-lunch/">점심 뭐 먹지 바로가기</a>
 
-# step1
+# step2
 
 ## 실행하는 방법
 
-### 1. 설치
+### 1. 스탭 2 브런치로 이동
+
+```
+git checkout step2
+```
+
+### 2. 설치
 
 ```
 npm install
 ```
 
-### 2. 실행
+### 3. 실행
 
 ```
 npm run start
 ```
 
-### 3. 접속 경로
+### 4. 접속 경로
 
 ```
 http://localhost:3000/
