@@ -12,13 +12,10 @@ type RestaurantListProps = {
   onToggleDrawer: (id?: number) => void;
 };
 
-class RestaurantList extends React.Component<RestaurantListProps, StateType> {
-  constructor(props) {
-    super(props);
-    this.state = {
+class RestaurantList extends React.PureComponent<RestaurantListProps, StateType> {
+  state = {
       restaurantList: [],
     };
-  }
 
   componentDidMount(): void {
     const rawRestaurantList = localStorage.getItem('restaurantList');
@@ -53,7 +50,7 @@ class RestaurantList extends React.Component<RestaurantListProps, StateType> {
       return 0;
     });
   }
-
+  
   render() {
     const { category, sorting } = this.props.filterOptions; 
     

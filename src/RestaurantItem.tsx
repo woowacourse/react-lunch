@@ -8,6 +8,18 @@ type RestaurantProps = {
   onToggleDrawer: (id?: number) => void;
 };
 class RestaurantItem extends React.Component<RestaurantProps> {
+  shouldComponentUpdate(nextProps: RestaurantProps) {
+    const { restaurant} = this.props;
+    const { restaurant: nextRestaurant } = nextProps;
+    return (
+      restaurant.id !== nextRestaurant.id || 
+      restaurant.category !== nextRestaurant.category || 
+      restaurant.title !== nextRestaurant.title || 
+      restaurant.distance !== nextRestaurant.distance || 
+      restaurant.description !== nextRestaurant.description 
+    );
+  }
+
   render() {
     return (
       <li
