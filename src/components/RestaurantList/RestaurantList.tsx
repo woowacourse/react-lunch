@@ -1,5 +1,5 @@
-import { Component } from 'react';
 import styled from 'styled-components';
+
 import { Restaurant } from '../../types';
 import { RestaurantItem } from '../RestaurantItem/RestaurantItem';
 
@@ -8,22 +8,18 @@ type Props = {
   onRestaurantClick: (id: number) => void;
 };
 
-export class RestaurantList extends Component<Props> {
-  render() {
-    const { restaurants, onRestaurantClick } = this.props;
-
-    return (
-      <RestaurantListWrapper>
-        {restaurants.map((restaurant) => (
-          <RestaurantItem
-            key={restaurant.id}
-            restaurant={restaurant}
-            onRestaurantClick={onRestaurantClick}
-          ></RestaurantItem>
-        ))}
-      </RestaurantListWrapper>
-    );
-  }
+export function RestaurantList({ restaurants, onRestaurantClick }: Props) {
+  return (
+    <RestaurantListWrapper>
+      {restaurants.map((restaurant) => (
+        <RestaurantItem
+          key={restaurant.id}
+          restaurant={restaurant}
+          onRestaurantClick={onRestaurantClick}
+        ></RestaurantItem>
+      ))}
+    </RestaurantListWrapper>
+  );
 }
 
 const RestaurantListWrapper = styled.ul`

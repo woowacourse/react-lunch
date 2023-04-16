@@ -1,32 +1,32 @@
-import { Component } from 'react';
+import styled from 'styled-components';
+
 import { Restaurant } from '../../types';
 import { imgSrc } from '../../constants/imageSrc';
-
-import styled from 'styled-components';
 
 type Props = {
   restaurant: Restaurant;
   onRestaurantClick: (id: number) => void;
 };
 
-export class RestaurantItem extends Component<Props> {
-  render() {
-    const { id, name, category, distance, description } = this.props.restaurant;
-    const onRestaurantClick = this.props.onRestaurantClick;
+export function RestaurantItem({ restaurant, onRestaurantClick }: Props) {
+  const { id, name, category, distance, description } = restaurant;
 
-    return (
-      <RestaurantWrapper onClick={() => {onRestaurantClick(id)}}>
-        <RestaurantCategory>
-          <Image src={imgSrc[category]} alt={category} />
-        </RestaurantCategory>
-        <RestaurantInfoWrapper>
-          <Name>{name}</Name>
-          <DistanceText>캠퍼스로부터 {distance}분 내</DistanceText>
-          <Description>{description}</Description>
-        </RestaurantInfoWrapper>
-      </RestaurantWrapper>
-    );
-  }
+  return (
+    <RestaurantWrapper
+      onClick={() => {
+        onRestaurantClick(id);
+      }}
+    >
+      <RestaurantCategory>
+        <Image src={imgSrc[category]} alt={category} />
+      </RestaurantCategory>
+      <RestaurantInfoWrapper>
+        <Name>{name}</Name>
+        <DistanceText>캠퍼스로부터 {distance}분 내</DistanceText>
+        <Description>{description}</Description>
+      </RestaurantInfoWrapper>
+    </RestaurantWrapper>
+  );
 }
 
 const RestaurantWrapper = styled.li`
