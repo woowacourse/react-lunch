@@ -1,11 +1,5 @@
 import { ORDER_KEY, CATEGORY_NAME } from '../constants';
 
-export interface SelectBoxType {
-  selectType: SelectKind;
-  options: string[];
-  onChange: React.ChangeEventHandler<HTMLSelectElement>;
-}
-
 export interface RestaurantItemType {
   category: CategoryType;
   name: string;
@@ -19,11 +13,6 @@ export interface RestaurantListStateType {
   filteredRestaurants: RestaurantItemType[];
   category: CategoryType;
   order: OrderType;
-}
-
-export interface BottomSheetType {
-  children: React.ReactNode;
-  onClose: () => void;
 }
 
 export type CategoryType = (typeof CATEGORY_NAME)[keyof typeof CATEGORY_NAME];

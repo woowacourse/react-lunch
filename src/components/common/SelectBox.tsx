@@ -1,6 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { SelectBoxType } from '../../types';
+import { SelectKind } from '../../types';
+
+interface SelectBoxType {
+  selectType: SelectKind;
+  options: string[];
+  onChange: React.ChangeEventHandler<HTMLSelectElement>;
+}
 
 class SelectBox extends React.Component<SelectBoxType> {
   render() {
