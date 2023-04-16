@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { RestaurantInfo } from '../data/type';
 import { CATEGORY_IMAGES } from '../assets/images';
@@ -9,79 +9,63 @@ interface RestaurantItemProps {
   restaurant: RestaurantInfo;
 }
 
-interface RestaurantItemState {
-  isModalOpen: boolean;
-  modalClassName: string;
-}
+const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
+  const [modalClassName, setModalClassName] = useState('modal');
 
-class RestaurantItem extends Component<
-  RestaurantItemProps,
-  RestaurantItemState
-> {
-  constructor(props: RestaurantItemProps) {
-    super(props);
-
-    this.state = {
-      isModalOpen: false,
-      modalClassName: 'modal',
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.code === 'Escape') {
+        setModalClassName('modal');
+      }
     };
-  }
 
-  render() {
-    const { id, category, name, distance, description } = this.props.restaurant;
-    return (
-      <li
-        id={id.toString()}
-        onClick={this.handleOpenModal}
-        className="restaurant pointer"
-      >
-        <div className="restaurant__category">
-          <img
-            src={CATEGORY_IMAGES[category]}
-            alt={category}
-            className="category-icon"
-          />
-        </div>
-        <div className="restaurant__info">
-          <h3 className="restaurant__name text-subtitle">{name}</h3>
-          <span className="restaurant__distance text-body">
-            캠퍼스부터 {distance}분 내
-          </span>
-          <p className="restaurant__description text-body">{description}</p>
-        </div>
-        {this.state.isModalOpen && (
-          <Modal
-            restaurant={this.props.restaurant}
-            modalClassName={this.state.modalClassName}
-            onClose={this.handleCloseModal}
-          />
-        )}
-      </li>
-    );
-  }
+    document.addEventListener('keydown', handleKeyDown);
 
-  handleOpenModal = () => {
-    this.setState({ isModalOpen: true, modalClassName: 'modal--open' });
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  const handleOpenModal = () => {
+    setModalClassName('modal--open');
   };
 
-  handleCloseModal = (e: React.MouseEvent<HTMLElement>) => {
+  const handleCloseModal = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    this.setState({ isModalOpen: false, modalClassName: 'modal' });
+    setModalClassName('modal');
   };
 
-  handleKeyDown = (event: KeyboardEvent) => {
-    if (event.code === 'Escape') {
-      this.setState({ isModalOpen: false, modalClassName: 'modal' });
-    }
-  };
-
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyDown);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDown);
-  }
-}
+  return (
+    <li
+      id={restaurant.id.toString()}
+      onClick={handleOpenModal}
+      className="restaurant pointer"
+    >
+      <div className="restaurant__category">
+        <img
+          src={CATEGORY_IMAGES[restaurant.category]}
+          alt={restaurant.category}
+          className="category-icon"
+        />
+      </div>
+      <div className="restaurant__info">
+        <h3 className="restaurant__name text-subtitle">{restaurant.name}</h3>
+        <span className="restaurant__distance text-body">
+          캠퍼스부터 {restaurant.distance}분 내
+        </span>
+        <p className="restaurant__description text-body">
+          {restaurant.description}
+        </p>
+      </div>
+      {modalClassName === 'modal--open' && (
+        <Modal
+          restaurant={restaurant}
+          modalClassName={modalClassName}
+          onClose={handleCloseModal}
+        />
+      )}
+    </li>
+  );
+};
 
 export default RestaurantItem;
