@@ -12,59 +12,69 @@ import { Category, Restaurant } from '../../store/type';
 import styles from './RestaurantItem.module.css';
 
 interface MyProps {
-	restaurant: Restaurant;
-	isModal: boolean;
+  restaurant: Restaurant;
+  isModal: boolean;
 }
 
 const makeCategoryImgPath = (category: Category) => {
-	switch (category) {
-		case '한식':
-			return categoryKorean;
-		case '일식':
-			return categoryJapanese;
-		case '중식':
-			return categoryChinese;
-		case '아시안':
-			return categoryAsian;
-		case '양식':
-			return categoryWestern;
-		default:
-			return categoryEtc;
-	}
+  switch (category) {
+    case '한식':
+      return categoryKorean;
+    case '일식':
+      return categoryJapanese;
+    case '중식':
+      return categoryChinese;
+    case '아시안':
+      return categoryAsian;
+    case '양식':
+      return categoryWestern;
+    default:
+      return categoryEtc;
+  }
 };
 
 function RestaurantItem(props: MyProps) {
-	const { restaurant, isModal } = props;
+  const { restaurant, isModal } = props;
 
-	const dispatch = useLunchDispatch();
+  const dispatch = useLunchDispatch();
 
-	const handleRestaurantItemModal = useCallback(
-		(id: string) => () => {
-			dispatch({ type: TOGGLE_MODAL });
-			dispatch({ type: CHANGE_MODAL_ID, payload: { modalId: id } });
+  const handleRestaurantItemModal = useCallback(
+    (id: string) => () => {
+      dispatch({ type: TOGGLE_MODAL });
+      dispatch({ type: CHANGE_MODAL_ID, payload: { modalId: id } });
 
-			document.body.style.overflow = 'hidden';
-		},
-		[]
-	);
+      document.body.style.overflow = 'hidden';
+    },
+    []
+  );
 
-	return (
-		<li className={isModal ? styles.itemModal : styles.item} onClick={handleRestaurantItemModal(restaurant.id)}>
-			<div className={styles.icon}>
-				<img src={makeCategoryImgPath(restaurant.category)} alt={restaurant.category} />
-			</div>
-			<article className={isModal ? styles.articleModal : ''}>
-				<h2 className={styles.title}>{restaurant.name}</h2>
-				<div className={styles.distance}>캠퍼스로부터 {restaurant.distance}분 내</div>
-				<div className={isModal ? styles.descriptionModal : styles.description}>{restaurant.description}</div>
-				{isModal && restaurant.link && (
-					<a href={restaurant.link} className={styles.link}>
-						{restaurant.link}
-					</a>
-				)}
-			</article>
-		</li>
-	);
+  return (
+    <li
+      className={isModal ? styles.itemModal : styles.item}
+      onClick={handleRestaurantItemModal(restaurant.id)}
+    >
+      <div className={styles.icon}>
+        <img
+          src={makeCategoryImgPath(restaurant.category)}
+          alt={restaurant.category}
+        />
+      </div>
+      <article className={isModal ? styles.articleModal : ''}>
+        <h2 className={styles.title}>{restaurant.name}</h2>
+        <div className={styles.distance}>
+          캠퍼스로부터 {restaurant.distance}분 내
+        </div>
+        <div className={isModal ? styles.descriptionModal : styles.description}>
+          {restaurant.description}
+        </div>
+        {isModal && restaurant.link && (
+          <a href={restaurant.link} className={styles.link}>
+            {restaurant.link}
+          </a>
+        )}
+      </article>
+    </li>
+  );
 }
 
 export default React.memo(RestaurantItem);

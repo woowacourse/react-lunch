@@ -8,20 +8,20 @@ import SelectorSection from './components/SelectorSection';
 import LunchProvider from './context/LunchProvider';
 
 function App() {
-	return (
-		<>
-			<Header />
-			<main className={styles.app}>
-				<section className={styles.mainSection}>
-					<LunchProvider>
-						<SelectorSection />
-						<RestaurantList />
-						<Modal />
-					</LunchProvider>
-				</section>
-			</main>
-		</>
-	);
+  return (
+    <>
+      <Header />
+      <main className={styles.app}>
+        <section className={styles.mainSection}>
+          <LunchProvider>
+            <SelectorSection />
+            <RestaurantList />
+            <Modal />
+          </LunchProvider>
+        </section>
+      </main>
+    </>
+  );
 }
 
 export default React.memo(App);

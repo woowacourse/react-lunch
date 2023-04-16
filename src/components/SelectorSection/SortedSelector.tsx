@@ -6,18 +6,28 @@ import { Sort } from '../../store/type';
 import styles from './SelectorSection.module.css';
 
 function SortedSelector() {
-	const dispatch = useLunchDispatch();
+  const dispatch = useLunchDispatch();
 
-	const handleSortedSelector = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-		dispatch({ type: CHANGE_SORT_STATE, payload: { sort: e.target.value as Sort } });
-	}, []);
+  const handleSortedSelector = useCallback(
+    (e: ChangeEvent<HTMLSelectElement>) => {
+      dispatch({
+        type: CHANGE_SORT_STATE,
+        payload: { sort: e.target.value as Sort },
+      });
+    },
+    []
+  );
 
-	return (
-		<select name="sort" className={styles.selector} onChange={handleSortedSelector}>
-			<option value="이름순">이름순</option>
-			<option value="거리순">거리순</option>
-		</select>
-	);
+  return (
+    <select
+      name="sort"
+      className={styles.selector}
+      onChange={handleSortedSelector}
+    >
+      <option value="이름순">이름순</option>
+      <option value="거리순">거리순</option>
+    </select>
+  );
 }
 
 export default React.memo(SortedSelector);

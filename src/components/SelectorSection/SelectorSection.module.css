@@ -1,11 +1,11 @@
 .section {
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .selector {
-	width: 125px;
-	height: 40px;
-	border-radius: 8px;
-	border: 1px solid #d0d5dd;
+  width: 125px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #d0d5dd;
 }
