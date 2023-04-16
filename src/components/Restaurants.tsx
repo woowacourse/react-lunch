@@ -8,46 +8,42 @@ interface Props {
   restaurantList: RestaurantInfo[];
 }
 
-const Restaurants = (props: Props) => {
+const Restaurants = ({ restaurantList }: Props) => {
   const restaurantInfoModal = useRef<HTMLDialogElement>(null);
 
   const [restaurant, setRestaurant] = useState<RestaurantInfo | undefined>(
     undefined
   );
 
-  const handleModalOpenButton = (restaurantId: string) => {
-    setRestaurant(findSelectedRestaurant(restaurantId));
-
+  const handleModalButton = () => {
     const modal = restaurantInfoModal.current;
-    if (modal) modal.showModal();
-  };
+    if (!modal) return;
 
-  const handleModalCloseButton = () => {
-    const modal = restaurantInfoModal.current;
-    if (modal) modal.close();
+    modal.open ? modal.close() : modal.showModal();
   };
 
   const findSelectedRestaurant = (restaurantId: string) => {
-    return props.restaurantList.find(
-      (restaurant) => restaurant.id === restaurantId
-    );
+    return restaurantList.find((restaurant) => restaurant.id === restaurantId);
   };
 
   return (
     <>
       <RestaurantListContainer>
-        {props.restaurantList.map((restaurant: RestaurantInfo) => (
+        {restaurantList.map((restaurant: RestaurantInfo) => (
           <Restaurant
             key={restaurant.id}
             restaurant={restaurant}
-            onClick={() => handleModalOpenButton(restaurant.id)}
+            onClick={() => {
+              handleModalButton();
+              setRestaurant(findSelectedRestaurant(restaurant.id));
+            }}
           />
         ))}
       </RestaurantListContainer>
 
       <RestaurantInfoModal
         selectedRestaurant={restaurant}
-        onClose={() => handleModalCloseButton()}
+        onClose={() => handleModalButton()}
         refModal={restaurantInfoModal}
       />
     </>

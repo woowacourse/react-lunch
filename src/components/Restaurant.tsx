@@ -7,26 +7,24 @@ interface Props {
   onClick: () => void;
 }
 
-const Restaurant = (props: Props) => {
-  const { restaurant: restaurantInfo } = props;
-
+const Restaurant = ({ restaurant, onClick }: Props) => {
   return (
-    <RestaurantContainer onClick={props.onClick}>
+    <RestaurantContainer onClick={onClick}>
       <div className="category">
         <img
           src={`${process.env.PUBLIC_URL}/assets/category-${
-            ENGLISH_CATEGORY[restaurantInfo.category]
+            ENGLISH_CATEGORY[restaurant.category]
           }.png`}
-          alt={restaurantInfo.category}
+          alt={restaurant.category}
         />
       </div>
       <article>
-        <h3 className="text-subtitle">{restaurantInfo.name}</h3>
+        <h3 className="text-subtitle">{restaurant.name}</h3>
         <TakingTime className="text-body takingTime">
-          캠퍼스부터 {restaurantInfo.takingTime}분 내
+          캠퍼스부터 {restaurant.takingTime}분 내
         </TakingTime>
         <Description className="text-body description">
-          {restaurantInfo.description}
+          {restaurant.description}
         </Description>
       </article>
     </RestaurantContainer>
