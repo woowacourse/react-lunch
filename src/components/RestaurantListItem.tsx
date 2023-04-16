@@ -1,6 +1,7 @@
+import { CATEGORY_ICONS } from '../constants/Restaurants';
 import type Restaurant from '../types/Restaurant';
-import CategoryIcon from './CategoryIcon';
 import * as styled from './RestaurantListItem.styles';
+import Icon from './common/Icon';
 
 type RestaurantListItemProps = {
   restaurant: Restaurant;
@@ -10,7 +11,9 @@ type RestaurantListItemProps = {
 const RestaurantListItem = ({ restaurant, onClick }: RestaurantListItemProps) => {
   return (
     <styled.RestaurantListItem onClick={onClick} data-cy="restaurant-list-item">
-      <CategoryIcon category={restaurant.category} />
+      <styled.RestaurantListItemCategoryIcon>
+        <Icon mapper={CATEGORY_ICONS} name={restaurant.category} />
+      </styled.RestaurantListItemCategoryIcon>
 
       <header>
         <styled.RestaurantListItemHeaderTitle data-cy="title">

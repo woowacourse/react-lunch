@@ -28,7 +28,7 @@
 - [ ] 배포될 때 `data-cy` 제거하기
 - [x] `RestaurantFilterContainer`를 `SearchBar`로 이름 변경하기
 - [x] 컴포넌트 폴더 없애 depth 낮추기
-- [ ] `CategoryIcon` 컴포넌트 개선하기
+- [x] `CategoryIcon` 컴포넌트 개선하기
   - 디자인을 구체적으로 결정하지 않기 (범용적으로 사용할 수 있게)
   - 도메인 의존성이 없는 방향으로 분리하기
 - [ ] `close-button` 을 구체적으로 네이밍하기

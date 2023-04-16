@@ -1,8 +1,9 @@
+import { CATEGORY_ICONS } from '../constants/Restaurants';
 import { Body, Title } from '../styles/Text';
 import type Restaurant from '../types/Restaurant';
-import CategoryIcon from './CategoryIcon';
 import BottomSheet from './common/BottomSheet';
 import Button from './common/Button';
+import Icon from './common/Icon';
 import * as styled from './RestaurantDetailBottomSheet.styles';
 
 type RestaurantDetailBottomSheetProps = {
@@ -19,7 +20,10 @@ const RestaurantDetailBottomSheet = ({
   return (
     <BottomSheet isOpened={isOpened} onClose={onClose}>
       <styled.RestaurantDetailBottomSheet>
-        <CategoryIcon category={restaurant.category} />
+        <styled.RestaurantDetailCategoryIcon>
+          <Icon mapper={CATEGORY_ICONS} name={restaurant.category} />
+        </styled.RestaurantDetailCategoryIcon>
+
         <Title>{restaurant.name}</Title>
         <styled.BottomSheetBody>
           캠퍼스부터 {restaurant.distanceByMinutes}분 내
