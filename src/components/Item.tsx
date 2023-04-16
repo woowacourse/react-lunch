@@ -4,12 +4,12 @@ import '../styles/Item.css';
 import { CATEGORY_IMAGE_PATH } from '../utils/constants';
 
 interface Props {
-  props: restaurant;
+  restaurantItem: restaurant;
 }
 
 class Item extends React.Component<Props> {
   render(): React.ReactNode {
-    const { category, name, distance, description, id } = this.props.props;
+    const { category, name, distance, description, id } = this.props.restaurantItem;
     return (
       <li className="restaurant" data-id={id}>
         <div className="restaurant_info">

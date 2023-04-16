@@ -50,7 +50,7 @@ class ItemList extends React.Component<Props, State> {
       <section className="restaurant-list-container">
         <ul className="restaurant-list" onClick={this.ulOnClickListener}>
           {this.props.itemList.map(item => {
-            return <Item key={item.id} props={item} />;
+            return <Item key={item.id} restaurantItem={item} />;
           })}
         </ul>
 
