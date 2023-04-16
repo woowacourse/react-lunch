@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { RestaurantInfo } from '../types/restaurantInfo';
-import CategoryImage from './CategoryImage';
+import CategoryImage from './CategoryImage/CategoryImage';
 import styles from './RestaurantDetail.module.css';
 import Button from './Button';
 
