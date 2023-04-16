@@ -2,15 +2,20 @@ import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import './styles/App.css';
 import { FoodCategory, RestaurantInfo, SortMethod, isFoodCategory, isSortMethod } from './types/restaurantInfo';
-import { getSavedRestaurantList, hasSavedRestaurantList, saveRestaurantList } from './domain/initializeRestaurantList';
 import RestaurantList from './components/RestaurantList';
 import Modal from './components/Modal';
 import RestaurantDetail from './components/RestaurantDetail';
 import { deleteTargetRestaurant, filterFoodCategory, sortRestaurants } from './domain/RestaurantSelector';
+import { useLocalStorage } from './hooks/useLocalStorage';
+import { RESTUARNT_LIST_LOCAL_STORAGE_KEY } from './constants';
+import MOCK_DATA from './data/MockData.json';
 
 export default function App() {
+  const [originalRestaurantList, setOriginalRestaurantList] = useLocalStorage<RestaurantInfo[]>(
+    RESTUARNT_LIST_LOCAL_STORAGE_KEY,
+    MOCK_DATA.restaurantList as RestaurantInfo[],
+  );
   const [restaurantList, setRestaurantList] = useState<RestaurantInfo[]>([]);
-  const [originalRestaurantList, setOriginalRestaurantList] = useState<RestaurantInfo[]>([]);
   const [clickedRestaurant, setClickedRestaurant] = useState<RestaurantInfo | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<FoodCategory>('전체');
   const [selectedSortingMethod, setSelectedSortingMethod] = useState<SortMethod>('이름순');
@@ -46,7 +51,6 @@ export default function App() {
 
     setOriginalRestaurantList(updatedList);
 
-    saveRestaurantList(updatedList);
     resetClickedRestaurant();
   };
 
@@ -59,24 +63,15 @@ export default function App() {
 
   const selectChangeCallback = (value: string, kind: 'filter' | 'sort') => {
     if (kind === 'filter') {
-      if (!isFoodCategory(value)) return;
-
       changeSelectedCategory(value);
     }
 
     if (kind === 'sort') {
-      if (!isSortMethod(value)) return;
-
       changeSelectedSortingMethod(value);
     }
   };
 
   useEffect(() => {
-    if (!hasSavedRestaurantList()) saveRestaurantList();
-
-    const list = getSavedRestaurantList();
-
-    setOriginalRestaurantList(list);
     filterRestaurantList();
   }, []);
 
