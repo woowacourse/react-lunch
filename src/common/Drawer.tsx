@@ -1,15 +1,16 @@
 import React from 'react';
+
 type DrawerProps = {
   isOpenDrawer: boolean;
-  children: React.ReactNode;
 };
 
-class Drawer extends React.Component<DrawerProps> {
+class Drawer extends React.PureComponent<React.PropsWithChildren<DrawerProps>> {
   render() {
+    const { isOpenDrawer, children } = this.props;
     return (
-      <div className={`modal ${this.props.isOpenDrawer && 'modal--open'}`}>
+      <div className={`modal ${isOpenDrawer ? "modal--open" : ""}`}>
         <div className="modal-backdrop"></div>
-        <div className="modal-container">{this.props.children}</div>
+        <div className="modal-container">{children}</div>
       </div>
     );
   }
