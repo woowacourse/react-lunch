@@ -139,6 +139,7 @@ const SelectBoxWrapper = styled.div`
   padding: 24px 16px;
 
   background: #ffffff;
+  box-shadow: 1px 1px #e9eaed;
 `;
 
 export default RestaurantList;
