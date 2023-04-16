@@ -6,8 +6,9 @@ import {
   RestaurantInfoWrapper,
 } from 'components/RestaurantItem/RestaurantItem';
 import { imgSrc } from 'contants';
+import { useClickEvent } from 'hooks/useClickEvent';
 import { useKeyDownEvent } from 'hooks/useKeyDownEvent';
-import { useEffect } from 'react';
+import { useRef } from 'react';
 import { Button } from 'styled';
 import styled from 'styled-components';
 import { Restaurant } from 'types';
@@ -19,12 +20,14 @@ type Props = {
 
 export function Modal({ restaurant, onCloseButtonClick }: Props) {
   const { category, name, distance, description, link } = restaurant;
+  const BackdropRef = useRef<HTMLDivElement>(null);
 
   useKeyDownEvent('Escape', onCloseButtonClick);
+  useClickEvent(BackdropRef, onCloseButtonClick);
 
   return (
     <Wrapper>
-      <Backdrop />
+      <Backdrop ref={BackdropRef} />
       <Container>
         <IconContainer>
           <RestaurantCategory>
