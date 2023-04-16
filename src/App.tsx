@@ -4,7 +4,7 @@ import Main from "./components/Main";
 const App = () => {
   return (
     <>
-      <Header />
+      <Header title="점심 뭐 먹지" />
       <Main />
     </>
   );
