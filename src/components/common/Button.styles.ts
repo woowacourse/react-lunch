@@ -17,5 +17,5 @@ export const Button = styled.button<ButtonProps>`
     props.$variant === 'primary' ? props.theme.grey['100'] : props.theme.grey['300']};
   font-weight: 600;
 
-  cursor: ${(props) => (props.$disabled ? 'not-allowed' : 'initial')};
+  cursor: ${(props) => (props.$disabled ? 'not-allowed' : 'pointer')};
 `;
