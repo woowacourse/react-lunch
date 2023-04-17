@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { ThemeProvider } from "styled-components";
 import { Header } from "./components/header";
 import { RestaurantSection } from "./components/restaurantSection";
@@ -6,72 +6,66 @@ import { SelectSection } from "./components/selectSection";
 import { SELECT_OPTION } from "./constant/select";
 import { GlobalStyle } from "./style/Globalstyle";
 import { theme } from "./style/theme";
-import { CategoryUnion, SortingUnion, SelectedValue } from "./types/select";
+import { CategoryUnion, SortingUnion } from "./types/select";
 import { Restaurant } from "./types/restaurant";
 import { getRestaurantData } from "./api/getData";
-import { getFilteredArray, getSortedArray } from "./utils/arrayConverter";
+import {
+  getFilteredRestaurantsByCategory,
+  getSortedRestaurants,
+} from "./utils/arrayConverter";
 
-interface StateType {
-  restaurants: Restaurant[] | [];
-  sorting: SortingUnion;
-  category: CategoryUnion;
-}
+const App = () => {
+  const [allRestaurants, setAllRestaurants] = useState<Restaurant[]>([]);
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const [sorting, setSorting] = useState<SortingUnion>(SELECT_OPTION.NAME);
+  const [category, setCategory] = useState<CategoryUnion>(SELECT_OPTION.ALL);
 
-class App extends React.Component<{}, StateType> {
-  constructor(props: {}) {
-    super(props);
-
-    this.state = {
-      restaurants: [],
-      sorting: SELECT_OPTION.NAME,
-      category: SELECT_OPTION.ALL,
+  useEffect(() => {
+    const getInitialData = async () => {
+      const data = await getRestaurantData();
+      setAllRestaurants(data);
+      setRestaurants(data);
     };
-  }
 
-  async componentDidMount() {
-    const data = await getRestaurantData();
+    getInitialData();
+  }, []);
 
-    this.setState({
-      restaurants: data,
-    });
-  }
+  useEffect(() => {
+    arrangeRestaurants();
+  }, [sorting, category]);
 
-  handleSelect(select: SelectedValue) {
-    if (select.type === SELECT_OPTION.SORTING) {
-      this.setState({ sorting: select.value as SortingUnion });
+  const handleSelect = (type: string, value: string) => {
+    if (type === SELECT_OPTION.SORTING) {
+      setSorting(value as SortingUnion);
     }
 
-    if (select.type === SELECT_OPTION.CATEGORY) {
-      this.setState({ category: select.value as CategoryUnion });
+    if (type === SELECT_OPTION.CATEGORY) {
+      setCategory(value as CategoryUnion);
     }
-  }
+  };
 
-  setRestaurant() {
-    const filteredRestaurants = getFilteredArray(
-      this.state.restaurants,
-      this.state.category
+  const arrangeRestaurants = () => {
+    const filteredRestaurants = getFilteredRestaurantsByCategory(
+      allRestaurants,
+      category
     );
 
-    const sortedRestaurants = getSortedArray(
+    const sortedRestaurants = getSortedRestaurants(
       filteredRestaurants,
-      this.state.sorting
+      sorting
     );
 
-    return sortedRestaurants;
-  }
+    setRestaurants(sortedRestaurants);
+  };
 
-  render() {
-    return (
-      <>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <Header />
-          <SelectSection handleSelect={this.handleSelect.bind(this)} />
-          <RestaurantSection restaurants={this.setRestaurant()} />
-        </ThemeProvider>
-      </>
-    );
-  }
-}
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Header handleClick={arrangeRestaurants} />
+      <SelectSection handleSelect={handleSelect} />
+      {restaurants && <RestaurantSection restaurants={restaurants} />}
+    </ThemeProvider>
+  );
+};
 
 export default App;

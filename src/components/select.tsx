@@ -1,42 +1,31 @@
-import React from "react";
 import styled from "styled-components";
-import {
-  CategoryUnion,
-  SelectNameType,
-  SortingUnion,
-  SelectedValue,
-} from "../types/select";
+import { SelectNameType } from "../types/select";
 
-interface PropsType {
-  name: SelectNameType;
+interface SelectProps {
+  type: SelectNameType;
   options: string[];
-  handleSelect: (selected: SelectedValue) => void;
+  handleSelect: (name: string, value: string) => void;
 }
 
-export class Select extends React.Component<PropsType> {
-  render() {
-    return (
-      <SelectContianer
-        onChange={(e) => {
-          const value = e.target.value as SortingUnion | CategoryUnion;
-          this.props.handleSelect({
-            type: this.props.name,
-            value: value,
-          });
-        }}>
-        {this.props.options.map((option: string) => {
-          return (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          );
-        })}
-      </SelectContianer>
-    );
-  }
-}
+export const Select = ({ type, options, handleSelect }: SelectProps) => {
+  return (
+    <SelectContainer
+      onChange={(e) => {
+        handleSelect(type, e.target.value);
+      }}
+    >
+      {options.map((option: string) => {
+        return (
+          <Option key={option} value={option}>
+            {option}
+          </Option>
+        );
+      })}
+    </SelectContainer>
+  );
+};
 
-const SelectContianer = styled.select`
+const SelectContainer = styled.select`
   height: 44px;
   min-width: 125px;
 
@@ -48,3 +37,5 @@ const SelectContianer = styled.select`
 
   font-size: 16px;
 `;
+
+const Option = styled.option``;

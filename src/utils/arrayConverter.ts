@@ -1,18 +1,31 @@
 import { SELECT_OPTION } from "../constant/select";
 import { Restaurant } from "../types/restaurant";
+import { CategoryUnion, SortingUnion } from "../types/select";
 
-export const getFilteredArray = (array: Restaurant[], value: string) => {
-  if (value === SELECT_OPTION.ALL) return array;
+export const getFilteredRestaurantsByCategory = (
+  restaurants: Restaurant[],
+  category: CategoryUnion
+) => {
+  if (category === SELECT_OPTION.ALL) return restaurants;
 
-  return [...array].filter((item) => item.category === value);
+  return restaurants.filter((item) => item.category === category);
 };
 
-export const getSortedArray = (array: Restaurant[], sortingType: string) => {
+export const getSortedRestaurants = (
+  restaurants: Restaurant[],
+  sortingType: SortingUnion
+) => {
   if (sortingType === SELECT_OPTION.NAME) {
-    return [...array].sort((resA, resB) => resA.name.localeCompare(resB.name));
+    return [...restaurants].sort((resA, resB) =>
+      resA.name.localeCompare(resB.name)
+    );
   }
 
   if (sortingType === SELECT_OPTION.TAKING_TIME) {
-    return [...array].sort((resA, resB) => resA.takingTime - resB.takingTime);
+    return [...restaurants].sort(
+      (resA, resB) => resA.takingTime - resB.takingTime
+    );
   }
+
+  return restaurants;
 };

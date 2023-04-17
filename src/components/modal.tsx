@@ -1,44 +1,40 @@
-import React, { ReactElement } from "react";
+import { ReactElement, useEffect } from "react";
 import styled from "styled-components";
-import { ModalButton } from "./modalButton";
+import { Button } from "./button";
 
-interface PropsType {
+interface ModalProps {
   closeModal: () => void;
-  location: string;
+  modalPosition: string;
   children: ReactElement;
 }
 
-export class Modal extends React.Component<PropsType> {
-  closeModalByESC() {
-    window.addEventListener("keyup", (e) => {
+export const Modal = ({ modalPosition, children, closeModal }: ModalProps) => {
+  useEffect(() => {
+    const closeModalByESC = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        this.props.closeModal();
+        closeModal();
       }
-    });
-  }
+    };
 
-  componentDidMount() {
-    this.closeModalByESC();
-  }
+    window.addEventListener("keyup", closeModalByESC);
 
-  render() {
-    return (
-      <>
-        <BackDrop onClick={this.props.closeModal} />
-        <ModalContainer location={this.props.location}>
-          {this.props.children}
-          <ButtonContainer>
-            <ModalButton
-              text="닫기"
-              baseColor="orange"
-              handleClick={this.props.closeModal}
-            />
-          </ButtonContainer>
-        </ModalContainer>
-      </>
-    );
-  }
-}
+    return () => {
+      window.removeEventListener("keyup", closeModalByESC);
+    };
+  }, []);
+
+  return (
+    <>
+      <BackDrop onClick={closeModal} />
+      <ModalContainer modalPosition={modalPosition}>
+        {children}
+        <ButtonContainer>
+          <Button text="닫기" handleClick={closeModal} />
+        </ButtonContainer>
+      </ModalContainer>
+    </>
+  );
+};
 
 const BackDrop = styled.div`
   position: fixed;
@@ -49,9 +45,10 @@ const BackDrop = styled.div`
 
   background: rgba(0, 0, 0, 0.35);
 `;
-const ModalContainer = styled.div<{ location: string }>`
+const ModalContainer = styled.div<{ modalPosition: string }>`
   position: fixed;
-  bottom: ${({ location }) => (location === "bottom" ? "0" : "40%")};
+  bottom: ${({ modalPosition: location }) =>
+    location === "bottom" ? "0" : "40%"};
   right: 0;
   left: 0;
 

@@ -1,25 +1,20 @@
-import React from "react";
 import styled from "styled-components";
 import { Restaurant } from "../types/restaurant";
 import { RestaurantItem } from "./restaurantItem";
 
 interface PropsType {
-  restaurants: Restaurant[] | undefined;
+  restaurants: Restaurant[];
 }
 
-export class RestaurantSection extends React.Component<PropsType> {
-  render() {
-    return (
-      <>
-        <RestaurantContainer>
-          {this.props.restaurants?.map((restaurant: Restaurant) => (
-            <RestaurantItem key={restaurant.id} restaurant={restaurant} />
-          ))}
-        </RestaurantContainer>
-      </>
-    );
-  }
-}
+export const RestaurantSection = ({ restaurants }: PropsType) => {
+  return (
+    <RestaurantContainer>
+      {restaurants.map((restaurant: Restaurant) => (
+        <RestaurantItem key={restaurant.id} restaurant={restaurant} />
+      ))}
+    </RestaurantContainer>
+  );
+};
 
 const RestaurantContainer = styled.ul`
   display: flex;

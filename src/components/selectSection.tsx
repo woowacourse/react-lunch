@@ -1,31 +1,27 @@
-import React from "react";
 import styled from "styled-components";
 import { CATEGORIES, SELECT_OPTION, SORTS } from "../constant/select";
-import { SelectedValue } from "../types/select";
 import { Select } from "./select";
 
-interface PropsType {
-  handleSelect: (select: SelectedValue) => void;
+interface SelectSectionProps {
+  handleSelect: (name: string, value: string) => void;
 }
 
-export class SelectSection extends React.Component<PropsType> {
-  render() {
-    return (
-      <Container>
-        <Select
-          name={SELECT_OPTION.CATEGORY}
-          options={CATEGORIES}
-          handleSelect={this.props.handleSelect}
-        />
-        <Select
-          name={SELECT_OPTION.SORTING}
-          options={SORTS}
-          handleSelect={this.props.handleSelect}
-        />
-      </Container>
-    );
-  }
-}
+export const SelectSection = ({ handleSelect }: SelectSectionProps) => {
+  return (
+    <Container>
+      <Select
+        type={SELECT_OPTION.CATEGORY}
+        options={CATEGORIES}
+        handleSelect={handleSelect}
+      />
+      <Select
+        type={SELECT_OPTION.SORTING}
+        options={SORTS}
+        handleSelect={handleSelect}
+      />
+    </Container>
+  );
+};
 
 const Container = styled.section`
   display: flex;
