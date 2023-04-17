@@ -6,7 +6,7 @@ interface ItemModalProps {
   restaurant: Restaurant;
 }
 
-export const ItemModalContent = ({ restaurant }: ItemModalProps) => {
+export const ItemDetailModalContent = ({ restaurant }: ItemModalProps) => {
   const { category, takingTime, name, link, description } = restaurant;
 
   return (

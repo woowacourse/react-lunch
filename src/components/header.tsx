@@ -28,7 +28,7 @@ export const Header = () => {
       </Container>
       {isModalOpen && (
         <Modal
-          location="middle"
+          modalPosition="middle"
           closeModal={() => {
             setIsModalOpen(false);
           }}

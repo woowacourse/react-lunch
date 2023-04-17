@@ -2,13 +2,13 @@ import { ReactElement, useEffect } from "react";
 import styled from "styled-components";
 import { ModalButton } from "./modalButton";
 
-interface PropsType {
+interface ModalProps {
   closeModal: () => void;
-  location: string;
+  modalPosition: string;
   children: ReactElement;
 }
 
-export const Modal = ({ location, children, closeModal }: PropsType) => {
+export const Modal = ({ modalPosition, children, closeModal }: ModalProps) => {
   useEffect(() => {
     const closeModalByESC = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -26,7 +26,7 @@ export const Modal = ({ location, children, closeModal }: PropsType) => {
   return (
     <>
       <BackDrop onClick={closeModal} />
-      <ModalContainer location={location}>
+      <ModalContainer modalPosition={modalPosition}>
         {children}
         <ButtonContainer>
           <ModalButton text="닫기" handleClick={closeModal} />
@@ -45,9 +45,10 @@ const BackDrop = styled.div`
 
   background: rgba(0, 0, 0, 0.35);
 `;
-const ModalContainer = styled.div<{ location: string }>`
+const ModalContainer = styled.div<{ modalPosition: string }>`
   position: fixed;
-  bottom: ${({ location }) => (location === "bottom" ? "0" : "40%")};
+  bottom: ${({ modalPosition: location }) =>
+    location === "bottom" ? "0" : "40%"};
   right: 0;
   left: 0;
 

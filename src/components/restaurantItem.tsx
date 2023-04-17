@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Restaurant } from "../types/restaurant";
 import { convertImage } from "../utils/imageConverter";
 import { Modal } from "./modal";
-import { ItemModalContent } from "./ItemModalContent";
+import { ItemDetailModalContent } from "./ItemDetailModalContent";
 
 interface RestaurantItemProps {
   key: string;
@@ -28,8 +28,8 @@ export const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
         </ItemInfo>
       </ItemContainer>
       {isModalOpen && (
-        <Modal location="bottom" closeModal={() => setIsModalOpen(false)}>
-          <ItemModalContent restaurant={restaurant} />
+        <Modal modalPosition="bottom" closeModal={() => setIsModalOpen(false)}>
+          <ItemDetailModalContent restaurant={restaurant} />
         </Modal>
       )}
     </>

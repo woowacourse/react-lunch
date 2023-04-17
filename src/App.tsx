@@ -12,7 +12,7 @@ import { getRestaurantData } from "./api/getData";
 import {
   getFilteredRestaurantsByCategory,
   getSortedRestaurants,
-} from "./utils/arrayConvertor";
+} from "./utils/arrayConverter";
 
 const App = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
@@ -46,7 +46,7 @@ const App = () => {
       category
     );
 
-    return getSortedRestaurants(filteredRestaurants, sorting) || [];
+    return getSortedRestaurants(filteredRestaurants, sorting);
   };
 
   return (
