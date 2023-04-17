@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { fetchMockRestaurants } from "../../api/restaurants";
-import { BY_NAME } from "../../constants/restaurants";
+import React from "react";
 import {
   AlignFilter,
   CategoryFilter,
   Restaurant,
 } from "../../types/restaurants";
-import { alignBy, filterBy } from "../../domain/restaurants";
 import RestaurantItem from "../RestaurantItem";
 import St from "./styled";
 import RestaurantDetailPopUp from "../RestaurantDetailPopUp";
+import useRestaurant from "./useRestaurant";
+import useDetailPopUp from "./useDetailPopUp";
 
 interface RestaurantListProps {
   filterOptions: {
@@ -21,40 +20,10 @@ interface RestaurantListProps {
 export default function RestaurantList({
   filterOptions: { category, align },
 }: RestaurantListProps) {
-  const [restaurantListOrigin, setRestaurantListOrigin] = useState<
-    Restaurant[]
-  >([]);
-  const [restaurantList, setRestaurantList] = useState<Restaurant[]>([]);
-  const [isOpened, setIsOpened] = useState(false);
-  const [focusedRestaurant, setFocusedRestaurant] = useState<Restaurant | null>(
-    null
-  );
+  const { restaurantList } = useRestaurant(category, align);
 
-  useEffect(() => {
-    const setData = async () => {
-      const data = await fetchMockRestaurants({ align: BY_NAME });
-      setRestaurantList(data);
-      setRestaurantListOrigin(data);
-    };
-
-    setData();
-  }, []);
-
-  useEffect(() => {
-    const resFilter = [...filterBy(category, restaurantListOrigin)];
-    const resAlign = [...alignBy(align, resFilter)];
-    setRestaurantList(resAlign);
-  }, [category, align]);
-
-  const focusRestaurant = (focusedRestaurant: Restaurant) => {
-    setFocusedRestaurant(focusedRestaurant);
-    setIsOpened(true);
-  };
-
-  const closeModal = () => {
-    setFocusedRestaurant(null);
-    setIsOpened(false);
-  };
+  const { isOpened, focusedRestaurant, focusRestaurant, closeModal } =
+    useDetailPopUp();
 
   const isBottomSheetOpened = isOpened && focusedRestaurant;
   return (
