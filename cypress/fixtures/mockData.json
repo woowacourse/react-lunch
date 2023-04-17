@@ -2,7 +2,7 @@
   "restaurants": [
     {
       "id": 1,
-      "name": "순대국집123312",
+      "name": "순대국집",
       "category": "korean",
       "distance": 5,
       "description": "테스트용 설명입니다.",
