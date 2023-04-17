@@ -1,15 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-class Header extends React.Component {
-  render() {
-    return (
-      <HeaderWrapper>
-        <HeaderTitle id="header_title">점심 뭐먹지</HeaderTitle>
-      </HeaderWrapper>
-    );
-  }
-}
+const Header = () => {
+  return (
+    <HeaderWrapper>
+      <HeaderTitle id="header_title">점심 뭐먹지</HeaderTitle>
+    </HeaderWrapper>
+  );
+};
 
 const HeaderWrapper = styled.div`
   position: fixed;

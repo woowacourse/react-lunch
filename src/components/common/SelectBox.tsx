@@ -2,17 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { SelectBoxType } from '../../types';
 
-class SelectBox extends React.Component<SelectBoxType> {
-  render() {
-    return (
-      <SelectBoxWrapper name={this.props.selectType} onChange={this.props.onChange}>
-        {this.props.options.map((option: string, index: number) => (
-          <option key={index}>{option}</option>
-        ))}
-      </SelectBoxWrapper>
-    );
-  }
-}
+const SelectBox = (props: SelectBoxType) => {
+  return (
+    <SelectBoxWrapper name={props.selectType} onChange={props.onChange} value={props.value}>
+      {props.options.map((option: string, index: number) => (
+        <option key={index}>{option}</option>
+      ))}
+    </SelectBoxWrapper>
+  );
+};
 
 const SelectBoxWrapper = styled.select`
   height: 44px;

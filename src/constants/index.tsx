@@ -16,19 +16,4 @@ export const CATEGORY_IMG: Record<string, string> = {
   기타: categoryEtc,
 } as const;
 
-export const CATEGORY_NAME: Record<string, string> = {
-  all: '전체',
-  korean: '한식',
-  chinese: '중식',
-  japanese: '일식',
-  asian: '아시안',
-  western: '양식',
-  etc: '기타',
-} as const;
-
-export const ORDER_KEY: Record<string, string> = {
-  name: '이름순',
-  distance: '거리순',
-} as const;
-
 export const LOCAL_STORAGE_RESTAURANTS_KEY = 'restaurants';

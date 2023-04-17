@@ -4,24 +4,22 @@ import { CATEGORY_IMG } from '../constants';
 import { RestaurantItemType } from '../types';
 import Button from './common/Button';
 
-class RestaurantDetail extends React.Component<RestaurantItemType & { onClose: () => void }> {
-  render() {
-    return (
-      <RestaurantDetailWrapper>
-        <CategoryWrapper>
-          <CategoryIcon src={CATEGORY_IMG[this.props.category]} alt={this.props.category} />
-        </CategoryWrapper>
-        <RestaurantInfo>
-          <h3>{this.props.name}</h3>
-          <span>캠퍼스부터 {this.props.distance}분 이내</span>
-          <p>{this.props.description}</p>
-          <a href={this.props.link}>{this.props.link}</a>
-        </RestaurantInfo>
-        <Button text="닫기" onClick={this.props.onClose} />
-      </RestaurantDetailWrapper>
-    );
-  }
-}
+const RestaurantDetail = (props: RestaurantItemType & { onClose: () => void }) => {
+  return (
+    <RestaurantDetailWrapper>
+      <CategoryWrapper>
+        <CategoryIcon src={CATEGORY_IMG[props.category]} alt={props.category} />
+      </CategoryWrapper>
+      <RestaurantInfo>
+        <h3>{props.name}</h3>
+        <span>캠퍼스부터 {props.distance}분 이내</span>
+        <p>{props.description}</p>
+        <a href={props.link}>{props.link}</a>
+      </RestaurantInfo>
+      <Button text="닫기" onClick={props.onClose} />
+    </RestaurantDetailWrapper>
+  );
+};
 
 const RestaurantDetailWrapper = styled.div`
   display: flex;
