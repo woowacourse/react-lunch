@@ -8,16 +8,8 @@ import CATEGORIES from './constants/categories';
 import mockRestaurantsData from './data/mockData.json';
 import GlobalStyle from './styles/GlobalStyle';
 import ResetStyle from './styles/ResetStyle';
-import type Filter from './types/Filter';
 import type Restaurant from './types/Restaurant';
 import useFilteredRestaurants from './hooks/useFilteredRestaurants';
-
-type AppState = {
-  restaurants: Restaurant[];
-  sortFilter: Filter<Restaurant> | null;
-  categoryFilter: Filter<Restaurant> | null;
-  openedRestaurant: Restaurant | null;
-};
 
 const DROPDOWN_SORT_FILTERS = [
   {
@@ -41,28 +33,20 @@ const DROPDOWN_CATEGORY_FILTERS = [
 ];
 
 const App = () => {
-  const [appState, setAppState] = useState<AppState>({
-    restaurants: mockRestaurantsData as Restaurant[],
-    sortFilter: null,
-    categoryFilter: null,
-    openedRestaurant: null,
-  });
+  const [openedRestaurant, setOpenedRestaurant] = useState<Restaurant | null>(null);
 
-  const filteredRestaurants = useFilteredRestaurants(
-    appState.restaurants,
-    appState.sortFilter,
-    appState.categoryFilter,
+  const { filteredRestaurants, setSortFilter, setCategoryFilter } = useFilteredRestaurants(
+    mockRestaurantsData as Restaurant[],
   );
 
   const openBottomSheet = (restaurant: Restaurant) => {
-    setAppState({ ...appState, openedRestaurant: restaurant });
+    setOpenedRestaurant(restaurant);
   };
 
   const closeBottomSheet = () => {
-    setAppState({ ...appState, openedRestaurant: null });
+    setOpenedRestaurant(null);
   };
 
-  const { openedRestaurant } = appState;
   return (
     <>
       <ResetStyle />
@@ -73,12 +57,12 @@ const App = () => {
       <styled.RestaurantFilterContainer>
         <DropdownFilter
           options={DROPDOWN_CATEGORY_FILTERS}
-          onChange={({ value: filter }) => setAppState({ ...appState, categoryFilter: filter })}
+          onChange={({ value: filter }) => setSortFilter(filter)}
         />
 
         <DropdownFilter
           options={DROPDOWN_SORT_FILTERS}
-          onChange={({ value: filter }) => setAppState({ ...appState, sortFilter: filter })}
+          onChange={({ value: filter }) => setCategoryFilter(filter)}
         />
       </styled.RestaurantFilterContainer>
 
