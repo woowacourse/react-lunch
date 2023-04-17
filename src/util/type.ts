@@ -20,7 +20,7 @@ export type Sorting = 'name' | 'estimateTime';
 
 export type SelectOption<T> = {
   value: T;
-  textContent: string;
+  label: string;
 };
 
 export type FilterOption = {
