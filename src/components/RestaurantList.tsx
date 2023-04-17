@@ -6,14 +6,19 @@ import { CategoryKind, OrderKind, RestaurantItemType, SelectKind } from '../type
 import { LOCAL_STORAGE_RESTAURANTS_KEY } from '../constants';
 import SelectBox from './common/SelectBox';
 import { $ } from '../utils/domSelector';
+import { useLocalStorage } from '../utils/localStorageHooks';
 
 const data: RestaurantItemType[] = JSON.parse(JSON.stringify(mockData));
 
 const RestaurantList = () => {
-  const [restaurants, setRestaurants] = useState<RestaurantItemType[]>([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState<RestaurantItemType[]>([]);
   const [category, setCategory] = useState<string>(CategoryKind.all);
   const [order, setOrder] = useState<string>(OrderKind.name);
+
+  const [localRestaurants, setLocalRestaurants] = useLocalStorage<RestaurantItemType[]>(
+    LOCAL_STORAGE_RESTAURANTS_KEY,
+    []
+  );
 
   const handleClickEvent = () => {
     $<HTMLElement>('#header_title').addEventListener('click', () => {
@@ -28,45 +33,29 @@ const RestaurantList = () => {
     handleClickEvent();
   };
 
-  const getLocalStorage = async (): Promise<RestaurantItemType[]> => {
-    const restaurants = localStorage.getItem(LOCAL_STORAGE_RESTAURANTS_KEY);
-    return restaurants ? await JSON.parse(restaurants) : [];
-  };
-
-  const setLocalStorage = (data: RestaurantItemType[]) => {
-    localStorage.setItem(LOCAL_STORAGE_RESTAURANTS_KEY, JSON.stringify(data));
-  };
-
   const sortRestaurants = () => {
     filteredRestaurants.sort((a: RestaurantItemType, b: RestaurantItemType): number => {
       if (order === OrderKind.name) return a.name > b.name ? 1 : -1;
       return a.distance > b.distance ? 1 : -1;
     });
-    setFilteredRestaurants(restaurants);
+    setFilteredRestaurants(localRestaurants);
   };
 
   const filterRestaurants = () => {
     if (category === CategoryKind.all) {
-      setFilteredRestaurants(restaurants);
+      setFilteredRestaurants(localRestaurants);
       return;
     }
 
-    const filteredRestaurants = restaurants.filter((restaurant) => restaurant.category === category);
-    setFilteredRestaurants(filteredRestaurants);
+    const filteredRestaurantsData = localRestaurants.filter((restaurant) => restaurant.category === category);
+    setFilteredRestaurants(filteredRestaurantsData);
   };
 
   useEffect(() => {
-    const getLocalData = async () => {
-      const restaurantsData = await getLocalStorage();
-      setRestaurants(restaurantsData);
-      setFilteredRestaurants(restaurantsData);
-    };
-
-    setLocalStorage(data);
-    getLocalData();
-
+    setLocalRestaurants(data);
+    setFilteredRestaurants(localRestaurants);
     handleClickEvent();
-  }, []);
+  }, [localRestaurants]);
 
   useEffect(() => {
     filterRestaurants();
