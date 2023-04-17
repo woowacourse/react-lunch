@@ -13,7 +13,6 @@ const restaurantList = filterAndSortRestaurantList(getRestaurantListData());
 const Main = () => {
   const [currentRestaurantList, setCurrentRestaurantList] = useState(restaurantList);
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     window.addEventListener('beforeunload', () => {
@@ -27,22 +26,18 @@ const Main = () => {
 
   const updateSelectedRestaurant = (restaurant: Restaurant) => {
     setSelectedRestaurant(restaurant);
-    toggleIsModalOpen();
-  };
-
-  const toggleIsModalOpen = () => {
-    setIsModalOpen(!isModalOpen);
   };
 
   return (
     <main>
       <FilterSection onChange={updateCurrentRestaurantList} />
       <RestaurantList restaurantList={currentRestaurantList} onItemClick={updateSelectedRestaurant} />
-      <Modal
-        content={selectedRestaurant && <RestaurantDetail restaurant={selectedRestaurant} />}
-        isModalOpen={isModalOpen}
-        onToggle={toggleIsModalOpen}
-      />
+      {selectedRestaurant && (
+        <Modal
+          content={<RestaurantDetail restaurant={selectedRestaurant} />}
+          setSelectedRestaurant={setSelectedRestaurant}
+        />
+      )}
     </main>
   );
 };
