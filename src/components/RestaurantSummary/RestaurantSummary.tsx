@@ -1,6 +1,6 @@
 import React, { KeyboardEvent } from 'react';
-import { RestaurantInfo } from '../types/restaurantInfo';
-import CategoryImage from './CategoryImage/CategoryImage';
+import { RestaurantInfo } from '../../types/restaurantInfo';
+import CategoryImage from '../CategoryImage/CategoryImage';
 import styles from './RestaurantSummary.module.css';
 
 interface RestaurantSummaryProps {

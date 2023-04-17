@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import './styles/App.css';
 import { RestaurantInfo, isFoodCategory, isSortMethod } from './types/restaurantInfo';
 import { getSavedRestaurantList, hasSavedRestaurantList, saveRestaurantList } from './domain/initializeRestaurantList';
-import RestaurantList from './components/RestaurantList';
-import Modal from './components/Modal';
-import RestaurantDetail from './components/RestaurantDetail';
+import RestaurantList from './components/RestaurantList/RestaurantList';
+import Modal from './components/Modal/Modal';
+import RestaurantDetail from './components/RestaurantDetail/RestaurantDetail';
 import { filterFoodCategory, sortRestaurants } from './domain/RestaurantSelector';
 
 function App() {

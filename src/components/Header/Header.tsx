@@ -1,6 +1,6 @@
 import React, { ChangeEvent, KeyboardEvent } from 'react';
 import styles from './Header.module.css';
-import Select from './Select';
+import Select from '../Select/Select';
 
 interface HeaderProps { 
   onChange: (event: ChangeEvent<HTMLSelectElement>, kind: 'filter' | 'sort') => void 

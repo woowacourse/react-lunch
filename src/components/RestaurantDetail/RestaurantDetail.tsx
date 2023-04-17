@@ -1,8 +1,8 @@
 import React from 'react';
-import { RestaurantInfo } from '../types/restaurantInfo';
-import CategoryImage from './CategoryImage/CategoryImage';
+import { RestaurantInfo } from '../../types/restaurantInfo';
+import CategoryImage from '../CategoryImage/CategoryImage';
 import styles from './RestaurantDetail.module.css';
-import Button from './Button';
+import Button from '../Button/Button';
 
 interface RestaurantDetailProps {
   restaurantInfo: RestaurantInfo;

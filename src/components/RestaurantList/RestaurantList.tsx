@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './RestaurantList.module.css';
-import { RestaurantInfo } from '../types/restaurantInfo';
-import RestaurantSummary from './RestaurantSummary';
+import { RestaurantInfo } from '../../types/restaurantInfo';
+import RestaurantSummary from '../RestaurantSummary/RestaurantSummary';
 
 interface RestaurantListProps {
   restaurantList: RestaurantInfo[];
