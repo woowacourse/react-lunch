@@ -4,19 +4,20 @@ import Header from './components/Header';
 import Modal from './components/Modal';
 import RestaurantList from './components/RestaurantList';
 import SelectorSection from './components/SelectorSection';
+import useSelector from './components/SelectorSection/hooks/useSelector';
 import mockData from './data/mockData.json';
 import Store from './store';
 import type { Category, Restaurant } from './components/RestaurantItem/type';
+import type { Selector } from './components/SelectorSection/hooks/useSelector';
 import type { Dispatch, SetStateAction } from 'react';
 
 export type Sort = '이름순' | '거리순';
 export interface State {
   modalInfo: Restaurant;
-  category: Category;
-  sortOption: Sort;
+  selector: Selector;
   isModalOpen: boolean;
-  setCategory: Dispatch<SetStateAction<Category>>;
-  setSortOption: Dispatch<SetStateAction<Sort>>;
+  setCategory: (category: Category) => void;
+  setSortOption: (sortOption: Sort) => void;
   setModalInfo: Dispatch<SetStateAction<Restaurant>>;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
@@ -24,8 +25,7 @@ export interface State {
 const mock = mockData.restaurantList as Restaurant[];
 
 function App() {
-  const [category, setCategory] = useState<Category>('전체');
-  const [sortOption, setSortOption] = useState<Sort>('이름순');
+  const { selector, setCategory, setSortOption } = useSelector();
   const [modalInfo, setModalInfo] = useState(mock[0]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -33,14 +33,13 @@ function App() {
     () => ({
       modalInfo,
       isModalOpen,
-      category,
-      sortOption,
+      selector,
       setCategory,
       setSortOption,
       setModalInfo,
       setIsModalOpen,
     }),
-    [category, sortOption, modalInfo, isModalOpen, setCategory, setSortOption, setModalInfo, setIsModalOpen]
+    [selector, modalInfo, isModalOpen, setCategory, setSortOption, setModalInfo, setIsModalOpen]
   );
 
   return (

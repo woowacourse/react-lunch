@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import mockData from '../../../data/mockData.json';
 import getSortingFilteredList from '../../../utils/getSortingFilteredList';
-import type { Sort } from '../../../App';
-import type { Category, Restaurant } from '../../RestaurantItem/type';
+import type { Restaurant } from '../../RestaurantItem/type';
+import type { Selector } from '../../SelectorSection/hooks/useSelector';
 
 const mock = mockData.restaurantList as Restaurant[];
 
-function useRestaurantList(category: Category, sortOption: Sort) {
+function useRestaurantList({ category, sortOption }: Selector) {
   const [restaurantList, setRestaurantList] = useState<Restaurant[]>(mock);
 
   useEffect(() => {

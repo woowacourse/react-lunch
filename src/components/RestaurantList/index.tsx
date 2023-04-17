@@ -5,8 +5,8 @@ import styles from './RestaurantList.module.css';
 import useRestaurantList from './hooks/useRestaurantList';
 
 function RestaurantList() {
-  const { category, sortOption } = useWrappingContext(Store);
-  const restaurantList = useRestaurantList(category, sortOption);
+  const { selector } = useWrappingContext(Store);
+  const restaurantList = useRestaurantList(selector);
 
   return (
     <ul className={styles.restaurantList}>
