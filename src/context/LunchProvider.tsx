@@ -16,4 +16,4 @@ function LunchProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default React.memo(LunchProvider);
+export default LunchProvider;
