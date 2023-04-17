@@ -1,10 +1,10 @@
 import { Restaurant } from './types/restaurant';
 
-import React, { useEffect, useState } from 'react';
-import { Header, RestaurantList, RestaurantDetail } from './components';
+import React, { useState } from 'react';
+import { Header, RestaurantList, RestaurantDetail, Filter } from './components';
 
-import mockData from './mockData.json';
 import { useRestaurantFilter } from './hooks/useFilter';
+import { useLocalStorage } from './hooks/useLocalStorage';
 
 interface State {
   isModalOpen: boolean;
@@ -12,31 +12,23 @@ interface State {
 }
 
 const App = () => {
-  const [state, setState] = useState<State>({
+  const localRestaurantsData = useLocalStorage('restaurants');
+  const [modalState, setModalState] = useState<State>({
     isModalOpen: false,
   });
-
-  const [restaurants, { setCategory, setSortingType }] = useRestaurantFilter(
-    JSON.parse(localStorage.getItem('restaurants') || '[]')
-  );
-
-  useEffect(() => {
-    if (!localStorage.getItem('restaurants')) {
-      localStorage.setItem('restaurants', JSON.stringify(mockData.restaurants));
-    }
-  }, []);
+  const [restaurants, { setCategory, setSortingType }] = useRestaurantFilter(localRestaurantsData);
 
   const openModal = (id: Restaurant['id']) => {
-    setState({
-      ...state,
+    setModalState({
+      ...modalState,
       detailId: id,
       isModalOpen: true,
     });
   };
 
   const closeModal = () => {
-    setState({
-      ...state,
+    setModalState({
+      ...modalState,
       isModalOpen: false,
     });
   };
@@ -46,21 +38,15 @@ const App = () => {
       <Header />
 
       <main>
-        <RestaurantList
-          restaurants={restaurants}
-          openModal={openModal}
-          setCategory={setCategory}
-          setSortingType={setSortingType}
-        />
+        <Filter setCategory={setCategory} setSortingType={setSortingType} />
+        <RestaurantList restaurants={restaurants} openModal={openModal} />
       </main>
 
-      {state.isModalOpen && (
+      {modalState.isModalOpen && (
         <RestaurantDetail
           closeModal={closeModal}
           restaurant={
-            mockData.restaurants.find(
-              (restaurant) => restaurant.id === state.detailId
-            ) as Restaurant
+            restaurants.find((restaurant) => restaurant.id === modalState.detailId) as Restaurant
           }
         />
       )}

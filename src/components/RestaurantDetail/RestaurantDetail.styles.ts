@@ -22,6 +22,10 @@ export const ModalContainer = styled.div`
 
   border-radius: 8px 8px 0px 0px;
   background: var(--grey-100);
+
+  &:focus {
+    outline: 0;
+  }
 `;
 
 export const Detail = styled.div`
