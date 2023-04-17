@@ -13,7 +13,7 @@ const SelectBox = (props: SelectBoxProps) => {
   const { state, setState } = useContext(RestaurantContext);
 
   const updateRestaurants = (value: string) => {
-    if (name === "sortBy") {
+    if (name === "sortBy")
       setState({
         ...state,
         sortBy: value,
@@ -21,13 +21,12 @@ const SelectBox = (props: SelectBoxProps) => {
           .slice()
           .sort((a, b) => (a[value] > b[value] ? 1 : -1)),
       });
-    }
-    if (name === "categorizeBy") {
+
+    if (name === "categorizeBy")
       setState({
         ...state,
         categorizeBy: value,
       });
-    }
   };
 
   return (

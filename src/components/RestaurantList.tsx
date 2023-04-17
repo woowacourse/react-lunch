@@ -7,17 +7,15 @@ const RestaurantList = () => {
   const { restaurants, categorizeBy } = state;
 
   return (
-    <>
-      <ul>
-        {restaurants
-          .filter((restaurant) =>
-            categorizeBy === "all" ? true : restaurant.category === categorizeBy
-          )
-          .map((restaurant) => (
-            <RestaurantItem key={restaurant.name} restaurant={restaurant} />
-          ))}
-      </ul>
-    </>
+    <ul>
+      {restaurants
+        .filter((restaurant) =>
+          categorizeBy === "all" ? true : restaurant.category === categorizeBy
+        )
+        .map((restaurant) => (
+          <RestaurantItem key={restaurant.name} restaurant={restaurant} />
+        ))}
+    </ul>
   );
 };
 

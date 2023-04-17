@@ -1,7 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import RestaurantList from "../components/RestaurantList";
-import mockData from "../data/mockData.json";
 import App from "../App";
 test("전체 음식점 리스트를 렌더링 했는지 검사한다", () => {
   const restaurants = [
@@ -87,18 +86,18 @@ test("이름순으로 정렬할 수 있다.", () => {
   });
 });
 
-test("중식 카테고리로 필터링 할 수 있다.", () => {
+test("한식 카테고리로 필터링 할 수 있다.", () => {
   const answers = [
-    "마담밍",
-    "명정루",
-    "용용선생",
-    "우육면가",
-    "찐친",
-    "춘리 마라탕",
+    "영동칼국수",
+    "덮밥이맛있는집",
+    "시골밥상머리",
+    "김돈이",
+    "정식당",
+    "마초갈비",
   ];
   render(<App />);
   const selectElement = screen.getAllByRole("combobox");
-  fireEvent.change(selectElement[0], { target: { value: "chinese" } });
+  fireEvent.change(selectElement[0], { target: { value: "korean" } });
   const restaurantItems = screen.getAllByRole("listitem");
   restaurantItems.forEach((item, index) => {
     expect(item).toHaveTextContent(answers[index]);
