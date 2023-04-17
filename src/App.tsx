@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Header, Modal } from './components/common';
 import { FilterContainer, RestaurantDetailView, RestaurantList } from './components';
+import useModal from './hooks/useModal';
 
 import {
   getFilteredRestaurantsByCategory,
@@ -25,7 +26,7 @@ export default function App() {
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant>(
     mockData[0] as Restaurant
   );
-  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const { isOpenModal, modalOpen, modalClose } = useModal();
 
   const filteredRestaurants = getFilteredRestaurantsByCategory(restaurants, categoryFilterOption);
   const sortedRestaurants = getSortedRestaurants(filteredRestaurants, sortOption);
@@ -42,11 +43,7 @@ export default function App() {
     const targetRestaurant = getRestaurantById(restaurants, targetRestaurantId);
 
     setSelectedRestaurant(targetRestaurant);
-    setIsOpenModal(true);
-  };
-
-  const onClickModalCloseButton = () => {
-    setIsOpenModal(false);
+    modalOpen();
   };
 
   return (
@@ -58,7 +55,7 @@ export default function App() {
       />
       <RestaurantList restaurants={sortedRestaurants} onClick={onClickRestaurantItem} />
       {isOpenModal && (
-        <Modal onClick={onClickModalCloseButton}>
+        <Modal onClick={modalClose}>
           <RestaurantDetailView restaurant={selectedRestaurant} />
         </Modal>
       )}

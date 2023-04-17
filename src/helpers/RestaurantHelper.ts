@@ -10,6 +10,7 @@ export type RestaurantCategoryFilterOption = RestaurantCategory | '전체';
 
 export const getFilteredRestaurantsByCategory = (
   restaurants: Restaurant[],
+
   categoryFilterOption: RestaurantCategoryFilterOption
 ) => {
   if (categoryFilterOption === '전체') return restaurants;
