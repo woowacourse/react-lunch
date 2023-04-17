@@ -19,9 +19,7 @@ function Main() {
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
 
   useEffect(() => {
-    window.addEventListener('beforeunload', () => {
-      setDataBeforeUnload(restaurantList);
-    });
+    setDataBeforeUnload(restaurantList);
   }, [restaurantList, setDataBeforeUnload]);
 
   const updateSelectedRestaurant = useCallback(

@@ -9,7 +9,9 @@ const useLocalStorage = <T>(initialData: T[], key: string = LOCAL_STORAGE_KEY) =
   };
 
   const setDataBeforeUnload = (data: T[]) => {
-    setData(data);
+    window.addEventListener('beforeunload', () => {
+      setData(data);
+    });
   };
 
   return { data, setData, setDataBeforeUnload };
