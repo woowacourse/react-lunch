@@ -6,7 +6,7 @@ type SelectContainerProps = {
   onChangeFilterOptions: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const SelectContainer = memo(({ onChangeFilterOptions }: SelectContainerProps) => {
+const SelectContainer = (({ onChangeFilterOptions }: SelectContainerProps) => {
   
   return (
     <section className="restaurant-filter-container">
@@ -25,4 +25,4 @@ const SelectContainer = memo(({ onChangeFilterOptions }: SelectContainerProps) =
 });
 
 
-export default SelectContainer;
+export default memo(SelectContainer);

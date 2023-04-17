@@ -8,7 +8,7 @@ type SelectProps = {
   onChangeFilterOptions: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const Select = memo(({ name, options, onChangeFilterOptions }: SelectProps) => {
+const Select = (({ name, options, onChangeFilterOptions }: SelectProps) => {
 
   return (
     <select
@@ -26,4 +26,4 @@ const Select = memo(({ name, options, onChangeFilterOptions }: SelectProps) => {
   );
 });
 
-export default Select;
+export default memo(Select);
