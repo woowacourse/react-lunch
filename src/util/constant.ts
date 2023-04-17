@@ -10,7 +10,7 @@ import westernImg from '../asset/category-western.png';
 export const CATEGORY_OPTIONS: SelectOption<Category>[] = [
   {
     value: '전체',
-    label: '전체'
+    label: '전체',
   },
   {
     value: '한식',

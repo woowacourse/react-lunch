@@ -11,8 +11,12 @@ const Select = ({ name, options, onChangeFilterOptions }: SelectProps) => {
       onChange={onChangeFilterOptions}
     >
       {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.textContent}
+        <option
+          key={option.value}
+          value={option.value}
+          aria-label={option.label}
+        >
+          {option.label}
         </option>
       ))}
     </select>

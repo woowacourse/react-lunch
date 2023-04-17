@@ -39,6 +39,7 @@ const RestaurantDetailDrawer = ({
         type="button"
         className="button button--secondary text-caption"
         onClick={onToggleDrawer}
+        aria-label="닫기"
       >
         취소하기
       </button>
