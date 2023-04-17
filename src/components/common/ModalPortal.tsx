@@ -9,20 +9,14 @@ interface Props {
   onClose: () => void;
 }
 
-class ModalPortal extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
-  render() {
-    return createPortal(
-      <>
-        <div className={styles.backdrop} onClick={this.props.onClose}></div>
-        {this.props.children}
-      </>,
-      document.getElementById("modal-root") as HTMLDivElement
-    );
-  }
-}
+const ModalPortal = (props: Props) => {
+  return createPortal(
+    <>
+      <div className={styles.backdrop} onClick={props.onClose}></div>
+      {props.children}
+    </>,
+    document.getElementById("modal-root") as HTMLDivElement
+  );
+};
 
 export default ModalPortal;

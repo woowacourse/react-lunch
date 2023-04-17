@@ -8,22 +8,16 @@ interface Props {
   onChange: ChangeEventHandler;
 }
 
-class SelectBox extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <select name={this.props.name} className={styles.container} onChange={this.props.onChange}>
-        {this.props.options.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
-    );
-  }
-}
+const SelectBox = (props: Props) => {
+  return (
+    <select name={props.name} className={styles.container} onChange={props.onChange}>
+      {props.options.map((option) => (
+        <option key={option} value={option}>
+          {option}
+        </option>
+      ))}
+    </select>
+  );
+};
 
 export default SelectBox;

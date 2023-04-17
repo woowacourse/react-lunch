@@ -1,6 +1,8 @@
+import { Category } from "../constants/options";
+
 export interface Restaurant {
   id: number;
-  category: string;
+  category: Category;
   name: string;
   distance: number;
   description: string;
