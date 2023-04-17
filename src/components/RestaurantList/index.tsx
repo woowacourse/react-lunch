@@ -13,25 +13,21 @@ const RestaurantList = (props: RestaurantListProps) => {
 
   const getListByCategory = useCallback(
     (restaurants: Restaurant[]) => {
-      if (selectedCategory === "all") {
-        return restaurants;
-      }
-
-      return restaurants.filter((restaurant) => restaurant.category === selectedCategory);
+      return selectedCategory === "all"
+        ? restaurants
+        : restaurants.filter((restaurant) => restaurant.category === selectedCategory);
     },
     [selectedCategory]
   );
 
   const getSortedList = useCallback(
     (restaurants: Restaurant[]) => {
-      if (selectedSort === "name") {
-        return sortByName(restaurants);
+      switch (selectedSort) {
+        case "name":
+          return sortByName(restaurants);
+        case "distance":
+          return sortByDistance(restaurants);
       }
-      if (selectedSort === "distance") {
-        return sortByDistance(restaurants);
-      }
-
-      return restaurants;
     },
     [selectedSort]
   );
