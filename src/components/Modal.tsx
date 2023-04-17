@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import RestaurantManager from '../domain/RestaurantManager';
-import { RestaurantDetail } from '../types/RestaurantDetail';
 import { IMAGE_PATH } from '../constants/images';
 
 interface ModalProps {
@@ -25,8 +24,9 @@ const Modal = (props: ModalProps) => {
     props.restaurantId
   );
 
-  const { category, name, description, distance, link } =
-    restaurantItem as RestaurantDetail;
+  if (!restaurantItem) return <></>;
+
+  const { category, name, description, distance, link } = restaurantItem;
 
   return (
     <>
