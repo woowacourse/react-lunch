@@ -6,7 +6,6 @@ import { getSavedRestaurantList, hasSavedRestaurantList, saveRestaurantList } fr
 import RestaurantList from './components/RestaurantList/RestaurantList';
 import Modal from './components/Modal/Modal';
 import RestaurantDetail from './components/RestaurantDetail/RestaurantDetail';
-import { filterFoodCategory, sortRestaurants } from './domain/RestaurantSelector';
 
 function App() {
   if (!hasSavedRestaurantList()) saveRestaurantList();
@@ -16,18 +15,6 @@ function App() {
   const [clickedRestaurant, setClickedRestaurant] = useState(null as (RestaurantInfo | null));
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [selectedSortingMethod, setSelectedSortingMethod] = useState('이름순');
-
-  const filteredList = (
-    isFoodCategory(selectedCategory)
-    ? filterFoodCategory(originalRestaurantList, selectedCategory)
-    : [...originalRestaurantList]
-  );
-
-  const sortedList = (
-    isSortMethod(selectedSortingMethod)
-    ? sortRestaurants(filteredList, selectedSortingMethod)
-    : filteredList
-  );
 
   const selectChangeCallback = (event: React.ChangeEvent<HTMLSelectElement>, kind: 'sort' | 'filter') => {
     const { value } = event.currentTarget;
@@ -62,7 +49,12 @@ function App() {
   return (
     <div className="app">
       <Header onChange={selectChangeCallback} />
-      <RestaurantList onClick={(info: RestaurantInfo) => setClickedRestaurant(info)} restaurantList={sortedList} />
+      <RestaurantList 
+        onClick={(info: RestaurantInfo) => setClickedRestaurant(info)}
+        restaurantList={originalRestaurantList}
+        category={isFoodCategory(selectedCategory) ? selectedCategory : '전체'}
+        sortingMethod={isSortMethod(selectedSortingMethod) ? selectedSortingMethod : '이름순'}
+      />
       {clickedRestaurant && (
         <Modal onClose={() => setClickedRestaurant(null)}>
           <RestaurantDetail
