@@ -15,8 +15,8 @@ type FilterProps = {
 const Filter = ({ name, id, options, onChange }: FilterProps) => {
   return (
     <select name={name} id={id} className="filter" onChange={onChange}>
-      {options.map((option, idx) => (
-        <option key={idx} value={option.value}>
+      {options.map((option) => (
+        <option key={crypto.randomUUID()} value={option.value}>
           {option.text}
         </option>
       ))}
