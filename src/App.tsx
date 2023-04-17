@@ -6,7 +6,7 @@ import RestaurantDetail from './components/RestaurantDetail';
 import { deleteTargetRestaurant, filterFoodCategory, sortRestaurants } from './domain/restaurantSelector';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { useSafeUnionTypeState } from './hooks/useSafeUnionTypeState';
-import { useModalState } from './hooks/useModalState';
+import { useHideScrollState } from './hooks/useHideScrollState';
 import './styles/App.css';
 import { FOOD_CATEGORY, RESTUARNT_LIST_LOCAL_STORAGE_KEY, SORT_METHOD } from './constants';
 import MOCK_DATA from './data/MockData.json';
@@ -18,7 +18,10 @@ export default function App() {
     MOCK_DATA.restaurantList as RestaurantInfo[],
   );
   const [restaurantList, setRestaurantList] = useState<RestaurantInfo[]>([]);
-  const [clickedRestaurant, setClickedRestaurant] = useModalState<RestaurantInfo | null>(null);
+  const [clickedRestaurant, setClickedRestaurant] = useHideScrollState<RestaurantInfo | null>(
+    null,
+    (state) => state !== null,
+  );
   const [selectedCategory, setSelectedCategory] = useSafeUnionTypeState<FoodCategory>('전체', FOOD_CATEGORY);
   const [selectedSortingMethod, setSelectedSortingMethod] = useSafeUnionTypeState<SortMethod>('이름순', SORT_METHOD);
 
