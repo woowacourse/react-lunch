@@ -1,10 +1,19 @@
 import './style.css';
 import { RESTAURANT_IMAGE } from '../../constants/images';
 import { Restaurant } from '../../types';
+import { useRestaurantItem } from '../../hooks/restaurantItem';
 
-const RestaurantItem = ({ restaurant, onClick }: { restaurant: Restaurant; onClick: CallableFunction }) => {
+const RestaurantItem = ({
+  restaurant,
+  setSelectedRestaurant,
+}: {
+  restaurant: Restaurant;
+  setSelectedRestaurant: CallableFunction;
+}) => {
+  const selectRestaurant = useRestaurantItem(setSelectedRestaurant);
+
   return (
-    <li className="restaurant" data-id={restaurant.id} onClick={() => onClick(restaurant)}>
+    <li className="restaurant" data-id={restaurant.id} onClick={() => selectRestaurant(restaurant)}>
       <div className="restaurant__category">
         <img src={RESTAURANT_IMAGE[restaurant.category]} alt={restaurant.category} className="category-icon" />
       </div>

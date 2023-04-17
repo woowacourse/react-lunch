@@ -1,10 +1,10 @@
-import { ChangeEvent } from 'react';
+import { useSelect } from '../../hooks/select';
 import { Options } from '../../types';
 
 const Select = ({
-  onChange,
-  options,
   attributes,
+  options,
+  onChange,
 }: {
   attributes: {
     id: string;
@@ -14,21 +14,7 @@ const Select = ({
   options: Options;
   onChange: CallableFunction;
 }) => {
-  const handleChangeOption = (event: ChangeEvent<HTMLSelectElement>) => {
-    const target = event.target as HTMLSelectElement;
-
-    onChange({
-      [attributes.name]: target.value,
-    });
-  };
-
-  const createOptionElements = () => {
-    return options.map(option => (
-      <option key={option} value={option}>
-        {option}
-      </option>
-    ));
-  };
+  const { handleChangeOption, createOptionElements } = useSelect(attributes, options, onChange);
 
   return (
     <label htmlFor={attributes.id}>

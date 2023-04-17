@@ -1,3 +1,4 @@
+import { filterAndSortRestaurantList } from '../utils/restaurantUtil';
 import { Restaurant } from '../types';
 import { getLocalStorage } from '../utils/localStorage';
 import { validateCategory } from '../validations';
@@ -11,3 +12,5 @@ export const getRestaurantListData = () => {
     category: validateCategory(restaurant.category),
   }));
 };
+
+export const restaurantList = filterAndSortRestaurantList(getRestaurantListData());

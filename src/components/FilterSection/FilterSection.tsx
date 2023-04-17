@@ -1,24 +1,10 @@
 import './style.css';
-import { useState } from 'react';
-import { FilterOption } from '../../types';
-import { DEFAULT_OPTIONS, RESTAURANT_CATEGORY_OPTION, SELECT_ATTRIBUTES, SORT_BY } from '../../constants';
+import { RESTAURANT_CATEGORY_OPTION, SELECT_ATTRIBUTES, SORT_BY } from '../../constants';
+import { useFilterSection } from '../../hooks/filterSection';
 import Select from '../Select/Select';
 
-const FilterSection = ({ onChange }: { onChange: CallableFunction }) => {
-  const [currentOption, setCurrentOption] = useState<FilterOption>({
-    category: DEFAULT_OPTIONS.CATEGORY,
-    sortBy: DEFAULT_OPTIONS.SORT_BY,
-  });
-
-  const handleSelectChange = (selectedOption: FilterOption) => {
-    const updatedOption = {
-      ...currentOption,
-      ...selectedOption,
-    };
-
-    setCurrentOption(updatedOption);
-    onChange(updatedOption);
-  };
+const FilterSection = ({ setCurrentRestaurantList }: { setCurrentRestaurantList: CallableFunction }) => {
+  const handleSelectChange = useFilterSection(setCurrentRestaurantList);
 
   return (
     <section className="restaurant-filter-container">

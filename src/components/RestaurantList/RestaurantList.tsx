@@ -1,19 +1,15 @@
 import './style.css';
-import RestaurantItem from '../RestaurantItem/RestaurantItem';
 import { Restaurant } from '../../types';
+import { useRestaurantList } from '../../hooks/restaurantList';
 
 const RestaurantList = ({
-  onItemClick,
   restaurantList,
+  setSelectedRestaurant,
 }: {
   restaurantList: Restaurant[];
-  onItemClick: CallableFunction;
+  setSelectedRestaurant: CallableFunction;
 }) => {
-  const createRestaurantItemListElement = () => {
-    return restaurantList.map(restaurant => {
-      return <RestaurantItem key={restaurant.id} restaurant={restaurant} onClick={onItemClick} />;
-    });
-  };
+  const createRestaurantItemListElement = useRestaurantList(restaurantList, setSelectedRestaurant);
 
   return (
     <section className="restaurant-list-container">
