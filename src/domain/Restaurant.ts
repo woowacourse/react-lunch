@@ -1,6 +1,6 @@
 import { FilterState } from '../App';
 import { CategoryOption, Restaurant, SortOption } from '../type';
-import { getRestaurantList } from '../utils/storage';
+import { getRestaurantList } from './storage';
 
 const filterAndSortArray = (
   restaurantList: Restaurant[],
