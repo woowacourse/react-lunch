@@ -20,18 +20,18 @@ const getRestaurantList = (): RestaurantDetail[] => {
 };
 
 const sortByName = (restaurantList: RestaurantDetail[]) => {
-  return restaurantList.sort((a, b) => a.name.localeCompare(b.name));
+  return [...restaurantList].sort((a, b) => a.name.localeCompare(b.name));
 };
 
 const sortByDistance = (restaurantList: RestaurantDetail[]) => {
-  return restaurantList.sort((a, b) => a.distance - b.distance);
+  return [...restaurantList].sort((a, b) => a.distance - b.distance);
 };
 
 const filterByCategory =
   (_category: Category) => (restaurantList: RestaurantDetail[]) => {
     if (_category === RESTAURANT_CATEGORY.all) return restaurantList;
 
-    return restaurantList.filter(
+    return [...restaurantList].filter(
       (restaurant) => restaurant.category === _category
     );
   };
