@@ -19,8 +19,10 @@ const FilterBar = (props: FilterBarProps) => {
         id="category-filter"
         className="restaurant-filter"
       >
-        {Object.values(RESTAURANT_CATEGORY).map((category) => (
-          <option value={category}>{category}</option>
+        {Object.values(RESTAURANT_CATEGORY).map((category, idx) => (
+          <option key={idx} value={category}>
+            {category}
+          </option>
         ))}
       </select>
       <select
@@ -29,8 +31,10 @@ const FilterBar = (props: FilterBarProps) => {
         id="sorting-filter"
         className="restaurant-filter"
       >
-        {Object.values(SORTING_OPTION).map((sort) => (
-          <option value={sort}>{sort}</option>
+        {Object.values(SORTING_OPTION).map((sort, idx) => (
+          <option key={idx} value={sort}>
+            {sort}
+          </option>
         ))}
       </select>
     </section>
