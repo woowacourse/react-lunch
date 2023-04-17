@@ -1,14 +1,11 @@
-import React from "react";
 import styled from "styled-components";
 
-export class WarningModalContent extends React.Component {
-  render() {
-    return (
-      <div>
-        <Text>죄송합니다. 아직 지원하지 않는 기능입니다.</Text>
-      </div>
-    );
-  }
+export default function WarningModalContent() {
+  return (
+    <div>
+      <Text>죄송합니다. 아직 지원하지 않는 기능입니다.</Text>
+    </div>
+  );
 }
 
 const Text = styled.div`

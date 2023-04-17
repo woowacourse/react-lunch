@@ -1,23 +1,22 @@
-import React from "react";
 import styled from "styled-components";
 
-interface PropsType {
+interface ModalButtonPropsType {
   text: string;
-  baseColor: string;
-  handleClick?: () => void;
+  buttonColor?: string;
+  closeModal: () => void;
 }
 
-export class ModalButton extends React.Component<PropsType> {
-  render() {
-    return (
-      <Button baseColor={this.props.baseColor} onClick={this.props.handleClick}>
-        {this.props.text}
-      </Button>
-    );
-  }
+export default function ModalButton(props: ModalButtonPropsType) {
+  const { text, buttonColor, closeModal } = props;
+
+  return (
+    <Button buttonColor={buttonColor} onClick={closeModal}>
+      {text}
+    </Button>
+  );
 }
 
-const Button = styled.button<{ baseColor: string }>`
+const Button = styled.button<{ buttonColor: string | undefined }>`
   width: 100%;
   height: 44px;
 
@@ -27,5 +26,6 @@ const Button = styled.button<{ baseColor: string }>`
   cursor: pointer;
 
   ${({ theme }) => theme.fonts.caption};
-  ${({ theme, baseColor }) => theme.buttons[baseColor]}
+  ${({ theme, buttonColor }) =>
+    buttonColor ? theme.buttons.white : theme.buttons.orange}
 `;

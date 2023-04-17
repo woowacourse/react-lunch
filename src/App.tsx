@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
-import { Header } from "./components/header";
-import { RestaurantSection } from "./components/restaurantSection";
-import { SelectSection } from "./components/selectSection";
+import Header from "./components/header";
+import RestaurantSection from "./components/restaurantSection";
+import SelectSection from "./components/selectSection";
 import { SELECT_OPTION } from "./constant/select";
 import { GlobalStyle } from "./style/Globalstyle";
 import { theme } from "./style/theme";
@@ -13,41 +13,28 @@ interface StateType {
   category: CategoryUnion;
 }
 
-class App extends React.Component<{}, StateType> {
-  constructor(props: {}) {
-    super(props);
+function App() {
+  const [sorting, setSorting] = useState<SortingUnion>(SELECT_OPTION.NAME);
+  const [category, setCategory] = useState<CategoryUnion>(SELECT_OPTION.ALL);
 
-    this.state = {
-      sorting: SELECT_OPTION.NAME,
-      category: SELECT_OPTION.ALL,
-    };
-  }
-
-  handleSelect(select: SelectedValue) {
+  function handleSelect(select: SelectedValue) {
     if (select.type === SELECT_OPTION.SORTING) {
-      this.setState({ sorting: select.value as SortingUnion });
+      setSorting(select.value as SortingUnion);
     }
 
     if (select.type === SELECT_OPTION.CATEGORY) {
-      this.setState({ category: select.value as CategoryUnion });
+      setCategory(select.value as CategoryUnion);
     }
   }
 
-  render() {
-    return (
-      <>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <Header />
-          <SelectSection handleSelect={this.handleSelect.bind(this)} />
-          <RestaurantSection
-            sorting={this.state.sorting}
-            category={this.state.category}
-          />
-        </ThemeProvider>
-      </>
-    );
-  }
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Header />
+      <SelectSection handleSelect={handleSelect} />
+      <RestaurantSection sorting={sorting} category={category} />
+    </ThemeProvider>
+  );
 }
 
 export default App;
