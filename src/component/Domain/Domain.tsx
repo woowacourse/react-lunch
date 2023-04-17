@@ -8,7 +8,7 @@ import {
 import RestaurantsList from "../RestaurantsList/RestaurantsList";
 import Modal from "../Modal/Modal";
 
-const Main = () => {
+const Domain = () => {
   const [category, setCategory] = useState("전체");
   const [sorting, setSorting] = useState("이름순");
   const [restaurantId, setRestaurantId] = useState<number | undefined>(
@@ -60,4 +60,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Domain;
