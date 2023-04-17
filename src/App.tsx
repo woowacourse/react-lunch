@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { GlobalStyle } from './global-style';
 import styled, { ThemeProvider } from 'styled-components';
 import variables from './components/styles/variables';
