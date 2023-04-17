@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import useCloseModal from './hooks/useCloseModal';
 import RestaurantManager from '../domain/RestaurantManager';
 import { IMAGE_PATH } from '../constants/images';
 
@@ -8,18 +8,7 @@ interface ModalProps {
 }
 
 const Modal = (props: ModalProps) => {
-  const closeModal = () => {
-    props.isModalOpen(false);
-  };
-
-  useEffect(() => {
-    document.addEventListener('keydown', closeModal, false);
-
-    return () => {
-      document.removeEventListener('keydown', closeModal, false);
-    };
-  }, []);
-
+  const closeModal = useCloseModal(props.isModalOpen);
   const restaurantItem = RestaurantManager.getRestaurantByID(
     props.restaurantId
   );
