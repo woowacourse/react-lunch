@@ -53,7 +53,7 @@
   - hover 시 underline으로 표시되게 하기
   - 링크인 것을 구분할 수 있도록 색깔 다르게 해주기
 - [ ] 레스토랑을 hover 했을 때 구분되도록 배경 색상 추가
-- [ ] SearchBox 스타일 수정하기
+- [x] SearchBox 스타일 수정하기
   - 항상 상단에 보일 수 있도록 sticky 추가
   - SearchBox와 RestaurantList 사이에 간격 주기
 - [ ] 필터 결과가 없을 때 없다고 출력하기
