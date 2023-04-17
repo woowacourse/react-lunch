@@ -1,9 +1,6 @@
 import React from 'react';
 
-type DrawerProps = {
-  isOpenDrawer: boolean;
-  children: React.ReactNode;
-};
+import type { DrawerProps } from '../util/type';
 
 const Drawer = ({ isOpenDrawer, children }: DrawerProps) => {
   return (

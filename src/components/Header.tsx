@@ -1,8 +1,6 @@
 import React from 'react';
 
-type HeaderProps = {
-  children: React.ReactNode;
-};
+import type { HeaderProps } from '../util/type';
 
 const Header = ({ children }: HeaderProps) => {
   return <header className="gnb">{children}</header>;

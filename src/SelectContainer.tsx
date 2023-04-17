@@ -1,15 +1,10 @@
 import React from 'react';
 
+import type { SelectContainerProps } from './util/type.ts';
 import Select from './components/Select.tsx';
 import { CATEGORY_OPTIONS, SORTING_OPTIONS } from './util/constant.ts';
 
-type SelectContainerProps = {
-  onChangeFilterOptions: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-};
-
-const SelectContainer: React.FC<SelectContainerProps> = ({
-  onChangeFilterOptions,
-}) => {
+const SelectContainer = ({ onChangeFilterOptions }: SelectContainerProps) => {
   return (
     <section className="restaurant-filter-container">
       <Select

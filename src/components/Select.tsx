@@ -1,12 +1,6 @@
 import React from 'react';
 
-import type { Category, SelectOption, Sorting } from '../util/type';
-
-type SelectProps = {
-  name: string;
-  options: SelectOption<Category | Sorting>[];
-  onChangeFilterOptions: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-};
+import type { SelectProps } from '../util/type';
 
 const Select = ({ name, options, onChangeFilterOptions }: SelectProps) => {
   return (

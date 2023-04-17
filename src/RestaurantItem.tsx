@@ -1,12 +1,7 @@
 import React from 'react';
 
-import type { Restaurant } from './util/type';
+import type { RestaurantProps } from './util/type';
 import { CATEGORY_IMAGES } from './util/constant.ts';
-
-type RestaurantProps = {
-  restaurant: Omit<Restaurant, 'link'>;
-  onToggleDrawer: (id?: number) => void;
-};
 
 const RestaurantItem = ({ restaurant, onToggleDrawer }: RestaurantProps) => {
   const { id, category, title, estimateTime, description } = restaurant;

@@ -27,3 +27,36 @@ export type FilterOption = {
   category: Category;
   sorting: Sorting;
 };
+
+export type DrawerProps = {
+  isOpenDrawer: boolean;
+  children: React.ReactNode;
+};
+
+export type HeaderProps = {
+  children: React.ReactNode;
+};
+
+export type SelectProps = {
+  name: string;
+  options: SelectOption<Category | Sorting>[];
+  onChangeFilterOptions: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+};
+
+export type RestaurantDetailDrawerProps = {
+  isOpenDrawer: boolean;
+  restaurantId: number;
+  onToggleDrawer: (id?: number) => void;
+};
+
+export type RestaurantProps = {
+  restaurant: Omit<Restaurant, 'link'>;
+  onToggleDrawer: (id?: number) => void;
+};
+
+export type RestaurantListProps = {
+  filterOptions: FilterOption;
+  onToggleDrawer: (id?: number) => void;
+};
+
+export type SelectContainerProps = Pick<SelectProps, 'onChangeFilterOptions'>;
