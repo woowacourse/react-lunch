@@ -16,6 +16,7 @@ const Select = ({
 }) => {
   const handleChangeOption = (event: ChangeEvent<HTMLSelectElement>) => {
     const target = event.target as HTMLSelectElement;
+
     onChange({
       [attributes.name]: target.value,
     });

@@ -5,5 +5,7 @@ export const saveToLocalStorage = <T>(data: T[], key: string = LOCAL_STORAGE_KEY
 };
 
 export const getLocalStorage = (key: string = LOCAL_STORAGE_KEY) => {
-  return JSON.parse(localStorage.getItem(key) as string);
+  const item = localStorage.getItem(key);
+
+  return item ? JSON.parse(item) : null;
 };
