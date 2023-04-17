@@ -4,7 +4,7 @@ import addButton from "../assets/add-button.png";
 import { Modal } from "./modal";
 import { WarningModalContent } from "./warningModalContent";
 
-export const Header = () => {
+export const Header = ({ handleClick }: { handleClick: () => void }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -12,7 +12,7 @@ export const Header = () => {
       <Container>
         <Title
           onClick={() => {
-            window.location.reload();
+            handleClick();
           }}
         >
           점심 뭐 먹지

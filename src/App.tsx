@@ -61,7 +61,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Header />
+      <Header handleClick={arrangeRestaurants} />
       <SelectSection handleSelect={handleSelect} />
       {restaurants && <RestaurantSection restaurants={restaurants} />}
     </ThemeProvider>
