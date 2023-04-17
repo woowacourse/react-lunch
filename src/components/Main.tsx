@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Select from './Select';
 import RestaurantList from './RestaurantList';
-import { filterByCategory, getRestaurants, sortBy } from '../utils/restaurant';
+import { filterByCategory, getRestaurants, sortBy } from '../domain/restaurant';
 import type { Category, SortBy } from '../types/Restaurant';
+import { MemoizedFilterContainer } from './FilterContainer';
 
 function Main() {
   const [category, setCategory] = useState<Category>('전체');
@@ -14,7 +14,7 @@ function Main() {
 
   return (
     <>
-      <Select setCategory={setCategory} setSort={setSort} />
+      <MemoizedFilterContainer setCategory={setCategory} setSort={setSort} />
       <RestaurantList restaurants={filteredAndSorted} />
     </>
   );
