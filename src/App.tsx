@@ -6,7 +6,6 @@ import { useRestaurants, useBoolean } from './hooks';
 import { Header, Modal, RestaurantList, SelectBox } from './components';
 
 import { CATEGORY, SORTING } from './constants';
-import { CategoryOption, SortOption } from './types';
 
 export default function App() {
   const {
@@ -26,13 +25,13 @@ export default function App() {
             <SelectBox
               options={Object.values(CATEGORY)}
               onOptionChange={(e) => {
-                handleCategory(e.target.value as CategoryOption);
+                handleCategory(e);
               }}
             ></SelectBox>
             <SelectBox
               options={Object.values(SORTING)}
               onOptionChange={(e) => {
-                handleSorting(e.target.value as SortOption);
+                handleSorting(e);
               }}
             ></SelectBox>
           </FilterContainer>
