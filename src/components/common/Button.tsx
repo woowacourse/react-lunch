@@ -1,11 +1,13 @@
-import React from 'react';
 import styled from 'styled-components';
 
-class Button extends React.Component<{ text: string; onClick: () => void }> {
-  render() {
-    return <ButtonWrapper onClick={this.props.onClick}>{this.props.text}</ButtonWrapper>;
-  }
+interface ButtonType {
+  text: string;
+  onClick: () => void;
 }
+
+const Button = (props: ButtonType) => {
+  return <ButtonWrapper onClick={props.onClick}>{props.text}</ButtonWrapper>;
+};
 
 const ButtonWrapper = styled.button`
   width: 100%;

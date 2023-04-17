@@ -1,46 +1,51 @@
-import React from 'react';
 import styled from 'styled-components';
+import { SelectKind } from '../types';
+import { $ } from '../utils/domSelector';
 
-class Header extends React.Component {
-  render() {
-    return (
-      <HeaderWrapper>
-        <HeaderTitle id="header_title">점심 뭐먹지</HeaderTitle>
-      </HeaderWrapper>
-    );
-  }
-}
+const Header = () => {
+  const initSelectOption = () => {
+    const categorySelectBox = $<HTMLSelectElement>(`select[name="${SelectKind.category}"]`);
+    categorySelectBox.selectedIndex = 0;
+    categorySelectBox.dispatchEvent(new Event('change', { bubbles: true }));
+
+    const orderSelectBox = $<HTMLSelectElement>(`select[name="${SelectKind.order}"]`);
+    orderSelectBox.selectedIndex = 0;
+    orderSelectBox.dispatchEvent(new Event('change', { bubbles: true }));
+  };
+
+  return (
+    <HeaderWrapper>
+      <h3 onClick={() => initSelectOption()} id="header_title">
+        점심 뭐먹지
+      </h3>
+    </HeaderWrapper>
+  );
+};
 
 const HeaderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 64px;
+
   position: fixed;
   top: 0;
 
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-  height: 64px;
-
   padding: 0 16px;
-
   background: var(--primary-color);
-`;
 
-const HeaderTitle = styled.div`
-  font-size: 20px;
-  line-height: 24px;
-  font-weight: 600;
-  color: var(--grey-100);
+  & > h3 {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 600;
+    color: var(--grey-100);
 
-  cursor: pointer;
-  :active {
-    transform: scale(1.02);
+    cursor: pointer;
+    :active {
+      transform: scale(1.02);
+    }
   }
-
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 `;
 
 export default Header;
+
