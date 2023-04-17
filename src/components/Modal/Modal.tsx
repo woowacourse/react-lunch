@@ -9,6 +9,7 @@ import {
   RestaurantCategory,
   RestaurantInfoWrapper,
 } from '../RestaurantItem/RestaurantItem';
+import { useEffect } from 'react';
 
 type Props = {
   restaurant: Restaurant;
@@ -17,6 +18,23 @@ type Props = {
 
 export function Modal({ restaurant, onCloseButtonClick }: Props) {
   const { name, category, distance, description, link } = restaurant;
+
+  useEffect(() => {
+    window.addEventListener('keydown', (e) => {
+      closeModalByESC(onCloseButtonClick, e);
+    });
+    return () => {
+      window.removeEventListener('keydown', (e) => {
+        closeModalByESC(onCloseButtonClick, e);
+      });
+    };
+  });
+
+  function closeModalByESC(callback: () => void, e: KeyboardEvent) {
+    if (e.key === 'Escape') {
+      callback();
+    }
+  }
 
   return (
     <Wrapper>
@@ -97,3 +115,25 @@ const CloseButton = styled.button`
   color: var(--grey-100);
   font: var(--text-caption);
 `;
+function closeModalByESC(
+  callback: any,
+  arg1: () => undefined,
+  e: any,
+  KeyboardEvent: {
+    new (
+      type: string,
+      eventInitDict?: KeyboardEventInit | undefined
+    ): KeyboardEvent;
+    prototype: KeyboardEvent;
+    readonly DOM_KEY_LOCATION_STANDARD: 0;
+    readonly DOM_KEY_LOCATION_LEFT: 1;
+    readonly DOM_KEY_LOCATION_RIGHT: 2;
+    readonly DOM_KEY_LOCATION_NUMPAD: 3;
+  }
+) {
+  throw new Error('Function not implemented.');
+}
+
+function callback() {
+  throw new Error('Function not implemented.');
+}
