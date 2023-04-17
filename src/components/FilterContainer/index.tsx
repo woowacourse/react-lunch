@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import CategoryFilter from './CategoryFilter';
 import SortFilter from './SortFilter';
 import './FilterContainer.css';
@@ -12,13 +11,14 @@ type FilterContainerProps = {
   onChangeSortFilter: (sortOption: RestaurantSortOption) => void;
 };
 
-export default class FilterContainer extends Component<FilterContainerProps> {
-  render() {
-    return (
-      <section className="restaurant-filter-container">
-        <CategoryFilter onChange={this.props.onChangeCategoryFilter} />
-        <SortFilter onChange={this.props.onChangeSortFilter} />
-      </section>
-    );
-  }
+export default function FilterContainer({
+  onChangeCategoryFilter,
+  onChangeSortFilter,
+}: FilterContainerProps) {
+  return (
+    <section className="restaurant-filter-container">
+      <CategoryFilter onChange={onChangeCategoryFilter} />
+      <SortFilter onChange={onChangeSortFilter} />
+    </section>
+  );
 }

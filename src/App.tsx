@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { Header, Modal } from './components/common';
 import { FilterContainer, RestaurantDetailView, RestaurantList } from './components';
 
@@ -17,61 +17,51 @@ import type { Restaurant } from './types';
 import mockData from './mockData.json';
 import './App.css';
 
-type AppState = {
-  restaurants: Restaurant[];
-  categoryFilterOption: RestaurantCategoryFilterOption;
-  sortOption: RestaurantSortOption;
-  selectedRestaurant: Restaurant;
-  isOpenModal: boolean;
-};
+export default function App() {
+  const [restaurants, setRestaurants] = useState<Restaurant[]>(mockData as Restaurant[]);
+  const [categoryFilterOption, setCategoryFilterOption] =
+    useState<RestaurantCategoryFilterOption>('전체');
+  const [sortOption, setSortOption] = useState<RestaurantSortOption>('name');
+  const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant>(
+    mockData[0] as Restaurant
+  );
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
-export default class App extends Component {
-  state: AppState = {
-    restaurants: mockData as Restaurant[],
-    categoryFilterOption: '전체',
-    sortOption: 'name',
-    selectedRestaurant: mockData[0] as Restaurant,
-    isOpenModal: false,
+  const filteredRestaurants = getFilteredRestaurantsByCategory(restaurants, categoryFilterOption);
+  const sortedRestaurants = getSortedRestaurants(filteredRestaurants, sortOption);
+
+  const onChangeCategoryFilter = (category: RestaurantCategoryFilterOption) => {
+    setCategoryFilterOption(category);
   };
 
-  render() {
-    const { restaurants, categoryFilterOption, sortOption, isOpenModal, selectedRestaurant } =
-      this.state;
-    const filteredRestaurants = getFilteredRestaurantsByCategory(restaurants, categoryFilterOption);
-    const sortedRestaurants = getSortedRestaurants(filteredRestaurants, sortOption);
-
-    return (
-      <div className="App">
-        <Header>{'점심 뭐 먹지'}</Header>
-        <FilterContainer
-          onChangeCategoryFilter={this.onChangeCategoryFilter}
-          onChangeSortFilter={this.onChangeSortFilter}
-        />
-        <RestaurantList restaurants={sortedRestaurants} onClick={this.onClickRestaurantItem} />
-        {isOpenModal && (
-          <Modal onClick={this.onClickModalCloseButton}>
-            <RestaurantDetailView restaurant={selectedRestaurant} />
-          </Modal>
-        )}
-      </div>
-    );
-  }
-
-  onChangeCategoryFilter = (category: RestaurantCategoryFilterOption) => {
-    this.setState({ categoryFilterOption: category });
+  const onChangeSortFilter = (sortOption: RestaurantSortOption) => {
+    setSortOption(sortOption);
   };
 
-  onChangeSortFilter = (sortOption: RestaurantSortOption) => {
-    this.setState({ sortOption });
+  const onClickRestaurantItem = (targetRestaurantId: number) => {
+    const targetRestaurant = getRestaurantById(restaurants, targetRestaurantId);
+
+    setSelectedRestaurant(targetRestaurant);
+    setIsOpenModal(true);
   };
 
-  onClickRestaurantItem = (restaurantId: number) => {
-    const targetRestaurant = getRestaurantById(this.state.restaurants, restaurantId);
-
-    this.setState({ selectedRestaurant: targetRestaurant, isOpenModal: true });
+  const onClickModalCloseButton = () => {
+    setIsOpenModal(false);
   };
 
-  onClickModalCloseButton = () => {
-    this.setState({ isOpenModal: false });
-  };
+  return (
+    <div className="App">
+      <Header>{'점심 뭐 먹지'}</Header>
+      <FilterContainer
+        onChangeCategoryFilter={onChangeCategoryFilter}
+        onChangeSortFilter={onChangeSortFilter}
+      />
+      <RestaurantList restaurants={sortedRestaurants} onClick={onClickRestaurantItem} />
+      {isOpenModal && (
+        <Modal onClick={onClickModalCloseButton}>
+          <RestaurantDetailView restaurant={selectedRestaurant} />
+        </Modal>
+      )}
+    </div>
+  );
 }
