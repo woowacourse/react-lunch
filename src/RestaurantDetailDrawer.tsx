@@ -22,7 +22,7 @@ const RestaurantDetailDrawer: React.FC<RestaurantDetailDrawerProps> = ({
   isOpenDrawer,
   restaurantId,
   onToggleDrawer,
-}:RestaurantDetailDrawerProps) => {
+}: RestaurantDetailDrawerProps) => {
   const restaurantList = useRestaurantList('restaurantList', []);
   const restaurant = getRestaurantById(restaurantList, restaurantId);
 
