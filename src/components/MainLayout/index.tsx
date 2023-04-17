@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from 'react';
+import { useState } from 'react';
 
 import './style.css';
 
@@ -6,47 +6,17 @@ import CategoryFilter from './CategoryFilter';
 import Sorting from './Sorting';
 import RestaurantItem from './RestaurantItem';
 
-import { Restaurant } from '../../domain/type';
+import type { OnClickRestaurant, Restaurant } from '../../domain/type';
 import { restaurantService } from '../../domain/restaurantService';
-
-type OnClickRestaurant = (restaurantId: string) => void;
 
 interface Props {
   restaurants: Restaurant[];
   onClickRestaurant: OnClickRestaurant;
 }
 
-const useFilterSectionState = () => {
+export default function MainLayout(props: Props) {
   const [category, setCategory] = useState('전체');
   const [sortBy, setSortBy] = useState('이름순');
-
-  function settingCategory(category: string) {
-    setCategory(category);
-  }
-
-  function settingSortBy(sortBy: string) {
-    setSortBy(sortBy);
-  }
-
-  return { category, sortBy, settingCategory, settingSortBy };
-};
-
-const handleRestaurantClick = (
-  callback: OnClickRestaurant,
-  event: MouseEvent<HTMLUListElement>,
-) => {
-  const target = event.target as HTMLElement;
-  const item = target.closest('.restaurant') as HTMLLIElement;
-  const restaurantId = item.dataset.id;
-
-  if (!restaurantId) return;
-
-  callback(restaurantId);
-};
-
-export default function MainLayout(props: Props) {
-  const { category, sortBy, settingCategory, settingSortBy } =
-    useFilterSectionState();
 
   const filtered = restaurantService.filterByCategory(
     props.restaurants,
@@ -61,18 +31,17 @@ export default function MainLayout(props: Props) {
   return (
     <main>
       <section className="filter-section">
-        <CategoryFilter onChangeCategory={settingCategory} />
-        <Sorting onChangeSorting={settingSortBy} />
+        <CategoryFilter onChangeCategory={setCategory} />
+        <Sorting onChangeSorting={setSortBy} />
       </section>
       <section className="restaurant-list-section">
-        <ul
-          className="restaurant-list"
-          onClick={(event) =>
-            handleRestaurantClick(props.onClickRestaurant, event)
-          }
-        >
+        <ul className="restaurant-list">
           {sorted?.map((restaurant) => (
-            <RestaurantItem key={restaurant.id} restaurant={restaurant} />
+            <RestaurantItem
+              key={restaurant.id}
+              restaurant={restaurant}
+              onClickRestaurant={props.onClickRestaurant}
+            />
           ))}
         </ul>
       </section>

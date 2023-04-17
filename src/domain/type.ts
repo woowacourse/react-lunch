@@ -1,6 +1,5 @@
-export type RestaurantId = string;
 export interface Restaurant {
-  id: RestaurantId;
+  id: string;
   category: string;
   name: string;
   takeTime: number;
@@ -8,3 +7,5 @@ export interface Restaurant {
   link?: string;
   isFavorite?: boolean;
 }
+
+export type OnClickRestaurant = (restaurant: Restaurant) => void;

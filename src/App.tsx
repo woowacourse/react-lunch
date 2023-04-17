@@ -6,7 +6,8 @@ import Header from './components/Header';
 import MainLayout from './components/MainLayout';
 import RestaurantDetailModal from './components/RestaurantDetailModal';
 
-import { Restaurant, RestaurantId } from './domain/type';
+import type { Restaurant } from './domain/type';
+
 import { getLocalStorage, setLocalStorage } from './utils/localStorage';
 import { getMockData } from './domain/mockData';
 import { LOCAL_STORAGE } from './CONSTANT';
@@ -40,11 +41,11 @@ const useRestaurantState = () => {
 };
 
 const useModalState = () => {
-  const [restaurantId, setRestaurantId] = useState<RestaurantId>('');
   const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
+  const [modalRestaurant, setModalRestaurant] = useState<Restaurant>();
 
-  const openRestaurantInfoModal = (restaurantId: string) => {
-    setRestaurantId(restaurantId);
+  const openRestaurantInfoModal = (restaurant: Restaurant) => {
+    setModalRestaurant(restaurant);
     setIsModalOpened(true);
   };
 
@@ -53,7 +54,7 @@ const useModalState = () => {
   };
 
   return {
-    restaurantId,
+    modalRestaurant,
     isModalOpened,
     openRestaurantInfoModal,
     handleModalClose,
@@ -64,15 +65,11 @@ export default function App() {
   const { restaurants } = useRestaurantState();
 
   const {
-    restaurantId,
+    modalRestaurant,
     isModalOpened,
     openRestaurantInfoModal,
     handleModalClose,
   } = useModalState();
-
-  const restaurant = restaurants.find(
-    (restaurant: Restaurant) => restaurant.id === restaurantId,
-  );
 
   return (
     <div className="App">
@@ -81,9 +78,9 @@ export default function App() {
         restaurants={restaurants}
         onClickRestaurant={openRestaurantInfoModal}
       />
-      {isModalOpened && restaurant && (
+      {isModalOpened && modalRestaurant && (
         <RestaurantDetailModal
-          restaurant={restaurant}
+          restaurant={modalRestaurant}
           onCloseModal={handleModalClose}
         />
       )}

@@ -2,17 +2,22 @@ import './style.css';
 
 import CategoryIcon from '../../common/CategoryIcon';
 
-import { Restaurant } from '../../../domain/type';
+import type { OnClickRestaurant, Restaurant } from '../../../domain/type';
 
 interface Props {
   restaurant: Restaurant;
+  onClickRestaurant: OnClickRestaurant;
 }
 
 export default function RestaurantItem(props: Props) {
   const { id, category, name, takeTime, description } = props.restaurant;
 
   return (
-    <li className="restaurant" data-id={id}>
+    <li
+      className="restaurant"
+      data-id={id}
+      onClick={() => props.onClickRestaurant(props.restaurant)}
+    >
       <div className="restaurant__category">
         <CategoryIcon category={category} />
       </div>
