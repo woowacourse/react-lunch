@@ -1,6 +1,6 @@
 import { ReactElement, useEffect } from "react";
 import styled from "styled-components";
-import { ModalButton } from "./modalButton";
+import { Button } from "./button";
 
 interface ModalProps {
   closeModal: () => void;
@@ -29,7 +29,7 @@ export const Modal = ({ modalPosition, children, closeModal }: ModalProps) => {
       <ModalContainer modalPosition={modalPosition}>
         {children}
         <ButtonContainer>
-          <ModalButton text="닫기" handleClick={closeModal} />
+          <Button text="닫기" handleClick={closeModal} />
         </ButtonContainer>
       </ModalContainer>
     </>

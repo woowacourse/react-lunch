@@ -6,19 +6,19 @@ interface ModalButtonProps {
   handleClick?: () => void;
 }
 
-export const ModalButton = ({
+export const Button = ({
   text,
   baseColor = "orange",
   handleClick,
 }: ModalButtonProps) => {
   return (
-    <Button baseColor={baseColor} onClick={handleClick}>
+    <ButtonWrapper baseColor={baseColor} onClick={handleClick}>
       {text}
-    </Button>
+    </ButtonWrapper>
   );
 };
 
-const Button = styled.button<{ baseColor: string }>`
+const ButtonWrapper = styled.button<{ baseColor: string }>`
   width: 100%;
   height: 44px;
 
