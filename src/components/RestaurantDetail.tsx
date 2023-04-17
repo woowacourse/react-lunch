@@ -16,7 +16,7 @@ const RestaurantDetail = (props: RestaurantItemType & { onClose: () => void }) =
         <p>{props.description}</p>
         <a href={props.link}>{props.link}</a>
       </RestaurantInfo>
-      <Button text="닫기" onClick={props.onClose} />
+      <Button type="button" text="닫기" onClick={props.onClose} />
     </RestaurantDetailWrapper>
   );
 };
