@@ -280,6 +280,7 @@ describe('도메인 테스트', () => {
         category: '한식',
         name: '삼원가든',
         distance: 5,
+
         description: '일상 속 만남이 모여 잔치가 됩니다. 만남이 잔치가 되는 곳, 이곳은 삼원가든입니다.',
         link: '',
         id: 9,

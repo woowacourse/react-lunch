@@ -8,3 +8,4 @@ export const validateCategory = (category: Category) => {
 
   throw new Error(`유효하지 않는 카테고리: ${category}`);
 };
+
