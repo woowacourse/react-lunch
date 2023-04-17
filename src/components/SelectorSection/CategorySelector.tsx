@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext } from 'react';
+import { ChangeEvent, useContext } from 'react';
 import Store from '../../store';
 import styles from './SelectorSection.module.css';
 import type { Category } from '../RestaurantItem/type';

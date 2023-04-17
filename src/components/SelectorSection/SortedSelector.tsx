@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import Store from '../../store';
 import styles from './SelectorSection.module.css';
 import type { Sort } from '../../App';

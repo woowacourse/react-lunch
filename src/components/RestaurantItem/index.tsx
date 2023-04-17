@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import Store from '../../store';
 import pickIconByCategory from '../../utils/pickIconByCategory';
 import styles from './RestaurantItem.module.css';
