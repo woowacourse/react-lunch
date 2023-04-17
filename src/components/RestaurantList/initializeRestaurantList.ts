@@ -1,6 +1,6 @@
-import { RestaurantInfo } from '../types/restaurantInfo';
-import { KEY } from '../constants';
-import MOCK_DATA from '../data/MockData.json';
+import { RestaurantInfo } from '../../types/restaurantInfo';
+import { KEY } from '../../constants';
+import MOCK_DATA from '../../data/MockData.json';
 
 export const getSavedRestaurantList = (): RestaurantInfo[] => {
   return JSON.parse(localStorage.getItem(KEY) || '[]');

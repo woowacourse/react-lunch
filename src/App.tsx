@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import Header from './components/Header/Header';
 import './styles/App.css';
 import { RestaurantInfo, isFoodCategory, isSortMethod } from './types/restaurantInfo';
-import { getSavedRestaurantList, hasSavedRestaurantList, saveRestaurantList } from './domain/initializeRestaurantList';
+import { getSavedRestaurantList, hasSavedRestaurantList, saveRestaurantList } from './components/RestaurantList/initializeRestaurantList';
 import RestaurantList from './components/RestaurantList/RestaurantList';
 import Modal from './components/Modal/Modal';
 import RestaurantDetail from './components/RestaurantDetail/RestaurantDetail';
 
 function App() {
   if (!hasSavedRestaurantList()) saveRestaurantList();
-  const storedList = getSavedRestaurantList()
+  // const storedList = getSavedRestaurantList();
 
-  const [originalRestaurantList, setOriginalRestaurantList] = useState(storedList);
+  // const [originalRestaurantList, setOriginalRestaurantList] = useState(storedList);
   const [clickedRestaurant, setClickedRestaurant] = useState(null as (RestaurantInfo | null));
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [selectedSortingMethod, setSelectedSortingMethod] = useState('이름순');
@@ -31,10 +31,10 @@ function App() {
   const deleteRestaurant = () => {
     if (!clickedRestaurant) return;
 
-    const updatedList = originalRestaurantList.filter((restaurant) => restaurant !== clickedRestaurant);
-    saveRestaurantList(updatedList);
+    // const updatedList = originalRestaurantList.filter((restaurant) => restaurant !== clickedRestaurant);
+    // saveRestaurantList(updatedList);
 
-    setOriginalRestaurantList(updatedList);
+    // setOriginalRestaurantList(updatedList);
     setClickedRestaurant(null);
   }
 
@@ -49,9 +49,8 @@ function App() {
   return (
     <div className="app">
       <Header onChange={selectChangeCallback} />
-      <RestaurantList 
+      <RestaurantList
         onClick={(info: RestaurantInfo) => setClickedRestaurant(info)}
-        restaurantList={originalRestaurantList}
         category={isFoodCategory(selectedCategory) ? selectedCategory : '전체'}
         sortingMethod={isSortMethod(selectedSortingMethod) ? selectedSortingMethod : '이름순'}
       />
