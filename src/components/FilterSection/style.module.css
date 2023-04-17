@@ -13,10 +13,7 @@
   border: 1px solid #d0d5dd;
   border-radius: 8px;
   background: transparent;
+  padding: 8px;
 
   font-size: 16px;
-}
-
-.restaurantFilter {
-  padding: 8px;
 }

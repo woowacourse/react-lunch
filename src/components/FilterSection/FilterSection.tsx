@@ -13,15 +13,9 @@ function FilterSection({ onChange }: FilterSectionProps) {
       <Select
         options={RESTAURANT_CATEGORY_OPTION}
         onChange={onChange}
-        elementStyle={styles.restaurantFilter}
         {...SELECT_ATTRIBUTES.CATEGORY_FILTER}
       />
-      <Select
-        options={SORT_BY}
-        onChange={onChange}
-        elementStyle={styles.restaurantFilter}
-        {...SELECT_ATTRIBUTES.SORT_BY_FILTER}
-      />
+      <Select options={SORT_BY} onChange={onChange} {...SELECT_ATTRIBUTES.SORT_BY_FILTER} />
     </section>
   );
 }
