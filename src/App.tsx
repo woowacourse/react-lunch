@@ -57,28 +57,25 @@ const App = () => {
     filterAndSortByOptions(getCategory, getSorting)
   );
 
-  const handleCategorySelect = (value: string) => {
-    const filteredRestaurants = filterAndSortByOptions(value);
-    setRestaurants(filteredRestaurants);
-    setCategory(value);
-
-    setItemInLocalStorage("category", value);
+  const filterRestaurants = (key: string, value: string) => {
+    if (key === "sorting") return filterAndSortByOptions(undefined, value);
+    return filterAndSortByOptions(value);
   };
 
-  const handleSortingSelect = (value: string) => {
-    const filteredRestaurants = filterAndSortByOptions(undefined, value);
+  const handleSelect = (key: string, value: string) => {
+    const filteredRestaurants = filterRestaurants(key, value);
     setRestaurants(filteredRestaurants);
-    setSorting(value);
+    if (key === "sorting") setSorting(value);
+    if (key === "category") setCategory(value);
 
-    setItemInLocalStorage("sorting", value);
+    setItemInLocalStorage(key, value);
   };
 
   return (
     <>
       <HeaderSection />
       <SelectBoxes
-        onChangeCategory={handleCategorySelect}
-        onChangeSorting={handleSortingSelect}
+        onChange={handleSelect}
         selectedCategory={category}
         selectedSorting={sorting}
       />

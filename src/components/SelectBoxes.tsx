@@ -3,8 +3,7 @@ import { CATEGORY, SORTING_SELECT } from "../constants";
 import { CategorySelect, SortingSelect } from "../types";
 
 interface Props {
-  onChangeCategory: (event: string) => void;
-  onChangeSorting: (event: string) => void;
+  onChange: (key: string, value: string) => void;
   selectedCategory: CategorySelect;
   selectedSorting: SortingSelect;
 }
@@ -17,7 +16,7 @@ const SelectBoxes = (props: Props) => {
     <SelectBoxContainer>
       <SelectBox
         name="category"
-        onChange={({ target }) => props.onChangeCategory(target.value)}
+        onChange={({ target }) => props.onChange("category", target.value)}
         value={props.selectedCategory}
       >
         {categorySelect.map((category, index) => (
@@ -29,7 +28,7 @@ const SelectBoxes = (props: Props) => {
 
       <SelectBox
         name="sorting"
-        onChange={({ target }) => props.onChangeSorting(target.value)}
+        onChange={({ target }) => props.onChange("sorting", target.value)}
         value={props.selectedSorting}
       >
         {sortingSelect.map((sorting, index) => (
