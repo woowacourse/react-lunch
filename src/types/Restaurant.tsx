@@ -13,6 +13,8 @@ export const SORTINGWAY = {
   거리순: "distance",
 };
 
+export type Option = "sortBy" | "categorizeBy";
+
 export interface AppState {
   restaurants: Restaurant[];
   modalOpen: boolean;
