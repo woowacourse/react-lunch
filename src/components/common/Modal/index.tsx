@@ -4,10 +4,10 @@ import './Modal.css';
 type ModalProps = {
   children: ReactNode;
   isOpen: boolean;
-  onClick: () => void;
+  closeModal: () => void;
 };
 
-const Modal = ({ children, isOpen, onClick }: ModalProps) => {
+const Modal = ({ children, isOpen, closeModal }: ModalProps) => {
   return isOpen ? (
     <div className="modal">
       <div className="modal-backdrop"></div>
@@ -17,7 +17,7 @@ const Modal = ({ children, isOpen, onClick }: ModalProps) => {
           <button
             id="modal-close-button"
             className="button button--primary text-caption"
-            onClick={onClick}
+            onClick={closeModal}
           >
             닫기
           </button>
