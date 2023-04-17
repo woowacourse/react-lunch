@@ -1,48 +1,25 @@
 import React from 'react';
 
-import type { FilterOption, Restaurant } from './util/type';
+import type { FilterOption } from './util/type';
 import RestaurantItem from './RestaurantItem.tsx';
-import { pipe } from './util/util.ts';
-import useRestaurantList from './hooks/useRestaurantList.ts';
+import useFilterRestaurantList from './hooks/useFilterRestaurantList.ts';
 
 type RestaurantListProps = {
   filterOptions: FilterOption;
   onToggleDrawer: (id?: number) => void;
 };
 
-const filterByCategory = (restaurantList, category): Restaurant[] => {
-  if (category === '전체') return restaurantList;
-  return restaurantList.filter(
-    (restaurant) => restaurant.category === category
-  );
-};
-
-const filterBySort = (restaurantList, sorting): Restaurant[] => {
-  return restaurantList.sort((firstElement, secondElement) => {
-    if (sorting === 'name') {
-      return firstElement.title.localeCompare(secondElement.title);
-    }
-    if (sorting === 'estimateTime') {
-      return firstElement.estimateTime - secondElement.estimateTime;
-    }
-    return 0;
-  });
-};
-
 const RestaurantList = ({
   filterOptions,
   onToggleDrawer,
-}:RestaurantListProps) => {
+}: RestaurantListProps) => {
   const { category, sorting } = filterOptions;
-  const restaurantList = useRestaurantList('restaurantList', []);
+  const restaurantList = useFilterRestaurantList(category, sorting);
 
   return (
     <section className="restaurant-list-container">
       <ul className="restaurant-list">
-        {pipe(filterByCategory, filterBySort)(restaurantList, [
-          category,
-          sorting,
-        ]).map((restaurant) => (
+        {restaurantList.map((restaurant) => (
           <RestaurantItem
             key={restaurant.id}
             restaurant={restaurant}

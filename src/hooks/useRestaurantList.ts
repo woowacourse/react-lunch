@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import useLocalStorage from './useLocalStorage.ts';
 
-const useRestaurantList = (key, initValue) => {
+const useRestaurantList = (key, initValue, callback = (arr) => arr) => {
   const [restaurantList, setRestaurantList] = useLocalStorage(key, initValue);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const useRestaurantList = (key, initValue) => {
     })();
   }, [restaurantList]);
 
-  return restaurantList;
+  return callback(restaurantList);
 };
 
 export default useRestaurantList;
