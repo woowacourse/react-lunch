@@ -33,14 +33,6 @@ const RestaurantList = () => {
     handleClickEvent();
   };
 
-  const sortRestaurants = () => {
-    filteredRestaurants.sort((a: RestaurantItemType, b: RestaurantItemType): number => {
-      if (order === OrderKind.name) return a.name > b.name ? 1 : -1;
-      return a.distance > b.distance ? 1 : -1;
-    });
-    setFilteredRestaurants(localRestaurants);
-  };
-
   const filterRestaurants = () => {
     if (category === CategoryKind.all) {
       setFilteredRestaurants(localRestaurants);
@@ -53,6 +45,9 @@ const RestaurantList = () => {
 
   useEffect(() => {
     setLocalRestaurants(data);
+  }, []);
+
+  useEffect(() => {
     setFilteredRestaurants(localRestaurants);
     handleClickEvent();
   }, [localRestaurants]);
@@ -62,45 +57,51 @@ const RestaurantList = () => {
     window.scrollTo(0, 0);
   }, [category]);
 
-  useEffect(() => {
-    sortRestaurants();
-    window.scrollTo(0, 0);
-  }, [order]);
+  const filteredRestaurantElement = () => {
+    return (
+      <>
+        {filteredRestaurants
+          .sort((a, b) => {
+            if (order === OrderKind.name) return a.name > b.name ? 1 : -1;
+            return a.distance > b.distance ? 1 : -1;
+          })
+          .map((restaurant: RestaurantItemType, index: number) => {
+            return (
+              <RestaurantItem
+                key={index}
+                category={restaurant.category}
+                name={restaurant.name}
+                distance={restaurant.distance}
+                description={restaurant.description}
+                link={restaurant.link}
+              />
+            );
+          })}
+      </>
+    );
+  };
 
   return (
     <>
       <SelectBoxContainer>
         <SelectBox
-          selectType={SelectKind.category}
-          options={Object.values(CategoryKind)}
+          name={SelectKind.category}
+          optionList={Object.values(CategoryKind)}
           onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
             setCategory(event.target.value);
           }}
           value={category}
         />
         <SelectBox
-          selectType={SelectKind.order}
-          options={Object.values(OrderKind)}
+          name={SelectKind.order}
+          optionList={Object.values(OrderKind)}
           onChange={(event: React.ChangeEvent<HTMLSelectElement>) => {
             setOrder(event.target.value);
           }}
           value={order}
         />
       </SelectBoxContainer>
-      <RestaurantListWrapper>
-        {filteredRestaurants.map((restaurant: RestaurantItemType, index: number) => {
-          return (
-            <RestaurantItem
-              key={index}
-              category={restaurant.category}
-              name={restaurant.name}
-              distance={restaurant.distance}
-              description={restaurant.description}
-              link={restaurant.link}
-            />
-          );
-        })}
-      </RestaurantListWrapper>
+      <RestaurantListWrapper>{filteredRestaurantElement()}</RestaurantListWrapper>
     </>
   );
 };

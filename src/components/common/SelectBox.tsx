@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { SelectHTMLAttributes } from 'react';
 import styled from 'styled-components';
-import { SelectBoxType } from '../../types';
 
-const SelectBox = (props: SelectBoxType) => {
+interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+  optionList: string[];
+}
+
+const SelectBox = (props: SelectProps) => {
+  const { optionList, ...rest } = props;
   return (
-    <SelectBoxWrapper name={props.selectType} onChange={props.onChange} value={props.value}>
-      {props.options.map((option: string, index: number) => (
+    <SelectBoxWrapper {...rest}>
+      {optionList.map((option: string, index: number) => (
         <option key={index}>{option}</option>
       ))}
     </SelectBoxWrapper>
