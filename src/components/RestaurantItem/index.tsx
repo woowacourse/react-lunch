@@ -1,5 +1,5 @@
 import useWrappingContext from '../../hooks/useWrappingContext';
-import Store from '../../store';
+import { ModalStore } from '../../store';
 import pickIconByCategory from '../../utils/pickIconByCategory';
 import styles from './RestaurantItem.module.css';
 import type { Restaurant } from './type';
@@ -10,17 +10,11 @@ interface Props {
 }
 
 function RestaurantItem({ restaurant, isModal }: Props) {
-  const { setModalInfo, setIsModalOpen } = useWrappingContext(Store);
+  const { openModal } = useWrappingContext(ModalStore);
   const { category, name, distance, description, link } = restaurant;
 
-  const openModal = () => {
-    setIsModalOpen(true);
-    setModalInfo(restaurant);
-    document.body.style.overflow = 'hidden';
-  };
-
   return (
-    <li className={isModal ? styles.itemModal : styles.item} onClick={openModal}>
+    <li className={isModal ? styles.itemModal : styles.item} onClick={() => openModal(restaurant)}>
       <div className={styles.icon}>
         <img src={pickIconByCategory(category)} alt={category} />
       </div>

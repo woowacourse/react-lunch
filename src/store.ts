@@ -1,6 +1,6 @@
 import { createContext } from 'react';
-import type { State } from './App';
+import type { SelectorState } from './App';
+import type { ModalState } from './hooks/useModal';
 
-const Store = createContext<State | null>(null);
-
-export default Store;
+export const SelectorStore = createContext<SelectorState | null>(null);
+export const ModalStore = createContext<ModalState | null>(null);

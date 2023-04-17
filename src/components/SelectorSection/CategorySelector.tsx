@@ -1,11 +1,11 @@
 import useWrappingContext from '../../hooks/useWrappingContext';
-import Store from '../../store';
+import { SelectorStore } from '../../store';
 import styles from './SelectorSection.module.css';
 import type { Category } from '../RestaurantItem/type';
 import type { ChangeEvent } from 'react';
 
 function CategorySelector() {
-  const { setCategory } = useWrappingContext(Store);
+  const { setCategory } = useWrappingContext(SelectorStore);
 
   const handleCategorySelector = (e: ChangeEvent<HTMLSelectElement>) => {
     setCategory(e.target.value as Category);

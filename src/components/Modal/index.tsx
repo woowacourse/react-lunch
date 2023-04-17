@@ -1,17 +1,11 @@
 import { createPortal } from 'react-dom';
 import useWrappingContext from '../../hooks/useWrappingContext';
-import Store from '../../store';
+import { ModalStore } from '../../store';
 import RestaurantItem from '../RestaurantItem';
 import styles from './Modal.module.css';
 
 function Modal() {
-  const { isModalOpen, setIsModalOpen, modalInfo } = useWrappingContext(Store);
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    document.body.style.removeProperty('overflow');
-  };
-
+  const { isModalOpen, modalInfo, closeModal } = useWrappingContext(ModalStore);
   return createPortal(
     <dialog open={isModalOpen}>
       <div className={styles.modalBackdrop} />
