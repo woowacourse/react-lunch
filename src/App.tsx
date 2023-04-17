@@ -61,7 +61,7 @@ const App = () => {
       <RestaurantContext.Provider value={{ state, setState }}>
         <Header />
         <SelectContainer>
-          <SelectBox name="categoryBy" options={categoryOptions} />
+          <SelectBox name="categorizeBy" options={categoryOptions} />
           <SelectBox name="sortBy" options={sortingWayOptions} />
         </SelectContainer>
         <RestaurantList />

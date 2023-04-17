@@ -37,9 +37,7 @@ test("전체 음식점 리스트를 렌더링 했는지 검사한다", () => {
     "파스토보이",
     "라이브볼",
   ];
-  render(
-    <RestaurantList categorizeBy="all" sortBy="name" restaurants={mockData} />
-  );
+  render(<RestaurantList />);
   restaurants.forEach((restaurant) => {
     const linkElement = screen.getByText(restaurant);
     expect(linkElement).toBeInTheDocument();

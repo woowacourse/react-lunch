@@ -15,9 +15,7 @@ const SelectBox = (props: SelectBoxProps) => {
   return (
     <Select
       name=""
-      onChange={(event) => {
-        setState({ ...state, [name]: event.target.value });
-      }}>
+      onChange={(event) => setState({ ...state, [name]: event.target.value })}>
       {options.map((option) => (
         <option value={option.value} key={option.value}>
           {option.label}
