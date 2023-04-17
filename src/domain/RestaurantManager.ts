@@ -2,17 +2,17 @@ import mockData from './mockData.json';
 import { RestaurantDetail, Category } from '../types/RestaurantDetail';
 
 const RESTAURANT_LOCAL_STORAGE_ID = 'restaurantList';
+const restaurantList = initRestaurantList();
 
-// local storage 접근
-const initMockData = () => {
+(function initMockData() {
   localStorage.setItem(RESTAURANT_LOCAL_STORAGE_ID, JSON.stringify(mockData));
-};
+})();
+
+function initRestaurantList() {
+  return JSON.parse(localStorage.getItem(RESTAURANT_LOCAL_STORAGE_ID) || '{}');
+}
 
 const getRestaurantList = (): RestaurantDetail[] => {
-  const restaurantList: RestaurantDetail[] = JSON.parse(
-    localStorage.getItem(RESTAURANT_LOCAL_STORAGE_ID) || '{}'
-  );
-
   return restaurantList;
 };
 
@@ -46,13 +46,13 @@ const getRestaurantListFilteredByOptions = (
   category: Category,
   sort: string
 ) => {
-  if (sort === 'distance') {
+  if (sort === '거리순') {
     return getFiltered(
       [sortByDistance, filterByCategory(category)],
       getRestaurantList()
     );
   }
-  if (sort === 'name') {
+  if (sort === '이름순') {
     return getFiltered(
       [sortByName, filterByCategory(category)],
       getRestaurantList()
@@ -71,7 +71,6 @@ const getRestaurantByID = (_id: number) => {
 };
 
 export default {
-  initMockData,
   getRestaurantList,
   sortByName,
   sortByDistance,
