@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import CategoryIcon from './CategoryIcon';
+import RestaurantCategoryIcon from './RestaurantCategoryIcon';
 import { Restaurant, SetModalRestaurantId } from '../../@types/type';
 import { BodyText, SubTitleText } from '../../style/typography';
 
@@ -14,7 +14,7 @@ const RestaurantItem = ({ restaurant, setModalRestaurantId }: RestaurantItemProp
 
   return (
     <RestaurantItemLayout onClick={onClickRestaurant}>
-      <CategoryIcon category={category} />
+      <RestaurantCategoryIcon category={category} />
       <Information>
         <Title>{name}</Title>
         <Distance>캠퍼스부터 {distanceByMinutes}분 내</Distance>

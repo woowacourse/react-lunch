@@ -1,21 +1,25 @@
-import CategoryIcon from './CategoryIcon';
 import styled from 'styled-components';
 import { Restaurant } from '../../@types/type';
 import { BodyText, SubTitleText } from '../../style/typography';
+import RestaurantCategoryIcon from './RestaurantCategoryIcon';
+import Modal from '../common/Modal';
 
-type RestaurantDetailProps = { restaurant: Restaurant };
+type RestaurantDetailModalProps = {
+  restaurant: Restaurant;
+  onCloseModal: () => void;
+};
 
-const RestaurantDetail = ({ restaurant }: RestaurantDetailProps) => {
+const RestaurantDetailModal = ({ restaurant, onCloseModal }: RestaurantDetailModalProps) => {
   const { category, name, distanceByMinutes, description, referenceUrl } = restaurant;
 
   return (
-    <>
-      <CategoryIcon category={category} />
+    <Modal onCloseModal={onCloseModal}>
+      <RestaurantCategoryIcon category={category} />
       <Title>{name}</Title>
       <Distance>캠퍼스로부터 {distanceByMinutes}분 내</Distance>
       <Description>{description}</Description>
       <ReferenceURL href={referenceUrl}>{referenceUrl}</ReferenceURL>
-    </>
+    </Modal>
   );
 };
 
@@ -36,4 +40,4 @@ const ReferenceURL = styled.a`
   word-break: break-all;
 `;
 
-export default RestaurantDetail;
+export default RestaurantDetailModal;
