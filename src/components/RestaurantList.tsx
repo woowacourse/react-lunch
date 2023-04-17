@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 import RestaurantManager from '../domain/RestaurantManager';
 import { RestaurantItem } from './RestaurantItem';
-import { Category, RestaurantDetail } from '../types/RestaurantDetail';
-import { useEffect, useRef, useState } from 'react';
+import { Category } from '../types/RestaurantDetail';
+import { useRef, useState } from 'react';
 import { DetailModal } from './DetailModal';
 import { createPortal } from 'react-dom';
 
@@ -12,22 +12,13 @@ interface RestaurantListProps {
   sort: string;
 }
 
-const useRestaurants = (category: Category, sort: string) => {
-  const [restaurants, setRestaurants] = useState<RestaurantDetail[]>([]);
-
-  useEffect(() => {
-    setRestaurants(
-      RestaurantManager.getRestaurantListFilteredByOptions(category, sort)
-    );
-  }, [category, sort]);
-
-  return restaurants;
+const fetchRestaurants = (category: Category, sort: string) => {
+  return RestaurantManager.getRestaurantListFilteredByOptions(category, sort);
 };
 
 export const RestaurantList = ({ category, sort }: RestaurantListProps) => {
-  const restaurants = useRestaurants(category, sort);
-  const [show, setShow] = useState(false);
-  const idRef = useRef(0);
+  const [showModal, setShowModal] = useState(false);
+  const idRef = useRef(-1);
 
   const handleClickItem: React.MouseEventHandler<HTMLLIElement> = (event) => {
     const eventTarget = event.target as HTMLElement;
@@ -36,8 +27,10 @@ export const RestaurantList = ({ category, sort }: RestaurantListProps) => {
       idRef.current = Number(eventTarget.id);
     }
 
-    setShow(true);
+    setShowModal(true);
   };
+
+  const restaurants = fetchRestaurants(category, sort);
 
   return (
     <>
@@ -50,10 +43,10 @@ export const RestaurantList = ({ category, sort }: RestaurantListProps) => {
           ></RestaurantItem>
         ))}
       </RestaurantListContainer>
-      {show &&
+      {showModal &&
         createPortal(
           <DetailModal
-            setShow={setShow}
+            setShow={setShowModal}
             restaurantID={idRef.current}
           ></DetailModal>,
           document.body
