@@ -3,7 +3,7 @@ import { BodyText, SubTitleText } from '../../style/typography';
 import RestaurantCategoryIcon from './RestaurantCategoryIcon';
 import Modal from '../common/Modal';
 import { useContext } from 'react';
-import { RestaurantDetailModalContext } from './RestaurantFinder';
+import { RestaurantDetailModalContext } from '../../contexts/RestaurantDetailModalContext';
 
 const RestaurantDetailModal = () => {
   const { isModalOpen, modalRestaurantInfo, setIsModalOpen } = useContext(RestaurantDetailModalContext);

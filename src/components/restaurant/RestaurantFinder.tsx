@@ -4,15 +4,7 @@ import RestaurantList from './RestaurantList';
 import useRestaurantList from '../../hooks/useRestaurantList';
 import React, { useState } from 'react';
 import { Restaurant } from '../../@types/type';
-
-export type RestaurantDetailModalContextState = {
-  isModalOpen: boolean;
-  modalRestaurantInfo: Restaurant | null;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setModalRestaurantInfo: React.Dispatch<React.SetStateAction<null | Restaurant>>;
-};
-
-export const RestaurantDetailModalContext = React.createContext({} as RestaurantDetailModalContextState);
+import { RestaurantDetailModalContext } from '../../contexts/RestaurantDetailModalContext';
 
 const RestaurantFinder = () => {
   const { restaurantList, setFindOptions } = useRestaurantList();
