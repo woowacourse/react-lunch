@@ -1,18 +1,15 @@
-import { Category, Restaurant, SortBy } from "../types/Restaurant";
-import mockData from "../data/mockData.json";
-import { RESTAURANTS_KEY } from "../constants/constants";
+import { Category, Restaurant, SortBy } from '../types/Restaurant';
+import mockData from '../data/mockData.json';
+import { RESTAURANTS_KEY } from '../constants/constants';
 
-export const filterByCategory = (
-  restaurants: Restaurant[],
-  category: Category
-) => {
-  if (category === "전체") return restaurants;
+export const filterByCategory = (restaurants: Restaurant[], category: Category) => {
+  if (category === '전체') return restaurants;
 
   return restaurants.filter((r) => r.category === category);
 };
 
 export const sortBy = (restaurants: Restaurant[], sort: SortBy) => {
-  if (sort === "이름순") {
+  if (sort === '이름순') {
     return restaurants.sort((a, b) => a.storeName.localeCompare(b.storeName));
   }
 

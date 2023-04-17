@@ -1,4 +1,4 @@
-import { CATEGORIES, SORT_BY } from "../constants/constants";
+import { CATEGORIES, SORT_BY } from '../constants/constants';
 
 type Restaurant = {
   category: Category;
