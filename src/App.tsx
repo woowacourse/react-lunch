@@ -81,12 +81,12 @@ export default function App() {
         restaurants={restaurants}
         onClickRestaurant={openRestaurantInfoModal}
       />
-      {isModalOpened && restaurant ? (
+      {isModalOpened && restaurant && (
         <RestaurantDetailModal
           restaurant={restaurant}
           onCloseModal={handleModalClose}
         />
-      ) : null}
+      )}
     </div>
   );
 }
