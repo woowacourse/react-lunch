@@ -1,5 +1,6 @@
 import { Category, Restaurant, SortBy } from "../types/Restaurant";
 import mockData from "../data/mockData.json";
+import { RESTAURANTS_KEY } from "../constants/constants";
 
 export const filterByCategory = (
   restaurants: Restaurant[],
@@ -19,11 +20,11 @@ export const sortBy = (restaurants: Restaurant[], sort: SortBy) => {
 };
 
 export const getRestaurants = () => {
-  const storageRestaurants = localStorage.getItem("restaurant");
+  const storageRestaurants = localStorage.getItem(RESTAURANTS_KEY);
   if (storageRestaurants) return JSON.parse(storageRestaurants);
 
   const { restaurants } = mockData as { restaurants: Restaurant[] };
-  localStorage.setItem("restaurants", JSON.stringify(restaurants));
+  localStorage.setItem(RESTAURANTS_KEY, JSON.stringify(restaurants));
 
   return restaurants;
 };

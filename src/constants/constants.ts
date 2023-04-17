@@ -6,7 +6,6 @@ import korean from "../assets/category-korean.png";
 import western from "../assets/category-western.png";
 import type { Category } from "../types/Restaurant";
 
-// TODO: 전체를 없앨 수 있는 타입 고민하기
 export const CATEGORY_ICONS: Record<Category, string> = {
   전체: "",
   한식: korean,
@@ -28,3 +27,5 @@ export const CATEGORIES = [
 ] as const;
 
 export const SORT_BY = ["이름순", "거리순"] as const;
+
+export const RESTAURANTS_KEY = "restaurants";
