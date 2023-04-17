@@ -3,7 +3,7 @@ const theme = {
   primaryLighten: '#f6a88a',
   textWhite: '#ffffff',
   grey: {
-    '100': '#ffffff',
+    '100': '#f5f5f5',
     '200': '#d0d5dd',
     '300': '#667085',
     '400': '#344054',

@@ -11,6 +11,10 @@ export const RestaurantListItem = styled.li`
   border-bottom: 1px solid #e9eaed;
   cursor: pointer;
 
+  &:hover {
+    background: ${(props) => props.theme.grey['100']};
+  }
+
   & > :first-child {
     grid-row: span 2;
   }
