@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { CATEGORY, SORTING_SELECT } from "../constants";
+import { CategorySelect, SortingSelect } from "../types";
 
 interface Props {
   onChangeCategory: (event: string) => void;
   onChangeSorting: (event: string) => void;
-  selectedCategory: string;
-  selectedSorting: string;
+  selectedCategory: CategorySelect;
+  selectedSorting: SortingSelect;
 }
 
 const SelectBoxes = (props: Props) => {

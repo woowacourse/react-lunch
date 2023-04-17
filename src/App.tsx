@@ -1,6 +1,6 @@
 import { useState } from "react";
 import restaurantMockData from "./mocks/restaurants.json";
-import { RestaurantInfo } from "./types";
+import { CategorySelect, RestaurantInfo, SortingSelect } from "./types";
 import Restaurants from "./components/Restaurants";
 import SelectBoxes from "./components/SelectBoxes";
 import HeaderSection from "./components/HeaderSection";
@@ -22,7 +22,7 @@ const App = () => {
   const [sorting, setSorting] = useState(getSorting);
 
   const sortBySelectedOption = (
-    sorting: string,
+    sorting: SortingSelect,
     filteredRestaurants: RestaurantInfo[]
   ) => {
     const restaurants = sortAlphabetically<RestaurantInfo>(
@@ -34,7 +34,7 @@ const App = () => {
     return sortAscending<RestaurantInfo>(restaurants, "takingTime"); // sort by proximity
   };
 
-  const filterByCategory = (selectedCategory: string) => {
+  const filterByCategory = (selectedCategory: CategorySelect) => {
     const allRestaurants = restaurantMockData;
     const selectedCategoryRestaurants = allRestaurants.filter(
       (restaurant) => restaurant.category === selectedCategory
@@ -46,8 +46,8 @@ const App = () => {
   };
 
   const filterAndSortByOptions = (
-    selectedCategory: string = category,
-    selectedSorting: string = sorting
+    selectedCategory: CategorySelect = category,
+    selectedSorting: SortingSelect = sorting
   ) => {
     const filteredRestaurants = filterByCategory(selectedCategory);
     return sortBySelectedOption(selectedSorting, filteredRestaurants);
