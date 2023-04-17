@@ -1,13 +1,10 @@
-import React, { useMemo, useCallback, useState, useEffect } from 'react';
+import React, { useMemo, useCallback } from 'react';
 
 import RestaurantItem from './RestaurantItem.tsx';
 
+import useRestaurantList from './hooks/useFetchRestaurantList.ts';
 import { FilterOption, Restaurant } from './util/type.ts';
 import { pipe } from './util/util.ts';
-
-type StateType = {
-  restaurantList: Omit<Restaurant, 'link'>[];
-};
 
 type RestaurantListProps = {
   filterOptions: FilterOption;
@@ -15,25 +12,8 @@ type RestaurantListProps = {
 };
 
 const RestaurantList = ({ filterOptions, onToggleDrawer }: RestaurantListProps) => {
-  const [state, setState] = useState<StateType>({
-    restaurantList: [],
-  });
-
-  useEffect(() => {
-    const rawRestaurantList = localStorage.getItem('restaurantList');
-    if (rawRestaurantList) {
-      setState({ restaurantList: JSON.parse(rawRestaurantList) });
-      return;
-    }
-
-    fetch('./mockData.json')
-      .then((res) => res.json())
-      .then((data) => {
-        localStorage.setItem('restaurantList', JSON.stringify(data));
-        setState({ restaurantList: data });
-      });
-  }, []);
-
+  const state = useRestaurantList();
+  
   const filterByCategory = useCallback((category: string) => {
     return (restaurantList: Omit<Restaurant, 'link'>[]) => {
       if (category === '전체') return restaurantList;
