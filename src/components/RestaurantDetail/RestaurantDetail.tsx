@@ -1,6 +1,6 @@
 import { Restaurant } from '../../types/restaurant';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CategoryImage } from '..';
 import * as styled from './RestaurantDetail.styles';
 
@@ -10,6 +10,11 @@ interface Props {
 }
 
 const RestaurantDetail = ({ closeModal, restaurant }: Props) => {
+  useEffect(() => {
+    document.body.classList.add('overflow-hidden');
+    return () => document.body.classList.remove('overflow-hidden');
+  }, []);
+
   return (
     <>
       <styled.ModalBackdrop onClick={closeModal} />
