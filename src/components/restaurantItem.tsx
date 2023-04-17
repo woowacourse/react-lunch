@@ -4,19 +4,20 @@ import { Restaurant } from "../types/restaurant";
 import { convertImage } from "../utils/imageConverter";
 import { Modal } from "./modal";
 import { ItemDetailModalContent } from "./ItemDetailModalContent";
+import { useModal } from "../hook/useModal";
 
 interface RestaurantItemProps {
   restaurant: Restaurant;
 }
 
 export const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isModalOpen, openModal, closeModal } = useModal();
 
   const { category, name, takingTime, description } = restaurant;
 
   return (
     <>
-      <ItemContainer onClick={() => setIsModalOpen(true)}>
+      <ItemContainer onClick={() => openModal()}>
         <ImgWrapper>
           <CategoryImg src={convertImage(category)} alt={category} />
         </ImgWrapper>
@@ -27,7 +28,7 @@ export const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
         </ItemInfo>
       </ItemContainer>
       {isModalOpen && (
-        <Modal modalPosition="bottom" closeModal={() => setIsModalOpen(false)}>
+        <Modal modalPosition="bottom" closeModal={closeModal}>
           <ItemDetailModalContent restaurant={restaurant} />
         </Modal>
       )}

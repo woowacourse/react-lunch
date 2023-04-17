@@ -1,11 +1,11 @@
-import { useState } from "react";
 import styled from "styled-components";
 import addButton from "../assets/add-button.png";
 import { Modal } from "./modal";
 import { WarningModalContent } from "./warningModalContent";
+import { useModal } from "../hook/useModal";
 
 export const Header = ({ handleClick }: { handleClick: () => void }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isModalOpen, openModal, closeModal } = useModal();
 
   return (
     <>
@@ -20,19 +20,14 @@ export const Header = ({ handleClick }: { handleClick: () => void }) => {
         <AddButton
           aria-label="음식점 추가"
           onClick={() => {
-            setIsModalOpen(true);
+            openModal();
           }}
         >
           <AddIcon src={addButton} alt="음식점 추가" />
         </AddButton>
       </Container>
       {isModalOpen && (
-        <Modal
-          modalPosition="middle"
-          closeModal={() => {
-            setIsModalOpen(false);
-          }}
-        >
+        <Modal modalPosition="middle" closeModal={closeModal}>
           <WarningModalContent />
         </Modal>
       )}
