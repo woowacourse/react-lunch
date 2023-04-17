@@ -15,3 +15,11 @@ export const getInitList = () => {
 
   return mockList;
 };
+
+export const sortByName = (restaurants: Restaurant[]) => {
+  return [...restaurants].sort((a, b) => a.name.localeCompare(b.name));
+};
+
+export const sortByDistance = (restaurants: Restaurant[]) => {
+  return [...restaurants].sort((a, b) => a.distance - b.distance);
+};

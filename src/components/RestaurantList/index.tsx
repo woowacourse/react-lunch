@@ -2,7 +2,7 @@ import "./index.css";
 import RestaurantItem from "../RestaurantItem";
 import { CategoryOption, Restaurant, SortOption } from "../../types/restaurant";
 import { useCallback, useEffect, useState } from "react";
-import { getInitList } from "../../domain/restaurantInitList";
+import { getInitList, sortByDistance, sortByName } from "../../domain/restaurantUtils";
 
 interface RestaurantListProps {
   selectedCategory: CategoryOption;
@@ -29,10 +29,10 @@ const RestaurantList = (props: RestaurantListProps) => {
   const getSortedList = useCallback(
     (restaurants: Restaurant[]) => {
       if (selectedSort === "name") {
-        return getSortedListByName(restaurants);
+        return sortByName(restaurants);
       }
       if (selectedSort === "distance") {
-        return getSortedListByDistance(restaurants);
+        return sortByDistance(restaurants);
       }
 
       return restaurants;
@@ -46,14 +46,6 @@ const RestaurantList = (props: RestaurantListProps) => {
 
     setfilteredRestaurants(sortedRestaurantList);
   }, [getListByCategory, getSortedList]);
-
-  const getSortedListByName = (restaurants: Restaurant[]) => {
-    return [...restaurants].sort((a, b) => a.name.localeCompare(b.name));
-  };
-
-  const getSortedListByDistance = (restaurants: Restaurant[]) => {
-    return [...restaurants].sort((a, b) => a.distance - b.distance);
-  };
 
   return (
     <section className="restaurant-list-container">
