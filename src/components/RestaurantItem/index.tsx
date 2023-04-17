@@ -1,12 +1,8 @@
 import "./index.css";
 import { CategoryImagePath } from "../../data/CategoryImagePath";
-import { Restaurant } from "../../types/restaurant";
 import useModal from "../../hooks/useModal";
 import RestaurantDetailModal from "../RestaurantDetailModal";
-
-interface RestaurantItemProps {
-  restaurant: Restaurant;
-}
+import { RestaurantItemProps } from "./type";
 
 const RestaurantItem = (props: RestaurantItemProps) => {
   const { restaurant } = props;

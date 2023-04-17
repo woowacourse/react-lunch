@@ -1,11 +1,7 @@
 import "./index.css";
 import { CategoryOption, SortOption } from "../../types/restaurant";
 import { CATEGORY_LIST, SORT_LIST } from "../../data/constants";
-
-interface FilterProps {
-  setSelectedCategory: (category: CategoryOption) => void;
-  setSelectedSort: (sort: SortOption) => void;
-}
+import { FilterProps } from "./type";
 
 const Filter = (props: FilterProps) => {
   const { setSelectedCategory, setSelectedSort } = props;

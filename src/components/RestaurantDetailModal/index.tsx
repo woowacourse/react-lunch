@@ -1,19 +1,14 @@
 import "./index.css";
 import { CategoryImagePath } from "../../data/CategoryImagePath";
-import { Restaurant } from "../../types/restaurant";
 import ModalContainer from "../common/ModalContainer";
-
-interface RestaurantDetailModalProps {
-  closeModal: () => void;
-  restaurant: Restaurant;
-}
+import { RestaurantDetailModalProps } from "./type";
 
 const RestaurantDetailModal = (props: RestaurantDetailModalProps) => {
   const { closeModal, restaurant } = props;
   const { name, category, distance, description, link } = restaurant;
 
   return (
-    <ModalContainer closeModal={closeModal}>
+    <ModalContainer closeModal={props.closeModal}>
       <div className="restaurant-detail-container">
         <div className="category-and-favorite">
           <div className="restaurant__category">

@@ -1,8 +1,5 @@
 import "./index.css";
-
-interface HeaderProps {
-  title: string;
-}
+import { HeaderProps } from "./type";
 
 const Header = (props: HeaderProps) => {
   return (

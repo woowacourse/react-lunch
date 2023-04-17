@@ -1,13 +1,9 @@
 import "./index.css";
 import RestaurantItem from "../RestaurantItem";
-import { CategoryOption, Restaurant, SortOption } from "../../types/restaurant";
+import { Restaurant } from "../../types/restaurant";
 import { useCallback, useEffect, useState } from "react";
 import { getInitList, sortByDistance, sortByName } from "../../domain/restaurantUtils";
-
-interface RestaurantListProps {
-  selectedCategory: CategoryOption;
-  selectedSort: SortOption;
-}
+import { RestaurantListProps } from "./type";
 
 const allRestaurants: Restaurant[] = getInitList();
 
