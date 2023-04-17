@@ -6,11 +6,12 @@ type ButtonProps = Omit<
 > &
   React.PropsWithChildren<{
     variant?: 'primary' | 'outlined';
+    disabled?: boolean;
   }>;
 
-const Button = ({ children, variant, ...buttonProps }: ButtonProps) => {
+const Button = ({ children, variant, disabled, ...buttonProps }: ButtonProps) => {
   return (
-    <styled.Button {...buttonProps} $variant={variant}>
+    <styled.Button {...buttonProps} $variant={variant} $disabled={disabled}>
       {children}
     </styled.Button>
   );

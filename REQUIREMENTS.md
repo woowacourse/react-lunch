@@ -36,7 +36,7 @@
 - [x] `Button` variant 평가를 한 파일에서 하도록 수정하기
 - [x] `DropdownFilter` 컴포넌트를 Stateless로 바꾸기
 - [x] `.eslintrc.json` 을 `.eslintrc` 로 수정
-- [ ] 아무런 기능이 없는 버튼은 `disabled` 처리
+- [x] 아무런 기능이 없는 버튼은 `disabled` 처리
 
 ## step2 기타 개선 사항
 

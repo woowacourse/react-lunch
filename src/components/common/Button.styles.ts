@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 type ButtonProps = {
   $variant?: 'primary' | 'outlined';
+  $disabled?: boolean;
 };
 
 export const Button = styled.button<ButtonProps>`
@@ -15,4 +16,6 @@ export const Button = styled.button<ButtonProps>`
   color: ${(props) =>
     props.$variant === 'primary' ? props.theme.grey['100'] : props.theme.grey['300']};
   font-weight: 600;
+
+  cursor: ${(props) => (props.$disabled ? 'not-allowed' : 'initial')};
 `;

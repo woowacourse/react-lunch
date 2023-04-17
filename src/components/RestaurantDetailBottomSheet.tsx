@@ -37,7 +37,9 @@ const RestaurantDetailBottomSheet = ({
         )}
 
         <styled.BottomSheetButtonGroup>
-          <Button variant="outlined">삭제하기</Button>
+          <Button variant="outlined" disabled>
+            삭제하기
+          </Button>
           <Button
             variant="primary"
             onClick={onClose}
