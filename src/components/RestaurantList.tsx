@@ -21,9 +21,13 @@ const RestaurantList = () => {
   );
 
   const handleClickEvent = () => {
-    $<HTMLElement>('#header_title').addEventListener('click', () => {
-      initSelectOption();
-    });
+    try {
+      $<HTMLElement>('#header_title').addEventListener('click', () => {
+        initSelectOption();
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const initSelectOption = () => {

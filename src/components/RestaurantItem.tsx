@@ -10,8 +10,12 @@ const RestaurantItem = (props: RestaurantItemType) => {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState<boolean>(false);
 
   const closeBottomSheet = () => {
-    $<HTMLElement>('#bottom_sheet').classList.add('closed_bottom_sheet');
-    $<HTMLElement>('#backdrop').classList.add('closed_background');
+    try {
+      $<HTMLElement>('#bottom_sheet').classList.add('closed_bottom_sheet');
+      $<HTMLElement>('#backdrop').classList.add('closed_background');
+    } catch (e) {
+      console.log(e);
+    }
 
     setTimeout(() => {
       setIsBottomSheetOpen(false);

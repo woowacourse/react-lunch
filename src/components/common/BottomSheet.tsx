@@ -7,8 +7,12 @@ import { $ } from '../../utils/domSelector';
 const BottomSheet = (props: BottomSheetType) => {
   useEffect(() => {
     setTimeout(() => {
-      $<HTMLElement>('#bottom_sheet').classList.remove('close_bottom_sheet');
-      $<HTMLElement>('#backdrop').classList.remove('close_background');
+      try {
+        $<HTMLElement>('#bottom_sheet').classList.remove('close_bottom_sheet');
+        $<HTMLElement>('#backdrop').classList.remove('close_background');
+      } catch (e) {
+        console.log(e);
+      }
     });
     handleScroll(false);
 
