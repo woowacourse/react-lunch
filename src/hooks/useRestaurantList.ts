@@ -35,14 +35,13 @@ const filterAndSortRestaurantList = (
 
 const useRestaurantList = (data: Restaurant[]) => {
   const [restaurantList] = useState(data);
-
   const [currentRestaurantList, setCurrentRestaurantList] = useState(restaurantList);
-  const [displayStatus, setDisplayStatus] = useState({
+  const [, setDisplayStatus] = useState({
     category: DEFAULT_CATEGORY,
     sortBy: DEFAULT_SORT_BY,
   });
 
-  const updateCurrentRestaurantList = useCallback(
+  const getCurrentRestaurantList = useCallback(
     ({ category, sortBy }: FilterOption) => {
       const updatedRestaurantList = filterAndSortRestaurantList(restaurantList, category, sortBy);
       setCurrentRestaurantList(updatedRestaurantList);
@@ -54,15 +53,17 @@ const useRestaurantList = (data: Restaurant[]) => {
     (event: ChangeEvent<HTMLSelectElement>) => {
       if (!isElementOfType<HTMLSelectElement>(event)) return;
 
-      const updatedDisplayStatus = {
-        ...displayStatus,
-        [event.target.name]: event.target.value,
-      };
+      setDisplayStatus((displayStatus) => {
+        const updatedDisplayStatus = {
+          ...displayStatus,
+          [event.target.name]: event.target.value,
+        };
+        getCurrentRestaurantList(updatedDisplayStatus);
 
-      setDisplayStatus(updatedDisplayStatus);
-      updateCurrentRestaurantList(updatedDisplayStatus);
+        return updatedDisplayStatus;
+      });
     },
-    [displayStatus, updateCurrentRestaurantList]
+    [getCurrentRestaurantList]
   );
 
   return { currentRestaurantList, handleRestaurantFilterChange };
