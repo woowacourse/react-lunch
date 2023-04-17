@@ -8,10 +8,10 @@ type RestaurantProps = {
   onToggleDrawer: (id?: number) => void;
 };
 
-const RestaurantItem: React.FC<RestaurantProps> = ({
+const RestaurantItem = ({
   restaurant,
   onToggleDrawer,
-}) => {
+}:RestaurantProps) => {
   const { id, category, title, estimateTime, description } = restaurant;
   return (
     <li className="restaurant" onClick={() => onToggleDrawer(id)}>

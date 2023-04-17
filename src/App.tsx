@@ -11,7 +11,7 @@ import {
   NO_SELECT_ID,
 } from './util/constant.ts';
 
-const App: React.FC = () => {
+const App = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState<boolean>(false);
   const [drawerSelectId, setDrawerSelectId] = useState<number>(NO_SELECT_ID);
   const [filterOptions, setFilterOptions] = useState<FilterOption>({

@@ -8,11 +8,11 @@ type SelectProps = {
   onChangeFilterOptions: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
-const Select: React.FC<SelectProps> = ({
+const Select = ({
   name,
   options,
   onChangeFilterOptions,
-}) => {
+}:SelectProps) => {
   return (
     <select
       name={name}

@@ -29,10 +29,10 @@ const filterBySort = (restaurantList, sorting): Restaurant[] => {
   });
 };
 
-const RestaurantList: React.FC<RestaurantListProps> = ({
+const RestaurantList = ({
   filterOptions,
   onToggleDrawer,
-}) => {
+}:RestaurantListProps) => {
   const { category, sorting } = filterOptions;
   const restaurantList = useRestaurantList('restaurantList', []);
 
