@@ -15,6 +15,7 @@ import {
 } from "./utils/arrayConverter";
 
 const App = () => {
+  const [allRestaurants, setAllRestaurants] = useState<Restaurant[]>([]);
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [sorting, setSorting] = useState<SortingUnion>(SELECT_OPTION.NAME);
   const [category, setCategory] = useState<CategoryUnion>(SELECT_OPTION.ALL);
@@ -22,11 +23,16 @@ const App = () => {
   useEffect(() => {
     const getInitialData = async () => {
       const data = await getRestaurantData();
+      setAllRestaurants(data);
       setRestaurants(data);
     };
 
     getInitialData();
   }, []);
+
+  useEffect(() => {
+    arrangeRestaurants();
+  }, [sorting, category]);
 
   const handleSelect = (type: string, value: string) => {
     if (type === SELECT_OPTION.SORTING) {
@@ -36,17 +42,20 @@ const App = () => {
     if (type === SELECT_OPTION.CATEGORY) {
       setCategory(value as CategoryUnion);
     }
-
-    arrangeRestaurants();
   };
 
   const arrangeRestaurants = () => {
     const filteredRestaurants = getFilteredRestaurantsByCategory(
-      restaurants,
+      allRestaurants,
       category
     );
 
-    return getSortedRestaurants(filteredRestaurants, sorting);
+    const sortedRestaurants = getSortedRestaurants(
+      filteredRestaurants,
+      sorting
+    );
+
+    setRestaurants(sortedRestaurants);
   };
 
   return (
@@ -54,7 +63,7 @@ const App = () => {
       <GlobalStyle />
       <Header />
       <SelectSection handleSelect={handleSelect} />
-      {restaurants && <RestaurantSection restaurants={arrangeRestaurants()} />}
+      {restaurants && <RestaurantSection restaurants={restaurants} />}
     </ThemeProvider>
   );
 };
