@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Select from './common/Select.tsx';
+import Select from './components/Select.tsx';
 import { CATEGORY_OPTIONS, SORTING_OPTIONS } from './util/constant.ts';
 
 type SelectContainerProps = {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import type { Restaurant } from './util/type.js';
-import Drawer from './common/Drawer.tsx';
+import Drawer from './components/Drawer.tsx';
 import useRestaurantList from './hooks/useRestaurantList.ts';
 import { CATEGORY_IMAGES, NO_EXIST_RESTAURANT } from './util/constant.ts';
 
@@ -44,7 +44,7 @@ const RestaurantDetailDrawer: React.FC<RestaurantDetailDrawerProps> = ({
       <button
         type="button"
         className="button button--secondary text-caption"
-        onClick={() => onToggleDrawer()}
+        onClick={onToggleDrawer}
       >
         취소하기
       </button>

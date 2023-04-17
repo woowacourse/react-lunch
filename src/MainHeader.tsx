@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './common/Header.tsx';
+import Header from './components/Header.tsx';
 
 const MainHeader: React.FC = () => {
   return (
