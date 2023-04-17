@@ -11,9 +11,11 @@ export const useModal = (setSelectedRestaurant: CallableFunction) => {
     };
   });
 
-  const handleClickClose: React.MouseEventHandler = event => {
-    const target = event.target as HTMLElement;
-    if (target.classList.contains('modal-backdrop') || target.classList.contains('modal-close-button')) {
+  const handleClickClose: React.MouseEventHandler = ({ target }) => {
+    if (
+      target instanceof Element &&
+      (target.classList.contains('modal-backdrop') || target.classList.contains('modal-close-button'))
+    ) {
       setSelectedRestaurant(null);
     }
   };
