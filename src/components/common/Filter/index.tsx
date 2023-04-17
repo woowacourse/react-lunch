@@ -15,8 +15,8 @@ type FilterProps = {
 export default function Filter({ id, name, options, onChange }: FilterProps) {
   return (
     <select name={name} id={id} className="filter" onChange={onChange}>
-      {options.map((option, idx) => (
-        <option key={idx} value={option.value}>
+      {options.map((option) => (
+        <option key={option.value} value={option.value}>
           {option.text}
         </option>
       ))}
