@@ -38,7 +38,7 @@ function Main() {
         onItemClick={updateSelectedRestaurant}
       />
       {isModalOpen && (
-        <Modal close={closeModal} onKeyDown={handleModalClosePress}>
+        <Modal isOpen={isModalOpen} close={closeModal} onKeyDown={handleModalClosePress}>
           {selectedRestaurant && (
             <RestaurantDetail restaurant={selectedRestaurant} onClick={closeModal} />
           )}
