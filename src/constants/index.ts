@@ -6,7 +6,7 @@ const DEFAULT_SORT_BY = '이름순';
 const RESTAURANT_CATEGORY = ['중식', '한식', '일식', '아시안식', '양식', '기타'] as const;
 const SORT_BY = ['이름순', '거리순'] as const;
 
-const RESTAURANT_CATEGORY_OPTION = [DEFAULT_CATEGORY, ...RESTAURANT_CATEGORY];
+const RESTAURANT_CATEGORY_OPTION = [DEFAULT_CATEGORY, ...RESTAURANT_CATEGORY] as const;
 
 const SELECT_ATTRIBUTES = {
   CATEGORY_FILTER: {

@@ -5,9 +5,10 @@ import Button from '../common/Button/Button';
 
 interface RestaurantDetailProps {
   restaurant: Restaurant;
+  onClick: () => void;
 }
 
-function RestaurantDetail({ restaurant }: RestaurantDetailProps) {
+function RestaurantDetail({ restaurant, onClick }: RestaurantDetailProps) {
   return (
     <>
       <div className={styles.restaurantInformation}>
@@ -33,7 +34,9 @@ function RestaurantDetail({ restaurant }: RestaurantDetailProps) {
           웹사이트 방문하기
         </a>
       )}
-      <Button className="text-caption close-button">닫기</Button>
+      <Button className="text-caption close-button" onClick={onClick}>
+        닫기
+      </Button>
     </>
   );
 }

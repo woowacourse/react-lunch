@@ -1,13 +1,13 @@
 import styles from './style.module.css';
-import { KeyboardEvent, MouseEvent, ReactNode, useEffect, useRef } from 'react';
+import { KeyboardEvent, ReactNode, useEffect, useRef } from 'react';
 
 interface ModalProps {
   children: ReactNode;
-  onClick: (event: MouseEvent<HTMLElement>) => void;
-  onKeyPress: (event: KeyboardEvent<HTMLElement>) => void;
+  close: () => void;
+  onKeyDown: (event: KeyboardEvent<HTMLElement>) => void;
 }
 
-function Modal({ children, onClick, onKeyPress }: ModalProps) {
+function Modal({ children, close, onKeyDown }: ModalProps) {
   const modalContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -16,10 +16,18 @@ function Modal({ children, onClick, onKeyPress }: ModalProps) {
     }
   }, []);
 
+  useEffect(() => {
+    document.body.classList.add('hide-overflow');
+
+    return () => {
+      document.body.classList.remove('hide-overflow');
+    };
+  });
+
   return (
-    <div className={styles.modal} onClick={onClick}>
-      <div className="backdrop" />
-      <div ref={modalContainerRef} className="modal-container" onKeyDown={onKeyPress} tabIndex={0}>
+    <div className={styles.modal}>
+      <div className="backdrop" onClick={close} />
+      <div ref={modalContainerRef} className="modal-container" onKeyDown={onKeyDown} tabIndex={0}>
         {children}
       </div>
     </div>

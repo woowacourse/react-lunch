@@ -14,7 +14,7 @@ const restaurantListData = filterAndSortRestaurantList(getRestaurantListData());
 function Main() {
   const { data: restaurantList, setDataBeforeUnload } = useLocalStorage(restaurantListData);
   const { currentRestaurantList, handleRestaurantFilterChange } = useRestaurantList(restaurantList);
-  const { isModalOpen, openModal, handleModalCloseClick, handleModalClosePress } = useModal();
+  const { isModalOpen, openModal, closeModal, handleModalClosePress } = useModal();
 
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
 
@@ -38,8 +38,10 @@ function Main() {
         onItemClick={updateSelectedRestaurant}
       />
       {isModalOpen && (
-        <Modal onClick={handleModalCloseClick} onKeyPress={handleModalClosePress}>
-          {selectedRestaurant && <RestaurantDetail restaurant={selectedRestaurant} />}
+        <Modal close={closeModal} onKeyDown={handleModalClosePress}>
+          {selectedRestaurant && (
+            <RestaurantDetail restaurant={selectedRestaurant} onClick={closeModal} />
+          )}
         </Modal>
       )}
     </main>
