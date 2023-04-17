@@ -22,7 +22,5 @@ export default function CategoryFilter({ onChange }: CategoryFilterProps) {
     onChange(value);
   };
 
-  return (
-    <Filter id="category-filter" name="category" options={options} onChange={onChangeCategory} />
-  );
+  return <Filter id="category-filter" name="category" options={options} onChange={onChangeCategory} />;
 }

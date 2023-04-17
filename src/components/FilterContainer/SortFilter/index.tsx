@@ -17,7 +17,5 @@ export default function SortFilter({ onChange }: SortFilterProps) {
     onChange(value);
   };
 
-  return (
-    <Filter id="sorting-filter" name="sorting" options={options} onChange={onChangeSortOption} />
-  );
+  return <Filter id="sorting-filter" name="sorting" options={options} onChange={onChangeSortOption} />;
 }

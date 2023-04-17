@@ -3,16 +3,9 @@ import { Header, Modal } from './components/common';
 import { FilterContainer, RestaurantDetailView, RestaurantList } from './components';
 import useModal from './hooks/useModal';
 
-import {
-  getFilteredRestaurantsByCategory,
-  getSortedRestaurants,
-  getRestaurantById,
-} from './helpers/RestaurantHelper';
+import { getFilteredRestaurantsByCategory, getSortedRestaurants, getRestaurantById } from './helpers/RestaurantHelper';
 
-import type {
-  RestaurantSortOption,
-  RestaurantCategoryFilterOption,
-} from './helpers/RestaurantHelper';
+import type { RestaurantSortOption, RestaurantCategoryFilterOption } from './helpers/RestaurantHelper';
 
 import type { Restaurant } from './types';
 import mockData from './mockData.json';
@@ -20,12 +13,9 @@ import './App.css';
 
 export default function App() {
   const [restaurants, setRestaurants] = useState<Restaurant[]>(mockData as Restaurant[]);
-  const [categoryFilterOption, setCategoryFilterOption] =
-    useState<RestaurantCategoryFilterOption>('전체');
+  const [categoryFilterOption, setCategoryFilterOption] = useState<RestaurantCategoryFilterOption>('전체');
   const [sortOption, setSortOption] = useState<RestaurantSortOption>('name');
-  const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant>(
-    mockData[0] as Restaurant
-  );
+  const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant>(mockData[0] as Restaurant);
   const { isOpenModal, modalOpen, modalClose } = useModal();
 
   const filteredRestaurants = getFilteredRestaurantsByCategory(restaurants, categoryFilterOption);
@@ -49,10 +39,7 @@ export default function App() {
   return (
     <div className="App">
       <Header>{'점심 뭐 먹지'}</Header>
-      <FilterContainer
-        onChangeCategoryFilter={onChangeCategoryFilter}
-        onChangeSortFilter={onChangeSortFilter}
-      />
+      <FilterContainer onChangeCategoryFilter={onChangeCategoryFilter} onChangeSortFilter={onChangeSortFilter} />
       <RestaurantList restaurants={sortedRestaurants} onClick={onClickRestaurantItem} />
       {isOpenModal && (
         <Modal onClick={modalClose}>

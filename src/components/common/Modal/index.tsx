@@ -12,11 +12,7 @@ export default function Modal({ onClick, children }: ModalProps) {
       <div className="modal-container">
         {children}
         <div className="button-container">
-          <button
-            id="modal-close-button"
-            className="button button--primary text-caption"
-            onClick={onClick}
-          >
+          <button id="modal-close-button" className="button button--primary text-caption" onClick={onClick}>
             닫기
           </button>
         </div>
