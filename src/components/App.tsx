@@ -1,11 +1,11 @@
 import Header from './Header/Header';
-import Main from './Main/Main';
+import Restaurants from './Restaurants/Restaurants';
 
 const App = () => {
   return (
     <>
       <Header />
-      <Main />
+      <Restaurants />
     </>
   );
 };
