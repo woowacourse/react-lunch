@@ -11,6 +11,7 @@ interface GlobalState {
   state: AppState;
   setState: Function;
 }
+
 export const RestaurantContext = createContext<GlobalState>({
   state: {
     restaurants: mockData,

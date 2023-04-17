@@ -14,13 +14,15 @@ export const SORTINGWAY = {
 };
 
 export interface AppState {
-  restaurants: object[];
+  restaurants: Restaurant[];
   modalOpen: boolean;
   modalInfo: Restaurant;
   sortBy: typeof SORTINGWAY[keyof typeof SORTINGWAY];
   categorizeBy: typeof CATEGORY[keyof typeof CATEGORY];
 }
+
 export interface Restaurant {
+  [key: string]: any;
   category: typeof CATEGORY[keyof typeof CATEGORY];
   name: string;
   distance: number;
