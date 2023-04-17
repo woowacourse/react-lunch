@@ -5,11 +5,11 @@ import styles from './RestaurantsList.module.css';
 import { getSelectedRestaurantsList } from '../../data/parseFn';
 
 const RestaurantList = (props: RestaurantListProps) => {
-  const handleRestaurantOnClick = (e: MouseEvent) => {
-    props.changeRestaurantId(Number(e.currentTarget.getAttribute('value')));
-  };
+  const { category, sorting, changeRestaurantId } = props;
 
-  const { category, sorting } = props;
+  const handleRestaurantOnClick = (e: MouseEvent) => {
+    changeRestaurantId(Number(e.currentTarget.getAttribute('value')));
+  };
 
   const restaurants = getSelectedRestaurantsList(category, sorting);
 
