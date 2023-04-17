@@ -1,6 +1,5 @@
 export const CATEGORY_ALL = '전체';
-export const CATEGORY_FILTER = [
-  CATEGORY_ALL,
+export const CATEGORY_LIST = [
   '한식',
   '중식',
   '일식',
@@ -8,6 +7,7 @@ export const CATEGORY_FILTER = [
   '아시안',
   '기타',
 ] as const;
+export const CATEGORY_FILTER = [CATEGORY_ALL, ...CATEGORY_LIST] as const;
 
 export const BY_DISTANCE = '거리순';
 export const BY_NAME = '이름순';

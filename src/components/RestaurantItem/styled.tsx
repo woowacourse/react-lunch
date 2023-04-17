@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const St = {
+const Styled = {
   Layout: styled.li`
     display: flex;
     align-items: flex-start;
@@ -47,4 +47,4 @@ const St = {
   `,
 };
 
-export default St;
+export default Styled;

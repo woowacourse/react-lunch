@@ -1,9 +1,5 @@
-import React, { Component, ReactNode } from 'react';
-import St from './styled';
+import Styled from './styled';
 
-class Header extends Component {
-  render(): ReactNode {
-    return <St.Header>점심 뭐 먹지</St.Header>;
-  }
+export default function Header() {
+  return <Styled.Header>점심 뭐 먹지</Styled.Header>;
 }
-export default Header;

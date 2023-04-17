@@ -1,25 +1,21 @@
-import React, { Component, ReactNode } from 'react';
-import St from './styled';
-
+import Styled from './styled';
 interface SelectProps {
   options: readonly string[];
   onChange(value: string): void;
 }
 
-class Select extends Component<SelectProps> {
-  render(): ReactNode {
-    const { options, onChange, ...props } = this.props;
+export default function Select(props: SelectProps) {
+  const { options, onChange: onChangeSelect, ...restProps } = props;
 
-    return (
-      <St.Layout onChange={(e) => onChange(e.target.value)} {...props}>
-        {options.map((option) => (
-          <St.Option value={option} key={option}>
-            {option}
-          </St.Option>
-        ))}
-      </St.Layout>
-    );
-  }
+  return (
+    <Styled.Layout
+      onChange={(e) => onChangeSelect(e.target.value)}
+      {...restProps}>
+      {options.map((option) => (
+        <Styled.Option value={option} key={option}>
+          {option}
+        </Styled.Option>
+      ))}
+    </Styled.Layout>
+  );
 }
-
-export default Select;

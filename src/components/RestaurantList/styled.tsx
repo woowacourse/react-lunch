@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const St = {
+const Styled = {
   Layout: styled.ul`
     display: flex;
     flex-direction: column;
@@ -12,4 +12,4 @@ const St = {
   `,
 };
 
-export default St;
+export default Styled;

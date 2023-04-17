@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const St = {
+const Styled = {
   Header: styled.header`
     width: 100vw;
     height: 64px;
@@ -17,4 +17,4 @@ const St = {
     font-weight: 600;
   `,
 };
-export default St;
+export default Styled;

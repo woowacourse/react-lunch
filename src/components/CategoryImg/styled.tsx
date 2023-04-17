@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const St = {
+const Styled = {
   Layout: styled.div`
     display: flex;
     justify-content: center;
@@ -20,4 +20,4 @@ const St = {
   `,
 };
 
-export default St;
+export default Styled;

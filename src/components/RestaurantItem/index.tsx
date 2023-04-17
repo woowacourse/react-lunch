@@ -1,5 +1,4 @@
-import React, { Component, ReactNode } from 'react';
-import St from './styled';
+import Styled from './styled';
 import CategoryImg from '../CategoryImg';
 import { Restaurant } from '../../types/restaurants';
 
@@ -7,32 +6,26 @@ interface RestaurantItemProps {
   info: Restaurant;
   onClick(): void;
 }
-class RestaurantItem extends Component<RestaurantItemProps> {
-  constructor(props: RestaurantItemProps) {
-    super(props);
-  }
-  render(): ReactNode {
-    const {
-      info: { title, detail, distance, category },
-      onClick,
-    } = this.props;
 
-    return (
-      <St.Layout
-        onClick={onClick}
-        data-cy-category={`${category}-restaurant`}
-        data-cy-distance={distance}>
-        <St.LeftSection>
-          <CategoryImg category={category} />
-        </St.LeftSection>
-        <St.RightSection>
-          <St.Title>{title}</St.Title>
-          <St.Distance>캠퍼스 부터 {distance}분</St.Distance>
-          <St.Detail>{detail}</St.Detail>
-        </St.RightSection>
-      </St.Layout>
-    );
-  }
+export default function RestaurantItem(props: RestaurantItemProps) {
+  const {
+    info: { title, detail, distance, category },
+    onClick,
+  } = props;
+
+  return (
+    <Styled.Layout
+      onClick={onClick}
+      data-cy-category={`${category}-restaurant`}
+      data-cy-distance={distance}>
+      <Styled.LeftSection>
+        <CategoryImg category={category} />
+      </Styled.LeftSection>
+      <Styled.RightSection>
+        <Styled.Title>{title}</Styled.Title>
+        <Styled.Distance>캠퍼스 부터 {distance}분</Styled.Distance>
+        <Styled.Detail>{detail}</Styled.Detail>
+      </Styled.RightSection>
+    </Styled.Layout>
+  );
 }
-
-export default RestaurantItem;

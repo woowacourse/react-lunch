@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const St = {
+const Styled = {
   Layout: styled.div`
     width: 100vw;
   `,
@@ -10,4 +10,4 @@ const St = {
   `,
 };
 
-export default St;
+export default Styled;

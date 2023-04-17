@@ -1,5 +1,10 @@
-import { CATEGORY_ALL, BY_DISTANCE, BY_NAME } from './../constants/restaurants';
-export type Category = '한식' | '중식' | '일식' | '양식' | '아시안' | '기타';
+import {
+  CATEGORY_ALL,
+  BY_DISTANCE,
+  BY_NAME,
+  CATEGORY_LIST,
+} from './../constants/restaurants';
+export type Category = (typeof CATEGORY_LIST)[number];
 
 export interface Restaurant {
   id: number;
@@ -12,3 +17,8 @@ export interface Restaurant {
 
 export type CategoryFilter = typeof CATEGORY_ALL | Category;
 export type AlignFilter = typeof BY_DISTANCE | typeof BY_NAME;
+
+export interface FilterOptions {
+  category: CategoryFilter;
+  align: AlignFilter;
+}

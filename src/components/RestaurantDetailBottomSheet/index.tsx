@@ -1,47 +1,31 @@
-import React, { Component, ReactNode } from 'react';
 import { Restaurant } from '../../types/restaurants';
+import BottomSheet from '../@common/BottomSheet';
 import CategoryImg from '../CategoryImg';
-import St from './styled';
+import Styled from './styled';
 
 interface RestaurantDetailBottomSheetProps {
   restaurant: Restaurant;
   close: VoidFunction;
 }
 
-class RestaurantDetailBottomSheet extends Component<RestaurantDetailBottomSheetProps> {
-  escHandler(e: KeyboardEvent) {
-    if (e.key === 'Escape') this.props.close();
-  }
+export default function RestaurantDetailBottomSheet(
+  props: RestaurantDetailBottomSheetProps
+) {
+  const { restaurant, close } = props;
+  const { title, distance, detail, link, category } = restaurant;
 
-  componentDidMount(): void {
-    window.addEventListener('keyup', this.escHandler.bind(this));
-  }
-
-  componentWillUnmount(): void {
-    window.removeEventListener('keyup', this.escHandler.bind(this));
-  }
-
-  render(): ReactNode {
-    const {
-      restaurant: { title, distance, detail, link, category },
-      close,
-    } = this.props;
-    return (
-      <>
-        <St.Backdrop onClick={close} />
-        <St.BottomSheet>
-          <CategoryImg category={category} />
-          <St.Detail>
-            <St.Title>{title}</St.Title>
-            <St.Distance>캠퍼스부터 {distance}분 이내</St.Distance>
-            <St.Description>{detail}</St.Description>
-            <St.Link href={link}>{link}</St.Link>
-            <St.Button onClick={close}>닫기</St.Button>
-          </St.Detail>
-        </St.BottomSheet>
-      </>
-    );
-  }
+  return (
+    <BottomSheet onClose={close}>
+      <Styled.BottomSheet>
+        <CategoryImg category={category} />
+        <Styled.Detail>
+          <Styled.Title>{title}</Styled.Title>
+          <Styled.Distance>캠퍼스부터 {distance}분 이내</Styled.Distance>
+          <Styled.Description>{detail}</Styled.Description>
+          <Styled.Link href={link}>{link}</Styled.Link>
+          <Styled.Button onClick={close}>닫기</Styled.Button>
+        </Styled.Detail>
+      </Styled.BottomSheet>
+    </BottomSheet>
+  );
 }
-
-export default RestaurantDetailBottomSheet;

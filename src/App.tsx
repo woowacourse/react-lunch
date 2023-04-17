@@ -1,44 +1,19 @@
-import React, { Component, PropsWithChildren, ReactNode } from 'react';
-import Layout from './components/common/Layout';
+import Layout from './components/@common/Layout';
 import RestaurantList from './components/RestaurantList';
 import SelectBar from './components/SelectBar';
-import { ALIGN_FILTER, CATEGORY_FILTER } from './constants/restaurants';
-import { AlignFilter, CategoryFilter } from './types/restaurants';
+import useFilterOptions from './hooks/restaurants/useFilterOptions';
 
-class App extends Component {
-  state = { category: CATEGORY_FILTER[0], align: ALIGN_FILTER[0] };
-  onChangeCategoryFilter: (category: CategoryFilter) => void;
-  onChangeAlignFilter: (align: AlignFilter) => void;
+export default function App() {
+  const { filterOptions, onChangeCategoryFilter, onChangeAlignFilter } =
+    useFilterOptions();
 
-  constructor(props: PropsWithChildren) {
-    super(props);
-
-    this.onChangeCategoryFilter = this.changeCategoryFilter.bind(this);
-    this.onChangeAlignFilter = this.changeAlignFilter.bind(this);
-  }
-
-  changeCategoryFilter(category: CategoryFilter) {
-    this.setState({ category });
-  }
-
-  changeAlignFilter(align: AlignFilter) {
-    this.setState({ align });
-  }
-
-  render(): ReactNode {
-    const { category, align } = this.state;
-
-    return (
-      <>
-        <Layout>
-          <SelectBar
-            onChangeCategoryFilter={this.onChangeCategoryFilter}
-            onChangeAlignFilter={this.onChangeAlignFilter}
-          />
-          <RestaurantList filterOptions={{ category, align }} />
-        </Layout>
-      </>
-    );
-  }
+  return (
+    <Layout>
+      <SelectBar
+        onChangeCategoryFilter={onChangeCategoryFilter}
+        onChangeAlignFilter={onChangeAlignFilter}
+      />
+      <RestaurantList filterOptions={filterOptions} />
+    </Layout>
+  );
 }
-export default App;
