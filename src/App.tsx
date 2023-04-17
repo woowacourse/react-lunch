@@ -21,15 +21,15 @@ export default function App() {
   const filteredRestaurants = getFilteredRestaurantsByCategory(restaurants, categoryFilterOption);
   const sortedRestaurants = getSortedRestaurants(filteredRestaurants, sortOption);
 
-  const onChangeCategoryFilter = (category: RestaurantCategoryFilterOption) => {
+  const handleCategoryFilterOption = (category: RestaurantCategoryFilterOption) => {
     setCategoryFilterOption(category);
   };
 
-  const onChangeSortFilter = (sortOption: RestaurantSortOption) => {
+  const handleSortOption = (sortOption: RestaurantSortOption) => {
     setSortOption(sortOption);
   };
 
-  const onClickRestaurantItem = (targetRestaurantId: number) => {
+  const showRestaurantDetailView = (targetRestaurantId: number) => {
     const targetRestaurant = getRestaurantById(restaurants, targetRestaurantId);
 
     setSelectedRestaurant(targetRestaurant);
@@ -39,8 +39,8 @@ export default function App() {
   return (
     <div className="App">
       <Header>{'점심 뭐 먹지'}</Header>
-      <FilterContainer onChangeCategoryFilter={onChangeCategoryFilter} onChangeSortFilter={onChangeSortFilter} />
-      <RestaurantList restaurants={sortedRestaurants} onClick={onClickRestaurantItem} />
+      <FilterContainer onChangeCategoryFilter={handleCategoryFilterOption} onChangeSortFilter={handleSortOption} />
+      <RestaurantList restaurants={sortedRestaurants} onClick={showRestaurantDetailView} />
       {isOpenModal && (
         <Modal onClick={modalClose}>
           <RestaurantDetailView restaurant={selectedRestaurant} />
