@@ -115,25 +115,3 @@ const CloseButton = styled.button`
   color: var(--grey-100);
   font: var(--text-caption);
 `;
-function closeModalByESC(
-  callback: any,
-  arg1: () => undefined,
-  e: any,
-  KeyboardEvent: {
-    new (
-      type: string,
-      eventInitDict?: KeyboardEventInit | undefined
-    ): KeyboardEvent;
-    prototype: KeyboardEvent;
-    readonly DOM_KEY_LOCATION_STANDARD: 0;
-    readonly DOM_KEY_LOCATION_LEFT: 1;
-    readonly DOM_KEY_LOCATION_RIGHT: 2;
-    readonly DOM_KEY_LOCATION_NUMPAD: 3;
-  }
-) {
-  throw new Error('Function not implemented.');
-}
-
-function callback() {
-  throw new Error('Function not implemented.');
-}
