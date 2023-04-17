@@ -1,5 +1,5 @@
 import { Category, Restaurant, SortBy } from "../types/Restaurant";
-import mockData from "../mockData.json";
+import mockData from "../data/mockData.json";
 
 export const filterByCategory = (
   restaurants: Restaurant[],
