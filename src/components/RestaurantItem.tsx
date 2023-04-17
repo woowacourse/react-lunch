@@ -32,14 +32,7 @@ const RestaurantItem = (props: RestaurantItemType) => {
       </RestaurantItemWrapper>
       {isBottomSheetOpen && (
         <BottomSheet onClose={() => closeBottomSheet()}>
-          <RestaurantDetail
-            category={props.category}
-            name={props.name}
-            distance={props.distance}
-            description={props.description}
-            link={props.link}
-            onClose={() => closeBottomSheet()}
-          />
+          <RestaurantDetail {...props} onClose={() => closeBottomSheet()} />
         </BottomSheet>
       )}
     </>
