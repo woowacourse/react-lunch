@@ -12,12 +12,12 @@ import type { Dispatch, SetStateAction } from 'react';
 
 export type Sort = '이름순' | '거리순';
 export interface State {
-  modalId: string;
+  modalInfo: Restaurant;
   isModalOpen: boolean;
   restaurantList: Restaurant[];
   setCategory: Dispatch<SetStateAction<Category>>;
   setSortOption: Dispatch<SetStateAction<Sort>>;
-  setModalId: Dispatch<SetStateAction<string>>;
+  setModalInfo: Dispatch<SetStateAction<Restaurant>>;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -26,7 +26,7 @@ const mock = mockData.restaurantList as Restaurant[];
 function App() {
   const [category, setCategory] = useState<Category>('전체');
   const [sortOption, setSortOption] = useState<Sort>('이름순');
-  const [modalId, setModalId] = useState('1');
+  const [modalInfo, setModalInfo] = useState(mock[0]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [restaurantList, setRestaurantList] = useState<Restaurant[]>(mock);
 
@@ -38,15 +38,25 @@ function App() {
 
   const value = useMemo(
     () => ({
-      modalId,
+      modalInfo,
       isModalOpen,
       restaurantList,
       setCategory,
       setSortOption,
-      setModalId,
+      setModalInfo,
       setIsModalOpen,
     }),
-    [category, sortOption, modalId, isModalOpen, restaurantList, setCategory, setSortOption, setModalId, setIsModalOpen]
+    [
+      category,
+      sortOption,
+      modalInfo,
+      isModalOpen,
+      restaurantList,
+      setCategory,
+      setSortOption,
+      setModalInfo,
+      setIsModalOpen,
+    ]
   );
 
   return (

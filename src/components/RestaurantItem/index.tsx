@@ -10,12 +10,12 @@ interface Props {
 }
 
 function RestaurantItem({ restaurant, isModal }: Props) {
-  const { setModalId, setIsModalOpen } = useWrappingContext(Store);
-  const { id, category, name, distance, description, link } = restaurant;
+  const { setModalInfo, setIsModalOpen } = useWrappingContext(Store);
+  const { category, name, distance, description, link } = restaurant;
 
   const openModal = () => {
     setIsModalOpen(true);
-    setModalId(id);
+    setModalInfo(restaurant);
     document.body.style.overflow = 'hidden';
   };
 

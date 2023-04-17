@@ -5,8 +5,7 @@ import RestaurantItem from '../RestaurantItem';
 import styles from './Modal.module.css';
 
 function Modal() {
-  const { isModalOpen, setIsModalOpen, restaurantList, modalId } = useWrappingContext(Store);
-  const restaurant = restaurantList?.find((item) => item.id === modalId);
+  const { isModalOpen, setIsModalOpen, modalInfo } = useWrappingContext(Store);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -17,7 +16,7 @@ function Modal() {
     <dialog open={isModalOpen}>
       <div className={styles.modalBackdrop} />
       <div className={styles.modal}>
-        {restaurant && <RestaurantItem restaurant={restaurant} isModal />}
+        {modalInfo && <RestaurantItem restaurant={modalInfo} isModal />}
         <button type="button" onClick={closeModal}>
           닫기
         </button>
