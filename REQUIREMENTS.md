@@ -10,7 +10,7 @@
 ## step2 요구사항
 
 - [x] 기존의 Class Component를 Function Component로 바꾼다.
-- [ ] 커스텀 훅을 사용해야 한다.
+- [x] 커스텀 훅을 사용해야 한다.
 
 ## step2 리뷰 관련 사항
 
