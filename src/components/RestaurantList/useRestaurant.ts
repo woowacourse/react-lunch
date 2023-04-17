@@ -7,7 +7,6 @@ import {
 import { fetchMockRestaurants } from "../../api/restaurants";
 import { alignBy, filterBy } from "../../domain/restaurants";
 import { BY_NAME } from "../../constants/restaurants";
-import { convertTypeAcquisitionFromJson } from "typescript";
 
 export default function useRestaurant(
   category: CategoryFilter,
@@ -36,7 +35,6 @@ export default function useRestaurant(
     }
 
     const data = localStorage.getItem("restaurantListOrigin");
-    console.log(data);
     if (data) {
       setList(data);
     }
