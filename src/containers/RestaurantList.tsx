@@ -7,11 +7,11 @@ type RestaurantListProps = {
 
 function RestaurantList({ restaurants }: RestaurantListProps) {
   return (
-    <ul>
+    <ol>
       {restaurants.map((restaurant) => {
         return <RestaurantItem key={restaurant.storeName} restaurant={restaurant} />;
       })}
-    </ul>
+    </ol>
   );
 }
 

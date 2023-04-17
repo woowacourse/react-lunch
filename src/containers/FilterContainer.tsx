@@ -1,4 +1,4 @@
-import Select from './Select';
+import Select from '../components/Select';
 import { CATEGORIES, SORT_BY } from '../constants/constants';
 import React, { ChangeEvent } from 'react';
 import { Category, SortBy } from '../types/Restaurant';
