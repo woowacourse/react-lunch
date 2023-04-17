@@ -5,12 +5,14 @@ import styles from './RestaurantFilter.module.css';
 import { RestaurantFilterProps } from '../../types/types';
 
 const RestaurantFilter = (props: RestaurantFilterProps) => {
+  const { onCategoryChange, onSortingChange } = props;
+
   const handleCategoryChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    props.onCategoryChange(e.target.value);
+    onCategoryChange(e.target.value);
   };
 
   const handleSortingChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    props.onSortingChange(e.target.value);
+    onSortingChange(e.target.value);
   };
 
   const categoryOptions: Option[] = [
