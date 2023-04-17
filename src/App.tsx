@@ -6,14 +6,14 @@ import { Header, RestaurantList, RestaurantDetail, Filter } from './components';
 import { useRestaurantFilter } from './hooks/useFilter';
 import { useLocalStorage } from './hooks/useLocalStorage';
 
-interface State {
+interface ModalState {
   isModalOpen: boolean;
   detailId?: Restaurant['id'];
 }
 
 const App = () => {
   const localRestaurantsData = useLocalStorage('restaurants');
-  const [modalState, setModalState] = useState<State>({
+  const [modalState, setModalState] = useState<ModalState>({
     isModalOpen: false,
   });
   const [restaurants, { setCategory, setSortingType }] = useRestaurantFilter(localRestaurantsData);
