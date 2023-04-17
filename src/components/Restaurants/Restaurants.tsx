@@ -1,28 +1,14 @@
 import { useState } from 'react';
-import {
-  RestaurantFilterProps,
-  RestaurantListProps,
-  ModalProps,
-  CategoryFilter,
-  SortingFilter,
-} from '../../types/types';
+import { RestaurantFilterProps, RestaurantListProps, ModalProps } from '../../types/types';
 import RestaurantFilter from '../RestaurantFilter/RestaurantFilter';
 import RestaurantsList from '../RestaurantsList/RestaurantsList';
 import Modal from '../Modal/Modal';
+import { useFilterOptions } from '../../hooks/useFilterOptions';
 
 const Restaurants = () => {
-  const [category, setCategory] = useState<CategoryFilter>('전체');
-  const [sorting, setSorting] = useState<SortingFilter>('이름순');
+  const { category, sorting, handleCategoryChange, handleSortingChange } = useFilterOptions();
   const [restaurantId, setRestaurantId] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleCategoryChange = (category: CategoryFilter) => {
-    setCategory(category);
-  };
-
-  const handleSortingChange = (sorting: SortingFilter) => {
-    setSorting(sorting);
-  };
 
   const handleRestaurantIdChange = (restaurantId: number) => {
     setRestaurantId(restaurantId);
