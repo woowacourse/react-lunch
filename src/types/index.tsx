@@ -8,6 +8,7 @@ export interface SelectBoxType {
 }
 
 export interface RestaurantItemType {
+  id: number;
   category: CategoryKind;
   name: string;
   distance: number;

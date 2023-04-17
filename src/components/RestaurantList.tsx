@@ -65,8 +65,8 @@ const RestaurantList = () => {
             if (order === OrderKind.name) return a.name > b.name ? 1 : -1;
             return a.distance > b.distance ? 1 : -1;
           })
-          .map((restaurant: RestaurantItemType, index: number) => {
-            return <RestaurantItem key={index} {...restaurant} />;
+          .map((restaurant: RestaurantItemType) => {
+            return <RestaurantItem key={restaurant.id} {...restaurant} />;
           })}
       </>
     );
