@@ -1,18 +1,15 @@
 import { useState } from 'react';
-import mockData from '../data/mockData.json';
 import type { Restaurant } from '../components/RestaurantItem/type';
-
-const mock = mockData.restaurantList as Restaurant[];
 
 export interface ModalState {
   isModalOpen: boolean;
-  modalInfo: Restaurant;
+  modalInfo: Restaurant | null;
   openModal: (value: Restaurant) => void;
   closeModal: () => void;
 }
 
 function useModal() {
-  const [modalInfo, setModalInfo] = useState(mock[0]);
+  const [modalInfo, setModalInfo] = useState<Restaurant | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = (value: Restaurant) => {

@@ -6,6 +6,7 @@ import styles from './Modal.module.css';
 
 function Modal() {
   const { isModalOpen, modalInfo, closeModal } = useWrappingContext(ModalStore);
+
   return createPortal(
     <dialog open={isModalOpen}>
       <div className={styles.modalBackdrop} />

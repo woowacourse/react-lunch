@@ -3,10 +3,10 @@ import styles from './App.module.css';
 import Header from './components/Header';
 import RestaurantList from './components/RestaurantList';
 import SelectorSection from './components/SelectorSection';
-import useSelector from './components/SelectorSection/hooks/useSelector';
+import useSelector from './hooks/useSelector';
 import { SelectorStore } from './store';
 import type { Category } from './components/RestaurantItem/type';
-import type { Selector } from './components/SelectorSection/hooks/useSelector';
+import type { Selector } from './hooks/useSelector';
 
 export type Sort = '이름순' | '거리순';
 export interface SelectorState {

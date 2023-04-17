@@ -11,7 +11,7 @@ function RestaurantList() {
   const { selector } = useWrappingContext(SelectorStore);
   const { isModalOpen, modalInfo, openModal, closeModal } = useModal();
 
-  const value = useMemo(
+  const modalStore = useMemo(
     () => ({
       isModalOpen,
       modalInfo,
@@ -24,7 +24,7 @@ function RestaurantList() {
   const restaurantList = useRestaurantList(selector);
 
   return (
-    <ModalStore.Provider value={value}>
+    <ModalStore.Provider value={modalStore}>
       <ul className={styles.restaurantList}>
         {restaurantList.map((restaurant) => (
           <RestaurantItem key={restaurant.id} restaurant={restaurant} isModal={false} />

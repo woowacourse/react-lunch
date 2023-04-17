@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import type { Sort } from '../../../App';
-import type { Category } from '../../RestaurantItem/type';
+import type { Sort } from '../App';
+import type { Category } from '../components/RestaurantItem/type';
 
 export interface Selector {
   category: Category;
