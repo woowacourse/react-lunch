@@ -29,7 +29,7 @@ describe('E2E 테스트', () => {
 
     cy.get('[data-cy="bottom-sheet"]').within(() => {
       cy.root().should('be.visible');
-      cy.get('[data-cy="close-button"]').click();
+      cy.get('[data-cy="restaurant-bottom-sheet-close-button"]').click();
       cy.root().should('not.exist');
     });
   });
