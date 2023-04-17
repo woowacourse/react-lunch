@@ -2,10 +2,9 @@ import "./index.css";
 import { useState, useEffect } from "react";
 import RestaurantItem from "../RestaurantItem";
 import { CategoryOption, Restaurant, SortOption } from "../../types/restaurant";
-import mockData from "../../data/mockData.json";
-import { LocalStorage } from "../../utils/LocalStorage";
-
-const LOCAL_STORAGE_KEY = "RESTAURANT_LIST";
+import { useLocalStorage } from "../../hooks";
+import getMockData from "../../data/getMockData";
+import { LOCAL_STORAGE_KEY } from "../../constants";
 
 interface RestaurantListProps {
   currentCategory: CategoryOption;
@@ -14,32 +13,16 @@ interface RestaurantListProps {
 }
 
 const RestaurantList = ({ currentCategory, currentSort, onClickRestaurantItem }: RestaurantListProps) => {
-  const [restaurantList, setRestaurantList] = useState<Restaurant[]>([]);
+  const mockList: Restaurant[] = getMockData();
+  const [allRestaurantList] = useLocalStorage<Restaurant[]>(LOCAL_STORAGE_KEY, mockList);
+  const [restaurantList, setRestaurantList] = useState<Restaurant[]>(allRestaurantList);
 
   useEffect(() => {
-    const initRestaurantList = getInitList();
-
-    setRestaurantList(initRestaurantList);
-  }, []);
-
-  useEffect(() => {
-    const initRestaurantList = getInitList();
-    const restaurantListByCategory = getListByCategory(initRestaurantList);
+    const restaurantListByCategory = getListByCategory(allRestaurantList);
     const sortedRestaurantList = getSortedList(restaurantListByCategory);
 
     setRestaurantList(sortedRestaurantList);
   }, [currentCategory, currentSort]);
-
-  const getInitList = () => {
-    const localStorageData: Restaurant[] = LocalStorage.getData(LOCAL_STORAGE_KEY);
-    if (localStorageData) {
-      return localStorageData;
-    }
-
-    const mockList: Restaurant[] = JSON.parse(JSON.stringify(mockData.restaurants));
-    LocalStorage.setData(LOCAL_STORAGE_KEY, mockList);
-    return mockList;
-  };
 
   const getListByCategory = (restaurants: Restaurant[]) => {
     if (currentCategory === "all") {
