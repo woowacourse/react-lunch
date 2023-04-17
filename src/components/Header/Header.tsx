@@ -1,8 +1,6 @@
-import { Component } from 'react';
 import styled from 'styled-components';
 
-export class Header extends Component {
-  render() {
+export function Header () {
     return (
       <HeaderWrapper>
         <Title>점심 뭐 먹지</Title>
@@ -11,7 +9,6 @@ export class Header extends Component {
         </AddRestaurantButton>
       </HeaderWrapper>
     );
-  }
 }
 
 const HeaderWrapper = styled.header`

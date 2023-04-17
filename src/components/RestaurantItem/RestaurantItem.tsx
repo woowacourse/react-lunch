@@ -1,36 +1,38 @@
-import { Component } from 'react';
+import styled from 'styled-components';
+
 import { Restaurant } from '../../types';
 import { imgSrc } from '../../constants/imageSrc';
 
-import styled from 'styled-components';
-
 type Props = {
   restaurant: Restaurant;
-  onRestaurantClick: React.MouseEventHandler<HTMLLIElement>;
+  onRestaurantClick: (id: Restaurant['id']) => void;
+  openModal: () => void;
 };
 
-export class RestaurantItem extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
+export function RestaurantItem({
+  restaurant,
+  onRestaurantClick,
+  openModal,
+}: Props) {
+  const { id, name, category, distance, description } = restaurant;
 
-  render() {
-    const { id, name, category, distance, description } = this.props.restaurant;
-    const onRestaurantClick = this.props.onRestaurantClick;
-
-    return (
-      <RestaurantWrapper data-id={id} onClick={onRestaurantClick}>
-        <RestaurantCategory>
-          <Image src={imgSrc[category]} alt={category} />
-        </RestaurantCategory>
-        <RestaurantInfoWrapper>
-          <Name>{name}</Name>
-          <DistanceText>캠퍼스로부터 {distance}분 내</DistanceText>
-          <Description>{description}</Description>
-        </RestaurantInfoWrapper>
-      </RestaurantWrapper>
-    );
-  }
+  return (
+    <RestaurantWrapper
+      onClick={() => {
+        onRestaurantClick(id);
+        openModal();
+      }}
+    >
+      <RestaurantCategory>
+        <Image src={imgSrc[category]} alt={category} />
+      </RestaurantCategory>
+      <RestaurantInfoWrapper>
+        <Name>{name}</Name>
+        <DistanceText>캠퍼스로부터 {distance}분 내</DistanceText>
+        <Description>{description}</Description>
+      </RestaurantInfoWrapper>
+    </RestaurantWrapper>
+  );
 }
 
 const RestaurantWrapper = styled.li`

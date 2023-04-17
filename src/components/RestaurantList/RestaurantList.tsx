@@ -1,33 +1,31 @@
-import { Component } from 'react';
 import styled from 'styled-components';
+
 import { Restaurant } from '../../types';
 import { RestaurantItem } from '../RestaurantItem/RestaurantItem';
 
 type Props = {
   restaurants: Restaurant[];
-  onRestaurantClick: React.MouseEventHandler<HTMLLIElement>;
+  onRestaurantClick: (id: Restaurant['id']) => void;
+  openModal: () => void;
 };
 
-export class RestaurantList extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
-  render() {
-    const { restaurants, onRestaurantClick } = this.props;
-
-    return (
-      <RestaurantListWrapper>
-        {restaurants.map((restaurant) => (
-          <RestaurantItem
-            key={restaurant.id}
-            restaurant={restaurant}
-            onRestaurantClick={onRestaurantClick}
-          ></RestaurantItem>
-        ))}
-      </RestaurantListWrapper>
-    );
-  }
+export function RestaurantList({
+  restaurants,
+  onRestaurantClick,
+  openModal,
+}: Props) {
+  return (
+    <RestaurantListWrapper>
+      {restaurants.map((restaurant) => (
+        <RestaurantItem
+          key={restaurant.id}
+          restaurant={restaurant}
+          onRestaurantClick={onRestaurantClick}
+          openModal={openModal}
+        ></RestaurantItem>
+      ))}
+    </RestaurantListWrapper>
+  );
 }
 
 const RestaurantListWrapper = styled.ul`

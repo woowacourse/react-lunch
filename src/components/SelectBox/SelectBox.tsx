@@ -1,29 +1,22 @@
-import { Component } from 'react';
 import styled from 'styled-components';
+import { CategoryOption } from '../../types';
+import { SortOption } from '../../types';
 
 type Props = {
-  options: string[];
+  options: CategoryOption[] | SortOption[];
   onOptionChange: React.ChangeEventHandler<HTMLSelectElement>;
 };
 
-export class SelectBox extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
-  render() {
-    const { options, onOptionChange } = this.props;
-
-    return (
-      <Select onChange={onOptionChange}>
-        {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </Select>
-    );
-  }
+export function SelectBox({ options, onOptionChange }: Props) {
+  return (
+    <Select onChange={onOptionChange}>
+      {options.map((option) => (
+        <option key={option} value={option}>
+          {option}
+        </option>
+      ))}
+    </Select>
+  );
 }
 
 const Select = styled.select`

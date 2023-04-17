@@ -1,16 +1,23 @@
+import { restaurantItemsKey } from '../constants';
 import { Restaurant } from './../types';
+import data from '../data/mockData.json';
 
 const db = {
   isRestaurantItemsExist() {
-    return localStorage.getItem('restaurantItems') !== null;
+    return localStorage.getItem(restaurantItemsKey) !== null;
   },
 
-  setRestaurants(restaurants: Restaurant[]) {
-    localStorage.setItem('restaurantItems', JSON.stringify(restaurants));
+  setOriginRestaurantData(restaurants: Restaurant[]) {
+    localStorage.setItem(restaurantItemsKey, JSON.stringify(restaurants));
   },
 
-  getRestaurants(): Restaurant[] {
-    return JSON.parse(localStorage.getItem('restaurantItems') || '');
+  getOriginRestaurantData(): Restaurant[] {
+    if (this.isRestaurantItemsExist()) {
+      return JSON.parse(localStorage.getItem(restaurantItemsKey) || '');
+    }
+    const mockData = data.items as Restaurant[];
+    this.setOriginRestaurantData(mockData);
+    return mockData;
   },
 };
 
