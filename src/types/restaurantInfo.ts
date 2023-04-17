@@ -15,6 +15,7 @@ export const isSortMethod = (sortMethod: string): sortMethod is SortMethod => {
 };
 
 export interface RestaurantInfo {
+  id: number;
   title: string;
   estimatedTime: number;
   description?: string;

@@ -13,7 +13,7 @@ function RestaurantList(props: RestaurantListProps) {
   return (
     <ul className={styles.list}>
       {restaurantList.map((restaurant) => (
-        <RestaurantSummary key={restaurant.title} onClick={onClick} restaurant={restaurant} />
+        <RestaurantSummary key={restaurant.id} onClick={onClick} restaurant={restaurant} />
       ))}
     </ul>
   );
