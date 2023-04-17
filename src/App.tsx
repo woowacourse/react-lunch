@@ -9,6 +9,7 @@ import { categoryOption, sortOption } from './constants';
 import { Restaurant, SortOption, CategoryOption } from './type';
 import { Layout } from './layout';
 import { getRestaurantListObj } from './domain/Restaurant';
+import { useModal } from './hooks/useModal';
 
 const Style = {
   SelectBoxWrapper: styled.div`
@@ -38,28 +39,14 @@ const isCategoryFilterType = (arg: any): arg is CategoryOption => {
 };
 
 export function App() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<Restaurant | null>();
+  const { openModal, closeModal, isOpen } = useModal();
+  const [selectedItem, setSelectedItem] = useState<Restaurant>();
   const [filter, setFilter] = useState<FilterState>({
     category: '전체',
     sort: 'name',
   });
 
-  useEffect(() => {
-    if (isOpen) {
-      window.onkeydown = (e) => {
-        if (e.key === 'Escape') closeModal();
-      };
-      return;
-    }
-    window.onkeydown = null;
-  }, [isOpen]);
-
   const restaurantListObj = getRestaurantListObj();
-
-  const openModal = () => setIsOpen(true);
-
-  const closeModal = () => setIsOpen(false);
 
   const handleClickRestaurantItem = (e: React.MouseEvent<HTMLElement>) => {
     if (!(e.target instanceof HTMLElement)) return;
