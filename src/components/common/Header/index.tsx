@@ -1,3 +1,4 @@
+import React from 'react';
 import './Header.css';
 
 type HeaderProps = {
@@ -12,4 +13,4 @@ const Header = ({ children }: HeaderProps) => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
