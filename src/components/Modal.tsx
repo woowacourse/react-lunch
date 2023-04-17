@@ -1,88 +1,71 @@
-import { Component, createRef } from 'react';
+import { useEffect } from 'react';
 import RestaurantManager from '../domain/RestaurantManager';
-import { Category } from '../types/RestaurantDetail';
+import { RestaurantDetail } from '../types/RestaurantDetail';
 import { IMAGE_PATH } from '../constants/images';
 
 interface ModalProps {
-  category: Category;
-  sort: string;
-  restaurantID: number;
+  isModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  restaurantId: number;
 }
 
-export default class Modal extends Component<ModalProps> {
-  dialogRef = createRef<HTMLDialogElement>();
-
-  constructor(props: ModalProps) {
-    super(props);
-  }
-
-  shouldComponentUpdate(nextProps: Readonly<ModalProps>): boolean {
-    if (
-      this.props.category !== nextProps.category ||
-      this.props.sort !== nextProps.sort
-    ) {
-      return false;
-    }
-    return true;
-  }
-
-  componentDidUpdate(): void {
-    this.dialogRef.current?.showModal();
-  }
-
-  closeModal = (event: React.MouseEvent<HTMLElement>) => {
-    if (event.target instanceof Element && event.target.nodeName === 'DIALOG') {
-      this.dialogRef.current?.close();
-    }
+const Modal = (props: ModalProps) => {
+  const closeModal = () => {
+    props.isModalOpen(false);
   };
 
-  render() {
-    const restaurantItem = RestaurantManager.getRestaurantByID(
-      this.props.restaurantID
-    );
+  useEffect(() => {
+    document.addEventListener('keydown', closeModal, false);
 
-    if (!restaurantItem) return;
+    return () => {
+      document.removeEventListener('keydown', closeModal, false);
+    };
+  });
 
-    const { id, category, name, description, distance, link } = restaurantItem;
+  const restaurantItem = RestaurantManager.getRestaurantByID(
+    props.restaurantId
+  );
 
-    return (
-      <dialog id={String(id)} ref={this.dialogRef} onClick={this.closeModal}>
-        <div className="modal-container">
-          <div className="restaurant__category">
-            <img
-              src={IMAGE_PATH[category]}
-              alt={category}
-              className="category-icon"
-            />
-          </div>
-          <div className="modal-header">
-            <h3 className="modal-title text-title">{name}</h3>
-          </div>
-          <div className="modal-item">
-            <span className="restaurant__distance text-body">
-              캠퍼스부터 {distance}분 내
-            </span>
-          </div>
-          <div className="modal-item">
-            <p>{description}</p>
-          </div>
-          {link && (
-            <div className="modal-item">
-              <a href="${link}" target="_blank">
-                {link}
-              </a>
-            </div>
-          )}
-          <form method="dialog">
-            <button
-              id="cancel-modal-button"
-              className="button button--primary text-caption"
-            >
-              닫기
-            </button>
-          </form>
+  const { category, name, description, distance, link } =
+    restaurantItem as RestaurantDetail;
+
+  return (
+    <>
+      <div className="modal-backdrop" onClick={closeModal}></div>
+      <div className="modal-container">
+        <div className="restaurant__category">
+          <img
+            src={IMAGE_PATH[category]}
+            alt={category}
+            className="category-icon"
+          />
         </div>
-      </dialog>
-    );
-  }
-}
+        <div className="modal-header">
+          <h3 className="modal-title text-title">{name}</h3>
+        </div>
+        <div className="modal-item">
+          <span className="restaurant__distance text-body">
+            캠퍼스부터 {distance}분 내
+          </span>
+        </div>
+        <div className="modal-item">
+          <p>{description}</p>
+        </div>
+        {link && (
+          <div className="modal-item">
+            <a href="${link}" target="_blank">
+              {link}
+            </a>
+          </div>
+        )}
+        <button
+          onClick={closeModal}
+          id="cancel-modal-button"
+          className="button button--primary text-caption"
+        >
+          닫기
+        </button>
+      </div>
+    </>
+  );
+};
+export default Modal;

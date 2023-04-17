@@ -8,6 +8,7 @@ const RestaurantListContainer = () => {
   const [category, setCategory] = useState<Category>('전체');
   const [sort, setSort] = useState<string>('이름순');
   const [restaurantId, setRestaurantId] = useState<number>(0);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const isCategory = (category: string): category is Category => {
     const categoris = [
@@ -45,6 +46,7 @@ const RestaurantListContainer = () => {
 
     const restaurantId = Number(li.id);
 
+    setIsModalOpen(true);
     setRestaurantId(restaurantId);
   };
 
@@ -59,11 +61,9 @@ const RestaurantListContainer = () => {
         sort={sort}
         onOpenModal={handleOpenModal}
       ></RestaurantList>
-      <Modal
-        category={category}
-        sort={sort}
-        restaurantId={restaurantId}
-      ></Modal>
+      {isModalOpen && (
+        <Modal isModalOpen={setIsModalOpen} restaurantId={restaurantId}></Modal>
+      )}
     </>
   );
 };
