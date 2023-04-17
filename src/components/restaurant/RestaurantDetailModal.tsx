@@ -1,25 +1,33 @@
 import styled from 'styled-components';
-import { Restaurant } from '../../@types/type';
 import { BodyText, SubTitleText } from '../../style/typography';
 import RestaurantCategoryIcon from './RestaurantCategoryIcon';
 import Modal from '../common/Modal';
+import { useContext } from 'react';
+import { RestaurantDetailModalContext } from './RestaurantFinder';
 
-type RestaurantDetailModalProps = {
-  restaurant: Restaurant;
-  onCloseModal: () => void;
-};
+const RestaurantDetailModal = () => {
+  const { isModalOpen, modalRestaurantInfo, setIsModalOpen } = useContext(RestaurantDetailModalContext);
 
-const RestaurantDetailModal = ({ restaurant, onCloseModal }: RestaurantDetailModalProps) => {
-  const { category, name, distanceByMinutes, description, referenceUrl } = restaurant;
+  if (!modalRestaurantInfo) return <></>;
+
+  const { category, name, distanceByMinutes, description, referenceUrl } = modalRestaurantInfo;
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
-    <Modal onCloseModal={onCloseModal}>
-      <RestaurantCategoryIcon category={category} />
-      <Title>{name}</Title>
-      <Distance>캠퍼스로부터 {distanceByMinutes}분 내</Distance>
-      <Description>{description}</Description>
-      <ReferenceURL href={referenceUrl}>{referenceUrl}</ReferenceURL>
-    </Modal>
+    <>
+      {isModalOpen && (
+        <Modal onCloseModal={closeModal}>
+          <RestaurantCategoryIcon category={category} />
+          <Title>{name}</Title>
+          <Distance>캠퍼스로부터 {distanceByMinutes}분 내</Distance>
+          <Description>{description}</Description>
+          <ReferenceURL href={referenceUrl}>{referenceUrl}</ReferenceURL>
+        </Modal>
+      )}
+    </>
   );
 };
 

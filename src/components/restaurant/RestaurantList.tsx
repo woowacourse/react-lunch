@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 import RestaurantItem from './RestaurantItem';
-import { Restaurant, SetModalRestaurantId } from '../../@types/type';
+import { Restaurant } from '../../@types/type';
 
-type RestaurantListProps = SetModalRestaurantId & {
+type RestaurantListProps = {
   restaurantList: Restaurant[];
 };
 
-const RestaurantList = ({ restaurantList, setModalRestaurantId }: RestaurantListProps) => {
+const RestaurantList = ({ restaurantList }: RestaurantListProps) => {
   return (
     <Restaurants>
       {restaurantList.map((restaurant) => (
-        <RestaurantItem key={restaurant.id} restaurant={restaurant} setModalRestaurantId={setModalRestaurantId} />
+        <RestaurantItem key={restaurant.id} restaurant={restaurant} />
       ))}
     </Restaurants>
   );

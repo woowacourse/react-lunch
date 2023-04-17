@@ -1,15 +1,20 @@
 import styled from 'styled-components';
 import RestaurantCategoryIcon from './RestaurantCategoryIcon';
-import { Restaurant, SetModalRestaurantId } from '../../@types/type';
+import { Restaurant } from '../../@types/type';
 import { BodyText, SubTitleText } from '../../style/typography';
+import { useContext } from 'react';
+import { RestaurantDetailModalContext } from './RestaurantFinder';
 
-type RestaurantItemProps = { restaurant: Restaurant } & SetModalRestaurantId;
+type RestaurantItemProps = { restaurant: Restaurant };
 
-const RestaurantItem = ({ restaurant, setModalRestaurantId }: RestaurantItemProps) => {
+const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
+  const { setModalRestaurantInfo, setIsModalOpen } = useContext(RestaurantDetailModalContext);
+
   const { category, name, distanceByMinutes, description } = restaurant;
 
   const onClickRestaurant = () => {
-    setModalRestaurantId(restaurant.id);
+    setIsModalOpen(true);
+    setModalRestaurantInfo(restaurant);
   };
 
   return (
