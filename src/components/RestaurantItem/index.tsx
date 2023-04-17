@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import useWrappingContext from '../../hooks/useWrappingContext';
 import Store from '../../store';
 import pickIconByCategory from '../../utils/pickIconByCategory';
 import styles from './RestaurantItem.module.css';
@@ -10,7 +10,7 @@ interface Props {
 }
 
 function RestaurantItem({ restaurant, isModal }: Props) {
-  const { setModalId, setIsModalOpen } = useContext(Store);
+  const { setModalId, setIsModalOpen } = useWrappingContext(Store);
   const { id, category, name, distance, description, link } = restaurant;
 
   const openModal = () => {

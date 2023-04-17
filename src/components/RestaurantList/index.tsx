@@ -1,10 +1,10 @@
-import { useContext } from 'react';
+import useWrappingContext from '../../hooks/useWrappingContext';
 import Store from '../../store';
 import RestaurantItem from '../RestaurantItem';
 import styles from './RestaurantList.module.css';
 
 function RestaurantList() {
-  const { restaurantList } = useContext(Store);
+  const { restaurantList } = useWrappingContext(Store);
 
   return (
     <ul className={styles.restaurantList}>

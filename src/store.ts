@@ -1,6 +1,6 @@
-import React from 'react';
+import { createContext } from 'react';
 import type { State } from './App';
 
-const Store = React.createContext<State>({} as State);
+const Store = createContext<State | null>(null);
 
 export default Store;

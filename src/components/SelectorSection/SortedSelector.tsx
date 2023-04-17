@@ -1,11 +1,11 @@
-import { useContext } from 'react';
+import useWrappingContext from '../../hooks/useWrappingContext';
 import Store from '../../store';
 import styles from './SelectorSection.module.css';
 import type { Sort } from '../../App';
 import type { ChangeEvent } from 'react';
 
 function SortedSelector() {
-  const { setSortOption } = useContext(Store);
+  const { setSortOption } = useWrappingContext(Store);
 
   const handleSortedSelector = (e: ChangeEvent<HTMLSelectElement>) => {
     setSortOption(e.target.value as Sort);
