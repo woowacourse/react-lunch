@@ -19,7 +19,7 @@ const Modal = (props: ModalProps) => {
     return () => {
       document.removeEventListener('keydown', closeModal, false);
     };
-  });
+  }, []);
 
   const restaurantItem = RestaurantManager.getRestaurantByID(
     props.restaurantId
