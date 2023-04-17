@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { GlobalStyle } from './styles/GlobalStyle';
 import { RestaurantList } from './components/restaurant/RestaurantList';
@@ -44,6 +44,16 @@ export function App() {
     category: '전체',
     sort: 'name',
   });
+
+  useEffect(() => {
+    if (isOpen) {
+      window.onkeydown = (e) => {
+        if (e.key === 'Escape') closeModal();
+      };
+      return;
+    }
+    window.onkeydown = null;
+  }, [isOpen]);
 
   const restaurantListObj = getRestaurantListObj();
 
@@ -109,10 +119,9 @@ export function App() {
         clickRestaurantItem={handleClickRestaurantItem}
       />
       {isOpen && (
-        <Modal
-          children={selectedItem && <RestaurantDetail info={selectedItem} />}
-          closeModal={closeModal}
-        />
+        <Modal closeModal={closeModal}>
+          {selectedItem && <RestaurantDetail info={selectedItem} />}
+        </Modal>
       )}
     </Layout>
   );
