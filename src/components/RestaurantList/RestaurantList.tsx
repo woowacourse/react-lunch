@@ -9,15 +9,13 @@ interface RestaurantListProps {
 }
 
 function RestaurantList({ restaurantList, onItemClick }: RestaurantListProps) {
-  const createRestaurantItemElements = () => {
-    return restaurantList.map((restaurant) => (
-      <RestaurantItem key={restaurant.id} restaurant={restaurant} onClick={onItemClick} />
-    ));
-  };
-
   return (
     <section className={styles.restaurantListContainer}>
-      <ul className="restaurant-list">{createRestaurantItemElements()}</ul>
+      <ul className="restaurant-list">
+        {restaurantList.map((restaurant) => (
+          <RestaurantItem key={restaurant.id} restaurant={restaurant} onClick={onItemClick} />
+        ))}
+      </ul>
     </section>
   );
 }
