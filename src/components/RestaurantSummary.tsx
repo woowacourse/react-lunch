@@ -22,7 +22,7 @@ function RestaurantSummary(props: RestaurantSummaryProps) {
       <CategoryImage category={category} />
       <div className={styles.content}>
         <h3 className={styles.title}>{title}</h3>
-        <h6 className={styles.estimatedTime}>캠퍼스로부터 {estimatedTime}분 내</h6>
+        <p className={styles.estimatedTime}>캠퍼스로부터 {estimatedTime}분 내</p>
         <p className={styles.description}>{description}</p>
       </div>
     </li>

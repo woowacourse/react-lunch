@@ -22,7 +22,7 @@ function RestaurantDetail(props: RestaurantDetailProps) {
       <div className={styles.content}>
         <CategoryImage category={category} />
         <h2 className={styles.title}>{title}</h2>
-        <h5 className={styles.estimatedTime}>캠퍼스로부터 {estimatedTime}분 내</h5>
+        <p className={styles.estimatedTime}>캠퍼스로부터 {estimatedTime}분 내</p>
         <p className={styles.description}>{description}</p>
         <a href={link} target="_blank" rel="noopener noreferrer" className={styles.link}>
           {link}
