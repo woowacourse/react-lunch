@@ -26,6 +26,6 @@ export const BottomSheetContainer = styled.div`
   padding: 32px 16px;
 
   border-radius: 8px 8px 0 0;
-  background: var(--grey-100);
+  background: ${(props) => props.theme.grey['100']};
   overflow-y: auto;
 `;

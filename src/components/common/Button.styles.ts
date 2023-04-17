@@ -7,10 +7,12 @@ type ButtonProps = {
 export const Button = styled.button<ButtonProps>`
   height: 44px;
 
-  background: ${(props) => (props.$variant === 'primary' ? 'var(--primary-color)' : 'transparent')};
-  border: ${(props) => (props.$variant === 'primary' ? 'none' : '1px solid var(--grey-300)')};
+  background: ${(props) => (props.$variant === 'primary' ? props.theme.primary : 'transparent')};
+  border: ${(props) =>
+    props.$variant === 'primary' ? 'none' : `1px solid ${props.theme.grey['300']}`};
   border-radius: 8px;
 
-  color: ${(props) => (props.$variant === 'primary' ? 'var(--grey-100)' : 'var(--grey-300)')};
+  color: ${(props) =>
+    props.$variant === 'primary' ? props.theme.grey['100'] : props.theme.grey['300']};
   font-weight: 600;
 `;

@@ -27,7 +27,7 @@ export const RestaurantListItemCategoryIcon = styled.div`
   min-height: 64px;
 
   border-radius: 50%;
-  background: var(--lighten-color);
+  background: ${(props) => props.theme.primaryLighten};
 
   & > img {
     width: 36px;
@@ -41,7 +41,7 @@ export const RestaurantListItemHeaderSubtitle = styled.p`
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-  color: var(--primary-color);
+  color: ${(props) => props.theme.primary};
 `;
 
 export const RestaurantListItemBody = styled(Body)`

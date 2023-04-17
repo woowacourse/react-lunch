@@ -40,7 +40,7 @@
 
 ## step2 기타 개선 사항
 
-- [ ] styled-components 에서 제공하는 theme 기능 사용하기
+- [x] styled-components 에서 제공하는 theme 기능 사용하기
   - https://styled-components.com/docs/tooling#styled-theming
 - [x] `DropdownFilter` 를 `Dropdown` 으로 수정
 
