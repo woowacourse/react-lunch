@@ -7,6 +7,7 @@ import {
 import { fetchMockRestaurants } from "../../api/restaurants";
 import { alignBy, filterBy } from "../../domain/restaurants";
 import { BY_NAME } from "../../constants/restaurants";
+import { convertTypeAcquisitionFromJson } from "typescript";
 
 export default function useRestaurant(
   category: CategoryFilter,
@@ -20,11 +21,25 @@ export default function useRestaurant(
   useEffect(() => {
     const setData = async () => {
       const data = await fetchMockRestaurants({ align: BY_NAME });
-      setRestaurantList(data);
-      setRestaurantListOrigin(data);
+      localStorage.setItem("restaurantListOrigin", JSON.stringify(data));
+      setList(JSON.stringify(data));
     };
 
-    setData();
+    const setList = async (data: string) => {
+      const list = await JSON.parse(data);
+      setRestaurantList(list);
+      setRestaurantListOrigin(list);
+    };
+
+    if (!localStorage.getItem("restaurantListOrigin")) {
+      setData();
+    }
+
+    const data = localStorage.getItem("restaurantListOrigin");
+    console.log(data);
+    if (data) {
+      setList(data);
+    }
   }, []);
 
   useEffect(() => {
