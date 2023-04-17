@@ -1,22 +1,22 @@
 import React from 'react';
-import Store from '../../store';
+import { useLunchState } from '../../hooks';
 import RestaurantItem from '../RestaurantItem';
 import styles from './RestaurantList.module.css';
 
-class RestaurantList extends React.PureComponent {
-	render() {
-		return (
-			<ul className={styles.restaurantList}>
-				<Store.Consumer>
-					{(store) =>
-						store?.restaurantList.map((restaurant) => (
-							<RestaurantItem key={restaurant.id} restaurant={restaurant} isModal={false} />
-						))
-					}
-				</Store.Consumer>
-			</ul>
-		);
-	}
+function RestaurantList() {
+  const state = useLunchState();
+
+  return (
+    <ul className={styles.restaurantList}>
+      {state.restaurantList.map((restaurant) => (
+        <RestaurantItem
+          key={restaurant.id}
+          restaurant={restaurant}
+          isModal={false}
+        />
+      ))}
+    </ul>
+  );
 }
 
-export default RestaurantList;
+export default React.memo(RestaurantList);

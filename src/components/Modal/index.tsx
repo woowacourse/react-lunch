@@ -1,40 +1,42 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import Store from '../../store';
+import { useLunchDispatch, useLunchState } from '../../hooks';
+import { TOGGLE_MODAL } from '../../store/action';
 import RestaurantItem from '../RestaurantItem';
 import styles from './Modal.module.css';
-import type { Restaurant } from '../RestaurantItem/type';
 
-class Modal extends React.PureComponent {
-	private static findRestaurantById = (restaurantList?: Restaurant[], id?: string) =>
-		restaurantList?.find((restaurant) => restaurant.id === id) as Restaurant;
+function Modal() {
+  const state = useLunchState();
+  const dispatch = useLunchDispatch();
 
-	render() {
-		return (
-			<Store.Consumer>
-				{(store) =>
-					createPortal(
-						<dialog open={store?.isModalOpen}>
-							<div className={styles.modalBackdrop} />
-							<div className={styles.modal}>
-								<RestaurantItem restaurant={Modal.findRestaurantById(store?.restaurantList, store?.modalId)} isModal />
-								<button
-									type="button"
-									onClick={() => {
-										store?.toggleModal();
-										document.body.style.removeProperty('overflow');
-									}}
-								>
-									닫기
-								</button>
-							</div>
-						</dialog>,
-						document.body
-					)
-				}
-			</Store.Consumer>
-		);
-	}
+  const restaurant = useMemo(() => {
+    const { restaurantList, modalId } = state;
+    return restaurantList.find(
+      (restaurantItem) => restaurantItem.id === modalId
+    );
+  }, []);
+
+  const handleCloseModal = useCallback(() => {
+    dispatch({ type: TOGGLE_MODAL });
+    document.body.style.removeProperty('overflow');
+  }, []);
+
+  return (
+    <>
+      {createPortal(
+        <dialog open={state.isModalOpen}>
+          <div className={styles.modalBackdrop} />
+          <div className={styles.modal}>
+            {restaurant && <RestaurantItem restaurant={restaurant} isModal />}
+            <button type="button" onClick={handleCloseModal}>
+              닫기
+            </button>
+          </div>
+        </dialog>,
+        document.body
+      )}
+    </>
+  );
 }
 
-export default Modal;
+export default React.memo(Modal);

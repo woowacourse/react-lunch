@@ -1,25 +1,33 @@
-import React, { ChangeEvent } from 'react';
-import Store from '../../store';
+import React, { ChangeEvent, useCallback } from 'react';
+import { useLunchDispatch } from '../../hooks';
+import { CHANGE_SORT_STATE } from '../../store/action';
+import { Sort } from '../../store/type';
+
 import styles from './SelectorSection.module.css';
-import type { Sort, State } from '../../App';
 
-class SortedSelector extends React.PureComponent {
-	private static handleSortedSelector = (store: State | null) => (e: ChangeEvent<HTMLSelectElement>) => {
-		store?.setSortState(e.target.value as Sort);
-	};
+function SortedSelector() {
+  const dispatch = useLunchDispatch();
 
-	render() {
-		return (
-			<Store.Consumer>
-				{(store) => (
-					<select name="sort" className={styles.selector} onChange={SortedSelector.handleSortedSelector(store)}>
-						<option value="이름순">이름순</option>
-						<option value="거리순">거리순</option>
-					</select>
-				)}
-			</Store.Consumer>
-		);
-	}
+  const handleSortedSelector = useCallback(
+    (e: ChangeEvent<HTMLSelectElement>) => {
+      dispatch({
+        type: CHANGE_SORT_STATE,
+        payload: { sort: e.target.value as Sort },
+      });
+    },
+    []
+  );
+
+  return (
+    <select
+      name="sort"
+      className={styles.selector}
+      onChange={handleSortedSelector}
+    >
+      <option value="이름순">이름순</option>
+      <option value="거리순">거리순</option>
+    </select>
+  );
 }
 
-export default SortedSelector;
+export default React.memo(SortedSelector);

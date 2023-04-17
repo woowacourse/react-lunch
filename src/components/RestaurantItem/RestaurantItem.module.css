@@ -1,67 +1,64 @@
 .icon {
-	display: flex;
-	height: 64px;
-	min-width: 64px;
-	max-width: 64px;
-	margin: 16px 8px;
-
-	justify-content: center;
-	align-items: center;
-	border-radius: 50%;
-	background: #f6a88a;
+  display: flex;
+  height: 64px;
+  min-width: 64px;
+  max-width: 64px;
+  margin: 16px 8px;  
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #f6a88a;
 }
 
 .item {
-	display: flex;
-	height: 136px;
-
-	border-bottom: 1px solid #d0d5dd;
+  display: flex;
+  height: 136px;  
+  border-bottom: 1px solid #d0d5dd;
 }
 
 .itemModal {
-	flex-direction: column;
-	margin: 32px 16px;
-	height: 100%;
+  flex-direction: column;
+  margin: 32px 16px;
+  height: 100%;
 }
 
 article {
-	display: flex;
-	flex-direction: column;
-	margin: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  margin: 16px 8px;
 }
 
 .articleModal {
-	height: calc(100% - 182px);
+  height: calc(100% - 182px);
 }
 
 .title {
-	font-size: 18px;
-	font-weight: 600;
-	line-height: 28px;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
 }
 
 .distance {
-	color: #ec4a0a;
-	line-height: 24px;
+  color: #ec4a0a;
+  line-height: 24px;
 }
 
 .description {
-	display: -webkit-box;
-
-	padding-top: 8px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
+  display: -webkit-box;  
+  padding-top: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .descriptionModal {
-	margin-top: 8px;
-	overflow: scroll;
-	height: 100%;
+  margin-top: 8px;
+  overflow: scroll;
+  height: 100%;
 }
 
 .link {
-	margin: 16px 0;
-	text-decoration-line: underline;
+  margin: 16px 0;
+  text-decoration-line: underline;
 }

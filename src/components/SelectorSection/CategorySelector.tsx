@@ -1,31 +1,37 @@
-import React, { ChangeEvent } from 'react';
-import Store from '../../store';
-import { Category } from '../RestaurantItem/type';
+import React, { ChangeEvent, useCallback } from 'react';
+import { useLunchDispatch } from '../../hooks';
+import { CHANGE_CATEGORY } from '../../store/action';
+import { Category } from '../../store/type';
 import styles from './SelectorSection.module.css';
-import type { State } from '../../App';
 
-class CategorySelector extends React.Component {
-	private static handleCategorySelector = (store: State | null) => (e: ChangeEvent<HTMLSelectElement>) => {
-		store?.setCategory(e.target.value as Category);
-	};
+function CategorySelector() {
+  const dispatch = useLunchDispatch();
 
-	render() {
-		return (
-			<Store.Consumer>
-				{(store) => (
-					<select name="category" className={styles.selector} onChange={CategorySelector.handleCategorySelector(store)}>
-						<option value="전체">전체</option>
-						<option value="한식">한식</option>
-						<option value="양식">양식</option>
-						<option value="일식">일식</option>
-						<option value="중식">중식</option>
-						<option value="아시안">아시안</option>
-						<option value="기타">기타</option>
-					</select>
-				)}
-			</Store.Consumer>
-		);
-	}
+  const handleCategorySelector = useCallback(
+    (e: ChangeEvent<HTMLSelectElement>) => {
+      dispatch({
+        type: CHANGE_CATEGORY,
+        payload: { category: e.target.value as Category },
+      });
+    },
+    []
+  );
+
+  return (
+    <select
+      name="category"
+      className={styles.selector}
+      onChange={handleCategorySelector}
+    >
+      <option value="전체">전체</option>
+      <option value="한식">한식</option>
+      <option value="양식">양식</option>
+      <option value="일식">일식</option>
+      <option value="중식">중식</option>
+      <option value="아시안">아시안</option>
+      <option value="기타">기타</option>
+    </select>
+  );
 }
 
-export default CategorySelector;
+export default React.memo(CategorySelector);
