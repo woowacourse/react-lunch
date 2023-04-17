@@ -29,27 +29,3 @@ export interface Restaurant {
   description: string;
   favorite: boolean;
 }
-
-// export type SelectBoxOption = {
-//   label: string;
-//   value: string | number;
-// };
-
-// interface RestaurantListProps {
-//   restaurants: Restaurant[];
-//   sortBy: Sort;
-//   categorizeBy: Category;
-// }
-
-// interface RestaurantItemProps {
-//   restaurant: Restaurant;
-// }
-
-// interface RestaurantItemState {
-//   modalOpen: boolean;
-// }
-
-// interface SelectBoxProps {
-//   options: SelectBoxOption[];
-//   setState: ChangeEventHandler<HTMLSelectElement>;
-// }

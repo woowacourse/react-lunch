@@ -1,13 +1,23 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { RestaurantContext } from "../App";
+import { SORTINGWAY } from "../types/Restaurant";
 
-const SelectBox = (props) => {
+interface SelectBoxProps {
+  name: typeof SORTINGWAY[keyof typeof SORTINGWAY];
+  options: { label: string; value: string }[];
+}
+
+const SelectBox = (props: SelectBoxProps) => {
   const { name, options } = props;
   const { state, setState } = useContext(RestaurantContext);
 
   return (
-    <Select name="" onChange={(value) => setState({ ...state, [name]: value })}>
+    <Select
+      name=""
+      onChange={(event) => {
+        setState({ ...state, [name]: event.target.value });
+      }}>
       {options.map((option) => (
         <option value={option.value} key={option.value}>
           {option.label}
