@@ -7,10 +7,10 @@ export const CATEGORY = Object.freeze({
   ASIAN: '아시안',
   ETC: '기타',
 });
-  
+
 export const SORTING = Object.freeze({
   DISTANCE: '거리순',
-  NAME: '이름순'
-})
+  NAME: '이름순',
+});
 
-export const restaurantItemsKey = 'restaurantItems'
+export const restaurantItemsKey = 'restaurantItems';
