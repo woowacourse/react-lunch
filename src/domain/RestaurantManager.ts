@@ -7,7 +7,6 @@ import {
 
 const RESTAURANT_LOCAL_STORAGE_ID = 'restaurantList';
 
-// local storage 접근
 const initMockData = () => {
   localStorage.setItem(RESTAURANT_LOCAL_STORAGE_ID, JSON.stringify(mockData));
 };

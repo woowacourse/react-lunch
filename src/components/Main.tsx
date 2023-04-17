@@ -11,14 +11,12 @@ export const Main = () => {
   const [category, setCategory] = useState<Category>(RESTAURANT_CATEGORY.all);
   const [sortOption, setSortOption] = useState(SORTING_OPTION.name);
 
-  // filter -> ItemList
   const handleCategory: React.ChangeEventHandler<HTMLSelectElement> = (
     event
   ) => {
     setCategory(event.target.value as Category);
   };
 
-  // filter -> ItemList
   const handleSort: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
     setSortOption(event.target.value);
   };
