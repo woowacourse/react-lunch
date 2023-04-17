@@ -2,8 +2,13 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { convertImage } from "../utils/image";
 import { RestaurantContext } from "../App";
+import { Restaurant } from "../types/Restaurant";
 
-const RestaurantItem = (props) => {
+interface RestaurantItemProps {
+  restaurant: Restaurant;
+}
+
+const RestaurantItem = (props: RestaurantItemProps) => {
   const { state, setState } = useContext(RestaurantContext);
   const { name, distance, category, description } = props.restaurant;
   return (

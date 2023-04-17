@@ -7,7 +7,26 @@ import Header from "./components/Header";
 import styled from "styled-components";
 import Modal from "./components/Modal";
 
-export const RestaurantContext = createContext(null);
+interface GlobalState {
+  state: AppState;
+  setState: Function;
+}
+export const RestaurantContext = createContext<GlobalState>({
+  state: {
+    restaurants: mockData,
+    modalOpen: false,
+    modalInfo: {
+      category: "",
+      name: "",
+      distance: 0,
+      description: "",
+      favorite: false,
+    },
+    sortBy: "name",
+    categorizeBy: "all",
+  },
+  setState: () => {},
+});
 
 const App = () => {
   const [state, setState]: [AppState, Function] = useState({
@@ -38,7 +57,7 @@ const App = () => {
 
   return (
     <>
-      <RestaurantContext.Provider value={{ state, setState } as any}>
+      <RestaurantContext.Provider value={{ state, setState }}>
         <Header />
         <SelectContainer>
           <SelectBox name="categoryBy" options={categoryOptions} />
