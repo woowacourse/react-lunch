@@ -9,6 +9,10 @@
   background-color: var(--primary-color);
 }
 
-.gnb__title {
+.gnb a {
+  text-decoration: none;
+}
+
+.gnbTitle {
   color: #fcfcfd;
 }

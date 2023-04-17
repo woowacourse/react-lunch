@@ -1,0 +1,35 @@
+.restaurantInformation {
+  display: flex;
+  align-items: center;
+}
+
+.restaurantCategory {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  min-height: 64px;
+
+  margin-right: 16px;
+
+  border-radius: 50%;
+  background: var(--lighten-color);
+}
+
+.categoryIcon {
+  width: 36px;
+  height: 36px;
+}
+
+.restaurantDetailDescription {
+  margin-top: 32px;
+}
+
+.restaurantLink {
+  display: block;
+  margin-top: 24px;
+  color: var(--darken-color-2);
+  cursor: pointer;
+}

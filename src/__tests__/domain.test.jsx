@@ -1,5 +1,5 @@
 import mockData from '../data/mockRestaurantData.json';
-import { filterAndSortRestaurantList } from '../domains/restaurantUtil';
+import { filterAndSortRestaurantList } from '../hooks/useRestaurantList';
 
 describe('도메인 테스트', () => {
   const restaurantList = filterAndSortRestaurantList(mockData.restaurantList);
