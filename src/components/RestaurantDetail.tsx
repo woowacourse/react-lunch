@@ -82,3 +82,4 @@ const RestaurantInfoWrapper = styled.div`
 `;
 
 export default RestaurantDetail;
+
