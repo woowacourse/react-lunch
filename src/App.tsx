@@ -9,7 +9,10 @@ import { theme } from "./style/theme";
 import { CategoryUnion, SortingUnion, SelectedValue } from "./types/select";
 import { Restaurant } from "./types/restaurant";
 import { getRestaurantData } from "./api/getData";
-import { getFilteredArray, getSortedArray } from "./utils/arrayConverter";
+import {
+  getFilteredRestaurantsByCategory,
+  getSortedRestaurants,
+} from "./utils/arrayConvertor";
 
 const App = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
@@ -38,9 +41,12 @@ const App = () => {
   };
 
   const arrangeRestaurants = () => {
-    const filteredRestaurants = getFilteredArray(restaurants, category);
+    const filteredRestaurants = getFilteredRestaurantsByCategory(
+      restaurants,
+      category
+    );
 
-    return getSortedArray(filteredRestaurants, sorting) || [];
+    return getSortedRestaurants(filteredRestaurants, sorting) || [];
   };
 
   return (
