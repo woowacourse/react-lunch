@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import RestaurantManager from '../domain/RestaurantManager';
+import RestaurantManager from '../domain/RestaurantCollector';
 import { RestaurantItem } from './RestaurantItem';
 import { Category } from '../types/RestaurantDetail';
 import { useRef, useState } from 'react';

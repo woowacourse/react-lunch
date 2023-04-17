@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import RestaurantManager from '../domain/RestaurantManager';
+import RestaurantManager from '../domain/RestaurantCollector';
 
 import { useEffect, useState } from 'react';
 import { IMAGE_PATH } from '../constants/images';
