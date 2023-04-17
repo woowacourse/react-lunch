@@ -6,7 +6,7 @@ import { SelectSection } from "./components/selectSection";
 import { SELECT_OPTION } from "./constant/select";
 import { GlobalStyle } from "./style/Globalstyle";
 import { theme } from "./style/theme";
-import { CategoryUnion, SortingUnion, SelectedValue } from "./types/select";
+import { CategoryUnion, SortingUnion } from "./types/select";
 import { Restaurant } from "./types/restaurant";
 import { getRestaurantData } from "./api/getData";
 import {
@@ -54,7 +54,7 @@ const App = () => {
       <GlobalStyle />
       <Header />
       <SelectSection handleSelect={handleSelect} />
-      <RestaurantSection restaurants={arrangeRestaurants()} />
+      {restaurants && <RestaurantSection restaurants={arrangeRestaurants()} />}
     </ThemeProvider>
   );
 };

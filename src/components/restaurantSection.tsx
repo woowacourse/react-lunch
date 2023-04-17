@@ -3,13 +3,13 @@ import { Restaurant } from "../types/restaurant";
 import { RestaurantItem } from "./restaurantItem";
 
 interface PropsType {
-  restaurants: Restaurant[] | undefined;
+  restaurants: Restaurant[];
 }
 
 export const RestaurantSection = ({ restaurants }: PropsType) => {
   return (
     <RestaurantContainer>
-      {restaurants?.map((restaurant: Restaurant) => (
+      {restaurants.map((restaurant: Restaurant) => (
         <RestaurantItem key={restaurant.id} restaurant={restaurant} />
       ))}
     </RestaurantContainer>
