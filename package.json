@@ -18,7 +18,7 @@
 		"eject": "react-scripts eject",
 		"lint": "eslint ./src/**/*.{ts,tsx}",
 		"lint:fix": "eslint --fix ./src/**/*.{ts,tsx}",
-		"prettier": "prettier --write ./src/**/*.{ts,tsx,css,html,json}"
+		"prettier": "prettier --write --ignore-unknown ."
 	},
 	"eslintConfig": {
 		"extends": [

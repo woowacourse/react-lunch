@@ -18,7 +18,7 @@ function Modal() {
 			<div className={styles.modalBackdrop} />
 			<div className={styles.modal}>
 				{restaurant && <RestaurantItem restaurant={restaurant} isModal />}
-				<button type="button" onClick={closeModal}>
+				<button type='button' onClick={closeModal}>
 					닫기
 				</button>
 			</div>

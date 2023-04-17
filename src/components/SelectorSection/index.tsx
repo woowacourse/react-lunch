@@ -4,12 +4,12 @@ import styles from './SelectorSection.module.css';
 import SortedSelector from './SortedSelector';
 
 function SelectorSection() {
-	return (
-		<section className={styles.section}>
-			<CategorySelector />
-			<SortedSelector />
-		</section>
-	);
+  return (
+    <section className={styles.section}>
+      <CategorySelector />
+      <SortedSelector />
+    </section>
+  );
 }
 
 export default SelectorSection;
