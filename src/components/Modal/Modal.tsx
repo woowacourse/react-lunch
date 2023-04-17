@@ -14,9 +14,11 @@ function Modal(props: PropsWithChildren<ModalOriginalProps>) {
 
   useEffect(() => {
     window.addEventListener('keydown', closeModalCallback);
+    document.body.dataset.hideScroll = 'true';
     
     return () => {
       window.removeEventListener('keydown', closeModalCallback);
+      document.body.dataset.hideScroll = 'false';
     };
   }, []);
 
