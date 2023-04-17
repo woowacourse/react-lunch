@@ -1,27 +1,17 @@
-import React from "react";
 import styled from "styled-components";
-import {
-  CategoryUnion,
-  SelectNameType,
-  SortingUnion,
-  SelectedValue,
-} from "../types/select";
+import { SelectNameType } from "../types/select";
 
 interface SelectProps {
-  name: SelectNameType;
+  type: SelectNameType;
   options: string[];
-  handleSelect: (selected: SelectedValue) => void;
+  handleSelect: (name: string, value: string) => void;
 }
 
-export const Select = ({ name, options, handleSelect }: SelectProps) => {
+export const Select = ({ type, options, handleSelect }: SelectProps) => {
   return (
     <SelectContainer
-      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-        const value = e.target.value as SortingUnion | CategoryUnion;
-        handleSelect({
-          type: name,
-          value: value,
-        });
+      onChange={(e) => {
+        handleSelect(type, e.target.value);
       }}
     >
       {options.map((option: string) => {

@@ -28,13 +28,13 @@ const App = () => {
     getInitialData();
   }, []);
 
-  const handleSelect = (select: SelectedValue) => {
-    if (select.type === SELECT_OPTION.SORTING) {
-      setSorting(select.value as SortingUnion);
+  const handleSelect = (type: string, value: string) => {
+    if (type === SELECT_OPTION.SORTING) {
+      setSorting(value as SortingUnion);
     }
 
-    if (select.type === SELECT_OPTION.CATEGORY) {
-      setCategory(select.value as CategoryUnion);
+    if (type === SELECT_OPTION.CATEGORY) {
+      setCategory(value as CategoryUnion);
     }
 
     arrangeRestaurants();
