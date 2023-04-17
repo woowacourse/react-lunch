@@ -1,7 +1,7 @@
 import "./index.css";
-import { CategoryImagePath } from "../../data/CategoryImagePath";
-import ModalContainer from "../common/ModalContainer";
 import { RestaurantDetailModalProps } from "./type";
+import { CategoryImagePath } from "../../data/CategoryImagePath";
+import ModalContainer from "../ModalContainer";
 
 const RestaurantDetailModal = (props: RestaurantDetailModalProps) => {
   const { closeModal, restaurant } = props;

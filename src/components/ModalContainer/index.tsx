@@ -1,12 +1,11 @@
-import React from "react";
+import "./index.css";
 import { createPortal } from "react-dom";
-
-interface ModalContainerProps {
-  children: React.ReactNode;
-  closeModal: () => void;
-}
+import useKeyDown from "../../hooks/useKeyDown";
+import { ModalContainerProps } from "./type";
 
 const ModalContainer = (props: ModalContainerProps) => {
+  useKeyDown("Escape", props.closeModal);
+
   return createPortal(
     <div className="modal">
       <div className="modal-backdrop" onClick={props.closeModal}></div>
