@@ -21,4 +21,4 @@ export const SORTING_OPTIONS = {
 export const CATEGORIES = Object.values(CATEGORY_OPTIONS);
 export const SORTING = Object.values(SORTING_OPTIONS);
 
-export type Category = Exclude<(typeof CATEGORIES)[number], "전체" | "기타">;
+export type Category = Exclude<(typeof CATEGORIES)[number], "전체">;

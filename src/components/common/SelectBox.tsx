@@ -1,29 +1,23 @@
-import { ChangeEventHandler, Component } from "react";
+import type { ChangeEventHandler } from "react";
 
 import styles from "./SelectBox.module.css";
 
-interface Props {
+interface SelectBoxProps {
   name: string;
   options: readonly string[];
   onChange: ChangeEventHandler;
 }
 
-class SelectBox extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <select name={this.props.name} className={styles.container} onChange={this.props.onChange}>
-        {this.props.options.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
-    );
-  }
-}
+const SelectBox = ({ name, options, onChange }: SelectBoxProps) => {
+  return (
+    <select name={name} className={styles.container} onChange={onChange}>
+      {options.map((option) => (
+        <option key={option} value={option}>
+          {option}
+        </option>
+      ))}
+    </select>
+  );
+};
 
 export default SelectBox;

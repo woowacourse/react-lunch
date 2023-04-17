@@ -1,35 +1,28 @@
-import { Component } from "react";
 import type { ChangeEvent } from "react";
 import SelectBox from "./common/SelectBox";
 import { CATEGORIES, SELECT_NAME, SORTING } from "../constants/options";
 
 import styles from "./RestaurantFilterContainer.module.css";
 
-interface Props {
+interface RestaurantFilterContainerProps {
   setOption: (key: string, option: string) => void;
 }
 
-class RestaurantFilterContainer extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
+const RestaurantFilterContainer = ({ setOption }: RestaurantFilterContainerProps) => {
+  const onChangeCategorySelect = (event: ChangeEvent<HTMLSelectElement>) => {
+    setOption(SELECT_NAME.CATEGORY, event.target.value);
+  };
 
-  onChangeCategorySelect(event: ChangeEvent<HTMLSelectElement>) {
-    this.props.setOption(SELECT_NAME.CATEGORY, event.target.value);
-  }
+  const onChangeSortingSelect = (event: ChangeEvent<HTMLSelectElement>) => {
+    setOption(SELECT_NAME.SORTING, event.target.value);
+  };
 
-  onChangeSortingSelect(event: ChangeEvent<HTMLSelectElement>) {
-    this.props.setOption(SELECT_NAME.SORTING, event.target.value);
-  }
-
-  render() {
-    return (
-      <section className={styles.container}>
-        <SelectBox name={SELECT_NAME.CATEGORY} options={CATEGORIES} onChange={this.onChangeCategorySelect.bind(this)} />
-        <SelectBox name={SELECT_NAME.SORTING} options={SORTING} onChange={this.onChangeSortingSelect.bind(this)} />
-      </section>
-    );
-  }
-}
+  return (
+    <section className={styles.container}>
+      <SelectBox name={SELECT_NAME.CATEGORY} options={CATEGORIES} onChange={onChangeCategorySelect} />
+      <SelectBox name={SELECT_NAME.SORTING} options={SORTING} onChange={onChangeSortingSelect} />
+    </section>
+  );
+};
 
 export default RestaurantFilterContainer;

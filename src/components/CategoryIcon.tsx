@@ -1,26 +1,18 @@
-import { Component } from "react";
-import getCategoryImage from "../assets/images/category";
+import categoryImages from "../assets/images/category";
+import type { Category } from "../constants/options";
 
 import styles from "./CategoryIcon.module.css";
 
-interface Props {
-  category: string;
+interface CategoryIconProps {
+  category: Category;
 }
 
-class CategoryIcon extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
-  render() {
-    const { category } = this.props;
-
-    return (
-      <div className={styles.category}>
-        <img src={getCategoryImage(category)} alt={category} className={styles.categoryIcon} />
-      </div>
-    );
-  }
-}
+const CategoryIcon = ({ category }: CategoryIconProps) => {
+  return (
+    <div className={styles.category}>
+      <img src={categoryImages[category]} alt={category} className={styles.categoryIcon} />
+    </div>
+  );
+};
 
 export default CategoryIcon;

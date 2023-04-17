@@ -1,17 +1,13 @@
-import { Component } from "react";
-
 import Header from "./components/Header";
 import Main from "./components/Main";
 
-class App extends Component {
-  render() {
-    return (
-      <>
-        <Header />
-        <Main />
-      </>
-    );
-  }
-}
+const App = () => {
+  return (
+    <>
+      <Header title="점심 뭐 먹지" />
+      <Main />
+    </>
+  );
+};
 
 export default App;

@@ -121,7 +121,7 @@
   },
   {
     "id": 60,
-    "category": "디저트",
+    "category": "기타",
     "name": "던킨도너츠",
     "distance": 5,
     "description": "던킨 선릉역점입니다. 네이버 스마트주문에서 간편하게 주문하세요!",
@@ -129,7 +129,7 @@
   },
   {
     "id": 61,
-    "category": "카페",
+    "category": "기타",
     "name": "컴포즈커피",
     "distance": 5,
     "description": "아아 1500원",
@@ -137,7 +137,7 @@
   },
   {
     "id": 62,
-    "category": "카페",
+    "category": "기타",
     "name": "스타벅스",
     "distance": 5,
     "description": "별다방 커피",
