@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import Header from './components/Header/Header';
-import './styles/App.css';
-import { RestaurantInfo, isFoodCategory, isSortMethod } from './types/restaurantInfo';
-import { getSavedRestaurantList, hasSavedRestaurantList, saveRestaurantList } from './components/RestaurantList/initializeRestaurantList';
-import RestaurantList from './components/RestaurantList/RestaurantList';
-import Modal from './components/Modal/Modal';
-import RestaurantDetail from './components/RestaurantDetail/RestaurantDetail';
+import Header from '../Header/Header';
+import './App.css';
+import { RestaurantInfo, isFoodCategory,   isSortMethod } from '../../types/restaurantInfo';
+import { hasSavedRestaurantList, saveRestaurantList } from './initializeRestaurantList';
+import RestaurantList from '../RestaurantList/RestaurantList';
+import Modal from '../Modal/Modal';
+import RestaurantDetail from '../RestaurantDetail/RestaurantDetail';
+import useRestaurants from './useRestaurants';
 
 function App() {
   if (!hasSavedRestaurantList()) saveRestaurantList();
-  // const storedList = getSavedRestaurantList();
-
-  // const [originalRestaurantList, setOriginalRestaurantList] = useState(storedList);
+  
+  const [restaurants, setRestaurants, deleteRestaurant] = useRestaurants();
   const [clickedRestaurant, setClickedRestaurant] = useState(null as (RestaurantInfo | null));
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [selectedSortingMethod, setSelectedSortingMethod] = useState('이름순');
-
+  
   const selectChangeCallback = (event: React.ChangeEvent<HTMLSelectElement>, kind: 'sort' | 'filter') => {
     const { value } = event.currentTarget;
 
@@ -28,36 +28,22 @@ function App() {
     }
   }
 
-  const deleteRestaurant = () => {
-    if (!clickedRestaurant) return;
-
-    // const updatedList = originalRestaurantList.filter((restaurant) => restaurant !== clickedRestaurant);
-    // saveRestaurantList(updatedList);
-
-    // setOriginalRestaurantList(updatedList);
-    setClickedRestaurant(null);
-  }
-
-  useEffect(() => { 
-    if (!clickedRestaurant) return;
-
-    document.body.dataset.hideScroll = 'true';
-
-    return () => { document.body.dataset.hideScroll = 'false'; };
-  }, [clickedRestaurant]);
-
   return (
     <div className="app">
       <Header onChange={selectChangeCallback} />
       <RestaurantList
-        onClick={(info: RestaurantInfo) => setClickedRestaurant(info)}
+        restaurants={restaurants}
+        onClick={setClickedRestaurant}
         category={isFoodCategory(selectedCategory) ? selectedCategory : '전체'}
         sortingMethod={isSortMethod(selectedSortingMethod) ? selectedSortingMethod : '이름순'}
       />
       {clickedRestaurant && (
         <Modal onClose={() => setClickedRestaurant(null)}>
           <RestaurantDetail
-            onDeleteClick={deleteRestaurant}
+            onDeleteClick={() => {
+              deleteRestaurant(clickedRestaurant);
+              setClickedRestaurant(null);
+            }}
             onCloseClick={() => setClickedRestaurant(null)}
             restaurantInfo={clickedRestaurant}
           />

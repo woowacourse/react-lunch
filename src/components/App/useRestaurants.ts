@@ -2,17 +2,20 @@ import { useEffect, useState } from "react";
 import { getSavedRestaurantList, hasSavedRestaurantList, saveRestaurantList } from "./initializeRestaurantList";
 import { RestaurantInfo } from "../../types/restaurantInfo";
 
-function useRestaurants () {
-  const [restaurants, setRestaurants] = useState([] as RestaurantInfo[]);
+type useRestaurantsReturns = [
+  RestaurantInfo[],
+  React.Dispatch<React.SetStateAction<RestaurantInfo[]>>,
+  (target: RestaurantInfo) => void,
+];
+
+function useRestaurants (): useRestaurantsReturns {
+  if (!hasSavedRestaurantList()) saveRestaurantList();
+  
+  const [restaurants, setRestaurants] = useState(getSavedRestaurantList());
 
   const deleteRestaurant = (target: RestaurantInfo) => {
     setRestaurants(restaurants.filter((restaurant) => restaurant !== target));
   };
-
-  useEffect(() => {
-    if (!hasSavedRestaurantList()) saveRestaurantList();
-    setRestaurants(getSavedRestaurantList());
-  }, []);
 
   useEffect(() => {
     saveRestaurantList(restaurants);

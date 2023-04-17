@@ -3,18 +3,16 @@ import styles from './RestaurantList.module.css';
 import { FoodCategory, RestaurantInfo, SortMethod } from '../../types/restaurantInfo';
 import RestaurantSummary from '../RestaurantSummary/RestaurantSummary';
 import { filterFoodCategory, sortRestaurants } from './RestaurantSelector';
-import useRestaurants from './useRestaurants';
 
 interface RestaurantListProps {
+  restaurants: RestaurantInfo[];
   category: FoodCategory;
   sortingMethod: SortMethod;
   onClick: (restaurantInfo: RestaurantInfo) => void;
 }
 
 function RestaurantList(props: RestaurantListProps) {
-  const { category, sortingMethod, onClick } = props;
-
-  const [restaurants] = useRestaurants();
+  const { restaurants, category, sortingMethod, onClick } = props;
 
   const filteredList = filterFoodCategory(restaurants as RestaurantInfo[], category);
   const sortedList = sortRestaurants(filteredList, sortingMethod);
