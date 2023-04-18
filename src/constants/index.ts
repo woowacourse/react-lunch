@@ -16,3 +16,7 @@ export const SORT_OPTIONS = {
 export const LOCAL_STORAGE_KEY = {
   RESTAURANT: 'restaurant',
 } as const;
+
+export const DEFAULT_CATEGORY_OPTION = '전체';
+
+export const DEFAULT_SORT_OPTION = '이름순';
