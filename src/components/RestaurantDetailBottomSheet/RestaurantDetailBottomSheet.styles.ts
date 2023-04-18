@@ -6,7 +6,7 @@ export const RestaurantDetailBottomSheet = styled.div`
   gap: 16px;
 `;
 
-export const BottomSheetBodyText = styled.div`
+export const BottomSheetBodyText = styled.span`
   color: var(--primary-color);
 `;
 
