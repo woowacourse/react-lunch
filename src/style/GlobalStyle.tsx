@@ -27,6 +27,10 @@ const GlobalStyle = createGlobalStyle`
     --grey-400: #344054;
     --grey-500: #000000;
   }
+
+  .overflow-hidden {
+    overflow: hidden;
+  }
 `;
 
 export default GlobalStyle;

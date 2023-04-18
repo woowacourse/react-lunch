@@ -1,114 +1,57 @@
-import { Category, Restaurant, SortingType } from './types/restaurant';
+import { Restaurant } from './types/restaurant';
 
-import React from 'react';
-import { Header, RestaurantList, RestaurantDetail } from './components';
+import React, { useState } from 'react';
+import { Header, RestaurantList, RestaurantDetail, Filter } from './components';
 
-import mockData from './mockData.json';
+import { useRestaurantFilter } from './hooks/useFilter';
+import { useLocalStorage } from './hooks/useLocalStorage';
 
-interface Props {}
-
-interface State {
-  restaurants: Restaurant[];
-  category: string;
-  sortingType: SortingType;
+interface ModalState {
   isModalOpen: boolean;
-  detailId: Restaurant['id'];
+  detailId?: Restaurant['id'];
 }
 
-class App extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
+const App = () => {
+  const localRestaurantsData = useLocalStorage('restaurants');
+  const [modalState, setModalState] = useState<ModalState>({
+    isModalOpen: false,
+  });
+  const [restaurants, { setCategory, setSortingType }] = useRestaurantFilter(localRestaurantsData);
 
-    if (!localStorage.getItem('restaurants')) {
-      localStorage.setItem('restaurants', JSON.stringify(mockData.restaurants));
-    }
-
-    const restaurants = JSON.parse(localStorage.getItem('restaurants') || '[]');
-    this.state = {
-      restaurants,
-      category: '전체',
-      sortingType: '이름순',
-      isModalOpen: false,
-      detailId: '1'
-    };
-
-    window.addEventListener('keyup', ({ key }) => {
-      if (this.state.isModalOpen && key === 'Escape') {
-        this.closeModal();
-      }
-    });
-  }
-
-  openModal = (id: Restaurant['id']) => {
-    this.setState({
+  const openModal = (id: Restaurant['id']) => {
+    setModalState({
+      ...modalState,
       detailId: id,
-      isModalOpen: true
+      isModalOpen: true,
     });
   };
 
-  closeModal = () => {
-    this.setState({
-      isModalOpen: false
+  const closeModal = () => {
+    setModalState({
+      ...modalState,
+      isModalOpen: false,
     });
   };
 
-  setCategory = (category: Category) => {
-    this.setState({
-      category
-    });
-  };
+  return (
+    <div className="App">
+      <Header />
 
-  setSortingType = (sortingType: SortingType) => {
-    this.setState({
-      sortingType
-    });
-  };
+      <main>
+        <Filter setCategory={setCategory} setSortingType={setSortingType} />
+        <RestaurantList restaurants={restaurants} openModal={openModal} />
+      </main>
 
-  filterRestaurants = () => {
-    const { category, sortingType } = this.state;
-
-    const restaurants = this.state.restaurants.filter(
-      restaurant => category === '전체' || restaurant.category === category
-    );
-
-    const getPivot = (restaurant: Restaurant) => {
-      return sortingType === '이름순' ? restaurant.name : restaurant.distance;
-    };
-
-    return restaurants.sort((a, b) => {
-      const A = getPivot(a);
-      const B = getPivot(b);
-      if (A > B) return 1;
-      if (A < B) return -1;
-      return 0;
-    });
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <Header />
-
-        <RestaurantList
-          restaurants={this.filterRestaurants()}
-          openModal={this.openModal}
-          setCategory={this.setCategory}
-          setSortingType={this.setSortingType}
+      {modalState.isModalOpen && (
+        <RestaurantDetail
+          closeModal={closeModal}
+          restaurant={
+            restaurants.find((restaurant) => restaurant.id === modalState.detailId) as Restaurant
+          }
         />
-
-        {this.state.isModalOpen && (
-          <RestaurantDetail
-            closeModal={this.closeModal}
-            restaurant={
-              mockData.restaurants.find(
-                restaurant => restaurant.id === this.state.detailId
-              ) as Restaurant
-            }
-          />
-        )}
-      </div>
-    );
-  }
-}
+      )}
+    </div>
+  );
+};
 
 export default App;
