@@ -1,4 +1,4 @@
-import { FoodCategory, RestaurantInfo } from '../types/restaurantInfo';
+import { FoodCategory, RestaurantInfo } from '../../types/restaurantInfo';
 
 export const filterFoodCategory = (restaurants: RestaurantInfo[], category: FoodCategory) => {
   if (category === '전체') return [...restaurants];
