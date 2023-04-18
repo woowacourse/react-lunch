@@ -1,5 +1,4 @@
 import { ChangeEvent } from 'react';
-import { Options } from '../types';
 
 export const useSelect = (
   attributes: {
@@ -7,7 +6,6 @@ export const useSelect = (
     name: string;
     className: string;
   },
-  options: Options,
   onChange: CallableFunction
 ) => {
   const handleChangeOption = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -18,13 +16,5 @@ export const useSelect = (
     });
   };
 
-  const createOptionElements = () => {
-    return options.map(option => (
-      <option key={option} value={option}>
-        {option}
-      </option>
-    ));
-  };
-
-  return { handleChangeOption, createOptionElements };
+  return { handleChangeOption };
 };

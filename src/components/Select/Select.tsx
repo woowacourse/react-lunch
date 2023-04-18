@@ -14,7 +14,15 @@ const Select = ({
   options: Options;
   onChange: CallableFunction;
 }) => {
-  const { handleChangeOption, createOptionElements } = useSelect(attributes, options, onChange);
+  const { handleChangeOption } = useSelect(attributes, onChange);
+
+  const createOptionElements = () => {
+    return options.map(option => (
+      <option key={option} value={option}>
+        {option}
+      </option>
+    ));
+  };
 
   return (
     <label htmlFor={attributes.id}>

@@ -1,6 +1,6 @@
 import './style.css';
 import { Restaurant } from '../../types';
-import { useRestaurantList } from '../../hooks/restaurantList';
+import RestaurantItem from '../RestaurantItem/RestaurantItem';
 
 const RestaurantList = ({
   restaurantList,
@@ -9,7 +9,13 @@ const RestaurantList = ({
   restaurantList: Restaurant[];
   setSelectedRestaurant: CallableFunction;
 }) => {
-  const createRestaurantItemListElement = useRestaurantList(restaurantList, setSelectedRestaurant);
+  const createRestaurantItemListElement = () => {
+    return restaurantList.map(restaurant => {
+      return (
+        <RestaurantItem key={restaurant.id} restaurant={restaurant} setSelectedRestaurant={setSelectedRestaurant} />
+      );
+    });
+  };
 
   return (
     <section className="restaurant-list-container">
