@@ -1,104 +1,75 @@
 import "./index.css";
-import { Component } from "react";
+import { useState, useEffect } from "react";
 import RestaurantItem from "../RestaurantItem";
 import { CategoryOption, Restaurant, SortOption } from "../../types/restaurant";
-import mockData from "../../data/mockData.json";
-import { LocalStorage } from "../../utils/LocalStorage";
-
-const LOCAL_STORAGE_KEY = "RESTAURANT_LIST";
+import { useLocalStorage } from "../../hooks";
+import getMockData from "../../data/getMockData";
+import { LOCAL_STORAGE_KEY } from "../../constants";
 
 interface RestaurantListProps {
-  selectedCategory: CategoryOption;
-  selectedSort: SortOption;
-  setModalContents: (Restaurant: Restaurant) => void;
-  openModal: () => void;
+  currentCategory: CategoryOption;
+  currentSort: SortOption;
+  onClickRestaurantItem: (Restaurant: Restaurant) => void;
 }
 
-interface RestaurantListState {
-  filteredRestaurants: Restaurant[];
-}
+const RestaurantList = ({ currentCategory, currentSort, onClickRestaurantItem }: RestaurantListProps) => {
+  const mockList: Restaurant[] = getMockData();
+  const [allRestaurantList] = useLocalStorage<Restaurant[]>(LOCAL_STORAGE_KEY, mockList);
+  const [restaurantList, setRestaurantList] = useState<Restaurant[]>(allRestaurantList);
 
-export default class RestaurantList extends Component<RestaurantListProps> {
-  allRestaurants: Restaurant[] = this.getInitList();
+  useEffect(() => {
+    const restaurantListByCategory = getListByCategory(allRestaurantList);
+    const sortedRestaurantList = getSortedList(restaurantListByCategory);
 
-  state: RestaurantListState = {
-    filteredRestaurants: this.getSortedListByName(this.allRestaurants),
-  };
+    setRestaurantList(sortedRestaurantList);
+  }, [currentCategory, currentSort]);
 
-  componentDidUpdate(prevProps: RestaurantListProps) {
-    if (prevProps.selectedCategory !== this.props.selectedCategory) {
-      const restaurantListByCategory = this.getListByCategory(this.allRestaurants);
-      const sortedRestaurantList = this.getSortedList(restaurantListByCategory);
-
-      this.setState({ filteredRestaurants: sortedRestaurantList });
-    }
-
-    if (prevProps.selectedSort !== this.props.selectedSort) {
-      const sortedRestaurantList = this.getSortedList(this.state.filteredRestaurants);
-
-      this.setState({ filteredRestaurants: sortedRestaurantList });
-    }
-  }
-
-  getInitList() {
-    const localStorageData: Restaurant[] = LocalStorage.getData(LOCAL_STORAGE_KEY);
-    if (localStorageData) {
-      return localStorageData;
-    }
-
-    const mockList: Restaurant[] = JSON.parse(JSON.stringify(mockData.restaurants));
-    LocalStorage.setData(LOCAL_STORAGE_KEY, mockList);
-    return mockList;
-  }
-
-  getListByCategory(restaurants: Restaurant[]) {
-    const { selectedCategory } = this.props;
-
-    if (selectedCategory === "all") {
+  const getListByCategory = (restaurants: Restaurant[]) => {
+    if (currentCategory === "all") {
       return restaurants;
     }
 
-    return restaurants.filter((restaurant) => restaurant.category === selectedCategory);
-  }
+    return restaurants.filter((restaurant) => restaurant.category === currentCategory);
+  };
 
-  getSortedList(restaurants: Restaurant[]) {
-    const { selectedSort } = this.props;
-
-    if (selectedSort === "name") {
-      return this.getSortedListByName(restaurants);
+  const getSortedList = (restaurants: Restaurant[]) => {
+    if (currentSort === "name") {
+      return getSortedListByName(restaurants);
     }
-    if (selectedSort === "distance") {
-      return this.getSortedListByDistance(restaurants);
+    if (currentSort === "distance") {
+      return getSortedListByDistance(restaurants);
     }
 
     return restaurants;
-  }
+  };
 
-  getSortedListByName(restaurants: Restaurant[]) {
+  const getSortedListByName = (restaurants: Restaurant[]) => {
     return [...restaurants].sort((a, b) => a.name.localeCompare(b.name));
-  }
+  };
 
-  getSortedListByDistance(restaurants: Restaurant[]) {
+  const getSortedListByDistance = (restaurants: Restaurant[]) => {
     return [...restaurants].sort((a, b) => a.distance - b.distance);
-  }
+  };
 
-  render() {
-    const { filteredRestaurants } = this.state;
-    const { setModalContents, openModal } = this.props;
+  return (
+    <section className="restaurant-list-container">
+      <ul className="restaurant-list">
+        {restaurantList.map((restaurant) => {
+          const handleClickRestaurantItem = () => {
+            onClickRestaurantItem(restaurant);
+          };
 
-    return (
-      <section className="restaurant-list-container">
-        <ul className="restaurant-list">
-          {filteredRestaurants.map((restaurant) => (
+          return (
             <RestaurantItem
               key={restaurant.id}
               restaurant={restaurant}
-              setModalContents={setModalContents}
-              openModal={openModal}
+              onClickRestaurantItem={handleClickRestaurantItem}
             />
-          ))}
-        </ul>
-      </section>
-    );
-  }
-}
+          );
+        })}
+      </ul>
+    </section>
+  );
+};
+
+export default RestaurantList;

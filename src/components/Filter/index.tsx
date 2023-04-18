@@ -1,5 +1,4 @@
 import "./index.css";
-import { Component } from "react";
 import { CategoryOption, SortOption } from "../../types/restaurant";
 
 const CATEGORY_LIST = {
@@ -17,47 +16,37 @@ const SORT_LIST = {
 };
 
 interface FilterProps {
-  setSelectedCategory: (category: CategoryOption) => void;
-  setSelectedSort: (sort: SortOption) => void;
+  onChangeCategory: (category: CategoryOption) => void;
+  onChangeSort: (sort: SortOption) => void;
 }
 
-export default class Filter extends Component<FilterProps> {
-  setSelectedCategory(event: React.ChangeEvent<HTMLSelectElement>) {
-    this.props.setSelectedCategory(event.target.value as CategoryOption);
-  }
+const Filter = ({ onChangeCategory, onChangeSort }: FilterProps) => {
+  const handleChangeCategory = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    onChangeCategory(event.target.value as CategoryOption);
+  };
 
-  setSelectedSort(event: React.ChangeEvent<HTMLSelectElement>) {
-    this.props.setSelectedSort(event.target.value as SortOption);
-  }
+  const handleChangeSort = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    onChangeSort(event.target.value as SortOption);
+  };
 
-  render() {
-    return (
-      <section className="restaurant-filter-container">
-        <select
-          name="category"
-          id="category-filter"
-          className="restaurant-filter"
-          onChange={this.setSelectedCategory.bind(this)}
-        >
-          {Object.entries(CATEGORY_LIST).map(([key, value]) => (
-            <option key={key} value={key}>
-              {value}
-            </option>
-          ))}
-        </select>
-        <select
-          name="sorting"
-          id="sorting-filter"
-          className="restaurant-filter"
-          onChange={this.setSelectedSort.bind(this)}
-        >
-          {Object.entries(SORT_LIST).map(([key, value]) => (
-            <option key={key} value={key}>
-              {value}
-            </option>
-          ))}
-        </select>
-      </section>
-    );
-  }
-}
+  return (
+    <section className="restaurant-filter-container">
+      <select name="category" id="category-filter" className="restaurant-filter" onChange={handleChangeCategory}>
+        {Object.entries(CATEGORY_LIST).map(([key, value]) => (
+          <option key={key} value={key}>
+            {value}
+          </option>
+        ))}
+      </select>
+      <select name="sorting" id="sorting-filter" className="restaurant-filter" onChange={handleChangeSort}>
+        {Object.entries(SORT_LIST).map(([key, value]) => (
+          <option key={key} value={key}>
+            {value}
+          </option>
+        ))}
+      </select>
+    </section>
+  );
+};
+
+export default Filter;

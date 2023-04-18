@@ -5,12 +5,12 @@ interface HeaderProps {
   title: string;
 }
 
-export default class Header extends Component<HeaderProps> {
-  render() {
-    return (
-      <header className="gnb">
-        <h1 className="gnb__title text-title">{this.props.title}</h1>
-      </header>
-    );
-  }
-}
+const Header = ({ title }: HeaderProps) => {
+  return (
+    <header className="gnb">
+      <h1 className="gnb__title text-title">{title}</h1>
+    </header>
+  );
+};
+
+export default Header;

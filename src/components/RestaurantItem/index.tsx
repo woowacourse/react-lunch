@@ -5,32 +5,28 @@ import { Restaurant } from "../../types/restaurant";
 
 interface RestaurantItemProps {
   restaurant: Restaurant;
-  setModalContents: (restaurant: Restaurant) => void;
-  openModal: () => void;
+  onClickRestaurantItem: () => void;
 }
 
-export default class RestaurantItem extends Component<RestaurantItemProps> {
-  onClickRestaurantItem() {
-    const { restaurant, setModalContents, openModal } = this.props;
+const RestaurantItem = ({ restaurant, onClickRestaurantItem }: RestaurantItemProps) => {
+  const { name, category, description, distance } = restaurant;
 
-    setModalContents(restaurant);
-    openModal();
-  }
+  const handleClickRestaurantItem = () => {
+    onClickRestaurantItem();
+  };
 
-  render() {
-    const { name, category, description, distance } = this.props.restaurant;
+  return (
+    <li className="restaurant" onClick={handleClickRestaurantItem}>
+      <div className="restaurant__category">
+        <img src={CategoryImagePath[category]} alt={category} className="category-icon" />
+      </div>
+      <div className="restaurant__info">
+        <h3 className="restaurant__name text-subtitle">{name}</h3>
+        <span className="restaurant__distance text-body">캠퍼스부터 {distance}분 내</span>
+        <p className="restaurant__description text-body">{description}</p>
+      </div>
+    </li>
+  );
+};
 
-    return (
-      <li className="restaurant" onClick={this.onClickRestaurantItem.bind(this)}>
-        <div className="restaurant__category">
-          <img src={CategoryImagePath[category]} alt={category} className="category-icon" />
-        </div>
-        <div className="restaurant__info">
-          <h3 className="restaurant__name text-subtitle">{name}</h3>
-          <span className="restaurant__distance text-body">캠퍼스부터 {distance}분 내</span>
-          <p className="restaurant__description text-body">{description}</p>
-        </div>
-      </li>
-    );
-  }
-}
+export default RestaurantItem;
