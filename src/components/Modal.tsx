@@ -1,35 +1,40 @@
-import React from "react";
-import styled from "styled-components";
-import { Restaurant } from "../types/Restaurant";
-import { convertImage } from "../utils/image";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { RestaurantContext } from '../App';
+import { Restaurant } from '../types/Restaurant';
+import { convertImage } from '../utils/image';
 
 interface ModalProps {
   restaurant: Restaurant;
-  closeModal: Function;
 }
 
 const Modal = (props: ModalProps) => {
   const { name, distance, category, description } = props.restaurant;
+  const { state, setState } = useContext(RestaurantContext);
+
+  const onClickHandler = (): void => {
+    setState({ ...state, modalOpen: false });
+  };
 
   return (
     <ModalContainer>
-      <ModalBackDrop onClick={() => props.closeModal()}></ModalBackDrop>
+      <ModalBackDrop onClick={onClickHandler}></ModalBackDrop>
       <ModalContent>
         <div>
           <CategoryIcon>
             <img src={convertImage(category)} />
           </CategoryIcon>
-          <div className="star-container"></div>
+          <div className='star-container'></div>
         </div>
-        <h2 className="mt-16">{name}</h2>
+        <h2 className='mt-16'>{name}</h2>
         <RestaurantInfo>
           <p>캠퍼스로부터 {distance}분 내</p>
-          <div className="mt-16 mb-16">{description}</div>
+          <div className='mt-16 mb-16'>{description}</div>
           <ButtonContainer>
-            <button onClick={() => alert("지원하지 않는 기능입니다.")}>
+            <button onClick={() => alert('지원하지 않는 기능입니다.')}>
               삭제하기
             </button>
-            <button onClick={() => props.closeModal()}>닫기</button>
+            <button onClick={onClickHandler}>닫기</button>
           </ButtonContainer>
         </RestaurantInfo>
       </ModalContent>
