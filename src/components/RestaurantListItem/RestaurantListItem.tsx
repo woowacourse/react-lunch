@@ -21,9 +21,7 @@ const RestaurantListItem = ({ restaurant, onClick }: RestaurantListItemProps) =>
         </styled.RestaurantListItemHeaderSubTitleText>
       </header>
 
-      <styled.RestaurantListItemBodyText>
-        {restaurant.description}
-      </styled.RestaurantListItemBodyText>
+      <p> {restaurant.description}</p>
     </styled.RestaurantListItem>
   );
 };

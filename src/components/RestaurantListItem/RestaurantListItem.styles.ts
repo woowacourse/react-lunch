@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BodyText, SubTitleText } from '../../styles/Text';
+import { SubTitleText } from '../../styles/Text';
 
 export const RestaurantListItem = styled.li`
   display: grid;
@@ -23,15 +23,4 @@ export const RestaurantListItemHeaderSubTitleText = styled.p`
   line-height: 24px;
   font-weight: 400;
   color: var(--primary-color);
-`;
-
-export const RestaurantListItemBodyText = styled(BodyText)`
-  display: -webkit-box;
-
-  padding-top: 8px;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
 `;
