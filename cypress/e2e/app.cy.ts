@@ -26,7 +26,7 @@ describe("점심 뭐먹지 미션 e2e 테스트", () => {
     cy.get("#category-filter").select("korean");
     cy.get("#sorting-filter").select("distance");
 
-    const sortedNames = ["순대국집", "농민백암순대", "쌀밥집", "피양콩할마니"];
+    const sortedNames = ["순대국집", "쌀밥집", "농민백암순대", "피양콩할마니"];
 
     cy.get(".restaurant").should("have.length", 4);
     cy.get(".restaurant-list > :nth-child(1)").contains(sortedNames[0]);

@@ -1,16 +1,12 @@
 import "./index.css";
-import { Component } from "react";
+import { HeaderProps } from "./type";
 
-interface HeaderProps {
-  title: string;
-}
+const Header = (props: HeaderProps) => {
+  return (
+    <header className="gnb">
+      <h1 className="gnb__title text-title">{props.title}</h1>
+    </header>
+  );
+};
 
-export default class Header extends Component<HeaderProps> {
-  render() {
-    return (
-      <header className="gnb">
-        <h1 className="gnb__title text-title">{this.props.title}</h1>
-      </header>
-    );
-  }
-}
+export default Header;

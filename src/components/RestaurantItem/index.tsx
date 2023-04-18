@@ -1,27 +1,17 @@
 import "./index.css";
-import { Component } from "react";
 import { CategoryImagePath } from "../../data/CategoryImagePath";
-import { Restaurant } from "../../types/restaurant";
+import useModal from "../../hooks/useModal";
+import RestaurantDetailModal from "../RestaurantDetailModal";
+import { RestaurantItemProps } from "./type";
 
-interface RestaurantItemProps {
-  restaurant: Restaurant;
-  setModalContents: (restaurant: Restaurant) => void;
-  openModal: () => void;
-}
+const RestaurantItem = (props: RestaurantItemProps) => {
+  const { restaurant } = props;
+  const { name, category, description, distance } = restaurant;
+  const { isModalOpen, openModal, closeModal } = useModal();
 
-export default class RestaurantItem extends Component<RestaurantItemProps> {
-  onClickRestaurantItem() {
-    const { restaurant, setModalContents, openModal } = this.props;
-
-    setModalContents(restaurant);
-    openModal();
-  }
-
-  render() {
-    const { name, category, description, distance } = this.props.restaurant;
-
-    return (
-      <li className="restaurant" onClick={this.onClickRestaurantItem.bind(this)}>
+  return (
+    <>
+      <li className="restaurant" onClick={openModal}>
         <div className="restaurant__category">
           <img src={CategoryImagePath[category]} alt={category} className="category-icon" />
         </div>
@@ -31,6 +21,9 @@ export default class RestaurantItem extends Component<RestaurantItemProps> {
           <p className="restaurant__description text-body">{description}</p>
         </div>
       </li>
-    );
-  }
-}
+      {isModalOpen && <RestaurantDetailModal restaurant={restaurant} closeModal={closeModal} />}
+    </>
+  );
+};
+
+export default RestaurantItem;
