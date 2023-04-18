@@ -1,15 +1,5 @@
 import styled from "styled-components";
-
-const FadeInUp = `
-@keyframes fadeInUp {
-  from {
-      transform: translate3d(0, 100%, 0);
-  }
-  to {
-      transform: translateZ(0);
-  }
-}
-`;
+import { FadeInUp } from "../common/GlobalStyle";
 
 const St = {
   Backdrop: styled.div`
@@ -21,7 +11,7 @@ const St = {
 
     background: rgba(0, 0, 0, 0.35);
   `,
-  BottomSheet: styled.div`
+  PopUp: styled.div`
     position: fixed;
     left: 0;
     bottom: 0;
@@ -47,7 +37,7 @@ const St = {
     justify-content: flex-start;
     padding: 8px 8px;
     width: 100%;
-    height: 100%;
+    height: 90%;
   `,
   Title: styled.h3`
     font-size: 20px;
@@ -70,7 +60,7 @@ const St = {
     word-wrap: break-word;
     width: 100%;
     height: 100%;
-    max-height: 65%;
+    max-height: 60%;
 
     font-size: 16px;
     line-height: 24px;

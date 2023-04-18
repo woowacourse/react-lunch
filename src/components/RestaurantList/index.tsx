@@ -1,15 +1,14 @@
-import React, { Component, ReactNode } from "react";
-import { fetchMockRestaurants } from "../../api/restaurants";
-import { BY_NAME } from "../../constants/restaurants";
+import React from "react";
 import {
   AlignFilter,
   CategoryFilter,
   Restaurant,
 } from "../../types/restaurants";
-import { alignBy, filterBy } from "../../domain/restaurants";
-import RestaurantDetailBottomSheet from "../RestaurantDetailBottomSheet";
 import RestaurantItem from "../RestaurantItem";
 import St from "./styled";
+import RestaurantDetailPopUp from "../RestaurantDetailPopUp";
+import useRestaurant from "./useRestaurant";
+import useDetailPopUp from "./useDetailPopUp";
 
 interface RestaurantListProps {
   filterOptions: {
@@ -18,93 +17,30 @@ interface RestaurantListProps {
   };
 }
 
-interface State {
-  restaurantListOrigin: Restaurant[];
-  restaurantList: Restaurant[];
-  isOpened: boolean;
-  focusedRestaurant: Restaurant | null;
+export default function RestaurantList({
+  filterOptions: { category, align },
+}: RestaurantListProps) {
+  const { restaurantList } = useRestaurant(category, align);
+
+  const { isOpened, focusedRestaurant, focusRestaurant, closeModal } =
+    useDetailPopUp();
+
+  const isBottomSheetOpened = isOpened && focusedRestaurant;
+  return (
+    <St.Layout>
+      {restaurantList.map((restaurant: Restaurant) => (
+        <RestaurantItem
+          key={restaurant.id}
+          info={restaurant}
+          onClick={() => focusRestaurant(restaurant)}
+        />
+      ))}
+      {isBottomSheetOpened && (
+        <RestaurantDetailPopUp
+          restaurant={focusedRestaurant}
+          close={closeModal}
+        />
+      )}
+    </St.Layout>
+  );
 }
-
-class RestaurantList extends Component<RestaurantListProps, State> {
-  state = {
-    restaurantListOrigin: [],
-    restaurantList: [],
-    isOpened: false,
-    focusedRestaurant: null,
-  };
-
-  onClickRestaurantItem: (restaurant: Restaurant) => void;
-  closeModalHandler: VoidFunction;
-
-  constructor(props: RestaurantListProps) {
-    super(props);
-
-    this.onClickRestaurantItem = this.focusRestaurant.bind(this);
-    this.closeModalHandler = this.closeModal.bind(this);
-  }
-
-  async componentDidMount() {
-    const restaurantList = await fetchMockRestaurants({ align: BY_NAME });
-
-    this.setState({ restaurantListOrigin: restaurantList, restaurantList });
-  }
-
-  componentDidUpdate(prevProps: Readonly<RestaurantListProps>): void {
-    const { category: prevCategory, align: prevAlign } =
-      prevProps.filterOptions;
-    const { category: nextCategory, align: nextAlign } =
-      this.props.filterOptions;
-
-    if (prevCategory !== nextCategory) this.filter();
-    if (prevCategory !== nextCategory || prevAlign !== nextAlign) this.align();
-  }
-
-  filter() {
-    const { category } = this.props.filterOptions;
-
-    this.setState(({ restaurantListOrigin }) => ({
-      restaurantList: filterBy(category, restaurantListOrigin),
-    }));
-  }
-
-  align() {
-    const { align } = this.props.filterOptions;
-
-    this.setState(({ restaurantList }) => ({
-      restaurantList: alignBy(align, restaurantList),
-    }));
-  }
-
-  focusRestaurant(focusedRestaurant: Restaurant) {
-    this.setState({ focusedRestaurant, isOpened: true });
-  }
-
-  closeModal() {
-    this.setState({ focusedRestaurant: null, isOpened: false });
-  }
-
-  render(): ReactNode {
-    const { restaurantList, focusedRestaurant, isOpened } = this.state;
-    const isBottomSheetOpened = isOpened && focusedRestaurant;
-
-    return (
-      <St.Layout>
-        {restaurantList.map((restaurant: Restaurant) => (
-          <RestaurantItem
-            key={restaurant.id}
-            info={restaurant}
-            onClick={() => this.onClickRestaurantItem(restaurant)}
-          />
-        ))}
-        {isBottomSheetOpened && (
-          <RestaurantDetailBottomSheet
-            restaurant={focusedRestaurant}
-            close={this.closeModalHandler}
-          />
-        )}
-      </St.Layout>
-    );
-  }
-}
-
-export default RestaurantList;

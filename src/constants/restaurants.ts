@@ -1,4 +1,4 @@
-export const CATEGORY_ALL = "전체";
+export const CATEGORY_ALL = "전체" as const;
 export const CATEGORY_FILTER = [
   CATEGORY_ALL,
   "한식",
@@ -9,6 +9,6 @@ export const CATEGORY_FILTER = [
   "기타",
 ] as const;
 
-export const BY_DISTANCE = "거리순";
-export const BY_NAME = "이름순";
+export const BY_DISTANCE = "거리순" as const;
+export const BY_NAME = "이름순" as const;
 export const ALIGN_FILTER = [BY_NAME, BY_DISTANCE] as const;

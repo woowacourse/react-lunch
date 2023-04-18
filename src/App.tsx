@@ -2,11 +2,11 @@ import React, { Component, PropsWithChildren, ReactNode } from "react";
 import Layout from "./components/common/Layout";
 import RestaurantList from "./components/RestaurantList";
 import SelectBar from "./components/SelectBar";
-import { ALIGN_FILTER, CATEGORY_FILTER } from "./constants/restaurants";
+import { BY_NAME, CATEGORY_ALL } from "./constants/restaurants";
 import { AlignFilter, CategoryFilter } from "./types/restaurants";
 
 class App extends Component {
-  state = { category: CATEGORY_FILTER[0], align: ALIGN_FILTER[0] };
+  state = { category: CATEGORY_ALL, align: BY_NAME };
   onChangeCategoryFilter: (category: CategoryFilter) => void;
   onChangeAlignFilter: (align: AlignFilter) => void;
 
@@ -29,15 +29,13 @@ class App extends Component {
     const { category, align } = this.state;
 
     return (
-      <>
-        <Layout>
-          <SelectBar
-            onChangeCategoryFilter={this.onChangeCategoryFilter}
-            onChangeAlignFilter={this.onChangeAlignFilter}
-          />
-          <RestaurantList filterOptions={{ category, align }} />
-        </Layout>
-      </>
+      <Layout>
+        <SelectBar
+          onChangeCategoryFilter={this.onChangeCategoryFilter}
+          onChangeAlignFilter={this.onChangeAlignFilter}
+        />
+        <RestaurantList filterOptions={{ category, align }} />
+      </Layout>
     );
   }
 }
