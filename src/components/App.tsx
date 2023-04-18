@@ -1,14 +1,13 @@
-import { Component } from 'react';
 import Header from './Header/Header';
-import Main from './Main/Main';
+import Restaurants from './Restaurants/Restaurants';
 
-export default class App extends Component {
-  render() {
-    return (
-      <>
-        <Header />
-        <Main />
-      </>
-    );
-  }
-}
+const App = () => {
+  return (
+    <>
+      <Header />
+      <Restaurants />
+    </>
+  );
+};
+
+export default App;

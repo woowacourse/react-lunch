@@ -1,8 +1,10 @@
-import { Restaurant } from './../types/types';
+import { CategoryFilter, Restaurant, SortingFilter } from './../types/types';
 import restaurants from '../data/mockData.json';
 
-export const getSelectedRestaurantsList = (category: string, sortType: string) => {
-  return sortByType(sortType, filterByCategory(category, restaurants));
+const typedRestaurants = restaurants as Restaurant[];
+
+export const getSelectedRestaurantsList = (category: CategoryFilter, sortType: SortingFilter) => {
+  return sortByType(sortType, filterByCategory(category, typedRestaurants));
 };
 
 const sortByType = (sortType: string, filteredByCategoryRestaurants: Restaurant[]): Restaurant[] => {
@@ -25,6 +27,6 @@ const compareString = (a: string, b: string): number => {
   return 0;
 };
 
-export const getSelectedRestaurant = (id: number | undefined) => {
-  return restaurants.find(restaurant => id === restaurant.id) || restaurants[0];
+export const getSelectedRestaurant = (id?: number) => {
+  return typedRestaurants.find(restaurant => id === restaurant.id) || restaurants[0];
 };
