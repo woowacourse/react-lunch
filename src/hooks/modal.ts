@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export const useModal = (setSelectedRestaurant: CallableFunction) => {
+export const useRestaurantItemModal = (setSelectedRestaurant: CallableFunction) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export const useModal = (setSelectedRestaurant: CallableFunction) => {
 
   const handleClickClose: React.MouseEventHandler = ({ target }) => {
     if (
-      target instanceof Element &&
+      target instanceof HTMLElement &&
       (target.classList.contains('modal-backdrop') || target.classList.contains('modal-close-button'))
     ) {
       setSelectedRestaurant(null);

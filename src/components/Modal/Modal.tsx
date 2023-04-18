@@ -1,9 +1,9 @@
 import './style.css';
 import { ReactNode } from 'react';
-import { useModal } from '../../hooks/modal';
+import { useRestaurantItemModal } from '../../hooks/modal';
 
 const Modal = ({ content, setSelectedRestaurant }: { content: ReactNode; setSelectedRestaurant: CallableFunction }) => {
-  const { ref, handleClickClose, handleKeyPressClose } = useModal(setSelectedRestaurant);
+  const { ref, handleClickClose, handleKeyPressClose } = useRestaurantItemModal(setSelectedRestaurant);
 
   return (
     <div className="modal" onClick={handleClickClose}>
