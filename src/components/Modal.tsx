@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { RestaurantContext } from '../App';
+import { RestaurantContext } from '../containers/GlobalProvider';
 import { Restaurant } from '../types/Restaurant';
 import { convertImage } from '../utils/image';
 

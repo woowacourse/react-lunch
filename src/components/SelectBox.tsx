@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import styled from "styled-components";
-import { RestaurantContext } from "../App";
-import { Option } from "../types/Restaurant";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { RestaurantContext } from '../containers/GlobalProvider';
+import { Option } from '../types/Restaurant';
 
 interface SelectBoxProps {
   name: Option;
@@ -13,7 +13,7 @@ const SelectBox = (props: SelectBoxProps) => {
   const { state, setState } = useContext(RestaurantContext);
 
   const updateRestaurants = (value: string) => {
-    if (name === "sortBy")
+    if (name === 'sortBy')
       setState({
         ...state,
         sortBy: value,
@@ -22,7 +22,7 @@ const SelectBox = (props: SelectBoxProps) => {
           .sort((a, b) => (a[value] > b[value] ? 1 : -1)),
       });
 
-    if (name === "categorizeBy")
+    if (name === 'categorizeBy')
       setState({
         ...state,
         categorizeBy: value,
@@ -30,7 +30,7 @@ const SelectBox = (props: SelectBoxProps) => {
   };
 
   return (
-    <Select name="" onChange={(event) => updateRestaurants(event.target.value)}>
+    <Select name='' onChange={(event) => updateRestaurants(event.target.value)}>
       {options.map((option) => (
         <option value={option.value} key={option.value}>
           {option.label}

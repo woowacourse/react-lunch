@@ -1,9 +1,8 @@
-
-import React, { useContext } from "react";
-import styled from "styled-components";
-import { convertImage } from "../utils/image";
-import { RestaurantContext } from "../App";
-import { Restaurant } from "../types/Restaurant";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { convertImage } from '../utils/image';
+import { Restaurant } from '../types/Restaurant';
+import { RestaurantContext } from '../containers/GlobalProvider';
 
 interface RestaurantItemProps {
   restaurant: Restaurant;

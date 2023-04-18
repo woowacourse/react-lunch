@@ -1,47 +1,26 @@
-import React, { createContext, useState } from "react";
-import RestaurantList from "./components/RestaurantList";
-import mockData from "./data/mockData.json";
-import { AppState, CATEGORY, SORTINGWAY } from "./types/Restaurant";
-import SelectBox from "./components/SelectBox";
-import Header from "./components/Header";
-import styled from "styled-components";
-import Modal from "./components/Modal";
-
-interface GlobalState {
-  state: AppState;
-  setState: Function;
-}
-
-export const RestaurantContext = createContext<GlobalState>({
-  state: {
-    restaurants: mockData,
-    modalOpen: false,
-    modalInfo: {
-      category: "",
-      name: "",
-      distance: 0,
-      description: "",
-      favorite: false,
-    },
-    sortBy: "name",
-    categorizeBy: "all",
-  },
-  setState: () => {},
-});
+import React, { useState } from 'react';
+import RestaurantList from './components/RestaurantList';
+import mockData from './data/mockData.json';
+import { AppState, CATEGORY, SORTINGWAY } from './types/Restaurant';
+import SelectBox from './components/SelectBox';
+import Header from './components/Header';
+import styled from 'styled-components';
+import Modal from './components/Modal';
+import { RestaurantContext } from './containers/GlobalProvider';
 
 const App = () => {
   const [state, setState]: [AppState, Function] = useState({
     restaurants: mockData,
     modalOpen: false,
     modalInfo: {
-      category: "",
-      name: "",
+      category: '',
+      name: '',
       distance: 0,
-      description: "",
+      description: '',
       favorite: false,
     },
-    sortBy: "name",
-    categorizeBy: "all",
+    sortBy: 'name',
+    categorizeBy: 'all',
   });
 
   const categoryOptions = Object.entries(CATEGORY).map(([label, value]) => ({
@@ -59,18 +38,13 @@ const App = () => {
   return (
     <>
       <RestaurantContext.Provider value={{ state, setState }}>
-        <Header />
+        <Header title='점심 뭐 먹지' />
         <SelectContainer>
-          <SelectBox name="categorizeBy" options={categoryOptions} />
-          <SelectBox name="sortBy" options={sortingWayOptions} />
+          <SelectBox name='categorizeBy' options={categoryOptions} />
+          <SelectBox name='sortBy' options={sortingWayOptions} />
         </SelectContainer>
         <RestaurantList />
-        {state.modalOpen && (
-          <Modal
-            restaurant={state.modalInfo}
-            closeModal={() => setState({ ...state, modalOpen: false })}
-          />
-        )}
+        {state.modalOpen && <Modal restaurant={state.modalInfo} />}
       </RestaurantContext.Provider>
     </>
   );
