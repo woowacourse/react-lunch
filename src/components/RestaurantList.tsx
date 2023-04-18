@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import RestaurantManager from '../domain/RestaurantCollector';
 import { RestaurantItem } from './RestaurantItem';
 import { Category } from '../types/RestaurantDetail';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { DetailModal } from './DetailModal';
 import { createPortal } from 'react-dom';
 
@@ -18,16 +18,15 @@ const fetchRestaurants = (category: Category, sort: string) => {
 
 export const RestaurantList = ({ category, sort }: RestaurantListProps) => {
   const [showModal, setShowModal] = useState(false);
-  const idRef = useRef(-1);
+  const [id, setId] = useState(0);
 
-  const handleClickItem: React.MouseEventHandler<HTMLLIElement> = (event) => {
-    const eventTarget = event.target as HTMLElement;
-
-    if ('id' in eventTarget) {
-      idRef.current = Number(eventTarget.id);
-    }
-
-    setShowModal(true);
+  const handleClickItem: (
+    id: number
+  ) => React.MouseEventHandler<HTMLLIElement> = (id) => {
+    return () => {
+      setId(id);
+      setShowModal(true);
+    };
   };
 
   const restaurants = fetchRestaurants(category, sort);
@@ -39,16 +38,13 @@ export const RestaurantList = ({ category, sort }: RestaurantListProps) => {
           <RestaurantItem
             key={itemDetail.id}
             itemDetail={itemDetail}
-            onClickItem={handleClickItem}
+            onClickItem={handleClickItem(itemDetail.id)}
           ></RestaurantItem>
         ))}
       </RestaurantListContainer>
       {showModal &&
         createPortal(
-          <DetailModal
-            setShow={setShowModal}
-            restaurantID={idRef.current}
-          ></DetailModal>,
+          <DetailModal setShow={setShowModal} restaurantID={id}></DetailModal>,
           document.body
         )}
     </>
