@@ -1,7 +1,23 @@
-import { restaurant } from '../utils/interfaces';
+import { useEffect, useState } from 'react';
+import { restaurant, appState } from '../utils/interfaces';
 import { SelectorCategory, SelectorFilter } from '../utils/types';
 
-export function sortingByCategory(category: SelectorCategory, wholeList: Array<restaurant>) {
+export function useRestaurantSorting(props: appState) {
+  const { category, filter, wholeList } = props;
+  const [sortedRestaurants, setSortedRestaurants] = useState<restaurant[]>(wholeList);
+  const [currentCategory, setCurrentCategory] = useState<SelectorCategory>(category);
+  const [currentFilter, setCurrentFilter] = useState<SelectorFilter>(filter);
+
+  useEffect(() => {
+    const sortedByCategory = sortingByCategory(currentCategory, wholeList);
+    const sortedByFilter = sortingByFilter(currentFilter, sortedByCategory);
+    setSortedRestaurants(sortedByFilter);
+  }, [currentCategory, currentFilter]);
+
+  return { sortedRestaurants, setCurrentCategory, setCurrentFilter };
+}
+
+function sortingByCategory(category: SelectorCategory, wholeList: Array<restaurant>) {
   if (category === '전체') {
     return wholeList;
   }
@@ -9,7 +25,7 @@ export function sortingByCategory(category: SelectorCategory, wholeList: Array<r
   return wholeList.filter(item => item.category === category);
 }
 
-export function sortingByFilter(filter: SelectorFilter, wholeList: Array<restaurant>) {
+function sortingByFilter(filter: SelectorFilter, wholeList: Array<restaurant>) {
   if (filter === '이름순') {
     return sortByName(wholeList);
   }

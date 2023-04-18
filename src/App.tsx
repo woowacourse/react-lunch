@@ -1,93 +1,81 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './App.css';
 import Header from './components/Header';
 import ItemList from './components/ItemList';
 import Selector from './components/Selector';
 import mockData from './mockData/restaurantList.json';
-import { appState, restaurant } from './utils/interfaces';
+import { restaurant } from './utils/interfaces';
 import { parseJson } from './utils/json';
-import { selectorCategory, selectorFilter } from './utils/types';
-import { sortingByCategory, sortingByFilter } from './domain/restaurantSort';
+import { SelectorCategory, SelectorFilter } from './utils/types';
 import { CATEGORY_OPTIONS, FILTER_OPTIONS } from './utils/constants';
 import { localStorageGetItem } from './utils/localStorage';
 import { typePredicates } from './utils/typeCheck';
+import { useRestaurantSorting } from './hook/useRestaurantSort';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface Props {}
 
-class App extends React.Component<Props, appState> {
-  constructor(props: Props | Readonly<Props>) {
-    super(props);
+const App = () => {
+  const localStorageSavedList = typePredicates<Array<restaurant>>({
+    data: parseJson(JSON.stringify(localStorageGetItem('restaurantList'))),
+    initialData: [],
+  });
 
-    const localStorageSavedList = typePredicates<Array<restaurant>>({
-      data: parseJson(JSON.stringify(localStorageGetItem('restaurantList'))),
-      initialData: [],
-    });
+  const restaurantMockDataList = typePredicates<Array<restaurant>>({
+    data: mockData.restaurantList,
+    initialData: [],
+  });
 
-    const restaurantMockDataList = typePredicates<Array<restaurant>>({
-      data: mockData.restaurantList,
-      initialData: [],
-    });
+  const wholeList = [...localStorageSavedList, ...restaurantMockDataList];
 
-    const wholeList = [...localStorageSavedList, ...restaurantMockDataList];
-    const currentList = sortingByFilter('이름순', wholeList);
+  const { sortedRestaurants, setCurrentCategory, setCurrentFilter } = useRestaurantSorting({
+    category: '전체',
+    filter: '이름순',
+    wholeList,
+  });
 
-    this.state = {
-      category: '전체',
-      filter: '이름순',
-      wholeList,
-      currentList,
-    };
-  }
+  const categoryRef = useRef<HTMLSelectElement>(null);
+  const sortRef = useRef<HTMLSelectElement>(null);
 
-  categoryOnChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    const { value } = e.target;
-    if (!this.isFilterOptions<selectorCategory>(value, CATEGORY_OPTIONS)) return;
+  const categoryOnChange = () => {
+    const value = categoryRef.current?.value ?? '전체';
 
-    const { filter } = this.state;
+    if (!isFilterOptions<SelectorCategory>(value, CATEGORY_OPTIONS)) return;
 
-    const categortSotredList = sortingByCategory(value, this.state.wholeList);
-    const currentList = sortingByFilter(filter, categortSotredList);
+    setCurrentCategory(value);
+  };
 
-    this.setState({ ...this.state, category: value, currentList });
-  }
+  const filterOnChange = () => {
+    const value = sortRef.current?.value ?? '이름순';
 
-  filterOnChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    const { value } = e.target;
-    if (!this.isFilterOptions<selectorFilter>(value, FILTER_OPTIONS)) return;
+    if (!isFilterOptions<SelectorFilter>(value, FILTER_OPTIONS)) return;
 
-    const { category } = this.state;
+    setCurrentFilter(value);
+  };
 
-    const filterSortedList = sortingByFilter(value, this.state.wholeList);
-    const currentList = sortingByCategory(category, filterSortedList);
-
-    this.setState({ ...this.state, filter: value, currentList });
-  }
-
-  isFilterOptions<T extends string>(value: string, arrays: Array<T>): value is T {
+  const isFilterOptions = <T extends string>(value: string, arrays: Array<T>): value is T => {
     return arrays.includes(value as T);
-  }
+  };
 
-  render(): React.ReactNode {
-    return (
-      <>
-        <Header />
-        <div className="restaurant-filter-container">
-          <Selector<selectorCategory>
-            selectedValue={this.state.category}
-            optionList={CATEGORY_OPTIONS}
-            onChange={this.categoryOnChange.bind(this)}
-          />
-          <Selector<selectorFilter>
-            selectedValue={this.state.filter}
-            optionList={FILTER_OPTIONS}
-            onChange={this.filterOnChange.bind(this)}
-          />
-        </div>
-        <ItemList itemList={this.state.currentList} />
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Header />
+      <div className="restaurant-filter-container">
+        <Selector<SelectorCategory>
+          filterRef={categoryRef}
+          selectedValue={categoryRef.current?.value as SelectorCategory}
+          optionList={CATEGORY_OPTIONS}
+          onChange={categoryOnChange}
+        />
+        <Selector<SelectorFilter>
+          filterRef={sortRef}
+          selectedValue={sortRef.current?.value as SelectorFilter}
+          optionList={FILTER_OPTIONS}
+          onChange={filterOnChange}
+        />
+      </div>
+      <ItemList itemList={sortedRestaurants} />
+    </>
+  );
+};
 
 export default App;

@@ -1,67 +1,56 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { restaurant } from '../utils/interfaces';
 import '../styles/ItemList.css';
 import Item from './Item';
 import ModalPortal from './ModalPortal';
 import ItemInformation from './ItemInformation';
+import { useCloseModal } from '../hook/useClose'
 
 interface Props {
   itemList: restaurant[];
 }
 
 interface State {
-  item: restaurant | null;
+  modalItem: restaurant | null;
 }
 
-class ItemList extends React.Component<Props, State> {
-  modalRef: React.RefObject<HTMLDialogElement>;
-  constructor(props: Props | Readonly<Props>) {
-    super(props);
-    this.modalRef = React.createRef();
-    this.state = {
-      item: null,
-    };
+const ItemList: React.FC<Props> = props => {
+  const modalRef = useRef<HTMLDialogElement>(null);
+  const [modalInformation, setmodalInformation] = useState<State>({ modalItem: null });
 
-    this.ulOnClickListener = this.ulOnClickListener.bind(this);
-    this.closeEvent = this.closeEvent.bind(this);
-  }
-
-  ulOnClickListener(event: React.MouseEvent<HTMLUListElement>) {
+  const ulOnClickListener = (event: React.MouseEvent<HTMLUListElement>) => {
     if (!(event.target instanceof HTMLElement)) return;
 
     const closestLi = event.target.closest('li');
     const elementId = Number(closestLi?.dataset.id);
 
-    const selectedState = this.props.itemList.find(({ id }) => id === elementId) ?? null;
-    this.setState({ item: selectedState });
-  }
+    const selectedState = props.itemList.find(({ id }) => id === elementId) ?? null;
+    setmodalInformation({ modalItem: selectedState });
+  };
 
-  closeEvent() {
-    const current = this.modalRef.current;
-    if (current) {
-      this.setState({
-        item: null,
-      });
-    }
-  }
+  const initializeItemValue = () => {
+    setmodalInformation({
+      modalItem: null,
+    });
+  };
 
-  render(): React.ReactNode {
-    return (
-      <section className="restaurant-list-container">
-        <ul className="restaurant-list" onClick={this.ulOnClickListener}>
-          {this.props.itemList.map(item => {
-            return <Item key={item.id} props={item} />;
-          })}
-        </ul>
+  const [closeEvent] = useCloseModal(modalRef, initializeItemValue)
 
-        {this.state.item && (
-          <ModalPortal closeEvent={this.closeEvent} dialogRef={this.modalRef}>
-            <ItemInformation restaurant={this.state.item} closeEvent={this.closeEvent} />
-          </ModalPortal>
-        )}
-      </section>
-    );
-  }
-}
+  return (
+    <section className="restaurant-list-container">
+      <ul className="restaurant-list" onClick={ulOnClickListener}>
+        {props.itemList.map(item => {
+          return <Item key={item.id} restaurantItem={item} />;
+        })}
+      </ul>
+
+      {modalInformation.modalItem && (
+        <ModalPortal closeEvent={closeEvent} dialogRef={modalRef}>
+          <ItemInformation restaurant={modalInformation.modalItem} closeEvent={closeEvent} />
+        </ModalPortal>
+      )}
+    </section>
+  );
+};
 
 export default ItemList;
