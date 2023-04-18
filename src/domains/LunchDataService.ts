@@ -1,16 +1,16 @@
-import { Restaurant, All, Category, Criterion } from '../types';
+import { Restaurant, Category, Criterion } from '../types';
 import { CATEGORY, CRITERION, LOCAL_STORAGE_KEY } from '../constants';
 import restaurants from '../initialData/restaurants.json';
 
 interface LunchDataServiceType {
   restaurants: Restaurant[];
   setInitialRestaurants(): void;
-  filterBy(category: Category | All): Restaurant[];
+  filterBy(category: Category): Restaurant[];
   sortBy(criterion: Criterion, restaurants: Restaurant[]): Restaurant[];
-  filterAndSort(category: Category | All, criterion: Criterion): Restaurant[];
+  filterAndSort(category: Category, criterion: Criterion): Restaurant[];
   getRestaurant(id: string): Restaurant;
-  getRestaurants(category: Category | All, criterion: Criterion): Restaurant[];
-  getProcessedRestaurants(category: Category | All, criterion: Criterion): Restaurant[];
+  getRestaurants(category: Category, criterion: Criterion): Restaurant[];
+  getProcessedRestaurants(category: Category, criterion: Criterion): Restaurant[];
 }
 
 const LunchDataService: LunchDataServiceType = {
@@ -24,7 +24,7 @@ const LunchDataService: LunchDataServiceType = {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(restaurants));
   },
 
-  filterBy(category: Category | All): Restaurant[] {
+  filterBy(category: Category): Restaurant[] {
     if (category === CATEGORY.total) return [...this.restaurants];
 
     return this.restaurants.filter((restaurant) => restaurant.category === category);
@@ -38,7 +38,7 @@ const LunchDataService: LunchDataServiceType = {
     return [...restaurants].sort((a, b) => a.distance - b.distance);
   },
 
-  filterAndSort(category: Category | All, criterion: Criterion): Restaurant[] {
+  filterAndSort(category: Category, criterion: Criterion): Restaurant[] {
     const filteredRestaurants = this.filterBy(category);
     return this.sortBy(criterion, filteredRestaurants);
   },
@@ -48,7 +48,7 @@ const LunchDataService: LunchDataServiceType = {
     return restaurant;
   },
 
-  getRestaurants(category: Category | All, criterion: Criterion) {
+  getRestaurants(category: Category, criterion: Criterion) {
     const restaurantsJSON = localStorage.getItem(LOCAL_STORAGE_KEY);
 
     if (!restaurantsJSON) return [];
@@ -57,7 +57,7 @@ const LunchDataService: LunchDataServiceType = {
     return this.filterAndSort(category, criterion);
   },
 
-  getProcessedRestaurants(category: Category | All, criterion: Criterion) {
+  getProcessedRestaurants(category: Category, criterion: Criterion) {
     return this.filterAndSort(category, criterion);
   },
 };

@@ -1,3 +1,5 @@
+![example workflow](https://github.com/hyeryongchoi/react-lunch/actions/workflows/deploy.yml/badge.svg)
+
 <h1 align="middle">🤤</h1>
 <h2 align="middle">Level2 - 다시, 점심 뭐 먹지 미션</h2>
 <p align="middle">우아한테크코스 레벨2 다시, 점심 뭐 먹지 미션</p>
@@ -68,6 +70,20 @@ TS를 이용한다
 
 반복 되는 컴포넌트는 분리하여 재사용한다.
 
+## 🚀 2단계 - Function Component
+
+### ✅ 프로그래밍 요구사항
+
+이전 미션의 프로그래밍 요구사항은 기본으로 포함한다.
+
+#### **Readability**
+
+Step1의 **Class Component**를 **Function Component**로 마이그레이션 한다.
+
+#### **Reusability**
+
+Custom Hooks을 이용하여 재사용 가능한 기능을 분리한다.
+
 ### 🏗 프로그램 구조도
 
 <img width="600px" alt="프로그램 구조도" src="https://user-images.githubusercontent.com/24777828/231660457-e849849f-cc44-4c1d-98d4-4097f031a46a.png">
@@ -99,9 +115,13 @@ TS를 이용한다
  ┃ ┗ 📜index.ts
  ┣ 📂domains
  ┃ ┗ 📜LunchDataService.ts
+ ┣ 📂hooks
+ ┃ ┣ 📜useModal.ts
+ ┃ ┗ 📜useRestaurantList.ts
  ┣ 📂initialData
  ┃ ┗ 📜restaurants.json
  ┣ 📂types
+ ┃ ┣ 📜guard.ts
  ┃ ┗ 📜index.ts
  ┣ 📜App.tsx
  ┣ 📜index.css

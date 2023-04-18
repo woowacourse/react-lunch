@@ -6,7 +6,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header title="점심 뭐 먹지" />
         <RestaurantList />
       </div>
     );

@@ -1,25 +1,19 @@
 import React from 'react';
 import SelectBox from './SelectBox';
 import { CATEGORY } from '../../constants';
-import { Category, All } from '../../types';
+import { Category } from '../../types';
+import { isCategoryType } from '../../types/guard';
 
 interface CategoryProps {
-  setCategory: (newCategory: Category | All) => void;
+  setCategory: (newCategory: Category) => void;
 }
 
-class CategoryFilter extends React.Component<CategoryProps> {
-  constructor(props: CategoryProps) {
-    super(props);
-    this.onChangeCategory = this.onChangeCategory.bind(this);
-  }
+function CategoryFilter({ setCategory }: CategoryProps) {
+  const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    if (isCategoryType(event.target.value)) setCategory(event.target.value);
+  };
 
-  onChangeCategory(event: React.ChangeEvent<HTMLSelectElement>) {
-    this.props.setCategory(event.target.value as Category | All);
-  }
-
-  render() {
-    return <SelectBox filter={CATEGORY} onOptionChange={this.onChangeCategory} />;
-  }
+  return <SelectBox filter={CATEGORY} handleOptionChange={handleCategoryChange} />;
 }
 
 export default CategoryFilter;
