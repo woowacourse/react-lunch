@@ -21,7 +21,7 @@ const BottomSheet = ({ isOpened, onClose, children }: BottomSheetProps) => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  });
 
   return (
     <styled.BottomSheetBackDrop onClick={onClose} $isOpened={isOpened} data-cy="bottom-sheet">
