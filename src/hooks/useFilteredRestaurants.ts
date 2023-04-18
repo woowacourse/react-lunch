@@ -7,11 +7,12 @@ const useFilteredRestaurants = (restaurants: Restaurant[]) => {
   const [categoryFilter, setCategoryFilter] = useState<Filter<Restaurant> | null>(null);
 
   const filteredRestaurants = useMemo(() => {
-    /* eslint-disable no-shadow */
     const filters = [sortFilter, categoryFilter];
 
-    const nonNullFilters = (filters: Array<Filter<Restaurant> | null>): Array<Filter<Restaurant>> =>
-      filters.filter((filter): filter is Filter<Restaurant> => filter !== null);
+    const nonNullFilters = (
+      inputFilters: Array<Filter<Restaurant> | null>,
+    ): Array<Filter<Restaurant>> =>
+      inputFilters.filter((filter): filter is Filter<Restaurant> => filter !== null);
 
     return nonNullFilters(filters).reduce(
       (prevRestaurants, filter) => filter(prevRestaurants),
