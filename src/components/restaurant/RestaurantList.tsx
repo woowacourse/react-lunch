@@ -1,4 +1,3 @@
-import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 import { RestaurantItem } from './RestaurantItem';
 import { Restaurant } from '../../type';
@@ -15,19 +14,22 @@ const Style = {
 
 interface RestaurantListProps {
   list: Restaurant[];
-  handleClickRestaurantItem: React.MouseEventHandler<HTMLUListElement>;
+  handleClickRestaurantItem: (restaurant: Restaurant) => void;
 }
 
-export class RestaurantList extends Component<RestaurantListProps> {
-  render(): ReactNode {
-    return (
-      <Style.Wrapper>
-        <ul onClick={this.props.handleClickRestaurantItem}>
-          {this.props.list.map((restaurant) => (
-            <RestaurantItem key={restaurant.id} info={restaurant} />
-          ))}
-        </ul>
-      </Style.Wrapper>
-    );
-  }
+export function RestaurantList({
+  list,
+  handleClickRestaurantItem,
+}: RestaurantListProps) {
+  return (
+    <Style.Wrapper>
+      {list.map((restaurant) => (
+        <RestaurantItem
+          key={restaurant.id}
+          restaurant={restaurant}
+          onClick={() => handleClickRestaurantItem(restaurant)}
+        />
+      ))}
+    </Style.Wrapper>
+  );
 }

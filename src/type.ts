@@ -19,10 +19,6 @@ export interface Restaurant {
   link?: string;
 }
 
-export interface RestaurantProps {
-  info: Restaurant;
-}
-
 export interface Option<T> {
   value: T;
   text: string;

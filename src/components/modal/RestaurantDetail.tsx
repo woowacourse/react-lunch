@@ -1,8 +1,8 @@
-import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
+import theme from '../../styles/theme';
+import { RestaurantCategoryImage } from '../restaurant/RestaurantCategoryImage';
 import { Style as RestaurantStyle } from '../restaurant/RestaurantItem';
-import { imgSrc } from '../../constants';
-import { RestaurantProps } from '../../type';
+import { Restaurant } from '../../type';
 
 const Style = {
   ...RestaurantStyle,
@@ -12,7 +12,7 @@ const Style = {
     justify-content: space-between;
   `,
   RestaurantLink: styled.p`
-    color: var(--grey-500);
+    color: ${theme.color.grey500};
   `,
   RestaurantDescription: styled.p`
     display: -webkit-box;
@@ -20,35 +20,31 @@ const Style = {
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
-    font: var(--lunch-body);
+    font: ${theme.font.body};
   `,
 };
 
-export class RestaurantDetail extends Component<RestaurantProps> {
-  render(): ReactNode {
-    return (
-      <>
-        <Style.ImageWrapper>
-          <Style.RestaurantCategory>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/category-${
-                imgSrc[this.props.info.category]
-              }.png`}
-              alt={this.props.info.category}
-            />
-          </Style.RestaurantCategory>
-        </Style.ImageWrapper>
-        <Style.RestaurantName>{this.props.info.name}</Style.RestaurantName>
-        <Style.RestaurantDistance>
-          캠퍼스로부터 {this.props.info.distance}분 내
-        </Style.RestaurantDistance>
-        <Style.RestaurantDescription>
-          {this.props.info.description}
-        </Style.RestaurantDescription>
-        <a href={this.props.info.link}>
-          <Style.RestaurantLink>{this.props.info.link}</Style.RestaurantLink>
+export interface RestaurantDetailProps {
+  restaurant: Restaurant;
+}
+
+export function RestaurantDetail({ restaurant }: RestaurantDetailProps) {
+  const { category, name, distance, description, link } = restaurant;
+  return (
+    <>
+      <Style.ImageWrapper>
+        <RestaurantCategoryImage category={category} />
+      </Style.ImageWrapper>
+      <Style.RestaurantName>{name}</Style.RestaurantName>
+      <Style.RestaurantDistance>
+        캠퍼스로부터 {distance}분 내
+      </Style.RestaurantDistance>
+      <Style.RestaurantDescription>{description}</Style.RestaurantDescription>
+      {link && (
+        <a href={link} target='_blank' rel='noopener noreferrer'>
+          <Style.RestaurantLink>{link}</Style.RestaurantLink>
         </a>
-      </>
-    );
-  }
+      )}
+    </>
+  );
 }

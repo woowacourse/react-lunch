@@ -1,5 +1,6 @@
-import { Component, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import styled from 'styled-components';
+import theme from '../../styles/theme';
 
 const Style = {
   BackDrop: styled.div`
@@ -19,12 +20,12 @@ const Style = {
     padding: 16px;
 
     border-radius: 8px 8px 0px 0px;
-    background: var(--grey-100);
+    background: ${theme.color.grey100};
   `,
   CloseButton: styled.button`
     border: none;
-    background-color: var(--primary-color);
-    color: var(--grey-100);
+    background-color: ${theme.color.primary};
+    color: ${theme.color.grey100};
     width: 100%;
     height: 44px;
     margin-right: 16px;
@@ -40,28 +41,22 @@ interface ModalProps {
   closeModal: () => void;
 }
 
-export class Modal extends Component<ModalProps> {
-  componentDidMount() {
-    window.onkeydown = (e) => {
-      if (e.key === 'Escape' && this.props.isOpen) this.props.closeModal();
-    };
-  }
+export function Modal({ isOpen, children, closeModal }: ModalProps) {
+  window.onkeydown = (e) => {
+    if (e.key === 'Escape' && isOpen) closeModal();
+  };
 
-  render(): ReactNode {
-    return (
-      <>
-        {this.props.isOpen && (
-          <>
-            <Style.BackDrop onClick={this.props.closeModal} />
-            <Style.Wrapper>
-              {this.props.children}
-              <Style.CloseButton onClick={this.props.closeModal}>
-                닫기
-              </Style.CloseButton>
-            </Style.Wrapper>
-          </>
-        )}
-      </>
-    );
-  }
+  return (
+    <>
+      {isOpen && (
+        <>
+          <Style.BackDrop onClick={closeModal} />
+          <Style.Wrapper>
+            {children}
+            <Style.CloseButton onClick={closeModal}>닫기</Style.CloseButton>
+          </Style.Wrapper>
+        </>
+      )}
+    </>
+  );
 }

@@ -1,7 +1,7 @@
-import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
-import { imgSrc } from '../../constants';
-import { RestaurantProps } from '../../type';
+import theme from '../../styles/theme';
+import { RestaurantCategoryImage } from './RestaurantCategoryImage';
+import { Restaurant } from '../../type';
 
 export const Style = {
   Wrapper: styled.li`
@@ -19,19 +19,6 @@ export const Style = {
     width: 100%;
   `,
 
-  RestaurantCategory: styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 64px;
-    height: 64px;
-    min-width: 64px;
-    min-height: 64px;
-    margin-right: 16px;
-    border-radius: 50%;
-    background: var(--lighten-color);
-  `,
-
   DescriptionWrapper: styled.div`
     display: flex;
     align-items: center;
@@ -39,12 +26,12 @@ export const Style = {
   `,
 
   RestaurantName: styled.h3`
-    font: var(--lunch-subtitle);
+    font: ${theme.font.subtitle};
   `,
 
   RestaurantDistance: styled.span`
-    font: var(--lunch-body);
-    color: var(--primary-color);
+    font: ${theme.font.body};
+    color: ${theme.color.primary};
   `,
 
   RestaurantDescription: styled.p`
@@ -54,38 +41,32 @@ export const Style = {
     text-overflow: ellipsis;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    font: var(--lunch-body);
+    font: ${theme.font.body};
   `,
 };
 
-export class RestaurantItem extends Component<RestaurantProps> {
-  render(): ReactNode {
-    return (
-      <Style.Wrapper id={this.props.info.id}>
-        <Style.RestaurantCategory>
-          <img
-            src={`${process.env.PUBLIC_URL}/images/category-${
-              imgSrc[this.props.info.category]
-            }.png`}
-            alt={this.props.info.category}
-          />
-        </Style.RestaurantCategory>
-        <Style.RestaurantInfo>
-          <Style.DescriptionWrapper>
-            <div>
-              <Style.RestaurantName>
-                {this.props.info.name}
-              </Style.RestaurantName>
-              <Style.RestaurantDistance>
-                캠퍼스부터 {this.props.info.distance}분 내
-              </Style.RestaurantDistance>
-            </div>
-          </Style.DescriptionWrapper>
-          <Style.RestaurantDescription>
-            {this.props.info.description}
-          </Style.RestaurantDescription>
-        </Style.RestaurantInfo>
-      </Style.Wrapper>
-    );
-  }
+interface RestaurantItemProps {
+  restaurant: Restaurant;
+  onClick: () => void;
+}
+
+export function RestaurantItem({ restaurant, onClick }: RestaurantItemProps) {
+  const { id, category, name, distance, description } = restaurant;
+
+  return (
+    <Style.Wrapper id={id} onClick={onClick}>
+      <RestaurantCategoryImage category={category} />
+      <Style.RestaurantInfo>
+        <Style.DescriptionWrapper>
+          <div>
+            <Style.RestaurantName>{name}</Style.RestaurantName>
+            <Style.RestaurantDistance>
+              캠퍼스부터 {distance}분 내
+            </Style.RestaurantDistance>
+          </div>
+        </Style.DescriptionWrapper>
+        <Style.RestaurantDescription>{description}</Style.RestaurantDescription>
+      </Style.RestaurantInfo>
+    </Style.Wrapper>
+  );
 }
