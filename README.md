@@ -11,6 +11,28 @@
 
 <br>
 
+### 📝 실행 방법
+
+- <a href="https://feb-dain.github.io/react-lunch/">앱 바로 실행하기</a>
+
+- 터미널에서 npm 설치(`npm install`) 후 `npm start` 커맨드로 앱을 실행할 수 있다.
+
+<br>
+
+## Step2
+
+### ✅ 프로그래밍 요구 사항
+
+> 이전 미션의 프로그래밍 요구사항은 기본으로 포함한다.
+
+- Step1의 `Class Component`를 `Function Component`로 마이그레이션 한다.
+- `Custom Hooks`을 이용하여 재사용 가능한 기능을 분리한다
+
+<br>
+<br>
+
+## Step1
+
 ### 🧑‍🤝‍🧑 페어 (페어 프로그래밍으로 개발)
 
 <table>
@@ -47,14 +69,6 @@
 - 레벨1에서 구현하고 사용해본 점심 메뉴 애플리케이션을 React로 구현
 - React 공식 문서를 단순히 학습이 아닌 구현 목적을 가지고 활용하고 공식 문서를 활용한 본인만의 접근 방식 만들기
 - JS로 구현해본 컴포넌트를 React 컴포넌트로 작성
-
-<br>
-
-### 📝 실행 방법
-
-- <a href="https://feb-dain.github.io/react-lunch/">앱 바로 실행하기</a>
-
-- 터미널에서 npm 설치(`npm install`) 후 `npm start` 커맨드로 앱을 실행할 수 있다.
 
 <br>
 <br>

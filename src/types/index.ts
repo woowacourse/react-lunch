@@ -1,29 +1,7 @@
-import { RefObject } from "react";
-
-export interface RestaurantApp {
-  filteredRestaurants: RestaurantInfo[];
-  category: string;
-  sorting: string;
-}
-
-export interface RestaurantSelect {
-  onChangeCategory: (event: string) => void;
-  onChangeSorting: (event: string) => void;
-  selectedCategory: string;
-  selectedSorting: string;
-}
-
-export interface RestaurantList {
-  restaurantList: RestaurantInfo[];
-  category: string;
-}
-
-export interface RestaurantItem {
-  restaurant: RestaurantInfo;
-  onClick: () => void;
-}
+import { CATEGORY, SORTING_SELECT } from "../constants";
 
 export interface RestaurantInfo {
+  [key: string]: string | number;
   id: string;
   category: string;
   name: string;
@@ -32,8 +10,5 @@ export interface RestaurantInfo {
   link: string;
 }
 
-export interface RestaurantModal {
-  selectedRestaurant: null | RestaurantInfo;
-  onClose: () => void;
-  refModal: RefObject<HTMLDialogElement>;
-}
+export type SortingSelect = keyof typeof SORTING_SELECT;
+export type CategorySelect = keyof typeof CATEGORY;

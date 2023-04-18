@@ -1,50 +1,45 @@
-import { ChangeEvent, Component } from "react";
 import styled from "styled-components";
-import { RestaurantSelect } from "../types";
 import { CATEGORY, SORTING_SELECT } from "../constants";
+import { CategorySelect, SortingSelect } from "../types";
 
-class SelectBoxes extends Component<RestaurantSelect> {
-  handleCategorySelect = ({ target }: ChangeEvent<HTMLSelectElement>) => {
-    this.props.onChangeCategory(target.value);
-  };
-
-  handleSortingSelect = ({ target }: ChangeEvent<HTMLSelectElement>) => {
-    this.props.onChangeSorting(target.value);
-  };
-
-  render() {
-    const categorySelect = Object.values(CATEGORY);
-    const sortingSelect = Object.values(SORTING_SELECT);
-
-    return (
-      <SelectBoxContainer>
-        <SelectBox
-          name="category"
-          onChange={this.handleCategorySelect}
-          value={this.props.selectedCategory}
-        >
-          {categorySelect.map((category, index) => (
-            <option key={index} value={category}>
-              {category}
-            </option>
-          ))}
-        </SelectBox>
-
-        <SelectBox
-          name="sorting"
-          onChange={this.handleSortingSelect}
-          value={this.props.selectedSorting}
-        >
-          {sortingSelect.map((sorting, index) => (
-            <option key={index} value={sorting}>
-              {sorting}
-            </option>
-          ))}
-        </SelectBox>
-      </SelectBoxContainer>
-    );
-  }
+interface Props {
+  onChange: (key: string, value: string) => void;
+  selectedCategory: CategorySelect;
+  selectedSorting: SortingSelect;
 }
+
+const SelectBoxes = (props: Props) => {
+  const categorySelect = Object.values(CATEGORY);
+  const sortingSelect = Object.values(SORTING_SELECT);
+
+  return (
+    <SelectBoxContainer>
+      <SelectBox
+        name="category"
+        onChange={({ target }) => props.onChange("category", target.value)}
+        value={props.selectedCategory}
+      >
+        {categorySelect.map((category, index) => (
+          <option key={index} value={category}>
+            {category}
+          </option>
+        ))}
+      </SelectBox>
+
+      <SelectBox
+        name="sorting"
+        onChange={({ target }) => props.onChange("sorting", target.value)}
+        value={props.selectedSorting}
+      >
+        {sortingSelect.map((sorting, index) => (
+          <option key={index} value={sorting}>
+            {sorting}
+          </option>
+        ))}
+      </SelectBox>
+    </SelectBoxContainer>
+  );
+};
 
 const SelectBoxContainer = styled.div`
   display: flex;
@@ -53,12 +48,12 @@ const SelectBoxContainer = styled.div`
 `;
 
 const SelectBox = styled.select`
-  width: 125px;
+  flex: 0.2;
   height: 44px;
   padding: 10px 14px;
-  border: 1px solid #d0d5dd;
+  border: 1px solid var(--grey-200);
   border-radius: 8px;
-  background: #ffffff;
+  background: var(--grey-100);
 `;
 
 export default SelectBoxes;
