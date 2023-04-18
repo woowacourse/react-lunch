@@ -10,42 +10,42 @@ import westernImg from '../asset/category-western.png';
 export const CATEGORY_OPTIONS: SelectOption<Category>[] = [
   {
     value: '전체',
-    textContent: '전체',
+    label: '전체',
   },
   {
     value: '한식',
-    textContent: '한식',
+    label: '한식',
   },
   {
     value: '중식',
-    textContent: '중식',
+    label: '중식',
   },
   {
     value: '일식',
-    textContent: '일식',
+    label: '일식',
   },
   {
     value: '양식',
-    textContent: '양식',
+    label: '양식',
   },
   {
     value: '아시안',
-    textContent: '아시안',
+    label: '아시안',
   },
   {
     value: '기타',
-    textContent: '기타',
+    label: '기타',
   },
 ];
 
 export const SORTING_OPTIONS: SelectOption<Sorting>[] = [
   {
     value: 'name',
-    textContent: '이름순',
+    label: '이름순',
   },
   {
-    value: 'distance',
-    textContent: '거리순',
+    value: 'estimateTime',
+    label: '거리순',
   },
 ];
 
@@ -67,7 +67,7 @@ export const CATEGORY_IMAGES = {
 export const NO_EXIST_RESTAURANT = {
   title: '오류가 발생했습니다.',
   category: '',
-  distance: 5,
+  estimateTime: 5,
   description: '존재하지 않는 음식점입니다.',
   link: '',
 };

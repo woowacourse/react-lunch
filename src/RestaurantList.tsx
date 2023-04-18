@@ -1,88 +1,29 @@
 import React from 'react';
+
+import type { RestaurantListProps } from './util/type';
 import RestaurantItem from './RestaurantItem.tsx';
-import { FilterOption, Restaurant } from './util/type.js';
+import useFilterRestaurantList from './hooks/useFilterRestaurantList.ts';
 
-type StateType = {
-  restaurantList: Omit<Restaurant, 'link'>[];
+const RestaurantList = ({
+  filterOptions,
+  onToggleDrawer,
+}: RestaurantListProps) => {
+  const { category, sorting } = filterOptions;
+  const restaurantList = useFilterRestaurantList(category, sorting);
+
+  return (
+    <section className="restaurant-list-container">
+      <ul className="restaurant-list">
+        {restaurantList.map((restaurant) => (
+          <RestaurantItem
+            key={restaurant.id}
+            restaurant={restaurant}
+            onToggleDrawer={onToggleDrawer}
+          />
+        ))}
+      </ul>
+    </section>
+  );
 };
-
-type RestaurantListProps = {
-  filterOptions: FilterOption;
-  onToggleDrawer: (id?: number) => void;
-};
-
-class RestaurantList extends React.Component<RestaurantListProps, StateType> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      restaurantList: [],
-    };
-  }
-
-  componentDidMount(): void {
-    const rawRestaurantList = localStorage.getItem('restaurantList');
-    if (rawRestaurantList) {
-      this.setState({ restaurantList: JSON.parse(rawRestaurantList) });
-      return;
-    }
-
-    fetch('./mockData.json')
-      .then((res) => res.json())
-      .then((data) => {
-        localStorage.setItem('restaurantList', JSON.stringify(data));
-        this.setState({ restaurantList: data });
-      });
-  }
-
-  filterByCategory(restaurantList, category): Restaurant[] {
-    if (category === '전체') return restaurantList;
-    return restaurantList.filter(
-      (restaurant) => restaurant.category === category
-    );
-  }
-
-  filterBySort(restaurantList, sorting): Restaurant[] {
-    return restaurantList.sort((firstElement, secondElement) => {
-      if (sorting === 'name') {
-        return firstElement.title.localeCompare(secondElement.title);
-      }
-      if (sorting === 'distance') {
-        return firstElement.distance - secondElement.distance;
-      }
-      return 0;
-    });
-  }
-
-  pipe(...funcs) {
-    return (x, params) => {
-      return funcs.reduce((acc, f, i) => f(acc, params[i]), x);
-    };
-  }
-
-  sortRestaurants(rl, category, sorting) {
-    return this.filterBySort(this.filterByCategory(rl, category), sorting);
-  }
-
-  render() {
-    const { category, sorting } = this.props.filterOptions;
-
-    return (
-      <section className="restaurant-list-container">
-        <ul className="restaurant-list">
-          {this.pipe(this.filterByCategory, this.filterBySort)(
-            this.state.restaurantList,
-            [category, sorting]
-          ).map((restaurant) => (
-            <RestaurantItem
-              key={restaurant.id}
-              restaurant={restaurant}
-              onToggleDrawer={this.props.onToggleDrawer}
-            />
-          ))}
-        </ul>
-      </section>
-    );
-  }
-}
 
 export default RestaurantList;

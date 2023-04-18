@@ -1,78 +1,50 @@
 import React from 'react';
-import Drawer from './common/Drawer.tsx';
-import { Restaurant } from './util/type.js';
+
+import type { Restaurant, RestaurantDetailDrawerProps } from './util/type.js';
+import Drawer from './components/Drawer.tsx';
+import useRestaurantList from './hooks/useRestaurantList.ts';
 import { CATEGORY_IMAGES, NO_EXIST_RESTAURANT } from './util/constant.ts';
 
-type RestaurantDetailDrawerProps = {
-  isOpenDrawer: boolean;
-  restaurantId: number;
-  onToggleDrawer: (id?: number) => void;
+const getRestaurantById = (restaurantList, id: number) => {
+  return (
+    restaurantList.find((restaurant: Restaurant) => +restaurant.id === +id) ??
+    NO_EXIST_RESTAURANT
+  );
 };
 
-type RestaurantDetailDrawerState = {
-  restaurant: Omit<Restaurant, 'id'>;
+const RestaurantDetailDrawer = ({
+  isOpenDrawer,
+  restaurantId,
+  onToggleDrawer,
+}: RestaurantDetailDrawerProps) => {
+  const restaurantList = useRestaurantList('restaurantList', []);
+  const restaurant = getRestaurantById(restaurantList, restaurantId);
+
+  return (
+    <Drawer isOpenDrawer={isOpenDrawer}>
+      <div className="restaurant__category">
+        <img
+          src={CATEGORY_IMAGES[restaurant.category]}
+          alt={restaurant.category}
+          className="category-icon"
+        />
+      </div>
+      <h3 className="restaurant__name text-subtitle">{restaurant.title}</h3>
+      <span className="restaurant__estimate-time text-body">
+        캠퍼스로부터 {restaurant.estimateTime}분 내
+      </span>
+      <p className="text-body">{restaurant.description}</p>
+      <p className="restaurant__link text-body">{restaurant.link ?? ''}</p>
+      <button
+        type="button"
+        className="button button--secondary text-caption"
+        onClick={onToggleDrawer}
+        aria-label="닫기"
+      >
+        취소하기
+      </button>
+    </Drawer>
+  );
 };
-
-class RestaurantDetailDrawer extends React.Component<
-  RestaurantDetailDrawerProps,
-  RestaurantDetailDrawerState
-> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      restaurant: this.fetchRestaurantById(),
-    };
-  }
-
-  componentDidUpdate(prevProps: RestaurantDetailDrawerProps): void {
-    if (this.props.restaurantId !== prevProps.restaurantId) {
-      this.setState({
-        restaurant: this.fetchRestaurantById(),
-      });
-    }
-  }
-
-  fetchRestaurantById() {
-    const rawRestaurantList = localStorage.getItem('restaurantList');
-    if (!rawRestaurantList) return NO_EXIST_RESTAURANT;
-    const restaurantList = JSON.parse(rawRestaurantList);
-    return (
-      restaurantList.find(
-        (restaurant: Restaurant) => +restaurant.id === +this.props.restaurantId
-      ) ?? NO_EXIST_RESTAURANT
-    );
-  }
-
-  render() {
-    return (
-      <Drawer isOpenDrawer={this.props.isOpenDrawer}>
-        <div className="restaurant__category">
-          <img
-            src={CATEGORY_IMAGES[this.state.restaurant.category]}
-            alt={this.state.restaurant.category}
-            className="category-icon"
-          />
-        </div>
-        <h3 className="restaurant__name text-subtitle">
-          {this.state.restaurant.title}
-        </h3>
-        <span className="restaurant__distance text-body">
-          캠퍼스로부터 {this.state.restaurant.distance}분 내
-        </span>
-        <p className="text-body">{this.state.restaurant.description}</p>
-        <p className="restaurant__link text-body">
-          {this.state.restaurant.link ?? ''}
-        </p>
-        <button
-          type="button"
-          className="button button--secondary text-caption"
-          onClick={() => this.props.onToggleDrawer()}
-        >
-          취소하기
-        </button>
-      </Drawer>
-    );
-  }
-}
 
 export default RestaurantDetailDrawer;
