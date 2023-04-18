@@ -28,11 +28,11 @@ const GlobalStyle = createGlobalStyle`
     --grey-500: #000000;
   }
 
-  .close_background {
+  .closed_background {
     opacity: 0 !important;
   }
 
-  .close_bottom_sheet {
+  .closed_bottom_sheet {
     -webkit-transform: translateY(100%) !important;
             transform: translateY(100%) !important;
   }

@@ -1,24 +1,19 @@
-import { ORDER_KEY, CATEGORY_NAME } from '../constants';
+// import { ORDER_KEY, CATEGORY_NAME } from '../constants';
 
 export interface SelectBoxType {
   selectType: SelectKind;
   options: string[];
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
+  value?: string;
 }
 
 export interface RestaurantItemType {
-  category: CategoryType;
+  id: number;
+  category: CategoryKind;
   name: string;
   distance: number;
   description: string;
   link: string;
-}
-
-export interface RestaurantListStateType {
-  restaurants: RestaurantItemType[];
-  filteredRestaurants: RestaurantItemType[];
-  category: CategoryType;
-  order: OrderType;
 }
 
 export interface BottomSheetType {
@@ -26,11 +21,22 @@ export interface BottomSheetType {
   onClose: () => void;
 }
 
-export type CategoryType = (typeof CATEGORY_NAME)[keyof typeof CATEGORY_NAME];
-
-export type OrderType = (typeof ORDER_KEY)[keyof typeof ORDER_KEY];
-
 export enum SelectKind {
   category = '카테고리',
   order = '정렬',
+}
+
+export enum CategoryKind {
+  all = '전체',
+  korean = '한식',
+  chinese = '중식',
+  japanese = '일식',
+  asian = '아시안',
+  western = '양식',
+  etc = '기타',
+}
+
+export enum OrderKind {
+  name = '이름순',
+  distance = '거리순',
 }

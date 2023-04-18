@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { CATEGORY_IMG } from '../constants';
 import { RestaurantItemType } from '../types';
@@ -6,52 +6,42 @@ import BottomSheet from './common/BottomSheet';
 import RestaurantDetail from './RestaurantDetail';
 import { $ } from '../utils/domSelector';
 
-class RestaurantItem extends React.Component<RestaurantItemType, { isBottomSheetOpen: boolean }> {
-  constructor(props: RestaurantItemType) {
-    super(props);
-    this.state = {
-      isBottomSheetOpen: false,
-    };
-  }
+const RestaurantItem = (props: RestaurantItemType) => {
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState<boolean>(false);
 
-  closeBottomSheet() {
-    $<HTMLElement>('#bottom_sheet').classList.add('close_bottom_sheet');
-    $<HTMLElement>('#backdrop').classList.add('close_background');
+  const closeBottomSheet = () => {
+    try {
+      $<HTMLElement>('#bottom_sheet').classList.add('closed_bottom_sheet');
+      $<HTMLElement>('#backdrop').classList.add('closed_background');
+    } catch (e) {
+      console.log(e);
+    }
 
     setTimeout(() => {
-      this.setState({ isBottomSheetOpen: false });
+      setIsBottomSheetOpen(false);
     }, 400);
-  }
+  };
 
-  render() {
-    return (
-      <>
-        <RestaurantItemWrapper onClick={() => this.setState({ isBottomSheetOpen: true })}>
-          <CategoryWrapper>
-            <CategoryIcon src={CATEGORY_IMG[this.props.category]} alt={this.props.category} />
-          </CategoryWrapper>
-          <RestaurantInfo>
-            <h3>{this.props.name}</h3>
-            <span>캠퍼스부터 {this.props.distance}분 이내</span>
-            <p>{this.props.description}</p>
-          </RestaurantInfo>
-        </RestaurantItemWrapper>
-        {this.state.isBottomSheetOpen && (
-          <BottomSheet onClose={() => this.closeBottomSheet()}>
-            <RestaurantDetail
-              category={this.props.category}
-              name={this.props.name}
-              distance={this.props.distance}
-              description={this.props.description}
-              link={this.props.link}
-              onClose={() => this.closeBottomSheet()}
-            />
-          </BottomSheet>
-        )}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <RestaurantItemWrapper onClick={() => setIsBottomSheetOpen(true)}>
+        <CategoryWrapper>
+          <CategoryIcon src={CATEGORY_IMG[props.category]} alt={props.category} />
+        </CategoryWrapper>
+        <RestaurantInfo>
+          <h3>{props.name}</h3>
+          <span>캠퍼스부터 {props.distance}분 이내</span>
+          <p>{props.description}</p>
+        </RestaurantInfo>
+      </RestaurantItemWrapper>
+      {isBottomSheetOpen && (
+        <BottomSheet onClose={() => closeBottomSheet()}>
+          <RestaurantDetail {...props} onClose={() => closeBottomSheet()} />
+        </BottomSheet>
+      )}
+    </>
+  );
+};
 
 const RestaurantItemWrapper = styled.li`
   display: flex;
