@@ -1,4 +1,3 @@
-import React from 'react';
 import { BodyText, TitleText } from '../../styles/Text';
 import type Restaurant from '../../types/Restaurant';
 import CategoryIcon from '../CategoryIcon/CategoryIcon';

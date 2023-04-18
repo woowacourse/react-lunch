@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
-import type Restaurant from '../types/Restaurant';
 import type Filter from '../types/Filter';
+import type Restaurant from '../types/Restaurant';
 
 const useFilteredRestaurants = (restaurants: Restaurant[]) => {
   const [sortFilter, setSortFilter] = useState<Filter<Restaurant> | null>(null);

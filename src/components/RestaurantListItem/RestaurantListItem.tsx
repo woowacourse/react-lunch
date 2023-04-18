@@ -1,4 +1,3 @@
-import React from 'react';
 import type Restaurant from '../../types/Restaurant';
 import CategoryIcon from '../CategoryIcon/CategoryIcon';
 import * as styled from './RestaurantListItem.styles';

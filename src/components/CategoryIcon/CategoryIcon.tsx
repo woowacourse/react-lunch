@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Category } from '../../constants/categories';
 import * as styled from './CategoryIcon.styles';
 

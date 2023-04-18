@@ -1,8 +1,8 @@
-import React from 'react';
+import type { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 import * as styled from './Button.styles';
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
-  React.PropsWithChildren<{ variant?: 'primary' | 'outlined' }>;
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  PropsWithChildren<{ variant?: 'primary' | 'outlined' }>;
 
 const Button = ({ children, variant, ...buttonProps }: ButtonProps) => {
   return (

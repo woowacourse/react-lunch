@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import type { MouseEventHandler, PropsWithChildren } from 'react';
+import { useEffect } from 'react';
 import * as styled from './BottomSheet.styles';
 
-type BottomSheetProps = React.PropsWithChildren<{
+type BottomSheetProps = PropsWithChildren<{
   isOpened: boolean;
   onClose: () => void;
 }>;
 
 const BottomSheet = ({ isOpened, onClose, children }: BottomSheetProps) => {
-  const handleClickContainer: React.MouseEventHandler<HTMLDivElement> = (event) => {
+  const handleClickContainer: MouseEventHandler<HTMLDivElement> = (event) => {
     event.stopPropagation();
   };
 
