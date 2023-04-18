@@ -1,14 +1,29 @@
-import React from "react";
-import styled from "styled-components";
-import addButton from "../assets/images/add-button.png";
+import React, { useMemo } from 'react';
+import styled from 'styled-components';
+import addButton from '../assets/images/add-button.png';
 
-const Header = () => {
+interface HeaderProps {
+  title: string;
+}
+
+const Header = (props: HeaderProps) => {
+  const memoizedTitle = useMemo(
+    () => <Title>{props.title}</Title>,
+    [props.title]
+  );
+  const memoizedButton = useMemo(
+    () => (
+      <Button onClick={() => alert('지원하지 않는 기능입니다.')}>
+        <ButtonImage src={addButton} alt='음식점 추가' />
+      </Button>
+    ),
+    []
+  );
+
   return (
     <HeaderComponent>
-      <Title>점심 뭐 먹지</Title>
-      <Button onClick={() => alert("지원하지 않는 기능입니다.")}>
-        <ButtonImage src={addButton} alt="음식점 추가" />
-      </Button>
+      {memoizedTitle}
+      {memoizedButton}
     </HeaderComponent>
   );
 };
