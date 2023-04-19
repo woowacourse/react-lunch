@@ -1,14 +1,14 @@
-import { KEY } from '../src/constants';
+import { RESTUARNT_LIST_LOCAL_STORAGE_KEY } from '../src/constants';
 import {
-  getSavedRestaurantList,
-  hasSavedRestaurantList,
-  saveRestaurantList,
+  getSavedLocalStorageList,
+  hasSavedLocalStorageList,
+  saveLocalStorageList,
 } from '../src/domain/initializeRestaurantList';
 import MOCK_DATA from '../src/data/MockData.json';
 
 describe('로컬스토리지에 저장된 값이 있는지 판단하는 함수 테스트', () => {
   test('로컬스토리지에 저장된 값이 없다면 false 반환', () => {
-    expect(hasSavedRestaurantList()).toBe(false);
+    expect(hasSavedLocalStorageList(RESTUARNT_LIST_LOCAL_STORAGE_KEY)).toBe(false);
   });
 
   test('로컬스토리지에 저장된 값이 있다면 true 반환', () => {
@@ -16,10 +16,10 @@ describe('로컬스토리지에 저장된 값이 있는지 판단하는 함수 �
     const mockData = MOCK_DATA.restaurantList;
 
     // when
-    localStorage.setItem(KEY, JSON.stringify(mockData));
+    saveLocalStorageList(RESTUARNT_LIST_LOCAL_STORAGE_KEY, mockData);
 
     // then
-    expect(hasSavedRestaurantList()).toBe(true);
+    expect(hasSavedLocalStorageList(RESTUARNT_LIST_LOCAL_STORAGE_KEY)).toBe(true);
   });
 });
 
@@ -27,10 +27,10 @@ describe('로컬스토리지에 초기 음식점 목록을 가져오는 함수 �
   test('로컬스토리지에 있던 값을 불러오는 테스트', () => {
     // given
     const mockData = MOCK_DATA.restaurantList;
-    localStorage.setItem(KEY, JSON.stringify(mockData));
+    saveLocalStorageList(RESTUARNT_LIST_LOCAL_STORAGE_KEY, mockData);
 
     // when
-    const data = getSavedRestaurantList();
+    const data = getSavedLocalStorageList(RESTUARNT_LIST_LOCAL_STORAGE_KEY);
 
     // then
     expect(data).toEqual(mockData);
@@ -40,8 +40,8 @@ describe('로컬스토리지에 초기 음식점 목록을 가져오는 함수 �
     const mockData = MOCK_DATA.restaurantList;
 
     // when
-    saveRestaurantList();
-    const data = JSON.parse(localStorage.getItem(KEY) || '[]');
+    saveLocalStorageList(RESTUARNT_LIST_LOCAL_STORAGE_KEY, mockData);
+    const data = getSavedLocalStorageList(RESTUARNT_LIST_LOCAL_STORAGE_KEY);
 
     // then
     expect(data).toEqual(mockData);

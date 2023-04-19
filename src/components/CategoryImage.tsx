@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styles from './CategoryImage.module.css';
 import { FoodCategory } from '../types/restaurantInfo';
 import KOREAN_IMAGE from '../assets/category-korean.png';
@@ -17,16 +17,14 @@ const CATEGORY_IMAGE: Record<string, string> = {
   기타: ETC_IMAGE,
 };
 
-class CategoryImage extends Component<{ category: FoodCategory }> {
-  render() {
-    const { category } = this.props;
-
-    return (
-      <div className={styles.background} title={category}>
-        <img src={CATEGORY_IMAGE[category]} alt={category} />
-      </div>
-    );
-  }
+interface CategoryImageProps {
+  category: FoodCategory;
 }
 
-export default CategoryImage;
+export default function CategoryImage({ category }: CategoryImageProps) {
+  return (
+    <div className={styles.background} title={category}>
+      <img src={CATEGORY_IMAGE[category]} alt={category} />
+    </div>
+  );
+}
