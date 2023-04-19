@@ -1,12 +1,11 @@
-import { Restaurant } from '../@types/type';
-import { CATEGORIES, SORT_OPTIONS } from '../constants';
-
+import { Categories, Restaurant, SortOptions } from '../@types/type';
 import asian from '../asset/category-asian.png';
 import chinese from '../asset/category-chinese.png';
-import korean from '../asset/category-korean.png';
-import japanese from '../asset/category-japanese.png';
-import western from '../asset/category-western.png';
 import etc from '../asset/category-etc.png';
+import japanese from '../asset/category-japanese.png';
+import korean from '../asset/category-korean.png';
+import western from '../asset/category-western.png';
+import { CATEGORIES, SORT_OPTIONS } from '../constants';
 
 const restaurant = {
   categoryIcon: {
@@ -19,22 +18,27 @@ const restaurant = {
     [CATEGORIES.ETC]: etc,
   },
 
-  filter: (restaurants: Restaurant[], category: string): Restaurant[] => {
-    if (category === CATEGORIES.ALL) return restaurants;
-    return restaurants.filter((restaurant) => restaurant.category === category);
+  filtering: (category: Categories) => {
+    return (restaurants: Restaurant[]): Restaurant[] => {
+      if (category === CATEGORIES.ALL) return restaurants;
+      return restaurants.filter((restaurant) => restaurant.category === category);
+    };
   },
 
-  sort: (restaurants: Restaurant[], type: string): Restaurant[] => {
-    if (type === SORT_OPTIONS.NAME) return restaurants.sort((a, b) => (a.name > b.name ? 1 : -1));
-    return restaurants.sort((a, b) =>
-      a.distanceByMinutes - b.distanceByMinutes === 0
-        ? a.name > b.name
+  sorting: (option: SortOptions) => {
+    return (restaurants: Restaurant[]): Restaurant[] => {
+      if (option === SORT_OPTIONS.NAME) return restaurants.sort((a, b) => (a.name > b.name ? 1 : -1));
+      return restaurants.sort((a, b) =>
+        // 거리가 같다면 이름순으로 정렬한다.
+        a.distanceByMinutes - b.distanceByMinutes === 0
+          ? a.name > b.name
+            ? 1
+            : -1
+          : a.distanceByMinutes > b.distanceByMinutes
           ? 1
-          : -1
-        : a.distanceByMinutes > b.distanceByMinutes
-        ? 1
-        : -1,
-    );
+          : -1,
+      );
+    };
   },
 };
 

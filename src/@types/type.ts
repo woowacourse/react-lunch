@@ -1,6 +1,7 @@
-import { CATEGORIES } from '../constants';
+import { CATEGORIES, SORT_OPTIONS } from '../constants';
 
 export type Categories = (typeof CATEGORIES)[keyof typeof CATEGORIES];
+export type SortOptions = (typeof SORT_OPTIONS)[keyof typeof SORT_OPTIONS];
 
 export type Restaurant = {
   id: number;
@@ -9,10 +10,6 @@ export type Restaurant = {
   distanceByMinutes: number;
   description: string;
   referenceUrl: string;
-};
-
-export type RestaurantObject = {
-  restaurant: Restaurant;
 };
 
 export type SetModalRestaurantId = {

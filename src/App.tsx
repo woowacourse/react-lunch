@@ -1,49 +1,42 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { Restaurant } from './@types/type';
 import Header from './components/common/Header';
 import RestaurantList from './components/restaurant/RestaurantList';
-import Modal from './components/restaurant/Modal';
-import { Restaurant } from './@types/type';
-import { getLocalStorage, setLocalStorage } from './utils/localStorage';
+import RestaurantModal from './components/restaurant/RestaurantModal';
 import { LOCAL_STORAGE_KEY } from './constants';
 import mockData from './mockData.json';
+import { getLocalStorage, setLocalStorage } from './utils/localStorage';
 
-class App extends Component {
-  state = {
-    modalRestaurantID: null,
-    restaurantList: mockData as Restaurant[],
+function App() {
+  const [modalRestaurantId, setModalRestaurantId] = useState<number | null>(null);
+  const [restaurantList, setRestaurantList] = useState(mockData as Restaurant[]);
+
+  const openModal = (modalRestaurantID: number) => {
+    setModalRestaurantId(modalRestaurantID);
   };
 
-  componentDidMount() {
+  const closeModal = () => setModalRestaurantId(null);
+
+  const findModalRestaurant = () => {
+    return restaurantList.find((restaurant) => restaurant.id === modalRestaurantId) as Restaurant;
+  };
+
+  useEffect(() => {
     const savedRestaurants = getLocalStorage(LOCAL_STORAGE_KEY.RESTAURANT);
 
     if (savedRestaurants) {
-      this.setState({
-        restaurantList: savedRestaurants,
-      });
-    } else setLocalStorage(LOCAL_STORAGE_KEY.RESTAURANT, this.state.restaurantList);
-  }
+      setRestaurantList(savedRestaurants);
+    } else setLocalStorage(LOCAL_STORAGE_KEY.RESTAURANT, restaurantList);
+  }, []);
 
-  setModalRestaurantId = (modalRestaurantID: number | null) => {
-    this.setState({
-      modalRestaurantID,
-    });
-  };
-
-  findModalRestaurant = () => {
-    return this.state.restaurantList.find((restaurant) => restaurant.id === this.state.modalRestaurantID)!;
-  };
-
-  render() {
-    return (
-      <React.Fragment>
-        <Header />
-        <RestaurantList restaurantList={this.state.restaurantList} setModalRestaurantId={this.setModalRestaurantId} />
-        {this.state.modalRestaurantID && (
-          <Modal restaurant={this.findModalRestaurant()} setModalRestaurantId={this.setModalRestaurantId} />
-        )}
-      </React.Fragment>
-    );
-  }
+  return (
+    <>
+      <Header />
+      <RestaurantList restaurantList={restaurantList} openModal={openModal} />
+      {modalRestaurantId && <RestaurantModal restaurant={findModalRestaurant()} closeModal={closeModal} />}
+    </>
+  );
 }
 
 export default App;
