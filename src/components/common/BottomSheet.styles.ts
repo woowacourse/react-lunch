@@ -20,11 +20,12 @@ export const BottomSheetBackDrop = styled.div<BottomSheetBackDropProps>`
 
 export const BottomSheetContainer = styled.div`
   width: 100%;
+  max-width: 600px;
   max-height: 88vh;
 
   padding: 32px 16px;
 
   border-radius: 8px 8px 0 0;
-  background: var(--grey-100);
+  background: ${(props) => props.theme.grey['100']};
   overflow-y: auto;
 `;

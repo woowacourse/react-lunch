@@ -1,5 +1,4 @@
-import type { Category } from '../constants/categories';
-import type { DistancesByMinutes } from '../constants/distancesByMinutes';
+import type { Category, DistancesByMinutes } from '../constants/Restaurants';
 
 type Restaurant = {
   id: number;

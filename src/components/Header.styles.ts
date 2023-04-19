@@ -8,8 +8,8 @@ export const Header = styled.header`
   height: 64px;
   padding: 0px 16px;
 
-  background: var(--primary-color);
-  color: var(--text-white);
+  background: ${(props) => props.theme.primary};
+  color: ${(props) => props.theme.textWhite};
 
   user-select: none;
 `;

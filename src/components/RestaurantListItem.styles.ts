@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body, Subtitle } from '../../styles/Text';
+import { Body, Subtitle } from '../styles/Text';
 
 export const RestaurantListItem = styled.li`
   display: grid;
@@ -11,8 +11,31 @@ export const RestaurantListItem = styled.li`
   border-bottom: 1px solid #e9eaed;
   cursor: pointer;
 
+  &:hover {
+    background: ${(props) => props.theme.grey['100']};
+  }
+
   & > :first-child {
     grid-row: span 2;
+  }
+`;
+
+export const RestaurantListItemCategoryIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  min-height: 64px;
+
+  border-radius: 50%;
+  background: ${(props) => props.theme.primaryLighten};
+
+  & > img {
+    width: 36px;
+    height: 36px;
   }
 `;
 
@@ -22,7 +45,7 @@ export const RestaurantListItemHeaderSubtitle = styled.p`
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-  color: var(--primary-color);
+  color: ${(props) => props.theme.primary};
 `;
 
 export const RestaurantListItemBody = styled(Body)`
