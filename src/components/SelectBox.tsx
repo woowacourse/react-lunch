@@ -13,7 +13,8 @@ const SelectBox = (props: SelectBoxProps) => {
   const { restaurants, setSortBy, setRestaurants, setCategorizeBy } =
     useContext(RestaurantContext);
 
-  const updateRestaurants = (value: string) => {
+  const updateRestaurants = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = event.target.value;
     if (name === 'sortBy') {
       setSortBy(value);
       setRestaurants(
@@ -25,7 +26,7 @@ const SelectBox = (props: SelectBoxProps) => {
   };
 
   return (
-    <Select name='' onChange={(event) => updateRestaurants(event.target.value)}>
+    <Select onChange={updateRestaurants}>
       {options.map((option) => (
         <option value={option.value} key={option.value}>
           {option.label}

@@ -9,7 +9,7 @@ interface RestaurantItemProps {
 }
 
 const RestaurantItem = (props: RestaurantItemProps) => {
-  const { modalInfo, setModalInfo, modalOpen, setModalOpen } =
+  const { modalInfo, setModalInfo, setModalOpen } =
     useContext(RestaurantContext);
   const { name, distance, category, description } = props.restaurant;
   const onClickHandler = () => {
