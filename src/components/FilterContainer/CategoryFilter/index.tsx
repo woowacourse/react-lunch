@@ -1,6 +1,5 @@
-import { Component } from 'react';
 import Filter from '../../common/Filter';
-import { RestaurantCategoryFilterOption } from '../../../RestaurantUtils';
+import { RestaurantCategoryFilterOption } from '../../../helpers/RestaurantHelper';
 
 type CategoryFilterProps = {
   onChange: (category: RestaurantCategoryFilterOption) => void;
@@ -16,21 +15,12 @@ const options = [
   { value: '기타', text: '기타' },
 ];
 
-export default class CategoryFilter extends Component<CategoryFilterProps> {
-  render() {
-    return (
-      <Filter
-        id="category-filter"
-        name="category"
-        options={options}
-        onChange={this.onChangeCategory}
-      />
-    );
-  }
-
-  onChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+export default function CategoryFilter({ onChange }: CategoryFilterProps) {
+  const onChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value as RestaurantCategoryFilterOption;
 
-    this.props.onChange(value);
+    onChange(value);
   };
+
+  return <Filter id="category-filter" name="category" options={options} onChange={onChangeCategory} />;
 }

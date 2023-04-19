@@ -10,17 +10,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-/* reset *************************************/
-
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
-
-ul,
-li {
-  list-style: none;
 }
 
 html,
@@ -29,7 +22,11 @@ body {
   font-size: 16px;
 }
 
-/* Colors *****************************************/
+ul,
+li {
+  list-style: none;
+}
+
 :root {
   --primary-color: #ec4a0a;
   --lighten-color: #f6a88a;
@@ -40,7 +37,6 @@ body {
   --grey-500: #000000;
 }
 
-/* Typography *************************************/
 .text-title {
   font-size: 20px;
   line-height: 24px;

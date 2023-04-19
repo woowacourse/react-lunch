@@ -1,72 +1,51 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { Header, Modal } from './components/common';
 import { FilterContainer, RestaurantDetailView, RestaurantList } from './components';
+import useModal from './hooks/useModal';
 
-import { Restaurant } from './types';
+import { getFilteredRestaurantsByCategory, getSortedRestaurants, getRestaurantById } from './helpers/RestaurantHelper';
+
+import type { RestaurantSortOption, RestaurantCategoryFilterOption } from './helpers/RestaurantHelper';
+
+import type { Restaurant } from './types';
 import mockData from './mockData.json';
-import {
-  getFilteredRestaurantsByCategory,
-  getSortedRestaurants,
-  getRestaurantById,
-} from './RestaurantUtils';
-import type { RestaurantSortOption, RestaurantCategoryFilterOption } from './RestaurantUtils';
 import './App.css';
 
-type AppState = {
-  restaurants: Restaurant[];
-  categoryFilterOption: RestaurantCategoryFilterOption;
-  sortOption: RestaurantSortOption;
-  restaurantForDetailView: Restaurant;
-  isModalOpen: boolean;
-};
+export default function App() {
+  const [restaurants, setRestaurants] = useState<Restaurant[]>(mockData as Restaurant[]);
+  const [categoryFilterOption, setCategoryFilterOption] = useState<RestaurantCategoryFilterOption>('전체');
+  const [sortOption, setSortOption] = useState<RestaurantSortOption>('name');
+  const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant>(mockData[0] as Restaurant);
+  const { isOpenModal, modalOpen, modalClose } = useModal();
 
-export default class App extends Component {
-  state: AppState = {
-    restaurants: mockData as Restaurant[],
-    categoryFilterOption: '전체',
-    sortOption: 'name',
-    restaurantForDetailView: mockData[0] as Restaurant,
-    isModalOpen: false,
+  const filteredRestaurants = getFilteredRestaurantsByCategory(restaurants, categoryFilterOption);
+  const sortedRestaurants = getSortedRestaurants(filteredRestaurants, sortOption);
+
+  const handleCategoryFilterOption = (category: RestaurantCategoryFilterOption) => {
+    setCategoryFilterOption(category);
   };
 
-  render() {
-    const { restaurants, categoryFilterOption, sortOption, isModalOpen, restaurantForDetailView } =
-      this.state;
-    const filteredRestaurants = getFilteredRestaurantsByCategory(restaurants, categoryFilterOption);
-    const sortedRestaurants = getSortedRestaurants(filteredRestaurants, sortOption);
-
-    return (
-      <div className="App">
-        <Header title={'점심 뭐 먹지'} />
-        <FilterContainer
-          onChangeCategoryFilter={this.onChangeCategoryFilter}
-          onChangeSortFilter={this.onChangeSortFilter}
-        />
-        <RestaurantList restaurants={sortedRestaurants} onClick={this.onClickRestaurantItem} />
-        {isModalOpen && (
-          <Modal onClick={this.onClickModalCloseButton}>
-            <RestaurantDetailView restaurant={restaurantForDetailView} />
-          </Modal>
-        )}
-      </div>
-    );
-  }
-
-  onChangeCategoryFilter = (category: RestaurantCategoryFilterOption) => {
-    this.setState({ categoryFilterOption: category });
+  const handleSortOption = (sortOption: RestaurantSortOption) => {
+    setSortOption(sortOption);
   };
 
-  onChangeSortFilter = (sortOption: RestaurantSortOption) => {
-    this.setState({ sortOption: sortOption });
+  const showRestaurantDetailView = (targetRestaurantId: number) => {
+    const targetRestaurant = getRestaurantById(restaurants, targetRestaurantId);
+
+    setSelectedRestaurant(targetRestaurant);
+    modalOpen();
   };
 
-  onClickRestaurantItem = (restaurantId: number) => {
-    const targetRestaurant = getRestaurantById(this.state.restaurants, restaurantId);
-
-    this.setState({ restaurantForDetailView: targetRestaurant, isModalOpen: true });
-  };
-
-  onClickModalCloseButton = () => {
-    this.setState({ isModalOpen: false });
-  };
+  return (
+    <div className="App">
+      <Header>{'점심 뭐 먹지'}</Header>
+      <FilterContainer onChangeCategoryFilter={handleCategoryFilterOption} onChangeSortFilter={handleSortOption} />
+      <RestaurantList restaurants={sortedRestaurants} onClick={showRestaurantDetailView} />
+      {isOpenModal && (
+        <Modal onClick={modalClose}>
+          <RestaurantDetailView restaurant={selectedRestaurant} />
+        </Modal>
+      )}
+    </div>
+  );
 }
