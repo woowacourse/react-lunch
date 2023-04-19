@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 
 import './css/App.css';
 
@@ -6,73 +6,84 @@ import Header from './components/Header';
 import MainLayout from './components/MainLayout';
 import RestaurantDetailModal from './components/RestaurantDetailModal';
 
-import { Restaurant } from './domain/type';
+import type { Restaurant } from './domain/type';
+
 import { getLocalStorage, setLocalStorage } from './utils/localStorage';
+import { getMockData } from './domain/mockData';
+import { LOCAL_STORAGE } from './CONSTANT';
 
-interface State {
-  restaurants: Restaurant[];
-  restaurantId: string;
-  isModalOpened: boolean;
-}
+const setInitialData = async (
+  callback: React.Dispatch<React.SetStateAction<Restaurant[]>>,
+) => {
+  const localStorageData = getLocalStorage(LOCAL_STORAGE.restaurantData);
 
-class App extends Component {
-  state: State = {
-    restaurants: [],
-    restaurantId: '',
-    isModalOpened: false,
-  };
-
-  async componentDidMount() {
-    const localStorageData = getLocalStorage('restaurants');
-
-    if (localStorageData) {
-      this.setState({ restaurants: localStorageData });
-      return;
-    }
-
-    const response = await fetch('./mockData.json');
-    const data = await response.json();
-
-    setLocalStorage('restaurants', data);
-    this.setState({ restaurants: data });
+  if (localStorageData) {
+    callback(localStorageData);
+    return;
   }
 
-  setRestaurantId = (restaurantId: string) => {
-    this.setState({
-      ...this.state,
-      restaurantId,
-      isModalOpened: true,
-    });
+  const data = await getMockData();
+
+  callback(data);
+  setLocalStorage(LOCAL_STORAGE.restaurantData, data);
+};
+
+const useRestaurantState = () => {
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+
+  useEffect(() => {
+    setInitialData(setRestaurants);
+  }, []);
+
+  return {
+    restaurants,
+  };
+};
+
+const useModalState = () => {
+  const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
+  const [modalRestaurant, setModalRestaurant] = useState<Restaurant>();
+
+  const openRestaurantInfoModal = (restaurant: Restaurant) => {
+    setModalRestaurant(restaurant);
+    setIsModalOpened(true);
   };
 
-  handleModalClose = () => {
-    this.setState({
-      ...this.state,
-      isModalOpened: false,
-    });
+  const handleModalClose = () => {
+    setIsModalOpened(false);
   };
 
-  render() {
-    const restaurant = this.state.restaurants.find(
-      (restaurant: Restaurant) => restaurant.id === this.state.restaurantId,
-    );
+  return {
+    modalRestaurant,
+    isModalOpened,
+    openRestaurantInfoModal,
+    handleModalClose,
+  };
+};
 
-    return (
-      <div className="App">
-        <Header />
-        <MainLayout
-          restaurants={this.state.restaurants}
-          onClickRestaurant={this.setRestaurantId}
+export default function App() {
+  const { restaurants } = useRestaurantState();
+
+  const {
+    modalRestaurant,
+    isModalOpened,
+    openRestaurantInfoModal,
+    handleModalClose,
+  } = useModalState();
+
+  return (
+    <div className="App">
+      <Header />
+      <MainLayout
+        restaurants={restaurants}
+        onClickRestaurant={openRestaurantInfoModal}
+      />
+      {isModalOpened && modalRestaurant && (
+        <RestaurantDetailModal
+          restaurant={modalRestaurant}
+          onCloseModal={handleModalClose}
         />
-        {this.state.isModalOpened ? (
-          <RestaurantDetailModal
-            restaurant={restaurant}
-            onCloseModal={this.handleModalClose}
-          />
-        ) : null}
-      </div>
-    );
-  }
+      )}
+    </div>
+  );
 }
-
-export default App;

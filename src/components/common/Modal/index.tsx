@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 import './style.css';
@@ -8,30 +8,30 @@ interface Props {
   onCloseModal: () => void;
 }
 
-class Modal extends Component<Props> {
-  handleEscapeKeydown = (event: KeyboardEvent) => {
+const handleEscapeKeydown = (callback: () => void) => {
+  document.body.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
-      this.props.onCloseModal();
+      callback();
     }
-  };
+  });
+};
 
-  componentDidMount() {
-    document.body.addEventListener('keydown', this.handleEscapeKeydown);
-  }
+const setModalCloseEvent = (props: Props) => {
+  useEffect(() => handleEscapeKeydown(props.onCloseModal), []);
 
-  componentWillUnmount() {
-    document.body.removeEventListener('keydown', this.handleEscapeKeydown);
-  }
+  useEffect(() => {
+    return () => handleEscapeKeydown(props.onCloseModal);
+  });
+};
 
-  render() {
-    return createPortal(
-      <div role="dialog" aria-modal>
-        <div className="modal-backdrop" onClick={this.props.onCloseModal}></div>
-        <div className="modal-container">{this.props.children}</div>
-      </div>,
-      document.body,
-    );
-  }
+export default function Modal(props: Props) {
+  setModalCloseEvent(props);
+
+  return createPortal(
+    <div role="dialog" aria-modal>
+      <div className="modal-backdrop" onClick={props.onCloseModal}></div>
+      <div className="modal-container">{props.children}</div>
+    </div>,
+    document.body,
+  );
 }
-
-export default Modal;

@@ -2,7 +2,7 @@
 
 ## 우아한테크코스 레벨2 점심 뭐 먹지 미션 [데모 페이지](https://suyoungj.github.io/react-lunch/)
 
-### 01. 구현 기능
+### 01. 구현 기능 (1단계)
 
 - 카테고리 필터링
 - 정렬
@@ -16,7 +16,13 @@
 
     <br>
 
-### 02. 파일 구조
+### 02. 구현 기능 (2단계)
+
+- class component를 function component로 수정
+
+    <br>
+
+### 03. 파일 구조
 
 ```
 src
@@ -68,14 +74,15 @@ src
  ┃ ┗ typo.css
  ┃
  ┣ domain
+ ┃ ┣ mockData.ts
  ┃ ┣ restaurantService.ts
  ┃ ┗ type.ts
  ┃
  ┣ utils
  ┃ ┗ localStorage.ts
  ┃
- ┣ App.test.tsx
  ┣ App.tsx
+ ┣ CONSTANT.ts
  ┣ index.tsx
  ┣ react-app-env.d.ts
  ┗ setupTests.ts

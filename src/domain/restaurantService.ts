@@ -1,4 +1,4 @@
-import { Restaurant } from './type';
+import type { Restaurant } from './type';
 
 interface RestaurantService {
   filterByCategory: (
@@ -6,7 +6,7 @@ interface RestaurantService {
     category: string,
   ) => Restaurant[];
   sortByName: (restaurants: Restaurant[]) => Restaurant[];
-  sortByDistance: (restaurants: Restaurant[]) => Restaurant[];
+  sortByTakingTime: (restaurants: Restaurant[]) => Restaurant[];
   compareByName: (a: Restaurant, b: Restaurant) => number;
 }
 
@@ -21,13 +21,13 @@ export const restaurantService: RestaurantService = {
     return [...restaurants].sort(this.compareByName);
   },
 
-  sortByDistance(restaurants) {
+  sortByTakingTime(restaurants) {
     return [...restaurants].sort((a: Restaurant, b: Restaurant) => {
-      if (a.distance === b.distance) {
+      if (a.takeTime === b.takeTime) {
         return this.compareByName(a, b);
       }
 
-      return a.distance - b.distance;
+      return a.takeTime - b.takeTime;
     });
   },
 
