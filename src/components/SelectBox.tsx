@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import styled from 'styled-components';
 import { RestaurantContext } from '../containers/GlobalProvider';
 import { Option } from '../types/Restaurant';
@@ -13,17 +13,20 @@ const SelectBox = (props: SelectBoxProps) => {
   const { restaurants, setSortBy, setRestaurants, setCategorizeBy } =
     useContext(RestaurantContext);
 
-  const updateRestaurants = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
-    if (name === 'sortBy') {
-      setSortBy(value);
-      setRestaurants(
-        restaurants.slice().sort((a, b) => (a[value] > b[value] ? 1 : -1))
-      );
-    }
+  const updateRestaurants = useMemo(
+    () => (event: React.ChangeEvent<HTMLSelectElement>) => {
+      const value = event.target.value;
+      if (name === 'sortBy') {
+        setSortBy(value);
+        setRestaurants(
+          restaurants.slice().sort((a, b) => (a[value] > b[value] ? 1 : -1))
+        );
+      }
 
-    if (name === 'categorizeBy') setCategorizeBy(value);
-  };
+      if (name === 'categorizeBy') setCategorizeBy(value);
+    },
+    [name, restaurants, setSortBy, setRestaurants, setCategorizeBy]
+  );
 
   return (
     <Select onChange={updateRestaurants}>
