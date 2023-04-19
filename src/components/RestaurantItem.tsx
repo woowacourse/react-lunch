@@ -15,7 +15,6 @@ const RestaurantItem = (props: RestaurantItemProps) => {
   const onClickHandler = () => {
     setModalInfo({ ...modalInfo, name, distance, category, description });
     setModalOpen(true);
-    // console.log(modalOpen);
   };
 
   return (

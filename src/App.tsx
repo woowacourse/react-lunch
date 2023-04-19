@@ -21,7 +21,6 @@ const App = () => {
   );
 
   const { modalOpen, modalInfo } = useContext(RestaurantContext);
-  console.log(modalOpen);
   return (
     <>
       <Header title='점심 뭐 먹지' />
