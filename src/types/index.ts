@@ -1,12 +1,12 @@
 import { RESTAURANT_CATEGORY, RESTAURANT_CATEGORY_OPTION, SORT_BY } from '../constants';
 
-type Category = typeof RESTAURANT_CATEGORY[number];
-type SortBy = typeof SORT_BY[number];
+export type Category = (typeof RESTAURANT_CATEGORY)[number];
+export type SortBy = (typeof SORT_BY)[number];
 
-type Options = typeof SORT_BY | typeof RESTAURANT_CATEGORY_OPTION;
-type FilterOption = Record<'category' | 'sortBy', string>;
+export type Options = typeof SORT_BY | typeof RESTAURANT_CATEGORY_OPTION;
+export type FilterOption = Record<'category' | 'sortBy', string>;
 
-interface Restaurant {
+export interface Restaurant {
   category: Category;
   name: string;
   distance: number;
@@ -14,5 +14,3 @@ interface Restaurant {
   link?: string;
   id: number;
 }
-
-export type { Category, SortBy, Options, FilterOption, Restaurant };

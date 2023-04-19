@@ -1,15 +1,16 @@
+import { filterAndSortRestaurantList } from '../utils/restaurantUtil';
 import { Restaurant } from '../types';
 import { getLocalStorage } from '../utils/localStorage';
 import { validateCategory } from '../validations';
 import mockData from './mockRestaurantData.json';
 
-const getRestaurantListData = () => {
+export const getRestaurantListData = () => {
   const restaurantListData: Restaurant[] = getLocalStorage() ?? mockData.restaurantList;
 
-  return restaurantListData.map<Restaurant>((restaurant) => ({
+  return restaurantListData.map<Restaurant>(restaurant => ({
     ...restaurant,
     category: validateCategory(restaurant.category),
   }));
 };
 
-export { getRestaurantListData };
+export const restaurantList = filterAndSortRestaurantList(getRestaurantListData());

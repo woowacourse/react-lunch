@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import RestaurantItem from '../components/RestaurantItem';
-import RestaurantList from '../components/RestaurantList';
+import RestaurantItem from '../components/RestaurantItem/RestaurantItem';
+import RestaurantList from '../components/RestaurantList/RestaurantList';
 import mockData from '../data/mockRestaurantData';
 
 describe('음식점 리스트 렌더링 테스트', () => {
@@ -33,7 +33,7 @@ describe('음식점 리스트 렌더링 테스트', () => {
 
     render(<RestaurantList restaurantList={restaurantList} />);
 
-    restaurantList.forEach((restaurant) => {
+    restaurantList.forEach(restaurant => {
       expect(screen.getAllByAltText(restaurant.category)).toBeTruthy();
       expect(screen.getAllByText(`캠퍼스부터 ${restaurant.distance}분 내`)).toBeTruthy();
       expect(screen.getByText(restaurant.name)).toBeInTheDocument();
