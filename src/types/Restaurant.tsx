@@ -1,19 +1,19 @@
 export const CATEGORY = {
-  전체: "all",
-  한식: "korean",
-  중식: "chinese",
-  일식: "japanese",
-  양식: "western",
-  아시안: "asian",
-  기타: "etc",
+  전체: 'all',
+  한식: 'korean',
+  중식: 'chinese',
+  일식: 'japanese',
+  양식: 'western',
+  아시안: 'asian',
+  기타: 'etc',
 };
 
 export const SORTINGWAY = {
-  이름순: "name",
-  거리순: "distance",
+  이름순: 'name',
+  거리순: 'distance',
 };
 
-export type Option = "sortBy" | "categorizeBy";
+export type Option = 'sortBy' | 'categorizeBy';
 
 export interface AppState {
   restaurants: Restaurant[];

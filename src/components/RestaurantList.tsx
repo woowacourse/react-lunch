@@ -3,8 +3,7 @@ import { RestaurantContext } from '../containers/GlobalProvider';
 import RestaurantItem from './RestaurantItem';
 
 const RestaurantList = () => {
-  const { state } = useContext(RestaurantContext);
-  const { restaurants, categorizeBy } = state;
+  const { restaurants, categorizeBy } = useContext(RestaurantContext);
 
   return (
     <ul>

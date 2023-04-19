@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { RestaurantContext } from '../containers/GlobalProvider';
 import { Restaurant } from '../types/Restaurant';
@@ -10,11 +10,15 @@ interface ModalProps {
 
 const Modal = (props: ModalProps) => {
   const { name, distance, category, description } = props.restaurant;
-  const { state, setState } = useContext(RestaurantContext);
+  const { setModalOpen } = useContext(RestaurantContext);
 
-  const onClickHandler = (): void => {
-    setState({ ...state, modalOpen: false });
+  const onClickHandler = () => {
+    setModalOpen(false);
   };
+
+  useEffect(() => {
+    console.log('dd');
+  }, []);
 
   return (
     <ModalContainer>

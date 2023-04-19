@@ -9,18 +9,18 @@ interface RestaurantItemProps {
 }
 
 const RestaurantItem = (props: RestaurantItemProps) => {
-  const { state, setState } = useContext(RestaurantContext);
+  const { modalInfo, setModalInfo, modalOpen, setModalOpen } =
+    useContext(RestaurantContext);
   const { name, distance, category, description } = props.restaurant;
+  const onClickHandler = () => {
+    setModalInfo({ ...modalInfo, name, distance, category, description });
+    setModalOpen(true);
+    // console.log(modalOpen);
+  };
+
   return (
     <>
-      <Card
-        onClick={() =>
-          setState({
-            ...state,
-            modalOpen: true,
-            modalInfo: { name, distance, category, description },
-          })
-        }>
+      <Card onClick={onClickHandler}>
         <Favorite></Favorite>
         <RestaurantInfo>
           <CategoryIcon>
@@ -41,6 +41,8 @@ export default RestaurantItem;
 
 const Card = styled.li`
   liststyle: none;
+
+  cursor: pointer;
 `;
 
 const Favorite = styled.div``;

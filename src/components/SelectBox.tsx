@@ -10,23 +10,18 @@ interface SelectBoxProps {
 
 const SelectBox = (props: SelectBoxProps) => {
   const { name, options } = props;
-  const { state, setState } = useContext(RestaurantContext);
+  const { restaurants, setSortBy, setRestaurants, setCategorizeBy } =
+    useContext(RestaurantContext);
 
   const updateRestaurants = (value: string) => {
-    if (name === 'sortBy')
-      setState({
-        ...state,
-        sortBy: value,
-        restaurants: state.restaurants
-          .slice()
-          .sort((a, b) => (a[value] > b[value] ? 1 : -1)),
-      });
+    if (name === 'sortBy') {
+      setSortBy(value);
+      setRestaurants(
+        restaurants.slice().sort((a, b) => (a[value] > b[value] ? 1 : -1))
+      );
+    }
 
-    if (name === 'categorizeBy')
-      setState({
-        ...state,
-        categorizeBy: value,
-      });
+    if (name === 'categorizeBy') setCategorizeBy(value);
   };
 
   return (
