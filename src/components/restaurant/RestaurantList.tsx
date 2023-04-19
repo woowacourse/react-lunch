@@ -1,4 +1,3 @@
-import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 import { RestaurantItem } from './RestaurantItem';
 import { Restaurant } from '../../type';
@@ -18,16 +17,17 @@ interface RestaurantListProps {
   clickRestaurantItem: React.MouseEventHandler<HTMLUListElement>;
 }
 
-export class RestaurantList extends Component<RestaurantListProps> {
-  render(): ReactNode {
-    return (
-      <Style.Wrapper>
-        <ul onClick={this.props.clickRestaurantItem}>
-          {this.props.list.map((restaurant) => (
-            <RestaurantItem key={restaurant.id} info={restaurant} />
-          ))}
-        </ul>
-      </Style.Wrapper>
-    );
-  }
+export function RestaurantList({
+  list,
+  clickRestaurantItem,
+}: RestaurantListProps) {
+  return (
+    <Style.Wrapper>
+      <ul onClick={clickRestaurantItem}>
+        {list.map((restaurant) => (
+          <RestaurantItem key={restaurant.id} info={restaurant} />
+        ))}
+      </ul>
+    </Style.Wrapper>
+  );
 }

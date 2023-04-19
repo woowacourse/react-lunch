@@ -1,7 +1,8 @@
 import { FilterState } from '../App';
 import { CategoryOption, Restaurant, SortOption } from '../type';
+import { getRestaurantList } from './storage';
 
-export const filterAndSortArray = (
+const filterAndSortArray = (
   restaurantList: Restaurant[],
   filter: FilterState
 ) => {
@@ -11,7 +12,7 @@ export const filterAndSortArray = (
   return sortedList;
 };
 
-export const filterRestaurantList = (
+const filterRestaurantList = (
   restaurantList: Restaurant[],
   categoryFilter: CategoryOption
 ) => {
@@ -22,7 +23,7 @@ export const filterRestaurantList = (
   );
 };
 
-export const sortRestaurantList = (
+const sortRestaurantList = (
   restaurantList: Restaurant[],
   sortFilter: SortOption
 ) => {
@@ -33,4 +34,23 @@ export const sortRestaurantList = (
     case 'distance':
       return [...restaurantList].sort((a, b) => a.distance - b.distance);
   }
+};
+
+export const getRestaurantListObj = () => {
+  const list: Restaurant[] = getRestaurantList();
+
+  return {
+    getFilteredRestaurant(filter: FilterState) {
+      return filterAndSortArray(list, filter);
+    },
+
+    getRestaurantInfoById(restaurantId: string) {
+      const restaurant = list.find(({ id }) => id === restaurantId);
+
+      if (restaurant === undefined)
+        throw new Error(`${restaurantId}를 아이디로 갖는 레스토랑이 없습니다.`);
+
+      return restaurant;
+    },
+  };
 };

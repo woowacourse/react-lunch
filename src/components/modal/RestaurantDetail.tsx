@@ -1,4 +1,3 @@
-import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 import { Style as RestaurantStyle } from '../restaurant/RestaurantItem';
 import { imgSrc } from '../../constants';
@@ -24,31 +23,29 @@ const Style = {
   `,
 };
 
-export class RestaurantDetail extends Component<RestaurantProps> {
-  render(): ReactNode {
-    return (
-      <>
-        <Style.ImageWrapper>
-          <Style.RestaurantCategory>
-            <img
-              src={`${process.env.PUBLIC_URL}/images/category-${
-                imgSrc[this.props.info.category]
-              }.png`}
-              alt={this.props.info.category}
-            />
-          </Style.RestaurantCategory>
-        </Style.ImageWrapper>
-        <Style.RestaurantName>{this.props.info.name}</Style.RestaurantName>
-        <Style.RestaurantDistance>
-          캠퍼스로부터 {this.props.info.distance}분 내
-        </Style.RestaurantDistance>
-        <Style.RestaurantDescription>
-          {this.props.info.description}
-        </Style.RestaurantDescription>
-        <a href={this.props.info.link}>
-          <Style.RestaurantLink>{this.props.info.link}</Style.RestaurantLink>
+export function RestaurantDetail({
+  info: { category, name, distance, description, link },
+}: RestaurantProps) {
+  return (
+    <>
+      <Style.ImageWrapper>
+        <Style.RestaurantCategory>
+          <img
+            src={`${process.env.PUBLIC_URL}/images/category-${imgSrc[category]}.png`}
+            alt={category}
+          />
+        </Style.RestaurantCategory>
+      </Style.ImageWrapper>
+      <Style.RestaurantName>{name}</Style.RestaurantName>
+      <Style.RestaurantDistance>
+        캠퍼스로부터 {distance}분 내
+      </Style.RestaurantDistance>
+      <Style.RestaurantDescription>{description}</Style.RestaurantDescription>
+      {link && (
+        <a href={link}>
+          <Style.RestaurantLink>{link}</Style.RestaurantLink>
         </a>
-      </>
-    );
-  }
+      )}
+    </>
+  );
 }

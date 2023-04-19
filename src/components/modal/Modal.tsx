@@ -1,4 +1,4 @@
-import { Component, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 const Style = {
@@ -36,32 +36,17 @@ const Style = {
 
 interface ModalProps {
   children: ReactNode;
-  isOpen: boolean;
   closeModal: () => void;
 }
 
-export class Modal extends Component<ModalProps> {
-  componentDidMount() {
-    window.onkeydown = (e) => {
-      if (e.key === 'Escape' && this.props.isOpen) this.props.closeModal();
-    };
-  }
-
-  render(): ReactNode {
-    return (
-      <>
-        {this.props.isOpen && (
-          <>
-            <Style.BackDrop onClick={this.props.closeModal} />
-            <Style.Wrapper>
-              {this.props.children}
-              <Style.CloseButton onClick={this.props.closeModal}>
-                닫기
-              </Style.CloseButton>
-            </Style.Wrapper>
-          </>
-        )}
-      </>
-    );
-  }
+export function Modal({ children, closeModal }: ModalProps) {
+  return (
+    <>
+      <Style.BackDrop onClick={closeModal} />
+      <Style.Wrapper>
+        {children}
+        <Style.CloseButton onClick={closeModal}>닫기</Style.CloseButton>
+      </Style.Wrapper>
+    </>
+  );
 }
