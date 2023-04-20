@@ -1,14 +1,13 @@
-import './App.css';
 import { Component } from 'react';
-import Header from './components/Header';
-import RestaurantListContainer from './components/RestaurantListContainer';
+import { Header } from './components/Header';
+import { Main } from './components/Main';
 
 class App extends Component {
   render() {
     return (
       <>
         <Header></Header>
-        <RestaurantListContainer></RestaurantListContainer>
+        <Main></Main>
       </>
     );
   }

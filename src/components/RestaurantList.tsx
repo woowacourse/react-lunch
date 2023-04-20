@@ -1,34 +1,60 @@
-import { PureComponent } from 'react';
-import RestaurantItem from './RestaurantItem';
-import RestaurantManager from '../domain/RestaurantManager';
-import { Category } from '../types/RestaurantDetail';
+import styled from 'styled-components';
 
-interface RestuarantListProps {
+import RestaurantManager from '../domain/RestaurantCollector';
+import { RestaurantItem } from './RestaurantItem';
+import { Category } from '../types/RestaurantDetail';
+import { useState } from 'react';
+import { DetailModal } from './DetailModal';
+import { createPortal } from 'react-dom';
+
+interface RestaurantListProps {
   category: Category;
   sort: string;
-  onOpenModal: (event: React.MouseEvent<HTMLUListElement>) => void;
 }
 
-export default class RestaurantList extends PureComponent<RestuarantListProps> {
-  constructor(props: RestuarantListProps) {
-    super(props);
-  }
+const fetchRestaurants = (category: Category, sort: string) => {
+  return RestaurantManager.getRestaurantListFilteredByOptions(category, sort);
+};
 
-  render() {
-    const { onOpenModal, category, sort } = this.props;
+export const RestaurantList = ({ category, sort }: RestaurantListProps) => {
+  const [showModal, setShowModal] = useState(false);
+  const [id, setId] = useState(0);
 
-    return (
-      <ul onClick={onOpenModal}>
-        {RestaurantManager.getRestaurantListFilteredByOptions(
-          category,
-          sort
-        ).map((itemDetail) => (
+  const handleClickItem: (
+    id: number
+  ) => React.MouseEventHandler<HTMLLIElement> = (id) => {
+    return () => {
+      setId(id);
+      setShowModal(true);
+    };
+  };
+
+  const restaurants = fetchRestaurants(category, sort);
+
+  return (
+    <>
+      <RestaurantListContainer>
+        {restaurants.map((itemDetail) => (
           <RestaurantItem
             key={itemDetail.id}
-            detail={itemDetail}
+            itemDetail={itemDetail}
+            onClickItem={handleClickItem(itemDetail.id)}
           ></RestaurantItem>
         ))}
-      </ul>
-    );
-  }
-}
+      </RestaurantListContainer>
+      {showModal &&
+        createPortal(
+          <DetailModal setShow={setShowModal} restaurantID={id}></DetailModal>,
+          document.body
+        )}
+    </>
+  );
+};
+
+const RestaurantListContainer = styled.ul`
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 16px;
+  margin: 16px 0;
+`;

@@ -1,9 +1,12 @@
 import mockData from './mockData.json';
 import { RestaurantDetail, Category } from '../types/RestaurantDetail';
+import {
+  RESTAURANT_CATEGORY,
+  SORTING_OPTION,
+} from '../constants/filterOptions';
 
 const RESTAURANT_LOCAL_STORAGE_ID = 'restaurantList';
 
-// local storage 접근
 const initMockData = () => {
   localStorage.setItem(RESTAURANT_LOCAL_STORAGE_ID, JSON.stringify(mockData));
 };
@@ -17,18 +20,18 @@ const getRestaurantList = (): RestaurantDetail[] => {
 };
 
 const sortByName = (restaurantList: RestaurantDetail[]) => {
-  return restaurantList.sort((a, b) => a.name.localeCompare(b.name));
+  return [...restaurantList].sort((a, b) => a.name.localeCompare(b.name));
 };
 
 const sortByDistance = (restaurantList: RestaurantDetail[]) => {
-  return restaurantList.sort((a, b) => a.distance - b.distance);
+  return [...restaurantList].sort((a, b) => a.distance - b.distance);
 };
 
 const filterByCategory =
   (_category: Category) => (restaurantList: RestaurantDetail[]) => {
-    if (_category === '전체') return restaurantList;
+    if (_category === RESTAURANT_CATEGORY.all) return restaurantList;
 
-    return restaurantList.filter(
+    return [...restaurantList].filter(
       (restaurant) => restaurant.category === _category
     );
   };
@@ -46,13 +49,13 @@ const getRestaurantListFilteredByOptions = (
   category: Category,
   sort: string
 ) => {
-  if (sort === 'distance') {
+  if (sort === SORTING_OPTION.distance) {
     return getFiltered(
       [sortByDistance, filterByCategory(category)],
       getRestaurantList()
     );
   }
-  if (sort === 'name') {
+  if (sort === SORTING_OPTION.name) {
     return getFiltered(
       [sortByName, filterByCategory(category)],
       getRestaurantList()

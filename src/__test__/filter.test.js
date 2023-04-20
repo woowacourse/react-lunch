@@ -1,4 +1,4 @@
-import RestaurantManager from '../domain/RestaurantManager';
+import RestaurantManager from '../domain/RestaurantCollector';
 import mockData from '../domain/mockData.json';
 
 /* eslint-disable */

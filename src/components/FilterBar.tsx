@@ -1,5 +1,5 @@
-import { PureComponent } from 'react';
-import Select from './Select';
+import styled from 'styled-components';
+
 import {
   RESTAURANT_CATEGORY,
   SORTING_OPTION,
@@ -10,47 +10,57 @@ interface FilterBarProps {
   onChangeSort: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export default class FilterBar extends PureComponent<FilterBarProps> {
-  constructor(props: FilterBarProps) {
-    super(props);
-  }
+export const FilterBar = ({
+  onChangeCategory,
+  onChangeSort,
+}: FilterBarProps) => {
+  return (
+    <FilterContainer>
+      <FilterSelect
+        onChange={onChangeCategory}
+        name="category"
+        id="category-filter"
+        className="restaurant-filter"
+      >
+        {Object.values(RESTAURANT_CATEGORY).map((category, index) => (
+          <option value={category} key={index}>
+            {category}
+          </option>
+        ))}
+      </FilterSelect>
 
-  render() {
-    const { onChangeCategory, onChangeSort } = this.props;
-    return (
-      <section className="restaurant-filter-container">
-        <Select>
-          {() => (
-            <select
-              onChange={onChangeCategory}
-              name="category"
-              id="category-filter"
-              className="restaurant-filter"
-            >
-              <option value="전체">{RESTAURANT_CATEGORY.all}</option>
-              <option value="한식">{RESTAURANT_CATEGORY.korea}</option>
-              <option value="중식">{RESTAURANT_CATEGORY.chinese}</option>
-              <option value="일식">{RESTAURANT_CATEGORY.japanese}</option>
-              <option value="양식">{RESTAURANT_CATEGORY.western}</option>
-              <option value="아시안">{RESTAURANT_CATEGORY.asian}</option>
-              <option value="기타">{RESTAURANT_CATEGORY.etc}</option>
-            </select>
-          )}
-        </Select>
-        <Select>
-          {() => (
-            <select
-              onChange={onChangeSort}
-              name="sorting"
-              id="sorting-filter"
-              className="restaurant-filter"
-            >
-              <option value="name">{SORTING_OPTION.name}</option>
-              <option value="distance">{SORTING_OPTION.distance}</option>
-            </select>
-          )}
-        </Select>
-      </section>
-    );
-  }
-}
+      <FilterSelect
+        onChange={onChangeSort}
+        name="sorting"
+        id="sorting-filter"
+        className="restaurant-filter"
+      >
+        {Object.values(SORTING_OPTION).map((sortingName, index) => (
+          <option value={sortingName} key={index}>
+            {sortingName}
+          </option>
+        ))}
+      </FilterSelect>
+    </FilterContainer>
+  );
+};
+
+const FilterContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  padding: 0 16px;
+  margin-top: 24px;
+`;
+
+const FilterSelect = styled.select`
+  height: 44px;
+  min-width: 125px;
+  padding-left: 10px;
+
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  background: transparent;
+
+  font-size: 16px;
+`;
