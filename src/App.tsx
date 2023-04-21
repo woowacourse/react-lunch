@@ -1,83 +1,40 @@
-import React from 'react';
 import RestaurantList from './components/RestaurantList';
-import mockData from "./data/mockData.json";
-import { Category, Restaurant, Sort } from './types/Restaurant';
+import { useContext } from 'react';
+import { CATEGORY, SORTINGWAY } from './types/Restaurant';
 import SelectBox from './components/SelectBox';
 import Header from './components/Header';
 import styled from 'styled-components';
+import Modal from './components/Modal';
+import { RestaurantContext } from './containers/GlobalProvider';
 
-interface AppState {
-  restaurants: Restaurant[];
-  sortBy: Sort;
-  categorizeBy: Category;
-}
-class App extends React.Component<{}, AppState> {
+const App = () => {
+  const categoryOptions = Object.entries(CATEGORY).map(([label, value]) => ({
+    label,
+    value,
+  }));
 
-  constructor(props: Readonly<{}> | {}) {
-    super(props);
-    this.state = { restaurants: mockData, sortBy: 'name', categorizeBy: 'all' };
-  }
+  const sortingWayOptions = Object.entries(SORTINGWAY).map(
+    ([label, value]) => ({
+      label,
+      value,
+    })
+  );
 
-  updateSortBy(e: React.ChangeEvent<HTMLSelectElement>) {
-    this.setState({ sortBy: e.target.value as Sort });
-  }
-
-  updateCategorizeBy(e: React.ChangeEvent<HTMLSelectElement>) {
-    this.setState({ categorizeBy: e.target.value as Category });
-  }
-
-  render() {
-    const { sortBy, categorizeBy, restaurants } = this.state;
-
-    return (
-      <>
-        <Header />
-        <SelectContainer>
-          <SelectBox
-            setState={(e) => this.updateCategorizeBy(e)}
-            options={[
-              {
-                label: '전체',
-                value: 'all'
-              },
-              {
-                label: '중식',
-                value: 'chinese'
-              },
-              {
-                label: '한식',
-                value: 'korean'
-              },
-              {
-                label: '아시안',
-                value: 'asian'
-              },
-              {
-                label: '양식',
-                value: 'western'
-              },
-              {
-                label: '일식',
-                value: 'japanese'
-              },
-              {
-                label: '기타',
-                value: 'etc'
-              },
-            ]} />
-          <SelectBox
-            setState={(e) => this.updateSortBy(e)}
-            options={[{ label: '이름순', value: 'name' }, { label: '거리순', value: 'distance' }]}
-          />
-        </SelectContainer>
-        <RestaurantList sortBy={sortBy} categorizeBy={categorizeBy} restaurants={restaurants} />
-      </>
-    );
-  }
-}
+  const { modalOpen, modalInfo } = useContext(RestaurantContext);
+  return (
+    <>
+      <Header title='점심 뭐 먹지' />
+      <SelectContainer>
+        <SelectBox name='categorizeBy' options={categoryOptions} />
+        <SelectBox name='sortBy' options={sortingWayOptions} />
+      </SelectContainer>
+      <RestaurantList />
+      {modalOpen && <Modal restaurant={modalInfo} />}
+    </>
+  );
+};
 
 export default App;
-
 
 const SelectContainer = styled.div`
   display: flex;
@@ -85,4 +42,4 @@ const SelectContainer = styled.div`
 
   padding: 0 16px;
   margin-top: 24px;
-`
+`;
