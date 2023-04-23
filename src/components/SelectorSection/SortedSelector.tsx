@@ -1,25 +1,22 @@
-import React, { ChangeEvent } from 'react';
-import Store from '../../store';
+import useWrappingContext from '../../hooks/useWrappingContext';
+import { SelectorStore } from '../../store';
 import styles from './SelectorSection.module.css';
-import type { Sort, State } from '../../App';
+import type { Sort } from '../../App';
+import type { ChangeEvent } from 'react';
 
-class SortedSelector extends React.PureComponent {
-	private static handleSortedSelector = (store: State | null) => (e: ChangeEvent<HTMLSelectElement>) => {
-		store?.setSortState(e.target.value as Sort);
-	};
+function SortedSelector() {
+  const { setSortOption } = useWrappingContext(SelectorStore);
 
-	render() {
-		return (
-			<Store.Consumer>
-				{(store) => (
-					<select name="sort" className={styles.selector} onChange={SortedSelector.handleSortedSelector(store)}>
-						<option value="이름순">이름순</option>
-						<option value="거리순">거리순</option>
-					</select>
-				)}
-			</Store.Consumer>
-		);
-	}
+  const handleSortedSelector = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSortOption(e.target.value as Sort);
+  };
+
+  return (
+    <select name="sort" className={styles.selector} onChange={handleSortedSelector}>
+      <option value="이름순">이름순</option>
+      <option value="거리순">거리순</option>
+    </select>
+  );
 }
 
 export default SortedSelector;

@@ -1,22 +1,38 @@
-import React from 'react';
-import Store from '../../store';
+import { useMemo } from 'react';
+import useModal from '../../hooks/useModal';
+import useWrappingContext from '../../hooks/useWrappingContext';
+import { SelectorStore, ModalStore } from '../../store';
+import Modal from '../Modal';
 import RestaurantItem from '../RestaurantItem';
 import styles from './RestaurantList.module.css';
+import useRestaurantList from './hooks/useRestaurantList';
 
-class RestaurantList extends React.PureComponent {
-	render() {
-		return (
-			<ul className={styles.restaurantList}>
-				<Store.Consumer>
-					{(store) =>
-						store?.restaurantList.map((restaurant) => (
-							<RestaurantItem key={restaurant.id} restaurant={restaurant} isModal={false} />
-						))
-					}
-				</Store.Consumer>
-			</ul>
-		);
-	}
+function RestaurantList() {
+  const { selector } = useWrappingContext(SelectorStore);
+  const { isModalOpen, modalInfo, openModal, closeModal } = useModal();
+
+  const modalStore = useMemo(
+    () => ({
+      isModalOpen,
+      modalInfo,
+      openModal,
+      closeModal,
+    }),
+    [isModalOpen, modalInfo]
+  );
+
+  const restaurantList = useRestaurantList(selector);
+
+  return (
+    <ModalStore.Provider value={modalStore}>
+      <ul className={styles.restaurantList}>
+        {restaurantList.map((restaurant) => (
+          <RestaurantItem key={restaurant.id} restaurant={restaurant} isModal={false} />
+        ))}
+      </ul>
+      <Modal />
+    </ModalStore.Provider>
+  );
 }
 
 export default RestaurantList;
