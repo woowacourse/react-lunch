@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body, Subtitle } from '../../styles/Text';
+import { SubTitleText } from '../../styles/Text';
 
 export const RestaurantListItem = styled.li`
   display: grid;
@@ -16,22 +16,11 @@ export const RestaurantListItem = styled.li`
   }
 `;
 
-export const RestaurantListItemHeaderTitle = styled(Subtitle)``;
+export const RestaurantListItemHeaderTitleText = styled(SubTitleText)``;
 
-export const RestaurantListItemHeaderSubtitle = styled.p`
+export const RestaurantListItemHeaderSubTitleText = styled.p`
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
   color: var(--primary-color);
-`;
-
-export const RestaurantListItemBody = styled(Body)`
-  display: -webkit-box;
-
-  padding-top: 8px;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
 `;

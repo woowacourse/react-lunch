@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as styled from './DropdownFilter.styles';
 
 type DropdownFilterProps<Value> = {
@@ -9,51 +9,29 @@ type DropdownFilterProps<Value> = {
   onChange: (value: { label: string; value: Value }) => void;
 };
 
-type DropdownFilterState<Value> = {
-  selectedOption: {
-    label: string;
-    value: Value;
+const DropdownFilter = <Value,>(props: DropdownFilterProps<Value>) => {
+  const { options, onChange } = props;
+  const [selectedOption, setSelectedOption] = useState(options[0]);
+
+  const handleSelectChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
+    const changedOption = options.find((option) => option.label === event.target.value)!;
+    setSelectedOption(changedOption);
+    onChange(changedOption);
   };
+
+  return (
+    <styled.DropdownFilter
+      value={selectedOption.label}
+      onChange={handleSelectChange}
+      data-cy="dropdown-filter"
+    >
+      {options.map(({ label }, index) => (
+        <option key={label} data-index={index}>
+          {label}
+        </option>
+      ))}
+    </styled.DropdownFilter>
+  );
 };
-
-class DropdownFilter<Value> extends React.PureComponent<
-  DropdownFilterProps<Value>,
-  DropdownFilterState<Value>
-> {
-  constructor(props: DropdownFilterProps<Value>) {
-    super(props);
-
-    this.state = { selectedOption: this.props.options[0] };
-  }
-
-  componentDidMount(): void {
-    const { onChange } = this.props;
-    const { selectedOption } = this.state;
-    onChange(selectedOption);
-  }
-
-  handleSelectChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
-    const { options, onChange } = this.props;
-    const selectedOption = options.find((option) => option.label === event.target.value)!;
-    this.setState({ selectedOption });
-    onChange(selectedOption);
-  };
-
-  render() {
-    return (
-      <styled.DropdownFilter
-        value={this.state.selectedOption.label}
-        onChange={this.handleSelectChange}
-        data-cy="dropdown-filter"
-      >
-        {this.props.options.map(({ label }, index) => (
-          <option key={label} data-index={index}>
-            {label}
-          </option>
-        ))}
-      </styled.DropdownFilter>
-    );
-  }
-}
 
 export default DropdownFilter;

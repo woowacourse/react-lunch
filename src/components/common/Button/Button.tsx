@@ -1,23 +1,15 @@
-import React from 'react';
+import type { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 import * as styled from './Button.styles';
 
-type ButtonProps = Omit<
-  React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
-  'ref'
-> &
-  React.PropsWithChildren<{
-    variant?: 'primary' | 'outlined';
-  }>;
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
+  PropsWithChildren<{ variant?: 'primary' | 'outlined' }>;
 
-class Button extends React.PureComponent<ButtonProps> {
-  render() {
-    const { children, variant, ...buttonProps } = this.props;
-    return (
-      <styled.Button {...buttonProps} $variant={variant ?? 'outlined'}>
-        {children}
-      </styled.Button>
-    );
-  }
-}
+const Button = ({ children, variant = 'outlined', ...buttonProps }: ButtonProps) => {
+  return (
+    <styled.Button {...buttonProps} $variant={variant}>
+      {children}
+    </styled.Button>
+  );
+};
 
 export default Button;

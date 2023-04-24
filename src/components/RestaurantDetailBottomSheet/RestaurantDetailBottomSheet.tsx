@@ -1,5 +1,4 @@
-import React from 'react';
-import { Body, Title } from '../../styles/Text';
+import { BodyText, TitleText } from '../../styles/Text';
 import type Restaurant from '../../types/Restaurant';
 import CategoryIcon from '../CategoryIcon/CategoryIcon';
 import BottomSheet from '../common/BottomSheet/BottomSheet';
@@ -12,36 +11,36 @@ type RestaurantDetailBottomSheetProps = {
   onClose: () => void;
 };
 
-class RestaurantDetailBottomSheet extends React.PureComponent<RestaurantDetailBottomSheetProps> {
-  render() {
-    const { restaurant, isOpened, onClose } = this.props;
+const RestaurantDetailBottomSheet = ({
+  restaurant,
+  isOpened,
+  onClose,
+}: RestaurantDetailBottomSheetProps) => {
+  return (
+    <BottomSheet isOpened={isOpened} onClose={onClose}>
+      <styled.RestaurantDetailBottomSheet>
+        <CategoryIcon category={restaurant.category} />
+        <TitleText>{restaurant.name}</TitleText>
+        <styled.BottomSheetBodyText>
+          캠퍼스부터 {restaurant.distanceByMinutes}분 내
+        </styled.BottomSheetBodyText>
 
-    return (
-      <BottomSheet isOpened={isOpened} onClose={onClose}>
-        <styled.RestaurantDetailBottomSheet>
-          <CategoryIcon category={restaurant.category} />
-          <Title>{restaurant.name}</Title>
-          <styled.BottomSheetBody>
-            캠퍼스부터 {restaurant.distanceByMinutes}분 내
-          </styled.BottomSheetBody>
+        <BodyText>{restaurant.description}</BodyText>
+        {restaurant.link !== null && (
+          <a href={restaurant.link} target="_blank" rel="noreferrer">
+            <BodyText>{restaurant.link}</BodyText>
+          </a>
+        )}
 
-          <Body>{restaurant.description}</Body>
-          {restaurant.link !== null && (
-            <a href={restaurant.link} target="_blank" rel="noreferrer">
-              <Body>{restaurant.link}</Body>
-            </a>
-          )}
-
-          <styled.BottomSheetActions>
-            <Button variant="outlined">삭제하기</Button>
-            <Button variant="primary" onClick={onClose} data-cy="close-button">
-              닫기
-            </Button>
-          </styled.BottomSheetActions>
-        </styled.RestaurantDetailBottomSheet>
-      </BottomSheet>
-    );
-  }
-}
+        <styled.BottomSheetActions>
+          <Button variant="outlined">삭제하기</Button>
+          <Button variant="primary" onClick={onClose} data-cy="close-button">
+            닫기
+          </Button>
+        </styled.BottomSheetActions>
+      </styled.RestaurantDetailBottomSheet>
+    </BottomSheet>
+  );
+};
 
 export default RestaurantDetailBottomSheet;
